@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-new-year-spiderman",
+  "name": "NEW YEAR SPIDERMAN",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "62BCC5F8": "textures/diffuse.png"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-payback",
+  "name": "SMU PAYBACK",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "AFA66C96": "textures/diffuse.png"
+  }
+}

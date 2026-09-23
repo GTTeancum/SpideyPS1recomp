@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-modernsilk",
+  "name": "SMU MODERNSILK",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "74F85317": "textures/diffuse.png"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-nickfury",
+  "name": "SMU NICKFURY",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "09E7D699": "textures/diffuse.png"
+  }
+}

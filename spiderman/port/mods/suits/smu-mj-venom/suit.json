@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-mj-venom",
+  "name": "SMU MJ VENOM",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "FCD2A8D6": "textures/diffuse.png"
+  }
+}

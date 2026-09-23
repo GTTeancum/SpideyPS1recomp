@@ -1,0 +1,26 @@
+{
+  "batch": 13,
+  "keys": [
+    "mj_venom",
+    "mjiron",
+    "modernscarlet",
+    "modernsilk",
+    "mutantjonah",
+    "new_year_spiderman",
+    "newarmor",
+    "nickfury",
+    "nurotox",
+    "payback"
+  ],
+  "representative": "smu-payback",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed two native captures: Payback swinging at 1558 with the line meeting the raised hand, then grounded at 1863. Pink patterned surface, hair shape and complete limbs remain visible in both poses. Detailed hand closure is not established by these wide views. Run exits normally without slow-run warnings; offline tests cover all ten suits.",
+  "liveSwingImages": [
+    "frame_01558.png"
+  ],
+  "images": {
+    "frame_01558.png": "ce04d07c2d5aff2a188657d024a89f3ac1a41ecd692488415343086a08884261",
+    "frame_01863.png": "a6621b5bec017ad64bc5ce07563e31acadc5ac9e6e28bdd770e01d718b43fb1b"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

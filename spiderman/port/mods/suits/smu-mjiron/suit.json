@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-mjiron",
+  "name": "SMU MJIRON",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "C7882F6C": "textures/diffuse.png",
+    "573712C6": "textures/diffuse-1.png"
+  }
+}

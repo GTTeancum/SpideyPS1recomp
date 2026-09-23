@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-mutantjonah",
+  "name": "SMU MUTANTJONAH",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "B9096755": "textures/diffuse.png"
+  }
+}
