@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-arachnido",
+  "name": "SMU ARACHNIDO",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "D44660E8": "textures/diffuse.png"
+  }
+}

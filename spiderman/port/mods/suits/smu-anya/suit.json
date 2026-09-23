@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-anya",
+  "name": "SMU ANYA",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "64103BD2": "textures/diffuse.png"
+  }
+}

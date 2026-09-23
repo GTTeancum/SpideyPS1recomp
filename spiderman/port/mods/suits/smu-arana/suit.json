@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-arana",
+  "name": "SMU ARANA",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "0F6C1BA0": "textures/diffuse.png"
+  }
+}

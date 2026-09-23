@@ -1,0 +1,30 @@
+{
+  "batch": 4,
+  "keys": [
+    "ancientvenom",
+    "angelo_fortunato",
+    "annie_parker",
+    "anya",
+    "arachnido",
+    "arachnoman",
+    "arana",
+    "baal",
+    "baghead",
+    "battledamaged"
+  ],
+  "representative": "smu-annie-parker",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed all five native framebuffer captures sequentially: intro NPC Venom; Annie Parker swings with web meeting raised wrist at 1581 and 1596, then lands at 1626 and idles at 1886. Cape, hair, limbs and material colors visible without detached geometry. Offline tests cover all ten suits; gameplay proof is representative, not every suit.",
+  "liveSwingImages": [
+    "frame_01581.png",
+    "frame_01596.png"
+  ],
+  "images": {
+    "frame_01266.png": "b75bcfca09831cac03d7af75a872cf126fe3db13d8ff4b2a7497e79e0f9beab6",
+    "frame_01581.png": "90f19ee5145d1939d0231e6ad8810932164365074ab346c7cba1c3ac66a874e6",
+    "frame_01596.png": "7fd05e099e6db8851b1bcdc224c5ff5f4800c7e8cdc845f451cbd3da6e712819",
+    "frame_01626.png": "e9a7043bbb7df91e82e1a9278cd04e034c8c894252e0d3bd550495f2af36cd6d",
+    "frame_01886.png": "f58227dbeb2b20d7820a9d3a63e04fb3b149e95935fd20ff9ba871d249abd59f"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

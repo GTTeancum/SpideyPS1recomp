@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-battledamaged",
+  "name": "SMU BATTLEDAMAGED",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "5651BB56": "textures/diffuse.png"
+  }
+}

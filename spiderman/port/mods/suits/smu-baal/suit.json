@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-baal",
+  "name": "SMU BAAL",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "815337E5": "textures/diffuse.png"
+  }
+}

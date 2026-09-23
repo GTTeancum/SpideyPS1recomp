@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-angelo-fortunato",
+  "name": "ANGELO FORTUNATO",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "27097226": "textures/diffuse.png"
+  }
+}
