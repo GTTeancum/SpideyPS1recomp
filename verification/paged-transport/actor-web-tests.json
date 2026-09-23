@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 2,
+  "requested": 2,
+  "results": [
+    {
+      "key": "damon_ryder",
+      "id": "smu-damon-ryder",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.854736328125,
+        9.79541015625
+      ],
+      "assetSha256": "5363dd706c9cdef6ad5f96ff1f6859f9e93df4902cb3ebd439515a78b62e66f3",
+      "captureSha256": "1e5099618eda8e31778a5708c0d74867bebcca725af3ce59372a38ed7d2bb3e9"
+    },
+    {
+      "key": "other",
+      "id": "smu-other",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.19775390625,
+        9.599609375
+      ],
+      "assetSha256": "9031a434b35c287c93f0ee8bc9b2f411bc6d3257dc1583133e9a149070baa870",
+      "captureSha256": "5fa1b37290135c634226b4c976ffeed75ecf46d6e575a3f71f692af51ee45d74"
+    }
+  ]
+}

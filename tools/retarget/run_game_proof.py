@@ -72,9 +72,12 @@ def main():
     record['slowRunWarnings']=diagnostics.read_text(errors='replace').count('======== STALL ========') if diagnostics.exists() else 0
     record.update(seconds=time.monotonic() - start, images=[p.name for p in out.glob('*.png')],
         acceptance='Capture pending visual and gameplay review')
+    record['captureComplete'] = record['exitCode'] == 0 and len(record['images']) == len(offsets)
+    if not record['captureComplete']:
+        record['acceptance'] = 'FAILED capture gate: process failed or requested images are missing; no gameplay acceptance'
     (out / 'run.json').write_text(json.dumps(record, indent=2) + '\n')
     print(json.dumps({k: v for k, v in record.items() if k != 'environment'}, indent=2))
-    return 0 if record['exitCode'] == 0 else 1
+    return 0 if record['captureComplete'] else 1
 
 
 if __name__ == '__main__':

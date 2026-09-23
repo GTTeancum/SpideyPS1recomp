@@ -1,0 +1,320 @@
+{
+  "status": "PASS",
+  "scope": "Native assets + compiled C++ runtime core + original animation decoding oracle; C# integration checks are static only. Full .NET build/game execution NOT run.",
+  "passed": 55,
+  "failed": 0,
+  "metrics": {
+    "smu-damon-ryder": {
+      "bones": 66,
+      "sourceControlPoints": 6500,
+      "sourceInfluences": 10505,
+      "runtimeVertices": 6500,
+      "runtimeInfluences": 10505,
+      "triangles": 8032,
+      "nativeBytes": 1517884,
+      "sha256": "5363dd706c9cdef6ad5f96ff1f6859f9e93df4902cb3ebd439515a78b62e66f3",
+      "rootScale": 0.9018231630325317,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007819726597517729,
+      "maxRoundedComponentError": 0.84942626953125,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 17.970743900048546
+    },
+    "smu-other": {
+      "bones": 66,
+      "sourceControlPoints": 4511,
+      "sourceInfluences": 9860,
+      "runtimeVertices": 4511,
+      "runtimeInfluences": 9860,
+      "triangles": 5022,
+      "nativeBytes": 1247376,
+      "sha256": "9031a434b35c287c93f0ee8bc9b2f411bc6d3257dc1583133e9a149070baa870",
+      "rootScale": 0.9027978181838989,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007817821460776031,
+      "maxRoundedComponentError": 0.8561935424804688,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 13.216041199979372
+    }
+  },
+  "results": [
+    {
+      "name": "300 native clips / 4196 source frames",
+      "passed": true
+    },
+    {
+      "name": "original decoder produces nonsingular Q12 driver rotations",
+      "passed": true,
+      "minDet": 0.9987022876739502,
+      "maxDet": 1.0010902881622314
+    },
+    {
+      "name": "smu-damon-ryder: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9770800935580155e-08
+    },
+    {
+      "name": "smu-damon-ryder: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 8032
+    },
+    {
+      "name": "smu-damon-ryder: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.00048828125
+    },
+    {
+      "name": "smu-damon-ryder: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-damon-ryder: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.00046539306640625,
+      "scale": 0.9018231630325317
+    },
+    {
+      "name": "smu-damon-ryder: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-damon-ryder: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-damon-ryder: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 3226.9248046875,
+      "worst": null
+    },
+    {
+      "name": "smu-damon-ryder: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007819726597517729
+    },
+    {
+      "name": "smu-damon-ryder: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.0008544921875,
+      "maxRoundedComponentError": 0.84942626953125
+    },
+    {
+      "name": "smu-damon-ryder: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-damon-ryder: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "smu-other: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-other: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-other: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-other: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-other: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9772116105775126e-08
+    },
+    {
+      "name": "smu-other: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 5022
+    },
+    {
+      "name": "smu-other: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-other: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-other: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.00048828125
+    },
+    {
+      "name": "smu-other: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-other: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-other: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-other: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-other: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.00042724609375,
+      "scale": 0.9027978181838989
+    },
+    {
+      "name": "smu-other: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-other: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-other: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-other: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-other: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-other: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-other: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 3266.734619140625,
+      "worst": null
+    },
+    {
+      "name": "smu-other: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007817821460776031
+    },
+    {
+      "name": "smu-other: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.0008544921875,
+      "maxRoundedComponentError": 0.8561935424804688
+    },
+    {
+      "name": "smu-other: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-other: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "source integration: exactly one pose-ready hook and regeneration config",
+      "passed": true
+    },
+    {
+      "name": "source integration: resident validation / fists / culling update present",
+      "passed": true
+    },
+    {
+      "name": "Windows deployed native DLL is the tested-source build artifact",
+      "passed": true
+    }
+  ],
+  "inputHashes": {
+    "C:\\Programming\\SMU-Costumes\\costumes\\damon_ryder\\damon_ryder.fbx": "f1dc4da9772d19fa9f38f0c346321c214778db2f5819d033cb94e905bbc309ee",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\Damon_Ryder_gun.png": "bc0ebce53add59c2d1b143e23e88729dbfe8f85a023e350e9276de37391b42cb",
+    "spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\paged-batch27\\suits\\smu-damon-ryder\\actor.psx": "5363dd706c9cdef6ad5f96ff1f6859f9e93df4902cb3ebd439515a78b62e66f3",
+    "C:\\Programming\\SMU-Costumes\\costumes\\other\\other.fbx": "178792360da26b30b4bbf35373bc0c2e2035ba19645863d62533b7a2b705b3f8",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\other_d.png": "433a3657f4c7eb2d71110d3fd132828ea475d0d4583380997c62df5ec86c7758",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\paged-batch27\\suits\\smu-other\\actor.psx": "9031a434b35c287c93f0ee8bc9b2f411bc6d3257dc1583133e9a149070baa870"
+  },
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb"
+}

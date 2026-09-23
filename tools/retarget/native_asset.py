@@ -13,6 +13,13 @@ def parse(b):
     if (H(b,0),H(b,2))!=(4,2):raise ValueError('v4 PSX required')
     count=U(b,8);origins=np.array([struct.unpack_from('<iii',b,16+36*i) for i in range(count)],dtype=float)/256
     table=12+36*count;mc=U(b,table);ptrs=[U(b,table+4+4*i) for i in range(mc)]
+    drivers=list(range(mc))
+    if mc>count:
+        if count!=18 or not 18<mc<=64:raise ValueError('Unsupported paged actor topology')
+        for i,off in enumerate(ptrs):
+            expected=18 if i==0 else i+1 if 18<=i<mc-1 else 0xffff
+            if H(b,off+26)!=expected:raise ValueError('Invalid paged actor chain')
+        drivers=list(range(18))+[0]*(mc-18)
     p=U(b,4);tags={}
     while U(b,p)!=0xffffffff:
         t=U(b,p);n=U(b,p+4);tags[t]=b[p+8:p+8+n];p+=8+n
@@ -46,7 +53,7 @@ def parse(b):
                 if ref>=len(sources):raise ValueError(f'unresolved stitch {i}:{j}')
                 pt,owner,sv=sources[ref];pt=pt.copy()
             elif flag in (0,1):
-                pt=np.array([x,y,z],dtype=float)+origins[i];owner=i;sv=j
+                pt=np.array([x,y,z],dtype=float)+origins[drivers[i]];owner=i;sv=j
                 if flag==1:sources.append((pt.copy(),owner,sv))
             else:raise ValueError(f'unknown vertex type {flag}')
             verts.append(pt);owners.append(owner);source_vertices.append(sv)

@@ -66,6 +66,7 @@ foreach (string actorPath in actors)
     try
     {
         var real = SuitModel.Read(actorPath);
+        if (real.RetargetRig?.Packets.Length > 18) CheckPagedActor(actorPath, real);
         Console.WriteLine($"PASS: converted actor {actorPath}: {real.Bytes.Length} bytes, {real.Materials.Count} material IDs");
     }
     catch (Exception e)
@@ -82,6 +83,46 @@ foreach (string actorPath in actors)
 foreach (string failure in failures) Console.Error.WriteLine("FAIL: " + failure);
 Console.WriteLine($"Catalogue audit: {actors.Length} actors, {failures.Count} failures.");
 return failures.Count == 0 ? 0 : 1;
+
+void CheckPagedActor(string path, SuitModel model)
+{
+    byte[] source = File.ReadAllBytes(path);
+    int U(byte[] b, int offset) => checked((int)BinaryPrimitives.ReadUInt32LittleEndian(b.AsSpan(offset)));
+    int count = U(source, 660), root = U(source, 664), extra = U(source, 664 + 18 * 4);
+    int terminals = Enumerable.Range(0, count).Count(i =>
+        BinaryPrimitives.ReadUInt16LittleEndian(source.AsSpan(U(source, 664 + i * 4) + 26)) == ushort.MaxValue);
+    if (terminals != 18 || model.RetargetRig!.Packets.Length != count)
+        throw new Exception("paged mesh terminals/rig count changed");
+    void Bad(Action<byte[]> change, string name)
+    {
+        var mutated = (byte[])source.Clone(); change(mutated);
+        try { SuitModel.Parse(mutated); }
+        catch (InvalidDataException) { Console.WriteLine("PASS: rejected paged " + name); return; }
+        throw new Exception("accepted paged " + name);
+    }
+    Bad(b => BinaryPrimitives.WriteUInt16LittleEndian(b.AsSpan(root + 26), 0), "root cycle");
+    Bad(b => BinaryPrimitives.WriteUInt16LittleEndian(b.AsSpan(extra + 26), ushort.MaxValue), "extra terminal");
+    Bad(b => BinaryPrimitives.WriteUInt16LittleEndian(b.AsSpan(extra + 34), 2), "cross-page stitch");
+    Bad(b => BinaryPrimitives.WriteInt32LittleEndian(b.AsSpan(660), 65), "mesh count overflow");
+    int p = U(source, 4);
+    while (BinaryPrimitives.ReadUInt32LittleEndian(source.AsSpan(p)) != NativeRetargetRig.Tag)
+        p += 8 + U(source, p + 4);
+    Bad(b => BinaryPrimitives.WriteUInt32LittleEndian(b.AsSpan(p), 0x12345678), "missing preserved rig");
+    Bad(b => BinaryPrimitives.WriteInt32LittleEndian(b.AsSpan(p + 8 + 280), count - 1), "rig/native page mismatch");
+    float[] drivers = new float[216];
+    for (int i = 0; i < 18; i++) for (int axis = 0; axis < 3; axis++)
+    {
+        drivers[i * 12 + axis * 4 + axis] = 1;
+        drivers[i * 12 + axis * 4 + 3] = BitConverter.Int32BitsToSingle(
+            BinaryPrimitives.ReadInt32LittleEndian(model.RetargetRig.PreservedData.Span.Slice(64 + i * 12 + axis * 4)));
+    }
+    model.RetargetRig.Evaluate(drivers);
+    for (int i = 0; i < count; i++)
+        if (model.RetargetRig.LocalVertices[i].Length != model.RetargetRig.Packets[i].Length * 6 ||
+            model.RetargetRig.LocalVertices[i].Any(v => !float.IsFinite(v)))
+            throw new Exception("managed page evaluation omitted vertices");
+    Console.WriteLine($"PASS: {count} managed pages evaluated with 18 native drivers/terminals");
+}
 
 void CheckManifest(string actorPath)
 {

@@ -16,6 +16,7 @@ public static class SuitRetargeting
     static int _pageCount, _nextPage;
     static readonly bool Trace = Environment.GetEnvironmentVariable("SPIDEY_RETARGET_TRACE") == "1";
     static NativeRetargetRig _reported;
+    static uint _reportedPageActor;
     static bool Ram(uint p, uint n) => n <= 0x800000 && p >= 0x80000000 && p <= 0x80800000 - n;
     static short Quantize(float x) => checked((short)MathF.Round(x));
     static Vector3 Point(float[] v, int i) => new(v[i * 6], v[i * 6 + 1], v[i * 6 + 2]);
@@ -133,6 +134,11 @@ public static class SuitRetargeting
         if (!PagedContext(c, m) || c.S1 != 0 || _nextPage >= _pageCount) return false;
         c.S0 = Mesh[_nextPage++];
         m.WriteU32(c.GP + 0x1164, _partVisibility);
+        if (Trace && _nextPage == _pageCount && _reportedPageActor != _pagedActor)
+        {
+            _reportedPageActor = _pagedActor;
+            Console.WriteLine($"[retarget-pages] actor {_pagedActor:X8}: {_pageCount} pages; all {_pageCount - 18} extra pages scheduled under driver 0; 18 native drivers retained");
+        }
         return true;
     }
 }

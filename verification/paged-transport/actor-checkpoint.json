@@ -1,0 +1,20 @@
+{
+  "status": "PARTIAL-GAMEPLAY-FAILED",
+  "installed": false,
+  "candidateBatch": 27,
+  "suits": {
+    "smu-damon-ryder": {"vertices": 6500, "triangles": 8032, "pages": 29, "materials": 2, "actorSha256": "5363dd706c9cdef6ad5f96ff1f6859f9e93df4902cb3ebd439515a78b62e66f3"},
+    "smu-other": {"vertices": 4511, "triangles": 5022, "pages": 21, "materials": 2, "actorSha256": "9031a434b35c287c93f0ee8bc9b2f411bc6d3257dc1583133e9a149070baa870"}
+  },
+  "offlineChecks": 55,
+  "animationFramesPerSuit": 4196,
+  "webFramesPerSuit": 115,
+  "managedCandidateFailures": 0,
+  "managedLegacyActors": 231,
+  "managedLegacyFailures": 0,
+  "malformedPageActorRejectionsPerSuit": 6,
+  "gameBuild": "PASS; 9 existing warnings",
+  "gameplay": "Damon native process loaded the actor but stalled during title startup. It exited at frame 2000 with zero images, zero live pose traces and two stall warnings. Exit zero is not acceptance. Investigate native loading/startup before installation.",
+  "linux": "Previous Linux library retained; rebuilding paged support is pending. WSL is not installed on this host.",
+  "remaining": ["Diagnose title startup failure", "Validate actual paged drawing for both candidates", "Inspect two native images per candidate", "Rebuild/test Linux core", "Install and commit accepted suit batch only after required checks"]
+}

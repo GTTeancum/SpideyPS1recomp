@@ -75,20 +75,24 @@ def convert(fbx,reference,donor,texture,out,suit_id,name):
     for record in material_records:inputs[record['source']]=hashlib.sha256(Path(record['source']).read_bytes()).hexdigest()
     cal=calibrate(s,ref,origins,ground);vertices,controls,faces=unique_vertices(s,cal)
     packets,bins,overflow=packetize(faces,controls,s,cal)
-    if len(packets)!=18:
-        raise ValueError('Paged mesh transport is not yet integrated with the native renderer; conversion refused without writing an incomplete actor')
     blob=make_blob(s,cal,vertices,controls,faces,packets);rig=Rig(blob)
     posed,bones=rig.evaluate();driver=rig.rest_driver()
-    data=bytearray(raw[:736]);stats=[]
-    for i in range(18):
+    count=len(packets);mapping=rig.packet_drivers()
+    data=bytearray(raw[:660]);data.extend(struct.pack('<I',count));data.extend(bytes(count*4));stats=[]
+    for i in range(count):
         struct.pack_into('<I',data,664+4*i,len(data));ids=packets[i];lookup={v:j for j,v in enumerate(ids)}
-        local=rig.part_local(driver[i],posed[ids]);fs=np.array([[lookup[v] for v in faces[j]] for j in bins[i]],int).reshape(-1,3)
-        uvs=render_uv[bins[i]];data.extend(native_mesh(local,fs,uvs,face_materials[bins[i]],[r['alphaBound'] for r in material_records]))
+        local=rig.part_local(driver[mapping[i]],posed[ids]);fs=np.array([[lookup[v] for v in faces[j]] for j in bins[i]],int).reshape(-1,3)
+        uvs=render_uv[bins[i]];mesh=native_mesh(local,fs,uvs,face_materials[bins[i]],[r['alphaBound'] for r in material_records])
+        if count>18:
+            link=18 if i==0 else i+1 if 18<=i<count-1 else 0xffff
+            struct.pack_into('<H',mesh,26,link)
+        data.extend(mesh)
         stats.append({'packet':i,'vertices':len(ids),'triangles':len(fs)})
     struct.pack_into('<I',data,4,len(data))
     for c in chunks:
         if U(c,0)!=MAGIC:data.extend(c)
     data.extend(struct.pack('<II',MAGIC,len(blob)));data.extend(blob);data.extend(struct.pack('<I',0xffffffff));data.extend(names)
+    for i in range(18,count):data.extend(struct.pack('<I',zlib.crc32(f'suit-page:{suit_id}:{i}'.encode())))
     materials=[zlib.crc32(('suit-material:'+suit_id+(':'+str(i) if i else '')).encode()) for i in range(len(images))]
     palettes=[zlib.crc32(('suit-palette:'+suit_id+(':'+str(i) if i else '')).encode()) for i in range(len(images))]
     data.extend(struct.pack('<I',len(materials)));data.extend(struct.pack('<'+'I'*len(materials),*materials));data.extend(struct.pack('<II',0,len(images)))
@@ -121,7 +125,7 @@ def convert(fbx,reference,donor,texture,out,suit_id,name):
     # The external texture is a direct source RGB conversion, NOT an invented upscale.
     report={'schema':2,'status':'converted and core-evaluated; game execution is a separate acceptance gate','sourceRigBones':len(s.names),
             'sourceControlPoints':len(s.vertices),'sourcePositiveInfluences':sum(len(w) for w in s.weights),'runtimeVertices':len(vertices),
-            'runtimeInfluences':sum(len(s.weights[c]) for c in controls),'originalTriangles':len(s.faces),'uniqueOutputTriangles':sum(len(bins[i]) for i in range(18) if i not in (6,11)),
+            'runtimeInfluences':sum(len(s.weights[c]) for c in controls),'originalTriangles':len(s.faces),'uniqueOutputTriangles':sum(len(bins[i]) for i in range(count) if i not in (6,11)),
             'nativeBytes':len(data),'rigBytes':len(blob),'packetSpilloverTriangles':overflow,'packets':stats,'unitScale':cal['scale'],'rootAnimationScale':cal['root_scale'],
             'neutralBounds':[posed[:,:3].min(0).tolist(),posed[:,:3].max(0).tolist()],'sourceBindReconstructionMaxError':float(np.max(abs(rig.evaluate(flags=3)[0][:,:3]-vertices[:,:3]))),
             'inputHashes':inputs,'outputSha256':hashlib.sha256(data).hexdigest(),'fistBones':cal['finger_report'],'materials':material_records}

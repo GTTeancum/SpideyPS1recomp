@@ -19,10 +19,11 @@ def triangles(parsed,rig,driver=None,flags=0,quantize=True):
     world,bones=rig.evaluate(poses,flags);packets=rig.packets();result=[];maximum_error=0
     for i,mesh in enumerate(parsed['meshes']):
         if i in (6,11):continue
-        ids=packets[i];v=rig.part_local(poses[i],world[ids]);v[:,:3]=np.rint(v[:,:3]) if quantize else v[:,:3]
-        p=v[:,:3]@poses[i,:,:3].T+poses[i,:,3]
+        matrix=poses[rig.packet_drivers()[i]]
+        ids=packets[i];v=rig.part_local(matrix,world[ids]);v[:,:3]=np.rint(v[:,:3]) if quantize else v[:,:3]
+        p=v[:,:3]@matrix[:,:3].T+matrix[:,3]
         if len(ids):maximum_error=max(maximum_error,float(abs(p-world[ids,:3]).max()))
-        normals=v[:,3:]@np.linalg.inv(poses[i,:,:3]);normals/=np.maximum(1e-9,np.linalg.norm(normals,axis=1))[:,None]
+        normals=v[:,3:]@np.linalg.inv(matrix[:,:3]);normals/=np.maximum(1e-9,np.linalg.norm(normals,axis=1))[:,None]
         for f in mesh['faces']:
             order=[0,2,1];ii=np.array(f['indices'])[order]
             result.append({'p':p[ii],'n':normals[ii],'uv':np.array(f['uv'])[order]/127,'slot':f['slot'],'mesh':i})

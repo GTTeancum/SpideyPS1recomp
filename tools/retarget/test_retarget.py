@@ -38,7 +38,7 @@ def chunks(data):
     return out,ranges,p
 
 def guest_strip(data):
-    tags,ranges,p=chunks(data);start,size=ranges[MAGIC];p+=4+72
+    tags,ranges,p=chunks(data);start,size=ranges[MAGIC];p+=4+4*U(data,660)
     n=U(data,p);p+=4+n*4
     for width in [36,516]:n=U(data,p);p+=4+n*width
     if U(data,p)==0xffffffff:
@@ -148,10 +148,11 @@ def main():
                 max_length_rel=max(max_length_rel,float((abs(le[nonzero]-lengths[nonzero])/lengths[nonzero]).max()))
                 for i,ids in enumerate(packets):
                     if not len(ids):continue
-                    local=rig.part_local(driver[i],v[ids]);max_local=max(max_local,float(abs(local[:,:3]).max()))
-                    reconstructed=local[:,:3]@driver[i,:,:3].T+driver[i,:,3]
+                    matrix=driver[rig.packet_drivers()[i]]
+                    local=rig.part_local(matrix,v[ids]);max_local=max(max_local,float(abs(local[:,:3]).max()))
+                    reconstructed=local[:,:3]@matrix[:,:3].T+matrix[:,3]
                     max_comp_error=max(max_comp_error,float(abs(reconstructed-v[ids,:3]).max()))
-                    quantized=np.rint(local[:,:3])@driver[i,:,:3].T+driver[i,:,3]
+                    quantized=np.rint(local[:,:3])@matrix[:,:3].T+matrix[:,3]
                     max_quant_error=max(max_quant_error,float(abs(quantized-v[ids,:3]).max()))
                     if not np.isfinite(local).all() or np.max(abs(local[:,:3]))>32760:passed=False;worst=[ci,fi,i]
         elapsed=time.perf_counter()-t0
@@ -162,7 +163,7 @@ def main():
         bad=[]
         for length in [0,1,32,279,len(rig.blob)-1]:bad.append(rig.blob[:length])
         def mut(off,fmt,val):z=bytearray(rig.blob);struct.pack_into(fmt,z,off,val);bad.append(bytes(z))
-        for offset,value in [(0,0),(4,999),(8,0),(12,257),(16,4097),(20,65537),(24,9999),(28,0xffffffff),(32,0xffffffff),(36,0xffffffff),(40,0xffffffff),(44,0xffffffff),(52,0xffffffff)]:mut(offset,'<I',value)
+        for offset,value in [(0,0),(4,999),(8,0),(12,257),(16,8193 if rig.h[1]==3 else 4097),(20,65537),(24,9999),(28,0xffffffff),(32,0xffffffff),(36,0xffffffff),(40,0xffffffff),(44,0xffffffff),(52,0xffffffff)]:mut(offset,'<I',value)
         mut(60,'<f',float('nan'));mut(60,'<f',0)
         mut(rig.h[7],'<i',0);mut(rig.h[7]+4,'<i',18);mut(rig.h[7]+16,'<f',float('inf'))
         mut(rig.h[8]+28,'<I',0);mut(rig.h[9],'<I',rig.bones);mut(rig.h[9]+4,'<f',-1);mut(rig.h[10],'<I',257)

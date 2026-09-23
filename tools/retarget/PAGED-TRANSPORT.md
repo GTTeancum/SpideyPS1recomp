@@ -1,8 +1,9 @@
 # Paged Transport Integration
 
-Status: metadata/core and drawing hooks implemented and tested offline; actor generation remains
-gated until native paged loading and drawing are verified. Shipping DLLs
-and installed suits have not been replaced by this work.
+Status: metadata/core, native actor writing, managed loading, independent decoding
+and drawing hooks are implemented. Both large suits are staged candidates, not
+installed or accepted gameplay conversions. Windows core DLLs have been updated;
+the previous DLL is backed up. The Linux core still needs rebuilding and testing.
 
 RTG2 version 2 remains byte-layout compatible. Version 3 retains the first 280
 header bytes and adds four uint32 fields: page count, driver-map offset, and two
@@ -17,10 +18,10 @@ bones, weights, bind matrices and skinning arithmetic do not change.
 
 ## Remaining Integration
 
-- Emit dynamic native mesh pointers/names and the exact extra-page LOD chain.
-- Keep 18 native terminal meshes/animation drivers. Root mesh 0 chains through
+- Dynamic native mesh pointers/names now retain the exact extra-page LOD chain.
+- Actors keep 18 native terminal meshes/animation drivers. Root mesh 0 chains through
   extra pages 18 onward; roots 1..17 remain terminal.
-- Extend independent actor decoding and managed loader validation, requiring
+- Independent actor decoding and managed loader validation now require
   version 3 and the exact page topology for actors with more than 18 meshes.
 - Drawing hooks now skin all resident pages, bypass ordinary LOD selection only
   for the active paged context, and schedule extra pages under native driver 0.
@@ -29,11 +30,15 @@ bones, weights, bind matrices and skinning arithmetic do not change.
 - Configured instruction hooks regenerate from the current recompiler source.
   Generation fails if a required instruction hook is absent or duplicated. The
   config generator retains prior pose, web and native movie hooks as well.
-- Test native loading, drawing/page counts, material coverage, full regressions
-  and actual gameplay before removing the converter guard or installing suits.
+- Both staged actors pass 55 structural/full-animation checks, 115 web frames
+  each, and managed loading/evaluation, including six malformed-chain cases each.
+  All 231 installed legacy actors still pass managed loading with the new DLL.
+- Native loading, drawing/page counts and actual gameplay must pass before
+  either staged suit is installed. The first Damon run stalled during title
+  startup before a live pose trace; it is diagnostic evidence, not acceptance.
 
 `test_paged_rig.py` exercises the real Damon Ryder and Other sources over all
 4196 frames. It checks complete triangle assignment, page round trips, bind
 reconstruction, preserved source metadata, and malformed-page rejection. It
 also compares five specified poses for all 231 installed version-2 suits against
-the shipping core. This evidence is not native rendering or visual acceptance.
+the then-shipping version-2 core. This evidence is not native rendering or visual acceptance.

@@ -39,16 +39,23 @@ public sealed class SuitModel
         if (b.Length < 1024 || b.Length > ByteLimit || H(0) != 4 || H(2) != 2 || U(8) != 18)
             throw new InvalidDataException("custom player model must be a native v4 18-part Spider-Man actor");
         const int table = 12 + 18 * 36;
-        if (U(table) != 18) throw new InvalidDataException("custom player model must retain all 18 native meshes");
+        int meshCount = Count(table, 64);
+        if (meshCount < 18) throw new InvalidDataException("custom player model must retain all 18 native meshes");
         int metadata = checked((int)U(4));
         Need(metadata, 4);
         int sources = 0;
-        for (int i = 0; i < 18; i++)
+        for (int i = 0; i < meshCount; i++)
         {
             int start = checked((int)U(table + 4 + i * 4));
-            int end = i == 17 ? metadata : checked((int)U(table + 8 + i * 4));
-            if (start < table + 4 + 18 * 4 || end < start + 28 || end > metadata)
+            int end = i == meshCount - 1 ? metadata : checked((int)U(table + 8 + i * 4));
+            if (start < table + 4 + meshCount * 4 || end < start + 28 || end > metadata)
                 throw new InvalidDataException("invalid custom mesh pointer order");
+            if (meshCount > 18)
+            {
+                int link = i == 0 ? 18 : i >= 18 && i < meshCount - 1 ? i + 1 : ushort.MaxValue;
+                if (H(start + 26) != link)
+                    throw new InvalidDataException("invalid paged mesh chain; exactly 18 native terminals required");
+            }
             int vertices = H(start + 2), normals = H(start + 4), faces = H(start + 6);
             if (vertices > 256 || normals != vertices + faces || faces > 4096)
                 throw new InvalidDataException("custom mesh exceeds native vertex/normal/face limits");
@@ -57,6 +64,8 @@ public sealed class SuitModel
             for (int v = 0; v < vertices; v++, cursor += 8)
             {
                 int kind = H(cursor + 6);
+                if (meshCount > 18 && kind != 0)
+                    throw new InvalidDataException("paged meshes cannot contain cross-page native stitches");
                 if (kind == 1) sources++;
                 else if (kind == 2)
                 {
@@ -94,13 +103,17 @@ public sealed class SuitModel
                 if (rigStart >= 0) throw new InvalidDataException("duplicate RTG2 rig");
                 rigStart = p - 8; rigBlockSize = checked(size + 8);
                 rig = new NativeRetargetRig(b.AsSpan(p, size).ToArray());
-                for (int i = 0; i < 18; i++)
+                if (rig.Packets.Length != meshCount)
+                    throw new InvalidDataException("RTG2 page count differs from native mesh count");
+                for (int i = 0; i < meshCount; i++)
                     if (H(checked((int)U(table + 4 + i * 4)) + 2) != rig.Packets[i].Length)
                         throw new InvalidDataException("RTG2 packet mapping differs from native mesh");
             }
             p += size;
         }
-        Need(p, 18 * 4); p += 18 * 4;
+        if (meshCount > 18 && rig == null)
+            throw new InvalidDataException("paged custom actors require a validated version-3 preserved rig");
+        Need(p, meshCount * 4); p += meshCount * 4;
         int hashes = Count(p, 128); p += 4;
         var materials = new HashSet<uint>();
         for (int i = 0; i < hashes; i++, p += 4) materials.Add(U(p));
