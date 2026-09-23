@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-blackcatvenom",
+  "name": "SMU BLACKCATVENOM",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "65B0CA04": "textures/diffuse.png"
+  }
+}

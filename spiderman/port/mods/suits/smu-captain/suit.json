@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-captain",
+  "name": "SMU CAPTAIN",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "0B779CF2": "textures/diffuse.png",
+    "EA9D9B9B": "textures/diffuse-1.png"
+  }
+}

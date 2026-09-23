@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-benreilly",
+  "name": "SMU BENREILLY",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "FAF6C472": "textures/diffuse.png"
+  }
+}

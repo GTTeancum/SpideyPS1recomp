@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "benreilly",
+      "id": "smu-benreilly",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "bb31ee59f3c1ad48e4c4bd1f1236da0ea395fddb033f5ff2b34e7dd1b3bf794e",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    },
+    {
+      "key": "black_tarantula",
+      "id": "smu-black-tarantula",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.32177734375,
+        8.72412109375
+      ],
+      "assetSha256": "458344d3ead4ace3ccaf2409831fc49f4a0410b707df158cd610acb82f72ec23",
+      "captureSha256": "1d3b0707e649753e5caf6a699e5c03b9865285d6c8ab781fbf8f27fae5a5f6db"
+    },
+    {
+      "key": "blackcat",
+      "id": "smu-blackcat",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.385986328125,
+        9.787841796875
+      ],
+      "assetSha256": "89914fcf0fa5adfc9ba507d3222d45ee66e0b6fc8282cf8372f85cd8eaeb9e03",
+      "captureSha256": "1671c90669b12fae0f15769dd5a0f22422e46082eac352c7fb18ee70f782c815"
+    },
+    {
+      "key": "blackcatvenom",
+      "id": "smu-blackcatvenom",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.195556640625,
+        8.597412109375
+      ],
+      "assetSha256": "0db440fff9eecf668854ea3222ad8332bb807e34afa6786cebe9d7069d328141",
+      "captureSha256": "2b5bc9ac398ee94dbf70cf11527d53043d834efc83883560e2a33f41cdf37ec6"
+    },
+    {
+      "key": "blacksuit_spidergirl",
+      "id": "smu-blacksuit-spidergirl",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.81689453125,
+        8.218994140625
+      ],
+      "assetSha256": "967596961b83dff429e75621e78c109293e8da226886b44a67b77a28a47f9042",
+      "captureSha256": "260ed8371efcdca08b2cd3776e55298dbff366d4ba9c6420f40ed3bcebed8cf8"
+    },
+    {
+      "key": "blackwidow",
+      "id": "smu-blackwidow",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.87646484375,
+        11.278564453125
+      ],
+      "assetSha256": "77b7c5757aeb6592546247a1d913a372600bd02efbbad9bcc9b381024eccdd19",
+      "captureSha256": "56c21e5a9c7c08f639549ee14fd851007cafc202851982cf6c97fbe9a0204ff4"
+    },
+    {
+      "key": "blood",
+      "id": "smu-blood",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.934326171875,
+        9.33642578125
+      ],
+      "assetSha256": "20e65b0836502f51f23c75825e9cd5926f2843a21b89a804b7012ef48597edf3",
+      "captureSha256": "b07191e1384730d41ad759e7d68ae8c1b3ed993d92e5fef8205635c0df2beec0"
+    },
+    {
+      "key": "bulletpoints",
+      "id": "smu-bulletpoints",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.9326171875,
+        9.334716796875
+      ],
+      "assetSha256": "360e8b92bf742d597b793808bc985fd8c8b007c891deb2e1e724616200b97925",
+      "captureSha256": "a1ff827d0ee19417d44ec310484f06db9920e82b35ec12e8c0973fc29fd54306"
+    },
+    {
+      "key": "buzz",
+      "id": "smu-buzz",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.205810546875,
+        9.607666015625
+      ],
+      "assetSha256": "a8d5919828772bb464609e1c2ce701ef1aa3a569a5b06b814217a2aa2f3096da",
+      "captureSha256": "dd2de4999707da07deaf21a30198b4faae353c521f6ac05f2fdd7f8f328bf878"
+    },
+    {
+      "key": "captain",
+      "id": "smu-captain",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -4.299560546875,
+        0.1025390625
+      ],
+      "assetSha256": "a67ac10b520784365c5eb2e0e0a64c8c727f4b031864e3603eb856523a033494",
+      "captureSha256": "405f3fef1f7864e554b6ae81afaa388b54e2f0c1b87c8639ca9aa81bdec0cb60"
+    }
+  ]
+}

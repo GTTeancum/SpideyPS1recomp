@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-blackcat",
+  "name": "SMU BLACKCAT",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "84573C8B": "textures/diffuse.png"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-buzz",
+  "name": "SMU BUZZ",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "C79E4282": "textures/diffuse.png"
+  }
+}

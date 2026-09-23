@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-blacksuit-spidergirl",
+  "name": "BLACKSUIT SPID #039",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "B4C38093": "textures/diffuse.png"
+  }
+}

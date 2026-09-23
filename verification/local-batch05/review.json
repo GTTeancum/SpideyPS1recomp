@@ -1,0 +1,30 @@
+{
+  "batch": 5,
+  "keys": [
+    "benreilly",
+    "black_tarantula",
+    "blackcat",
+    "blackcatvenom",
+    "blacksuit_spidergirl",
+    "blackwidow",
+    "blood",
+    "bulletpoints",
+    "buzz",
+    "captain"
+  ],
+  "representative": "smu-black-tarantula",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed all five framebuffer images: cutscene NPC first; Black Tarantula swings at 1581 and 1596 with attached wrist/web, then lands at 1626 and idles at 1886. Full body, white sleeve markings and back emblem remain intact. Representative gameplay only; all ten suits have separate offline animation and endpoint checks.",
+  "liveSwingImages": [
+    "frame_01581.png",
+    "frame_01596.png"
+  ],
+  "images": {
+    "frame_01266.png": "5e8c9555e536610a92892817b09477030cfb24444da44e59a1e99356562eb48b",
+    "frame_01581.png": "c1d8764d6d0361076ada7d14abc124b378c401077450ed15ad00e44f4e2440d7",
+    "frame_01596.png": "e862e5dd77ff4ca58a98fe633389ab03fa7fe9e0c1674277ade3658a9b95dfea",
+    "frame_01626.png": "538dc53a0151b8ddebe7d688637ca0a957b6b603cc4a9089cd08fc2de676883e",
+    "frame_01886.png": "2197dd2ff6edf73127784a6e6a55bcd25d1f4215570c3121d9c9615bf2f37e2f"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

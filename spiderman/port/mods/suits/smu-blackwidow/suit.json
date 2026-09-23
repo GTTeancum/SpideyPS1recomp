@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-blackwidow",
+  "name": "SMU BLACKWIDOW",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "D6378285": "textures/diffuse.png"
+  }
+}

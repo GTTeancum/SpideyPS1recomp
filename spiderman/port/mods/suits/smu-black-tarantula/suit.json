@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-black-tarantula",
+  "name": "SMU BLACK TARANTULA",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "0575A7B1": "textures/diffuse.png"
+  }
+}
