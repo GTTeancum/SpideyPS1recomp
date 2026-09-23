@@ -8,8 +8,8 @@
   "runtimeInfluences": 4462,
   "originalTriangles": 3242,
   "uniqueOutputTriangles": 3242,
-  "nativeBytes": 830232,
-  "rigBytes": 345884,
+  "nativeBytes": 832972,
+  "rigBytes": 348624,
   "packetSpilloverTriangles": 925,
   "packets": [
     {
@@ -125,7 +125,7 @@
     "C:\\Programming\\SMU-Costumes\\textures-png\\SpaceSuitGlass_D.png": "4103ffd532593505b2ad12941d7a888ea0cc9a44239a285559a523e2ac47dce8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\SpaceSuit_D.png": "e966e210117a5f66da0e96376c17a34cbc983e8f0e2fd043c0fce79a2460cfd7"
   },
-  "outputSha256": "88cdcb0e44b2cced8bbd11523cb27ae2ae035b947ac4482f59920bc7669dd96a",
+  "outputSha256": "182fd0527fb04a898407bea9b5b73408c9ac8c7d6714b9abe443a4207cb65952",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -171,56 +171,152 @@
     },
     {
       "bone": "Clown001LArmDigit21",
-      "angleDegrees": 60,
-      "axisLocal": [
-        0.3330450824699457,
-        -0.3088324501996646,
-        -0.8909003820552881
+      "method": "source-relative-palm-width-closure-v1",
+      "baseLean": 0.2,
+      "baseConvergence": 0.7,
+      "convergence": 0.35,
+      "closure": 0.5,
+      "localRotation": [
+        [
+          -0.08003482295529715,
+          0.9826592742068063,
+          0.16725781874060944
+        ],
+        [
+          -0.9826589589351548,
+          -0.10593721715404271,
+          0.15217975044707785
+        ],
+        [
+          0.16725967098793432,
+          -0.152177714652999,
+          0.9740976057993358
+        ]
       ]
     },
     {
       "bone": "Clown001LArmDigit22",
-      "angleDegrees": 85,
-      "axisLocal": [
-        0.4473321382984493,
-        -0.07875982622954872,
-        -0.8908932864365003
+      "method": "source-relative-palm-width-closure-v1",
+      "baseLean": 0.2,
+      "baseConvergence": 0.7,
+      "convergence": 0.35,
+      "closure": 0.5,
+      "localRotation": [
+        [
+          0.462174004019835,
+          0.8602288924882876,
+          0.21540994066348265
+        ],
+        [
+          -0.8796961811331958,
+          0.4754071055917422,
+          -0.011077583335333348
+        ],
+        [
+          -0.11193667365051553,
+          -0.18437553113484012,
+          0.9764608771532036
+        ]
       ]
     },
     {
       "bone": "Clown001LArmDigit31",
-      "angleDegrees": 60,
-      "axisLocal": [
-        -0.026719107882775435,
-        -0.03192304621643086,
-        -0.9991331284639763
+      "method": "source-relative-palm-width-closure-v1",
+      "baseLean": 0.2,
+      "baseConvergence": 0.7,
+      "convergence": 0.35,
+      "closure": 0.5,
+      "localRotation": [
+        [
+          0.16466209940896567,
+          0.9859866232480906,
+          0.026772594085346938
+        ],
+        [
+          -0.9859866080745873,
+          0.16380401939812356,
+          0.03160145450115338
+        ],
+        [
+          0.026773152892426332,
+          -0.03160098107410549,
+          0.999141919989024
+        ]
       ]
     },
     {
       "bone": "Clown001LArmDigit32",
-      "angleDegrees": 85,
-      "axisLocal": [
-        -0.0078107841184437785,
-        -0.04088046989753875,
-        -0.9991335140172266
+      "method": "source-relative-palm-width-closure-v1",
+      "baseLean": 0.2,
+      "baseConvergence": 0.7,
+      "convergence": 0.35,
+      "closure": 0.5,
+      "localRotation": [
+        [
+          0.23487963654254987,
+          0.9709880836980834,
+          0.04487424265623444
+        ],
+        [
+          -0.9534756310323722,
+          0.23912764452883375,
+          -0.183581564024057
+        ],
+        [
+          -0.18898618300041595,
+          0.0003330742001301042,
+          0.9819796900631451
+        ]
       ]
     },
     {
       "bone": "Clown001LArmDigit51",
-      "angleDegrees": 60,
-      "axisLocal": [
-        -0.07914335620140375,
-        0.10783105188217401,
-        -0.9910140228166104
+      "method": "source-relative-palm-width-closure-v1",
+      "baseLean": 0.2,
+      "baseConvergence": 0.7,
+      "convergence": 0.35,
+      "closure": 0.5,
+      "localRotation": [
+        [
+          0.5722060779444988,
+          0.7418972987153085,
+          -0.3495262544105975
+        ],
+        [
+          -0.7418974681240742,
+          0.28662820846159387,
+          -0.6061620384890372
+        ],
+        [
+          -0.3495258948267809,
+          0.6061622458327681,
+          0.7144221305170442
+        ]
       ]
     },
     {
       "bone": "Clown001LArmDigit52",
-      "angleDegrees": 85,
-      "axisLocal": [
-        -0.1195650037727245,
-        0.05993894647620234,
-        -0.9910154048086997
+      "method": "source-relative-palm-width-closure-v1",
+      "baseLean": 0.2,
+      "baseConvergence": 0.7,
+      "convergence": 0.35,
+      "closure": 0.5,
+      "localRotation": [
+        [
+          0.45466301232090234,
+          0.6483493112569789,
+          -0.6106756224214989
+        ],
+        [
+          -0.8905855666583311,
+          0.32186581282445414,
+          -0.321340546764199
+        ],
+        [
+          -0.011785316590733523,
+          0.689960556211336,
+          0.7237510187802155
+        ]
       ]
     },
     {
@@ -267,56 +363,152 @@
     },
     {
       "bone": "Clown001RArmDigit21",
-      "angleDegrees": 60,
-      "axisLocal": [
-        -0.33305665716553234,
-        0.3088433698172145,
-        -0.8908922696025979
+      "method": "source-relative-palm-width-closure-v1",
+      "baseLean": 0.2,
+      "baseConvergence": 0.7,
+      "convergence": 0.35,
+      "closure": 0.5,
+      "localRotation": [
+        [
+          -0.08008236056111814,
+          0.9826590080429847,
+          -0.16723662708550585
+        ],
+        [
+          -0.9826590779764206,
+          -0.10597670134415954,
+          -0.15215148780982035
+        ],
+        [
+          -0.16723621616590784,
+          0.15215193946903305,
+          0.9741056592168643
+        ]
       ]
     },
     {
       "bone": "Clown001RArmDigit22",
-      "angleDegrees": 85,
-      "axisLocal": [
-        -0.44732943777368284,
-        0.07875620234308713,
-        -0.8908949627725902
+      "method": "source-relative-palm-width-closure-v1",
+      "baseLean": 0.2,
+      "baseConvergence": 0.7,
+      "convergence": 0.35,
+      "closure": 0.5,
+      "localRotation": [
+        [
+          0.46220071130251655,
+          0.8602251232750875,
+          -0.215367685036119
+        ],
+        [
+          -0.8796950504677581,
+          0.47541141561794104,
+          0.010981989013020499
+        ],
+        [
+          0.11183523887391122,
+          0.18438200342363845,
+          0.9764712776930511
+        ]
       ]
     },
     {
       "bone": "Clown001RArmDigit31",
-      "angleDegrees": 60,
-      "axisLocal": [
-        0.02670390003288331,
-        0.03193049612230797,
-        -0.9991332969831486
+      "method": "source-relative-palm-width-closure-v1",
+      "baseLean": 0.2,
+      "baseConvergence": 0.7,
+      "convergence": 0.35,
+      "closure": 0.5,
+      "localRotation": [
+        [
+          0.16461145996133913,
+          0.9859953758263661,
+          -0.026761653506812616
+        ],
+        [
+          -0.9859953886664274,
+          0.16375416613486607,
+          -0.03158586079267789
+        ],
+        [
+          -0.02676118042867748,
+          0.03158626161002459,
+          0.9991427061734305
+        ]
       ]
     },
     {
       "bone": "Clown001RArmDigit32",
-      "angleDegrees": 85,
-      "axisLocal": [
-        0.007814215394247996,
-        0.04088566678346815,
-        -0.9991332745382087
+      "method": "source-relative-palm-width-closure-v1",
+      "baseLean": 0.2,
+      "baseConvergence": 0.7,
+      "convergence": 0.35,
+      "closure": 0.5,
+      "localRotation": [
+        [
+          0.2348832183662826,
+          0.9709866727526089,
+          -0.044886023066357736
+        ],
+        [
+          -0.953465137129278,
+          0.2391333723439971,
+          0.1836285993804682
+        ],
+        [
+          0.18903466880163147,
+          -0.0003340182684245388,
+          0.98197035720171
+        ]
       ]
     },
     {
       "bone": "Clown001RArmDigit51",
-      "angleDegrees": 60,
-      "axisLocal": [
-        0.07912589926879277,
-        -0.10782961258418258,
-        -0.9910155733967301
+      "method": "source-relative-palm-width-closure-v1",
+      "baseLean": 0.2,
+      "baseConvergence": 0.7,
+      "convergence": 0.35,
+      "closure": 0.5,
+      "localRotation": [
+        [
+          0.5721673522972205,
+          0.7419195816098247,
+          0.3495423513525826
+        ],
+        [
+          -0.7419188503744091,
+          0.28658746828867393,
+          0.6061551307041823
+        ],
+        [
+          0.34954390342888825,
+          -0.6061542356890628,
+          0.714420115990517
+        ]
       ]
     },
     {
       "bone": "Clown001RArmDigit52",
-      "angleDegrees": 85,
-      "axisLocal": [
-        0.1195620099563481,
-        -0.05994562195856885,
-        -0.9910153622337036
+      "method": "source-relative-palm-width-closure-v1",
+      "baseLean": 0.2,
+      "baseConvergence": 0.7,
+      "convergence": 0.35,
+      "closure": 0.5,
+      "localRotation": [
+        [
+          0.4546870949872059,
+          0.648347825343967,
+          0.6106592691704962
+        ],
+        [
+          -0.8905728507497648,
+          0.32186254253796714,
+          0.3213790615743853
+        ],
+        [
+          0.011817070683244531,
+          -0.6899634780789081,
+          0.7237477155457719
+        ]
       ]
     }
   ],

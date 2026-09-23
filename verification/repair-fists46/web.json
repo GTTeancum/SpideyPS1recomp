@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "spacesuit",
+      "id": "smu-spacesuit",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.5400390625,
+        5.942138671875
+      ],
+      "assetSha256": "182fd0527fb04a898407bea9b5b73408c9ac8c7d6714b9abe443a4207cb65952",
+      "captureSha256": "edf49814dd595305c33f18f1396483b3723e68c304ba9b0e98a828a43cdd555f"
+    },
+    {
+      "key": "spider_cowboy",
+      "id": "smu-spider-cowboy",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.12744140625,
+        5.529541015625
+      ],
+      "assetSha256": "fc86d2c3af4dd8ad3392085c82b86bc7e67f463e7520da2953c5426f5f5dd6fb",
+      "captureSha256": "194a1563382e76dbbaabea0601afdc0a2781983c1ff0461422d060fe1c4f3dff"
+    },
+    {
+      "key": "spider_herc",
+      "id": "smu-spider-herc",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -1.32568359375,
+        3.076416015625
+      ],
+      "assetSha256": "36a63f48a424a9ebcb3cce903b3f1ec48e61991a678875cbe7536edd68f512c4",
+      "captureSha256": "eac6a3c2693f6e61942171d44a97208c55550d34b78349131631c78894c2ae84"
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch46",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "spacesuit",
+    "spider_cowboy",
+    "spider_herc"
+  ],
+  "results": [
+    {
+      "key": "spacesuit",
+      "id": "smu-spacesuit",
+      "fbx": "costumes/spacesuit/spacesuit.fbx",
+      "fbxSha256": "9599e2ff7f274e1e30b7b74b902ab13042677638e30b6022cc31a8facf6e9dcc",
+      "textureFiles": [
+        "textures-png\\SpaceSuitGlass_D.png",
+        "textures-png\\SpaceSuit_D.png"
+      ],
+      "textureSha256": [
+        "4103ffd532593505b2ad12941d7a888ea0cc9a44239a285559a523e2ac47dce8",
+        "e966e210117a5f66da0e96376c17a34cbc983e8f0e2fd043c0fce79a2460cfd7"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2099,
+      "sourceTriangles": 3242,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpaceSuitGlass_D.tga",
+        "SpaceSuit_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "SpaceSuit",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpaceSuit_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Glass",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpaceSuitGlass_D.png",
+            "alphaBound": true,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 832972,
+      "outputs": {
+        "actor.psx": "182fd0527fb04a898407bea9b5b73408c9ac8c7d6714b9abe443a4207cb65952",
+        "conversion-report.json": "f153b79d8a20b9115eaea98d5cf0d9688d032fd5d629278b9773199084e2d238",
+        "suit.json": "eba56cc294415c4d6ad5d8233fba16056295c62866b1345e7a1add2752f82d2d",
+        "textures\\diffuse-1.png": "4103ffd532593505b2ad12941d7a888ea0cc9a44239a285559a523e2ac47dce8",
+        "textures\\diffuse.png": "d3d6e7b42522ba36d864ca1a6c85877d8c1644a347c2c371bb7847851981e326"
+      }
+    },
+    {
+      "key": "spider_cowboy",
+      "id": "smu-spider-cowboy",
+      "fbx": "costumes/spider_cowboy/spider_cowboy.fbx",
+      "fbxSha256": "f6924e43dcea7996f10c58f269fb25ad4df3aabf736d5d250928693385d2f223",
+      "textureFiles": [
+        "textures-png\\SpiderCowboy_D.png"
+      ],
+      "textureSha256": [
+        "7ebd381c8c53fe4fe0b9695fda0c826f87ed41a4daad09c20ff6113a03517d67"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2340,
+      "sourceTriangles": 3564,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderCowboy_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "SpiderCowboy",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderCowboy_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 858316,
+      "outputs": {
+        "actor.psx": "fc86d2c3af4dd8ad3392085c82b86bc7e67f463e7520da2953c5426f5f5dd6fb",
+        "conversion-report.json": "04ab364fa01d595199d17c2d1bbfacf0e1ae794d068b7993dfbe91bb04c7c198",
+        "suit.json": "c52ed612cc6bfca022660269e76a343d09516067340516134dc2c030a59f14dc",
+        "textures\\diffuse.png": "7da7708f63b62551dfe8636222f4f930aeee5744049c7d7db552ae6113755f40"
+      }
+    },
+    {
+      "key": "spider_herc",
+      "id": "smu-spider-herc",
+      "fbx": "costumes/spider_herc/spider_herc.fbx",
+      "fbxSha256": "129a6b97267d197825c38dea36c63d2e73ecabc7f42b6a5bb794627e6364dc8c",
+      "textureFiles": [
+        "textures-png\\Spider_Herc_D.png"
+      ],
+      "textureSha256": [
+        "b4990dd848c8ea4c4afdfe4b8e43c1672add3d502d210db0889b3966b5a89334"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2578,
+      "sourceTriangles": 3624,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spider_Herc_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Silk2",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spider_Herc_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 866944,
+      "outputs": {
+        "actor.psx": "36a63f48a424a9ebcb3cce903b3f1ec48e61991a678875cbe7536edd68f512c4",
+        "conversion-report.json": "dd4865fa443a791f0123702c52d184e3aef4b855f7d110978f4b05a2e8f3a1f5",
+        "suit.json": "325b0f8e928f30fc95ce6119f8f6dbe3a88d4ebe9f24ac419b33be6625a0a462",
+        "textures\\diffuse.png": "97d350ee1d4a48a6658a1553416b6fbe021aab33ecbb784705db08e484545b71"
+      }
+    }
+  ]
+}
