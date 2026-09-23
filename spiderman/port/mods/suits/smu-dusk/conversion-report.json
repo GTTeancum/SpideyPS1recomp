@@ -125,7 +125,7 @@
     "C:\\Programming\\SMU-Costumes\\textures-png\\Black_Char.png": "3c1a8ee2ada3d3f270125a43d17971946c1ac33fa18e8f62dcea1789661a1403",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Black_Char_body.png": "4d6ffe0b3eb87e07aaffb446701c1347d546634d2d4be6eeaacca803de41d097"
   },
-  "outputSha256": "480c0f7f447c315bade3dd98b3a5d456583a32667237aeb5e33b1a21a7c65bc0",
+  "outputSha256": "e4eddb1f1c49a63db9245d7ea894c8c2b79ba85e494baa03a8cb90a4a7ee49a3",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -171,7 +171,7 @@
     },
     {
       "bone": "Clown001LArmDigit21",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         0.33305977825051913,
         -0.30884652979767196,
@@ -189,7 +189,7 @@
     },
     {
       "bone": "Clown001LArmDigit31",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         -0.026700297944855074,
         -0.031935778189287216,
@@ -207,7 +207,7 @@
     },
     {
       "bone": "Clown001LArmDigit51",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         -0.07912183795613942,
         0.10782408016014028,
@@ -267,7 +267,7 @@
     },
     {
       "bone": "Clown001RArmDigit21",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         -0.33305936869791475,
         0.30884199744074836,
@@ -285,7 +285,7 @@
     },
     {
       "bone": "Clown001RArmDigit31",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         0.02670158181311114,
         0.03192975561916782,
@@ -303,7 +303,7 @@
     },
     {
       "bone": "Clown001RArmDigit51",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         0.07912404846112528,
         -0.10782991729064258,

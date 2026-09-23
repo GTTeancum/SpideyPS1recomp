@@ -4,7 +4,7 @@
   "batchVerified": 233,
   "remainingUnconverted": 0,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 7514,
+  "offlineChecks": 7769,
   "animationFrames": 977668,
   "offlineSwingFrames": 26795,
   "structuralBlockers": [],
@@ -294,6 +294,7 @@
         "smu-poison"
       ],
       "batch09NativeReview": "Carnage's held candidate has individually reviewed side/front native frames showing the tongue emerging from the mouth and hanging before the chest, not beside an arm. Its body/head are exactly unchanged by the staged fist update, but those frames still belong to an uninstalled actor hash. Ultimate Carnage's current front/side frames do not sufficiently expose the tongue for pose acceptance. Both staged assets pass full-animation attachment checks; Ultimate Carnage has two mixed body/tongue vertices excluded from the rigid vertex invariant. See verification/diagnostic-fists09/review.json and verification/repair-fists09/review.json. These are not all-pose intersection claims.",
+      "batch10NativeReview": "Edward Brock's current side/front native frames show the short visible tongue emerging inside the mouth. No arm-side displacement is visible in these poses. Both Edward variants pass the full-animation attachment audit; ordinary Edward excludes one mixed body/tongue vertex. Earth11080 was not individually captured in this batch. See verification/repair-fists10/review.json. These findings do not accept all tongue intersections or all poses.",
       "finding": "Poison's distal tongue hook is corrected with a pose-only rotation. Source bind matrices, hierarchy, weights and chain lengths are preserved. All 4196 frames leave the mouth, body, fingers and 2816 unaffected vertices exactly unchanged. Native front and grounded-rear views show the revised silhouette. A new deep-crouch native capture visually matches the user's reported pose and shows the distal tip projecting outward rather than forming the tall upward hook. Its mouth is occluded from the rear; it does not replace front-view attachment evidence. See verification/targeted-poison-crouch/review.json. The refreshed attachment audit scans all 233 installed assets and passes all 4196 frames for 15 tongue-bearing suits, with mixed body/tongue vertices explicitly excluded from the rigid vertex invariant.",
       "evidence": "verification/repair-poison-tip/review.json",
       "next": "Review remaining symbiote front/posed views; extend corrective policies only when supported by visual evidence. Poison's reported deep-crouch silhouette now has targeted coverage. Current attachment evidence is verification/head-appendages/installed-233.json, not visual intersection acceptance."
@@ -302,7 +303,7 @@
       "id": "visual-fist-closure",
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
-      "evidence": "verification/repair-fists09/review.json",
+      "evidence": "verification/repair-fists10/review.json",
       "nativeReviewedRepairs": [
         "smu-amazing-spider",
         "smu-spiderham",
@@ -316,8 +317,13 @@
         "smu-black-tarantula",
         "smu-blackcatvenom",
         "smu-carnageultimate",
-        "smu-cyborg"
+        "smu-cyborg",
+        "smu-damon-ryder",
+        "smu-devilspider",
+        "smu-edward-brock",
+        "smu-doppleganger"
       ],
+      "batch10SourceLimitation": "Doppleganger retains all six visible arms and 4286 triangles, but its preserved 62-node rig has only two arm/palm chains and no independent extra-arm finger chains. Native swing and rear movement show folded primary fingers and open extra-hand claws. Independent extra-arm animation/closure is not accepted or fabricated by this finger-only repair.",
       "additionalHeldBatches": [
         {
           "batch": "fist-repair-batch09",
@@ -373,8 +379,16 @@
         "diagnosis": "Source-weighted digit tracing identifies the sideways tips as the index and little fingers. Their source spread survives shared-axis flexion. A source-relative aiming experiment reduces that spread without changing bind/weights/lengths, but completed native closeups still show a gap rather than a closed fist. Both candidates remain uninstalled despite passing all 55 structural checks, 4196-frame animation/isolation checks, 115-frame web checks and managed loading. Completed captures show jumping rather than swinging, so they are not live web-endpoint proof. Next: refine distal closure toward the palm and check for penetration before installation.",
         "finding": "The original rejected staging and first aiming experiment remain historical and uninstalled. Arana Gymnast was repaired separately in repair-fists04. The other nine suits were regenerated, fully reverified and installed in repair-fists05, with source-hash-guarded per-digit Batty Brant closure and individually reviewed native swing/crop pairs for Batty Brant and Baghead. No suits remain held from this batch. These representative views are not exhaustive contact/collision acceptance."
       },
-      "progress": "Fifty-one production actors now have verified finger-policy updates after full animation, web, loading and isolation checks. Batch09 adds nine updates with native Ultimate Carnage front/side and Cyborg swing/crop review. Ordinary Carnage is held for a visible right-hand gap. Black Cat Venom retains separate hand settings; Arana Gymnast and Batty Brant retain targeted right-hand corrections. The original 2099 meshes retain eased distal flexion; other updated suits use tighter base curl. Authored claws, thumb opposition, names and texture bytes remain intact. The other 182 suits await the follow-up finger pass, including held Swiney Girl and Carnage. Policy rollout counts are not final per-suit visual/contact acceptance.",
+      "progress": "Sixty-one production actors now have verified finger-policy updates after full animation, web, loading and isolation checks. Batch10 adds ten updates with individually reviewed native Damon Ryder, Devil Spider, Edward Brock and Doppleganger frames. Damon retains all pages and both materials; Devil retains the recovered body. Ordinary Carnage and Swiney Girl remain held. Black Cat Venom retains separate hand settings; Arana Gymnast and Batty Brant retain targeted right-hand corrections. The original 2099 meshes retain eased distal flexion; other updated suits use tighter base curl. Authored claws, thumb opposition, names and texture bytes remain intact. The other 172 suits await the follow-up finger pass. Policy rollout counts are not final per-suit visual/contact acceptance.",
       "next": "Roll the verified base-curl repair through the remaining catalogue in small tested batches. Preserve earlier material, tongue and source-body repairs. Use complete anatomical geometry, not packet-5-only close-ups, and retain at most two native images per representative."
+    },
+    {
+      "id": "native-ceiling-wedge-review",
+      "status": "open",
+      "suit": "smu-damon-ryder",
+      "finding": "Batch10 native swing frame 01581 contains a black triangular ceiling wedge at upper right. The full suit and both weapons remain visible. Cause and prior-runtime reproducibility are not established; successful suit preservation tests do not accept scene/background correctness.",
+      "evidence": "verification/repair-fists10/review.json",
+      "next": "Compare the same process-local camera/scene state against the unchanged prior runtime before attributing the wedge to a suit regression. Do not alter suit geometry to conceal a background defect."
     }
   ],
   "sourceLimitations": [
@@ -1179,6 +1193,142 @@
     {
       "repairs": [
         {
+          "suit": "smu-damon-ryder",
+          "previousActorSha256": "5363dd706c9cdef6ad5f96ff1f6859f9e93df4902cb3ebd439515a78b62e66f3",
+          "actorSha256": "4e8da5b22d05398ce67647758bd5ee572d31b67840bb03f0cdb2c8baf63b8993",
+          "visualReview": "Individually inspected native frames 01581 and 01886. Rear swing and grounded bent stance retain the full blue/white body, boots, belt and both gray thigh weapons. The swing web reaches the raised hand. The free glove is folded with visible finger ends and extended thumb; these rear views do not establish palm contact. All 6500 vertices, 8032 triangles, 29 pages and both materials are separately preserved by tests. A black triangular ceiling wedge is visible at upper right in the swing frame; scene/background correctness is not accepted by this suit review and its cause remains unverified. No all-pose contact or background-regression acceptance is claimed.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01581.png": "423fdcbe9d87b69acdf6eab43c6f26429bfcc171acc824e9462ca30d0f8c457a",
+            "frame_01886.png": "634c03aeda9604b117b7b12b83318113f0f4418d1f4830a11b284c1ae91efff4"
+          }
+        },
+        {
+          "suit": "smu-deadaim",
+          "previousActorSha256": "a6659248d40fb8eb7b5a08c84df11aa9e865a7b8ae792642d03dfc650a23e372",
+          "actorSha256": "aa4e4400d58ac27b6d10b3a5ba5c0c330274ba0be36175104fc92a32144191e8",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-damon-ryder, smu-devilspider, smu-edward-brock, smu-doppleganger.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-devilspider",
+          "previousActorSha256": "1c0bb48832b9c6df54fc1848e5de9107a2fddd71ec5573e09fd2a301f568f75d",
+          "actorSha256": "ef83f031862495e912f34531e399d6e3cd8f1c6149222fa789da1eaf2c794b98",
+          "visualReview": "Individually inspected native frames 01560 and 01865. Rear/side swing shows the recovered full body, red boots and gloves, folded free fingers, bandana tails, and web at the raised hand. The second frame shows a deep rear crouch with torso and legs intact. The recovered 1819-vertex, 3058-triangle source body remains present; no transparent helper substitution. Thumb opening remains visible, and rear/crouched palms are not fully exposed. These are two actual game frames, not offline renders or exhaustive collision checks.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01560.png": "cdb880587dd492b5753d8c653ab7d725c7df24a6b5e2835297d0f4a39ae27000",
+            "frame_01865.png": "1e7552cac6f416fbf48a708c4c624308f919a7ea3b1199ab5c67fb5400316bfe"
+          }
+        },
+        {
+          "suit": "smu-doppleganger",
+          "previousActorSha256": "3352bdf4bf1e2fc86741f1132c8f1cf13b5d56ad9ad2425e3170eb52ec902fac",
+          "actorSha256": "a3c698ba8d33198c353fc7aad78508784d6a1f46d149f781942d484ada7dd7f3",
+          "visualReview": "Individually inspected native frames 01583 and 01888. Swing and subsequent rear movement retain all six visible arms, clawed feet and full torso. The animated free hand has curled fingers and a long authored thumb/claw; extra hands retain open claw silhouettes. The web meets the raised primary hand, partly overlapped by the extra limbs. The preserved 62-node rig contains only two arm/palm chains, with Digit0/2/5 segments per hand, so this review does not accept independent animation or fist closure for the four extra arms. Source hierarchy, weights and all 4286 triangles pass preservation/isolation checks; no extra rig chains were invented.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01583.png": "7b9ac7cc59f17d7e4a2b4f19f64b59601388a439dead397cfebc3c7d0f61977b",
+            "frame_01888.png": "44dfa122d08be7bcf531f8912dbfb8ed923ac0b7f064c42e1fdb2059904997ea"
+          }
+        },
+        {
+          "suit": "smu-dorma",
+          "previousActorSha256": "f14bf25ebcb468bbf184c08a786dd85f412445538ad9a09a751510b97d8af422",
+          "actorSha256": "e78f8ded57ccc72f4df320057839233b9501c8727630dd2c1ac8f32dc1abbb4c",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-damon-ryder, smu-devilspider, smu-edward-brock, smu-doppleganger.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-dusk",
+          "previousActorSha256": "480c0f7f447c315bade3dd98b3a5d456583a32667237aeb5e33b1a21a7c65bc0",
+          "actorSha256": "e4eddb1f1c49a63db9245d7ea894c8c2b79ba85e494baa03a8cb90a4a7ee49a3",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-damon-ryder, smu-devilspider, smu-edward-brock, smu-doppleganger.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-earth62412",
+          "previousActorSha256": "b23515b5069361d0dfb783434777adba7971cae332aa73bfddf9790544d76ece",
+          "actorSha256": "98152d7ef4824a2d1837c9a5b1a0164d79e6a1c617e8b775dfe42f8adee53415",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-damon-ryder, smu-devilspider, smu-edward-brock, smu-doppleganger.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-earthx",
+          "previousActorSha256": "5328bceb3e914700046080cc8b4071bd9dda040bffe27fe08a807c5fa0d12878",
+          "actorSha256": "1ad88869e7a9de888ca5b37be8e4e30296c8640713c7f73d14178fd03f8d81d4",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-damon-ryder, smu-devilspider, smu-edward-brock, smu-doppleganger.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-edward-brock",
+          "previousActorSha256": "e7cd2cd0be11cc30d2f968afdadfdf070d4a55105af331465b9b67635e1efe51",
+          "actorSha256": "fba51c7be6c05aace5598abc6a80065abd18a69760a5039f522c8b01af868ca0",
+          "visualReview": "Individually inspected native frames 01548 and 01558. Side and frontal movement retain the green/yellow muscular body, face, teeth, feet and folded fingers on both hands. The short visible tongue emerges inside the mouth, not beside an arm. The side hand has a thumb opening; full finger/palm contact and all-pose intersections remain unaccepted. Neither frame contains a web, so this is not live web proof. The offline full-animation attachment audit separately passes 59 head-relative vertices and explicitly excludes one mixed body/tongue vertex.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01548.png": "29cde14acd650c2936acfac827903277341717f137da39152162bfc9c57ca021",
+            "frame_01558.png": "b34887ac4dcc0dbd547b7db8bb7e77d33b10fa1d3d60d32cbcf0feeb1cfdf029"
+          }
+        },
+        {
+          "suit": "smu-edwardbrock-earth11080",
+          "previousActorSha256": "6f317925684e8740bbabb1dd6111107b829b17190d73026e7765ef9f034a3dff",
+          "actorSha256": "79495a7e1e83cd62be15188959d0617d6f870d581886e7750d22441bf5164570",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-damon-ryder, smu-devilspider, smu-edward-brock, smu-doppleganger.",
+          "individuallyCaptured": false,
+          "images": {}
+        }
+      ],
+      "managedLoaderExitCode": 0,
+      "representatives": [
+        "smu-damon-ryder",
+        "smu-devilspider",
+        "smu-edward-brock",
+        "smu-doppleganger"
+      ],
+      "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast, Batty Brant and Black Cat Venom sources instead use measured per-digit source-relative closure with narrow per-hand overrides. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+      "previousFilesUnchanged": 944,
+      "changedFiles": [
+        "smu-damon-ryder\\actor.psx",
+        "smu-damon-ryder\\conversion-report.json",
+        "smu-deadaim\\actor.psx",
+        "smu-deadaim\\conversion-report.json",
+        "smu-devilspider\\actor.psx",
+        "smu-devilspider\\conversion-report.json",
+        "smu-doppleganger\\actor.psx",
+        "smu-doppleganger\\conversion-report.json",
+        "smu-dorma\\actor.psx",
+        "smu-dorma\\conversion-report.json",
+        "smu-dusk\\actor.psx",
+        "smu-dusk\\conversion-report.json",
+        "smu-earth62412\\actor.psx",
+        "smu-earth62412\\conversion-report.json",
+        "smu-earthx\\actor.psx",
+        "smu-earthx\\conversion-report.json",
+        "smu-edward-brock\\actor.psx",
+        "smu-edward-brock\\conversion-report.json",
+        "smu-edwardbrock-earth11080\\actor.psx",
+        "smu-edwardbrock-earth11080\\conversion-report.json"
+      ],
+      "originalManifestAndTextureBytesPreserved": true,
+      "build": {
+        "status": "PASS",
+        "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+        "exitCode": 0,
+        "warnings": 0,
+        "errors": 0,
+        "scope": "Observed incremental Windows game build for batch10. Native captures use the matching game DLL. Linux game execution not performed."
+      }
+    },
+    {
+      "repairs": [
+        {
           "suit": "smu-gwenom",
           "previousActorSha256": "6cce60683532b5e9c7ceaf44fa9f1862f2cf303635fafa2e4fbdb6a1082071f6",
           "actorSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
@@ -1290,8 +1440,8 @@
       "batty_brant": "source-relative-digit-closure-v1",
       "blackcatvenom": "source-relative-digit-closure-v1"
     },
-    "updatedInstalled": 51,
-    "remaining": 182,
+    "updatedInstalled": 61,
+    "remaining": 172,
     "suits": [
       "smu-1602",
       "smu-2099",
@@ -1342,6 +1492,16 @@
       "smu-civilwarpeterparker",
       "smu-cosmic",
       "smu-cyborg",
+      "smu-damon-ryder",
+      "smu-deadaim",
+      "smu-devilspider",
+      "smu-doppleganger",
+      "smu-dorma",
+      "smu-dusk",
+      "smu-earth62412",
+      "smu-earthx",
+      "smu-edward-brock",
+      "smu-edwardbrock-earth11080",
       "smu-other",
       "smu-spiderham"
     ],

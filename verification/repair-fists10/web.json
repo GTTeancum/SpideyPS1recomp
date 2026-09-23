@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "damon_ryder",
+      "id": "smu-damon-ryder",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.854736328125,
+        9.79541015625
+      ],
+      "assetSha256": "4e8da5b22d05398ce67647758bd5ee572d31b67840bb03f0cdb2c8baf63b8993",
+      "captureSha256": "1e5099618eda8e31778a5708c0d74867bebcca725af3ce59372a38ed7d2bb3e9"
+    },
+    {
+      "key": "deadaim",
+      "id": "smu-deadaim",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.07177734375,
+        10.473876953125
+      ],
+      "assetSha256": "aa4e4400d58ac27b6d10b3a5ba5c0c330274ba0be36175104fc92a32144191e8",
+      "captureSha256": "57a4bb820626169dc427c8d00c0fec202f5a575c42edecd8fa0d28b1998771a6"
+    },
+    {
+      "key": "devilspider",
+      "id": "smu-devilspider",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.404541015625,
+        9.806396484375
+      ],
+      "assetSha256": "ef83f031862495e912f34531e399d6e3cd8f1c6149222fa789da1eaf2c794b98",
+      "captureSha256": "96be0afcd74b060486726d644a005c241edf89dbf6e62c540169f7e3736e27a7"
+    },
+    {
+      "key": "doppleganger",
+      "id": "smu-doppleganger",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        0.001220703125,
+        4.403076171875
+      ],
+      "assetSha256": "a3c698ba8d33198c353fc7aad78508784d6a1f46d149f781942d484ada7dd7f3",
+      "captureSha256": "f2ca3f8de0ba5c97cec6a801465eaf44d53f285091966d863919625ac8d21a95"
+    },
+    {
+      "key": "dorma",
+      "id": "smu-dorma",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.9638671875,
+        8.365966796875
+      ],
+      "assetSha256": "e78f8ded57ccc72f4df320057839233b9501c8727630dd2c1ac8f32dc1abbb4c",
+      "captureSha256": "827af234bbad25c5cbe1c4723cf74bc1f3003bd962c7b2cfc1507d185757efb8"
+    },
+    {
+      "key": "dusk",
+      "id": "smu-dusk",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.92822265625,
+        9.330322265625
+      ],
+      "assetSha256": "e4eddb1f1c49a63db9245d7ea894c8c2b79ba85e494baa03a8cb90a4a7ee49a3",
+      "captureSha256": "ed8b5e77d9dd3d7d7382fd7ffc4b779d3f50bca55c2b96143abca808a4dc098e"
+    },
+    {
+      "key": "earth62412",
+      "id": "smu-earth62412",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.46728515625,
+        5.869384765625
+      ],
+      "assetSha256": "98152d7ef4824a2d1837c9a5b1a0164d79e6a1c617e8b775dfe42f8adee53415",
+      "captureSha256": "1da53b3496b71c42c1d6e5b976dc72427da8f09adb2f5d1e1abd2863d8620690"
+    },
+    {
+      "key": "earthx",
+      "id": "smu-earthx",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.130126953125,
+        9.5322265625
+      ],
+      "assetSha256": "1ad88869e7a9de888ca5b37be8e4e30296c8640713c7f73d14178fd03f8d81d4",
+      "captureSha256": "7786da30e16abf0eef17b57854f1d0226d3619fcf848b1a5264a65e0db0f6a5d"
+    },
+    {
+      "key": "edward_brock",
+      "id": "smu-edward-brock",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.27392578125,
+        7.073974609375
+      ],
+      "assetSha256": "fba51c7be6c05aace5598abc6a80065abd18a69760a5039f522c8b01af868ca0",
+      "captureSha256": "410d06823fc4d4ec4f9f395170a1dbec1f12cc3ebaed6936f7bb2334d3339a88"
+    },
+    {
+      "key": "edwardbrock_earth11080",
+      "id": "smu-edwardbrock-earth11080",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.23974609375,
+        9.03955078125
+      ],
+      "assetSha256": "79495a7e1e83cd62be15188959d0617d6f870d581886e7750d22441bf5164570",
+      "captureSha256": "5a7696095a0846a79051173ecf1c326afea7ae3b21cfb11452e25a1b7d3b75be"
+    }
+  ]
+}
