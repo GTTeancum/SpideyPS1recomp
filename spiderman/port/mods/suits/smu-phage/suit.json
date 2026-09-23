@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-phage",
+  "name": "SMU PHAGE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "BBE76D39": "textures/diffuse.png"
+  }
+}

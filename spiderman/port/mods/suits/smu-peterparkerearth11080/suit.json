@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-peterparkerearth11080",
+  "name": "PETERPARKEREAR #148",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "8220A996": "textures/diffuse.png"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-pork-grind",
+  "name": "SMU PORK GRIND",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "A6BEDA9B": "textures/diffuse.png"
+  }
+}

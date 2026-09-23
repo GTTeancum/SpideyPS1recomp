@@ -1,0 +1,26 @@
+{
+  "batch": 14,
+  "keys": [
+    "peter_porker_unmasked",
+    "peter_urich",
+    "peterparker",
+    "peterparkerearth11080",
+    "phage",
+    "poison",
+    "poisonspiderman",
+    "pork_grind",
+    "prodigy",
+    "prowler"
+  ],
+  "representative": "smu-poison",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed two frames: Poison swinging at 1559 and grounded at 1864. Broad body, white markings and thin appendages are retained. Web reaches the raised-arm region, although appendages partly obscure the wrist. Exact endpoint and finger-policy checks remain separate offline evidence. Run exits normally with no slowdown warnings; representative gameplay plus per-suit offline tests for the batch.",
+  "liveSwingImages": [
+    "frame_01559.png"
+  ],
+  "images": {
+    "frame_01559.png": "898f27721578728fe3d755a97101fc4067df89242141e44c2e16987a3afef4ce",
+    "frame_01864.png": "2bfc4e84d08dd24f6ee6f7178cbecf4f9658e97180708f6c23244ba67463509f"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

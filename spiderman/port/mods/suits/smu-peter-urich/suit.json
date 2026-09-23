@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-peter-urich",
+  "name": "SMU PETER URICH",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "83CA3518": "textures/diffuse.png"
+  }
+}

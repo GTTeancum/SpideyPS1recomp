@@ -1,0 +1,502 @@
+{
+  "schema": 1,
+  "batch": "batch-14",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "peter_porker_unmasked",
+    "peter_urich",
+    "peterparker",
+    "peterparkerearth11080",
+    "phage",
+    "poison",
+    "poisonspiderman",
+    "pork_grind",
+    "prodigy",
+    "prowler"
+  ],
+  "results": [
+    {
+      "key": "peter_porker_unmasked",
+      "id": "smu-peter-porker-unmasked",
+      "fbx": "costumes/peter_porker_unmasked/peter_porker_unmasked.fbx",
+      "fbxSha256": "fe729ad20c7fbd66416d00d7aac6023baa9ebdea9d9c9f4d974f620cd24b55c7",
+      "textureFiles": [
+        "textures-png\\Peter_Porker_unmasked_D.png"
+      ],
+      "textureSha256": [
+        "c929cf1f6efec620e9a37a3b92764e73fdf2b3a07b08e3c4270a5625f44cb7db"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1577,
+      "sourceTriangles": 2360,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "Peter_Porker_unmasked_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "spiderHam",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Peter_Porker_unmasked_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 63,
+      "nativeBytes": 701004,
+      "outputs": {
+        "actor.psx": "ede0d6805348f30fb9b6613a940ab8e57096aa4ce453827ab121b8478181bb05",
+        "conversion-report.json": "455750769fc9f0b1dde8967cd6deed9be2275e95f791cc999cbbae4b45ca02db",
+        "suit.json": "925b672401901be898696fcac6eefa4b09c11787ebc35a4fb7aceef2b881cc37",
+        "textures\\diffuse.png": "3ab941b168800a74a093f20585b872a92e5d2fce98fbbc80893eac7fba7b0660"
+      }
+    },
+    {
+      "key": "peter_urich",
+      "id": "smu-peter-urich",
+      "fbx": "costumes/peter_urich/peter_urich.fbx",
+      "fbxSha256": "1db71fb639c60231cb9a5d0f26975fae34d5310a45d61b44e320c6d85a0eb8b7",
+      "textureFiles": [
+        "textures-png\\Peter_Urich_D.png"
+      ],
+      "textureSha256": [
+        "5407e594c7a5957b9fb98e92d0b7b8e26e37b437f7f1be280fd98cc4778049c0"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2540,
+      "sourceTriangles": 3956,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Peter_Urich_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "EarthX",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Peter_Urich_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 913640,
+      "outputs": {
+        "actor.psx": "497748e87d893c3dfa74cdc7f4b2c07c85d1afd2e3d98b961d4ccf0ad9892c91",
+        "conversion-report.json": "1f0c0adc3954946f88b64bc39165577565b30dc39ce5f7a76ebc17925cfeccbb",
+        "suit.json": "4d880238f3eb4ba3337e887c4f4aac6bcbc9ea6a69518d2407f7e3954b29cbc1",
+        "textures\\diffuse.png": "5ef7a16737c79f9fbf58ec0944343aa977dd7c8d18d5cc254bef38794cdbf2b6"
+      }
+    },
+    {
+      "key": "peterparker",
+      "id": "smu-peterparker",
+      "fbx": "costumes/peterparker/peterparker.fbx",
+      "fbxSha256": "eb6baeb33a7f0dcb4741fe8f5a4deb0de98348d904605682da4ea3d9dacbb40c",
+      "textureFiles": [
+        "textures-png\\PeterParker_D.png"
+      ],
+      "textureSha256": [
+        "0c5b33c37d666a82726e6be8107521bf778c35405187f7c932fc5b172334868c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1519,
+      "sourceTriangles": 2598,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "PeterParker_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "PeterParker",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\PeterParker_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 704524,
+      "outputs": {
+        "actor.psx": "343a0dcb98f22975d539e9d42786b96551677ad4053990cfde5c4aa1bc123843",
+        "conversion-report.json": "c5a1480a2275ea35aebe6d9f8c5965f45831cede8643f9c688a9a40569e9e16f",
+        "suit.json": "4feb8750a3a923ab7762e215c9de0e963aedc864c2cd38ff8f571ef776088bfb",
+        "textures\\diffuse.png": "ae66afdd292593aaf8e427139ee84a4473d69111fa88bcb9d9ff6b5f68e49219"
+      }
+    },
+    {
+      "key": "peterparkerearth11080",
+      "id": "smu-peterparkerearth11080",
+      "fbx": "costumes/peterparkerearth11080/peterparkerearth11080.fbx",
+      "fbxSha256": "448a2504b9e1b1d7825213f32c6db204ccecf696c48827c4e069fb3f9387d460",
+      "textureFiles": [
+        "textures-png\\PeterParkerEarth11080_D.png"
+      ],
+      "textureSha256": [
+        "b753788daa18f5b05a66268cfc331e1b0a58a8f0e880475ae4dc42fb39ead661"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2069,
+      "sourceTriangles": 3466,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "PeterParkerEarth11080_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "PeterParker_Earth11080",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\PeterParkerEarth11080_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 856452,
+      "outputs": {
+        "actor.psx": "5106624a9462d6fc10d7bb699f1abfe6039c0b9bfec2907a3b2a227a963be668",
+        "conversion-report.json": "4dc0fa0c92fb5d8bcd49e0eca7a63b12583ed58b25e6eeb434088391ef807e9c",
+        "suit.json": "f8703eb2340a0cdde6ba1805a78f3fd194bbfdfc07ed738f4b11cd90ce7ab269",
+        "textures\\diffuse.png": "f1d2a621580f62335b3f599c4c832af893418b76b527c0dc62bbc71cf841151a"
+      }
+    },
+    {
+      "key": "phage",
+      "id": "smu-phage",
+      "fbx": "costumes/phage/phage.fbx",
+      "fbxSha256": "19fa7e32482d24a43fec03a4195c9fb6e7450644425de6f14d15802919e8ee72",
+      "textureFiles": [
+        "textures-png\\Phage_D.png"
+      ],
+      "textureSha256": [
+        "b5ad71fe67e0ef59b29ddbe8a573d283e463bb91fa9a31f2580da15e4b636f4d"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2691,
+      "sourceTriangles": 3912,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Phage_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "_1_-_Default",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Phage_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 906844,
+      "outputs": {
+        "actor.psx": "667d79211111ad6c026a3e9aaaa64215f62c13a1544da0307b256d25ef71356d",
+        "conversion-report.json": "163e9768c709a27545f10dec3c55c62b7189a9f48a84da22ee0e745d9c505366",
+        "suit.json": "e2fd90abe2af0ede2012bd3d4c49471e13dd2747d52fa5b478736837297b12a8",
+        "textures\\diffuse.png": "4addb1c9faa714e3a8213cc3b4c233c0fe8d81532a8f8a06073567f88c8f90d8"
+      }
+    },
+    {
+      "key": "poison",
+      "id": "smu-poison",
+      "fbx": "costumes/poison/poison.fbx",
+      "fbxSha256": "b8e31a54c01898f33b9316cab904df200cd743dbeb5d5638d5111c97264ddae9",
+      "textureFiles": [
+        "textures-png\\Poison_D.png"
+      ],
+      "textureSha256": [
+        "d716d79141f6a489218b6484f21ce35af5650f46ddf708e3dffff06c492b6643"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2869,
+      "sourceTriangles": 4364,
+      "sourceBoneCount": 71,
+      "authoredDiffuseNames": [
+        "Poison_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Character_Material",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Poison_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 72,
+      "nativeBytes": 964152,
+      "outputs": {
+        "actor.psx": "0fdca9121168db7302c6858fd5becb9a80d32e0780d4e8bc96c8d75f8012bfab",
+        "conversion-report.json": "b54b586bc508bf79f75fd9c945a17aaab1631dd9288bc5614f89268fa0c6d18c",
+        "suit.json": "6d5e31d5bdc84218f1a5ebc886f3363c13aa80ae1d8b9d5f26126d9b953e4cd4",
+        "textures\\diffuse.png": "0ec0ff42a077abe4dedf5294e33e89304a90aa1e57d5ea350142cf3723f0bc8a"
+      }
+    },
+    {
+      "key": "poisonspiderman",
+      "id": "smu-poisonspiderman",
+      "fbx": "costumes/poisonspiderman/poisonspiderman.fbx",
+      "fbxSha256": "2f0e15f42cd4eb789e5060e683adb0217bee42b1d0663abb89265645c7f18ac9",
+      "textureFiles": [
+        "textures-png\\PoisonSpiderMan_D.png"
+      ],
+      "textureSha256": [
+        "3ec03a1ab2d051e4a2f8c6966638a36e3f0087256842eba02ac2b43da76b2e91"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2134,
+      "sourceTriangles": 3678,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "PoisonSpiderMan_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "PoisonSpiderMan",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\PoisonSpiderMan_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 867984,
+      "outputs": {
+        "actor.psx": "9f350f4a90c354d04339a18521d3f7eddd306b2f6a2250118a1794f853776d55",
+        "conversion-report.json": "d6c744477278b7bffba722e56dc8a70caeea5d4e3530c17ab9713978ad64315d",
+        "suit.json": "b3a4e06c90c2e7eb507a3ae6430d2084e45dc70fb3bc35b3c13a1606ba207593",
+        "textures\\diffuse.png": "643777122c4f14f6989f040dbea8d117572308f5e0952e62b9c9f9a251bd268e"
+      }
+    },
+    {
+      "key": "pork_grind",
+      "id": "smu-pork-grind",
+      "fbx": "costumes/pork_grind/pork_grind.fbx",
+      "fbxSha256": "2db8ec47678d41a7a85369f57e6b50247b4af9b872b2eb31c904b08b4a8243da",
+      "textureFiles": [
+        "textures-png\\Pork_Grind_D.png"
+      ],
+      "textureSha256": [
+        "2e730438143563fa563eeed56479c4bf8fab37cc403e340fe9b48b2de73e8e7b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2055,
+      "sourceTriangles": 3578,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "Pork_Grind_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "PorkGrind",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Pork_Grind_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 63,
+      "nativeBytes": 809632,
+      "outputs": {
+        "actor.psx": "159abdb51035dd5b6c78f8b69198606cf1d1e9b11ac0ce6e4b91ebb64ac5938c",
+        "conversion-report.json": "b7594dff828967bd8b263ecdb7be822cb622a0cc9bd5e90c1e5fb9c7664c1feb",
+        "suit.json": "9eeee14d91411978d84ec6118b9c7856dd689ad1e7bd2d1bad5a1fdbc808fdcf",
+        "textures\\diffuse.png": "bd877dd3910b075d7995a742860b66227b8d4c1f8ee64ddf966836b865f9867f"
+      }
+    },
+    {
+      "key": "prodigy",
+      "id": "smu-prodigy",
+      "fbx": "costumes/prodigy/prodigy.fbx",
+      "fbxSha256": "15dfe44891bfedfaa5c7a24d65468a04d6a4eb5330d151358527cccd2e13df71",
+      "textureFiles": [
+        "textures-png\\SpidermanProdigy_D.png"
+      ],
+      "textureSha256": [
+        "cb1de3f76678e367afbb39ea841c4e0cd18deafec8b3f8066e271203503c8733"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1894,
+      "sourceTriangles": 3196,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanProdigy_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Material__0",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanProdigy_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 756520,
+      "outputs": {
+        "actor.psx": "2ec80be36fed64fa3b090c8948674afc15088cf776ad0c8d6ac5e7d43be2d91b",
+        "conversion-report.json": "b190e7e066a1e44147448982b5498e7b422bd3e38e26f241921e46189a8b29bb",
+        "suit.json": "ce015d10359a1ae084e84af1f78ccd6dd3045b97f5edb30c05fb540beddb0ec1",
+        "textures\\diffuse.png": "de28124b14a2ae0fc8d1cdfb4b4ef505cda6ce64529e1741cb0fc0c6106117ee"
+      }
+    },
+    {
+      "key": "prowler",
+      "id": "smu-prowler",
+      "fbx": "costumes/prowler/prowler.fbx",
+      "fbxSha256": "db8106b0ded9124d0f92622fad728722c9b52208a20ded8a41cf0ee536ede148",
+      "textureFiles": [
+        "textures-png\\Prowler_D.png"
+      ],
+      "textureSha256": [
+        "b4f8332160543e0fe5105651832aa6f8d44e3877f0622a18d20e96928cd91722"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2052,
+      "sourceTriangles": 3378,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Prowler_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Prowler",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Prowler_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 829304,
+      "outputs": {
+        "actor.psx": "982084a97a36c49ce773d13c9f74b90ae5fd4a6720c9396821c3930007c88d17",
+        "conversion-report.json": "a2e7e2aee074385b166b93ee5100e91bb3cb660970c0c09605c3d2c71493cc97",
+        "suit.json": "f25c8d3ffc5a984fe8c1956fd5c77940887148851089821bd9565f2680005879",
+        "textures\\diffuse.png": "4cf6495f3a673ab997d175703ba9430824ac71d879d038bb613c6b42d99dfd4f"
+      }
+    }
+  ]
+}

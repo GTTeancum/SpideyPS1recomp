@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-poisonspiderman",
+  "name": "SMU POISONSPIDERMAN",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "8244A726": "textures/diffuse.png"
+  }
+}

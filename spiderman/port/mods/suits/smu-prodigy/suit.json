@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-prodigy",
+  "name": "SMU PRODIGY",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "79E9C4A9": "textures/diffuse.png"
+  }
+}
