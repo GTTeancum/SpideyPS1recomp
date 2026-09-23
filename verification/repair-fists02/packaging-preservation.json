@@ -1,0 +1,95 @@
+[
+  {
+    "suit": "smu-1602",
+    "beforeActorSha256": "1db0f095785b2c2643dfa0b902aa3b864c07c8eabbb5c458e7180f198fb0219d",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": [
+      {
+        "file": "suit.json",
+        "generatedSha256": "7101515bda93e509a25a8b20660badf1e617c0a88872e3d924cb56fb3a60e3cc",
+        "retainedSha256": "1c44887a562be1b9533146cd5d55a25deb9bbf053226f9cf243a36e376a4c0cd"
+      },
+      {
+        "file": "textures/diffuse.png",
+        "generatedSha256": "c473bdade1e298fe20fb44b89c45c44925772741502ec64932c6502001f2904f",
+        "retainedSha256": "c7351be412f3ceab00ea9f5a6a9dc3e59f0a1b1e8bd8cac2e3521185f5afcc3a"
+      }
+    ]
+  },
+  {
+    "suit": "smu-2099",
+    "beforeActorSha256": "2e11614841917401ab1aafb64d1704d1ee8e81c54236b8a3adb1304446914e68",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": [
+      {
+        "file": "suit.json",
+        "generatedSha256": "5a064dddf8b09639f54c7e64702861d46b9f28e9c1dca2277d8d3df97dec2044",
+        "retainedSha256": "aae37a6f48a5c264a9b822282971041f8cbbbb00073086ac31bdec1e30429c45"
+      },
+      {
+        "file": "textures/diffuse.png",
+        "generatedSha256": "0c51e33b5c16f6556009a0c84d46310243127d1d44ced5fe8668adea5f986356",
+        "retainedSha256": "a824618f2cdd5c22a267d387d5ad3409d36d5e41bb592dc113f01b9ded37e160"
+      }
+    ]
+  },
+  {
+    "suit": "smu-2099-new",
+    "beforeActorSha256": "15d7cc63649ea7a19207dc251368105988ef3631de33ed95bf51177efb246b4a",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": [
+      {
+        "file": "suit.json",
+        "generatedSha256": "2b091fc864ac90627e6d017e9431e9165fbea82b4400bec89c8ec08299a383fa",
+        "retainedSha256": "c397ad10e562ffe430232a7c4d5372c45e623ade7c6faa48be7b29d198e585d7"
+      },
+      {
+        "file": "textures/diffuse.png",
+        "generatedSha256": "9026a00281e9b8d08982fb2f7fd6a7152f037bc644bc642a62537cdbc50296fa",
+        "retainedSha256": "4ba2e901bd1094733b70c2ed6a60aea281750ddc2d161d94ebeb6e1eb0fada48"
+      }
+    ]
+  },
+  {
+    "suit": "smu-2211",
+    "beforeActorSha256": "5738017a475e2fac87348ea1fec1bd74a355476d7b1f81ba0da5e30cecabb6a1",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-aaron-davis",
+    "beforeActorSha256": "d2ab6c4d3a1d6bdd2dc6f055a608f10d39f4bf0c8dcd655be802b4b6585b2ad1",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-aaronnicholson",
+    "beforeActorSha256": "b42c45b0bb7cf4baaac651d03b5932c0ff35a4a6f1cc7f70c774a74f22c053c3",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-abarton",
+    "beforeActorSha256": "deb79c3ca80f51f357c85cd924b1d00c3193069969a2e2390981f544973212a0",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-adriana-soria",
+    "beforeActorSha256": "9912298adf5b3a09d98ef6d3943b3861c0f5d1364000de78600b12569567fc85",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-agent-anti-venom",
+    "beforeActorSha256": "494d7e086546ff385517784c4bc6a26f94f025d013019f95ed7b6ba4dc4b360e",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-agent-nine",
+    "beforeActorSha256": "c263ef04deacb1b9ff9a2c8e9971cc35a3012fa4b52f9aee73fd6021f633f327",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

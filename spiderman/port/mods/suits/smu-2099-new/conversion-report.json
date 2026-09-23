@@ -8,8 +8,8 @@
   "runtimeInfluences": 2718,
   "originalTriangles": 2918,
   "uniqueOutputTriangles": 2918,
-  "nativeBytes": 710744,
-  "rigBytes": 268700,
+  "nativeBytes": 711060,
+  "rigBytes": 269016,
   "packetSpilloverTriangles": 6,
   "packets": [
     {
@@ -119,12 +119,12 @@
   ],
   "sourceBindReconstructionMaxError": 0.0006090175129429554,
   "inputHashes": {
-    "/mnt/data/smu07/samples/SMU-Costumes/costumes/2099_new/2099_new.fbx": "3d6d7fdf228354ab40f23f3ab89a4628a895b136a0f4ddae9a473e2de3160500",
-    "/mnt/data/smu07/samples/SMU-Costumes/costumes/2099/2099.fbx": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
-    "/mnt/data/smu07/project/spiderman/extracted/wad/spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
-    "/mnt/data/smu07/samples/SMU-Costumes/textures-png/2099_New_D.png": "98ef439cf178113edf5ae1c9b1d3c96aa05dd9ff500cb12f7487189d96db68d4"
+    "C:\\Programming\\SMU-Costumes\\costumes\\2099_new\\2099_new.fbx": "3d6d7fdf228354ab40f23f3ab89a4628a895b136a0f4ddae9a473e2de3160500",
+    "C:\\Programming\\SMU-Costumes\\costumes\\2099\\2099.fbx": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\2099_New_D.png": "98ef439cf178113edf5ae1c9b1d3c96aa05dd9ff500cb12f7487189d96db68d4"
   },
-  "outputSha256": "15d7cc63649ea7a19207dc251368105988ef3631de33ed95bf51177efb246b4a",
+  "outputSha256": "26895db6b783e93c6e2e09039dd114d1b7241948e21f7d215affda09b48a5122",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -170,7 +170,7 @@
     },
     {
       "bone": "Clown001LArmDigit21",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         0.33305881975372037,
         -0.3088412290386823,
@@ -179,16 +179,17 @@
     },
     {
       "bone": "Clown001LArmDigit22",
-      "angleDegrees": 85,
+      "angleDegrees": 65,
       "axisLocal": [
         0.447330986464862,
         -0.0787554712993837,
         -0.8908942497787185
-      ]
+      ],
+      "clearancePolicy": "2099-long-claws-distal-clearance"
     },
     {
       "bone": "Clown001LArmDigit31",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         -0.026701542601216755,
         -0.03192880441616861,
@@ -197,16 +198,17 @@
     },
     {
       "bone": "Clown001LArmDigit32",
-      "angleDegrees": 85,
+      "angleDegrees": 65,
       "axisLocal": [
         -0.007811882785942416,
         -0.04088331576354903,
         -0.9991333889824309
-      ]
+      ],
+      "clearancePolicy": "2099-long-claws-distal-clearance"
     },
     {
       "bone": "Clown001LArmDigit51",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         -0.07912450472699667,
         0.10783156923728854,
@@ -215,12 +217,13 @@
     },
     {
       "bone": "Clown001LArmDigit52",
-      "angleDegrees": 85,
+      "angleDegrees": 65,
       "axisLocal": [
         -0.11955848451997633,
         0.05994984233470911,
         -0.9910155322613919
-      ]
+      ],
+      "clearancePolicy": "2099-long-claws-distal-clearance"
     },
     {
       "bone": "Clown001RArmDigit01",
@@ -266,7 +269,7 @@
     },
     {
       "bone": "Clown001RArmDigit21",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         -0.3792273885526717,
         0.3641242082221453,
@@ -275,16 +278,17 @@
     },
     {
       "bone": "Clown001RArmDigit22",
-      "angleDegrees": 85,
+      "angleDegrees": 65,
       "axisLocal": [
         -0.516111273607545,
         0.10014484325473712,
         -0.8506469089020915
-      ]
+      ],
+      "clearancePolicy": "2099-long-claws-distal-clearance"
     },
     {
       "bone": "Clown001RArmDigit31",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         0.026704483389627977,
         0.031935430638605114,
@@ -293,16 +297,17 @@
     },
     {
       "bone": "Clown001RArmDigit32",
-      "angleDegrees": 85,
+      "angleDegrees": 65,
       "axisLocal": [
         0.007809176569351085,
         0.040883004499514666,
         -0.9991334228742428
-      ]
+      ],
+      "clearancePolicy": "2099-long-claws-distal-clearance"
     },
     {
       "bone": "Clown001RArmDigit51",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         0.07912662507124352,
         -0.10782410287067455,
@@ -311,12 +316,29 @@
     },
     {
       "bone": "Clown001RArmDigit52",
-      "angleDegrees": 85,
+      "angleDegrees": 65,
       "axisLocal": [
         0.11955555965292598,
         -0.05994914461467516,
         -0.9910159273271265
-      ]
+      ],
+      "clearancePolicy": "2099-long-claws-distal-clearance"
+    }
+  ],
+  "materials": [
+    {
+      "name": "_099_New",
+      "source": "C:\\Programming\\SMU-Costumes\\textures-png\\2099_New_D.png",
+      "alphaBound": false,
+      "tileOrigin": [
+        0,
+        0
+      ],
+      "tileCount": [
+        1,
+        1
+      ],
+      "slot": 0
     }
   ]
 }

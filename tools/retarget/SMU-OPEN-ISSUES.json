@@ -46,9 +46,9 @@
       "id": "visual-fist-closure",
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
-      "evidence": "verification/repair-fists01/review.json",
-      "resolvedSuits": ["smu-amazing-spider", "smu-spiderham", "smu-other"],
-      "progress": "The 90-degree base/85-degree distal policy now has complete-hand offline review on both hands and native full-frame/exact-crop proof for normal, short and large/paged representatives. These three production actors are installed after full animation, web, loader and before/after isolation checks. Their shown free-hand silhouettes are compact fists; exhaustive finger/palm contact across all poses is not claimed. Thumb opposition is unchanged. Original display names and texture bytes remain intact. The other 230 suits still use the previous base curl.",
+      "evidence": "verification/repair-fists02/review.json",
+      "nativeReviewedRepairs": ["smu-amazing-spider", "smu-spiderham", "smu-other", "smu-2099"],
+      "progress": "Thirteen production actors now have the tighter base curl after full animation, web, loader and before/after isolation checks, with representative native full-frame/exact-crop proof. The two original 2099 source meshes require 65-degree distal flexion to avoid the below-palm claw projection seen with uniform 90/85 curl; other suits retain 85-degree distal flexion. Authored claws are not shortened or removed. Thumb opposition is unchanged. Original display names and texture bytes remain intact. The other 220 suits still use the previous base curl. Visual review is representative, not every suit or exhaustive finger/palm contact testing.",
       "next": "Roll the verified base-curl repair through the remaining catalogue in small tested batches. Preserve earlier material, tongue and source-body repairs. Use complete anatomical geometry, not packet-5-only close-ups, and retain at most two native images per representative."
     },
     {

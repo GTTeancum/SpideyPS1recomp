@@ -28,6 +28,12 @@ def axis_angle(axis, degrees):
     a=unit(axis);t=np.deg2rad(degrees);k=np.array([[0,-a[2],a[1]],[a[2],0,-a[0]],[-a[1],a[0],0]])
     return np.eye(3)+np.sin(t)*k+(1-np.cos(t))*k@k
 
+def non_thumb_flexion(source_stem,segment):
+    if segment==1:return 90
+    # The two original 2099 meshes have long authored claws. At 85 degrees their
+    # tips cross the palm under the tighter base curl; retain length and ease the tip.
+    return 65 if source_stem in ('2099','2099_new') else 85
+
 class Scene:
     def __init__(self,path,geometry_index=None):
         self.path=Path(path);self.fbx=Fbx(path);f=self.fbx
@@ -246,12 +252,14 @@ def calibrate(scene,reference,native_origins,ground):
             match=re.fullmatch('Clown001'+side+r'ArmDigit([0-9])([1-3])',name)
             if not match:continue
             digit,segment=map(int,match.groups())
-            # A right-angle base curl closes the free-hand silhouette while the
-            # distal flexion and separately calibrated thumb remain unchanged.
-            angle=45 if digit==0 and segment==1 else 65 if digit==0 else 90 if segment==1 else 85
+            # A right-angle base curl closes the free-hand silhouette. The
+            # separately calibrated thumb is independent of claw-tip clearance.
+            angle=45 if digit==0 and segment==1 else 65 if digit==0 else non_thumb_flexion(s.path.stem,segment)
             local_axis=bind[i,:3,:3].T@axis
             fist[i]=axis_angle(local_axis,angle)
             finger_report.append({'bone':name,'angleDegrees':angle,'axisLocal':local_axis.tolist()})
+            if digit!=0 and segment>1 and angle!=85:
+                finger_report[-1]['clearancePolicy']='2099-long-claws-distal-clearance'
         # Thumb opposition is not ordinary finger flexion. Aim the preserved
         # thumb chain across the curled index/middle fingers, keeping both lengths.
         thumb1=s.index(side+'ArmDigit01')

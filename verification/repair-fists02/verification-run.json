@@ -1,0 +1,54 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-1602-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-2099-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-2099-new-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-2211-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-aaron-davis-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-aaronnicholson-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-abarton-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-adriana-soria-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-agent-anti-venom-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-agent-nine-isolation",
+    "exitCode": 0
+  }
+]

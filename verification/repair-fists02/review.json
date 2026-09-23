@@ -1,0 +1,123 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-1602",
+      "previousActorSha256": "1db0f095785b2c2643dfa0b902aa3b864c07c8eabbb5c458e7180f198fb0219d",
+      "actorSha256": "eb93848a65cbc4bfe2a6c105e432d07d37a4658d75ed524ada95195e414a979a",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2099.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-2099",
+      "previousActorSha256": "2e11614841917401ab1aafb64d1704d1ee8e81c54236b8a3adb1304446914e68",
+      "actorSha256": "2ab58329af29c7309e31fedf0c0d0a81eacb008ff76ef67dcd358feaf612c724",
+      "visualReview": "Individually reviewed native frame 1582 and its exact pixel crop. The complete blue/red 2099 suit, forearm projections, limbs and swing line are visible. The free hand retains folded fingers and authored long pointed claws in a compact clawed silhouette, not an artificially rounded or shortened glove. No detached hand fragment is visible. The raised hand meets the web. This rear angle partly hides the palm: the improved distal clearance is supported separately by complete-hand offline comparisons, not asserted as directly visible here. Uniform 90/85 curl was rejected after offline palm penetration was found; this production asset uses 90/65 for the two original 2099 source meshes. No exhaustive contact testing is claimed.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01582.png": "58d5ef24227119729e362821e218eb053c72efb5afd092dc3953cecd7cbf94a7",
+        "frame_01582_closeup.png": "d157d5c49e71a38edcc7e688182ad362c72446dbf4067b46491576c71410c1b7"
+      }
+    },
+    {
+      "suit": "smu-2099-new",
+      "previousActorSha256": "15d7cc63649ea7a19207dc251368105988ef3631de33ed95bf51177efb246b4a",
+      "actorSha256": "26895db6b783e93c6e2e09039dd114d1b7241948e21f7d215affda09b48a5122",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2099.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-2211",
+      "previousActorSha256": "5738017a475e2fac87348ea1fec1bd74a355476d7b1f81ba0da5e30cecabb6a1",
+      "actorSha256": "1786ebede9ca8f94014df24b59404daecd5bac371f3faf3ea264ad1dca391a69",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2099.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-aaron-davis",
+      "previousActorSha256": "d2ab6c4d3a1d6bdd2dc6f055a608f10d39f4bf0c8dcd655be802b4b6585b2ad1",
+      "actorSha256": "2e9fca18a92721a6e09f370bbf234fca109fbb9445775eee4bb7cf3c84d7eef9",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2099.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-aaronnicholson",
+      "previousActorSha256": "b42c45b0bb7cf4baaac651d03b5932c0ff35a4a6f1cc7f70c774a74f22c053c3",
+      "actorSha256": "78ffa90830ec059d35e493435759e14a1a6fe353c2805cc618c71a4854b97b60",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2099.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-abarton",
+      "previousActorSha256": "deb79c3ca80f51f357c85cd924b1d00c3193069969a2e2390981f544973212a0",
+      "actorSha256": "9a58ca1fadf5f763c6ba2b5a65f6ec3cae4f2489ff4a4ba8c3bb04a6fe3a1247",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2099.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-adriana-soria",
+      "previousActorSha256": "9912298adf5b3a09d98ef6d3943b3861c0f5d1364000de78600b12569567fc85",
+      "actorSha256": "67979be97879e45904fe4599cc67616e2caa853a4f3c7495f3d60f06a07b3e3e",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2099.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-agent-anti-venom",
+      "previousActorSha256": "494d7e086546ff385517784c4bc6a26f94f025d013019f95ed7b6ba4dc4b360e",
+      "actorSha256": "f66ac4c8b63b6012f9bddf606c73561c6c4dc8c71b968bf214e96a945ef5efef",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2099.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-agent-nine",
+      "previousActorSha256": "c263ef04deacb1b9ff9a2c8e9971cc35a3012fa4b52f9aee73fd6021f633f327",
+      "actorSha256": "60fe653cffc90c7c585e65301bfee0021ba5f65417dd30fba0a15befdd519a20",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2099.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-2099"
+  ],
+  "scope": "Pose-only base curl from 60 to 90 degrees. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Each native pair is one gameplay frame plus its exact pixel crop, not two poses. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 944,
+  "changedFiles": [
+    "smu-1602\\actor.psx",
+    "smu-1602\\conversion-report.json",
+    "smu-2099-new\\actor.psx",
+    "smu-2099-new\\conversion-report.json",
+    "smu-2099\\actor.psx",
+    "smu-2099\\conversion-report.json",
+    "smu-2211\\actor.psx",
+    "smu-2211\\conversion-report.json",
+    "smu-aaron-davis\\actor.psx",
+    "smu-aaron-davis\\conversion-report.json",
+    "smu-aaronnicholson\\actor.psx",
+    "smu-aaronnicholson\\conversion-report.json",
+    "smu-abarton\\actor.psx",
+    "smu-abarton\\conversion-report.json",
+    "smu-adriana-soria\\actor.psx",
+    "smu-adriana-soria\\conversion-report.json",
+    "smu-agent-anti-venom\\actor.psx",
+    "smu-agent-anti-venom\\conversion-report.json",
+    "smu-agent-nine\\actor.psx",
+    "smu-agent-nine\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+    "warnings": 0,
+    "errors": 0,
+    "scope": "Incremental game build. Claw pose adjustment is conversion data; no native runtime code changed."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "status": "CORRECTED",
+  "sources": [
+    "2099",
+    "2099_new"
+  ],
+  "rejectedActorSha256": "c4df2c408ad52469b472cdc1298788a153cd470c392a4ec7778d36aeffcde375",
+  "installedActorSha256": "2ab58329af29c7309e31fedf0c0d0a81eacb008ff76ef67dcd358feaf612c724",
+  "finding": "Complete anatomical offline hand view exposed distal claw tips crossing the palm with the uniform 90-degree base/85-degree distal policy. The rear native capture partly occludes the palm and was not sufficient to diagnose that contact.",
+  "correction": "Keep base flexion at 90 degrees and ease only non-thumb distal joints to 65 for the two original 2099 source meshes. Preserve claw lengths, all geometry, source weights, bind matrices and thumb opposition. Other source names retain 85-degree distal flexion; no prefix match is used.",
+  "visualReview": "Individually reviewed the complete left-hand before/after views, 75/85 and 90/65 candidates, the 2099 right-hand 90/65 view and 2099 New left-hand 90/65 view. Easing the distal curl removes the below-palm projection visible in the rejected pose while retaining a folded clawed shape. This is not a geometric proof of zero intersections at all angles.",
+  "diagnosticImages": {
+    "fist-2099-complete-review\\current.png": "c03c90a0bedd1d3db1ddccc51622e2891499b4c4982851ef826bc343d48cdb1f",
+    "fist-2099-complete-review\\candidate.png": "1fa300e93454ea0c8489b312bf72fa509d6c93a566c6dc7bbde25ec501550121",
+    "fist-2099-75-85\\candidate.png": "cb17c8c7a317a6dc396abf0861b07a2608055cd0abc1eeaaeb470d0a54702b31",
+    "fist-2099-90-65\\candidate.png": "1a6d69c83d750288f8121d156e5ae9ec896d8893f7438fc7e569a62d8e565f24",
+    "fist-2099-right90-65\\candidate.png": "a4f6d17dc5b88cd9ede04376677c4f4056548377bf3ae116bec88bdfc788ec1c",
+    "fist-2099new-90-65\\candidate.png": "67c22e3d2718f44637df4b9e9ffad65d85970dce7fa9fd767d3cdf9a18ecf728"
+  },
+  "runtimeScope": "The retained native pair proves the installed actor and visible folded-claw silhouette in-game. It does not substitute for the separately labeled offline palm review.",
+  "tests": "Full 4196-frame rig and before/after isolation tests and 115-frame native web oracle pass for both 2099 variants and all ten suits in this batch. Only non-thumb finger pose bones and their influenced vertices are changed."
+}
