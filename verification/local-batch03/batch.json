@@ -1,0 +1,478 @@
+{
+  "schema": 1,
+  "batch": "batch-03",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "aaronnicholson",
+    "abarton",
+    "agent_anti_venom",
+    "agent_nine",
+    "agony",
+    "aiapaec",
+    "aikman",
+    "alistaire_smythe",
+    "all_new_agent_venom",
+    "amazing_spider"
+  ],
+  "results": [
+    {
+      "key": "aaronnicholson",
+      "id": "smu-aaronnicholson",
+      "fbx": "costumes/aaronnicholson/aaronnicholson.fbx",
+      "fbxSha256": "3d002506de8c8aeea422a036049d4145ee882facf8899ca19ee3a9cdcbf48441",
+      "textureFiles": [
+        "textures-png\\AaronNicholson_D.png"
+      ],
+      "textureSha256": [
+        "f2db41d10e67a43ab59da4ed8ca7d01de3836a0d993248d97408219b41cb2409"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2054,
+      "sourceTriangles": 3408,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "AaronNicholson_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "AaronNicholson",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "AaronNicholson_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          42,
+          255
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 877188,
+      "outputs": {
+        "actor.psx": "b42c45b0bb7cf4baaac651d03b5932c0ff35a4a6f1cc7f70c774a74f22c053c3",
+        "conversion-report.json": "dd96a68bf61dedade98d0feb8a5c82f1217eddb1ebd36038ebd106074c3d64e8",
+        "suit.json": "c6bbea10f1e6c139e736907c835b23ed3a4d4facd28e89f425e7bd88006d8df8",
+        "textures\\diffuse.png": "27229e4d6772aff83614a8f4c2ae72980eebd7787b596088a78a261a39bdc5b9"
+      }
+    },
+    {
+      "key": "abarton",
+      "id": "smu-abarton",
+      "fbx": "costumes/abarton/abarton.fbx",
+      "fbxSha256": "29bcf4ab147c2ab1f29540fe31335008abef8c1c09dc1c6caf048f31e021da5a",
+      "textureFiles": [
+        "textures-png\\SpidergirlABarton_D.png"
+      ],
+      "textureSha256": [
+        "9863ef867958e5141c7cfdafc049c086b972736b1980047699edffab7e0defc2"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2164,
+      "sourceTriangles": 3688,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidergirlABarton_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "Barton",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "SpidergirlABarton_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          0,
+          255
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 862388,
+      "outputs": {
+        "actor.psx": "deb79c3ca80f51f357c85cd924b1d00c3193069969a2e2390981f544973212a0",
+        "conversion-report.json": "8c37b2a133a4be9380a62a61185e6ad30c10423704fd6a3bb36a513d22f49512",
+        "suit.json": "23a36e851f6335a4ab16957ceaffe851f5e949456cc6cdec2f87983af88b9541",
+        "textures\\diffuse.png": "7805315b969f346b2bc0fab48fff1f952586361d7e1f13b95a45a8096388fa24"
+      }
+    },
+    {
+      "key": "agent_anti_venom",
+      "id": "smu-agent-anti-venom",
+      "fbx": "costumes/agent_anti_venom/agent_anti_venom.fbx",
+      "fbxSha256": "d4155c1b211baedc66a1f49478d48b63d3a1111449a14704e29f732d5a6c855f",
+      "textureFiles": [
+        "textures-png\\Agent_Anti_Venom_D.png"
+      ],
+      "textureSha256": [
+        "0d9f4764a820778de61e99b7732a6b70f437bd68063cdf77e07a240583123203"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2887,
+      "sourceTriangles": 4152,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Agent_Anti_Venom_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "Spiderman_1",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "Agent_Anti_Venom_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          0,
+          255
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 959616,
+      "outputs": {
+        "actor.psx": "494d7e086546ff385517784c4bc6a26f94f025d013019f95ed7b6ba4dc4b360e",
+        "conversion-report.json": "60c97794ad569c3b68e0d311051ee71b5620687b7529a966b09d048f5311cf3d",
+        "suit.json": "ab5145ff23ebf79197f3cd21eda475e6da876b27002d73dc0f27d504804ed2dd",
+        "textures\\diffuse.png": "64d0562da57e468046d72cf82a4efe644a197bf6feec73ffd396f487737a258a"
+      }
+    },
+    {
+      "key": "agent_nine",
+      "id": "smu-agent-nine",
+      "fbx": "costumes/agent_nine/agent_nine.fbx",
+      "fbxSha256": "329706000c0bca6150738cf7aaef6c3c07803c48c8c971b2d86f6dfd98725296",
+      "textureFiles": [
+        "textures-png\\Agent_nine_D.png"
+      ],
+      "textureSha256": [
+        "e1c5000ba49b2ac07413cb3810a0119e5021406e6fc58759eba3d031793de23a"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2117,
+      "sourceTriangles": 3258,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Agent_nine_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "Agent_9",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "Agent_nine_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          2,
+          255
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 855588,
+      "outputs": {
+        "actor.psx": "c263ef04deacb1b9ff9a2c8e9971cc35a3012fa4b52f9aee73fd6021f633f327",
+        "conversion-report.json": "8a2152a43a6488ff3b1b0321ce1b69f99e19e496affbfb73cb899e95ab6b2179",
+        "suit.json": "68638455238df1cbf145ede0f6f311f25680d870209a2baa04e48ec600eb4f2b",
+        "textures\\diffuse.png": "fe901d5a44950e4201ecde988ac8c43ed56e822d5c7667d3e0906d5329273e0c"
+      }
+    },
+    {
+      "key": "agony",
+      "id": "smu-agony",
+      "fbx": "costumes/agony/agony.fbx",
+      "fbxSha256": "3acb19416e1370fc859c13d97021d0d64f34ca4abe022bbe517693572c5a93f9",
+      "textureFiles": [
+        "textures-png\\Agony_D.png"
+      ],
+      "textureSha256": [
+        "8b9fb728f60a5b3e8821150c5d5149aba53594900312db468e18f5b50e692e36"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2481,
+      "sourceTriangles": 3872,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Agony_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "Agony",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "Agony_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          0,
+          255
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 912428,
+      "outputs": {
+        "actor.psx": "6462041bd154130877e1bd17f9f2705dfe11ab812772c067d01f097fd5842a9b",
+        "conversion-report.json": "463734f23fce73d9e06c4a1387bed20ac85ba88b713c1b2b4e96f76928c29b04",
+        "suit.json": "78550731a28cfc7d08f8dd2951afd3d93a3df9ac8d47a1bc30167ec825973305",
+        "textures\\diffuse.png": "c68b29ab9ff64e6ca7c741c6281642e817dfc4cb0871daaf3074fa4838d768aa"
+      }
+    },
+    {
+      "key": "aiapaec",
+      "id": "smu-aiapaec",
+      "fbx": "costumes/aiapaec/aiapaec.fbx",
+      "fbxSha256": "b4e8978196c9ad5ab2baab9ba8eb9ae98dc747b34703f9cfb363b3bb1401174d",
+      "textureFiles": [
+        "textures-png\\AiApaec_D.png"
+      ],
+      "textureSha256": [
+        "59efffbd91e15ff7a9fd6c9d807872056ffd0d5a03496b6c99a2e6cb45a87535"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3037,
+      "sourceTriangles": 4900,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "AiApaec_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "SixArmed_SpiderMan",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "AiApaec_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          11,
+          255
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1006112,
+      "outputs": {
+        "actor.psx": "a265af282f49d6796921257b411bd9a201778687a480d675cbe86fa6030f9ba0",
+        "conversion-report.json": "5a1aee79fae36f27236c45a1c9d48dbbd1831d0b0a6c0226a423ef873fce3bb6",
+        "suit.json": "ca399463dbc15d73f51f3e0ae3aa2e19bc47f13870b258bb782ed59b7ee585a7",
+        "textures\\diffuse.png": "22b3efa8a9b0f414e433fc0af3cbddb01956c691834a4fe9a8cf6ee99e6ca509"
+      }
+    },
+    {
+      "key": "aikman",
+      "id": "smu-aikman",
+      "fbx": "costumes/aikman/aikman.fbx",
+      "fbxSha256": "bdcaf81f9bfdb70fb3871cc9d56f254369e2009217918295d1643ec0b6f66da1",
+      "textureFiles": [
+        "textures-png\\Spiderman_Aikman_D.png"
+      ],
+      "textureSha256": [
+        "9b37a3020c73dc192f8156e601a5f3eaf24f317d68a0a9bf165b88e99bc15eb7"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1611,
+      "sourceTriangles": 2614,
+      "sourceBoneCount": 64,
+      "authoredDiffuseNames": [
+        "Spiderman_Aikman_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "new",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "Spiderman_Aikman_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          0,
+          255
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 65,
+      "nativeBytes": 736768,
+      "outputs": {
+        "actor.psx": "c1439cdcff0cc30ac1ddda3b6f517fe89b52e08416c662620caefbdb11f3e951",
+        "conversion-report.json": "673b2a657f26f647ec08a268b0603ce43271e9752fdbf5566987f21b8f1e175c",
+        "suit.json": "66732184e2120f47a3704144e912d1087bfbd2e7a092fc382094a07130320cef",
+        "textures\\diffuse.png": "97486e0e8f339f4104c6f924342dc1a73edb1c910967f27253a2f3833f624ccb"
+      }
+    },
+    {
+      "key": "all_new_agent_venom",
+      "id": "smu-all-new-agent-venom",
+      "fbx": "costumes/all_new_agent_venom/all_new_agent_venom.fbx",
+      "fbxSha256": "04fc365d510f64c9768d686e9c5472bdf8ecc007355771aa7782be9da62dbe59",
+      "textureFiles": [
+        "textures-png\\All_new_agent_venom_D.png"
+      ],
+      "textureSha256": [
+        "eb65b07e5c62cf375682ec1195e6f6a04618c5c25e14fb709dca025b11133ff2"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1723,
+      "sourceTriangles": 2866,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "All_new_agent_venom_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "_1_-_Default",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "All_new_agent_venom_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          0,
+          255
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 762080,
+      "outputs": {
+        "actor.psx": "609342620e95177d7dd19d2fe053453667cc470d092a948fcf08c01aa9b09171",
+        "conversion-report.json": "fc3da39025559ec686503b7d5b6b2b85469f5e324bae908fa1aa2dac2e6b52bf",
+        "suit.json": "8b78fe2172ff43dea03506499c7e3c4c0a6ab4ef62fbb96ed374c7b1660e9e32",
+        "textures\\diffuse.png": "d6a3da55b19b4b2e9ba25dd98dcf3ad4806ead848c02a289751636157ff8c0c4"
+      }
+    },
+    {
+      "key": "alistaire_smythe",
+      "id": "smu-alistaire-smythe",
+      "fbx": "costumes/alistaire_smythe/alistaire_smythe.fbx",
+      "fbxSha256": "84251c5b33fa8beff46dd5bf01bda8ddfa01f918b95ad20edceae197e8acd10b",
+      "textureFiles": [
+        "textures-png\\Alistaire_Smythe_D.png"
+      ],
+      "textureSha256": [
+        "a4bbf49de8d1ee2c80761882397cc4be92671927adc199a8d0cfbc493bf39e61"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3120,
+      "sourceTriangles": 4540,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Alistaire_Smythe_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Spiderman_1",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Alistaire_Smythe_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              3,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1004688,
+      "outputs": {
+        "actor.psx": "9017bd1c96923393f55fa089972b68a5d2061c27a1c1f4b6d811f96c30ddd96b",
+        "conversion-report.json": "8406dbeb9b84f97093f1d55cef4a478bd96e6f63306e690e3dc2a3f2307bd518",
+        "suit.json": "167cf77a8deb6c1ef264cc8b90d30fa41329cdf6ebb1e1c5e9b441cbed18007b",
+        "textures\\diffuse.png": "5bb0c2275f79172415f5ad155ffb970226033725871d900abe85d83816cbf3bd"
+      }
+    },
+    {
+      "key": "amazing_spider",
+      "id": "smu-amazing-spider",
+      "fbx": "costumes/amazing_spider/amazing_spider.fbx",
+      "fbxSha256": "994988a674ee7fd10e41e575d28f1362027dc51d448febdd21c31444875a5d82",
+      "textureFiles": [
+        "textures-png\\The_Amazing_Spider_D.png"
+      ],
+      "textureSha256": [
+        "a201497394fd3ea53b47e3258b07ba6b20b11a5946ee1ff4447b9ef45a58bb83"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2783,
+      "sourceTriangles": 4378,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "The_Amazing_Spider_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Spiderman",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\The_Amazing_Spider_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              2,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 985920,
+      "outputs": {
+        "actor.psx": "245056c0b7f7163a8ef328bb7bf45b3eba3abf8aa4826c5326a69af223834c10",
+        "conversion-report.json": "032275df0bc626907f7e2f04af1f92e33aa8348df6e3a0cab1c53978cd581cf1",
+        "suit.json": "82d93ed25404b8879d58c7d341c7fdc992014c0310e9611323ae1b74d85047e4",
+        "textures\\diffuse.png": "6b71312cb7da180623ca7a49a733f6f8b343b3fc29e7e67a8028aad4d7d1d738"
+      }
+    }
+  ]
+}

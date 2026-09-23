@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-aaronnicholson",
+  "name": "SMU AARONNICHOLSON",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "AD4421DE": "textures/diffuse.png"
+  }
+}

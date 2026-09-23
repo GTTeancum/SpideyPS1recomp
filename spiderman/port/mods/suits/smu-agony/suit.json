@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-agony",
+  "name": "SMU AGONY",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "71590951": "textures/diffuse.png"
+  }
+}

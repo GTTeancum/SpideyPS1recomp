@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-abarton",
+  "name": "SMU ABARTON",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "2E20D886": "textures/diffuse.png"
+  }
+}

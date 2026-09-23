@@ -1,0 +1,25 @@
+{
+  "batch": 3,
+  "keys": [
+    "aaronnicholson",
+    "abarton",
+    "agent_anti_venom",
+    "agent_nine",
+    "agony",
+    "aiapaec",
+    "aikman",
+    "alistaire_smythe",
+    "all_new_agent_venom",
+    "amazing_spider"
+  ],
+  "representative": "smu-alistaire-smythe",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed all three live-retry framebuffer images: intro NPC Venom, then Alistaire Smythe gameplay poses at 1631 and 1861 with armor and body intact. Runtime log confirms animated-wrist swing correction, but these screenshots missed the brief swing and do not constitute visual web-endpoint proof. Full offline animation/web tests cover all ten suits.",
+  "liveSwingImages": [],
+  "images": {
+    "frame_01241.png": "02eaf75f625078689b2828206af8719bf8fe427d09b5ea7da6e0fb515fe43d77",
+    "frame_01631.png": "236eb97c31adbf94a10180af46b16418c0e401849af178c46a450efe30b4af82",
+    "frame_01861.png": "e8c0e55db325c7f298d747e01a79c4ffed6ee86ccabf51dfa6f0ad3ef7f16ca4"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

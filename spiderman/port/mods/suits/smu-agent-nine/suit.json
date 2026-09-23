@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-agent-nine",
+  "name": "SMU AGENT NINE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "A54644A6": "textures/diffuse.png"
+  }
+}

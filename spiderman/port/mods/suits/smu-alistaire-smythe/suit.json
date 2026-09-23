@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-alistaire-smythe",
+  "name": "ALISTAIRE SMYTHE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "B6A03800": "textures/diffuse.png"
+  }
+}

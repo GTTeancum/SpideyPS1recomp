@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-amazing-spider",
+  "name": "SMU AMAZING SPIDER",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "3B43CBC6": "textures/diffuse.png"
+  }
+}

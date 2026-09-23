@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-all-new-agent-venom",
+  "name": "ALL NEW AGENT VENOM",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "760F53E9": "textures/diffuse.png"
+  }
+}
