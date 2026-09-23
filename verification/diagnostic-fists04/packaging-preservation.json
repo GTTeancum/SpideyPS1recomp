@@ -1,0 +1,73 @@
+[
+  {
+    "suit": "smu-anya",
+    "beforeActorSha256": "17371e628fd4b1d9c99ee2745146b7bb518d057620c6256ed2569501a687a32c",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-arachnido",
+    "beforeActorSha256": "707f3f04ad91b1d79224db1e7586c5f56d6b6607ca9d74fcb17df48273986346",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-arachnoman",
+    "beforeActorSha256": "f323dcaa9e729afc2bd3c789b929d944ad2d6092081d28f6d2630a79b6361f01",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-arana",
+    "beforeActorSha256": "38b45f82565895f62d69f093739a0c90474d0a8cb3fd3cc1ee67475c3aa80eef",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-arana-gymnast",
+    "beforeActorSha256": "a373efc19c48ca8af269c969c8dda8891b1c336ce394cc608be98810a8fd1bfa",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-baal",
+    "beforeActorSha256": "acc30d1a0d826a7357b4930f53cf2824564bf0a8fce54038b4dd12c70c55722d",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-baghead",
+    "beforeActorSha256": "99396acbe52dee96526205557d033892fabc2a033cbf07a981940f1fdb0aa476",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-battledamaged",
+    "beforeActorSha256": "b8bfe7ef5ca5a0a59f5f955af3aae791982da1ea8f7fce366d3e0140d9327825",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-batty-brant",
+    "beforeActorSha256": "8d0431e6f4575bc95160ca187decf3752e6f8239fe4a5596f802ae973ab581ea",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-ben-reilly-unmasked",
+    "beforeActorSha256": "c4077ee8d8015c7af9044669e6b4c675c896cce457c899771af5220bb4764395",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": [
+      {
+        "file": "suit.json",
+        "generatedSha256": "9b8050209dbc0d26c9b41b39eb59edd1f9cb02644384b6810c4df9e69748bf05",
+        "retainedSha256": "fad944dd751573d8adce3013ded86655a0b16bc2a889867d990a22bb71d11238"
+      },
+      {
+        "file": "textures/diffuse.png",
+        "generatedSha256": "c7b9a5c058ed1b731956c131c2b93705fc2baaac43ccef4e45c32c9cb1697903",
+        "retainedSha256": "cc1882843d13ef6f60581d53e9bac8e8d54af04ffce659dea7d9383d921d6797"
+      }
+    ]
+  }
+]

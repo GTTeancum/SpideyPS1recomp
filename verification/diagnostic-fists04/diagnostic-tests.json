@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "command": "python tools/retarget/test_hand_diagnostic.py",
+  "exitCode": 0,
+  "tests": 2,
+  "scope": "Complete anatomical hand face coverage across four real legacy/paged rigs and both hands; shared current/candidate camera bounds contain all synthetic vertices at 28 yaw angles from -180 through 360. Fitted Arana images additionally inspected individually. Not native fist-closure acceptance."
+}

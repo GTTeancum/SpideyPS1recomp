@@ -38,6 +38,18 @@ def hand_vertices(rig, side):
     return palm, selected
 
 
+def comparison_framing(views, yaw, width=720, height=520, margin=28):
+    """Fit both poses together after camera rotation, without clipping fingers."""
+    angle = np.deg2rad(yaw)
+    rotation = np.array([[np.cos(angle), 0, np.sin(angle)],
+                         [0, 1, 0], [-np.sin(angle), 0, np.cos(angle)]])
+    points = np.concatenate([t['p'] for view in views for t in view]) @ rotation.T
+    low, high = points[:, :2].min(axis=0), points[:, :2].max(axis=0)
+    extent = np.maximum(high-low, 1e-6)
+    scale = float(np.min((np.array([width, height])-2*margin)/extent))
+    return scale, ((low+high)/2).tolist()
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--actor', type=Path, required=True)
@@ -78,21 +90,26 @@ def main():
     candidate = Rig(blob)
     args.out.mkdir(parents=True)
     coverage = []
+    views = []
     for label, rig in (('current', original), ('candidate', candidate)):
         all_triangles, _, _ = triangles(parsed, rig)
         selected = [t for t in all_triangles if any(int(v) in selected_vertices for v in t['vertex_ids'])]
         assert selected, 'No hand triangles'
         visible = [dict(t, p=(t['p']-origin) @ basis, n=t['n'] @ basis) for t in selected]
+        views.append((label, visible))
+        coverage.append(dict(label=label, triangles=len(selected), packets=sorted({t['mesh'] for t in selected})))
+    scale, center = comparison_framing([v for _, v in views], args.yaw)
+    for label, visible in views:
         picture = render(visible, Image.new('RGB', (128, 128), (195, 195, 195)),
-                         width=720, height=520, yaw=args.yaw, scale=1.3, center=[140, -40], ground=False)
+                         width=720, height=520, yaw=args.yaw, scale=scale, center=center, ground=False)
         title = args.actor.parent.name + ': ' + label + ' hand'
         picture = caption(picture, title, 'OFFLINE neutral geometry; all hand-influenced faces; candidate NOT installed')
         picture.save(args.out / (label + '.png'))
-        coverage.append(dict(label=label, triangles=len(selected), packets=sorted({t['mesh'] for t in selected})))
     result = dict(actorSha256=hashlib.sha256(args.actor.read_bytes()).hexdigest(),
                   scope='Offline anatomical hand diagnostic, including adjacent wrist triangles. '
                         'No game or visual closure acceptance. Thumb policy unchanged.',
                   side=args.side, handInfluencedVertices=len(selected_vertices), coverage=coverage,
+                  framing=dict(sharedAcrossPoses=True, yaw=args.yaw, scale=scale, center=center, margin=28),
                   candidateAngles=changes, candidateInstalled=False)
     (args.out / 'coverage.json').write_text(json.dumps(result, indent=2)+'\n')
     print(json.dumps(result, indent=2))

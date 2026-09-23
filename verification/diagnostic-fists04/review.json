@@ -1,0 +1,82 @@
+{
+  "status": "HELD_FOR_VISUAL_REPAIR",
+  "installed": false,
+  "repairs": [
+    {
+      "suit": "smu-anya",
+      "installedActorSha256": "17371e628fd4b1d9c99ee2745146b7bb518d057620c6256ed2569501a687a32c",
+      "stagedActorSha256": "828cc32c33b21f7a9090ea44a7cd8a2eadb09e8896a673ffb08eccdc095c3c4a",
+      "installed": false
+    },
+    {
+      "suit": "smu-arachnido",
+      "installedActorSha256": "707f3f04ad91b1d79224db1e7586c5f56d6b6607ca9d74fcb17df48273986346",
+      "stagedActorSha256": "a1468796f88b4bf11ee2b161a8fd49e1024c4bf0496a8441f336a3031d4579f6",
+      "installed": false
+    },
+    {
+      "suit": "smu-arachnoman",
+      "installedActorSha256": "f323dcaa9e729afc2bd3c789b929d944ad2d6092081d28f6d2630a79b6361f01",
+      "stagedActorSha256": "cb8bcc4f79ca35f2fb4a2ca175421353999f596fb27ea4cfcfa536225440446a",
+      "installed": false
+    },
+    {
+      "suit": "smu-arana",
+      "installedActorSha256": "38b45f82565895f62d69f093739a0c90474d0a8cb3fd3cc1ee67475c3aa80eef",
+      "stagedActorSha256": "50ea5815fc34e3a0edb05025191e3561fed76c8b752c92dc7670573c0bc71b0e",
+      "installed": false
+    },
+    {
+      "suit": "smu-arana-gymnast",
+      "installedActorSha256": "a373efc19c48ca8af269c969c8dda8891b1c336ce394cc608be98810a8fd1bfa",
+      "stagedActorSha256": "4993674af44822d49ab7962d619c3f4cfe7cdd1292a78fa0b6affbba2c01ca63",
+      "installed": false
+    },
+    {
+      "suit": "smu-baal",
+      "installedActorSha256": "acc30d1a0d826a7357b4930f53cf2824564bf0a8fce54038b4dd12c70c55722d",
+      "stagedActorSha256": "fea7ad159e4c1b75dc6f4ff65cc70dcba19eef614828db1edbc49d92466ad8eb",
+      "installed": false
+    },
+    {
+      "suit": "smu-baghead",
+      "installedActorSha256": "99396acbe52dee96526205557d033892fabc2a033cbf07a981940f1fdb0aa476",
+      "stagedActorSha256": "cfe403e4a9fe1c706d449135abd012c50d985da4b5909db25b065113bfd43630",
+      "installed": false
+    },
+    {
+      "suit": "smu-battledamaged",
+      "installedActorSha256": "b8bfe7ef5ca5a0a59f5f955af3aae791982da1ea8f7fce366d3e0140d9327825",
+      "stagedActorSha256": "f83e3819ea981b8f24754aee73bb18f54efed4699db0361ef4c19b516bd00fb3",
+      "installed": false
+    },
+    {
+      "suit": "smu-batty-brant",
+      "installedActorSha256": "8d0431e6f4575bc95160ca187decf3752e6f8239fe4a5596f802ae973ab581ea",
+      "stagedActorSha256": "20d277b02c5065b4c0104fd9858e1aac2f54aaa58b27c5bd403d56a6bac7f88e",
+      "installed": false
+    },
+    {
+      "suit": "smu-ben-reilly-unmasked",
+      "installedActorSha256": "c4077ee8d8015c7af9044669e6b4c675c896cce457c899771af5220bb4764395",
+      "stagedActorSha256": "a32cd361bcd65a325b38c600376ed89531821debf529601573abf25b60f2358c",
+      "installed": false
+    }
+  ],
+  "offlineStatus": "PASS",
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+    "exitCode": 0,
+    "warnings": 0,
+    "errors": 0,
+    "scope": "Observed incremental Windows game build preceding batch04 native captures. No Linux game execution."
+  },
+  "scope": "All ten staged actors pass structural/full-4196-frame animation/115-frame web/loading/isolation checks. Neither native representative establishes the requested closed-fist appearance. No staged actor is installed, and the installed rollout remains 23/233.",
+  "nativeReviews": {
+    "smu-arana-gymnast": "Individually inspected full native frame 01581 (also at original resolution) and its exact native crop. Complete body, backpack, hair, clothing and limbs are visible in swing, with the web at the raised hand. Free hand still has conspicuous projecting tips at its sides; a fully closed fist is not accepted. Crop clips the hand at its top edge and cannot serve as detailed fist proof. The complete anatomical offline hand view shows curled fingers, but does not resolve the native projecting-tip concern.",
+    "smu-batty-brant": "Individually inspected full native frame 01510 and exact native crop. Body, cyan clothing, red web-pattern gloves and boots remain visible in swing. The free hand has projecting tips, so final closed-fist appearance is not accepted. The crop misses the hand entirely and is not detailed fist proof. The web segment is visible by the raised hand but partly occluded near the ceiling. Four slow-run warnings occurred; exit was zero, not a performance acceptance."
+  },
+  "diagnostic": "Fixed offline reverse-angle framing to fit the union of both poses with one shared camera. Individually inspected fitted 90/85 and experimental 110/85 views: both show bent fingers; 110 changes the fold but does not establish native closure or palm-contact correctness. No production angle change was made.",
+  "next": "Trace projecting native tips to source-weighted digit chains, then test a justified correction with correctly positioned game-native closeups. Do not accept or install merely because numerical gates pass."
+}

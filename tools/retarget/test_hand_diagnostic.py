@@ -5,11 +5,26 @@ import unittest
 
 import numpy as np
 
-from inspect_hand_pose import hand_vertices
+from inspect_hand_pose import comparison_framing, hand_vertices
 from proof_render import load_asset, triangles
 
 
 class HandDiagnosticTests(unittest.TestCase):
+    def test_shared_framing_contains_both_poses_at_every_yaw(self):
+        views = [[{'p': np.array([[-300, -40, 90], [400, 160, -150], [100, -120, 30]])}],
+                 [{'p': np.array([[-450, -80, -130], [500, 240, 220], [90, 0, 60]])}]]
+        for yaw in range(-180, 361, 20):
+            with self.subTest(yaw=yaw):
+                scale, center = comparison_framing(views, yaw)
+                a = np.deg2rad(yaw)
+                rotation = np.array([[np.cos(a), 0, np.sin(a)], [0, 1, 0],
+                                     [-np.sin(a), 0, np.cos(a)]])
+                for view in views:
+                    p = np.concatenate([t['p'] for t in view]) @ rotation.T
+                    xy = (p[:, :2]-center)*scale + [360, 260]
+                    self.assertTrue(np.all(xy >= 28-1e-9))
+                    self.assertTrue(np.all(xy <= np.array([692, 492])+1e-9))
+
     def test_complete_hand_faces_across_legacy_and_paged_packets(self):
         suits = Path(__file__).resolve().parents[2] / 'spiderman/port/mods/suits'
         for key in ('smu-amazing-spider', 'smu-2099', 'smu-spiderham', 'smu-other'):
