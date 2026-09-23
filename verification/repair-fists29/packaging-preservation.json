@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-ironspider",
+    "beforeActorSha256": "b09b8dfe64d17adcda27f6972f9c2932b398cc0501d001cf7125d6aa321a3c9a",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-ironspider-unmasked",
+    "beforeActorSha256": "e59e5e925e151b279ac876c5b14a33b1f963239da2419fd9169d3b1ac0bca839",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-ironspidernew",
+    "beforeActorSha256": "ee6f17ab861fb0b8d824f494712bccedbf5bf33d7e7744d9b33c54a748a2d463",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

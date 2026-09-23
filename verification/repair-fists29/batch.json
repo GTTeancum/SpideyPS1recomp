@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch29",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "ironspider",
+    "ironspider_unmasked",
+    "ironspidernew"
+  ],
+  "results": [
+    {
+      "key": "ironspider",
+      "id": "smu-ironspider",
+      "fbx": "costumes/ironspider/ironspider.fbx",
+      "fbxSha256": "70abc944cd7f6343fb7159b193b3173ee63858a387ad8b7a86cd2dfe578884da",
+      "textureFiles": [
+        "textures-png\\SpidermanIron_D.png"
+      ],
+      "textureSha256": [
+        "d5f0b4dd684d387d3e4a0f1e3b7542e77dc7279d09b80adacf04085a08a5a685"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanIron_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanIron_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 702608,
+      "outputs": {
+        "actor.psx": "e1ce1b577346d8f614c9db8093dc7c4a4b688df974b58168e7f743191e869055",
+        "conversion-report.json": "27b87cdd48c744ca1af5d84192fb65fce5a1c09689096dadece22cdc4c684e9b",
+        "suit.json": "35fef3785a2ded76ca63e41bfe1aca181519c6aa52c9c68c0ec6182e828d7968",
+        "textures\\diffuse.png": "f6fc3e14729f3aa3ad40d01237189d64a1847e23aa8c7fa6cf958bfb20ed6fe3"
+      }
+    },
+    {
+      "key": "ironspider_unmasked",
+      "id": "smu-ironspider-unmasked",
+      "fbx": "costumes/ironspider_unmasked/ironspider_unmasked.fbx",
+      "fbxSha256": "0a52f6d4b9f65203e2a1e884434651cc932e5ef0bb74d71115bfe3a2e60e6db4",
+      "textureFiles": [
+        "textures-png\\IronSpiderUnmasked_D.png"
+      ],
+      "textureSha256": [
+        "b0665e3bcf23a128533a152c8cc3ca48d8f02f5437d4ea1601f7c2839ff78432"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2163,
+      "sourceTriangles": 3548,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "IronSpiderUnmasked_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "BlackCat",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\IronSpiderUnmasked_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              2
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 863452,
+      "outputs": {
+        "actor.psx": "3e1a33ca88bff963ae296e78df3741d0e9c8e67ebbbbb87b1584cfa68105bb64",
+        "conversion-report.json": "61d3fe808b66aa797d0bce58a964fc9bffc9aca66c340565ac211a8a6bb95d69",
+        "suit.json": "1e60abd078fe52058fc3d89a7af0a7603a72f7ec08079f759744090cdcdffa03",
+        "textures\\diffuse.png": "0ca0489b4f691271f843b59ccd338d5fc706c941a25aaaf383b96f230171f966"
+      }
+    },
+    {
+      "key": "ironspidernew",
+      "id": "smu-ironspidernew",
+      "fbx": "costumes/ironspidernew/ironspidernew.fbx",
+      "fbxSha256": "372967cd4eb34fe93186744045b79bb062c1827174b43d17045cf41b2a2f4896",
+      "textureFiles": [
+        "textures-png\\IronSpiderNew_D.png",
+        "textures-png\\SpiderWeb.png"
+      ],
+      "textureSha256": [
+        "903e0ac87cb6c036f26be71a878be52ea4798c9884c9d30de2bd55f2a459942a",
+        "e158bef64c2c987c1e10665ce51ed75835edfbfee716dc93fa54de329fb909a7"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2003,
+      "sourceTriangles": 3278,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "IronSpiderNew_D.tga",
+        "SpiderWeb.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Iron1",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderWeb.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Material_01",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\IronSpiderNew_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 853896,
+      "outputs": {
+        "actor.psx": "ac5ac508beec232d21f3fbdb610bbc30dca050b0ae103c8015078560f806c9cf",
+        "conversion-report.json": "7def7199a6ad65f7c654d1222998b0da42abb0fb190b630972f9c31886dfc2c3",
+        "suit.json": "55fef896c3445e4d9807b0ca0498126c6f5d626cc2ceac39e45b92a5b64d4d51",
+        "textures\\diffuse-1.png": "99233b0b6580fad5e48c2cf031087fcd4e39fcae2afcc2dc9d8e16c07678f0fa",
+        "textures\\diffuse.png": "06a6f7a0c3bd041cd103ae0cbcbf446b29b2d2f33be6896697d76f84d6f059d6"
+      }
+    }
+  ]
+}

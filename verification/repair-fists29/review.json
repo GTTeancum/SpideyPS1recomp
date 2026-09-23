@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-ironspider",
+      "previousActorSha256": "b09b8dfe64d17adcda27f6972f9c2932b398cc0501d001cf7125d6aa321a3c9a",
+      "actorSha256": "e1ce1b577346d8f614c9db8093dc7c4a4b688df974b58168e7f743191e869055",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-ironspidernew.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-ironspider-unmasked",
+      "previousActorSha256": "e59e5e925e151b279ac876c5b14a33b1f963239da2419fd9169d3b1ac0bca839",
+      "actorSha256": "3e1a33ca88bff963ae296e78df3741d0e9c8e67ebbbbb87b1584cfa68105bb64",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-ironspidernew.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-ironspidernew",
+      "previousActorSha256": "ee6f17ab861fb0b8d824f494712bccedbf5bf33d7e7744d9b33c54a748a2d463",
+      "actorSha256": "ac5ac508beec232d21f3fbdb610bbc30dca050b0ae103c8015078560f806c9cf",
+      "visualReview": "Reviewed the two native game images sequentially. The white suit, red neck detail and complete geometry remain present; lighting washes out fine material detail. Both fists are compact within the palm silhouette. Representative native silhouette evidence only; no web strand is visible, while the offline endpoint regression passes.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01607.png": "fad1ca0d1e2217defc50f5b360e7ee1b0bcc431d7fb9dbfe1f4755bb2ecb61bf",
+        "frame_01607_closeup.png": "bbcd4b208c35d98aa26325c7cff0b5b361704c3c9efebd39479e68c1165eb1e0"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-ironspidernew"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-ironspider-unmasked\\actor.psx",
+    "smu-ironspider-unmasked\\conversion-report.json",
+    "smu-ironspider\\actor.psx",
+    "smu-ironspider\\conversion-report.json",
+    "smu-ironspidernew\\actor.psx",
+    "smu-ironspidernew\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-ironspidernew/frame_01607.png plus its exact close-up crop"
+  }
+}
