@@ -1,0 +1,26 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-amazing-spider-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-earth62412-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-who-isolation",
+    "exitCode": 0
+  }
+]

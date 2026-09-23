@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "amazing_spider",
+      "id": "smu-amazing-spider",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.13037109375,
+        6.532470703125
+      ],
+      "assetSha256": "c413dcd6741751a332e79e06c173b9a7aaf2d9d131b547ee39599cdeca0a1f8b",
+      "captureSha256": "cfdde4197306cc40c6d177b7d018ee2c56e8762d6a381093e0fb8acfd897cb9b"
+    },
+    {
+      "key": "earth62412",
+      "id": "smu-earth62412",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.46728515625,
+        5.869384765625
+      ],
+      "assetSha256": "17dde3ea47b5daa36a7c0507114e336b5d91304a669f82e4d827e646e9cc502b",
+      "captureSha256": "1da53b3496b71c42c1d6e5b976dc72427da8f09adb2f5d1e1abd2863d8620690"
+    },
+    {
+      "key": "who",
+      "id": "smu-who",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.50146484375,
+        8.948486328125
+      ],
+      "assetSha256": "1b0401ee32f9e00cbc5a463ef2bc3edb22834f932e1497a6ab5a7e5ab10083ab",
+      "captureSha256": "2b9419eb8e1d7c8330abeb55b1ed5083970e9aad141a6b2c254a87d1da915a29"
+    }
+  ]
+}

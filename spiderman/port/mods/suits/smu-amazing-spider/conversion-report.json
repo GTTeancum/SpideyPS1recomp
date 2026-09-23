@@ -8,8 +8,8 @@
   "runtimeInfluences": 6024,
   "originalTriangles": 4378,
   "uniqueOutputTriangles": 4378,
-  "nativeBytes": 988876,
-  "rigBytes": 446480,
+  "nativeBytes": 988672,
+  "rigBytes": 446276,
   "packetSpilloverTriangles": 691,
   "packets": [
     {
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\The_Amazing_Spider_D.png": "a201497394fd3ea53b47e3258b07ba6b20b11a5946ee1ff4447b9ef45a58bb83"
   },
-  "outputSha256": "8b3dea48587d874b22174a2f25bed4ebd2891e62dbeb3c925ae1f860514ac574",
+  "outputSha256": "c413dcd6741751a332e79e06c173b9a7aaf2d9d131b547ee39599cdeca0a1f8b",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -170,8 +170,7 @@
     },
     {
       "bone": "Clown001LArmDigit21",
-      "method": "experimental-palm-width-closure",
-      "candidatePolicy": true,
+      "method": "source-relative-palm-width-closure-v1",
       "baseLean": 0.2,
       "baseConvergence": 0.7,
       "convergence": 0.35,
@@ -196,8 +195,7 @@
     },
     {
       "bone": "Clown001LArmDigit22",
-      "method": "experimental-palm-width-closure",
-      "candidatePolicy": true,
+      "method": "source-relative-palm-width-closure-v1",
       "baseLean": 0.2,
       "baseConvergence": 0.7,
       "convergence": 0.35,
@@ -222,8 +220,7 @@
     },
     {
       "bone": "Clown001LArmDigit31",
-      "method": "experimental-palm-width-closure",
-      "candidatePolicy": true,
+      "method": "source-relative-palm-width-closure-v1",
       "baseLean": 0.2,
       "baseConvergence": 0.7,
       "convergence": 0.35,
@@ -248,8 +245,7 @@
     },
     {
       "bone": "Clown001LArmDigit32",
-      "method": "experimental-palm-width-closure",
-      "candidatePolicy": true,
+      "method": "source-relative-palm-width-closure-v1",
       "baseLean": 0.2,
       "baseConvergence": 0.7,
       "convergence": 0.35,
@@ -274,8 +270,7 @@
     },
     {
       "bone": "Clown001LArmDigit51",
-      "method": "experimental-palm-width-closure",
-      "candidatePolicy": true,
+      "method": "source-relative-palm-width-closure-v1",
       "baseLean": 0.2,
       "baseConvergence": 0.7,
       "convergence": 0.35,
@@ -300,8 +295,7 @@
     },
     {
       "bone": "Clown001LArmDigit52",
-      "method": "experimental-palm-width-closure",
-      "candidatePolicy": true,
+      "method": "source-relative-palm-width-closure-v1",
       "baseLean": 0.2,
       "baseConvergence": 0.7,
       "convergence": 0.35,
@@ -368,8 +362,7 @@
     },
     {
       "bone": "Clown001RArmDigit21",
-      "method": "experimental-palm-width-closure",
-      "candidatePolicy": true,
+      "method": "source-relative-palm-width-closure-v1",
       "baseLean": 0.2,
       "baseConvergence": 0.7,
       "convergence": 0.35,
@@ -394,8 +387,7 @@
     },
     {
       "bone": "Clown001RArmDigit22",
-      "method": "experimental-palm-width-closure",
-      "candidatePolicy": true,
+      "method": "source-relative-palm-width-closure-v1",
       "baseLean": 0.2,
       "baseConvergence": 0.7,
       "convergence": 0.35,
@@ -420,8 +412,7 @@
     },
     {
       "bone": "Clown001RArmDigit31",
-      "method": "experimental-palm-width-closure",
-      "candidatePolicy": true,
+      "method": "source-relative-palm-width-closure-v1",
       "baseLean": 0.2,
       "baseConvergence": 0.7,
       "convergence": 0.35,
@@ -446,8 +437,7 @@
     },
     {
       "bone": "Clown001RArmDigit32",
-      "method": "experimental-palm-width-closure",
-      "candidatePolicy": true,
+      "method": "source-relative-palm-width-closure-v1",
       "baseLean": 0.2,
       "baseConvergence": 0.7,
       "convergence": 0.35,
@@ -472,8 +462,7 @@
     },
     {
       "bone": "Clown001RArmDigit51",
-      "method": "experimental-palm-width-closure",
-      "candidatePolicy": true,
+      "method": "source-relative-palm-width-closure-v1",
       "baseLean": 0.2,
       "baseConvergence": 0.7,
       "convergence": 0.35,
@@ -498,8 +487,7 @@
     },
     {
       "bone": "Clown001RArmDigit52",
-      "method": "experimental-palm-width-closure",
-      "candidatePolicy": true,
+      "method": "source-relative-palm-width-closure-v1",
       "baseLean": 0.2,
       "baseConvergence": 0.7,
       "convergence": 0.35,

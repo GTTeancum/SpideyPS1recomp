@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-amazing-spider",
+    "beforeActorSha256": "8b3dea48587d874b22174a2f25bed4ebd2891e62dbeb3c925ae1f860514ac574",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-earth62412",
+    "beforeActorSha256": "98152d7ef4824a2d1837c9a5b1a0164d79e6a1c617e8b775dfe42f8adee53415",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-who",
+    "beforeActorSha256": "7ce8e4a771a79e065a5f4de18fa71d4faf5f827512dfabf335ddbaed906ca43e",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]
