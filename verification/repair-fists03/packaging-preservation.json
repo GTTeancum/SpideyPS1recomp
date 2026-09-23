@@ -1,0 +1,62 @@
+[
+  {
+    "suit": "smu-agentv",
+    "beforeActorSha256": "0c6255018af6de567d6796802e25cb4766db49a011f72c4401f052892e565ce0",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-agony",
+    "beforeActorSha256": "6462041bd154130877e1bd17f9f2705dfe11ab812772c067d01f097fd5842a9b",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-aiapaec",
+    "beforeActorSha256": "a265af282f49d6796921257b411bd9a201778687a480d675cbe86fa6030f9ba0",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-aikman",
+    "beforeActorSha256": "c1439cdcff0cc30ac1ddda3b6f517fe89b52e08416c662620caefbdb11f3e951",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-alistaire-smythe",
+    "beforeActorSha256": "9017bd1c96923393f55fa089972b68a5d2061c27a1c1f4b6d811f96c30ddd96b",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-all-new-agent-venom",
+    "beforeActorSha256": "609342620e95177d7dd19d2fe053453667cc470d092a948fcf08c01aa9b09171",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-ancientvenom",
+    "beforeActorSha256": "2022d19b9e81f5550ddac21f7b9f4f3ade564d90b05d9fc854d468c7cc9cfb78",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-angelo-fortunato",
+    "beforeActorSha256": "3e631d1c8c95e36bf463e807bbccc8349b2609e2d413c109f927f157dc493243",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-annie-parker",
+    "beforeActorSha256": "91d268392394cdea5d68c6727f90b6ebb2df5ce22bb9be6e6f360e63ec90ee2d",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-anti-venom",
+    "beforeActorSha256": "049a602a30ce771dab34aa6d0cee6e6985c8fa6b578cce0b18c554118c5fc247",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

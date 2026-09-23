@@ -5,7 +5,7 @@
   "results": [
     {
       "suit": "smu-ancientvenom",
-      "assetSha256": "2022d19b9e81f5550ddac21f7b9f4f3ade564d90b05d9fc854d468c7cc9cfb78",
+      "assetSha256": "5b9a957383cddabe305debbebd2225aa005fa8dbb5e1797b57beb5a17bc68b60",
       "tongueBones": [
         "Tongue_a"
       ],
@@ -18,7 +18,7 @@
     },
     {
       "suit": "smu-anti-venom",
-      "assetSha256": "049a602a30ce771dab34aa6d0cee6e6985c8fa6b578cce0b18c554118c5fc247",
+      "assetSha256": "f1c9a343b56aa22fe9534c164026b1837d427707cd174682e006543a0f67a829",
       "tongueBones": [
         "Tongue_a",
         "Tongue_b",

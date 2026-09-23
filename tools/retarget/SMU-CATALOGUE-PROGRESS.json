@@ -4,7 +4,7 @@
   "batchVerified": 233,
   "remainingUnconverted": 0,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 6403,
+  "offlineChecks": 6659,
   "animationFrames": 977668,
   "offlineSwingFrames": 26795,
   "structuralBlockers": [],
@@ -301,14 +301,16 @@
       "id": "visual-fist-closure",
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
-      "evidence": "verification/repair-fists02/review.json",
+      "evidence": "verification/repair-fists03/review.json",
       "nativeReviewedRepairs": [
         "smu-amazing-spider",
         "smu-spiderham",
         "smu-other",
-        "smu-2099"
+        "smu-2099",
+        "smu-anti-venom",
+        "smu-ancientvenom"
       ],
-      "progress": "Thirteen production actors now have the tighter base curl after full animation, web, loader and before/after isolation checks, with representative native full-frame/exact-crop proof. The two original 2099 source meshes require 65-degree distal flexion to avoid the below-palm claw projection seen with uniform 90/85 curl; other suits retain 85-degree distal flexion. Authored claws are not shortened or removed. Thumb opposition is unchanged. Original display names and texture bytes remain intact. The other 220 suits still use the previous base curl. Visual review is representative, not every suit or exhaustive finger/palm contact testing.",
+      "progress": "Twenty-three production actors now have the tighter base curl after full animation, web, loader and before/after isolation checks, with representative native full-frame/exact-crop or two-frame proof. The two original 2099 source meshes require 65-degree distal flexion to avoid the below-palm claw projection seen with uniform 90/85 curl; other suits retain 85-degree distal flexion. Authored claws are not shortened or removed. Anti-Venom and Ancient Venom retain pointed authored claws; their latest native views accept representative silhouettes, not exhaustive palm contact or tongue poses. Thumb opposition is unchanged. Original display names and texture bytes remain intact. The other 210 suits still use the previous base curl. Visual review is representative, not every suit or exhaustive finger/palm contact testing.",
       "next": "Roll the verified base-curl repair through the remaining catalogue in small tested batches. Preserve earlier material, tongue and source-body repairs. Use complete anatomical geometry, not packet-5-only close-ups, and retain at most two native images per representative."
     }
   ],
@@ -530,6 +532,134 @@
     {
       "repairs": [
         {
+          "suit": "smu-agentv",
+          "previousActorSha256": "0c6255018af6de567d6796802e25cb4766db49a011f72c4401f052892e565ce0",
+          "actorSha256": "3d919fed6308d1470517a568acbe7408ad54bcd82842a00601b0d715b8011e80",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-anti-venom, smu-ancientvenom.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-agony",
+          "previousActorSha256": "6462041bd154130877e1bd17f9f2705dfe11ab812772c067d01f097fd5842a9b",
+          "actorSha256": "a5683bf5a7a92ff89c3fb1617b38a4224bc9c3e0ff62e965afe0193393f1769c",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-anti-venom, smu-ancientvenom.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-aiapaec",
+          "previousActorSha256": "a265af282f49d6796921257b411bd9a201778687a480d675cbe86fa6030f9ba0",
+          "actorSha256": "1502e4cc9e1b7d7db9317694b135556aec62cea0bbdd794c7f096abe0cf44538",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-anti-venom, smu-ancientvenom.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-aikman",
+          "previousActorSha256": "c1439cdcff0cc30ac1ddda3b6f517fe89b52e08416c662620caefbdb11f3e951",
+          "actorSha256": "f140b0d368fec0ff8c9afd1fc1cccb8df0a57d4ad78bd8fbfb4e4b78f0d9830e",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-anti-venom, smu-ancientvenom.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-alistaire-smythe",
+          "previousActorSha256": "9017bd1c96923393f55fa089972b68a5d2061c27a1c1f4b6d811f96c30ddd96b",
+          "actorSha256": "eabc9195ddc608ca8208f2eeefb419a6667cadadb66b24cb4d57aeb3d42cb095",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-anti-venom, smu-ancientvenom.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-all-new-agent-venom",
+          "previousActorSha256": "609342620e95177d7dd19d2fe053453667cc470d092a948fcf08c01aa9b09171",
+          "actorSha256": "18c239a74c7871ae62f51f51fc1ffa17421441fff24cf94427aa87ea4955ca91",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-anti-venom, smu-ancientvenom.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-ancientvenom",
+          "previousActorSha256": "2022d19b9e81f5550ddac21f7b9f4f3ade564d90b05d9fc854d468c7cc9cfb78",
+          "actorSha256": "5b9a957383cddabe305debbebd2225aa005fa8dbb5e1797b57beb5a17bc68b60",
+          "visualReview": "Individually inspected native frames 01567 and 01573. The first is rear three-quarter and the second a turning side/rear view, not a frontal mouth view. Full dark body, orange markings and limbs remain visible; hands show folded clawed silhouettes with authored pointed tips retained. No detached hand fragments or gross body collapse are visible. The second frame exposes the open jaw in profile, but does not clearly expose the tongue or its root. Tongue pose and exhaustive finger/palm contact therefore remain unverified visually. Separate 4196-frame attachment checks pass with three mixed body/tongue vertices explicitly excluded.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01567.png": "ba63c8025127fb1341a0103f8570fc4b5214e6f65d148ede503cc2ccfb37fc92",
+            "frame_01573.png": "c573a0216f46c1bf15489787fed0d395ad9d824d6b5d4bb49934450bc6c79a80"
+          }
+        },
+        {
+          "suit": "smu-angelo-fortunato",
+          "previousActorSha256": "3e631d1c8c95e36bf463e807bbccc8349b2609e2d413c109f927f157dc493243",
+          "actorSha256": "53ee5cd063cd97216da585a7927b2971aea479f057b2e22981bf02bc00958914",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-anti-venom, smu-ancientvenom.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-annie-parker",
+          "previousActorSha256": "91d268392394cdea5d68c6727f90b6ebb2df5ce22bb9be6e6f360e63ec90ee2d",
+          "actorSha256": "1ad01181f19e42366cea99553026036a32ec419ef9f7fdbd5aee8af586c971d3",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-anti-venom, smu-ancientvenom.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-anti-venom",
+          "previousActorSha256": "049a602a30ce771dab34aa6d0cee6e6985c8fa6b578cce0b18c554118c5fc247",
+          "actorSha256": "f1c9a343b56aa22fe9534c164026b1837d427707cd174682e006543a0f67a829",
+          "visualReview": "Individually inspected native frame_01583.png and its exact native closeup. White/black spiked body, limbs and markings remain intact during swing; web meets the raised hand. Free hand has a folded clawed silhouette with prominent authored tips and spikes, not a rounded human glove. No detached hand fragment or gross collapse is visible. Bright material and angle limit palm-contact judgment. Mouth and tongue are occluded from this rear view; no tongue-pose acceptance is claimed. Separate complete anatomical offline views support the folded shape but are not gameplay evidence.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01583.png": "fa493a0549e94788e98f32df355e4f0ce9b0e59c0f958418316ed071ab7e359d",
+            "frame_01583_closeup.png": "962390feae5143e6a503b092b9637febc5c8c8b574d75ab0dfe4da1ef8edd318"
+          }
+        }
+      ],
+      "managedLoaderExitCode": 0,
+      "representatives": [
+        "smu-anti-venom",
+        "smu-ancientvenom"
+      ],
+      "scope": "Pose-only base curl from 60 to 90 degrees. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+      "previousFilesUnchanged": 944,
+      "changedFiles": [
+        "smu-agentv\\actor.psx",
+        "smu-agentv\\conversion-report.json",
+        "smu-agony\\actor.psx",
+        "smu-agony\\conversion-report.json",
+        "smu-aiapaec\\actor.psx",
+        "smu-aiapaec\\conversion-report.json",
+        "smu-aikman\\actor.psx",
+        "smu-aikman\\conversion-report.json",
+        "smu-alistaire-smythe\\actor.psx",
+        "smu-alistaire-smythe\\conversion-report.json",
+        "smu-all-new-agent-venom\\actor.psx",
+        "smu-all-new-agent-venom\\conversion-report.json",
+        "smu-ancientvenom\\actor.psx",
+        "smu-ancientvenom\\conversion-report.json",
+        "smu-angelo-fortunato\\actor.psx",
+        "smu-angelo-fortunato\\conversion-report.json",
+        "smu-annie-parker\\actor.psx",
+        "smu-annie-parker\\conversion-report.json",
+        "smu-anti-venom\\actor.psx",
+        "smu-anti-venom\\conversion-report.json"
+      ],
+      "originalManifestAndTextureBytesPreserved": true,
+      "build": {
+        "status": "PASS",
+        "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+        "exitCode": 0,
+        "warnings": 0,
+        "errors": 0,
+        "scope": "Incremental Windows game build, observed before the batch03 native captures. Linux execution not tested."
+      }
+    },
+    {
+      "repairs": [
+        {
           "suit": "smu-gwenom",
           "previousActorSha256": "6cce60683532b5e9c7ceaf44fa9f1862f2cf303635fafa2e4fbdb6a1082071f6",
           "actorSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
@@ -588,7 +718,8 @@
         "frame_01888.png": "574a518c82dd53fdcc46f7a2a9d019873e054577aa0c6b8f3fdda770909d8818"
       },
       "scope": "Genuine game framebuffer, process-local input. Muted run; no desktop capture. Two individually reviewed images, not full animation or campaign visual acceptance.",
-      "currentAsset": true
+      "currentAsset": false,
+      "supersededByActorSha256": "f1c9a343b56aa22fe9534c164026b1837d427707cd174682e006543a0f67a829"
     },
     {
       "suit": "smu-anti-venom",
@@ -600,7 +731,8 @@
       },
       "assetModified": false,
       "scope": "Two native framebuffer images from process-local input, individually inspected; no desktop capture. Supplemented by a full-4196-frame offline head-relative attachment check, not exhaustive visual pose acceptance.",
-      "currentAsset": true
+      "currentAsset": false,
+      "supersededByActorSha256": "f1c9a343b56aa22fe9534c164026b1837d427707cd174682e006543a0f67a829"
     },
     {
       "suit": "smu-poison",
@@ -634,8 +766,8 @@
       "2099": 65,
       "2099_new": 65
     },
-    "updatedInstalled": 13,
-    "remaining": 220,
+    "updatedInstalled": 23,
+    "remaining": 210,
     "suits": [
       "smu-1602",
       "smu-2099",
@@ -647,7 +779,17 @@
       "smu-adriana-soria",
       "smu-agent-anti-venom",
       "smu-agent-nine",
+      "smu-agentv",
+      "smu-agony",
+      "smu-aiapaec",
+      "smu-aikman",
+      "smu-alistaire-smythe",
+      "smu-all-new-agent-venom",
       "smu-amazing-spider",
+      "smu-ancientvenom",
+      "smu-angelo-fortunato",
+      "smu-annie-parker",
+      "smu-anti-venom",
       "smu-other",
       "smu-spiderham"
     ],

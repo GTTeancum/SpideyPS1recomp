@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "agentv",
+      "id": "smu-agentv",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -3.198486328125,
+        1.203369140625
+      ],
+      "assetSha256": "3d919fed6308d1470517a568acbe7408ad54bcd82842a00601b0d715b8011e80",
+      "captureSha256": "49a40f207b57de75d0db9787b34d6150c8211511a92546d6dc33619b2946fbe8"
+    },
+    {
+      "key": "agony",
+      "id": "smu-agony",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.019775390625,
+        11.421875
+      ],
+      "assetSha256": "a5683bf5a7a92ff89c3fb1617b38a4224bc9c3e0ff62e965afe0193393f1769c",
+      "captureSha256": "5ed61462320038649ad19d943dc8962128cb481dee567acfe674c7e6414c0bec"
+    },
+    {
+      "key": "aiapaec",
+      "id": "smu-aiapaec",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.591552734375,
+        6.04541015625
+      ],
+      "assetSha256": "1502e4cc9e1b7d7db9317694b135556aec62cea0bbdd794c7f096abe0cf44538",
+      "captureSha256": "d3f63136963d3ed111232f21f2ee00a0decefbaead2409c8af6e1ad1cb00814c"
+    },
+    {
+      "key": "aikman",
+      "id": "smu-aikman",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.426513671875,
+        10.828369140625
+      ],
+      "assetSha256": "f140b0d368fec0ff8c9afd1fc1cccb8df0a57d4ad78bd8fbfb4e4b78f0d9830e",
+      "captureSha256": "a64c7ca76cad1963df467d2fb20045343dab1ef692f08eadeb549f3fab0d7bca"
+    },
+    {
+      "key": "alistaire_smythe",
+      "id": "smu-alistaire-smythe",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.118408203125,
+        9.843505859375
+      ],
+      "assetSha256": "eabc9195ddc608ca8208f2eeefb419a6667cadadb66b24cb4d57aeb3d42cb095",
+      "captureSha256": "e13eae224f89e2860d075710834c00bcadb4e46083d2ac95281172b644233fa4"
+    },
+    {
+      "key": "all_new_agent_venom",
+      "id": "smu-all-new-agent-venom",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        8.2626953125,
+        13.0625
+      ],
+      "assetSha256": "18c239a74c7871ae62f51f51fc1ffa17421441fff24cf94427aa87ea4955ca91",
+      "captureSha256": "8baf287c5143df85ed305b72d2b373e7c81efa09d7a39bb637f03c893eb05f2d"
+    },
+    {
+      "key": "ancientvenom",
+      "id": "smu-ancientvenom",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.396484375,
+        16.7919921875
+      ],
+      "assetSha256": "5b9a957383cddabe305debbebd2225aa005fa8dbb5e1797b57beb5a17bc68b60",
+      "captureSha256": "d216fcbba93167b51bdd9108158735cc435ee58e64a36bf54c1f13805a3df66f"
+    },
+    {
+      "key": "angelo_fortunato",
+      "id": "smu-angelo-fortunato",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.88232421875,
+        10.35546875
+      ],
+      "assetSha256": "53ee5cd063cd97216da585a7927b2971aea479f057b2e22981bf02bc00958914",
+      "captureSha256": "fab9c6595036ef71fa8c5e970fc9e11543d04c03ed4ad91863e45c8e6b62b309"
+    },
+    {
+      "key": "annie_parker",
+      "id": "smu-annie-parker",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        88.97314453125,
+        94.052001953125
+      ],
+      "assetSha256": "1ad01181f19e42366cea99553026036a32ec419ef9f7fdbd5aee8af586c971d3",
+      "captureSha256": "5ee96db0d4e0dfd8f78ba62c52c5f9d654aee7e422d397f5d2414bdba67ce35c"
+    },
+    {
+      "key": "anti_venom",
+      "id": "smu-anti-venom",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.473876953125,
+        5.72509765625
+      ],
+      "assetSha256": "f1c9a343b56aa22fe9534c164026b1837d427707cd174682e006543a0f67a829",
+      "captureSha256": "5e45acdd6c026c425d538debb9a86f54eb1158de7f53fcafcdc8a254ee9b3647"
+    }
+  ]
+}
