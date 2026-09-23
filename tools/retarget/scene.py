@@ -45,18 +45,33 @@ FINGER_AIM_POLICIES = {
     'batty_brant': ('505ee47fdc44383e89271da42f2616c01eedef58d467f062ca3bb52cfd537753',
                    {2: (.8, .35, .1), 3: (.2, .35, 1.2000000000000002),
                     5: (1., 1., 1.8000000000000003)}),
+    'blackcatvenom': ('fddcb2b97d41097717bf686f26a7663c2d7c10bd0eb8ab2ddc46925c196fcffc',
+                     {2: (1., 1.5, 1.6), 3: (.20000000000000007, 0, 2.),
+                      5: (3.2, 2., 1.5000000000000002)}),
 }
+FINGER_AIM_SIDE_OVERRIDES = {
+    ('blackcatvenom', 'R'): {2: (1.4, 2., 2.3000000000000003),
+                           3: (.4, 0, 1.3000000000000003),
+                           5: (2.4000000000000004, 1.5, .8)},
+}
+
+
+def finger_aim_settings(source_stem, side):
+    if side not in ('L', 'R'):
+        raise ValueError('Finger aiming requires an explicit L or R hand')
+    return FINGER_AIM_SIDE_OVERRIDES.get((source_stem, side), FINGER_AIM_POLICIES[source_stem][1])
 
 
 def apply_finger_aim(scene, bind, fist, reports):
     policy = FINGER_AIM_POLICIES.get(scene.path.stem)
     if policy is None:
         return
-    source_hash, settings = policy
+    source_hash, _ = policy
     if scene.sha256 != source_hash:
         raise ValueError('Source-relative finger policy requires the verified source hash')
     # This source's splayed fingers need independent aiming, not a shared curl axis.
     for side in ('L', 'R'):
+        settings = finger_aim_settings(scene.path.stem, side)
         palm, middle, index, little = [scene.index(side+n) for n in
                                       ('ArmPalm', 'ArmDigit31', 'ArmDigit21', 'ArmDigit51')]
         forward = unit(bind[middle,:3,3]-bind[palm,:3,3])

@@ -1,0 +1,17 @@
+{
+  "suit": "smu-blackcatvenom",
+  "status": "rejected-visual-closure",
+  "installed": false,
+  "actorSha256": "489a2d3717c4cd5af4689211b04fe9275e9a3518096284ad775eafb5f0a3c406",
+  "visualReview": "Individually inspected native frame 01559 and exact crop. Body, clothing and wrist web remain intact in swing. Finger hooks are reduced, but the free hand still has a spread, three-pronged outline rather than a compact closed fist. Do not install on the strength of passing numeric contact checks.",
+  "diagnosis": "The first static-palm fit had negative combined-pose middle-finger clearance. Dynamic-palm left settings then passed left sampled clearances but failed the right hand: middle tips below the palm and little tips without projected coverage. Separate right-hand fitting removed those sampled problems, but native closure remained inadequate. Next fit includes whole-digit forward reach, not fingertip clearance alone.",
+  "scope": "Two genuine game framebuffer images from process-local input, not desktop capture. Offline signed sampled clearances are not full volumetric/finger collision acceptance. Exact geometry, source bind, weights, thumb and open-hand preservation passed 4196-frame isolation.",
+  "build": {
+    "status": "PASS",
+    "exitCode": 0,
+    "warnings": 0,
+    "errors": 0,
+    "platform": "Windows",
+    "linuxExecuted": false
+  }
+}

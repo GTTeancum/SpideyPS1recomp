@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "beforeSha256": "0db440fff9eecf668854ea3222ad8332bb807e34afa6786cebe9d7069d328141",
+  "afterSha256": "960e0625402d267880923a5d30ed6a059e22b1533b074ed07303de62baa87840",
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb",
+  "frames": 4196,
+  "changedBones": [
+    "Clown001LArmDigit21",
+    "Clown001LArmDigit22",
+    "Clown001LArmDigit31",
+    "Clown001LArmDigit32",
+    "Clown001LArmDigit51",
+    "Clown001LArmDigit52",
+    "Clown001RArmDigit21",
+    "Clown001RArmDigit22",
+    "Clown001RArmDigit31",
+    "Clown001RArmDigit32",
+    "Clown001RArmDigit51",
+    "Clown001RArmDigit52"
+  ],
+  "errors": {
+    "closedUnaffectedBones": 0.0,
+    "closedUnaffectedVertices": 0.0,
+    "openAllBones": 0.0,
+    "openAllVertices": 0.0
+  },
+  "unaffectedVertices": 2576,
+  "unaffectedBones": 54,
+  "sourceBindWeightsGeometryPacketsAndNonFistProvenanceUnchanged": true,
+  "scope": "Experimental uninstalled pose-only candidate. Exact source/bind/weights/geometry and thumb preservation; full closed-body/open-hand isolation. Not visual closure/contact acceptance or production-policy validation."
+}

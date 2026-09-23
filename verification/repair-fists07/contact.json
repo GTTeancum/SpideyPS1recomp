@@ -1,0 +1,19 @@
+{
+  "suit": "smu-blackcatvenom",
+  "actorSha256": "960e0625402d267880923a5d30ed6a059e22b1533b074ed07303de62baa87840",
+  "status": "PASS-sampled-tips",
+  "candidatePoseWeightsGeometryBitExact": true,
+  "hands": {
+    "L": {
+      "minimumSampledClearance": 4.5198974609375,
+      "maximumSampledClearance": 10.621612548828125,
+      "samples": 8
+    },
+    "R": {
+      "minimumSampledClearance": 2.37213134765625,
+      "maximumSampledClearance": 9.968475341796875,
+      "samples": 8
+    }
+  },
+  "scope": "Separate hand fitting, sampled tip/palm-envelope checks only. Not exhaustive surface, finger/finger or all-animation collision acceptance. Native capture review is a separate gate."
+}

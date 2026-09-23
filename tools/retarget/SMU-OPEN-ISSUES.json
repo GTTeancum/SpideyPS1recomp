@@ -46,16 +46,27 @@
       "id": "visual-fist-closure",
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
-      "evidence": "verification/repair-fists06/review.json",
-      "nativeReviewedRepairs": ["smu-amazing-spider", "smu-spiderham", "smu-other", "smu-2099", "smu-anti-venom", "smu-ancientvenom", "smu-arana-gymnast", "smu-batty-brant", "smu-baghead", "smu-black-tarantula"],
+      "evidence": "verification/repair-fists07/review.json",
+      "nativeReviewedRepairs": ["smu-amazing-spider", "smu-spiderham", "smu-other", "smu-2099", "smu-anti-venom", "smu-ancientvenom", "smu-arana-gymnast", "smu-batty-brant", "smu-baghead", "smu-black-tarantula", "smu-blackcatvenom"],
+      "rightHandContactFollowup": {
+        "status": "open",
+        "suits": ["smu-arana-gymnast", "smu-batty-brant"],
+        "evidence": "verification/right-hand-contact-audit/review.json",
+        "finding": "Bilateral diagnostic coverage now finds sampled right middle-finger tips below Arana Gymnast's posed palm envelope, and right little-finger tips below Batty Brant's. Both offline views were inspected. These are contact concerns requiring separate right-hand fitting and native review, not proof of volumetric intersections. Previous native free-left-hand silhouette acceptance did not establish bilateral contact freedom. No unrelated installed actor was reverted."
+      },
       "heldBatch": {
         "batch": "fist-repair-batch06",
         "status": "held-for-visual-correction",
-        "count": 2,
+        "count": 1,
+        "originalCount": 2,
         "installed": false,
-        "suits": ["smu-black-suit-swiney-girl", "smu-blackcatvenom"],
+        "suits": ["smu-black-suit-swiney-girl"],
+        "separatelyRepaired": ["smu-blackcatvenom"],
+        "repairEvidence": "verification/repair-fists07/review.json",
         "evidence": "verification/diagnostic-fists06/review.json",
-        "finding": "Both candidates pass full offline checks but remain uninstalled. Swiney Girl's native swing and crouch retain short proportions and wrist web attachment; the free hand remains visibly cupped, also seen in complete anatomical offline diagnostics. Black Cat Venom's native swing/crop retains projecting finger tips. Neither is accepted as a closed fist. The other eight staged suits were installed after full regressions, with native Black Tarantula swing/crop review."
+        "followupEvidence": "verification/experimental-blackcat-contact02/review.json",
+        "followupFinding": "Black Cat Venom requires separate per-hand treatment: left-hand settings caused negative middle-finger clearance on the right. A per-hand dynamic-palm experiment restored positive sampled clearances and passed full 4196-frame preservation checks, but its native swing/crop still showed a spread, three-pronged free-hand silhouette. That candidate remains uninstalled. Whole-digit silhouette must be considered in addition to tip clearance.",
+        "finding": "The original rejected candidates remain historical and uninstalled. Swiney Girl still needs closure correction: native swing/crouch retain short proportions and wrist web attachment, but its free hand is visibly cupped. Black Cat Venom was separately repaired in batch07 using per-hand fits and a whole-digit compactness objective; production native swing/crop shows a folded compact silhouette. Both hands have positive sampled tip clearance, and all source preservation, animation and web gates pass. The other eight batch06 suits were installed with native Black Tarantula representative review."
       },
       "resolvedHeldBatch": {
         "batch": "fist-repair-batch04",
@@ -69,7 +80,7 @@
         "diagnosis": "Source-weighted digit tracing identifies the sideways tips as the index and little fingers. Their source spread survives shared-axis flexion. A source-relative aiming experiment reduces that spread without changing bind/weights/lengths, but completed native closeups still show a gap rather than a closed fist. Both candidates remain uninstalled despite passing all 55 structural checks, 4196-frame animation/isolation checks, 115-frame web checks and managed loading. Completed captures show jumping rather than swinging, so they are not live web-endpoint proof. Next: refine distal closure toward the palm and check for penetration before installation.",
         "finding": "The original rejected staging and first aiming experiment remain historical and uninstalled. Arana Gymnast was repaired separately in repair-fists04. The other nine suits were regenerated, fully reverified and installed in repair-fists05, with source-hash-guarded per-digit Batty Brant closure and individually reviewed native swing/crop pairs for Batty Brant and Baghead. No suits remain held from this batch. These representative views are not exhaustive contact/collision acceptance."
       },
-      "progress": "Forty-one production actors now have verified finger-policy updates after full animation, web, loading and isolation checks. Arana Gymnast and Batty Brant use separately measured, source-hash-guarded per-digit closure. Black Tarantula adds native larger-body swing/crop coverage with a folded free-hand silhouette and web at the raised hand. The original 2099 meshes retain eased distal flexion; other updated suits use tighter base curl. Authored claws, thumb opposition, names and texture bytes remain intact. The other 192 suits await the follow-up finger pass, including the two explicitly held batch06 candidates. Visual review is representative, not every suit or exhaustive contact/collision testing.",
+      "progress": "Forty-two production actors now have verified finger-policy updates after full animation, web, loading and isolation checks. Black Cat Venom has source-hash-guarded separate hand settings, production native swing/crop acceptance and positive bilateral sampled tip clearance. Arana Gymnast and Batty Brant retain earlier source-specific closure but now have explicit right-hand contact follow-ups. The original 2099 meshes retain eased distal flexion; other updated suits use tighter base curl. Authored claws, thumb opposition, names and texture bytes remain intact. The other 191 suits await the follow-up finger pass, including held Swiney Girl. Policy rollout counts are not final per-suit visual/contact acceptance.",
       "next": "Roll the verified base-curl repair through the remaining catalogue in small tested batches. Preserve earlier material, tongue and source-body repairs. Use complete anatomical geometry, not packet-5-only close-ups, and retain at most two native images per representative."
     },
     {

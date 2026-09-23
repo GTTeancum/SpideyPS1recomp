@@ -1,0 +1,34 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-blackcatvenom",
+      "previousActorSha256": "0db440fff9eecf668854ea3222ad8332bb807e34afa6786cebe9d7069d328141",
+      "actorSha256": "960e0625402d267880923a5d30ed6a059e22b1533b074ed07303de62baa87840",
+      "visualReview": "Individually inspected production native frame 01559 and exact crop. White hair, textured cuffs, belt, boots and full limbs remain visible during swing; web meets the raised hand. The free hand has a compact folded silhouette, replacing the former long projecting upper/lower finger hooks and the contact-only experiment's three-pronged outline. The crop includes the full free hand and wrist. This rear/side view does not expose every palm surface or accept exhaustive contact/collision freedom. Separate offline traces of the serialized production asset show positive sampled fingertip clearances on both hands; those are diagnostic, not live gameplay proof. Exit zero, zero slow-run warnings.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01559.png": "d221b1d6032574de1b5eab08713647f032d0337dd34786fc55cc13dcff5a71f5",
+        "frame_01559_closeup.png": "70cd10362882dfef471cd581385d76939d7fbd55613d6cadc22c5fcdd8ca4677"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-blackcatvenom"
+  ],
+  "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast, Batty Brant and Black Cat Venom sources instead use measured per-digit source-relative closure. Black Cat Venom has separately fitted hands. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 962,
+  "changedFiles": [
+    "smu-blackcatvenom\\actor.psx",
+    "smu-blackcatvenom\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+    "exitCode": 0,
+    "warnings": 0,
+    "errors": 0,
+    "scope": "Observed incremental Windows game build, same game DLL used for candidate and production captures. No Linux game execution. Finger policy unit tests: 9 passed."
+  }
+}

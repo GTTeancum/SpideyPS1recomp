@@ -4,7 +4,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 import numpy as np
-from scene import non_thumb_flexion, apply_finger_aim, Scene, calibrate, FINGER_AIM_SHA256, FINGER_AIM_POLICIES
+from scene import non_thumb_flexion, apply_finger_aim, finger_aim_settings, Scene, calibrate, FINGER_AIM_SHA256, FINGER_AIM_POLICIES
 from convert import donor_info
 
 
@@ -24,7 +24,7 @@ class FlexionPolicyTests(unittest.TestCase):
                 self.assertEqual(non_thumb_flexion(source,segment),85)
 
     def test_aim_policy_does_not_match_other_names(self):
-        for source in ('arana', 'arana_gymnast_extra', 'batty_brant_extra'):
+        for source in ('arana', 'arana_gymnast_extra', 'batty_brant_extra', 'blackcat', 'blackcatvenom_extra'):
             apply_finger_aim(SimpleNamespace(path=Path(source+'.fbx')), None, None, None)
 
     def test_changed_aim_source_is_rejected_before_mutation(self):
@@ -32,12 +32,24 @@ class FlexionPolicyTests(unittest.TestCase):
             apply_finger_aim(SimpleNamespace(path=Path('arana_gymnast.fbx'), sha256='changed'), None, None, None)
         with self.assertRaisesRegex(ValueError, 'verified source hash'):
             apply_finger_aim(SimpleNamespace(path=Path('batty_brant.fbx'), sha256='changed'), None, None, None)
+        with self.assertRaisesRegex(ValueError, 'verified source hash'):
+            apply_finger_aim(SimpleNamespace(path=Path('blackcatvenom.fbx'), sha256='changed'), None, None, None)
 
     def test_measured_aim_preserves_everything_except_twelve_finger_rotations(self):
         self.check_pose_fidelity('arana_gymnast',FINGER_AIM_SHA256)
 
     def test_batty_aim_preserves_everything_except_twelve_finger_rotations(self):
         self.check_pose_fidelity('batty_brant',FINGER_AIM_POLICIES['batty_brant'][0])
+
+    def test_blackcatvenom_aim_preserves_everything_except_twelve_finger_rotations(self):
+        self.check_pose_fidelity('blackcatvenom',FINGER_AIM_POLICIES['blackcatvenom'][0])
+
+    def test_per_hand_settings_are_narrow_and_explicit(self):
+        self.assertNotEqual(finger_aim_settings('blackcatvenom','L'),finger_aim_settings('blackcatvenom','R'))
+        for source in ('arana_gymnast','batty_brant'):
+            self.assertEqual(finger_aim_settings(source,'L'),finger_aim_settings(source,'R'))
+        with self.assertRaises(ValueError):
+            finger_aim_settings('blackcatvenom','unknown')
 
     def check_pose_fidelity(self,key,source_hash):
         samples=Path('C:/Programming/SMU-Costumes/costumes')
@@ -64,6 +76,9 @@ class FlexionPolicyTests(unittest.TestCase):
         reports=[r for r in after['finger_report'] if r.get('method')=='source-relative-digit-closure-v1']
         self.assertEqual(len(reports),12)
         self.assertTrue(all('candidatePolicy' not in r for r in reports))
+        for report in reports:
+            expected=finger_aim_settings(source.path.stem,report['bone'][8])[int(report['bone'][-2])]
+            self.assertEqual((report['baseLean'],report['convergence'],report['closure']),expected)
 
 
 if __name__=='__main__':

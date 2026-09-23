@@ -1,0 +1,226 @@
+{
+  "faceLabels": {
+    "palm/wrist": 139,
+    "thumb 0": 22,
+    "index 2": 30,
+    "middle 3": 58,
+    "little 5": 26
+  },
+  "bones": [
+    {
+      "bone": "Clown001RArmDigit01",
+      "driver": -1,
+      "parent": "Clown001RArmPalm",
+      "open": [
+        52.62750244140625,
+        -79.60140228271484,
+        50.5637092590332
+      ],
+      "closed": [
+        52.62750244140625,
+        -79.60140228271484,
+        50.5637092590332
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit02",
+      "driver": -1,
+      "parent": "Clown001RArmDigit01",
+      "open": [
+        118.86608123779297,
+        -136.17611694335938,
+        128.97628784179688
+      ],
+      "closed": [
+        165.00503540039062,
+        -67.87748718261719,
+        70.68817901611328
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit21",
+      "driver": -1,
+      "parent": "Clown001RArmPalm",
+      "open": [
+        214.3843536376953,
+        -107.00650787353516,
+        19.01074981689453
+      ],
+      "closed": [
+        214.3843536376953,
+        -107.00650787353516,
+        19.01074981689453
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit22",
+      "driver": -1,
+      "parent": "Clown001RArmDigit21",
+      "open": [
+        317.771240234375,
+        -147.5374755859375,
+        49.27701187133789
+      ],
+      "closed": [
+        134.29510498046875,
+        -102.6677474975586,
+        99.1000747680664
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit31",
+      "driver": -1,
+      "parent": "Clown001RArmPalm",
+      "open": [
+        223.38343811035156,
+        -12.101550102233887,
+        -1.4106691423876327e-06
+      ],
+      "closed": [
+        223.38343811035156,
+        -12.101550102233887,
+        -1.4106691423876327e-06
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit32",
+      "driver": -1,
+      "parent": "Clown001RArmDigit31",
+      "open": [
+        329.6315612792969,
+        -21.4826602935791,
+        40.23381805419922
+      ],
+      "closed": [
+        265.5990295410156,
+        -14.388532638549805,
+        105.53885650634766
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit51",
+      "driver": -1,
+      "parent": "Clown001RArmPalm",
+      "open": [
+        203.5386505126953,
+        93.19542694091797,
+        19.01074981689453
+      ],
+      "closed": [
+        203.5386505126953,
+        93.19542694091797,
+        19.01074981689453
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit52",
+      "driver": -1,
+      "parent": "Clown001RArmDigit51",
+      "open": [
+        275.81201171875,
+        98.96944427490234,
+        71.75502014160156
+      ],
+      "closed": [
+        236.96292114257812,
+        91.38471984863281,
+        102.5713882446289
+      ]
+    }
+  ],
+  "parameters": {
+    "aim": true,
+    "converge": 0,
+    "closure": 0,
+    "baseLean": 0,
+    "sideView": false,
+    "side": "R"
+  },
+  "tipSurfaceDistances": [
+    {
+      "digit": 2,
+      "tipVertices": [
+        2274,
+        2292
+      ],
+      "minimum": 8.875408172607422,
+      "maximum": 8.875408172607422,
+      "mean": 8.875408172607422,
+      "signedPalmNormalClearance": [
+        14.381744384765625,
+        14.381744384765625
+      ]
+    },
+    {
+      "digit": 3,
+      "tipVertices": [
+        2278,
+        2279,
+        2282,
+        2298
+      ],
+      "minimum": 18.272462844848633,
+      "maximum": 22.2191162109375,
+      "mean": 19.543822765350342,
+      "signedPalmNormalClearance": [
+        -18.277618408203125,
+        -18.847259521484375,
+        -22.97491455078125,
+        -18.847259521484375
+      ]
+    },
+    {
+      "digit": 5,
+      "tipVertices": [
+        2327,
+        2329
+      ],
+      "minimum": 2.8369832038879395,
+      "maximum": 2.8369832038879395,
+      "mean": 2.8369832038879395,
+      "signedPalmNormalClearance": [
+        null,
+        null
+      ]
+    }
+  ],
+  "contactParameters": [
+    {
+      "digit": 2,
+      "baseLean": 1.0,
+      "convergence": 1.5,
+      "closure": 1.6,
+      "gaps": [
+        5.979400634765625,
+        5.979400634765625
+      ],
+      "score": 0.0004243338480591774
+    },
+    {
+      "digit": 3,
+      "baseLean": -0.4,
+      "convergence": 0,
+      "closure": 1.5000000000000002,
+      "gaps": [
+        4.62396240234375,
+        7.0003662109375,
+        4.251434326171875,
+        4.62396240234375
+      ],
+      "score": 1.9612933530006558
+    },
+    {
+      "digit": 5,
+      "baseLean": -0.4,
+      "convergence": 0.35,
+      "closure": 1.8000000000000003,
+      "gaps": [
+        7.060302734375,
+        7.060302734375
+      ],
+      "score": 1.1242418885231018
+    }
+  ],
+  "distanceFixtureChecks": 5,
+  "scope": "Offline source-weight labels. Signed palm-normal clearance is height above the upper palm/wrist envelope; negative means below that surface and null means no projected palm coverage. This sampled tip check and unsigned surface distance are not full volumetric or finger/finger collision tests. No asset edits."
+}

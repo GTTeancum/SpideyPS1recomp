@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch07",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "blackcatvenom"
+  ],
+  "results": [
+    {
+      "key": "blackcatvenom",
+      "id": "smu-blackcatvenom",
+      "fbx": "costumes/blackcatvenom/blackcatvenom.fbx",
+      "fbxSha256": "fddcb2b97d41097717bf686f26a7663c2d7c10bd0eb8ab2ddc46925c196fcffc",
+      "textureFiles": [
+        "textures-png\\BlackCatVenom_D.png"
+      ],
+      "textureSha256": [
+        "79a5d57ed3514bb0c0906b373b40db45d38896bb26ea9f58a93c596ca99a3fbb"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2792,
+      "sourceTriangles": 4390,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "BlackCatVenom_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "BlackCat",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\BlackCatVenom_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1006640,
+      "outputs": {
+        "actor.psx": "960e0625402d267880923a5d30ed6a059e22b1533b074ed07303de62baa87840",
+        "conversion-report.json": "f28f381d8ac4b48d0f377ec060b0e838ec8287e2455333c788fec38b28971c39",
+        "suit.json": "9a3fc92bfd4f8447c89895814f63798d22835ca69940ccd1cd917352a9de0662",
+        "textures\\diffuse.png": "3eeb023bfdd22f4ed5adf55b566127335babdc1776357e510c4b79c2713c4ec6"
+      }
+    }
+  ]
+}

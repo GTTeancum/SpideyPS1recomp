@@ -1,0 +1,17 @@
+{
+  "status": "open-contact-followup",
+  "installedAssetsModified": false,
+  "suits": [
+    {
+      "suit": "smu-arana-gymnast",
+      "actorSha256": "0a7790fa33caa574c41d0e6b218d5220e7107b50364a9d3f0b6becca35ce9518",
+      "finding": "Middle-finger sampled tips are below the posed palm envelope by about 2.55 to 6.59 units."
+    },
+    {
+      "suit": "smu-batty-brant",
+      "actorSha256": "2d6b9cafcea84a6bf4cced499277046e6767919291db3aedbb493387b55678f8",
+      "finding": "Little-finger sampled tips are below the posed palm envelope by about 14.38 units."
+    }
+  ],
+  "scope": "Offline right-hand source-weight traces, both views individually inspected. Signed envelope violations need targeted pose correction and native review; they do not by themselves prove volumetric intersections. Earlier native free-left-hand silhouette acceptance was not bilateral contact acceptance."
+}
