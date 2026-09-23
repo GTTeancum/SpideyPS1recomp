@@ -73,7 +73,7 @@ public sealed class PSMemory : IMemory
         if (phys < MemoryMap.RamWindow)
         {
             uint off = phys % (uint)_ram.Length;
-            Runtime.RamLog.RecordWrite(phys % (uint)_ram.Length, size);
+            if (RamLogger.TrackWrites) Runtime.RamLog.RecordWrite(off, size);
             Dispatcher.NotifyWrite(off);
         }
 
@@ -122,6 +122,8 @@ public sealed class PSMemory : IMemory
     {
         if (TryDepthKey(phys, out uint key)) GteScreen.InvalidateRamWrite(key);
     }
+
+    public bool HasGteVertex(uint address) => TryDepthKey(MemoryMap.ToPhysical(address), out uint key) && GteScreen.HasRamVertex(key);
 
     private Span<byte> Resolve(uint address, int size)
     {

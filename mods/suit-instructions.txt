@@ -4,7 +4,7 @@ INSTALL AND SELECT
 Put the complete suit folder in mods/suits beside the game's executable.
 Restart the game and select it under SPECIAL, then COSTUME VIEWER (SM1) or
 COSTUMES (SM2). Mod suits are unlocked automatically.
-The selector supports 60 total costumes: 40 mod slots in SM1, 41 in SM2.
+The selector supports 253 total costumes: 233 mod slots in SM1, 234 in SM2.
 Move unwanted suits to mods/inactive-suits to free slots while preserving files.
 
 MAKE YOUR OWN COPY

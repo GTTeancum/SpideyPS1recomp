@@ -6,6 +6,7 @@ namespace RecompOne.Runtime.Sdk;
 
 public static class LibCd
 {
+    static readonly bool TraceCommands = Environment.GetEnvironmentVariable("RECOMP_TRACE_CD_COMMANDS") == "1";
     const byte Nop = 0x01,
         Setloc = 0x02,
         Play = 0x03,
@@ -49,13 +50,16 @@ public static class LibCd
     static uint _cbReady;
     static uint _cbData;
 
-    static bool _readActive;
-    static bool _xaActive;
+    static volatile bool _readActive;
+    internal static volatile bool AudioMuted;
     static byte _filterFile;
     static byte _filterChannel;
 
     internal static readonly object DiscLock = new();
     static readonly object _posGate = new();
+    static readonly object _xaGate = new();
+    static readonly System.Diagnostics.Stopwatch _xaClock = System.Diagnostics.Stopwatch.StartNew();
+    static double _nextXaSector;
 
     static Thread? _xaThread;
     static volatile bool _xaRun;
@@ -231,18 +235,29 @@ public static class LibCd
 
     static void PumpXa()
     {
+        lock (_xaGate) PumpXaLocked();
+    }
+
+    static void PumpXaLocked()
+    {
         if (Runtime.Cd == null) return;
         const int MinBuffer = 4096;
         const int MaxScan = 32;
         bool useFilter = (_mode & 0x08) != 0;
         int scanned = 0;
 
-        while (_readActive && XaAudio.BufferedSamples < MinBuffer && scanned < MaxScan)
+        while (_xaRun && _readActive && XaAudio.BufferedSamples < MinBuffer && scanned < MaxScan)
         {
+            // Filtered-out sectors still take disc time. Scanning to the next
+            // matching channel as fast as the host allows advances GetlocP early
+            // and makes the game's end-of-dialogue check cut clips short.
+            if (_xaClock.Elapsed.TotalSeconds < _nextXaSector) break;
+            _nextXaSector += 1.0 / SectorsPerSecond;
             int lba = CurrentLba;
             if (lba < 0) break;
             byte[] sec;
             lock (DiscLock) sec = Runtime.Cd.ReadSectorData(lba, 2336);
+            if (!_xaRun) return;
             AdvancePos(1);
             scanned++;
             if ((sec[2] & 0x04) == 0) { CarrierMiss(); continue; }
@@ -251,7 +266,7 @@ public static class LibCd
             Assets.Xa.XaRouter.Sector(lba, sec, false);
         }
 
-        Assets.Xa.XaRouter.PumpTail();
+        if (_xaRun) Assets.Xa.XaRouter.PumpTail();
     }
 
     const int CarrierMissLimit = 96;
@@ -349,6 +364,9 @@ public static class LibCd
     internal static void Reset()
     {
         _xaRun = false;
+        // Retire the producer before resetting command state or replacing the
+        // boot's disc/memory. Do not hold _xaGate or DiscLock while joining.
+        _xaThread?.Join();
         _xaThread = null;
         CdResetState();
     }
@@ -362,8 +380,8 @@ public static class LibCd
         _lastIntr = Complete;
         _cbSync = _cbReady = _cbData = 0;
         _readActive = false;
-        _xaActive = false;
         _filterFile = _filterChannel = 0;
+        AudioMuted = false;
         Array.Clear(_pos);
         Array.Clear(_lastResult);
         Runtime.Spu?.SetCdMix(0x80, 0, 0x80, 0); //reset mix
@@ -379,13 +397,19 @@ public static class LibCd
 
     static int CommandWait(IMemory m, byte com, uint param, uint result, uint arg)
     {
-        if (param != 0 && com < NeedsLoc.Length && NeedsLoc[com])
-            ExecCommand(m, Setloc, param, 0);
-        return ExecCommand(m, com, param, result);
+        lock (_xaGate)
+        {
+            if (param != 0 && com < NeedsLoc.Length && NeedsLoc[com])
+                ExecCommand(m, Setloc, param, 0);
+            return ExecCommand(m, com, param, result);
+        }
     }
 
     static int ExecCommand(IMemory m, byte com, uint param, uint result)
     {
+        if (TraceCommands && com is Setloc or Setfilter or Setmode or ReadN or ReadS or Pause or Stop or SeekL or SeekP or Mute or Demute)
+            Console.WriteLine($"[cd-command] present={Runtime.Presents} command=0x{com:X2} lba={CurrentLba} mode=0x{_mode:X2} filter={_filterFile}:{_filterChannel} stream={LibCdStream.InUse} param=" +
+                (param == 0 ? "none" : $"{m.ReadU8(param):X2}"));
         _com = com;
         _lastIntr = Complete;
         Log.Sdk($"Cd cmd 0x{com:X2} param=0x{param:X8} pos={_pos[0]:X2}:{_pos[1]:X2}:{_pos[2]:X2}");
@@ -413,6 +437,7 @@ public static class LibCd
                     return DiskError;
                 }
                 _readActive = true;
+                _nextXaSector = _xaClock.Elapsed.TotalSeconds;
                 _status = (byte)(StatMotor | StatRead);
                 Dispatcher.LoadByLba(CurrentLba);
                 EnsureXaThread();
@@ -420,17 +445,25 @@ public static class LibCd
             case ReadS:
                 if (IsAudioRegion(CurrentLba) && (_mode & 0x01) == 0)
                 {
-                    _xaActive = false;
                     _readActive = false;
                     Log.Sdk($"ReadS out range lba={CurrentLba}");
                     SetError(0x40, 0x01);
                     if (result != 0) WriteResult(m, result);
                     return DiskError;
                 }
-                _xaActive = true;
-                _readActive = false;
                 _status = (byte)(StatMotor | StatRead);
-                LibCdStream.OnReadStream(CurrentLba);
+                // Filtered gameplay XA also uses ReadS after the movie ring closes.
+                if (LibCdStream.Active)
+                {
+                    _readActive = false;
+                    LibCdStream.OnReadStream(CurrentLba);
+                }
+                else
+                {
+                    _nextXaSector = _xaClock.Elapsed.TotalSeconds;
+                    _readActive = true;
+                    EnsureXaThread();
+                }
                 break;
             case Play:
                 _readActive = false;
@@ -509,7 +542,6 @@ public static class LibCd
             case Pause: case Stop: case Init:
                 LibCdStream.OnStopStream();
                 _readActive = false;
-                _xaActive = false;
                 _status = StatMotor;
                 Dispatcher.ClearPending();
                 break;
@@ -521,10 +553,22 @@ public static class LibCd
                     if (result != 0) WriteResult(m, result);
                     return 0;
                 }
-                break;
-            case Nop: case Mute: case Demute:
-            case Forward: case Backward: case Standby:
+                goto case SeekP;
             case SeekP:
+                // A plain seek finishes paused; it must not continue decoding
+                // the old XA stream at the newly selected position.
+                _readActive = false;
+                LibCdStream.OnStopStream();
+                _status = StatMotor;
+                break;
+            case Mute:
+                AudioMuted = true;
+                break;
+            case Demute:
+                AudioMuted = false;
+                break;
+            case Nop:
+            case Forward: case Backward: case Standby:
                 break;
             default:
                 break;

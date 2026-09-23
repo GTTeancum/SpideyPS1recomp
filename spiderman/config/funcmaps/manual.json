@@ -116,6 +116,22 @@
    "name": "SetDrawAreaPrim"
   },
   {
+   "address": "0x80086BE0",
+   "name": "CdMode",
+   "_note": "Leaf reads the PsyQ CD mode byte at 0x800B3B30. Use the SDK replacement so it agrees with HLE CdControl."
+  },
+  {
+   "address": "0x80086BF0",
+   "name": "CdLastCom",
+   "_note": "Leaf reads the last CD command byte at 0x800B3B31. The dialogue endpoint poll requires the HLE command state, not the untouched retail byte."
+  },
+  {
+   "address": "0x80086F18",
+   "name": "CdControlB",
+   "size": 332,
+   "_note": "Verified PsyQ blocking command wrapper: CD_cw then CD_sync==Complete. Movie shutdown and disc status call it directly; naming it selects the existing SDK replacement instead of retail IRQ waits against stale CD state."
+  },
+  {
    "address": "0x8008AD48",
    "name": "PadGetState",
    "_note": "libpad PadGetState -- maps the pad state byte at +0x49 to PadState*. The state machine that byte comes from is not driven here, so it always reported an absent pad, which is what kept the game from switching the pad to analog."

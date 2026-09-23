@@ -8,6 +8,7 @@ public sealed partial class Gpu
     struct Vert
     {
         public int X, Y, R, G, B, U, V;
+        public int PacketX, PacketY;
         public float Z;
         public bool HasGteZ;
         public float RenderX, RenderY;
@@ -28,6 +29,20 @@ public sealed partial class Gpu
     /// measurable instead of judging them only from a screenshot.
     /// </summary>
     public static long WideSpanAccepted, TallSpanAccepted, SpanXRejected, SpanYRejected;
+
+    // Offset effect corners can cross +/-1024 after projection. GP0's signed
+    // 11-bit decoding then turns a small off-screen particle into a huge strip.
+    // Keep the extended world span allowance, but not spans enlarged by wrapping.
+    static bool RejectCoordinateWrap(in Vert a, in Vert b, in Vert c, int spanX, int spanY)
+    {
+        int packetSpanX = Math.Max(a.PacketX, Math.Max(b.PacketX, c.PacketX)) -
+                          Math.Min(a.PacketX, Math.Min(b.PacketX, c.PacketX));
+        int packetSpanY = Math.Max(a.PacketY, Math.Max(b.PacketY, c.PacketY)) -
+                          Math.Min(a.PacketY, Math.Min(b.PacketY, c.PacketY));
+        if (spanX > 1023 && packetSpanX < spanX) { SpanXRejected++; return true; }
+        if (spanY > 511 && packetSpanY < spanY) { SpanYRejected++; return true; }
+        return false;
+    }
 
     static bool RejectSpan(int spanX, int spanY)
     {
@@ -83,6 +98,8 @@ public sealed partial class Gpu
             v[i].R = cr; v[i].G = cg; v[i].B = cb;
 
             uint vw = _fifo[idx++];
+            v[i].PacketX = (short)vw;
+            v[i].PacketY = (short)(vw >> 16);
             v[i].X = _drawOffsetX + CoordX(vw);
             v[i].Y = _drawOffsetY + CoordY(vw);
             Hardware.GteScreen.VertexTag packetVertex = Hardware.GteScreen.ValidatePacketVertex(
@@ -209,7 +226,7 @@ public sealed partial class Gpu
     {
         int spanX = Math.Max(a.X, Math.Max(b.X, c.X)) - Math.Min(a.X, Math.Min(b.X, c.X));
         int spanY = Math.Max(a.Y, Math.Max(b.Y, c.Y)) - Math.Min(a.Y, Math.Min(b.Y, c.Y));
-        if (RejectSpan(spanX, spanY)) return;
+        if (RejectCoordinateWrap(a, b, c, spanX, spanY) || RejectSpan(spanX, spanY)) return;
 
         long area = (long)(b.X - a.X) * (c.Y - a.Y) - (long)(b.Y - a.Y) * (c.X - a.X);
         if (area == 0) return;

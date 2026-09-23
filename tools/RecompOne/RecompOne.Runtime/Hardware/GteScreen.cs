@@ -62,7 +62,18 @@ public static class GteScreen
 
     readonly record struct RamDepth(uint Value, float Z, float ScreenX, float ScreenY,
         bool HasSubpixel, uint NativeScreen);
-    static readonly Dictionary<uint, RamDepth> _ramDepths = new(32768);
+    // Allocate provenance only for pages that have held projected vertices.
+    // Direct page/word access avoids hashing every emulated load and write.
+    static readonly RamDepth[]?[] _ramPages = new RamDepth[2049][];
+    static int PageIndex(uint address) => address < Memory.MemoryMap.RamWindow
+        ? (int)(address >> 12) : address >= Memory.MemoryMap.ScratchpadBase &&
+          address < Memory.MemoryMap.ScratchpadBase + Memory.MemoryMap.ScratchpadSize ? 2048 : -1;
+    static RamDepth ReadRamTag(uint address)
+    {
+        int page = PageIndex(address);
+        return page >= 0 && _ramPages[page] is { } entries ? entries[(address & 4095) >> 2] : default;
+    }
+    public static bool HasRamVertex(uint address) => ReadRamTag(address).Z > 0;
 
     static int Key(int x, int y) => ((x & 0xFFFF) << 16) | (y & 0xFFFF);
 
@@ -150,7 +161,7 @@ public static class GteScreen
         // Dropping the fractions here makes adjacent packets disagree depending
         // on which copy instructions their primitive format happens to use.
         uint aligned = address & ~3u;
-        return memory is Memory.PSMemory ps &&
+        return memory is Memory.PSMemory ps && ps.HasGteVertex(aligned) &&
             ps.TryGetGteVertex(aligned, memory.ReadU32(aligned), out VertexTag tag)
                 ? tag : default;
     }
@@ -174,20 +185,27 @@ public static class GteScreen
         if (tag.Depth > 0f)
         {
             if (RamVertexTransform is { } transform) tag = transform(physicalAddress, value, tag);
-            _ramDepths[physicalAddress] = new RamDepth(value,
+            int page = PageIndex(physicalAddress);
+            if (page < 0) return;
+            var entries = _ramPages[page] ??= new RamDepth[1024];
+            entries[(physicalAddress & 4095) >> 2] = new RamDepth(value,
                 tag.Depth,
                 tag.ScreenX, tag.ScreenY, tag.HasSubpixel, tag.NativeScreen);
             Interlocked.Increment(ref TaggedStores);
         }
     }
 
-    public static void InvalidateRamWrite(uint physicalAddress) => _ramDepths.Remove(physicalAddress);
+    public static void InvalidateRamWrite(uint physicalAddress)
+    {
+        int page = PageIndex(physicalAddress);
+        if (page >= 0 && _ramPages[page] is { } entries) entries[(physicalAddress & 4095) >> 2] = default;
+    }
 
     /// <summary>Recover exact camera Z attached to this GPU packet word in RAM.</summary>
     public static bool TryGetRamDepth(uint physicalAddress, uint value, out float z)
     {
-        if (_ramDepths.TryGetValue(physicalAddress, out var depth) &&
-            depth.Value == value && depth.Z != 0)
+        var depth = ReadRamTag(physicalAddress);
+        if (depth.Value == value && depth.Z != 0)
         {
             Interlocked.Increment(ref PacketReads);
             z = depth.Z;
@@ -199,8 +217,8 @@ public static class GteScreen
 
     public static bool TryGetRamVertex(uint physicalAddress, uint value, out VertexTag tag)
     {
-        if (_ramDepths.TryGetValue(physicalAddress, out var stored) &&
-            stored.Value == value && stored.Z != 0)
+        var stored = ReadRamTag(physicalAddress);
+        if (stored.Value == value && stored.Z != 0)
         {
             Interlocked.Increment(ref PacketReads);
             tag = new VertexTag(stored.Z, stored.ScreenX, stored.ScreenY,

@@ -178,6 +178,12 @@
   ],
   "patches": [
     {
+      "overlay": "main",
+      "function": "func_80069124",
+      "mode": "replace",
+      "target": "Recompiled.Timing.WaitVBlanks"
+    },
+    {
       "overlay": "shell",
       "function": "func_80243854",
       "mode": "pre",

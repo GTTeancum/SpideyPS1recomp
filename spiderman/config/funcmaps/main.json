@@ -7832,12 +7832,12 @@
   },
   {
    "address": "0x80086BE0",
-   "name": "func_80086BE0",
+   "name": "CdMode",
    "size": 16
   },
   {
    "address": "0x80086BF0",
-   "name": "func_80086BF0",
+   "name": "CdLastCom",
    "size": 16
   },
   {
@@ -7887,7 +7887,7 @@
   },
   {
    "address": "0x80086F18",
-   "name": "func_80086F18",
+   "name": "CdControlB",
    "size": 332
   },
   {

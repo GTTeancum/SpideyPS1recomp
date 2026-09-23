@@ -417,8 +417,12 @@ public sealed class Spu
                     _xaSamplesMixed++;
                     int aL = Math.Clamp((xl * _cdMixLL + xr * _cdMixRL) >> 7, -32768, 32767);
                     int aR = Math.Clamp((xl * _cdMixLR + xr * _cdMixRR) >> 7, -32768, 32767);
-                    mixL += ((aL * (short)_cdVolL >> 15) * _xaGain) >> 15;
-                    mixR += ((aR * (short)_cdVolR >> 15) * _xaGain) >> 15;
+                    // Muting the CD leaves both its decoder and SPU voices running.
+                    if (!Sdk.LibCd.AudioMuted)
+                    {
+                        mixL += ((aL * (short)_cdVolL >> 15) * _xaGain) >> 15;
+                        mixR += ((aR * (short)_cdVolR >> 15) * _xaGain) >> 15;
+                    }
                 }
                 mixL = Math.Clamp(mixL, -32768, 32767) * _mainCurL >> 15;
                 mixR = Math.Clamp(mixR, -32768, 32767) * _mainCurR >> 15;

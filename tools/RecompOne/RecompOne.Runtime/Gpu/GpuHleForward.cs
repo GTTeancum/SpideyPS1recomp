@@ -7,6 +7,7 @@ public sealed partial class Gpu
     // Opt-in geometry-only inspection: remove texture cutouts from one CLUT's
     // triangles without changing vertex positions, culling or primitive ordering.
     static readonly int SolidGeometryClut = int.TryParse(Environment.GetEnvironmentVariable("RECOMP_SOLID_GEOMETRY_CLUT"), out var solidClut) ? solidClut : -1;
+    static readonly bool GeometryIds = Environment.GetEnvironmentVariable("RECOMP_GEOMETRY_IDS") == "1";
     static bool HleOn => GpuHle.Active && GpuHle.Backend is { Ready: true };
 
     int CurTPage() => ((_texPageX / 64) & 0xf) | (((_texPageY / 256) & 1) << 4)
@@ -47,6 +48,9 @@ public sealed partial class Gpu
     {
         int spanX = Math.Max(a.X, Math.Max(b.X, c.X)) - Math.Min(a.X, Math.Min(b.X, c.X));
         int spanY = Math.Max(a.Y, Math.Max(b.Y, c.Y)) - Math.Min(a.Y, Math.Min(b.Y, c.Y));
+        // Complete validated projections already bypass the wrapped integer XY.
+        if (!(a.HasSubpixel && b.HasSubpixel && c.HasSubpixel) &&
+            RejectCoordinateWrap(a, b, c, spanX, spanY)) return;
         if (RejectSpan(spanX, spanY)) return;
 
         if (tex && world)
@@ -57,7 +61,18 @@ public sealed partial class Gpu
         be.SetDrawEnv(CurEnv());
         if (tex) GpuHle.NoteTextureTriangle(a.HasGteZ && b.HasGteZ && c.HasGteZ, world);
         var flags = PrimOf(tex, semi, raw, clut, gouraud, world, hud, background, ignoreCoverage);
-        GeometryTrace.Triangle(HV(a), HV(b), HV(c), CurEnv(), flags);
+        GeometryTrace.Triangle(HV(a), HV(b), HV(c), CurEnv(), flags,
+            (a.X, a.Y), (b.X, b.Y), (c.X, c.Y));
+        if (GeometryIds)
+        {
+            var va = HV(a); var vb = HV(b); var vc = HV(c);
+            va.R = vb.R = vc.R = (byte)clut;
+            va.G = vb.G = vc.G = (byte)(clut >> 8);
+            va.B = vb.B = vc.B = world ? (byte)255 : (byte)128;
+            flags.Textured = false; flags.Gouraud = false; flags.SemiTrans = false;
+            be.DrawTri(va, vb, vc, flags);
+            return;
+        }
         if (world && tex && clut == SolidGeometryClut)
         {
             var va = HV(a); var vb = HV(b); var vc = HV(c);

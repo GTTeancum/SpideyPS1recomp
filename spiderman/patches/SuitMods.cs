@@ -13,7 +13,7 @@ namespace Recompiled;
 public static class SuitMods
 {
     public const int StockCount = 20;
-    public const int MaxCount = 60; // Total stock + mod rows in the expanded selector.
+    public const int MaxCount = 253; // Total stock + mod rows in the expanded selector.
     public static readonly List<SuitManifest> Catalogue = new();
     public static int Active { get; private set; } = -1;
     static Dictionary<uint, ReplacementTexture> _textures = new();
@@ -23,6 +23,7 @@ public static class SuitMods
     static readonly bool Trace = Environment.GetEnvironmentVariable("SPIDEY_MOD_TRACE") == "1";
     static readonly HashSet<string> _misses = new();
     static ulong _layoutSignature;
+    static readonly ActorMaterialCache MaterialCache = new(0x800A0904);
     public static SuitManifest At(int index) => Catalogue[index - StockCount];
     public static bool IsMod(int index) => index >= StockCount && index < StockCount + Catalogue.Count;
 
@@ -59,7 +60,7 @@ public static class SuitMods
             }
         }
         catch (Exception e) { Console.Error.WriteLine($"[suit-mod] selection restore: {e.Message}"); }
-        TextureResolver.ActorMaterials = Resolve;
+        TextureResolver.ActorMaterials = Active >= 0 ? Resolve : null;
     }
 
     public static bool Select(int index, bool persist = true)
@@ -80,6 +81,8 @@ public static class SuitMods
         foreach (var texture in _textures.Values) texture.Retired = true;
         _textures = loaded;
         Active = next;
+        MaterialCache.Invalidate();
+        TextureResolver.ActorMaterials = Active >= 0 ? Resolve : null;
         _reported.Clear();
         Console.WriteLine(next < 0 ? "[suit-mod] stock materials restored" :
             $"[suit-mod] active {At(next).Id}: {_textures.Values.Sum(t => (long)t.Rgba.Length)} host RGBA bytes; no guest texture upload");
@@ -98,10 +101,16 @@ public static class SuitMods
         return true;
     }
 
-    public static void Observe(IMemory memory) => _memory = memory;
+    public static void Observe(IMemory memory) { _memory = memory; MaterialCache.Invalidate(); }
     static bool Ram(uint p, uint size) => p >= 0x80000000 && p <= 0x80800000 - size;
 
     static ResolvedTexture Resolve(TileRect tile)
+    {
+        if (Active < 0 || _memory == null || Costume.LoadedCostume != Active) return default;
+        return Trace ? ResolveUncached(tile) : MaterialCache.Resolve(_memory, _textures, tile);
+    }
+
+    static ResolvedTexture ResolveUncached(TileRect tile)
     {
         // The loader, not the JSON, owns all addresses. Resolve from the currently cached
         // player on each draw so scene transitions cannot leave stale VRAM bindings.

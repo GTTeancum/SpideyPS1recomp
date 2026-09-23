@@ -70,8 +70,8 @@ when switching, retaining the shared stock actor binding.
 
 Mangaverse retains all 2,896 source triangles, with a largest part of 242 vertices.
 Last Stand reuses the previously fitted geometry and closed fists. The current
-selector supports 60 total costumes: 20 stock plus 40 mods in SM1, and 19 stock
-plus 41 mods in SM2. The eleven-row scrolling viewport is unchanged. Extra
+selector supports 253 total costumes: 20 stock plus 233 mods in SM1, and 19 stock
+plus 234 mods in SM2. The eleven-row scrolling viewport is unchanged. Extra
 installed mods beyond the limit are rejected with a diagnostic; selected mod IDs
 remain stable across restarts.
 ## Infinity War / Iron Spider Battle Mode

@@ -28,6 +28,9 @@ public sealed class GlCore : IGpuBackend
     long _lastCompositeAudit = -1;
 
     uint _vao, _vbo, _presentVao, _presentVbo, _progPrim, _progPresent, _progPresent24;
+    GlVertexStream? _vertexStream;
+    GlBatchTimer? _batchTimer;
+    int _vertexFirst;
     bool _drewSincePresent;
     uint _presentFbo, _presentTex;
     int _presentW, _presentH;
@@ -205,10 +208,12 @@ public sealed class GlCore : IGpuBackend
         }
 
         _vao = _gl.GenVertexArray();
-        _vbo = _gl.GenBuffer();
+        if (!_legacy) _vertexStream = new GlVertexStream(_gl, MaxVerts, sizeof(GlVertex));
+        if (!_legacy && Diagnostics.PerformanceLog.GpuQueries) _batchTimer = new GlBatchTimer(_gl);
+        _vbo = _vertexStream?.Buffer ?? _gl.GenBuffer();
         _gl.BindVertexArray(_vao);
         _gl.BindBuffer(BufferTargetARB.ArrayBuffer, _vbo);
-        _gl.BufferData(BufferTargetARB.ArrayBuffer, (nuint)(MaxVerts * sizeof(GlVertex)), null, BufferUsageARB.DynamicDraw);
+        if (_legacy) _gl.BufferData(BufferTargetARB.ArrayBuffer, (nuint)(MaxVerts * sizeof(GlVertex)), null, BufferUsageARB.DynamicDraw);
         uint stride = (uint)sizeof(GlVertex);
         _gl.EnableVertexAttribArray(0); _gl.VertexAttribPointer(0, 2, VertexAttribPointerType.Float, false, stride, (void*)0);
         _gl.EnableVertexAttribArray(1); _gl.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, stride, (void*)8);
@@ -804,6 +809,7 @@ public sealed class GlCore : IGpuBackend
     public void Flush()
     {
         if (_count == 0) return;
+        _batchTimer?.Begin();
 
         var rt = _kTarget;
         uint destTex;
@@ -865,7 +871,14 @@ public sealed class GlCore : IGpuBackend
         int readY = Math.Max(0, ry0 * s);
         int readW = Math.Max(0, (rx1 - rx0 + 1) * s);
         int readH = Math.Max(0, (ry1 - ry0 + 1) * s);
-        destTex = _vram.BeginDestRead(destTex, destW, destH, readX, readY, readW, readH);
+        // Modern blending uses fixed-function dual-source factors. Only mask
+        // testing samples the destination. Copying every opaque actor batch on
+        // GL 3.3 needlessly serialized rendering and copied large target regions.
+        // Retain the VRAM path's synchronization for texture feedback.
+        bool readDestination = _legacy || _kCheckMask != 0 || rt == null;
+        destTex = readDestination
+            ? _vram.BeginDestRead(destTex, destW, destH, readX, readY, readW, readH)
+            : 0;
         RebindTarget(rt);
 
         _gl.UseProgram(_progPrim);
@@ -920,7 +933,8 @@ public sealed class GlCore : IGpuBackend
         }
 
         _gl.BindBuffer(BufferTargetARB.ArrayBuffer, _vbo);
-        _gl.BufferSubData<GlVertex>(BufferTargetARB.ArrayBuffer, 0, _verts.AsSpan(0, _count));
+        if (_vertexStream != null) _vertexFirst = _vertexStream.Upload<GlVertex>(_verts.AsSpan(0, _count));
+        else { _vertexFirst = 0; _gl.BufferSubData<GlVertex>(BufferTargetARB.ArrayBuffer, 0, _verts.AsSpan(0, _count)); }
 
         if (_kModelDepth && rt != null)
         {
@@ -932,12 +946,12 @@ public sealed class GlCore : IGpuBackend
         if (_legacy)
         {
             _gl.Disable(EnableCap.Blend);
-            _gl.DrawArrays(PrimitiveType.Triangles, 0, (uint)_count);
+            _gl.DrawArrays(PrimitiveType.Triangles, _vertexFirst, (uint)_count);
         }
         else if (!_kTransparent)
         {
             _gl.Disable(EnableCap.Blend);
-            _gl.DrawArrays(PrimitiveType.Triangles, 0, (uint)_count);
+            _gl.DrawArrays(PrimitiveType.Triangles, _vertexFirst, (uint)_count);
         }
         else
         {
@@ -947,20 +961,27 @@ public sealed class GlCore : IGpuBackend
             {
                 _gl.BlendEquation(BlendEquationModeEXT.FuncAdd);
                 SetBlend(0f, 1f);
-                _gl.DrawArrays(PrimitiveType.Triangles, 0, (uint)_count);
+                _gl.DrawArrays(PrimitiveType.Triangles, _vertexFirst, (uint)_count);
 
-                _vram.BeginDestRead(destTex, destW, destH, readX, readY, readW, readH);
-                RebindTarget(rt);
+                if (_kCheckMask != 0)
+                {
+                    destTex = _vram.BeginDestRead(rt == null ? _vram.Texture : rt.Tex,
+                        destW, destH, readX, readY, readW, readH);
+                    RebindTarget(rt);
+                    _gl.ActiveTexture(TextureUnit.Texture1);
+                    _gl.BindTexture(TextureTarget.Texture2D, destTex);
+                    _gl.ActiveTexture(TextureUnit.Texture0);
+                }
                 _gl.BlendEquationSeparate(BlendEquationModeEXT.FuncReverseSubtract, BlendEquationModeEXT.FuncAdd);
                 SetBlend(1f, 1f);
                 _gl.Uniform4(_uBlendOpaque, 0f, 0f, 0f, 1f);
-                _gl.DrawArrays(PrimitiveType.Triangles, 0, (uint)_count);
+                _gl.DrawArrays(PrimitiveType.Triangles, _vertexFirst, (uint)_count);
             }
             else
             {
                 _gl.BlendEquation(BlendEquationModeEXT.FuncAdd);
                 SetBlend(_kBlend switch { 0 => 0.5f, 3 => 0.25f, _ => 1f }, _kBlend == 0 ? 0.5f : 1f);
-                _gl.DrawArrays(PrimitiveType.Triangles, 0, (uint)_count);
+                _gl.DrawArrays(PrimitiveType.Triangles, _vertexFirst, (uint)_count);
             }
         }
 
@@ -996,6 +1017,7 @@ public sealed class GlCore : IGpuBackend
                 Assets.Textures.VramTracker.MarkGpuWrite(x0, y0, x1 - x0 + 1, y1 - y0 + 1);
         }
         _count = 0;
+        _batchTimer?.End();
     }
 
     /// <summary>
@@ -1048,7 +1070,7 @@ public sealed class GlCore : IGpuBackend
             _gl.Uniform4(_uCoverageRepRect, _kRepX, _kRepY, _kRepW, _kRepH);
         if (_uCoverageRepClutCount >= 0)
             _gl.Uniform1(_uCoverageRepClutCount, (float)_kRepClutCount);
-        _gl.DrawArrays(PrimitiveType.Triangles, 0, (uint)_count);
+        _gl.DrawArrays(PrimitiveType.Triangles, _vertexFirst, (uint)_count);
         _gl.Disable(EnableCap.Blend);
 
         if (rt.WorldFbo != 0 && _worldCopyProg != 0)
@@ -1069,7 +1091,7 @@ public sealed class GlCore : IGpuBackend
                 if (_legacy) _gl.Uniform2(_uWorldCopySize, (float)rt.TexW, rt.TexH);
                 else _gl.Uniform2(_uWorldCopySize, rt.TexW, rt.TexH);
             }
-            _gl.DrawArrays(PrimitiveType.Triangles, 0, (uint)_count);
+            _gl.DrawArrays(PrimitiveType.Triangles, _vertexFirst, (uint)_count);
             _gl.ActiveTexture(TextureUnit.Texture0);
         }
         RebindTarget(rt);
@@ -1498,7 +1520,9 @@ public sealed class GlCore : IGpuBackend
     {
         foreach (var rt in _rts) rt?.Destroy(_gl);
         _vram.Dispose();
-        if (_vbo != 0) _gl.DeleteBuffer(_vbo);
+        _vertexStream?.Dispose();
+        if (_vertexStream == null && _vbo != 0) _gl.DeleteBuffer(_vbo);
+        _batchTimer?.Dispose();
         if (_presentVbo != 0) _gl.DeleteBuffer(_presentVbo);
         if (_vao != 0) _gl.DeleteVertexArray(_vao);
         if (_presentVao != 0) _gl.DeleteVertexArray(_presentVao);

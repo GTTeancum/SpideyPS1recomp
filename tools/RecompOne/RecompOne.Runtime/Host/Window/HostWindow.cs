@@ -387,13 +387,29 @@ public static class HostWindow
     public static void Present(Gpu? gpu)
     {
         _gpu = gpu;
+        long eventsStart = Diagnostics.PresentationProfile.Stamp();
+        ServiceEvents();
+        Diagnostics.PresentationProfile.EventsMs = Diagnostics.PresentationProfile.Elapsed(eventsStart);
         if (_headless || _window == null) return;
+        long renderStart = Diagnostics.PresentationProfile.Stamp();
+        _window.DoRender();
+        Diagnostics.PresentationProfile.FinishRenderDispatch(renderStart, Diagnostics.PresentationProfile.Stamp());
+    }
+
+    /// <summary>Keep input and window events responsive without rendering an extra frame.</summary>
+    public static void ServiceEvents()
+    {
+        if (_headless || _window == null) return;
+        long pumpStart = Diagnostics.PresentationProfile.Stamp();
         try { _window.DoEvents(); }
         catch (Exception e) {
             Console.WriteLine(e.Message);
         }
+        Diagnostics.PresentationProfile.EventPumpMs += Diagnostics.PresentationProfile.Elapsed(pumpStart);
         if (_window.IsClosing) { Runtime.Shutdown(); Environment.Exit(0); }
+        long inputStart = Diagnostics.PresentationProfile.Stamp();
         InputManager.Poll();
+        Diagnostics.PresentationProfile.InputPollMs += Diagnostics.PresentationProfile.Elapsed(inputStart);
         if (InputManager.ConsumeTopBarToggle())
         {
             ConfigManager.View.HideTopBar = !ConfigManager.View.HideTopBar;
@@ -405,7 +421,6 @@ public static class HostWindow
             SetFullscreen(ConfigManager.View.Fullscreen);
             ConfigManager.SaveView(PanelManager.Panels);
         }
-        _window.DoRender();
     }
 
     internal static void Pump()
@@ -413,6 +428,7 @@ public static class HostWindow
         if (_headless || _window == null) return;
         try { _window.DoEvents(); } catch { }
         if (_window.IsClosing) { Runtime.Shutdown(); Environment.Exit(0); }
+        FrameClock.Throttle();
         _window.DoRender();
     }
 
@@ -461,6 +477,7 @@ public static class HostWindow
             try { _window.DoEvents(); } catch { }
             if (_window.IsClosing) { Runtime.Shutdown(); Environment.Exit(0); }
             InputManager.Poll();
+            FrameClock.Throttle();
             _window.DoRender();
         }
 
@@ -474,6 +491,7 @@ public static class HostWindow
             try { _window.DoEvents(); } catch { }
             if (_window.IsClosing) { Runtime.Shutdown(); Environment.Exit(0); }
             InputManager.Poll();
+            FrameClock.Throttle();
             _window.DoRender();
         }
     }
@@ -582,6 +600,8 @@ public static class HostWindow
 
     static void OnRender(double dt)
     {
+        long callbackStart = Diagnostics.PresentationProfile.Stamp();
+        Diagnostics.PresentationProfile.EnterRenderCallback(callbackStart);
         Diagnostics.NativeAllocationProbe.Phase(3);
         var gl = _gl!;
         _imgui!.Update((float)dt);
@@ -597,6 +617,7 @@ public static class HostWindow
         Memory.RamLogger.TrackReads =
             PanelManager.Get<RamMapPanel>()?.IsOpen == true ||
             PanelManager.Get<MemoryEditorPanel>()?.IsOpen == true;
+        Memory.RamLogger.TrackWrites = Memory.RamLogger.TrackReads;
 
         var gpu = _gpu;
         if (gpu != null)
@@ -650,6 +671,8 @@ public static class HostWindow
         ProbeGpuQueue(gl);
         Diagnostics.NativeAllocationProbe.Flush();
         Diagnostics.NativeAllocationProbe.Phase(4); // following native window swap
+        Diagnostics.PresentationProfile.RenderCallbackMs += Diagnostics.PresentationProfile.Elapsed(callbackStart);
+        Diagnostics.PresentationProfile.ExitRenderCallback(Diagnostics.PresentationProfile.Stamp());
     }
 
     // Opt-in proof of this application's own framebuffer; never captures the desktop.

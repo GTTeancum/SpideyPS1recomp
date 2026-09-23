@@ -41,6 +41,8 @@ public static class GpuBackendFactory //fkn hate these factories
 #endif
 
         Selected = kind;
+        Diagnostics.PerformanceLog.Backend = kind.ToString();
+        Diagnostics.PerformanceLog.Renderer = Str(gl, StringName.Renderer) + " / " + Str(gl, StringName.Version);
         IGlVram vram = kind switch
         {
             GlBackendKind.Gl45 => new Gl45Vram(gl),
@@ -148,6 +150,9 @@ public static class GpuBackendFactory //fkn hate these factories
     /// </summary>
     public static GlBackendKind RequestedBackend()
     {
+        string? requested = Environment.GetEnvironmentVariable("RECOMP_BACKEND");
+        if (string.Equals(requested, "gl33", StringComparison.OrdinalIgnoreCase)) return GlBackendKind.Gl33;
+        if (string.Equals(requested, "gl45", StringComparison.OrdinalIgnoreCase)) return GlBackendKind.Gl45;
 #if RECOMPONE_LEGACY_RENDERER
         if (Environment.GetEnvironmentVariable("RECOMPONE_REFERENCE_RENDERER") == "gl21")
             return GlBackendKind.Gl21;

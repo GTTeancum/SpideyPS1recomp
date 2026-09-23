@@ -46,7 +46,7 @@ public static partial class Costume
         ApplyModPowers(m);
         for (uint i = 0; i < SuitMods.StockCount * 12; i += 4)
             m.WriteU32(ViewerTable + i, m.ReadU32(0x80251560 + i));
-        uint name = ViewerTable + 0x800, description = ViewerTable + 0x1000;
+        uint name = ViewerTable + 0x8000, description = ViewerTable + 0x10000;
         for (int i = SuitMods.StockCount; i < ViewerCount; i++)
         {
             var mod = SuitMods.At(i);
@@ -68,7 +68,7 @@ public static partial class Costume
             description = Color(m, description, false);
             foreach (string line in SuitManifest.WrapComments(mod.Comments)) description = Line(m, description, line);
             m.WriteU8(description++, 255);
-            if (name >= ViewerTable + 0x1000 || description >= ViewerTable + 0x5000)
+            if (name >= ViewerTable + 0x10000 || description >= ViewerTable + 0x30000)
                 throw new InvalidOperationException("costume text arena exhausted");
         }
     }

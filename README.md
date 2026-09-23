@@ -113,15 +113,15 @@ Featured mod models and textures by **Gameloft**, converted from *Spider-Man Unl
 - **Costume mods in both games:** external PNGs, custom names and author credits,
   independent donor powers, built-in bodies, and validated custom native models.
   Mod suits are always unlocked and do not replace built-ins. Each game supports
-  60 total costumes.
+  253 total costumes.
 - **First-run disc setup:** published builds are self-contained executables with
   an embedded installer. Extraction runs inside the game window with progress
   and elapsed time, then subsequent launches use loose files.
 
 ## Make or customize a costume
 
-The selector supports **60 total costumes**: 20 built-ins plus 40 mod slots in
-SM1, and 19 built-ins plus 41 mod slots in SM2. Version 1.0 includes 34 SM1 mods
+The selector supports **253 total costumes**: 20 built-ins plus 233 mod slots in
+SM1, and 19 built-ins plus 234 mod slots in SM2. Version 1.0 includes 34 SM1 mods
 and 35 SM2 mods, leaving **six free slots in each game**. Magenta Man is not in
 the release roster.
 

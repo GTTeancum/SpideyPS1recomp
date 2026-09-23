@@ -190,6 +190,12 @@
   ],
   "patches": [
     {
+      "overlay": "main",
+      "function": "func_8005E748",
+      "mode": "replace",
+      "target": "Recompiled.Timing.WaitVBlanks"
+    },
+    {
       "overlay": "shell",
       "function": "func_8025AA84",
       "mode": "pre",
@@ -311,6 +317,18 @@
     },
     {
       "overlay": "main",
+      "function": "LoadTriggers",
+      "mode": "pre",
+      "target": "Recompiled.Timing.LoadTriggers"
+    },
+    {
+      "overlay": "main",
+      "function": "func_80049D54",
+      "mode": "pre",
+      "target": "Recompiled.Timing.StartPlayerScript"
+    },
+    {
+      "overlay": "main",
       "function": "SetDrawAreaPrim",
       "mode": "pre",
       "target": "Recompiled.GameTrace.SetDrawArea"
@@ -392,6 +410,12 @@
       "function": "RunFrame",
       "mode": "pre",
       "target": "Recompiled.GameTrace.RunFrame"
+    },
+    {
+      "overlay": "main",
+      "function": "func_8006B514",
+      "mode": "post",
+      "target": "Recompiled.PadTrace.AfterRead"
     },
     {
       "overlay": "main",

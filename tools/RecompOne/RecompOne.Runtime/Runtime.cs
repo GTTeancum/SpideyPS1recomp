@@ -57,6 +57,7 @@ public static class Runtime
             _hostReady = true;
             Diagnostics.ConsoleMirror.Install();
             HostWindow.Initialize(title);
+            Diagnostics.PerformanceLog.Start();
             Audio.Initialize();
         }
 
@@ -152,23 +153,20 @@ public static class Runtime
     public static int VBlanksPerFrame
     {
         get => Host.FrameClock.VBlanksPerFrame;
-        set => Host.FrameClock.VBlanksPerFrame = value < 1 ? 1 : value;
+        set => Host.FrameClock.VBlanksPerFrame = Math.Max(2, value);
     }
 
     /// <summary>
-    /// How much the vblank counter advances, and how many vblank IRQs are delivered,
-    /// per presented frame. Separate from VBlanksPerFrame, which sets how long a frame
-    /// lasts. At a 30 Hz presentation cadence this must be 2 to preserve the console's
-    /// 60 Hz vblank signal for both polling code and VSyncCallback handlers.
+    /// Rate instrumentation: actual throttled presentations and event/CD service passes.
     /// </summary>
-    public static int VBlankStep { get; set; } = 1;
-
-    /// <summary>Rate instrumentation -- throttled presents vs bare service passes.</summary>
     public static long Presents, ServicePasses;
+    static int _vblanksUntilPresent;
 
     public static void PresentFrame()
     {
-        Presents++;
+        long waitStart = System.Diagnostics.Stopwatch.GetTimestamp();
+        FrameClock.WaitForVBlank();
+        Diagnostics.FrameProfile.NoteIrqWait(waitStart, System.Diagnostics.Stopwatch.GetTimestamp());
         if (_hardResetPending)
         {
             _hardResetPending = false;
@@ -176,23 +174,32 @@ public static class Runtime
         }
 
         Diagnostics.CallRing.NoteFrame();
-        long __t0 = System.Diagnostics.Stopwatch.GetTimestamp();
-        HostWindow.Present(Gpu);
-        HostWindow.NoteGameFrame();
-        Audio.Attach(Spu);
-        long __t1 = System.Diagnostics.Stopwatch.GetTimestamp();
-        FrameClock.Throttle();
-        long __t2 = System.Diagnostics.Stopwatch.GetTimestamp();
-        Diagnostics.FrameProfile.Note(__t0, __t1, __t2);
+        if (++_vblanksUntilPresent >= Math.Max(2, VBlanksPerFrame))
+        {
+            _vblanksUntilPresent = 0;
+            Presents++;
+            long __t0 = System.Diagnostics.Stopwatch.GetTimestamp();
+            FrameClock.Throttle();
+            long __t1 = System.Diagnostics.Stopwatch.GetTimestamp();
+            Diagnostics.PresentationProfile.BeginPresentation();
+            HostWindow.Present(Gpu);
+            long titleStart = Diagnostics.PresentationProfile.Stamp();
+            HostWindow.NoteGameFrame();
+            Diagnostics.PresentationProfile.TitleMs = Diagnostics.PresentationProfile.Elapsed(titleStart);
+            long audioStart = Diagnostics.PresentationProfile.Stamp();
+            Audio.Attach(Spu);
+            Diagnostics.PresentationProfile.AudioAttachMs = Diagnostics.PresentationProfile.Elapsed(audioStart);
+            long __t2 = System.Diagnostics.Stopwatch.GetTimestamp();
+            Diagnostics.FrameProfile.Note(__t0, __t1, __t2);
+            Diagnostics.PresentationProfile.EndPresentation();
+        }
+        else HostWindow.ServiceEvents();
         Sdk.LibCd.Tick();
         if (Mem != null) { Bios.BiosB.RefreshPad(Mem); Sdk.LibPad.Refresh(Mem); } //is this correct?
         if (Cpu != null && Mem != null) Bios.BiosB.PumpCard(Cpu, Mem, _pumping);
-        // IRQ 0 is the console's vblank interrupt. A 30 Hz game frame spans two
-        // 60 Hz vblanks, so deliver the same number that the counter advances. Keep
-        // this coupled to VBlankStep: code registered through VSyncCallback observes
-        // the interrupt, while VSync(-1) observes the counter, and hardware advances
-        // both from the same signal.
-        for (int i = 0; i < VBlankStep; i++) DispatchIrq(0);
+        // One IRQ per console tick, including the ticks with no host presentation.
+        // Sequential waits must observe separate 60 Hz edges, not a pair at 30 Hz.
+        DispatchIrq(0);
     }
 
     static bool _pumping;
@@ -226,7 +233,7 @@ public static class Runtime
     public static void ServiceOnly()
     {
         ServicePasses++;
-        HostWindow.Present(Gpu);
+        HostWindow.ServiceEvents();
         Audio.Attach(Spu);
         Sdk.LibCd.Tick();
         // Deliberately no pad refresh. The pads are sampled once per vblank on
@@ -250,6 +257,7 @@ public static class Runtime
     public static void Shutdown()
     {
         Audio.Shutdown();
+        FrameClock.Close();
         HostWindow.Shutdown();
     }
 }

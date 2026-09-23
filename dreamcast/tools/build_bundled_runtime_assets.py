@@ -11,11 +11,38 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+import struct
 import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[2]
 FIXED_TIME = (1980, 1, 1, 0, 0, 0)
+
+
+def validate_actor_lods(data: bytes, name: str) -> None:
+    """Prevent extra terminal LODs from changing native animation frame strides."""
+    objects = struct.unpack_from('<I', data, 8)[0]
+    if not objects:
+        return  # Texture-only companions have no skeleton.
+    cursor = struct.unpack_from('<I', data, 4)[0]
+    animated = False
+    while True:
+        tag = struct.unpack_from('<I', data, cursor)[0]
+        if tag == 0xFFFFFFFF:
+            break
+        size = struct.unpack_from('<I', data, cursor + 4)[0]
+        animated |= tag in (0x2A, 0x2C)
+        cursor += 8 + size
+    if not animated:
+        return
+    table = 12 + objects * 36
+    count = struct.unpack_from('<I', data, table)[0]
+    meshes = struct.unpack_from('<' + 'I' * count, data, table + 4)
+    terminal = sum(struct.unpack_from('<H', data, mesh + 26)[0] == 0xFFFF for mesh in meshes)
+    # Static one-mesh props can carry an animation tag but no terminal link.
+    # Extra terminals are the dangerous case: they increase frame read strides.
+    if terminal > objects:
+        raise ValueError(f'{name}: {terminal} terminal LODs for {objects} animation bones')
 
 
 def inputs(source: Path, pack_name: str) -> list[tuple[Path, str]]:
@@ -33,6 +60,9 @@ def inputs(source: Path, pack_name: str) -> list[tuple[Path, str]]:
 
 def build(source: Path, pack_name: str, output: Path, game: str) -> None:
     selected = inputs(source, pack_name)
+    for path, relative in selected:
+        if '/' not in relative and path.suffix.lower() == '.psx':
+            validate_actor_lods(path.read_bytes(), relative)
     manifest = {
         "schemaVersion": 1,
         "game": game,

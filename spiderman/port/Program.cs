@@ -116,35 +116,15 @@ public static class Program
         RecompOne.Runtime.Diagnostics.MemGuard.Lenient =
             !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SPIDEY_LENIENT"));
 
-        // Spider-Man is a 30 fps game. Gameplay never touches VSync -- it spins on
-        // DrawSync until the GPU has finished the last ordering table -- so the pacing
-        // gate is a GPU that stays busy for a frame's worth of time. The simulation then
-        // advances once per vblank tick, which is why the tick rate is left at one per
-        // presented frame: together they give 30 frames and 30 ticks a second.
-        int hz = TargetHz();
-        RecompOne.Runtime.GpuBusy.FrameBudgetMs = 1000.0 / hz;
-        Console.WriteLine($"[timing] {hz} Hz presentation/GPU budget");
-
-        // How long a frame lasts: 2 vblanks, so 30 presented frames a second.
-        //
-        // The game loop is frame-rate dependent, but a host present is not necessarily a
-        // game update. At the default budget the measured steady-state relationship is
-        // 15 gameplay updates, 30 host presents and 60 vblanks per second.
-        // Vblank-driven timers are handled separately below.
-        RecompOne.Runtime.Runtime.VBlanksPerFrame = Math.Max(1, (int)Math.Round(60.0 / hz));
-
-        // Default 2, which keeps the vblank counter at the console's real 60 Hz while
-        // frames are presented at 30.
-        //
-        // VBlankStep also controls how many IRQ 0 deliveries the runtime makes per
-        // frame. The game registers a VSyncCallback and uses its counters for timers,
-        // so the counter and interrupt must describe the same 60 Hz console signal.
-        // Service-only host/CD pumps must never deliver this IRQ; see Runtime.ServiceOnly.
-        var vb = Environment.GetEnvironmentVariable("SPIDEY_VBLANK");
-        RecompOne.Runtime.Runtime.VBlankStep =
-            int.TryParse(vb, out int n) && n >= 1 && n <= 4
-                ? n
-                : Math.Max(1, (int)Math.Round(60.0 / hz));
+        // Preserve individual 60 Hz console interrupts while presenting at 30 FPS.
+        // Batching two IRQs into one 30 Hz service pass doubles sequential vblank
+        // waits in the game loop and cuts gameplay updates to 15 Hz.
+        // Native counter waits already pace gameplay. A second 33 ms GPU timer
+        // can miss their deadline and force an unnecessary third vblank.
+        RecompOne.Runtime.GpuBusy.FrameBudgetMs = 0;
+        RecompOne.Runtime.Runtime.VBlanksPerFrame = 2;
+        RecompOne.Runtime.Sdk.LibCdStream.YieldEmptyPolls = true;
+        Console.WriteLine("[timing] 30 FPS maximum; individual 60 Hz vblank interrupts");
 
         Diag.Install();
         GameTrace.Install();
@@ -158,6 +138,7 @@ public static class Program
         ModelGuard.Install();
         Costume.Install();
         Rates.Install();
+        RecompOne.Runtime.Diagnostics.PerformanceLog.GameCounterAddress = 0x800B4F38;
 
         // Precise projected geometry supplies the wide view. Repeating pixels
         // from the old 4:3 boundary invents stretched surfaces in uncovered areas.
@@ -204,17 +185,6 @@ public static class Program
         RuntimeMutex.Dispose();
         RuntimeMutex = null;
         return false;
-    }
-
-    /// <summary>
-    /// SPIDEY_HZ -- the rate the game is meant to run at. 30 is correct for this title;
-    /// SPIDEY_HZ=0 removes the pacing entirely and lets it free-run.
-    /// </summary>
-    static int TargetHz()
-    {
-        var hz = Environment.GetEnvironmentVariable("SPIDEY_HZ");
-        if (int.TryParse(hz, out int want) && want >= 10 && want <= 60) return want;
-        return 30;
     }
 
     // SPIDEY_LOG=bios,sdk,cd,gpu,dma,spu,mdec

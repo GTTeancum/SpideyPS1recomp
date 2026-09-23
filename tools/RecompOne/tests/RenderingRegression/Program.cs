@@ -255,6 +255,31 @@ memory.TryGetGteVertex(wholePacket,memory.ReadU32(wholePacket),out var roundTrip
 midpointPass &= roundTripMidpoint==midpoint;
 Console.WriteLine($"Engine projective subdivision edge: expectedX={expectedX} actual={midpoint} {(midpointPass ? "PASS" : "FAIL")}");
 if(!midpointPass) failures++;
+// A third corner behind the camera has no usable projection. It must not
+// discard precision along the opposite visible edge (third weight is zero).
+memory.WriteU32(cornerAddresses[2], memory.ReadU32(cornerAddresses[2]));
+NativeGame.Corners(CornerCpu(), memory);
+var partialEdgeCpu = EdgeSubdivisionCpu();
+NativeGame.Subdivision(partialEdgeCpu, memory);
+uint partialWord = memory.ReadU32(0x1F800010);
+memory.TryGetGteVertex(0x1F800010, partialWord, out var partialMidpoint);
+bool partialPass = partialWord == newMidpoint && partialMidpoint == midpoint &&
+    partialEdgeCpu.Snapshot().gpr.SequenceEqual(newEdgeCpu.Snapshot().gpr);
+Console.WriteLine($"Engine visible edge with unavailable third corner: {partialMidpoint} {(partialPass ? "PASS" : "FAIL")}");
+if (!partialPass) failures++;
+// A missing contributing endpoint must still fall back, never reuse the
+// preceding triangle's corner. Compare the actual unmodified native routine.
+memory.WriteU32(cornerAddresses[0], memory.ReadU32(cornerAddresses[0]));
+NativeGame.CornersNative(CornerCpu(), memory);
+NativeGame.SubdivisionNative(EdgeSubdivisionCpu(), memory);
+uint fallbackWord = memory.ReadU32(0x1F800010);
+memory.TryGetGteVertex(0x1F800010, fallbackWord, out var expectedFallback);
+NativeGame.Corners(CornerCpu(), memory);
+NativeGame.Subdivision(EdgeSubdivisionCpu(), memory);
+memory.TryGetGteVertex(0x1F800010, memory.ReadU32(0x1F800010), out var actualFallback);
+bool fallbackPass = memory.ReadU32(0x1F800010) == fallbackWord && actualFallback == expectedFallback;
+Console.WriteLine($"Engine missing contributing corner keeps native fallback: {(fallbackPass ? "PASS" : "FAIL")}");
+if (!fallbackPass) failures++;
 // Exercise GP0 decoding, the real Engine world/HUD classifier, and HLE submission.
 // Two neighboring textured triangles use different transfer paths for one edge.
 var sink = new NumericBackend();
@@ -315,6 +340,51 @@ foreach (float distance in new[] { 1000f, 20000f })
     bool expected = sharedPass == preserve;
     Console.WriteLine($"GP0 shared edge depth={distance} repaired={preserve}: continuous={sharedPass} {(expected ? "PASS" : "FAIL")}");
     if (!expected) failures++;
+}
+// Chase Venom's web particles straddle -1024 after adding screen-space corners.
+// Decode the real GP0 quad in both draw buffers, on either coordinate axis, while
+// keeping ordinary particles and legitimate large saturated world surfaces.
+foreach (int drawY in new[] { 0, 256 })
+foreach (bool horizontal in new[] { false, true })
+foreach (var (lo, hi, expected) in new[] {
+    (-1028, -1021, 0), (1020, 1027, 0), (100, 107, 2), (-1024, 1023, 2) })
+{
+    gpu.WriteGp0(0xE5000000u | (uint)drawY << 11);
+    sink.Triangles.Clear();
+    gpu.WriteGp0(0x2E808080);
+    for (int i = 0; i < 4; i++)
+    {
+        int x = horizontal ? ((i & 1) == 0 ? lo : hi) : 259 + (i & 1) * 7;
+        int y = horizontal ? 100 + (i >> 1) * 7 : ((i >> 1) == 0 ? lo : hi);
+        uint word = (ushort)(short)x | (uint)(ushort)(short)y << 16;
+        gpu.WriteGp0(word, GteScreen.VertexTag.DepthOnly(560.74365f));
+        gpu.WriteGp0((uint)(96 + (i & 1) * 24) | (uint)(208 + (i >> 1) * 24) << 8 |
+                     (i < 2 ? 40u << 16 : 0));
+    }
+    bool pass = sink.Triangles.Count == expected;
+    Console.WriteLine($"GP0 effect wrap drawY={drawY} horizontal={horizontal} bounds={lo}..{hi}: triangles={sink.Triangles.Count} {(pass ? "PASS" : "FAIL")}");
+    if (!pass) failures++;
+}
+gpu.WriteGp0(0xE5000000);
+foreach (bool completeProjection in new[] { false, true })
+{
+    sink.Triangles.Clear();
+    gpu.WriteGp0(0x2E808080);
+    for (int i = 0; i < 4; i++)
+    {
+        int x = 259 + (i & 1) * 7, y = (i >> 1) == 0 ? -1028 : -1021;
+        uint word = (ushort)(short)x | (uint)(ushort)(short)y << 16;
+        var tag = new GteScreen.VertexTag(560, x + 0.25f, y + 0.75f, true)
+            { NativeScreen = word | 0x80000000u };
+        if (!completeProjection && i == 0) tag = GteScreen.VertexTag.DepthOnly(560);
+        gpu.WriteGp0(word, tag);
+        gpu.WriteGp0((uint)(96 + (i & 1) * 24) | (uint)(208 + (i >> 1) * 24) << 8 |
+                     (i < 2 ? 40u << 16 : 0));
+    }
+    bool pass = sink.Triangles.Count == (completeProjection ? 2 : 1) &&
+        sink.Triangles.All(t => t.A.Y < -1020 && t.B.Y < -1020 && t.C.Y < -1020);
+    Console.WriteLine($"GP0 wrapped packet with complete projection={completeProjection}: precise XY retained {(pass ? "PASS" : "FAIL")}");
+    if (!pass) failures++;
 }
 // Exercise the actual native sphere + AABB object selector in the newly visible
 // horizontal margin. Outside-wide, vertical and behind-camera bounds still cull.

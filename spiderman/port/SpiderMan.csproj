@@ -34,6 +34,9 @@
         <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <SelfContained>true</SelfContained>
         <PublishSingleFile>true</PublishSingleFile>
+        <!-- Compile first-use game code at publish time: otherwise hundreds of
+             methods JIT on the main thread during the first gameplay update. -->
+        <PublishReadyToRun>true</PublishReadyToRun>
         <!--
           Everything, not just the native libraries. Extracting the natives alone leaves
           them in a temp folder while AppContext.BaseDirectory still points at the

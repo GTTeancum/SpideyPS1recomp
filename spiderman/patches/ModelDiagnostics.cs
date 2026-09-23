@@ -24,7 +24,12 @@ public static class ModelDiagnostics
     static readonly string LayoutFilter =
         Environment.GetEnvironmentVariable("RECOMP_TRACE_MODEL_LAYOUT")?.Trim() ?? "";
     static readonly bool LayoutEnabled = LayoutFilter.Length != 0;
-    static readonly bool Enabled = TraceEnabled || ValidationEnabled || LayoutEnabled || LightingEnabled;
+    static readonly string GeometryDump = Environment.GetEnvironmentVariable("RECOMP_MODEL_DUMP") ?? "";
+    static readonly int DumpStart = int.TryParse(Environment.GetEnvironmentVariable("RECOMP_GEOMETRY_START"), out var ds) ? ds : 0;
+    static readonly int DumpEnd = int.TryParse(Environment.GetEnvironmentVariable("RECOMP_GEOMETRY_END"), out var de) ? de : DumpStart;
+    static readonly bool Enabled = TraceEnabled || ValidationEnabled || LayoutEnabled || LightingEnabled || GeometryDump.Length != 0;
+    static System.IO.StreamWriter _geometryWriter;
+    static uint[] _transformControls;
 
     readonly record struct MeshIdentity(uint Slot, string ModelName, int MeshIndex, int MeshCount);
 
@@ -73,7 +78,7 @@ public static class ModelDiagnostics
             uint model = m.ReadU32(pointerTable + mesh * 4u);
             uint vertexCount = m.ReadU16(model + 2u);
             uint vertices = model + 0x1Cu;
-            if (LayoutEnabled || LightingEnabled)
+            if (LayoutEnabled || LightingEnabled || GeometryDump.Length != 0)
                 _meshVertexPointers[vertices] = new MeshIdentity(
                     _parseSlot, modelName, checked((int)mesh), checked((int)meshCount));
             // Spider-Man moves from title slot 2 to level slot 12 in L1A1.
@@ -142,7 +147,8 @@ public static class ModelDiagnostics
             _sequence++;
             _call = 0;
             _seenMeshes.Clear();
-            Console.WriteLine($"[model-stitch] render-sequence={_sequence} source-base=0x{_sourceBase:X8}");
+            if (TraceEnabled || LayoutEnabled)
+                Console.WriteLine($"[model-stitch] render-sequence={_sequence} source-base=0x{_sourceBase:X8}");
         }
 
         _activeCall = _call;
@@ -155,6 +161,13 @@ public static class ModelDiagnostics
         _activeIdentity = _meshVertexPointers.TryGetValue(c.A0, out MeshIdentity identity)
             ? identity
             : null;
+        if (GeometryDump.Length != 0 && Diag.Frame >= DumpStart && Diag.Frame <= DumpEnd &&
+            _activeIdentity is MeshIdentity dumpActor && dumpActor.ModelName.StartsWith("venom", StringComparison.OrdinalIgnoreCase))
+        {
+            _transformControls = new uint[32];
+            for (int i = 0; i < 32; i++) _transformControls[i] = RecompOne.Runtime.Gte.ReadControl(i);
+        }
+        else _transformControls = null;
 
         if (_activePlayerMesh == 7 && TraceEnabled)
             DumpHeadTransform(c, m);
@@ -199,6 +212,24 @@ public static class ModelDiagnostics
 
     public static void TransformExit(CpuContext c, IMemory m)
     {
+        if (_transformControls != null && m is PSMemory dumpMemory)
+        {
+            _geometryWriter ??= new System.IO.StreamWriter(GeometryDump) { AutoFlush = true };
+            var points = new System.Collections.Generic.List<object>();
+            for (uint i = 0; i < _activeVertexCount; i++)
+            {
+                uint input = _activeVertexPointer + i * 8, output = _activeOutputPointer + i * 8;
+                uint packed = m.ReadU32(output);
+                dumpMemory.TryGetGteVertex(output, packed, out var tag);
+                points.Add(new { index = i, inputXY = m.ReadU32(input), inputZF = m.ReadU32(input + 4),
+                    packed, outputZF = m.ReadU32(output + 4), tag.ScreenX, tag.ScreenY, tag.Depth });
+            }
+            _geometryWriter.WriteLine(System.Text.Json.JsonSerializer.Serialize(new {
+                frame = Diag.Frame, sequence = _sequence, mesh = _activeIdentity.Value.MeshIndex,
+                model = _activeIdentity.Value.ModelName, controls = _transformControls,
+                precision = m.ReadU32(c.GP + 0x1170u), points }));
+            _transformControls = null;
+        }
         bool tracePlayer = TraceEnabled && _activePlayerMesh >= 0;
         MeshIdentity identity = _activeIdentity.GetValueOrDefault();
         bool traceLayout = LayoutEnabled && _activeIdentity.HasValue && ModelMatches(identity.ModelName);

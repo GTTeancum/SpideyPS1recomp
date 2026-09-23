@@ -6,22 +6,10 @@ namespace RecompOne.Runtime;
 /// <summary>
 /// How long the GPU is still working on the ordering table it was handed.
 ///
-/// Some games never call VSync during gameplay and pace themselves purely on the GPU
-/// finishing: they submit an ordering table, then spin on DrawSync until the drawing is
-/// done, and that spin *is* the frame. Spider-Man is one of them -- its gameplay loop is
-///
-///     do { tick(); } while (DrawSync(1) != 0);
-///     swap(); DrawOTag(next);
-///
-/// with no vblank wait anywhere. A DrawSync that always answers "idle" therefore removes
-/// the only thing pacing the game, and it runs as fast as the host will let it.
-///
-/// This models the wait rather than the rasterising. Modelling the pixels would not be
-/// enough on its own: on hardware a frame is mostly the CPU's own work -- game logic,
-/// GTE transforms, building the table -- and a recompile does all of that in a fraction
-/// of a millisecond, so a faithful fill-rate model would still come out several times
-/// too fast. What is reproducible is the cadence the game was built to hit, so the
-/// budget is expressed as a frame period and the GPU is reported busy until it is spent.
+/// Optional artificial busy period for ports that need it. This is not a GPU
+/// fill-rate model. Spider-Man and Spider-Man 2 leave it disabled: their native
+/// vblank-counter waits already pace gameplay, and adding another whole frame
+/// here can force an extra wait even though the submitted work has completed.
 /// </summary>
 public static class GpuBusy
 {

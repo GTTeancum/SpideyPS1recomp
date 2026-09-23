@@ -152,7 +152,8 @@ public static class GpuHle
     /// protected a fixed-function rasteriser; preserving them in the recompilation was
     /// dropping otherwise valid GTE-saturated surfaces and directly exposing background
     /// clear pixels in widescreen scenes. Coordinates saturate to -1024..1023, so 2047
-    /// admits the entire representable span without accepting anything out of range.
+    /// admits the entire representable span. The packet decoder separately rejects
+    /// spans enlarged by coordinate wrapping of offset effect corners.
     /// </summary>
     public const int MaxSpanX = 2047;
     public const int MaxSpanY = 2047;

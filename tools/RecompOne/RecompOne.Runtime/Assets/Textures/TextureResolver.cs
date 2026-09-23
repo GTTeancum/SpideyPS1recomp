@@ -32,6 +32,30 @@ public static class TextureResolver
         public TileRect Rect;
     }
 
+    sealed class HotMemo
+    {
+        public int Version = -1;
+        public readonly (long Key, Entry? Value)[] Slots = new (long, Entry?)[1024];
+    }
+    [ThreadStatic] static HotMemo? _hotMemo;
+
+    static Entry MemoEntry(long key)
+    {
+        var hot = _hotMemo ??= new HotMemo();
+        int version = Volatile.Read(ref _version);
+        if (hot.Version != version) { Array.Clear(hot.Slots); hot.Version = version; }
+        int slot = (int)((unchecked((uint)(key ^ (key >> 32)) * 2654435761u)) >> 22);
+        var cached = hot.Slots[slot];
+        if (cached.Value != null && cached.Key == key) return cached.Value;
+        Entry entry;
+        lock (_memo)
+        {
+            if (!_memo.TryGetValue(key, out entry!)) _memo[key] = entry = new Entry();
+        }
+        hot.Slots[slot] = (key, entry);
+        return entry;
+    }
+
     static readonly Dictionary<long, PageEntry> _pages = [];
 
     static void CheckAspect(TextureAsset asset, ReplacementTexture tex, in TileRect rect, string kind)
@@ -365,15 +389,7 @@ public static class TextureResolver
         int generation = VramTracker.Generation(rect.VramX, rect.VramY, rect.VramW, rect.H)
                          ^ VramTracker.Generation(rect.ClutX, rect.ClutY, rect.ClutCount, 1);
 
-        Entry entry;
-        lock (_memo)
-        {
-            if (!_memo.TryGetValue(key, out entry!))
-            {
-                entry = new Entry();
-                _memo[key] = entry;
-            }
-        }
+        Entry entry = MemoEntry(key);
 
         if (entry.Generation == generation) Interlocked.Increment(ref _statMemo);
         else

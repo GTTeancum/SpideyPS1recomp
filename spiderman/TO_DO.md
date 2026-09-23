@@ -1,3 +1,3 @@
 # Spider-Man port — open work
 
-No open items.
+Open GitHub issues and current priorities are tracked in the repository's [main to-do list](../TODO.md#github-issues).

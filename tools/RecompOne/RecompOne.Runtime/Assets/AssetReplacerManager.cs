@@ -200,6 +200,8 @@ public sealed class AssetReplacerManager
                 IndexXa(pack);
                 IndexTextures(pack);
             }
+            _hasTextures = _texExact.Count > 0 || _texAny.Count > 0 || _cluts.Count > 0 || _rules.Count > 0;
+            _hasRules = _rules.Count > 0;
         }
 
         Console.WriteLine($"[assets] game={_gameId} packs={found.Count} xa={_xa.Count} " +
@@ -216,6 +218,7 @@ public sealed class AssetReplacerManager
             _texAny.Clear();
             _cluts.Clear();
             _rules.Clear();
+            _hasTextures = _hasRules = false;
         }
         Textures.TextureResolver.Invalidate();
         Xa.XaRouter.Reset();
@@ -380,14 +383,15 @@ public sealed class AssetReplacerManager
 
     static ulong Combine(ulong a, ulong b) => (a * 1099511628211UL) ^ b;
 
+    volatile bool _hasTextures, _hasRules;
     public bool HasTextures
     {
-        get { lock (_gate) return _texExact.Count > 0 || _texAny.Count > 0 || _cluts.Count > 0 || _rules.Count > 0; }
+        get => _hasTextures;
     }
 
     public bool HasRules
     {
-        get { lock (_gate) return _rules.Count > 0; }
+        get => _hasRules;
     }
 
     public TextureAsset? MatchRule(int tpage, int bpp, int w, int h)

@@ -6,7 +6,7 @@ using RecompOne.Runtime.Memory;
 
 namespace Recompiled;
 
-/// <summary>Carry fractional projection through SM1's explicit subdivision edge offsets.</summary>
+/// <summary>Carry fractional projection through both games' native subdivision and edge offsets.</summary>
 public static class WorldSubpixel
 {
     readonly record struct Saved(uint Address, uint Word, GteScreen.VertexTag Tag);
@@ -15,20 +15,26 @@ public static class WorldSubpixel
     public static long PreservedEdges;
     public static long CertifiedClamps;
     static readonly GteScreen.VertexTag[] _corners = new GteScreen.VertexTag[3];
-    static bool _haveCorners;
+    static int _validCorners;
 
     // The native routine builds a temporary GTE matrix from three rounded camera
     // vertices. Keep the original projections so its subdivision points remain on
     // the same projective edges as an adjacent, unsubdivided face.
     public static void SetSubdivisionCorners(CpuContext c, IMemory m)
     {
-        _haveCorners = false;
+        _validCorners = 0;
         if (m is not PSMemory ps) return;
-        uint[] addresses = { c.T1, c.T2, c.T3 };
         for (int i = 0; i < 3; i++)
-            if (!ps.TryGetGteVertex(addresses[i], m.ReadU32(addresses[i]), out _corners[i]) ||
-                !_corners[i].HasSubpixel || _corners[i].Depth <= 0) return;
-        _haveCorners = true;
+        {
+            uint address = i == 0 ? c.T1 : i == 1 ? c.T2 : c.T3;
+            _corners[i] = default;
+            if (ps.TryGetGteVertex(address, m.ReadU32(address), out var tag) &&
+                tag.HasSubpixel && tag.Depth > 0)
+            {
+                _corners[i] = tag;
+                _validCorners |= 1 << i;
+            }
+        }
     }
 
     static readonly System.Collections.Generic.Stack<Func<uint, uint, GteScreen.VertexTag, GteScreen.VertexTag>?> _clampScopes = new();
@@ -42,7 +48,7 @@ public static class WorldSubpixel
     public static void SubdivisionExit(CpuContext c, IMemory m)
     {
         GteScreen.RamVertexTransform = _clampScopes.Pop();
-        _haveCorners = false;
+        _validCorners = 0;
     }
 
     static GteScreen.VertexTag CertifyClamp(uint address, uint word, GteScreen.VertexTag tag)
@@ -58,11 +64,17 @@ public static class WorldSubpixel
         int y = Math.Clamp(nativeY, -1024, 510);
         uint expected = (ushort)(short)x | (uint)(ushort)(short)y << 16;
         if ((word & 0x07FF07FFu) != (expected & 0x07FF07FFu)) return tag;
-        if (_haveCorners)
+        if (_validCorners != 0)
         {
             uint xy = RecompOne.Runtime.Gte.Read(0);
             int a = (short)xy, b = (short)(xy >> 16), d = (short)RecompOne.Runtime.Gte.Read(1);
-            if (a >= 0 && b >= 0 && d >= 0 && a + b + d == 4096)
+            // A clipped/unprojectable third corner must not invalidate the
+            // opposite visible edge. Only nonzero weights require provenance;
+            // interior points with an unknown contributor retain native fallback.
+            if (a >= 0 && b >= 0 && d >= 0 && a + b + d == 4096 &&
+                (a == 0 || (_validCorners & 1) != 0) &&
+                (b == 0 || (_validCorners & 2) != 0) &&
+                (d == 0 || (_validCorners & 4) != 0))
             {
                 double za = a * (double)_corners[0].Depth, zb = b * (double)_corners[1].Depth, zd = d * (double)_corners[2].Depth;
                 double z = za + zb + zd;

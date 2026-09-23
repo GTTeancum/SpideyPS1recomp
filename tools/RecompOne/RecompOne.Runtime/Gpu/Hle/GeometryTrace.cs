@@ -22,14 +22,16 @@ public static class GeometryTrace
         });
     }
 
-    public static void Triangle(HleVertex a, HleVertex b, HleVertex c, HleDrawEnv env, PrimFlags flags)
+    public static void Triangle(HleVertex a, HleVertex b, HleVertex c, HleDrawEnv env, PrimFlags flags,
+        (int X, int Y) nativeA, (int X, int Y) nativeB, (int X, int Y) nativeC)
     {
         if (string.IsNullOrWhiteSpace(Path) || _frame < Start || _frame > End) return;
         _writer ??= new StreamWriter(Path) { AutoFlush = true };
-        object Vertex(HleVertex v) => new { v.X, v.Y, v.Z, v.U, v.V, v.HasGteZ };
+        object Vertex(HleVertex v, (int X, int Y) native) => new {
+            v.X, v.Y, v.Z, v.U, v.V, v.HasGteZ, NativeX = native.X, NativeY = native.Y };
         _writer.WriteLine(JsonSerializer.Serialize(new
         {
-            frame = _frame, vertices = new[] { Vertex(a), Vertex(b), Vertex(c) },
+            frame = _frame, vertices = new[] { Vertex(a, nativeA), Vertex(b, nativeB), Vertex(c, nativeC) },
             env.ClipX0, env.ClipY0, env.ClipX1, env.ClipY1,
             flags.World, flags.Textured, flags.TPage, flags.Clut, flags.SemiTrans,
         }));

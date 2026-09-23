@@ -12,35 +12,17 @@ using RecompOne.Runtime.Dispatch;
 namespace Recompiled;
 
 /// <summary>
-/// Logging and freeze diagnosis. Everything lands in one file:
-/// <c>logs/spidey-&lt;timestamp&gt;.log</c>.
-///
-/// Every line carries a timestamp and the frame number and is flushed immediately, so
-/// a hard hang still leaves a complete tail. Console output is teed into it, and so
-/// are the three things Console cannot be trusted to carry:
-///
-///   * unhandled exceptions, which the .NET runtime writes straight to the native
-///     stderr handle -- without catching them the log just stops mid-sentence;
-///   * the watchdog heartbeat and stall reports, which have to survive the game thread
-///     wedging while it holds Console's lock;
-///   * primitive dumps, which are far too bulky to interleave through Console.
-///
-/// Those paths take the log's own lock with a timeout and fall back to appending
-/// through a second handle, so a wedge anywhere else cannot silence them.
-///
-/// A recompiled game that locks up gives you nothing by itself -- no PC, no
-/// interpreter loop, just a window that goes "Not Responding" -- so the watchdog
-/// reports the CPU context, the resident overlays, the display and CD state, and the
-/// tail of the call ring collapsed into "function xN" runs, which makes a tight spin
-/// obvious at a glance.
+/// Bounded background logging and freeze diagnosis. Gameplay and watchdog callers
+/// enqueue text; only the shared worker touches file/console sinks. Overload is
+/// counted, the latest fatal report has a reserved slot, and shutdown drains for
+/// at most two seconds. A hard kill or blocked sink can still lose queued output.
 /// </summary>
 public static class Diag
 {
     public static long Frame;
 
-    static FileStream _stream;
+    static AsyncDiagnosticLog _log;
     static string _path;
-    static readonly object _gate = new();
 
     static double _stallSeconds = 8;
     static long _lastLogic;
@@ -65,9 +47,18 @@ public static class Diag
                 string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SPIDEY_LOG_STAMP"))
                     ? "spidey.log"
                     : $"spidey-{DateTime.Now:yyyyMMdd-HHmmss}.log");
-            _stream = new FileStream(_path, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
-            Console.SetOut(new Tee(Console.Out));
-            Console.SetError(new Tee(Console.Error));
+            _log = new AsyncDiagnosticLog(new StreamWriter(
+                new FileStream(_path, FileMode.Create, FileAccess.Write, FileShare.ReadWrite), new UTF8Encoding(false)));
+            var output = new Tee(Console.Out);
+            var error = new Tee(Console.Error);
+            Console.SetOut(output);
+            Console.SetError(error);
+            AppDomain.CurrentDomain.ProcessExit += (_, _) =>
+            {
+                output.Flush();
+                error.Flush();
+                _log.Complete();
+            };
             Console.WriteLine($"[diag] logging to {Path.GetFullPath(_path)}");
         }
         catch (Exception e)
@@ -87,63 +78,46 @@ public static class Diag
 
     // ---- the one log ------------------------------------------------------------
 
-    /// <summary>Write raw text to the log, prefixing each line with time and frame.</summary>
-    static void Write(string text)
+    static void Write(string text, TextWriter echo = null, bool critical = false)
     {
-        if (_stream == null || string.IsNullOrEmpty(text)) return;
-
-        var sb = new StringBuilder(text.Length + 64);
-        long f = Interlocked.Read(ref Frame);
-        string stamp = $"{DateTime.Now:HH:mm:ss.fff} f{f,-7} ";
-        foreach (var line in text.Split('\n'))
-            sb.Append(stamp).Append(line.TrimEnd('\r')).Append(Environment.NewLine);
-        var bytes = Encoding.UTF8.GetBytes(sb.ToString());
-
-        // Held only for the length of one write. A caller that cannot get in within a
-        // couple of seconds is racing a wedged thread, and appending through a second
-        // handle still puts the text in the same file.
-        if (Monitor.TryEnter(_gate, 2000))
-        {
-            try { _stream.Write(bytes, 0, bytes.Length); _stream.Flush(); return; }
-            catch { }
-            finally { Monitor.Exit(_gate); }
-        }
-        try
-        {
-            using var fallback = new FileStream(_path, FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
-            fallback.Write(bytes, 0, bytes.Length);
-        }
-        catch { }
+        if (_log == null || string.IsNullOrEmpty(text)) return;
+        string prefix = $"{DateTime.Now:HH:mm:ss.fff} f{Interlocked.Read(ref Frame),-7} ";
+        _log.Write(text, prefix, echo, critical);
     }
 
-    /// <summary>Console.Out and Console.Error, mirrored into the log a line at a time.</summary>
     sealed class Tee : TextWriter
     {
         readonly TextWriter _inner;
         readonly StringBuilder _line = new();
-
         public Tee(TextWriter inner) => _inner = inner;
-
         public override Encoding Encoding => _inner.Encoding;
-
+        void Emit()
+        {
+            Diag.Write(_line.ToString(), _inner);
+            _line.Clear();
+        }
         public override void Write(char value)
         {
-            _inner.Write(value);
             lock (_line)
             {
-                // Diag.Write, not this class's own Write(string) -- that one forwards
-                // back to Write(char), so the line would only ever append to itself.
-                if (value == '\n') { Diag.Write(_line.ToString()); _line.Clear(); }
-                else if (value != '\r') _line.Append(value);
+                if (value == '\n') Emit();
+                else if (value != '\r')
+                {
+                    _line.Append(value);
+                    if (_line.Length >= AsyncDiagnosticLog.MaxTextLength) Emit();
+                }
             }
         }
-
         public override void Write(string value)
         {
-            if (value != null) foreach (var ch in value) Write(ch);
+            if (value == null) return;
+            lock (_line)
+                foreach (char ch in value) Write(ch);
         }
-
-        public override void Flush() => _inner.Flush();
+        public override void Flush()
+        {
+            lock (_line) if (_line.Length != 0) Emit();
+        }
     }
 
     // ---- symbols ----------------------------------------------------------------
@@ -258,7 +232,7 @@ public static class Diag
                 lastBeat = now;
                 // Straight to the log, not through Console: this is the line that proves
                 // the watchdog is alive when the game thread has stopped being.
-                Write($"[diag] frame {f}, {fps:F1} fps, {CallRing.TotalCalls} calls, " +
+                Write($"[diag] frame {f}, {fps:F1} console ticks/s, {CallRing.TotalCalls} calls, " +
                       $"{CallRing.StallBreaks} stall breaks; " +
                       RecompOne.Runtime.Diagnostics.FrameProfile.Summary());
                 Write("[diag] " + RecompOne.Runtime.Diagnostics.AudioProbe.Summary());
@@ -304,7 +278,7 @@ public static class Diag
         sb.AppendLine(ex?.ToString() ?? "(no exception object)");
         sb.Append(StateReport());
         sb.Append("=======================");
-        Write(sb.ToString());
+        Write(sb.ToString(), critical: true);
         // A dead run is exactly when the memory is worth having: the frame it dies on
         // moves between runs, so a numbered snapshot cannot be aimed at it.
         try { RamSnap.DumpNow("crash"); } catch { }

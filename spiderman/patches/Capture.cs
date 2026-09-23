@@ -59,6 +59,7 @@ public static class Capture
 
     static readonly List<Shot> _shots = new();
     static readonly List<Press> _script = new();
+    static readonly NativeInputSchedule _nativeScript = new();
     static string _dir = "shots";
     static long _every;
     static long _exit = -1;
@@ -70,6 +71,8 @@ public static class Capture
     static int _cropX = -1, _cropY, _cropW, _cropH;
     static string _bootSkipAnchor;
     static bool _bootSkipActive;
+    static string _controlFile;
+    static int _controlLines;
 
     static readonly Dictionary<string, ushort> Buttons = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -93,6 +96,8 @@ public static class Capture
 
     public static void Install()
     {
+        _controlFile = Environment.GetEnvironmentVariable("SPIDEY_CONTROL_FILE");
+        if (!string.IsNullOrWhiteSpace(_controlFile)) _active = true;
         var runToken = Environment.GetEnvironmentVariable("SPIDEY_RUN_TOKEN");
         if (!string.IsNullOrWhiteSpace(runToken))
             Console.WriteLine($"[capture] run-token {runToken}");
@@ -160,12 +165,32 @@ public static class Capture
             _active = true;
         }
 
+        foreach (var step in Split("SPIDEY_NATIVE_SCRIPT", ';'))
+        {
+            var parts = step.Split(':');
+            if (parts.Length != 3 || !uint.TryParse(parts[0], out var start) ||
+                !uint.TryParse(parts[2], out var duration))
+                throw new ArgumentException("SPIDEY_NATIVE_SCRIPT requires update:buttons:duration");
+            ushort mask = 0;
+            foreach (var name in parts[1].Split('+'))
+            {
+                if (!Buttons.TryGetValue(name.Trim(), out var button))
+                    throw new ArgumentException("Unknown native-script button: " + name);
+                mask |= button;
+            }
+            _nativeScript.Add(start, duration, mask);
+            _active = true;
+        }
+        if (_nativeScript.Count != 0)
+            Console.WriteLine("[capture] native-update script armed for first l5a1_t.trg counter epoch");
+
         // The frame counter feeds the watchdog, so listen even with nothing to capture.
         Controller.ScriptExclusive = _active &&
             Environment.GetEnvironmentVariable("SPIDEY_SCRIPT_EXCLUSIVE") == "1";
         if (Controller.ScriptExclusive) Console.WriteLine("[capture] process-local input exclusive; physical game-pad state ignored");
         if (_active) Directory.CreateDirectory(_dir);
         Event.AddListener<VSyncEvent>(OnFrame);
+        if (_active) Event.AddListener<VSyncInputEvent>(DriveInput);
         if (!_active) return;
         string cropStatus = _cropX >= 0 ? $" crop={_cropX},{_cropY},{_cropW},{_cropH}" : "";
         string sourceStatus = _fxaaPair ? " source=fxaa-pair" : _presented ? " source=presented" : " source=raster";
@@ -186,7 +211,7 @@ public static class Capture
     static void OnFrame(VSyncEvent e)
     {
         System.Threading.Interlocked.Exchange(ref Diag.Frame, e.Frame);
-        DriveInput(e);
+        ReadControlCommands(e.Frame);
 
         if (_markEvery > 0 && e.Frame % _markEvery == 0)
             Console.WriteLine($"[frame {e.Frame}]");
@@ -216,9 +241,9 @@ public static class Capture
     // The buffers get refreshed from that state on the runtime's own schedule, so a
     // press written directly into them only lasted until the next refresh -- which,
     // once the service tick started running between frames, was almost immediately.
-    static void DriveInput(VSyncEvent e)
+    static void DriveInput(VSyncInputEvent e)
     {
-        if (_script.Count == 0 && !_bootSkipActive) return;
+        if (_script.Count == 0 && !_bootSkipActive && _nativeScript.Count == 0) return;
 
         ushort held = 0;
         if (_bootSkipActive && (e.Frame % 24) < 12)
@@ -248,7 +273,10 @@ public static class Capture
             }
         }
 
+        if (_nativeScript.Count != 0 && e.Memory is RecompOne.Runtime.Memory.PSMemory ps)
+            held |= _nativeScript.Sample(System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(ps.Ram.Slice(0xB4F38, 4)));
         RecompOne.Runtime.Hardware.Controller.ScriptHeld = held;
+        if (Controller.ScriptExclusive) Controller.ApplyInputOverrides();
     }
 
     /// <summary>
@@ -272,6 +300,36 @@ public static class Capture
             offset = off;
         }
         return new Press { Frame = -1, Mask = mask, Hold = hold, Anchor = anchor, Offset = offset };
+    }
+
+    // Opt-in, process-local test commands. This never sends host keyboard or mouse
+    // input. Append "up:60", "up+cross:12", "shot", or "exit" on separate lines.
+    static void ReadControlCommands(long frame)
+    {
+        if (string.IsNullOrWhiteSpace(_controlFile) || frame % 6 != 0) return;
+        string[] lines;
+        try { lines = File.ReadAllLines(_controlFile); }
+        catch (IOException) { return; }
+        for (; _controlLines < lines.Length; _controlLines++)
+        {
+            string command = lines[_controlLines].Trim();
+            if (command == "shot") _shots.Add(new Shot { Frame = frame });
+            else if (command == "exit") _exit = frame;
+            else
+            {
+                var parts = command.Split(':');
+                if (parts.Length != 2 || !int.TryParse(parts[1], out int hold) || hold < 1 || hold > 6000) continue;
+                ushort mask = 0;
+                foreach (string name in parts[0].Split('+'))
+                    if (Buttons.TryGetValue(name.Trim(), out var button)) mask |= button;
+                if (mask != 0)
+                {
+                    _script.Add(new Press { Frame = frame, Mask = mask, Hold = hold });
+                    _shots.Add(new Shot { Frame = frame + hold + 2 });
+                }
+            }
+            Console.WriteLine($"[capture] process-local command at frame {frame}: {command}");
+        }
     }
 
     static Shot MakeShot(string raw)
@@ -332,6 +390,9 @@ public static class Capture
     /// <summary>Called for every archive lookup; resolves any step anchored to it.</summary>
     public static void NoteWadLoad(string name, long frame)
     {
+        RamSnap.NoteWadLoad(name, frame);
+        if (string.Equals(name, "l5a1_t.trg", StringComparison.OrdinalIgnoreCase))
+            _nativeScript.Arm();
         if (_bootSkipActive &&
             string.Equals(_bootSkipAnchor, name, StringComparison.OrdinalIgnoreCase))
         {

@@ -17,13 +17,14 @@ namespace Recompiled;
 /// far from its cause -- as a call through a null vtable in the script interpreter --
 /// which is why the miss is worth naming at the point it happens.
 ///
-/// On unless SPIDEY_TRACE_GAME is unset.
+/// Verbose tracing is opt-in with SPIDEY_TRACE_GAME=1.
 /// </summary>
 public static class GameTrace
 {
-    /// <summary>Verbose by default -- this game is cheap enough that it costs nothing,
-    /// and a lock-up is unreadable without it. SPIDEY_QUIET turns it off.</summary>
+    /// <summary>Per-actor logging can delay gameplay and SPU music scheduling.
+    /// Keep it opt-in; SPIDEY_QUIET still overrides it. Failure diagnostics remain on.</summary>
     public static bool On =
+        Environment.GetEnvironmentVariable("SPIDEY_TRACE_GAME") == "1" &&
         string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SPIDEY_QUIET"));
 
     static string _spawnName;
@@ -42,11 +43,73 @@ public static class GameTrace
     static int _proofWaitLogs;
     static uint _proofGp;
     static long _proofLastStateFrame;
+    static readonly bool _chaseFollow = Environment.GetEnvironmentVariable("SPIDEY_CHASE_FOLLOW") == "1";
+    static readonly int _chaseOffsetX = int.TryParse(Environment.GetEnvironmentVariable("SPIDEY_CHASE_OFFSET_X"), out int chaseX) ? chaseX : 0;
+    static readonly int _chaseOffsetZ = int.TryParse(Environment.GetEnvironmentVariable("SPIDEY_CHASE_OFFSET_Z"), out int chaseZ) ? chaseZ : 0;
+    static readonly bool _chaseRegionPulses = Environment.GetEnvironmentVariable("SPIDEY_CHASE_REGION_PULSES") == "1";
+    static int _chaseRegionIndex;
+    static long _chaseWaitStart;
+    static readonly uint[] ChaseRegions = { 290, 291, 34, 39, 44 };
+    static readonly ushort[] ChaseNextPoints = { 16, 24, 35, 41, 50 };
+    static bool _chaseLevel, _chaseReleased;
+    static readonly System.Collections.Generic.Queue<(uint X, uint Y, uint Z)> _chasePositions = new();
 
     public static void Install()
     {
         if (_proofTrigger >= 0)
             Event.AddListener<VSyncEvent>(OnProofFrame);
+        if (_chaseFollow)
+            Event.AddListener<VSyncEvent>(OnChaseFollowFrame);
+    }
+
+    // Proof-only traversal of the original Venom route. All writes stay inside
+    // this game's emulated RAM. Release permanently when the authored building
+    // cutscene takes over; no cutscene timing, actor scripts, or triggers change.
+    static void OnChaseFollowFrame(VSyncEvent e)
+    {
+        if (!_chaseLevel || _chaseReleased) return;
+        var m = e.Memory;
+        uint player = m.ReadU32(0x800B5268u), actor = m.ReadU32(0x800B5234u);
+        if (player < 0x80000000u || player >= 0x80200000u) return;
+        for (int i = 0; actor != 0 && i < 1024; i++)
+        {
+            if (actor < 0x80000000u || actor >= 0x80200000u) return;
+            if (m.ReadU16(actor + 0x34u) == 0x139)
+            {
+                // Teleporting the follower skips swept collision with the retail
+                // region planes. Optional fixture setup pulses those original
+                // command points at the five pre-cutscene taunt stops. No actor
+                // completion flag or cutscene script is patched.
+                if (_chaseRegionPulses && _proofGp != 0 && _chaseRegionIndex < ChaseRegions.Length)
+                {
+                    uint task = m.ReadU32(actor + 0x320u), script = m.ReadU32(actor + 0x31Cu);
+                    bool waiting = task >= 0x80000000u && task < 0x80200000u &&
+                        script >= 0x80000000u && script < 0x80200000u &&
+                        m.ReadU32(task) == 15 && m.ReadU32(actor + 0x318u) == 0 &&
+                        m.ReadU16(script + 4) == ChaseNextPoints[_chaseRegionIndex];
+                    if (!waiting) _chaseWaitStart = 0;
+                    else if (_chaseWaitStart == 0) _chaseWaitStart = e.Frame;
+                    else if (e.Frame - _chaseWaitStart >= 60)
+                    {
+                        uint region = ChaseRegions[_chaseRegionIndex++];
+                        var context = new CpuContext { GP = _proofGp, SP = 0x807F0000u, A0 = region };
+                        SpiderMan.func_8005BA58(context, m);
+                        Console.WriteLine($"[chase-follow] fixture region pulse={region} frame={e.Frame}");
+                        _chaseWaitStart = 0;
+                    }
+                }
+                _chasePositions.Enqueue((m.ReadU32(actor + 4), m.ReadU32(actor + 8), m.ReadU32(actor + 12)));
+                if (_chasePositions.Count <= 20) return;
+                var position = _chasePositions.Dequeue();
+                m.WriteU32(player + 4, unchecked(position.X + (uint)(_chaseOffsetX * 4096)));
+                m.WriteU32(player + 8, position.Y);
+                m.WriteU32(player + 12, unchecked(position.Z + (uint)(_chaseOffsetZ * 4096)));
+                if (e.Frame % 120 == 0)
+                    Console.WriteLine($"[chase-follow] frame={e.Frame} player=0x{player:X8} venom=0x{actor:X8} xyz={(int)position.X},{(int)position.Y},{(int)position.Z}");
+                return;
+            }
+            actor = m.ReadU32(actor + 0x1Cu);
+        }
     }
 
     static int ReadProofTrigger()
@@ -80,6 +143,15 @@ public static class GameTrace
     public static void RunTriggerScript(CpuContext c, IMemory m)
     {
         uint p = c.A0;
+        if (_chaseFollow && _chaseLevel && m.ReadU16(p) == 195 &&
+            m.ReadU16(p + 2) == 30 && m.ReadU16(p + 4) == 199 &&
+            m.ReadU16(p + 6) == 0 && m.ReadU16(p + 8) == 17)
+        {
+            _chaseReleased = true;
+            _chasePositions.Clear();
+            Console.WriteLine($"[chase-follow] RELEASED at authored building cutscene frame={Diag.Frame}");
+            Capture.NoteModelLoad("chase-cutscene", Diag.Frame);
+        }
         var ops = new System.Text.StringBuilder();
         int n = 0;
         bool sawLoad = false;
@@ -90,7 +162,7 @@ public static class GameTrace
             if (w == 126 || w == 128 || w == 189) sawLoad = true;
             if (n < 40) ops.Append(w + " ");
         }
-        Console.WriteLine($"[game] RunTriggerScript(0x{p:X8}) len={n} words hasLoadOpcode={sawLoad}");
+        Console.WriteLine($"[game] RunTriggerScript(0x{p:X8}) len={n} words hasLoadOpcode={sawLoad} frame={Diag.Frame} caller=0x{c.RA:X8}");
         Console.WriteLine($"[game]    {ops}");
     }
 
@@ -299,20 +371,23 @@ public static class GameTrace
 
     /// <summary>pre-hook on LoadTriggers(char *area)</summary>
     public static void LoadTriggers(CpuContext c, IMemory m)
-        => Console.WriteLine($"[game] LoadTriggers(\"{Str(m, c.A0)}\")");
+    {
+        string level = Str(m, c.A0);
+        _chaseLevel = level.Equals("l5a1_t", StringComparison.OrdinalIgnoreCase);
+        Console.WriteLine($"[game] LoadTriggers(\"{level}\")");
+    }
 
     /// <summary>
-    /// pre-hook on TriggerPass. This runs exactly once per game logic frame while a
-    /// level is live, so counting it is the only honest measure of how fast the game
-    /// is actually thinking -- the vblank counter says how fast we are presenting,
-    /// which is a different question.
+    /// Pre-hook on TriggerPass. Observed during level loading, not once per game
+    /// update; LogicFrames is a historical name and must not be used as gameplay
+    /// FPS. The native update counter is 0x800B4F38 (see Rates/PerformanceLog).
     /// </summary>
     public static long LogicFrames;
 
     public static void TriggerPass(CpuContext c, IMemory m)
     {
         LogicFrames++;
-        if (_proofTrigger >= 0 && _proofGp == 0) _proofGp = c.GP;
+        if ((_proofTrigger >= 0 || _chaseFollow) && _proofGp == 0) _proofGp = c.GP;
         if (On) Console.WriteLine("[game] TriggerPass");
     }
 
@@ -413,7 +488,7 @@ public static class GameTrace
 
     /// <summary>pre-hook on TriggerType8 -- the resource entry handler.</summary>
     public static void TriggerType8(CpuContext c, IMemory m)
-        => Console.WriteLine($"[game] TriggerType8(a0=0x{c.A0:X8} a1={c.A1})");
+    { if (On) Console.WriteLine($"[game] TriggerType8(a0=0x{c.A0:X8} a1={c.A1})"); }
 
     /// <summary>pre-hook on LoadLevel -- the driver that pulls in level geometry.</summary>
     public static void LoadLevel(CpuContext c, IMemory m)

@@ -8,6 +8,11 @@ public static class XaAudio
     const int Capacity = 1 << 18;
     const int Mask = Capacity - 1;
     const int PrimeFrames = 1024;
+    // The mixer submits audio ahead of playback, while disc packets arrive on a
+    // wall clock. Reserve 46 ms once at stream start so a late sector does not
+    // insert a gap into the middle of otherwise continuous audio.
+    const int StartupOutputFrames = 2048;
+    static int _startupOutputFrames;
     const int MaxHold = 8192;
 
     static readonly int[] _ring = new int[Capacity];
@@ -32,6 +37,7 @@ public static class XaAudio
             _pos = 0;
             _s0L = _s0R = _s1L = _s1R = 0;
             _underrun = 0;
+            _startupOutputFrames = 0;
         }
     }
 
@@ -95,7 +101,7 @@ public static class XaAudio
                 if (_count < Capacity) _count++;
                 else _readIdx = (_readIdx + 1) & Mask;
             }
-            if (!_playing && _count >= PrimeFrames) _playing = true;
+            PrimePlayback();
         }
     }
 
@@ -111,8 +117,16 @@ public static class XaAudio
                 if (_count < Capacity) _count++;
                 else _readIdx = (_readIdx + 1) & Mask;
             }
-            if (!_playing && _count >= PrimeFrames) _playing = true;
+            PrimePlayback();
         }
+    }
+
+    // Caller holds _gate. Refill during playback must not restart the delay.
+    static void PrimePlayback()
+    {
+        if (_playing || _count < PrimeFrames) return;
+        _playing = true;
+        _startupOutputFrames = StartupOutputFrames;
     }
 
     public static int BufferedSamples { get { lock (_gate) return _count; } }
@@ -126,6 +140,12 @@ public static class XaAudio
         lock (_gate)
         {
             if (!_playing) { left = right = 0; return false; }
+            if (_startupOutputFrames > 0)
+            {
+                _startupOutputFrames--;
+                left = right = 0;
+                return true;
+            }
 
             while (_pos >= 1.0)
             {

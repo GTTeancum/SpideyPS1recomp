@@ -2,35 +2,43 @@ using System.Diagnostics;
 
 namespace RecompOne.Runtime.Diagnostics;
 
-/// <summary>
-/// Where a frame's wall time actually goes: drawing it, waiting to pace it, or running
-/// game code in between. A recompiled game that feels stuck is usually one of those
-/// three and they need very different fixes, so guessing is expensive.
-/// </summary>
 public static class FrameProfile
 {
-    static readonly double TicksPerMs = Stopwatch.Frequency / 1000.0;
-    static long _lastEnd;
+    static readonly object Gate = new();
+    static long _lastEnd, _previousStart;
+    static double _irqWait, _present, _throttle, _outside, _windowIrq;
+    static int _frames;
+    static readonly List<double> Intervals = new(1024);
 
-    public static double PresentMs, ThrottleMs, GameMs;
-    public static long Frames;
+    public static void NoteIrqWait(long start, long end) => _irqWait += Stopwatch.GetElapsedTime(start, end).TotalMilliseconds;
 
     public static void Note(long t0, long t1, long t2)
     {
-        PresentMs += (t1 - t0) / TicksPerMs;
-        ThrottleMs += (t2 - t1) / TicksPerMs;
-        if (_lastEnd != 0) GameMs += (t0 - _lastEnd) / TicksPerMs;
-        _lastEnd = t2;
-        Frames++;
+        double wait = Stopwatch.GetElapsedTime(t0, t1).TotalMilliseconds;
+        double present = Stopwatch.GetElapsedTime(t1, t2).TotalMilliseconds;
+        double outside = _lastEnd == 0 ? 0 : Math.Max(0, Stopwatch.GetElapsedTime(_lastEnd, t0).TotalMilliseconds - _irqWait);
+        PerformanceLog.Frame(t1, _irqWait, wait, present, outside);
+        lock (Gate)
+        {
+            _windowIrq += _irqWait; _throttle += wait; _present += present; _outside += outside; _frames++;
+            if (_previousStart != 0 && Intervals.Count < 4096)
+                Intervals.Add(Stopwatch.GetElapsedTime(_previousStart, t1).TotalMilliseconds);
+        }
+        _previousStart = t1; _lastEnd = t2; _irqWait = 0;
     }
 
     public static string Summary()
     {
-        if (Frames == 0) return "no frames";
-        string s = $"per frame: present {PresentMs / Frames:F2}ms, throttle {ThrottleMs / Frames:F2}ms, " +
-                   $"game {GameMs / Frames:F2}ms";
-        PresentMs = ThrottleMs = GameMs = 0;
-        Frames = 0;
-        return s;
+        lock (Gate)
+        {
+            if (_frames == 0) return "no presentations";
+            Intervals.Sort();
+            double P(double p) => Intervals.Count == 0 ? 0 : Intervals[(int)Math.Ceiling(p * (Intervals.Count - 1))];
+            string text = $"per presentation: call {_present / _frames:F2}ms, limiter {_throttle / _frames:F2}ms, " +
+                $"IRQ wait {_windowIrq / _frames:F2}ms, outside-present wall {_outside / _frames:F2}ms; " +
+                $"interval p50/p95/p99/max {P(.5):F2}/{P(.95):F2}/{P(.99):F2}/{P(1):F2}ms (not GPU time)";
+            _present = _throttle = _outside = _windowIrq = 0; _frames = 0; Intervals.Clear();
+            return text;
+        }
     }
 }

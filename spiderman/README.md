@@ -191,14 +191,15 @@ All game-agnostic; all in the shared checkout.
   the game both skipped the request and forced the type back to digital when it saw
   `0x73`. Naming `0x8008AD48` routes it to the runtime like the rest of libpad.
 
-- **`DrawSync` always said the GPU was idle.** A game that never calls VSync during
-  gameplay paces itself on the GPU finishing, and Spider-Man is one: it submits an
-  ordering table then spins on `DrawSync` until the drawing is done. Answering "idle"
-  removes the only thing pacing it, and it ran at 131 fps instead of 30. `Gpu/GpuBusy.cs`
-  models the outstanding work as a frame period and `DrawSync` answers from it.
-- **`Runtime.VBlanksPerFrame`** makes a frame worth more than one vblank, for the parts
-  of a game that *do* wait on VSync, while the vblank counter still advances at a true
-  60 Hz so vblank-based timing still measures real seconds.
+- **Gameplay waits on its own vblank counter.** It does not need to call the SDK's
+  `VSync` function: native helper `8005E748` waits for the IRQ-updated counter.
+  That helper now yields through the paced runtime instead of spinning on RAM.
+  The earlier artificial 33 ms GPU busy period is disabled because it can add a
+  third vblank wait and reduce gameplay below 30 updates per second.
+- **Presentation and console interrupts use separate clocks.** The host presents at
+  most 30 FPS, while individual vblank interrupts arrive at 60 Hz. Batching two
+  interrupts into one presentation made the game's two consecutive waits take two
+  whole host frames, reducing gameplay to roughly 15 updates per second.
 - **The memory card never completed an operation.** Two faults that had to be fixed
   together: `_card_info_subfunc` (B 0x4D) was a no-op, so libmcrd stalled before touching
   a sector; and `PumpCard` only delivered completions on frames reached through the
@@ -253,8 +254,22 @@ Dreamcast/SM2 disc. The conversion and audit workflow remains documented in
 `patches/Capture.cs` reads frames back from the GPU backend, so a capture is what the
 emulated console drew, not what the desktop showed.
 
+Presentation is capped at 30 FPS in both games. `SPIDEY_HZ` and `SPIDEY_VBLANK`
+no longer override the cap or interrupt clock.
+
 ```
-SPIDEY_HZ=60               developer comparison override; player default 60 Hz
+SPIDEY_CONTROL_FILE=commands.txt
+                           opt-in process-local test commands: append up:60,
+                           up+cross:12, shot, or exit on separate lines;
+                           button commands also capture after their hold ends
+SPIDEY_CHASE_FOLLOW=1      diagnostic player-position follower for l5a1_t;
+                           releases at the authored building cutscene;
+                           does not reproduce normal player trigger coverage
+SPIDEY_CHASE_REGION_PULSES=1
+                           fixture companion: invokes the five original region
+                           commands at pre-cutscene taunt stops; test setup only
+SPIDEY_CHASE_OFFSET_X=0    optional follower offset in native world units
+SPIDEY_CHASE_OFFSET_Z=0    optional follower offset in native world units
 SPIDEY_LEVEL=l5a3          boot straight into a level (retail descriptor first;
                            archive fallback for alternate prefixes)
 SPIDEY_CHEATS=all          the game's own cheats: everything, levelselect, invuln,
@@ -265,7 +280,9 @@ SPIDEY_COSTUME=symbiote    spiderman 2099 symbiote captain unlimited bagman
                            alexrosswhite venomearthx negativezone battledamaged
                            spidermanwinged
 SPIDEY_ASSET_DIR=path      override extracted CD.WAD entries by filename
-SPIDEY_SNAP=crash          dump the game's RAM on the crash, or on named frames
+SPIDEY_SNAP=crash          dump all RAM on a crash, including the extended stack;
+                           numeric frames normally capture the first 3 MB
+SPIDEY_SNAP_EXTENDED=1     include all RAM in numeric-frame snapshots too
 SPIDEY_SHOTS=1050,menu.spidey+300
                            write a PNG on an absolute frame or after a named event
 SPIDEY_SHOT_EVERY=150      ...or every N frames
@@ -333,7 +350,7 @@ SPIDEY_EXIT=2200 SPIDEY_SHOT_EVERY=150 SPIDEY_SCRIPT="1150:start:10;1400:start:1
 
 Diagnostics (`patches/Diag.cs`) write one timestamped, frame-tagged log per run under
 `logs/`, with a watchdog that dumps where the game was when it stopped.
-`SPIDEY_TRACE_GAME=1` names every overlay load and actor spawn; `SPIDEY_TRACE_WAD=1`
+`SPIDEY_TRACE_GAME=1` enables verbose overlay/actor tracing (off by default because it can delay frames and music); `SPIDEY_TRACE_WAD=1`
 names every archive lookup and whether it resolved. Those two are what located the
 current blocker.
 

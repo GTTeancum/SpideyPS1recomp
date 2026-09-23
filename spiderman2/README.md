@@ -245,8 +245,10 @@ for the player", which was the whole answer.
 `patches/Capture.cs` reads frames back from the GPU backend, so a capture is what the
 emulated console drew, not what the desktop showed.
 
+Presentation is capped at 30 FPS, with individual console vblank interrupts at
+60 Hz. `SPIDEY_HZ` and `SPIDEY_VBLANK` no longer override these clocks.
+
 ```
-SPIDEY_HZ=60               developer comparison override; player default 60 Hz
 SPIDEY_LEVEL=e3m1          boot straight into a level (44 prefixes)
 SPIDEY_CHEATS=all          the game's own cheats: everything, levels, costumes,
                            gallery, training, debug, bigfeet, bighead, whatif

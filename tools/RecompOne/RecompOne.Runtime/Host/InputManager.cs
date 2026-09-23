@@ -76,7 +76,9 @@ internal static unsafe class InputManager
 
     public static void Poll()
     {
+        long controllerStart = Diagnostics.PresentationProfile.Stamp();
         PollGamepadEvents();
+        Diagnostics.PresentationProfile.ControllerEventsMs += Diagnostics.PresentationProfile.Elapsed(controllerStart);
         PollKeyboard();
         PollGamepads();
         Controller.Connected2 = _pad1 != null || HasAnyKey(ConfigManager.Game.Keys2);

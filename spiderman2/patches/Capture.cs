@@ -166,6 +166,7 @@ public static class Capture
         if (Controller.ScriptExclusive) Console.WriteLine("[capture] process-local input exclusive; physical game-pad state ignored");
         if (_active) Directory.CreateDirectory(_dir);
         Event.AddListener<VSyncEvent>(OnFrame);
+        if (_active) Event.AddListener<VSyncInputEvent>(DriveInput);
         if (!_active) return;
         string sourceStatus = _fxaaPair ? " source=fxaa-pair" : _presented ? " source=presented" : " source=raster";
         Console.WriteLine($"[capture] armed: shots={_shots.Count} every={_every} exit={_exit} script={_script.Count}{sourceStatus}");
@@ -210,7 +211,6 @@ public static class Capture
     static void OnFrame(VSyncEvent e)
     {
         System.Threading.Interlocked.Exchange(ref Diag.Frame, e.Frame);
-        DriveInput(e);
 
         if (_markEvery > 0 && e.Frame % _markEvery == 0)
             Console.WriteLine($"[frame {e.Frame}]");
@@ -251,7 +251,7 @@ public static class Capture
     // The buffers get refreshed from that state on the runtime's own schedule, so a
     // press written directly into them only lasted until the next refresh -- which,
     // once the service tick started running between frames, was almost immediately.
-    static void DriveInput(VSyncEvent e)
+    static void DriveInput(VSyncInputEvent e)
     {
         if (_script.Count == 0 && !_bootSkipActive) return;
 
@@ -290,6 +290,7 @@ public static class Capture
         }
 
         RecompOne.Runtime.Hardware.Controller.ScriptHeld = held;
+        if (Controller.ScriptExclusive) Controller.ApplyInputOverrides();
     }
 
     /// <summary>

@@ -12,6 +12,7 @@ public static class LibCdStream
     const int PrimeFrames = 2;
 
     public static bool InUse { get; private set; }
+    internal static bool Active => _active;
 
     /// <summary>
     /// What the ring has actually done, for diagnosing a game that has stopped getting
@@ -44,9 +45,15 @@ public static class LibCdStream
     static Thread? _thread;
     static volatile bool _run;
     static readonly object _lock = new();
+    static readonly AutoResetEvent _frameReady = new(false);
+    static int _emptyPolls;
+    public static bool YieldEmptyPolls;
 
     public static void StSetRing(CpuContext c, IMemory m)
     {
+        // CollectFrame writes outside _lock. Retire its owner before changing
+        // the layout, even when replacing a ring during an active movie.
+        StopWorker();
         InUse = true;
         lock (_lock)
         {
@@ -61,20 +68,25 @@ public static class LibCdStream
 
     public static void StClearRing(CpuContext c, IMemory m)
     {
+        StopWorker();
         lock (_lock) ResetRing(m);
+        EnsureThread();
         c.V0 = 0;
         Log.Sdk("StClearRing");
     }
 
     public static void StUnSetRing(CpuContext c, IMemory m)
     {
+        InUse = false;
         _active = false;
         _reading = false;
+        StopWorker();
         Log.Sdk("StUnSetRing");
     }
 
     public static void StSetStream(CpuContext c, IMemory m)
     {
+        StopWorker();
         lock (_lock)
         {
             _streamLba = -1;
@@ -101,18 +113,33 @@ public static class LibCdStream
                 _prevStart = -1;
             }
 
-            if (_ready.Count == 0) { EmptyGets++; c.V0 = 1; return; }
-
-            var (start, n) = _ready.Dequeue();
-            uint dataPtr = _dataBase + (uint)(start * SlotData);
-            uint hdrPtr = _statusBase + (uint)(start * HeaderSize);
-            m.WriteU32(c.A0, dataPtr);
-            m.WriteU32(c.A1, hdrPtr);
-            _prevStart = start;
-            _prevN = n;
-            FramesTaken++;
-            c.V0 = 0;
+            if (_ready.Count != 0)
+            {
+                _emptyPolls = 0;
+                var (start, n) = _ready.Dequeue();
+                uint dataPtr = _dataBase + (uint)(start * SlotData);
+                uint hdrPtr = _statusBase + (uint)(start * HeaderSize);
+                m.WriteU32(c.A0, dataPtr);
+                m.WriteU32(c.A1, hdrPtr);
+                _prevStart = start;
+                _prevN = n;
+                FramesTaken++;
+                c.V0 = 0;
+                return;
+            }
+            EmptyGets++;
         }
+        // These ports retry this query in a tight native movie loop. Cooperatively
+        // service time and wait briefly for the producer, outside the ring lock.
+        // A ready frame always takes the immediate path; other ports retain the
+        // original polling behavior unless they explicitly opt in.
+        if (YieldEmptyPolls && ++_emptyPolls >= 32)
+        {
+            _emptyPolls = 0;
+            Runtime.IdleTick();
+            _frameReady.WaitOne(1);
+        }
+        c.V0 = 1;
     }
 
     public static void StFreeRing(CpuContext c, IMemory m) { c.V0 = 0; Log.Sdk("StFreeRing"); }
@@ -133,11 +160,19 @@ public static class LibCdStream
         _reading = false;
     }
 
-    internal static void Reset()
+    static void StopWorker()
     {
         _run = false;
+        // Ring/stream transitions and boot reset must retire the producer before
+        // the game reuses ring memory or replaces Runtime memory/disc.
+        // Join outside _lock: the producer may need it to finish that frame.
+        _thread?.Join();
         _thread = null;
+    }
 
+    internal static void Reset()
+    {
+        StopWorker();
         lock (_lock)
         {
             InUse = false;
@@ -214,14 +249,18 @@ public static class LibCdStream
             }
 
             int start;
+            bool free;
             lock (_lock)
             {
                 if (_writeIdx + n > _slots) _writeIdx = 0;
                 start = _writeIdx;
-                bool free = true;
+                free = true;
                 for (int i = 0; i < n; i++) if (_busy[start + i]) { free = false; break; }
-                if (!free) { Thread.Sleep(1); continue; }
             }
+            // The consumer needs this same lock to dequeue/release a frame.
+            // Sleeping inside it makes a full producer queue delay its consumer,
+            // potentially repeatedly if the producer reacquires first.
+            if (!free) { Thread.Sleep(1); continue; }
 
             if (!CollectFrame(cd, m, start, n)) continue;
 
@@ -229,6 +268,7 @@ public static class LibCdStream
             {
                 for (int i = 0; i < n; i++) _busy[start + i] = true;
                 _ready.Enqueue((start, n));
+                _frameReady.Set();
                 FramesQueued++;
                 _writeIdx = start + n;
 
@@ -246,11 +286,12 @@ public static class LibCdStream
     {
         int collected = 0;
         int lba = _streamLba;
-        while (collected < n)
+        while (collected < n && _run)
         {
             byte[] sec;
             try { lock (LibCd.DiscLock) sec = cd.ReadSectorData(lba, 2336); }
             catch { return false; }
+            if (!_run) return false;
             lba++;
 
             if ((sec[2] & 0x04) != 0) { Assets.Xa.XaRouter.Sector(lba - 1, sec, true); continue; }
@@ -262,6 +303,7 @@ public static class LibCdStream
             for (int j = 0; j < SlotData; j++) m.WriteU8(dat + (uint)j, sec[8 + HeaderSize + j]);
             collected++;
         }
+        if (!_run) return false;
         _streamLba = lba;
         Thread.MemoryBarrier();
         return true;

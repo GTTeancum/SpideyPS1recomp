@@ -44,9 +44,9 @@ public static class Costume
     // unrelated shell data. The generated-viewer transform points the costume
     // viewer at this port-only arena instead, where all twenty entries fit.
     public const uint ViewerTable = 0x807C0000;
-    const uint ViewerStrings = ViewerTable + 0x800;
-    const uint ViewerDescriptions = ViewerTable + 0x1000;
-    const uint ViewerModelName = ViewerTable + 0x5000;
+    const uint ViewerStrings = ViewerTable + 0x8000;
+    const uint ViewerDescriptions = ViewerTable + 0x10000;
+    const uint ViewerModelName = ViewerTable + 0x30000;
     const uint RetailViewerTable = 0x802693A8;
     const uint ModelCache = 0x800A0904;
 
@@ -497,7 +497,7 @@ public static class Costume
     {
         uint savedBits = memory.ReadU32(Unlocks);
         uint savedSelection = memory.ReadU32(Selected);
-        const uint DummyPlayer = ViewerTable + 0x6000;
+        const uint DummyPlayer = ViewerTable + 0x31000;
         try
         {
             for (int original = 1; original <= 9; original++)

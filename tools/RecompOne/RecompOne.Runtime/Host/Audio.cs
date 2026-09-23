@@ -103,22 +103,14 @@ internal static unsafe class Audio
 
     static void FillBuffers(Spu spu)
     {
-        _al!.GetSourceProperty(_source, GetSourceInteger.BuffersProcessed, out int processed);
-        while (processed > 0)
-        {
-            uint buf = 0;
-            _al.SourceUnqueueBuffers(_source, 1, &buf);
-
-            spu.Mix(_sampleBuf, FramesPerBuffer);
-
-            _al.BufferData(buf, BufferFormat.Stereo16, _sampleBuf, 44100);
-            _al.SourceQueueBuffers(_source, 1, &buf);
-            processed--;
-        }
-
-        _al.GetSourceProperty(_source, GetSourceInteger.SourceState, out int state);
-        if (state != (int)SourceState.Playing)
-            _al.SourcePlay(_source);
+        var observation = AudioBufferQueue.Refill(_al!, _source, _buffers, _sampleBuf,
+            FramesPerBuffer, spu, static (producer, samples, frames) =>
+            {
+                producer.Mix(samples, frames);
+                Diagnostics.NativeAudioCapture.Write(samples);
+            });
+        Diagnostics.NativeAudioStateTrace.Record(spu, observation.State, observation.Processed,
+            observation.State == (int)SourceState.Playing, observation.Recovered);
     }
 
     public static void Shutdown()
@@ -126,6 +118,8 @@ internal static unsafe class Audio
         if (_alc == null) return;
         _running = false;
         _mixerThread?.Join();
+        Diagnostics.NativeAudioCapture.Close();
+        Diagnostics.NativeAudioStateTrace.Close();
         _alc.MakeContextCurrent(_context);
         if (_al != null)
         {
