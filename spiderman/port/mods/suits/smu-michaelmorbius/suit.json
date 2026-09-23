@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-michaelmorbius",
+  "name": "SMU MICHAELMORBIUS",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "AF85C3FB": "textures/diffuse.png",
+    "C08BC845": "textures/diffuse-1.png"
+  }
+}

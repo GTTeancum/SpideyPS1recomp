@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-mattiefranklin",
+  "name": "SMU MATTIEFRANKLIN",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "5BC355E4": "textures/diffuse.png",
+    "14BD04EC": "textures/diffuse-1.png"
+  }
+}

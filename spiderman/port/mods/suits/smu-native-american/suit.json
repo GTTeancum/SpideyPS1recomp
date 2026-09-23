@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-native-american",
+  "name": "SMU NATIVE AMERICAN",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "B2455DFD": "textures/diffuse.png"
+  }
+}

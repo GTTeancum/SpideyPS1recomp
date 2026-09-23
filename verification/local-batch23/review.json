@@ -1,0 +1,26 @@
+{
+  "batch": 23,
+  "keys": [
+    "flashthompson_unmasked",
+    "ironspidernew",
+    "ironspidernewwithtentackles",
+    "izumi",
+    "jessica_drew",
+    "mangaversegirl",
+    "mattiefranklin",
+    "michaelmorbius",
+    "native_american",
+    "noirnew"
+  ],
+  "representative": "smu-mangaversegirl",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Individually reviewed both native framebuffer images. Mangaverse Girl is present in a swing and grounded stance, with long red hair, flared leg silhouette, wrist wraps and shoes visible. The swing line reaches the raised hand. Free fingers remain visibly curled but open, so fist closure is not accepted. Hair secondary motion and front facial detail are not established by these rear views.",
+  "liveSwingImages": [
+    "frame_01557.png"
+  ],
+  "images": {
+    "frame_01557.png": "6282681d53de81d1c4d5ac3f1f1b768707e41e511c0511d261a19aa61a19f37b",
+    "frame_01862.png": "db516c2bac0cd3f85951415a23c524c071f417914e75d753175a66ae4830e3c6"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

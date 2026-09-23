@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-jessica-drew",
+  "name": "SMU JESSICA DREW",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "99642877": "textures/diffuse.png",
+    "60651213": "textures/diffuse-1.png"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-ironspidernew",
+  "name": "SMU IRONSPIDERNEW",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "F8CEE22A": "textures/diffuse.png",
+    "14C17B0E": "textures/diffuse-1.png"
+  }
+}

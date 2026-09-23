@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-izumi",
+  "name": "SMU IZUMI",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "C471A8D3": "textures/diffuse.png"
+  }
+}

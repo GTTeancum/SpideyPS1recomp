@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-ironspidernewwithtentackles",
+  "name": "IRONSPIDERNEWW #094",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "1461939C": "textures/diffuse.png",
+    "815CDF35": "textures/diffuse-1.png"
+  }
+}

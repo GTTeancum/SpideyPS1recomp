@@ -1,0 +1,604 @@
+{
+  "schema": 1,
+  "batch": "batch-23",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "flashthompson_unmasked",
+    "ironspidernew",
+    "ironspidernewwithtentackles",
+    "izumi",
+    "jessica_drew",
+    "mangaversegirl",
+    "mattiefranklin",
+    "michaelmorbius",
+    "native_american",
+    "noirnew"
+  ],
+  "results": [
+    {
+      "key": "flashthompson_unmasked",
+      "id": "smu-flashthompson-unmasked",
+      "fbx": "costumes/flashthompson_unmasked/flashthompson_unmasked.fbx",
+      "fbxSha256": "1bfddf76c704b53999bebcf269bed0a3171464c44ac666cd9204249053a771da",
+      "textureFiles": [
+        "textures-png\\FlashThompson_unmasked_D.png"
+      ],
+      "textureSha256": [
+        "b876a30bd6cb400307c1bb41511af11684085741233f0896611ff4c0a15cda51"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2701,
+      "sourceTriangles": 3916,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "FlashThompson_unmasked_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "FlashThompson",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\FlashThompson_unmasked_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 922188,
+      "outputs": {
+        "actor.psx": "6f2d6cfa7750eb3175b49ba0ade96a1853e737739544aba23472387704826765",
+        "conversion-report.json": "8b3f8e8aa5547650ef50d635c44b1b4babf57b6c6b17bd96580cc63dd819c175",
+        "suit.json": "8e4d8d25063da1aa9c9c99889588c6b8f16e1cd3c8cc92d24bab0475a54c440b",
+        "textures\\diffuse.png": "56647582d29460caf016bda302ddf6570de00089fa26a320289e802dc593b713"
+      }
+    },
+    {
+      "key": "ironspidernew",
+      "id": "smu-ironspidernew",
+      "fbx": "costumes/ironspidernew/ironspidernew.fbx",
+      "fbxSha256": "372967cd4eb34fe93186744045b79bb062c1827174b43d17045cf41b2a2f4896",
+      "textureFiles": [
+        "textures-png\\IronSpiderNew_D.png",
+        "textures-png\\SpiderWeb.png"
+      ],
+      "textureSha256": [
+        "903e0ac87cb6c036f26be71a878be52ea4798c9884c9d30de2bd55f2a459942a",
+        "e158bef64c2c987c1e10665ce51ed75835edfbfee716dc93fa54de329fb909a7"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2003,
+      "sourceTriangles": 3278,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "IronSpiderNew_D.tga",
+        "SpiderWeb.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Iron1",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderWeb.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Material_01",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\IronSpiderNew_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 851156,
+      "outputs": {
+        "actor.psx": "9f6f7f120d255bb97100c92665a79d474b769b48ac6914c4069eadcc644189b0",
+        "conversion-report.json": "056d4be665e651b42bd11b27f04a6cc44657a5caeb59b4eaaa91886729cc692b",
+        "suit.json": "55fef896c3445e4d9807b0ca0498126c6f5d626cc2ceac39e45b92a5b64d4d51",
+        "textures\\diffuse-1.png": "99233b0b6580fad5e48c2cf031087fcd4e39fcae2afcc2dc9d8e16c07678f0fa",
+        "textures\\diffuse.png": "06a6f7a0c3bd041cd103ae0cbcbf446b29b2d2f33be6896697d76f84d6f059d6"
+      }
+    },
+    {
+      "key": "ironspidernewwithtentackles",
+      "id": "smu-ironspidernewwithtentackles",
+      "fbx": "costumes/ironspidernewwithtentackles/ironspidernewwithtentackles.fbx",
+      "fbxSha256": "ef80dc67a056eb6d536709b5056d7df6b2edd92a72cc2b8970ee534500ad49b6",
+      "textureFiles": [
+        "textures-png\\IronSpiderNewWithTentackles_D.png",
+        "textures-png\\IronSpiderNew_light.png"
+      ],
+      "textureSha256": [
+        "8abbe494188ce53337ad55c28b212da6f26c3bb58f7dc992c41c1dd2bb46aa21",
+        "2121aafdc8f9390a540fa7158294003391d3b755426993ab1275a8f0218a0617"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3181,
+      "sourceTriangles": 4830,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "IronSpiderNewWithTentackles_D.tga",
+        "IronSpiderNew_light.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "EProof",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\IronSpiderNewWithTentackles_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Material_01",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\IronSpiderNew_light.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1047200,
+      "outputs": {
+        "actor.psx": "c94dc3efb4884f26149cda3fce8844c07b11bf415d70f480322d7aaef51ed255",
+        "conversion-report.json": "6381671e3139855ab994df144690d60affb7133d9c2a348546e0a8d4b836b50a",
+        "suit.json": "f67b66df4eba89a1c521f44c3fafd5af9104b4059ce05be150177cfad87efb82",
+        "textures\\diffuse-1.png": "c710b4b275b886e248efb5947a0140a8171b923f8d569f76b0f002e9de0e1a5e",
+        "textures\\diffuse.png": "0b2540d66bbffc41072eeabde7a373d6dcc36285e509fc5388aa2c0f36d696e8"
+      }
+    },
+    {
+      "key": "izumi",
+      "id": "smu-izumi",
+      "fbx": "costumes/izumi/izumi.fbx",
+      "fbxSha256": "8dadb2304e06cc5a7f9c9fb67b4b1937d8d3af1dd901ba8d659ae523fd3f257a",
+      "textureFiles": [
+        "textures-png\\Izumi_D.png"
+      ],
+      "textureSha256": [
+        "e2d5241edc8c55e83839ac25376657e0ea4db6a1129f704069267e4bb1f6d639"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3561,
+      "sourceTriangles": 5356,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Izumi_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "_7_-_Default123",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Izumi_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1152912,
+      "outputs": {
+        "actor.psx": "9fcd785fb95ec4c193dbe889c62c8c856127048b3e4ffcb30f43e0ee47306260",
+        "conversion-report.json": "dda6fdfebf3e5350238aa091da1dc1653126704fb9558900e7b1b4e1d83f3313",
+        "suit.json": "e682a0090562eba770711ed439403f1fffb30200546fba37916c37e8777ae5bf",
+        "textures\\diffuse.png": "76c07a2d5084e679c4ff280c9eab1a0b1bd8db8af7af455266fadcf72536cd08"
+      }
+    },
+    {
+      "key": "jessica_drew",
+      "id": "smu-jessica-drew",
+      "fbx": "costumes/jessica_drew/jessica_drew.fbx",
+      "fbxSha256": "44f6da89f66c621aaa3a734374676f9049349cfa95cb1d225e6c2569f41f38a8",
+      "textureFiles": [
+        "textures-png\\Jessica_Drew_D.png"
+      ],
+      "textureSha256": [
+        "2d4321308b898849159c01f71ddd431ae62975dfe9bbb249fbfd7c2e22bc942a"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2144,
+      "sourceTriangles": 3578,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Jessica_Drew_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "JessicaDrewAlpha",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Jessica_Drew_D.png",
+            "alphaBound": true,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Material_01",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Jessica_Drew_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 925892,
+      "outputs": {
+        "actor.psx": "75bd02ccc1fe5ad5f40a217817aee477dc73a0b993f2aaec8a58fa56dbeea044",
+        "conversion-report.json": "9268501a43a8d3d022d4dcf5e7bfe4322744a0345614570b1f1d6b590cfbf173",
+        "suit.json": "23fbaefd87015cb5f8ee8f43612ad3f34cf638119a8e30aa03d6e94589e43cbd",
+        "textures\\diffuse-1.png": "bb6bf95b36f7e61d040d43dd562e8e8efddad92562436abdde393ef770de43a0",
+        "textures\\diffuse.png": "2d4321308b898849159c01f71ddd431ae62975dfe9bbb249fbfd7c2e22bc942a"
+      }
+    },
+    {
+      "key": "mangaversegirl",
+      "id": "smu-mangaversegirl",
+      "fbx": "costumes/mangaversegirl/mangaversegirl.fbx",
+      "fbxSha256": "31279f6983d406a3860d892e001d7c4b85a59a8afc205d45a7df067a5ca53927",
+      "textureFiles": [
+        "textures-png\\MangaverseGirl_D.png"
+      ],
+      "textureSha256": [
+        "a37da7d5d22193c40926004a0ee5024fe2ba2aa3fefdccdecc8d4ef5cd5cc0a3"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3704,
+      "sourceTriangles": 5686,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MangaverseGirl_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "EarthX",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MangaverseGirl_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "__64",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MangaverseGirl_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1192420,
+      "outputs": {
+        "actor.psx": "4bdbd5fca167cb21cc34e59da914ebd67a8502ff4d7acea987120de229bf4bc9",
+        "conversion-report.json": "75c65ed215bdcc8924edf4c85508d338845b7567b7d8f1a3b1a1350369e91038",
+        "suit.json": "5c06ac44cef345e9c0ddb70b0ce9cd810c7df43e9b439f4f5a02d87f5b7e4f93",
+        "textures\\diffuse-1.png": "cc9089719bdba352d68ef5dd53fbdd782455f48ff29c737979313c997a193374",
+        "textures\\diffuse.png": "cc9089719bdba352d68ef5dd53fbdd782455f48ff29c737979313c997a193374"
+      }
+    },
+    {
+      "key": "mattiefranklin",
+      "id": "smu-mattiefranklin",
+      "fbx": "costumes/mattiefranklin/mattiefranklin.fbx",
+      "fbxSha256": "47c6553fb8696e9c32ec84e3b60aac5819da647bd7b2ba26b7cea1e59854212b",
+      "textureFiles": [
+        "textures-png\\MattieFranklinWings_D.png",
+        "textures-png\\MattieFranklin_D.png"
+      ],
+      "textureSha256": [
+        "390cceec42d211dc1410be80db386f19ce3a221ace800be4517ffc4fe4be0ff7",
+        "709d012f5a64d39c7996eecf6fbff2bc8a2b3f68e9272f8e85340df0a0dea760"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2727,
+      "sourceTriangles": 4368,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MattieFranklinWings_D.tga",
+        "MattieFranklin_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "_7_-_Default123",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MattieFranklin_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "_3_-_Default654",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MattieFranklinWings_D.png",
+            "alphaBound": true,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 956700,
+      "outputs": {
+        "actor.psx": "668c14dca7919e1ae9bcd9e72698a2f367f662f6a2c0a4b955215d6c330ace96",
+        "conversion-report.json": "729b6af07037be6cbd409272cce9fc9523fbd96e84257b0bef9caf27db9c8a68",
+        "suit.json": "a7515b6779d01e348ece09b96c1bf39dd3d3bcbbfdb1fa8cc2473bfb362e61ff",
+        "textures\\diffuse-1.png": "390cceec42d211dc1410be80db386f19ce3a221ace800be4517ffc4fe4be0ff7",
+        "textures\\diffuse.png": "e509c2ebf37b9f51859c552b1cf3659c3d9056d4bd0a9d7673951643361cf99d"
+      }
+    },
+    {
+      "key": "michaelmorbius",
+      "id": "smu-michaelmorbius",
+      "fbx": "costumes/michaelmorbius/michaelmorbius.fbx",
+      "fbxSha256": "e788412d9306c67800dda3a309ed7dd049c26a98cff73471d0d0682587769de9",
+      "textureFiles": [
+        "textures-png\\MichaelMorbiusMantle_D.png",
+        "textures-png\\MichaelMorbius_D.png"
+      ],
+      "textureSha256": [
+        "104bec96307ed329dd55baccd233c264212dde40676e7ff203b616519f16dfa7",
+        "1302a8a92d956d90fa2ae2d73f323b41632d875daf5a84c685d99bfeb7f01b91"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2307,
+      "sourceTriangles": 3690,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MichaelMorbiusMantle_D.tga",
+        "MichaelMorbius_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Morbius",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MichaelMorbius_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "_3_-_Default654",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MichaelMorbiusMantle_D.png",
+            "alphaBound": true,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 893388,
+      "outputs": {
+        "actor.psx": "a31743c94bf64eac3f30191c382e1c641b7750e8bd6e197cf9c8795f44f34a9d",
+        "conversion-report.json": "a325f3ee045b73c6b591d572c50e0085f1a13421983649255fc67e1686bc2421",
+        "suit.json": "007b77704202f44996246e58c912e4514446c67b9abe419e5583776c6582599f",
+        "textures\\diffuse-1.png": "104bec96307ed329dd55baccd233c264212dde40676e7ff203b616519f16dfa7",
+        "textures\\diffuse.png": "16fd0fbc337db2396e7dcd8fb587c785bc0757a95d79a325c33fe8433ee33798"
+      }
+    },
+    {
+      "key": "native_american",
+      "id": "smu-native-american",
+      "fbx": "costumes/native_american/native_american.fbx",
+      "fbxSha256": "5712111367f14783bafdf7abcd05c349b6a14e774db82b0db74ebeaddff59123",
+      "textureFiles": [
+        "textures-png\\Native_american_D.png"
+      ],
+      "textureSha256": [
+        "72b03f84e383a6d63584d64dece2ed8db92cc425bc3dbd5b357f0da00f6a4c30"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3117,
+      "sourceTriangles": 4358,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Native_american_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Silk2",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Native_american_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1064984,
+      "outputs": {
+        "actor.psx": "5e49afb2c41d7b7831de94f154614cff9cad7870d5448204e1bc00de1b01b43a",
+        "conversion-report.json": "12ae8e291f594ac8b9c78eec425ee4189041db965d366fb3bbc9e68c144a8ad0",
+        "suit.json": "fbc295c40136e0465d9cbf224fa04e974264495ce19011c35218d4da03193e96",
+        "textures\\diffuse.png": "2345399211f93c8ed3e9cafe02b0a2ff724bf8ef1a0a36e57689c5e362f020a2"
+      }
+    },
+    {
+      "key": "noirnew",
+      "id": "smu-noirnew",
+      "fbx": "costumes/noirnew/noirnew.fbx",
+      "fbxSha256": "f29ad6ada8084279ba2611318d677ec426834b926cfba06fe5ec3aaae656d470",
+      "textureFiles": [
+        "textures-png\\NoirNew_D.png"
+      ],
+      "textureSha256": [
+        "f1894c466ee3cf45b449a5376e80a51f0e73405fa8f2564d4f2778f328a5dc2e"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2018,
+      "sourceTriangles": 3226,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "NoirNew_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "NoirNew",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\NoirNew_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 838400,
+      "outputs": {
+        "actor.psx": "3d3ab675637cd11d462a1aa31c776f3713ff5f1698a02011d8e2e272aa5bcd14",
+        "conversion-report.json": "0dad0f0fc4a6aabd690e558a3413a78e0daa8f2bf1503f3787841c21212b6c4b",
+        "suit.json": "54355361ba2c33717b0b3bd229b2bd0435810a3935a2b12922df78584c1e30c5",
+        "textures\\diffuse.png": "f3cead4d1e4d0a2395b0bc390fe884ecb551abf8262df3d581c2d0407a569cca"
+      }
+    }
+  ]
+}
