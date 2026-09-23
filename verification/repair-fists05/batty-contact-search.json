@@ -1,0 +1,40 @@
+{
+  "scope": "Experimental unsigned-source and signed palm-normal tip clearance; static reference palm. Not full collision or native acceptance.",
+  "best": [
+    {
+      "digit": 2,
+      "baseLean": 0.8,
+      "convergence": 0.35,
+      "closure": 0.1,
+      "gaps": [
+        6.152801513671875,
+        6.152801513671875
+      ],
+      "score": 0.023348302580416203
+    },
+    {
+      "digit": 3,
+      "baseLean": 0.2,
+      "convergence": 0.35,
+      "closure": 1.2000000000000002,
+      "gaps": [
+        9.621856689453125,
+        12.699951171875,
+        5.63232421875,
+        5.63232421875
+      ],
+      "score": 14.569390636170283
+    },
+    {
+      "digit": 5,
+      "baseLean": 1.0,
+      "convergence": 1.0,
+      "closure": 1.8000000000000003,
+      "gaps": [
+        7.6396484375,
+        7.6396484375
+      ],
+      "score": 2.6884469985961914
+    }
+  ]
+}

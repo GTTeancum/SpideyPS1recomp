@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "command": "python tools/retarget/test_finger_flexion_policy.py",
+  "tests": 7,
+  "exitCode": 0,
+  "scope": "2099 claw exceptions, exact-name/source-hash aiming guards, and both Arana Gymnast and Batty Brant calibration checks: only twelve non-thumb rotations change, all other calibration data exact, orthonormal rotations. Not exhaustive contact/collision acceptance."
+}

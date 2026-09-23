@@ -40,13 +40,21 @@ FINGER_AIM_SHA256 = '8cbc3a2a80e5ad8092a3e32e0dd1d3ff10455233a5bc7d42d0aa4536d88
 FINGER_AIM_SETTINGS = {2: (.6, .35, 3.0000000000000004),
                        3: (0, .35, 1.7000000000000002),
                        5: (.2, 1., 3.0000000000000004)}
+FINGER_AIM_POLICIES = {
+    FINGER_AIM_SOURCE: (FINGER_AIM_SHA256, FINGER_AIM_SETTINGS),
+    'batty_brant': ('505ee47fdc44383e89271da42f2616c01eedef58d467f062ca3bb52cfd537753',
+                   {2: (.8, .35, .1), 3: (.2, .35, 1.2000000000000002),
+                    5: (1., 1., 1.8000000000000003)}),
+}
 
 
 def apply_finger_aim(scene, bind, fist, reports):
-    if scene.path.stem != FINGER_AIM_SOURCE:
+    policy = FINGER_AIM_POLICIES.get(scene.path.stem)
+    if policy is None:
         return
-    if scene.sha256 != FINGER_AIM_SHA256:
-        raise ValueError('Arana Gymnast finger policy requires the verified source hash')
+    source_hash, settings = policy
+    if scene.sha256 != source_hash:
+        raise ValueError('Source-relative finger policy requires the verified source hash')
     # This source's splayed fingers need independent aiming, not a shared curl axis.
     for side in ('L', 'R'):
         palm, middle, index, little = [scene.index(side+n) for n in
@@ -56,7 +64,7 @@ def apply_finger_aim(scene, bind, fist, reports):
         inward = unit(np.cross(across, forward))
         if inward@bind[palm,:3,0] < 0:
             inward = -inward
-        for digit, (lean, convergence, closure) in FINGER_AIM_SETTINGS.items():
+        for digit, (lean, convergence, closure) in settings.items():
             first, second = [scene.index(side+f'ArmDigit{digit}{segment}') for segment in (1, 2)]
             length = np.linalg.norm(bind[second,:3,3]-bind[first,:3,3])
             lateral = (bind[middle,:3,3]-bind[first,:3,3])@across

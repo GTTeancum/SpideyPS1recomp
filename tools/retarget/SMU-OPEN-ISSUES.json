@@ -46,20 +46,21 @@
       "id": "visual-fist-closure",
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
-      "evidence": "verification/repair-fists04/review.json",
-      "nativeReviewedRepairs": ["smu-amazing-spider", "smu-spiderham", "smu-other", "smu-2099", "smu-anti-venom", "smu-ancientvenom", "smu-arana-gymnast"],
-      "heldBatch": {
+      "evidence": "verification/repair-fists05/review.json",
+      "nativeReviewedRepairs": ["smu-amazing-spider", "smu-spiderham", "smu-other", "smu-2099", "smu-anti-venom", "smu-ancientvenom", "smu-arana-gymnast", "smu-batty-brant", "smu-baghead"],
+      "resolvedHeldBatch": {
         "batch": "fist-repair-batch04",
-        "count": 9,
+        "status": "resolved",
+        "count": 0,
         "originalCount": 10,
         "separatelyRepaired": ["smu-arana-gymnast"],
         "installed": false,
         "evidence": "verification/diagnostic-fists04/review.json",
         "followupEvidence": "verification/experimental-finger-aim01/review.json",
         "diagnosis": "Source-weighted digit tracing identifies the sideways tips as the index and little fingers. Their source spread survives shared-axis flexion. A source-relative aiming experiment reduces that spread without changing bind/weights/lengths, but completed native closeups still show a gap rather than a closed fist. Both candidates remain uninstalled despite passing all 55 structural checks, 4196-frame animation/isolation checks, 115-frame web checks and managed loading. Completed captures show jumping rather than swinging, so they are not live web-endpoint proof. Next: refine distal closure toward the palm and check for penetration before installation.",
-        "finding": "The original ten-suit staging remains historical and uninstalled. Arana Gymnast was subsequently repaired and installed separately with hash-guarded per-digit closure and an individually reviewed native swing/crop pair; see verification/repair-fists04/review.json. Nine other suits remain held, including Batty Brant's unresolved finger appearance. Earlier uniform-curl and first aiming experiments remain rejected, not replacement installation candidates."
+        "finding": "The original rejected staging and first aiming experiment remain historical and uninstalled. Arana Gymnast was repaired separately in repair-fists04. The other nine suits were regenerated, fully reverified and installed in repair-fists05, with source-hash-guarded per-digit Batty Brant closure and individually reviewed native swing/crop pairs for Batty Brant and Baghead. No suits remain held from this batch. These representative views are not exhaustive contact/collision acceptance."
       },
-      "progress": "Twenty-four production actors now have verified finger repairs after full animation, web, loading and isolation checks. Arana Gymnast uses source-hash-guarded independent finger aiming with measured distal closure; its native swing/crop pair shows a compact free-hand fist and web at the raised hand. The original 2099 meshes retain their eased distal policy; other repaired suits use the tighter base curl. Authored claws, thumb opposition, display names and texture bytes remain intact. The other 209 suits still await the follow-up finger pass. Visual review is representative, not every suit or exhaustive contact/collision testing.",
+      "progress": "Thirty-three production actors now have verified finger repairs after full animation, web, loading and isolation checks. Arana Gymnast and Batty Brant use separately measured, source-hash-guarded per-digit closure; native swing/crop pairs show compact free-hand fists and webs at raised hands. Baghead also has reviewed native proof. The original 2099 meshes retain eased distal flexion; other repaired suits use the tighter base curl. Authored claws, thumb opposition, names and texture bytes remain intact. The other 200 suits await the follow-up finger pass. Visual review is representative, not every suit or exhaustive contact/collision testing.",
       "next": "Roll the verified base-curl repair through the remaining catalogue in small tested batches. Preserve earlier material, tongue and source-body repairs. Use complete anatomical geometry, not packet-5-only close-ups, and retain at most two native images per representative."
     },
     {

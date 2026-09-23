@@ -4,7 +4,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 import numpy as np
-from scene import non_thumb_flexion, apply_finger_aim, Scene, calibrate, FINGER_AIM_SHA256
+from scene import non_thumb_flexion, apply_finger_aim, Scene, calibrate, FINGER_AIM_SHA256, FINGER_AIM_POLICIES
 from convert import donor_info
 
 
@@ -24,20 +24,28 @@ class FlexionPolicyTests(unittest.TestCase):
                 self.assertEqual(non_thumb_flexion(source,segment),85)
 
     def test_aim_policy_does_not_match_other_names(self):
-        for source in ('arana', 'arana_gymnast_extra', 'batty_brant'):
+        for source in ('arana', 'arana_gymnast_extra', 'batty_brant_extra'):
             apply_finger_aim(SimpleNamespace(path=Path(source+'.fbx')), None, None, None)
 
     def test_changed_aim_source_is_rejected_before_mutation(self):
         with self.assertRaisesRegex(ValueError, 'verified source hash'):
             apply_finger_aim(SimpleNamespace(path=Path('arana_gymnast.fbx'), sha256='changed'), None, None, None)
+        with self.assertRaisesRegex(ValueError, 'verified source hash'):
+            apply_finger_aim(SimpleNamespace(path=Path('batty_brant.fbx'), sha256='changed'), None, None, None)
 
     def test_measured_aim_preserves_everything_except_twelve_finger_rotations(self):
+        self.check_pose_fidelity('arana_gymnast',FINGER_AIM_SHA256)
+
+    def test_batty_aim_preserves_everything_except_twelve_finger_rotations(self):
+        self.check_pose_fidelity('batty_brant',FINGER_AIM_POLICIES['batty_brant'][0])
+
+    def check_pose_fidelity(self,key,source_hash):
         samples=Path('C:/Programming/SMU-Costumes/costumes')
-        source=Scene(samples/'arana_gymnast/arana_gymnast.fbx')
+        source=Scene(samples/key/(key+'.fbx'))
         reference=Scene(samples/'2099/2099.fbx')
         donor=Path(__file__).resolve().parents[2]/'spiderman/extracted/wad/spidey.psx'
         origins,ground,_,_=donor_info(donor.read_bytes())
-        self.assertEqual(source.sha256,FINGER_AIM_SHA256)
+        self.assertEqual(source.sha256,source_hash)
         with patch('scene.apply_finger_aim'):
             before=calibrate(source,reference,origins,ground)
         after=calibrate(source,reference,origins,ground)
