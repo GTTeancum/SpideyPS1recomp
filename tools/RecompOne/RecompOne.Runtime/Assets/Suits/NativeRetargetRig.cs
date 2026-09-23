@@ -13,6 +13,7 @@ public sealed unsafe class NativeRetargetRig
     public int BoneCount { get; }
     public int VertexCount { get; }
     public int[][] Packets { get; }
+    public int[] PacketDrivers { get; }
     public float[][] LocalVertices => _packetLocal;
     public ReadOnlyMemory<byte> PreservedData => _data;
 
@@ -39,10 +40,13 @@ public sealed unsafe class NativeRetargetRig
         int U(int p) => checked((int)BinaryPrimitives.ReadUInt32LittleEndian(_data.AsSpan(p)));
         BoneCount = U(12); VertexCount = U(16);
         _bonePose = new float[BoneCount * 12]; _world = new float[VertexCount * 6];
-        Packets = new int[18][]; _packetWorld = new float[18][]; _packetLocal = new float[18][];
+        int countPackets = U(4) == 3 ? U(280) : 18;
+        Packets = new int[countPackets][]; _packetWorld = new float[countPackets][]; _packetLocal = new float[countPackets][];
+        PacketDrivers = new int[countPackets];
         int table = U(40);
-        for (int i = 0; i < 18; i++)
+        for (int i = 0; i < countPackets; i++)
         {
+            PacketDrivers[i] = U(4) == 3 ? U(U(284) + i * 4) : i;
             int count = U(table + i * 8), offset = U(table + i * 8 + 4);
             Packets[i] = new int[count];
             for (int v = 0; v < count; v++) Packets[i][v] = U(offset + v * 4);
@@ -59,13 +63,13 @@ public sealed unsafe class NativeRetargetRig
             int e = Core.rtg_evaluate(d, (uint)_data.Length, input, openHands ? 1u : 0u,
                 bones, (uint)_bonePose.Length, world, (uint)_world.Length);
             if (e != 0) throw new InvalidDataException($"retarget evaluation failed ({e})");
-            for (int i = 0; i < 18; i++)
+            for (int i = 0; i < Packets.Length; i++)
             {
                 for (int v = 0; v < Packets[i].Length; v++)
                     Array.Copy(_world, Packets[i][v] * 6, _packetWorld[i], v * 6, 6);
                 if (Packets[i].Length == 0) continue;
                 fixed (float* w = _packetWorld[i], l = _packetLocal[i])
-                    e = Core.rtg_to_part(input + i * 12, w, (uint)Packets[i].Length, l);
+                    e = Core.rtg_to_part(input + PacketDrivers[i] * 12, w, (uint)Packets[i].Length, l);
                 if (e != 0) throw new InvalidDataException($"retarget part transform failed ({i}:{e})");
                 for (int v = 0; v < Packets[i].Length; v++)
                     for (int k = 0; k < 3; k++)

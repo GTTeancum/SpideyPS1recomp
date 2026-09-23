@@ -23,8 +23,8 @@ def packetize(faces,controls,scene,cal):
     # Try anatomical ownership first, then spill oversized meshes into capacity in
     # other always-visible packets. Alternate hands remain exact duplicate packets.
     if len(controls)>4096:
-        raise ValueError(f'Full-quality mesh has {len(controls)} runtime vertices; '
-                         'native RTG2 supports at most 4096. Refused to merge normals, weights or drop geometry')
+        if len(controls)>8192:raise ValueError('Full-quality mesh exceeds the bounded paged transport')
+        return paged_packets(faces)
     owner=[]
     for c in controls:
         bi=max(scene.weights[c],key=lambda w:w[1])[0]
@@ -89,8 +89,34 @@ def compact_packets(faces,owner,preserve_hand_partition=True):
     for alias,primary in [(6,5),(11,10)]:bins[alias]=bins[primary].copy();ids[alias]=ids[primary].copy()
     return [sorted(v) for v in ids],bins,len(faces)
 
+def paged_packets(faces):
+    """Preserve triangles in bounded pages; extra pages share native driver zero."""
+    bins=[[] for _ in range(18)];ids=[set() for _ in range(18)]
+    triangles=[set(map(int,f)) for f in faces];pending=set(range(len(faces)))
+    adjacency={}
+    for fi,face in enumerate(faces):
+        for v in face:adjacency.setdefault(int(v),set()).add(fi)
+    slots=[i for i in range(18) if i not in (6,11)]+list(range(18,64))
+    for part in slots:
+        if not pending:break
+        if part>=len(bins):bins.append([]);ids.append(set())
+        frontier=set()
+        while pending:
+            options=[fi for fi in frontier if len(ids[part]|triangles[fi])<=256]
+            if not options:options=[fi for fi in pending if len(ids[part]|triangles[fi])<=256]
+            if not options:break
+            fi=min(options,key=lambda i:(len(triangles[i]-ids[part]),i))
+            pending.remove(fi);bins[part].append(fi);ids[part].update(triangles[fi])
+            for v in triangles[fi]:frontier.update(adjacency[v]&pending)
+            frontier.intersection_update(pending)
+    if pending:raise ValueError('Full-quality geometry exceeds 64 bounded pages; no faces dropped')
+    for alias,primary in ((6,5),(11,10)):
+        bins[alias]=bins[primary].copy();ids[alias]=ids[primary].copy()
+    return [sorted(v) for v in ids],bins,len(faces)
+
 def make_blob(scene,cal,vertices,controls,faces,packets):
-    d=bytearray(280);bo=len(d)
+    paged=len(packets)>18
+    d=bytearray(296 if paged else 280);bo=len(d)
     for i in range(len(scene.names)):
         d.extend(struct.pack('<iiiI',scene.parents[i],int(cal['drivers'][i]),int(i==cal['anchor']),i))
         for mat in [np.linalg.inv(cal['bind'][i])[:3],cal['rest'][i,:3],cal['local'][i,:3],cal['fist'][i]]:
@@ -100,7 +126,10 @@ def make_blob(scene,cal,vertices,controls,faces,packets):
         ws=scene.weights[ctrl];d.extend(struct.pack('<6fII',*v,len(weights),len(ws)));weights.extend(ws)
     wo=len(d)
     for b,w in weights:d.extend(struct.pack('<If',b,w))
-    po=len(d);d.extend(bytes(18*8))
+    po=len(d);d.extend(bytes(len(packets)*8))
+    if paged:
+        mapping=len(d);d.extend(np.array(list(range(18))+[0]*(len(packets)-18),dtype='<u4').tobytes())
+        struct.pack_into('<4I',d,280,len(packets),mapping,0,0)
     for i,ids in enumerate(packets):
         struct.pack_into('<II',d,po+i*8,len(ids),len(d));d.extend(np.array(ids,dtype='<u4').tobytes())
     to=len(d);d.extend(np.asarray(faces,dtype='<u4').tobytes())
@@ -114,14 +143,14 @@ def make_blob(scene,cal,vertices,controls,faces,packets):
     if hasattr(scene,'source_meshes'):provenance['sourceMeshes']=scene.source_meshes
     text=json.dumps(provenance,separators=(',',':'),allow_nan=False).encode();d.extend(text)
     while len(d)%4:d.append(0)
-    header=[MAGIC,2,len(d),len(scene.names),len(vertices),len(weights),cal['anchor'],bo,vo,wo,po,jo,len(text),to,len(faces),0]
+    header=[MAGIC,3 if paged else 2,len(d),len(scene.names),len(vertices),len(weights),cal['anchor'],bo,vo,wo,po,jo,len(text),to,len(faces),0]
     struct.pack_into('<16I',d,0,*header);struct.pack_into('<f',d,60,cal['root_scale']);d[64:280]=np.array(cal['native_origins'],dtype='<f4').tobytes()
     return bytes(d)
 
 class Rig:
-    def __init__(self,blob):
+    def __init__(self,blob,*,library=None):
         self.blob=bytes(blob);self.h=struct.unpack_from('<16I',self.blob);self.bones=self.h[3];self.count=self.h[4]
-        lib=Path(__file__).resolve().parent/'native'/'bin'/('OpenSpideyRetarget.dll' if sys.platform=='win32' else 'libOpenSpideyRetarget.so')
+        lib=library or Path(__file__).resolve().parent/'native'/'bin'/('OpenSpideyRetarget.dll' if sys.platform=='win32' else 'libOpenSpideyRetarget.so')
         self.lib=C.CDLL(str(lib));self.buf=C.create_string_buffer(self.blob)
         fp=C.POINTER(C.c_float)
         self.lib.rtg_validate.argtypes=[C.c_void_p,C.c_uint];self.lib.rtg_validate.restype=C.c_int
@@ -145,9 +174,14 @@ class Rig:
         return out
     def packets(self):
         out=[]
-        for i in range(18):
+        count=struct.unpack_from('<I',self.blob,280)[0] if self.h[1]==3 else 18
+        for i in range(count):
             n,p=struct.unpack_from('<II',self.blob,self.h[10]+i*8);out.append(np.frombuffer(self.blob,'<u4',n,p).copy())
         return out
+    def packet_drivers(self):
+        if self.h[1]==2:return list(range(18))
+        count,offset=struct.unpack_from('<II',self.blob,280)
+        return list(struct.unpack_from('<'+str(count)+'I',self.blob,offset))
     def faces(self):return np.frombuffer(self.blob,'<u4',self.h[14]*3,self.h[13]).reshape(-1,3).copy()
     def source_vertices(self):
         return np.array([struct.unpack_from('<6f',self.blob,self.h[8]+i*32) for i in range(self.count)])

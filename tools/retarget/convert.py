@@ -75,6 +75,8 @@ def convert(fbx,reference,donor,texture,out,suit_id,name):
     for record in material_records:inputs[record['source']]=hashlib.sha256(Path(record['source']).read_bytes()).hexdigest()
     cal=calibrate(s,ref,origins,ground);vertices,controls,faces=unique_vertices(s,cal)
     packets,bins,overflow=packetize(faces,controls,s,cal)
+    if len(packets)!=18:
+        raise ValueError('Paged mesh transport is not yet integrated with the native renderer; conversion refused without writing an incomplete actor')
     blob=make_blob(s,cal,vertices,controls,faces,packets);rig=Rig(blob)
     posed,bones=rig.evaluate();driver=rig.rest_driver()
     data=bytearray(raw[:736]);stats=[]

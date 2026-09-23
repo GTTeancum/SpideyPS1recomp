@@ -23,12 +23,18 @@ static float det(const float*m){return m[0]*(m[5]*m[10]-m[6]*m[9])-m[1]*(m[4]*m[
 API U rtg_abi(){return 0x00020002;}
 // 0 success; malformed files are rejected before any output/guest memory write.
 API I rtg_validate(const B*d,U len){
- if(!d||len<280||u(d)!=0x32475452||u(d+4)!=2||u(d+8)!=len)return 1;
+ if(!d||len<280||u(d)!=0x32475452||(u(d+4)!=2&&u(d+4)!=3)||u(d+8)!=len)return 1;
+ bool paged=u(d+4)==3;
+ if(paged&&len<296)return 1;
+ U packets=paged?u(d+280):18,mapping=paged?u(d+284):0;
+ if(paged&&(packets<=18||packets>64||u(d+288)||u(d+292)||!range(mapping,packets,4,len)))return 19;
+ if(paged)for(U i=0;i<packets;i++)if(u(d+mapping+i*4)!=(i<18?i:0))return 19;
  if(!finite(f(d+60))||f(d+60)<.05f||f(d+60)>8.f)return 18;
  U nb=u(d+12),nv=u(d+16),nw=u(d+20),anchor=u(d+24);
  U bo=u(d+28),vo=u(d+32),wo=u(d+36),po=u(d+40),jo=u(d+44),jl=u(d+48),to=u(d+52),nt=u(d+56);
- if(!nb||nb>256||!nv||nv>4096||nw>65536||anchor>=nb)return 2;
- if(!range(bo,nb,196,len)||!range(vo,nv,32,len)||!range(wo,nw,8,len)||!range(po,18,8,len)||!range(jo,jl,1,len)||!range(to,nt,12,len))return 3;
+ if(!nb||nb>256||!nv||nv>(paged?8192u:4096u)||nw>65536||anchor>=nb)return 2;
+ if(!range(bo,nb,196,len)||!range(vo,nv,32,len)||!range(wo,nw,8,len)||!range(po,packets,8,len)||!range(jo,jl,1,len)||!range(to,nt,12,len))return 3;
+ if(paged&&(bo<296||vo<bo+nb*196||wo<vo+nv*32||po<wo+nw*8||mapping<po+packets*8||to<mapping+packets*4||jo<to+nt*12))return 19;
  for(U i=0;i<54;i++)if(!finite(f(d+64+i*4)))return 4;
  for(U i=0;i<nb;i++){
   const B*b=d+bo+i*196;I p=si(b),driver=si(b+4);
@@ -46,8 +52,9 @@ API I rtg_validate(const B*d,U len){
   }
   if(sum<.9999f||sum>1.0001f)return 11;
  }
- for(U i=0;i<18;i++){
+ for(U i=0;i<packets;i++){
   U count=u(d+po+i*8),off=u(d+po+i*8+4);if(count>256||!range(off,count,4,len))return 12;
+  if(paged&&(off<mapping+packets*4||off>to||count>(to-off)/4))return 19;
   for(U j=0;j<count;j++)if(u(d+off+j*4)>=nv)return 13;
  }
  for(U i=0;i<nt*3;i++)if(u(d+to+i*4)>=nv)return 14;
