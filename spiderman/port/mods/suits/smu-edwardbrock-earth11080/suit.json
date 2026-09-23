@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-edwardbrock-earth11080",
+  "name": "EDWARDBROCK EA #061",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "70F20696": "textures/diffuse.png"
+  }
+}

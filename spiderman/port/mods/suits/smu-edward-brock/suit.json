@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-edward-brock",
+  "name": "SMU EDWARD BROCK",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "C43B779E": "textures/diffuse.png",
+    "140D4B8C": "textures/diffuse-1.png"
+  }
+}

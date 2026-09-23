@@ -1,0 +1,30 @@
+{
+  "batch": 7,
+  "keys": [
+    "edward_brock",
+    "edwardbrock_earth11080",
+    "electroproof",
+    "endofearth",
+    "enrage_toxin",
+    "ezekiel",
+    "fatherspider",
+    "fearitself",
+    "felicityhardy",
+    "flipside"
+  ],
+  "representative": "smu-edwardbrock-earth11080",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed all five native captures sequentially. Intro is NPC Venom; Earth-11080 Edward Brock swings at 1582/1597 with web attached to raised wrist, lands at 1627, idles at 1887. Broad torso, back spikes, hands, boots and markings stay intact. Offline tests cover ten suits; live evidence is representative.",
+  "liveSwingImages": [
+    "frame_01582.png",
+    "frame_01597.png"
+  ],
+  "images": {
+    "frame_01267.png": "1e4bee6f5e20c86ad58b0b7f2f720c8eb7895d388dee5d4820bf0da1a364d2b0",
+    "frame_01582.png": "2f16f9d8f47a26ebbd7f51e0cffbd5bbc332d4e213cad060ee7347a126c1ed88",
+    "frame_01597.png": "e08468a68f6510bf1422278d88756c964074b83628a23c63d6c0444e8701f988",
+    "frame_01627.png": "eaa904e59a8a460497eaebc7da80c97a388b5b63849ab4f4287dce00b1d91568",
+    "frame_01887.png": "f6251a04bca245e580f9856403db2fbc2375723108eabd64974cf5b0a40e3d97"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

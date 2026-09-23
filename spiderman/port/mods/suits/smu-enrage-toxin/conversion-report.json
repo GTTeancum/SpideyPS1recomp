@@ -1,0 +1,338 @@
+{
+  "schema": 2,
+  "status": "converted and core-evaluated; game execution is a separate acceptance gate",
+  "sourceRigBones": 72,
+  "sourceControlPoints": 2483,
+  "sourcePositiveInfluences": 4653,
+  "runtimeVertices": 2483,
+  "runtimeInfluences": 4653,
+  "originalTriangles": 3570,
+  "uniqueOutputTriangles": 3570,
+  "nativeBytes": 859284,
+  "rigBytes": 372168,
+  "packetSpilloverTriangles": 1576,
+  "packets": [
+    {
+      "packet": 0,
+      "vertices": 189,
+      "triangles": 221
+    },
+    {
+      "packet": 1,
+      "vertices": 256,
+      "triangles": 277
+    },
+    {
+      "packet": 2,
+      "vertices": 193,
+      "triangles": 212
+    },
+    {
+      "packet": 3,
+      "vertices": 192,
+      "triangles": 204
+    },
+    {
+      "packet": 4,
+      "vertices": 194,
+      "triangles": 228
+    },
+    {
+      "packet": 5,
+      "vertices": 134,
+      "triangles": 178
+    },
+    {
+      "packet": 6,
+      "vertices": 134,
+      "triangles": 178
+    },
+    {
+      "packet": 7,
+      "vertices": 256,
+      "triangles": 366
+    },
+    {
+      "packet": 8,
+      "vertices": 191,
+      "triangles": 200
+    },
+    {
+      "packet": 9,
+      "vertices": 198,
+      "triangles": 203
+    },
+    {
+      "packet": 10,
+      "vertices": 135,
+      "triangles": 178
+    },
+    {
+      "packet": 11,
+      "vertices": 135,
+      "triangles": 178
+    },
+    {
+      "packet": 12,
+      "vertices": 192,
+      "triangles": 231
+    },
+    {
+      "packet": 13,
+      "vertices": 190,
+      "triangles": 209
+    },
+    {
+      "packet": 14,
+      "vertices": 189,
+      "triangles": 202
+    },
+    {
+      "packet": 15,
+      "vertices": 190,
+      "triangles": 213
+    },
+    {
+      "packet": 16,
+      "vertices": 190,
+      "triangles": 217
+    },
+    {
+      "packet": 17,
+      "vertices": 193,
+      "triangles": 231
+    }
+  ],
+  "unitScale": 19.161587330459145,
+  "rootAnimationScale": 0.9027977231713765,
+  "neutralBounds": [
+    [
+      -664.8040161132812,
+      -2155.521240234375,
+      -665.7848510742188
+    ],
+    [
+      681.543701171875,
+      1719.0,
+      408.71331787109375
+    ]
+  ],
+  "sourceBindReconstructionMaxError": 0.0006013462161718053,
+  "inputHashes": {
+    "C:\\Programming\\SMU-Costumes\\costumes\\enrage_toxin\\enrage_toxin.fbx": "b2e6c9bffee15cb5fc0923d583ff929eacd70db298d95286afba0e50d251516e",
+    "C:\\Programming\\SMU-Costumes\\costumes\\2099\\2099.fbx": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\Enraged_Toxin_D.png": "a93a99e1de6a9144b76337bd328a76029ceeb98e83378431dbc7c68d42286ea1"
+  },
+  "outputSha256": "64e36887a0cfb3391457fbe162e745b191d8acfd941794bca7d560ce4dc0d3d0",
+  "fistBones": [
+    {
+      "bone": "Clown001LArmDigit01",
+      "method": "opposed-thumb-across-knuckles",
+      "localRotation": [
+        [
+          0.9963632772666773,
+          -0.07639444295309977,
+          -0.03773736610166086
+        ],
+        [
+          0.07639596312941527,
+          0.6048039617133028,
+          0.792701598783188
+        ],
+        [
+          -0.037734288544164066,
+          -0.7927017452874557,
+          0.6084406844436735
+        ]
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit02",
+      "method": "opposed-thumb-across-knuckles",
+      "localRotation": [
+        [
+          0.46309048479503645,
+          0.5400386353507924,
+          0.7027840886223522
+        ],
+        [
+          -0.8847048910524494,
+          0.32936898585351365,
+          0.32986865098960305
+        ],
+        [
+          -0.05333346641809846,
+          -0.7745155540634938,
+          0.6303024653874894
+        ]
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit21",
+      "angleDegrees": 60,
+      "axisLocal": [
+        0.3330568186000956,
+        -0.3088427004866033,
+        -0.8908924412857732
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit22",
+      "angleDegrees": 85,
+      "axisLocal": [
+        0.44733051140423585,
+        -0.07875763474812728,
+        -0.8908942970609397
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit31",
+      "angleDegrees": 60,
+      "axisLocal": [
+        -0.026703594386817867,
+        -0.03192897758473544,
+        -0.9991333536806875
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit32",
+      "angleDegrees": 85,
+      "axisLocal": [
+        -0.007813242684791458,
+        -0.04088543278586323,
+        -0.99913329172071
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit51",
+      "angleDegrees": 60,
+      "axisLocal": [
+        -0.07912590224556905,
+        0.10782979167175256,
+        -0.9910155536730245
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit52",
+      "angleDegrees": 85,
+      "axisLocal": [
+        -0.1195594599865564,
+        0.05994668929116928,
+        -0.9910156053114151
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit01",
+      "method": "opposed-thumb-across-knuckles",
+      "localRotation": [
+        [
+          0.9963631520943599,
+          -0.07639646347934327,
+          0.03773658061406089
+        ],
+        [
+          0.07639642124852791,
+          0.6048007937907244,
+          -0.7927039716379177
+        ],
+        [
+          0.037736666108835276,
+          0.7927039675679444,
+          0.6084376416963617
+        ]
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit02",
+      "method": "opposed-thumb-across-knuckles",
+      "localRotation": [
+        [
+          0.4630909056124672,
+          0.5400434482349029,
+          -0.7027801129496916
+        ],
+        [
+          -0.8847044736272524,
+          0.3293744382696269,
+          -0.32986432628960544
+        ],
+        [
+          0.05333673671074936,
+          0.7745098794935569,
+          0.6303091615103847
+        ]
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit21",
+      "angleDegrees": 60,
+      "axisLocal": [
+        -0.3330586229235273,
+        0.30884829940698155,
+        -0.8908898257639383
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit22",
+      "angleDegrees": 85,
+      "axisLocal": [
+        -0.4473403982227672,
+        0.0787593840109466,
+        -0.8908891780396213
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit31",
+      "angleDegrees": 60,
+      "axisLocal": [
+        0.026700048867885875,
+        0.03193600966642428,
+        -0.9991332236879321
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit32",
+      "angleDegrees": 85,
+      "axisLocal": [
+        0.007805609066324819,
+        0.04088322980552355,
+        -0.9991334415320972
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit51",
+      "angleDegrees": 60,
+      "axisLocal": [
+        0.07912144033888223,
+        -0.10782408550272529,
+        -0.9910165307724194
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit52",
+      "angleDegrees": 85,
+      "axisLocal": [
+        0.11955000599298955,
+        -0.05994912942845443,
+        -0.9910165982201542
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "jack_o_Flame__1",
+      "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Enraged_Toxin_D.png",
+      "alphaBound": false,
+      "tileOrigin": [
+        0,
+        0
+      ],
+      "tileCount": [
+        1,
+        1
+      ],
+      "slot": 0
+    }
+  ]
+}

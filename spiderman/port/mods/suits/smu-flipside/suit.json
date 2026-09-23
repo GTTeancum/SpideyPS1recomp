@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-flipside",
+  "name": "SMU FLIPSIDE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "44F3735F": "textures/diffuse.png"
+  }
+}

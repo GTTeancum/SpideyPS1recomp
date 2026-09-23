@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-electroproof",
+  "name": "SMU ELECTROPROOF",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "3B8013CF": "textures/diffuse.png"
+  }
+}

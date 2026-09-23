@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-fearitself",
+  "name": "SMU FEARITSELF",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "C74576F8": "textures/diffuse.png"
+  }
+}

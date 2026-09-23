@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-endofearth",
+  "name": "SMU ENDOFEARTH",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "CAC23314": "textures/diffuse.png"
+  }
+}

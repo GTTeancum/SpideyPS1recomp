@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-ezekiel",
+  "name": "SMU EZEKIEL",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "ED647B33": "textures/diffuse.png"
+  }
+}
