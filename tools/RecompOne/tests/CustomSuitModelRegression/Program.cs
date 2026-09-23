@@ -56,26 +56,30 @@ Reject(b => b[firstFace]=0x5f, "unsupported transparent face");
 Reject(b => { b[firstFace]=0x3f; b[firstFace+2]=40; }, "extended triangle crosses mesh boundary");
 bytes[0]=0;
 if (model.Bytes.Span[0]!=4) throw new Exception("model aliases caller memory");
-if (args.Length != 0)
+string[] actors = args.Length == 2 && args[0] == "--catalogue"
+    ? Directory.GetFiles(args[1], "actor.psx", SearchOption.AllDirectories).Order().ToArray()
+    : args;
+if (args.Length != 0 && actors.Length == 0) throw new Exception("empty actor catalogue");
+foreach (string actorPath in actors)
 {
-    var real = SuitModel.Read(args[0]);
+    var real = SuitModel.Read(actorPath);
     Console.WriteLine($"PASS: converted actor {real.Bytes.Length} bytes, {real.Materials.Count} material IDs");
 }
 Console.WriteLine("Custom actor validation passed.");
 
-if (args.Length != 0)
+foreach (string actorPath in actors)
 {
-    string manifestPath = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(args[0]))!, "suit.json");
+    string manifestPath = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(actorPath))!, "suit.json");
     var suit = SuitManifest.Read(manifestPath);
     if (suit.Decode().Values.Any(texture => !texture.ModelSurface))
         throw new Exception("suit textures lost their model-surface classification");
     if (suit.CustomModel == null || !suit.Textures.Keys.All(suit.CustomModel.Materials.Contains))
         throw new Exception("custom manifest did not use its actor material IDs");
-    Console.WriteLine("PASS: real custom manifest and actor material mapping");
+    Console.WriteLine("PASS: real custom manifest and actor material mapping: " + suit.Id);
     string testDir = Path.Combine(Path.GetTempPath(), "custom-suit-test-" + Guid.NewGuid());
     Directory.CreateDirectory(testDir);
     var doc = System.Text.Json.Nodes.JsonNode.Parse(File.ReadAllText(manifestPath))!;
-    foreach (string bad in new[] { "../actor.psx", Path.GetFullPath(args[0]), "actor.fbx", "missing.psx" })
+    foreach (string bad in new[] { "../actor.psx", Path.GetFullPath(actorPath), "actor.fbx", "missing.psx" })
     {
         doc["modelFile"] = bad;
         string target = Path.Combine(testDir, "suit.json");
