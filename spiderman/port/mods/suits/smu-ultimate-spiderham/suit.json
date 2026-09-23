@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-ultimate-spiderham",
+  "name": "ULTIMATE SPIDERHAM",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "8A22C5AB": "textures/diffuse.png"
+  }
+}

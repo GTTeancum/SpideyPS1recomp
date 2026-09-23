@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-ultimatedrew",
+  "name": "SMU ULTIMATEDREW",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "6FDA289A": "textures/diffuse.png"
+  }
+}

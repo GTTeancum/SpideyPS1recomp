@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "the_spider_peter_parker",
+      "id": "smu-the-spider-peter-parker",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.478759765625,
+        10.17724609375
+      ],
+      "assetSha256": "ffdb3fd945b298efa51132ec45821483d88c476d68b1430f08d3e3829f622ca6",
+      "captureSha256": "23c33892c11c2026fa63eb730647451ca504ca982fa09bcdd547df1207a0406c"
+    },
+    {
+      "key": "timesleep",
+      "id": "smu-timesleep",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.605712890625,
+        6.0078125
+      ],
+      "assetSha256": "280984b5a67410c8aa536c5dafc79609c1f8418b492dddde4a08a30f9d2b4850",
+      "captureSha256": "e251db3eff3d30d7c25fafd91e14858c9afd2cb3c3f02b6d2f5b43b722862ac0"
+    },
+    {
+      "key": "toxin",
+      "id": "smu-toxin",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        0.092041015625,
+        4.493896484375
+      ],
+      "assetSha256": "cf81e0edad078217234b271720bf7cc90705ce5ae02841152828968e207a44ea",
+      "captureSha256": "0b8d3cd0d12109b77c451ebacd89021957f75425a55f7f47983aec43e459501d"
+    },
+    {
+      "key": "uk",
+      "id": "smu-uk",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927978515625,
+        9.329833984375
+      ],
+      "assetSha256": "29edb890dedef6e6df94276a7be4771f828e63da82f54c213efaef1815c9daea",
+      "captureSha256": "b8bad32f34082dbf3f50354d709de107e13b39f02d126a3d81c9d0aa94459f9c"
+    },
+    {
+      "key": "ultimate_spiderham",
+      "id": "smu-ultimate-spiderham",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        134.111572265625,
+        145.716796875
+      ],
+      "assetSha256": "6c4118929efbd15cf7ec55e48f191c80675c9dcdbc57db0118ff9578305714c2",
+      "captureSha256": "fcf1a82484a713d094909e3fbd466bd9498fde08e9b6fdb7f798ba9db84c560e"
+    },
+    {
+      "key": "ultimatedrew",
+      "id": "smu-ultimatedrew",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.249755859375,
+        10.65185546875
+      ],
+      "assetSha256": "2c5c6f1c7e9b6ffccfbdba6a31357b6d356663b36c7c7ca3c20880cdf8d0f237",
+      "captureSha256": "23738a00f04825c31e947819ce150df11631c7134828a53e4a6d16120b4762e1"
+    },
+    {
+      "key": "uncleb",
+      "id": "smu-uncleb",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.73291015625,
+        12.135009765625
+      ],
+      "assetSha256": "576a9fe44c4b83bdf05f35ebc09a909917cdb563c4a76871dc2e43927d8bbb7b",
+      "captureSha256": "d99fb5cd190224cea5c32a64aabdf3628db03a3708350d6f5316c0373bbabb3e"
+    },
+    {
+      "key": "venomx",
+      "id": "smu-venomx",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        0.144287109375,
+        4.54638671875
+      ],
+      "assetSha256": "5914d5113261fa81ecc9194541de74f5320ca726d2b188f66aae24a2f3814342",
+      "captureSha256": "2abe610da4cd5a5917b4ad132556446dfe849d9c0611905b3a7ce51957892b7b"
+    },
+    {
+      "key": "venomzombie",
+      "id": "smu-venomzombie",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -2.5283203125,
+        2.271484375
+      ],
+      "assetSha256": "e1aef106f479be8dcf4ddf770aa86992fdb50d7a362bc3406614e5e81cd18507",
+      "captureSha256": "cc350c37fbe1809ab6f8759f73e696d6e6fbcb4dd8105e743e3d4f6edc73081c"
+    },
+    {
+      "key": "wallace_jackson",
+      "id": "smu-wallace-jackson",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.772216796875,
+        10.218994140625
+      ],
+      "assetSha256": "739cc60ddaf12621d5661e7d090766558bde6a37f1be17725bb00d4f2c6c038f",
+      "captureSha256": "0ddbf4f2805deafefdcc9d8301e9e46aef39b3776360538a139609798a99347f"
+    }
+  ]
+}

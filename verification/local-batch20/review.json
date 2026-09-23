@@ -1,0 +1,26 @@
+{
+  "batch": 20,
+  "keys": [
+    "the_spider_peter_parker",
+    "timesleep",
+    "toxin",
+    "uk",
+    "ultimate_spiderham",
+    "ultimatedrew",
+    "uncleb",
+    "venomx",
+    "venomzombie",
+    "wallace_jackson"
+  ],
+  "representative": "smu-toxin",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Inspected both Toxin native frames. Red upper-body and blue lower-body materials, long pointed feet and full limb geometry remain visible in swing and low grounded poses. The web meets the raised wrist region. Rear views do not prove mouth/tongue detail or fully closed fingers; those are separate visual checks. All ten assets have full offline rig and endpoint regressions.",
+  "liveSwingImages": [
+    "frame_01557.png"
+  ],
+  "images": {
+    "frame_01557.png": "c008a12ee0fba37d7493811f73b1fba53826ceaa21d2e6e2528b77a917437895",
+    "frame_01862.png": "8ac4dee1e13d8322ac55b22755e3af6e18bea9b9c24889fc1560e94cd493fa5d"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

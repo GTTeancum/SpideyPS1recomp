@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-wallace-jackson",
+  "name": "SMU WALLACE JACKSON",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "4C438417": "textures/diffuse.png"
+  }
+}

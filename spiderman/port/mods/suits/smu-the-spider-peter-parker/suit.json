@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-the-spider-peter-parker",
+  "name": "THE SPIDER PET #215",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "2F8518A1": "textures/diffuse.png"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-uncleb",
+  "name": "SMU UNCLEB",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "57D1C3E5": "textures/diffuse.png"
+  }
+}

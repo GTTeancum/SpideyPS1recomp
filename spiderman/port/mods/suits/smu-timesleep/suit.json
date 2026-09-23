@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-timesleep",
+  "name": "SMU TIMESLEEP",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "2209680A": "textures/diffuse.png"
+  }
+}

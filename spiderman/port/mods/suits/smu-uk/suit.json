@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-uk",
+  "name": "SMU UK",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "191E9706": "textures/diffuse.png"
+  }
+}
