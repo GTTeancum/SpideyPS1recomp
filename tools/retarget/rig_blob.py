@@ -22,6 +22,9 @@ def packetize(faces,controls,scene,cal):
     # Native meshes are transport packets; source skin influences remain untouched.
     # Try anatomical ownership first, then spill oversized meshes into capacity in
     # other always-visible packets. Alternate hands remain exact duplicate packets.
+    if len(controls)>4096:
+        raise ValueError(f'Full-quality mesh has {len(controls)} runtime vertices; '
+                         'native RTG2 supports at most 4096. Refused to merge normals, weights or drop geometry')
     owner=[]
     for c in controls:
         bi=max(scene.weights[c],key=lambda w:w[1])[0]
@@ -44,7 +47,7 @@ def packetize(faces,controls,scene,cal):
     for alias,primary in [(6,5),(11,10)]:bins[alias]=bins[primary].copy();ids[alias]=ids[primary].copy()
     return [sorted(v) for v in ids],bins,len(overflow)
 
-def compact_packets(faces,owner):
+def compact_packets(faces,owner,preserve_hand_partition=True):
     """Connected meshlets reduce duplicated boundary vertices without changing faces."""
     bins=[[] for _ in range(18)];ids=[set() for _ in range(18)]
     pending=set();triangles=[set(map(int,f)) for f in faces]
@@ -53,11 +56,13 @@ def compact_packets(faces,owner):
         scores={}
         for v in f:scores[owner[v]]=scores.get(owner[v],0)+1
         part=max(scores,key=scores.get)
-        if part in (5,10) and len(ids[part]|triangles[fi])<=256:
+        if preserve_hand_partition and part in (5,10) and len(ids[part]|triangles[fi])<=256:
             bins[part].append(fi);ids[part].update(triangles[fi])
         else:pending.add(fi)
         for v in f:adjacency.setdefault(int(v),set()).add(fi)
-    for part in [0,1,2,3,4,7,8,9,12,13,14,15,16,17]:
+    candidates=[0,1,2,3,4,7,8,9,12,13,14,15,16,17]
+    if not preserve_hand_partition:candidates.extend([5,10])
+    for part in candidates:
         frontier=set()
         while pending:
             options=[fi for fi in frontier if len(ids[part]|triangles[fi])<=256]
@@ -68,6 +73,17 @@ def compact_packets(faces,owner):
             pending.remove(fi);bins[part].append(fi);ids[part].update(triangles[fi])
             for v in triangles[fi]:frontier.update(adjacency[v]&pending)
             frontier.discard(fi)
+    # Both hand variants are identical RTG2 transport packets. Spill into their
+    # remaining space only after ordinary packets fill; duplicate the complete
+    # result below so changing native hand variants cannot drop overflow faces.
+    for part in (5,10):
+        while pending:
+            options=[fi for fi in pending if len(ids[part]|triangles[fi])<=256]
+            if not options:break
+            fi=min(options,key=lambda i:(len(triangles[i]-ids[part]),i))
+            pending.remove(fi);bins[part].append(fi);ids[part].update(triangles[fi])
+    if pending and preserve_hand_partition:
+        return compact_packets(faces,owner,False)
     if pending:
         raise ValueError(f'Full-quality mesh exceeds native 18-packet capacity ({len(pending)} triangles unplaced); refused to decimate or drop triangles')
     for alias,primary in [(6,5),(11,10)]:bins[alias]=bins[primary].copy();ids[alias]=ids[primary].copy()
