@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-india",
+  "name": "SMU INDIA",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "6C59EC6A": "textures/diffuse.png"
+  }
+}

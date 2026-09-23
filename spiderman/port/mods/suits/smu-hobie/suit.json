@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-hobie",
+  "name": "SMU HOBIE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "EA651A14": "textures/diffuse.png"
+  }
+}

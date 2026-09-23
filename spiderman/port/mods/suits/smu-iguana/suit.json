@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-iguana",
+  "name": "SMU IGUANA",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "29827015": "textures/diffuse.png"
+  }
+}

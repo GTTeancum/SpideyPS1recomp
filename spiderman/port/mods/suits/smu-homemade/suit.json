@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-homemade",
+  "name": "SMU HOMEMADE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "EDD55000": "textures/diffuse.png",
+    "5EC5709D": "textures/diffuse-1.png"
+  }
+}

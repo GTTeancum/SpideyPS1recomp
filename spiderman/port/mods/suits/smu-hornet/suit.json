@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-hornet",
+  "name": "SMU HORNET",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "CA0CAAD5": "textures/diffuse.png"
+  }
+}

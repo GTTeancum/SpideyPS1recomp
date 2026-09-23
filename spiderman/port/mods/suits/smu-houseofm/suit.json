@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-houseofm",
+  "name": "SMU HOUSEOFM",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "1E375D81": "textures/diffuse.png"
+  }
+}

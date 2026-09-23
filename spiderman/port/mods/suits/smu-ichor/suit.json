@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-ichor",
+  "name": "SMU ICHOR",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "45CD2B8B": "textures/diffuse.png"
+  }
+}

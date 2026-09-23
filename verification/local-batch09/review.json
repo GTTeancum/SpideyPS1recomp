@@ -1,0 +1,26 @@
+{
+  "batch": 9,
+  "keys": [
+    "hobie",
+    "homemade",
+    "hornet",
+    "houseofm",
+    "hunter_arana",
+    "ichor",
+    "iguana",
+    "india",
+    "ironspider",
+    "ironspider_unmasked"
+  ],
+  "representative": "smu-ichor",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed exactly two frames: Ichor swinging at 1533 and standing after landing at 1838. Distinctive arm extensions, head geometry, torso and blue/white textures are present. Raised wrist is partly obscured, so exact attachment is established by the live hook plus offline oracle rather than the screenshot alone. Run exits normally with two low-frame-rate warnings; performance is not accepted as smooth.",
+  "liveSwingImages": [
+    "frame_01533.png"
+  ],
+  "images": {
+    "frame_01533.png": "e37d6deb65bee294d4cdc8f6a4674c52446d42f7cb57534e7328d0258cc960f5",
+    "frame_01838.png": "71f5eda087506172dbea6608f8a61d646077604b1c5f9c73d046d38f49b353e3"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}
