@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-spiderman",
+    "beforeActorSha256": "dbba261441277944b5fbbbabccfec004951f576199647b1caf067511d09c9ac5",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-spiderman-2020",
+    "beforeActorSha256": "1ba76da5aea4a925466c5a8b7fc03aee651244566390d61a04a85502adc84b77",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-spiderman-newdesign",
+    "beforeActorSha256": "4a207d58850d3367eaf245910cfd6d1a2afb90f5f37b245fb7b228540d7926bd",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

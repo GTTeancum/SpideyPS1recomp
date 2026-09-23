@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch30",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "spiderman",
+    "spiderman_2020",
+    "spiderman_newdesign"
+  ],
+  "results": [
+    {
+      "key": "spiderman",
+      "id": "smu-spiderman",
+      "fbx": "costumes/spiderman/spiderman.fbx",
+      "fbxSha256": "7c6e2a7e4aac545e60b95e895b0a0da55f707b2c268bc2d0ca15a746af8f5fb6",
+      "textureFiles": [
+        "textures-png\\SpidermanUltimate_D.png"
+      ],
+      "textureSha256": [
+        "01ca9935e4b4f387624409d786d1f6c5ad8ac11c07be9ec54e7e39870133a3ed"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanUltimate_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanUltimate_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 702608,
+      "outputs": {
+        "actor.psx": "5d0dc0915b5eb95f5212b13da0470e7f9f433b3c73ec13c3bb70c8fea7904a9a",
+        "conversion-report.json": "7c5800ce64d643ca93959f4655762c3ad823339f779cbf7531b86e20c3ff9b9d",
+        "suit.json": "675d512c12d9f1211472da744b77c9a4256feee75e022d90119a45a407336cbe",
+        "textures\\diffuse.png": "02c1d7cb6580d461f36d2c8f229819ca7d0afc12ae7bd84b80d11057303c2f7d"
+      }
+    },
+    {
+      "key": "spiderman_2020",
+      "id": "smu-spiderman-2020",
+      "fbx": "costumes/spiderman_2020/spiderman_2020.fbx",
+      "fbxSha256": "08670c3f48be455eca19f8816da7108747ec1a84df815d2cd9b950d45e77d43e",
+      "textureFiles": [
+        "textures-png\\Spiderman2020_D.png"
+      ],
+      "textureSha256": [
+        "aa3fa04285d2d29c75455eb5051f5694703f6c57f050eb6dd8575dd5a6f45302"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1639,
+      "sourceTriangles": 2822,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman2020_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "_020",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman2020_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 736356,
+      "outputs": {
+        "actor.psx": "2a378699925b21c8263225ef6f6ed06bec8fa43d7b3b67a478a5a6ab57af9472",
+        "conversion-report.json": "0babf5944f704fa563cf6ff1f39e455d04111af732725d80cc42d1415fefa25c",
+        "suit.json": "d03eca68f152343f0d6d0dcb45f16abd9c82fce91947d70028a478431623e6ac",
+        "textures\\diffuse.png": "c89d573de9fa9573aa1af5f0a2c0c5e8549d5669e2c4685f0864903db07c1a68"
+      }
+    },
+    {
+      "key": "spiderman_newdesign",
+      "id": "smu-spiderman-newdesign",
+      "fbx": "costumes/spiderman_newdesign/spiderman_newdesign.fbx",
+      "fbxSha256": "fca83c403a92632c0535289679a209d9118c47a9eccc18616e144db440becd02",
+      "textureFiles": [
+        "textures-png\\spiderman_newdesign_D.png"
+      ],
+      "textureSha256": [
+        "0ffc4fbe35ab939ca9c58ca6cba91ee2e1d9133c74933ae7a1d500e5a94b1723"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1689,
+      "sourceTriangles": 2874,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "spiderman_newdesign_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "SpiderMan_NewDesign",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\spiderman_newdesign_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Material_01",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\spiderman_newdesign_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 727576,
+      "outputs": {
+        "actor.psx": "28853cdd03a7d438ed3d3470537578cecfc89d98ba135b7570eda8cd63015cd8",
+        "conversion-report.json": "3708c79934f7236e9f68ed81fd96c4aa68483655a4b8e0afac99775cc8063d07",
+        "suit.json": "9150d0ad6ccd9fd091b501bed92802b7e6e92e9dcbe0c6af739c4f8a21bb7dcf",
+        "textures\\diffuse-1.png": "86ce719c7fe5f8e3e29a649fe02b98fdafdaf65b03f343f35723740fb86bca05",
+        "textures\\diffuse.png": "86ce719c7fe5f8e3e29a649fe02b98fdafdaf65b03f343f35723740fb86bca05"
+      }
+    }
+  ]
+}

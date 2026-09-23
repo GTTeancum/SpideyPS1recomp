@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "spiderman",
+      "id": "smu-spiderman",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "5d0dc0915b5eb95f5212b13da0470e7f9f433b3c73ec13c3bb70c8fea7904a9a",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    },
+    {
+      "key": "spiderman_2020",
+      "id": "smu-spiderman-2020",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -2.154296875,
+        2.24755859375
+      ],
+      "assetSha256": "2a378699925b21c8263225ef6f6ed06bec8fa43d7b3b67a478a5a6ab57af9472",
+      "captureSha256": "b767a141788ffc954053cfee6e86321e4095650064442ff2b617ccdd6f153b1d"
+    },
+    {
+      "key": "spiderman_newdesign",
+      "id": "smu-spiderman-newdesign",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.272216796875,
+        8.67431640625
+      ],
+      "assetSha256": "28853cdd03a7d438ed3d3470537578cecfc89d98ba135b7570eda8cd63015cd8",
+      "captureSha256": "6287c8b1589f4465ca2bd9be590c116b3b0cc083b6011f0e33beb5632e556c00"
+    }
+  ]
+}

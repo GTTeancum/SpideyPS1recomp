@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-spiderman",
+      "previousActorSha256": "dbba261441277944b5fbbbabccfec004951f576199647b1caf067511d09c9ac5",
+      "actorSha256": "5d0dc0915b5eb95f5212b13da0470e7f9f433b3c73ec13c3bb70c8fea7904a9a",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-spiderman-newdesign.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-spiderman-2020",
+      "previousActorSha256": "1ba76da5aea4a925466c5a8b7fc03aee651244566390d61a04a85502adc84b77",
+      "actorSha256": "2a378699925b21c8263225ef6f6ed06bec8fa43d7b3b67a478a5a6ab57af9472",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-spiderman-newdesign.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-spiderman-newdesign",
+      "previousActorSha256": "4a207d58850d3367eaf245910cfd6d1a2afb90f5f37b245fb7b228540d7926bd",
+      "actorSha256": "28853cdd03a7d438ed3d3470537578cecfc89d98ba135b7570eda8cd63015cd8",
+      "visualReview": "Reviewed the two native game images sequentially. The running new-design Spider-Man retains the red web-pattern head and torso, cyan eyes, chest emblem, purple-blue limbs, and both material slots. Both fists are compact, with the fingers contained within the palm width and no detached geometry visible. No web line is visible in this running capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01606.png": "a73a7294dfcd1d995eed12a9e8d0dd207d871342e797a65c45172adea797ba24",
+        "frame_01606_closeup.png": "d3eb132d23a492ef153236501c443b77169afa37ee09087cd29adc24c1717aca"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-spiderman-newdesign"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-spiderman-2020\\actor.psx",
+    "smu-spiderman-2020\\conversion-report.json",
+    "smu-spiderman-newdesign\\actor.psx",
+    "smu-spiderman-newdesign\\conversion-report.json",
+    "smu-spiderman\\actor.psx",
+    "smu-spiderman\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-spiderman-newdesign/frame_01606.png and frame_01606_closeup.png"
+  }
+}
