@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch36",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "noirnew",
+    "peterparker",
+    "arachnido"
+  ],
+  "results": [
+    {
+      "key": "noirnew",
+      "id": "smu-noirnew",
+      "fbx": "costumes/noirnew/noirnew.fbx",
+      "fbxSha256": "f29ad6ada8084279ba2611318d677ec426834b926cfba06fe5ec3aaae656d470",
+      "textureFiles": [
+        "textures-png\\NoirNew_D.png"
+      ],
+      "textureSha256": [
+        "f1894c466ee3cf45b449a5376e80a51f0e73405fa8f2564d4f2778f328a5dc2e"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2018,
+      "sourceTriangles": 3226,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "NoirNew_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "NoirNew",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\NoirNew_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 841148,
+      "outputs": {
+        "actor.psx": "5c1ec5de2cc0e350047420809ca170806c61477c92421790112f73f42192857a",
+        "conversion-report.json": "9406fcffc291c11bb31409c1c597c22769eb9358e73dab3eac113b99c23e5dc4",
+        "suit.json": "54355361ba2c33717b0b3bd229b2bd0435810a3935a2b12922df78584c1e30c5",
+        "textures\\diffuse.png": "f3cead4d1e4d0a2395b0bc390fe884ecb551abf8262df3d581c2d0407a569cca"
+      }
+    },
+    {
+      "key": "peterparker",
+      "id": "smu-peterparker",
+      "fbx": "costumes/peterparker/peterparker.fbx",
+      "fbxSha256": "eb6baeb33a7f0dcb4741fe8f5a4deb0de98348d904605682da4ea3d9dacbb40c",
+      "textureFiles": [
+        "textures-png\\PeterParker_D.png"
+      ],
+      "textureSha256": [
+        "0c5b33c37d666a82726e6be8107521bf778c35405187f7c932fc5b172334868c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1519,
+      "sourceTriangles": 2598,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "PeterParker_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "PeterParker",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\PeterParker_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 707264,
+      "outputs": {
+        "actor.psx": "c92de607f4b5f00ddc9de152509bd38374573169caa9c8a787739d3e9456fef0",
+        "conversion-report.json": "b83163eeff445939cdc1055b0d4dc8274622878b0565dbf479c353a07cd25d6b",
+        "suit.json": "4feb8750a3a923ab7762e215c9de0e963aedc864c2cd38ff8f571ef776088bfb",
+        "textures\\diffuse.png": "ae66afdd292593aaf8e427139ee84a4473d69111fa88bcb9d9ff6b5f68e49219"
+      }
+    },
+    {
+      "key": "arachnido",
+      "id": "smu-arachnido",
+      "fbx": "costumes/arachnido/arachnido.fbx",
+      "fbxSha256": "512d58496e5f109701622c90157f629ae1d5be87247e5da350c579fdaeff4c45",
+      "textureFiles": [
+        "textures-png\\SpidermanMexican_D.png"
+      ],
+      "textureSha256": [
+        "a48eeb642034a9e20f87a3e46138ea7d1ab2f8517f46eb270b984dee7e07d021"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMexican_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanMexican_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 702608,
+      "outputs": {
+        "actor.psx": "1aed199e60d0401f641e15b52f34df21b24b515f992bdab751aa4c0ef28196c1",
+        "conversion-report.json": "fbdb81eaee991b340b9a35cdeeba65c840c3352795be493466739bd763e672e9",
+        "suit.json": "df525ebeeeee2019d5d7892e7adfb9c5b322f88c5eff75c168ba6436b922d0de",
+        "textures\\diffuse.png": "3a67bad99cb72d75f7c6abd6f0339a3ae86833472ce3b0e0c3b210af0234ac93"
+      }
+    }
+  ]
+}

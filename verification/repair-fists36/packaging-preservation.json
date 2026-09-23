@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-noirnew",
+    "beforeActorSha256": "3d3ab675637cd11d462a1aa31c776f3713ff5f1698a02011d8e2e272aa5bcd14",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-peterparker",
+    "beforeActorSha256": "343a0dcb98f22975d539e9d42786b96551677ad4053990cfde5c4aa1bc123843",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-arachnido",
+    "beforeActorSha256": "a1468796f88b4bf11ee2b161a8fd49e1024c4bf0496a8441f336a3031d4579f6",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

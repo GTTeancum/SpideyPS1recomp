@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-noirnew",
+      "previousActorSha256": "3d3ab675637cd11d462a1aa31c776f3713ff5f1698a02011d8e2e272aa5bcd14",
+      "actorSha256": "5c1ec5de2cc0e350047420809ca170806c61477c92421790112f73f42192857a",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-arachnido.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-peterparker",
+      "previousActorSha256": "343a0dcb98f22975d539e9d42786b96551677ad4053990cfde5c4aa1bc123843",
+      "actorSha256": "c92de607f4b5f00ddc9de152509bd38374573169caa9c8a787739d3e9456fef0",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-arachnido.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-arachnido",
+      "previousActorSha256": "a1468796f88b4bf11ee2b161a8fd49e1024c4bf0496a8441f336a3031d4579f6",
+      "actorSha256": "1aed199e60d0401f641e15b52f34df21b24b515f992bdab751aa4c0ef28196c1",
+      "visualReview": "Reviewed the two native game images sequentially. Arachnido retains the smooth blue body, red and white graphic panels, dark mask surrounds, pale eye lenses, and compact fists without dropped geometry. No web line is visible in this running capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01606.png": "73f04ee904c73aaeba495b5a33756a91cb9f82f94c566d23bd7f7aaf6188026b",
+        "frame_01606_closeup.png": "3051edea940fbd26c4b5e0518392b402340542ed3a9e3591f2c2d33d0480ca38"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-arachnido"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-arachnido\\actor.psx",
+    "smu-arachnido\\conversion-report.json",
+    "smu-noirnew\\actor.psx",
+    "smu-noirnew\\conversion-report.json",
+    "smu-peterparker\\actor.psx",
+    "smu-peterparker\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-arachnido/frame_01606.png and frame_01606_closeup.png"
+  }
+}

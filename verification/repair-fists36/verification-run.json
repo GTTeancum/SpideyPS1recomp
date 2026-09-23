@@ -1,0 +1,26 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-noirnew-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-peterparker-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-arachnido-isolation",
+    "exitCode": 0
+  }
+]
