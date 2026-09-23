@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-ben-reilly-unmasked",
+      "previousActorSha256": "a32cd361bcd65a325b38c600376ed89531821debf529601573abf25b60f2358c",
+      "actorSha256": "d6e19bd5f9bc3abc9fa499186a0d9ef49a70d63485e64fb5f6dad81ecf1001bc",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-battledamaged.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-bigtime-red",
+      "previousActorSha256": "3e3b509c043262e49ccd761299d3cd6725c73d8850dbe97601ca4e117136acb6",
+      "actorSha256": "319ed735ab7dbcc2056c196033382568761a70025021d741d88c8e5a1eaeba9d",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-battledamaged.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-battledamaged",
+      "previousActorSha256": "f83e3819ea981b8f24754aee73bb18f54efed4699db0361ef4c19b516bd00fb3",
+      "actorSha256": "fb4748bf176389456e406dcfb8a3be28fe146a383ed552fb1018a1d81147cf85",
+      "visualReview": "Reviewed the two native game images sequentially: frame_01609.png and its exact native close-up crop. Battle Damaged retains the authored tears, materials, body proportions and complete geometry. Both fists are compact within their palm silhouettes without lateral finger spread. This is representative native silhouette evidence, not exhaustive contact proof. The pose has no visible web strand; live web appearance is not claimed, while the separate 115-frame offline endpoint regression passes.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01609.png": "dec1eab88b78a85630c7e9b89fa051d5913bad37de885131a6dc50e9b3bc8ae4",
+        "frame_01609_closeup.png": "fc70bd73c485360dbe34e6cb9518f059a54e36470c384ef27a4bfc1f4ca4d5d2"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-battledamaged"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-battledamaged\\actor.psx",
+    "smu-battledamaged\\conversion-report.json",
+    "smu-ben-reilly-unmasked\\actor.psx",
+    "smu-ben-reilly-unmasked\\conversion-report.json",
+    "smu-bigtime-red\\actor.psx",
+    "smu-bigtime-red\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-battledamaged/frame_01609.png plus its exact close-up crop"
+  }
+}

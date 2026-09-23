@@ -1,0 +1,42 @@
+[
+  {
+    "suit": "smu-ben-reilly-unmasked",
+    "beforeActorSha256": "a32cd361bcd65a325b38c600376ed89531821debf529601573abf25b60f2358c",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": [
+      {
+        "file": "suit.json",
+        "generatedSha256": "9b8050209dbc0d26c9b41b39eb59edd1f9cb02644384b6810c4df9e69748bf05",
+        "retainedSha256": "fad944dd751573d8adce3013ded86655a0b16bc2a889867d990a22bb71d11238"
+      },
+      {
+        "file": "textures/diffuse.png",
+        "generatedSha256": "c7b9a5c058ed1b731956c131c2b93705fc2baaac43ccef4e45c32c9cb1697903",
+        "retainedSha256": "cc1882843d13ef6f60581d53e9bac8e8d54af04ffce659dea7d9383d921d6797"
+      }
+    ]
+  },
+  {
+    "suit": "smu-bigtime-red",
+    "beforeActorSha256": "3e3b509c043262e49ccd761299d3cd6725c73d8850dbe97601ca4e117136acb6",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": [
+      {
+        "file": "suit.json",
+        "generatedSha256": "e89a5c5f3913007e3e48752de45f9641eeffaba64834db45e17afd610e055235",
+        "retainedSha256": "8bed5322b67b813020ae852619ecc3afd163a10708cdb9c03782f3bb2e0ecc61"
+      },
+      {
+        "file": "textures/diffuse.png",
+        "generatedSha256": "70812d54b4760bc04eb1fbb1bcdb45375b7eb776c7ebed9b19568f90f8fae642",
+        "retainedSha256": "768ef3587f85935d4f67dc9f6fcc7b3dcbcb43189d203c7ca36d9c251d564989"
+      }
+    ]
+  },
+  {
+    "suit": "smu-battledamaged",
+    "beforeActorSha256": "f83e3819ea981b8f24754aee73bb18f54efed4699db0361ef4c19b516bd00fb3",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch24",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "ben_reilly_unmasked",
+    "bigtime_red",
+    "battledamaged"
+  ],
+  "results": [
+    {
+      "key": "ben_reilly_unmasked",
+      "id": "smu-ben-reilly-unmasked",
+      "fbx": "costumes/ben_reilly_unmasked/ben_reilly_unmasked.fbx",
+      "fbxSha256": "0e1c93ba48f741e36ef527de702a74dfafb6ab71c46bba2852357b2dc10abbb6",
+      "textureFiles": [
+        "textures-png\\Ben_Reilly_unmasked_D.png"
+      ],
+      "textureSha256": [
+        "abb8f470aae5d07733fe561089756867fdfe5021fa40cdccc50b2defd9a2dc1d"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2167,
+      "sourceTriangles": 3532,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Ben_Reilly_unmasked_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "BenReilly_unmasked",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Ben_Reilly_unmasked_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 838628,
+      "outputs": {
+        "actor.psx": "d6e19bd5f9bc3abc9fa499186a0d9ef49a70d63485e64fb5f6dad81ecf1001bc",
+        "conversion-report.json": "3a0239db66f85d7894566c9bbadf88f16f4bc0c106068e00f50e102220f3a5da",
+        "suit.json": "fad944dd751573d8adce3013ded86655a0b16bc2a889867d990a22bb71d11238",
+        "textures\\diffuse.png": "cc1882843d13ef6f60581d53e9bac8e8d54af04ffce659dea7d9383d921d6797"
+      }
+    },
+    {
+      "key": "bigtime_red",
+      "id": "smu-bigtime-red",
+      "fbx": "costumes/bigtime_red/bigtime_red.fbx",
+      "fbxSha256": "52a621a6739e20fe219e1cc03bf3fad61e4ed5ce5af91164777ca249df41eaa7",
+      "textureFiles": [
+        "textures-png\\SpidermanStealth_Red_D.png"
+      ],
+      "textureSha256": [
+        "14d92308111c41d65bb352e99eb4310dd097a2b41439e388a0769c9816819bab"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanStealth_Red_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanStealth_Red_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 702608,
+      "outputs": {
+        "actor.psx": "319ed735ab7dbcc2056c196033382568761a70025021d741d88c8e5a1eaeba9d",
+        "conversion-report.json": "00a8b71368feaea93e4000c89f41b04a0152cc5f64de30483b077013bfcb6cb6",
+        "suit.json": "8bed5322b67b813020ae852619ecc3afd163a10708cdb9c03782f3bb2e0ecc61",
+        "textures\\diffuse.png": "768ef3587f85935d4f67dc9f6fcc7b3dcbcb43189d203c7ca36d9c251d564989"
+      }
+    },
+    {
+      "key": "battledamaged",
+      "id": "smu-battledamaged",
+      "fbx": "costumes/battledamaged/battledamaged.fbx",
+      "fbxSha256": "97a7dd5b47055bc499d30a88f527cc9e60ceae357b7df13e4515560a18aaab35",
+      "textureFiles": [
+        "textures-png\\SpidermanBattleDamaged_D.png"
+      ],
+      "textureSha256": [
+        "063bf9f32361570c64a7ddeab8b6d15aa92b0f6a11d9e3717f774d14c54c9316"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1687,
+      "sourceTriangles": 2946,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanBattleDamaged_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "BattleDamaged",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanBattleDamaged_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 713236,
+      "outputs": {
+        "actor.psx": "fb4748bf176389456e406dcfb8a3be28fe146a383ed552fb1018a1d81147cf85",
+        "conversion-report.json": "782cc07ddcf790aa17f87d92fae2b86e030c22f4c6a050dc113c8a2e93bcfa9c",
+        "suit.json": "78e643bcf78cd61ff38eb997dcea69f886c2a73d8d108ffde98a385344dd55f7",
+        "textures\\diffuse.png": "1cd8e754143958fc4e93f1b9e433767e57ae9586a03cb11245134bdc5abc2286"
+      }
+    }
+  ]
+}

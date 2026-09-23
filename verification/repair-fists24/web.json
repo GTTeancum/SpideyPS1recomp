@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "ben_reilly_unmasked",
+      "id": "smu-ben-reilly-unmasked",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.6826171875,
+        10.084716796875
+      ],
+      "assetSha256": "d6e19bd5f9bc3abc9fa499186a0d9ef49a70d63485e64fb5f6dad81ecf1001bc",
+      "captureSha256": "2a9e8ba6b2bc76e69994a8d303d0cae5551cc273994ed82e8dd74aab3588e04e"
+    },
+    {
+      "key": "bigtime_red",
+      "id": "smu-bigtime-red",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "319ed735ab7dbcc2056c196033382568761a70025021d741d88c8e5a1eaeba9d",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    },
+    {
+      "key": "battledamaged",
+      "id": "smu-battledamaged",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.93505859375,
+        9.337158203125
+      ],
+      "assetSha256": "fb4748bf176389456e406dcfb8a3be28fe146a383ed552fb1018a1d81147cf85",
+      "captureSha256": "03e692c042317bd75e5d4869ebe04654582f353a03ee14e506645ff684980f55"
+    }
+  ]
+}
