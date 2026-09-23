@@ -1,0 +1,1403 @@
+PASS: source/guest size bound 4194305
+PASS: source/guest size bound 1048577
+PASS: wrong container version
+PASS: metadata pointer overflow
+PASS: incompatible hierarchy size
+PASS: mesh points into header
+PASS: native vertex limit
+PASS: unresolved stitch
+PASS: triangle index out of range
+PASS: normal index out of range
+PASS: unsupported face record
+PASS: native quads and extended triangles
+PASS: quad fourth index out of range
+PASS: extended triangle with short record
+PASS: unsupported transparent face
+PASS: extended triangle crosses mesh boundary
+PASS: converted actor spiderman/port/mods/suits\smu-1602\actor.psx: 460044 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-2099-new\actor.psx: 442036 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-2099\actor.psx: 441668 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-2211\actor.psx: 496036 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-aaron-davis\actor.psx: 517468 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-aaronnicholson\actor.psx: 480444 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-abarton\actor.psx: 504972 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-adriana-soria\actor.psx: 573888 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-agent-anti-venom\actor.psx: 526236 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-agent-nine\actor.psx: 465188 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-agentv\actor.psx: 492756 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-agony\actor.psx: 516484 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-aiapaec\actor.psx: 567260 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-aikman\actor.psx: 441844 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-alistaire-smythe\actor.psx: 556940 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-all-new-agent-venom\actor.psx: 443204 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-amazing-spider\actor.psx: 542388 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-ancientvenom\actor.psx: 500232 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-angelo-fortunato\actor.psx: 523072 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-annie-parker\actor.psx: 533336 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-anti-venom\actor.psx: 497052 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-anya\actor.psx: 508532 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-arachnido\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-arachnoman\actor.psx: 457108 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-arana-gymnast\actor.psx: 605544 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-arana\actor.psx: 501236 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-baal\actor.psx: 467900 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-baghead\actor.psx: 412620 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-battledamaged\actor.psx: 443572 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-batty-brant\actor.psx: 509956 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-ben-reilly-unmasked\actor.psx: 478780 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-benreilly\actor.psx: 443364 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-bigtime-red\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-bigtime\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-black-suit-swiney-girl\actor.psx: 442180 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-black-tarantula\actor.psx: 554240 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-blackcat\actor.psx: 486296 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-blackcatvenom\actor.psx: 529412 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-blacksuit-spidergirl\actor.psx: 489876 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-blackwidow\actor.psx: 488156 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-blood\actor.psx: 484892 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-bulletpoints\actor.psx: 442724 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-buzz\actor.psx: 469428 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-captain\actor.psx: 471244 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-carliespiderisland\actor.psx: 483560 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-carnage\actor.psx: 477976 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-carnageultimate\actor.psx: 518116 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-charlottewitter\actor.psx: 531376 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-civilwarpeterparker\actor.psx: 539324 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-cosmic\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-cyborg\actor.psx: 496708 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-deadaim\actor.psx: 573540 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-devilspider\actor.psx: 452116 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-doppleganger\actor.psx: 521796 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-dorma\actor.psx: 592796 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-dusk\actor.psx: 462756 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-earth62412\actor.psx: 463164 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-earthx\actor.psx: 443308 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-edward-brock\actor.psx: 486056 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-edwardbrock-earth11080\actor.psx: 518156 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-electroproof\actor.psx: 437652 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-endofearth\actor.psx: 471676 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-enrage-toxin\actor.psx: 487108 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-ezekiel\actor.psx: 504708 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-fatherspider\actor.psx: 486748 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-fearitself\actor.psx: 492796 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-felicityhardy\actor.psx: 495988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-flashthompson-unmasked\actor.psx: 520716 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-flipside\actor.psx: 437172 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-futurefoundation\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-gabrielgant\actor.psx: 589496 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-ghost\actor.psx: 456500 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-girl\actor.psx: 489876 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-goblinspider\actor.psx: 450764 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-god\actor.psx: 495412 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-guardian\actor.psx: 515784 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-gwen\actor.psx: 506832 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-gwenom\actor.psx: 540708 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-gwenstacy-unmasked\actor.psx: 528420 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-hammerhead\actor.psx: 445068 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-hobartbrown\actor.psx: 462188 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-hobie\actor.psx: 522228 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-homemade\actor.psx: 489868 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-hornet\actor.psx: 483300 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-houseofm\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-hunter-arana\actor.psx: 488436 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-ichor\actor.psx: 534412 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-iguana\actor.psx: 495228 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-india\actor.psx: 493628 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-ironspider-unmasked\actor.psx: 493612 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-ironspider\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-ironspidernew\actor.psx: 498860 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-ironspidernewwithtentackles\actor.psx: 590352 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-izumi\actor.psx: 595388 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-jessica-drew\actor.psx: 514932 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-julia-carpenter\actor.psx: 505180 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-knull\actor.psx: 552236 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-kung-fu\actor.psx: 512068 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-lana-baumgartner\actor.psx: 484860 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-lasher-cell\actor.psx: 482668 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-lasher\actor.psx: 492420 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-lily-hollister\actor.psx: 521716 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-lizard\actor.psx: 480796 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mac-gargan\actor.psx: 508948 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mace\actor.psx: 473220 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-madamweb\actor.psx: 463496 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mangaverse-black-cat\actor.psx: 568848 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mangaverse\actor.psx: 444820 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mangaversegirl\actor.psx: 632076 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mania\actor.psx: 514172 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-maniac\actor.psx: 522344 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-maniacal-mayhem\actor.psx: 494220 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-maskedmarvel\actor.psx: 428828 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mattie-franklin-5\actor.psx: 556956 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mattie-franklin-body-suit\actor.psx: 519044 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mattiefranklin\actor.psx: 544508 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mayday\actor.psx: 494276 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mayhem\actor.psx: 489876 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mayparker-unmasked\actor.psx: 522240 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mech\actor.psx: 488164 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mercenary\actor.psx: 440996 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-michaelbingham\actor.psx: 539700 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-michaelmorbius\actor.psx: 514788 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-milesmorales-uk-mesh\actor.psx: 444828 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-milesmorales\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-milesmoralesdemasked\actor.psx: 460924 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mj-regent-power-suit\actor.psx: 553420 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mj-sexy\actor.psx: 491388 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mj-venom\actor.psx: 513756 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mjiron\actor.psx: 508280 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-modernscarlet\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-modernsilk\actor.psx: 511084 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-mutantjonah\actor.psx: 474340 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-native-american\actor.psx: 547996 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-new-year-spiderman\actor.psx: 500468 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-newarmor\actor.psx: 489164 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-nickfury\actor.psx: 492212 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-noir\actor.psx: 493568 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-noirnew\actor.psx: 476868 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-nurotox\actor.psx: 503020 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-octavius\actor.psx: 604328 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-payback\actor.psx: 539764 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-peter-porker-unmasked\actor.psx: 417276 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-peter-urich\actor.psx: 502620 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-peterparker\actor.psx: 424372 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-peterparkerearth11080\actor.psx: 481620 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-phage\actor.psx: 516284 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-poison-doctor-octopus\actor.psx: 555916 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-poison-hunter\actor.psx: 640052 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-poison\actor.psx: 544364 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-poisonrhino\actor.psx: 499660 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-poisonspiderman\actor.psx: 495252 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-pork-grind\actor.psx: 478372 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-prodigy\actor.psx: 474140 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-prowler\actor.psx: 472484 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-punk\actor.psx: 448716 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-quickchange\actor.psx: 421668 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-rafael-carago\actor.psx: 506612 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-raze\actor.psx: 514400 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-red-goblin-boss\actor.psx: 525452 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-riot\actor.psx: 478168 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-scarlet-spider\actor.psx: 496036 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-scarlet-spiderham-benreilly\actor.psx: 446068 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-scarlet-spiderham\actor.psx: 397292 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-scarlet\actor.psx: 461108 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-scarletgirl\actor.psx: 494604 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-scarletjoe\actor.psx: 436292 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-scorn\actor.psx: 493884 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-scream\actor.psx: 507204 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-secretwar\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-shevenom\actor.psx: 546052 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-silk\actor.psx: 511304 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-silk2\actor.psx: 511304 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-silversable-play\actor.psx: 483496 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-sixarmed-spiderman\actor.psx: 567260 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-small-ed-brook\actor.psx: 475072 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spacesuit\actor.psx: 484340 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spdr\actor.psx: 593180 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spider-carnage\actor.psx: 482440 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spider-cowboy\actor.psx: 485756 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spider-demon\actor.psx: 482636 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spider-herc\actor.psx: 491388 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spider-ninja\actor.psx: 460220 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spider-spiner\actor.psx: 450684 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spiderarmor\actor.psx: 454764 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spidergwen-earth1036\actor.psx: 537348 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spiderham-2099\actor.psx: 422972 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spiderham\actor.psx: 398284 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spiderjameson\actor.psx: 449140 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spiderknight\actor.psx: 449804 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spidermaam\actor.psx: 496456 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spiderman-2020\actor.psx: 436804 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spiderman-newdesign\actor.psx: 457572 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spiderman-surveillancesuit\actor.psx: 593092 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spiderman\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spidermanhomecoming\actor.psx: 443284 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spidermj\actor.psx: 523880 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spidersman\actor.psx: 442396 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spidervenom\actor.psx: 451128 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-spiderx\actor.psx: 480844 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-steampunk\actor.psx: 522028 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-steel\actor.psx: 495588 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-superior-carnage\actor.psx: 518476 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-superior\actor.psx: 453380 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-superiorb\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-supvenom\actor.psx: 471204 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-swift\actor.psx: 509084 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-symbiote-2018\actor.psx: 463044 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-symbiote-kraven\actor.psx: 479012 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-symbiote\actor.psx: 437988 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-tarantula\actor.psx: 493808 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-the-amazing-octo-spidey\actor.psx: 510276 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-the-spider-peter-parker\actor.psx: 523828 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-timesleep\actor.psx: 487628 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-toxin\actor.psx: 499936 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-uk\actor.psx: 444828 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-ultimate-spiderham\actor.psx: 444468 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-ultimatedrew\actor.psx: 502272 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-uncleb\actor.psx: 430836 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-venom-2099\actor.psx: 552708 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-venom-verse-carnage\actor.psx: 560740 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-venom\actor.psx: 502444 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-venomx\actor.psx: 492884 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-venomzombie\actor.psx: 458780 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-wallace-jackson\actor.psx: 500320 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-weblisher\actor.psx: 506428 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-werewolf\actor.psx: 592252 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-who\actor.psx: 438108 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-woman\actor.psx: 528924 bytes, 2 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-womannew\actor.psx: 461944 bytes, 1 material IDs
+PASS: converted actor spiderman/port/mods/suits\smu-wraith\actor.psx: 502548 bytes, 1 material IDs
+PASS: real custom manifest and actor material mapping: smu-1602
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-1602\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-2099-new
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-2099-new\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-2099
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-2099\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-2211
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-2211\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-aaron-davis
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-aaron-davis\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-aaronnicholson
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-aaronnicholson\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-abarton
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-abarton\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-adriana-soria
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-adriana-soria\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-agent-anti-venom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-agent-anti-venom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-agent-nine
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-agent-nine\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-agentv
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-agentv\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-agony
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-agony\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-aiapaec
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-aiapaec\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-aikman
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-aikman\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-alistaire-smythe
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-alistaire-smythe\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-all-new-agent-venom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-all-new-agent-venom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-amazing-spider
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-amazing-spider\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ancientvenom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ancientvenom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-angelo-fortunato
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-angelo-fortunato\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-annie-parker
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-annie-parker\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-anti-venom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-anti-venom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-anya
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-anya\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-arachnido
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-arachnido\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-arachnoman
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-arachnoman\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-arana-gymnast
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-arana-gymnast\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-arana
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-arana\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-baal
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-baal\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-baghead
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-baghead\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-battledamaged
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-battledamaged\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-batty-brant
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-batty-brant\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ben-reilly-unmasked
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ben-reilly-unmasked\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-benreilly
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-benreilly\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-bigtime-red
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-bigtime-red\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-bigtime
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-bigtime\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-black-suit-swiney-girl
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-black-suit-swiney-girl\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-black-tarantula
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-black-tarantula\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-blackcat
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-blackcat\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-blackcatvenom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-blackcatvenom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-blacksuit-spidergirl
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-blacksuit-spidergirl\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-blackwidow
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-blackwidow\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-blood
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-blood\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-bulletpoints
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-bulletpoints\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-buzz
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-buzz\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-captain
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-captain\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-carliespiderisland
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-carliespiderisland\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-carnage
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-carnage\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-carnageultimate
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-carnageultimate\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-charlottewitter
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-charlottewitter\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-civilwarpeterparker
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-civilwarpeterparker\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-cosmic
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-cosmic\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-cyborg
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-cyborg\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-deadaim
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-deadaim\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-devilspider
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-devilspider\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-doppleganger
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-doppleganger\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-dorma
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-dorma\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-dusk
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-dusk\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-earth62412
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-earth62412\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-earthx
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-earthx\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-edward-brock
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-edward-brock\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-edwardbrock-earth11080
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-edwardbrock-earth11080\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-electroproof
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-electroproof\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-endofearth
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-endofearth\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-enrage-toxin
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-enrage-toxin\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ezekiel
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ezekiel\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-fatherspider
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-fatherspider\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-fearitself
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-fearitself\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-felicityhardy
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-felicityhardy\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-flashthompson-unmasked
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-flashthompson-unmasked\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-flipside
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-flipside\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-futurefoundation
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-futurefoundation\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-gabrielgant
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-gabrielgant\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ghost
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ghost\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-girl
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-girl\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-goblinspider
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-goblinspider\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-god
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-god\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-guardian
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-guardian\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-gwen
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-gwen\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-gwenom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-gwenom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-gwenstacy-unmasked
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-gwenstacy-unmasked\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-hammerhead
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-hammerhead\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-hobartbrown
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-hobartbrown\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-hobie
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-hobie\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-homemade
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-homemade\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-hornet
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-hornet\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-houseofm
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-houseofm\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-hunter-arana
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-hunter-arana\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ichor
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ichor\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-iguana
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-iguana\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-india
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-india\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ironspider-unmasked
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ironspider-unmasked\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ironspider
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ironspider\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ironspidernew
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ironspidernew\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ironspidernewwithtentackles
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ironspidernewwithtentackles\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-izumi
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-izumi\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-jessica-drew
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-jessica-drew\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-julia-carpenter
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-julia-carpenter\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-knull
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-knull\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-kung-fu
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-kung-fu\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-lana-baumgartner
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-lana-baumgartner\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-lasher-cell
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-lasher-cell\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-lasher
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-lasher\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-lily-hollister
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-lily-hollister\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-lizard
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-lizard\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mac-gargan
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mac-gargan\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mace
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mace\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-madamweb
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-madamweb\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mangaverse-black-cat
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mangaverse-black-cat\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mangaverse
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mangaverse\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mangaversegirl
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mangaversegirl\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mania
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mania\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-maniac
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-maniac\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-maniacal-mayhem
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-maniacal-mayhem\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-maskedmarvel
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-maskedmarvel\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mattie-franklin-5
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mattie-franklin-5\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mattie-franklin-body-suit
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mattie-franklin-body-suit\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mattiefranklin
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mattiefranklin\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mayday
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mayday\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mayhem
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mayhem\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mayparker-unmasked
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mayparker-unmasked\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mech
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mech\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mercenary
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mercenary\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-michaelbingham
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-michaelbingham\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-michaelmorbius
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-michaelmorbius\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-milesmorales-uk-mesh
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-milesmorales-uk-mesh\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-milesmorales
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-milesmorales\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-milesmoralesdemasked
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-milesmoralesdemasked\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mj-regent-power-suit
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mj-regent-power-suit\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mj-sexy
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mj-sexy\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mj-venom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mj-venom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mjiron
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mjiron\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-modernscarlet
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-modernscarlet\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-modernsilk
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-modernsilk\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-mutantjonah
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-mutantjonah\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-native-american
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-native-american\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-new-year-spiderman
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-new-year-spiderman\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-newarmor
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-newarmor\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-nickfury
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-nickfury\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-noir
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-noir\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-noirnew
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-noirnew\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-nurotox
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-nurotox\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-octavius
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-octavius\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-payback
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-payback\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-peter-porker-unmasked
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-peter-porker-unmasked\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-peter-urich
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-peter-urich\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-peterparker
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-peterparker\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-peterparkerearth11080
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-peterparkerearth11080\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-phage
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-phage\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-poison-doctor-octopus
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-poison-doctor-octopus\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-poison-hunter
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-poison-hunter\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-poison
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-poison\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-poisonrhino
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-poisonrhino\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-poisonspiderman
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-poisonspiderman\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-pork-grind
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-pork-grind\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-prodigy
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-prodigy\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-prowler
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-prowler\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-punk
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-punk\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-quickchange
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-quickchange\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-rafael-carago
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-rafael-carago\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-raze
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-raze\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-red-goblin-boss
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-red-goblin-boss\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-riot
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-riot\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-scarlet-spider
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-scarlet-spider\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-scarlet-spiderham-benreilly
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-scarlet-spiderham-benreilly\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-scarlet-spiderham
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-scarlet-spiderham\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-scarlet
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-scarlet\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-scarletgirl
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-scarletgirl\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-scarletjoe
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-scarletjoe\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-scorn
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-scorn\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-scream
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-scream\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-secretwar
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-secretwar\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-shevenom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-shevenom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-silk
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-silk\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-silk2
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-silk2\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-silversable-play
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-silversable-play\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-sixarmed-spiderman
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-sixarmed-spiderman\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-small-ed-brook
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-small-ed-brook\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spacesuit
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spacesuit\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spdr
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spdr\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spider-carnage
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spider-carnage\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spider-cowboy
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spider-cowboy\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spider-demon
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spider-demon\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spider-herc
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spider-herc\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spider-ninja
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spider-ninja\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spider-spiner
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spider-spiner\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spiderarmor
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spiderarmor\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spidergwen-earth1036
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spidergwen-earth1036\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spiderham-2099
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spiderham-2099\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spiderham
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spiderham\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spiderjameson
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spiderjameson\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spiderknight
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spiderknight\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spidermaam
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spidermaam\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spiderman-2020
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spiderman-2020\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spiderman-newdesign
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spiderman-newdesign\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spiderman-surveillancesuit
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spiderman-surveillancesuit\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spiderman
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spiderman\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spidermanhomecoming
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spidermanhomecoming\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spidermj
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spidermj\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spidersman
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spidersman\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spidervenom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spidervenom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-spiderx
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-spiderx\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-steampunk
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-steampunk\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-steel
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-steel\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-superior-carnage
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-superior-carnage\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-superior
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-superior\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-superiorb
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-superiorb\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-supvenom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-supvenom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-swift
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-swift\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-symbiote-2018
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-symbiote-2018\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-symbiote-kraven
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-symbiote-kraven\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-symbiote
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-symbiote\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-tarantula
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-tarantula\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-the-amazing-octo-spidey
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-the-amazing-octo-spidey\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-the-spider-peter-parker
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-the-spider-peter-parker\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-timesleep
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-timesleep\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-toxin
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-toxin\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-uk
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-uk\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ultimate-spiderham
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ultimate-spiderham\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ultimatedrew
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ultimatedrew\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-uncleb
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-uncleb\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-venom-2099
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-venom-2099\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-venom-verse-carnage
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-venom-verse-carnage\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-venom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-venom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-venomx
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-venomx\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-venomzombie
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-venomzombie\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-wallace-jackson
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-wallace-jackson\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-weblisher
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-weblisher\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-werewolf
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-werewolf\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-who
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-who\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-woman
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-woman\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-womannew
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-womannew\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-wraith
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-wraith\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+Catalogue audit: 231 actors, 0 failures.

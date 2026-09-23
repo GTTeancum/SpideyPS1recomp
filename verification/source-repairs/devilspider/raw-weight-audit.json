@@ -1,0 +1,21 @@
+{
+  "source": "C:\\Programming\\SMU-Costumes\\models\\Mesh_DevilSpider\\Mesh_DevilSpider.bdae",
+  "sourceSha256": "5a5d5c250aeba44556ef6a235a20e218d6ac3e93c5975215ca493ec13784bdf6",
+  "fbxSha256": "c3d1599b591317c59ac5515e140e79d7fbfcb4be48befefb36aa9d9823a82f6a",
+  "descriptorOffset": 30840,
+  "descriptorBytes": 336,
+  "vertexStride": 92,
+  "vertices": 1819,
+  "triangles": 3058,
+  "bones": 65,
+  "materials": [
+    {
+      "name": "DevilSpider",
+      "diffuse": "DevilSpider_D.tga",
+      "alphaBound": false
+    }
+  ],
+  "importLog": "WARNING: SpiderWeb_mesh_01: skipped bind-pose display transform because the inverse check was unstable (0.0101).\nWARNING: SpiderWeb_mesh_02: skipped bind-pose display transform because the inverse check was unstable (0.2914).\nFound 3 mesh descriptor(s).\nMesh_DevilSpider: skeleton display space kept raw (joint fit 0.070).\nDecoded weighted mesh extents for 40 skeleton bone tail hint(s).\nArmature imported with 65 skeleton bone(s) (62 deform, 3 hierarchy-only) and decoded parent hierarchy.",
+  "maxRawSkinWeightError": 0.0,
+  "scope": "Derived corrected export. Original BDAE, FBXs, toolkit and textures were not modified. Native conversion and gameplay acceptance remain separate."
+}

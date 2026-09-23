@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "registeredSha256": "1c6d3bb9d000d31239543d12acf46e39e05934307cb4fcba25c48ff3a1264320",
+  "repeatedSha256": "c3d1599b591317c59ac5515e140e79d7fbfcb4be48befefb36aa9d9823a82f6a",
+  "checks": {
+    "vertices": true,
+    "faces": true,
+    "uv": true,
+    "corner_normals": true,
+    "world_vertices": true,
+    "world_normals": true,
+    "mesh_bind": true,
+    "source_bind": true,
+    "hierarchy": true,
+    "weights": true,
+    "sourceProperties": true,
+    "clusters": true
+  },
+  "scope": "Semantic equality of registered and repeated repaired exports; export timestamps/FBX IDs may differ."
+}

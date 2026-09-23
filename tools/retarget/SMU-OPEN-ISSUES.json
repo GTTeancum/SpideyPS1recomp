@@ -3,11 +3,17 @@
   "issues": [
     {
       "id": "repeated-texture-loader-dimensions",
-      "status": "open",
+      "status": "resolved",
       "suits": ["smu-devilspider"],
-      "finding": "The complete 231-suit managed catalogue audit reports exactly one failing manifest: Devil Spider's preserved repeat atlas, 1024 by 6144 pixels, exceeds SuitManifest's 4096 limit. All 231 native actor containers pass; 230 manifests decode and map their materials. Devil Spider passes offline conversion checks but is not yet loadable through its manifest. Batch representative gameplay does not cover this failure.",
-      "evidence": "verification/fallback-textures/managed-catalogue-231-complete.txt",
-      "next": "Support the authored repeat texture through the actual host texture path with bounded memory and GPU-size validation, preserve source RGB/alpha, and prove this suit loads and renders in game."
+      "finding": "The actual cause was an upstream source import omission. The importer skipped Devil Spider's 0x150 descriptor, 92-byte vertices and kind-9 triangle batch, then mislabeled a web helper as the costume. The recovered original BDAE body contains 1819 vertices and 3058 triangles, uses its authored opaque 1024x1024 material and retains exact raw skin weights. Corrected native swing and crouch captures show the body. No loader dimension or memory limit was increased.",
+      "evidence": "verification/repair-devil-body/review.json",
+      "resolution": "Installed a hash-checked corrected derived FBX conversion, with source originals and the previous installed actor retained. Full animation, web, material, finger and managed tests pass for the repair."
+    },
+    {
+      "id": "upstream-mesh-coverage",
+      "status": "open",
+      "finding": "Devil Spider exposed a source importer that could skip unsupported body descriptors and assign a helper mesh the body name. Its body is repaired, but structural equality to supplied FBXs alone does not prove every other original BDAE body was exported.",
+      "next": "Audit source mesh references and descriptor coverage across the remaining catalogue; investigate any missing non-helper body mesh before final acceptance."
     },
     {
       "id": "initial-material-slot-fidelity",
@@ -37,7 +43,7 @@
     {
       "id": "visual-fist-closure",
       "status": "open",
-      "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. The installed-231 audit passes 229 suits; Black Suit Swiney Girl and Devil Spider have no vertices predominantly weighted to the selected distal joints, so this metric cannot establish their closure. Those are coverage gaps, not proof that their preserved weights are damaged.",
+      "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
       "evidence": "verification/finger-policy/installed-231.json",
       "next": "Inspect and correct finger curl/orientation using representative hand geometry and native close views."
     },

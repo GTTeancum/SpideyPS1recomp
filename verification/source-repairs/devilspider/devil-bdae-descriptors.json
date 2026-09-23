@@ -1,0 +1,369 @@
+{
+  "source": "C:\\Programming\\SMU-Costumes\\models\\Mesh_DevilSpider\\Mesh_DevilSpider.bdae",
+  "sourceSha256": "5a5d5c250aeba44556ef6a235a20e218d6ac3e93c5975215ca493ec13784bdf6",
+  "descriptors": [
+    {
+      "name": "Mesh_DevilSpider",
+      "offset": 217048,
+      "vertices": 304,
+      "triangles": 152,
+      "bounds": [
+        [
+          -0.02500000037252903,
+          -0.025000140070915222,
+          0.0002784999960567802
+        ],
+        [
+          0.02500000037252903,
+          0.025000300258398056,
+          0.6848845481872559
+        ]
+      ],
+      "materials": [
+        {
+          "name": "Iron",
+          "indices": 456
+        }
+      ]
+    },
+    {
+      "name": "SpiderWeb_mesh_01",
+      "offset": 235368,
+      "vertices": 304,
+      "triangles": 152,
+      "bounds": [
+        [
+          -0.02500000037252903,
+          -0.025000140070915222,
+          0.0002784999960567802
+        ],
+        [
+          0.02500000037252903,
+          0.025000300258398056,
+          0.6848845481872559
+        ]
+      ],
+      "materials": [
+        {
+          "name": "Iron",
+          "indices": 456
+        }
+      ]
+    }
+  ],
+  "candidateHeaders": [
+    {
+      "offset": 30840,
+      "size": 336,
+      "kind": 1,
+      "count": 1819,
+      "vertexBuffer": 31344,
+      "vertexBytes": 167352,
+      "firstWords": [
+        336,
+        0,
+        1,
+        1819,
+        9,
+        108,
+        9,
+        140
+      ]
+    },
+    {
+      "offset": 217048,
+      "size": 256,
+      "kind": 1,
+      "count": 304,
+      "vertexBuffer": 217432,
+      "vertexBytes": 17024,
+      "firstWords": [
+        256,
+        0,
+        1,
+        304,
+        5,
+        108,
+        5,
+        124
+      ]
+    },
+    {
+      "offset": 235368,
+      "size": 256,
+      "kind": 1,
+      "count": 304,
+      "vertexBuffer": 235752,
+      "vertexBytes": 17024,
+      "firstWords": [
+        256,
+        0,
+        1,
+        304,
+        5,
+        108,
+        5,
+        124
+      ]
+    }
+  ],
+  "meshReferences": [
+    {
+      "location": 20056,
+      "name": "Mesh_DevilSpider-mesh",
+      "payloads": [
+        {
+          "descriptor": [
+            20132,
+            30840,
+            504
+          ],
+          "firstWords": [
+            336,
+            0,
+            1,
+            1819,
+            9,
+            108,
+            9,
+            140
+          ]
+        },
+        {
+          "descriptor": [
+            20164,
+            217048,
+            384
+          ],
+          "firstWords": [
+            256,
+            0,
+            1,
+            304,
+            5,
+            108,
+            5,
+            124
+          ]
+        },
+        {
+          "descriptor": [
+            20196,
+            235368,
+            384
+          ],
+          "firstWords": [
+            256,
+            0,
+            1,
+            304,
+            5,
+            108,
+            5,
+            124
+          ]
+        },
+        {
+          "descriptor": [
+            20300,
+            253688,
+            4912
+          ],
+          "firstWords": [
+            3560,
+            0,
+            3544,
+            0,
+            3528,
+            0,
+            3512,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "location": 20080,
+      "name": "SpiderWeb_mesh_01-mesh",
+      "payloads": [
+        {
+          "descriptor": [
+            20132,
+            30840,
+            504
+          ],
+          "firstWords": [
+            336,
+            0,
+            1,
+            1819,
+            9,
+            108,
+            9,
+            140
+          ]
+        },
+        {
+          "descriptor": [
+            20164,
+            217048,
+            384
+          ],
+          "firstWords": [
+            256,
+            0,
+            1,
+            304,
+            5,
+            108,
+            5,
+            124
+          ]
+        },
+        {
+          "descriptor": [
+            20196,
+            235368,
+            384
+          ],
+          "firstWords": [
+            256,
+            0,
+            1,
+            304,
+            5,
+            108,
+            5,
+            124
+          ]
+        },
+        {
+          "descriptor": [
+            20300,
+            253688,
+            4912
+          ],
+          "firstWords": [
+            3560,
+            0,
+            3544,
+            0,
+            3528,
+            0,
+            3512,
+            0
+          ]
+        },
+        {
+          "descriptor": [
+            20332,
+            318720,
+            1328
+          ],
+          "firstWords": [
+            1000,
+            0,
+            984,
+            0,
+            968,
+            0,
+            952,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "location": 20104,
+      "name": "SpiderWeb_mesh_02-mesh",
+      "payloads": [
+        {
+          "descriptor": [
+            20132,
+            30840,
+            504
+          ],
+          "firstWords": [
+            336,
+            0,
+            1,
+            1819,
+            9,
+            108,
+            9,
+            140
+          ]
+        },
+        {
+          "descriptor": [
+            20164,
+            217048,
+            384
+          ],
+          "firstWords": [
+            256,
+            0,
+            1,
+            304,
+            5,
+            108,
+            5,
+            124
+          ]
+        },
+        {
+          "descriptor": [
+            20196,
+            235368,
+            384
+          ],
+          "firstWords": [
+            256,
+            0,
+            1,
+            304,
+            5,
+            108,
+            5,
+            124
+          ]
+        },
+        {
+          "descriptor": [
+            20300,
+            253688,
+            4912
+          ],
+          "firstWords": [
+            3560,
+            0,
+            3544,
+            0,
+            3528,
+            0,
+            3512,
+            0
+          ]
+        },
+        {
+          "descriptor": [
+            20332,
+            318720,
+            1328
+          ],
+          "firstWords": [
+            1000,
+            0,
+            984,
+            0,
+            968,
+            0,
+            952,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "log": "Found 2 mesh descriptor(s)."
+}

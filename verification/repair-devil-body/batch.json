@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "batch": "repair-devil-body",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "devilspider"
+  ],
+  "results": [
+    {
+      "key": "devilspider",
+      "id": "smu-devilspider",
+      "fbx": "C:\\Programming\\GitHub\\OpenSpideyPS1\\verification\\source-repairs\\devilspider\\devilspider.fbx",
+      "fbxSha256": "1c6d3bb9d000d31239543d12acf46e39e05934307cb4fcba25c48ff3a1264320",
+      "textureFiles": [
+        "textures-png\\DevilSpider_D.png"
+      ],
+      "textureSha256": [
+        "2b0a3eb6c6cd52c2711261c2eb96bd52d71d506ab1022f14d89cb502bafae475"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1819,
+      "sourceTriangles": 3058,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "DevilSpider_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "DevilSpider",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\DevilSpider_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 769560,
+      "outputs": {
+        "actor.psx": "1c0bb48832b9c6df54fc1848e5de9107a2fddd71ec5573e09fd2a301f568f75d",
+        "conversion-report.json": "3f209272f3c17fee6146fe9bf53d3a076005f0b6bd532e53df538f8f2c7d4cf4",
+        "suit.json": "80ce4a700dc7ef5450187e8b2f957c1734930ce2ca7983f7de3602bcf292c260",
+        "textures\\diffuse.png": "8f278eb3c6e584f9d1288a4de9a90014d8cab2eaa83bec766d1d3f6d6a77be92"
+      }
+    }
+  ]
+}

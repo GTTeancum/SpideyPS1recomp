@@ -4,7 +4,7 @@
   "batchVerified": 231,
   "remainingUnconverted": 2,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 5983,
+  "offlineChecks": 6013,
   "animationFrames": 969276,
   "offlineSwingFrames": 26565,
   "structuralBlockers": [
@@ -285,14 +285,10 @@
   "finalAcceptance": false,
   "openIssues": [
     {
-      "id": "repeated-texture-loader-dimensions",
+      "id": "upstream-mesh-coverage",
       "status": "open",
-      "suits": [
-        "smu-devilspider"
-      ],
-      "finding": "The complete 231-suit managed catalogue audit reports exactly one failing manifest: Devil Spider's preserved repeat atlas, 1024 by 6144 pixels, exceeds SuitManifest's 4096 limit. All 231 native actor containers pass; 230 manifests decode and map their materials. Devil Spider passes offline conversion checks but is not yet loadable through its manifest. Batch representative gameplay does not cover this failure.",
-      "evidence": "verification/fallback-textures/managed-catalogue-231-complete.txt",
-      "next": "Support the authored repeat texture through the actual host texture path with bounded memory and GPU-size validation, preserve source RGB/alpha, and prove this suit loads and renders in game."
+      "finding": "Devil Spider exposed a source importer that could skip unsupported body descriptors and assign a helper mesh the body name. Its body is repaired, but structural equality to supplied FBXs alone does not prove every other original BDAE body was exported.",
+      "next": "Audit source mesh references and descriptor coverage across the remaining catalogue; investigate any missing non-helper body mesh before final acceptance."
     },
     {
       "id": "symbiote-tongue-pose",
@@ -308,7 +304,7 @@
     {
       "id": "visual-fist-closure",
       "status": "open",
-      "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. The installed-231 audit passes 229 suits; Black Suit Swiney Girl and Devil Spider have no vertices predominantly weighted to the selected distal joints, so this metric cannot establish their closure. Those are coverage gaps, not proof that their preserved weights are damaged.",
+      "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
       "evidence": "verification/finger-policy/installed-231.json",
       "next": "Inspect and correct finger curl/orientation using representative hand geometry and native close views."
     },
@@ -334,6 +330,18 @@
     }
   ],
   "repairReviews": [
+    {
+      "suit": "smu-devilspider",
+      "previousActorSha256": "f81c535976e46cac5ebe693c00f89d469c89c70ce0cfd8dc03d119d7ce670f55",
+      "actorSha256": "1c0bb48832b9c6df54fc1848e5de9107a2fddd71ec5573e09fd2a301f568f75d",
+      "visualReview": "Individually reviewed both native framebuffer images. Correct Devil Spider body is visible in a swing and deep crouch, with red mask/gloves/boots, dark torso/limbs and trailing red mask ties. Web reaches the raised hand. Free fingers remain open; fist closure is not accepted. Earlier helper-only captures were invisible and are explicitly failed evidence, not successful gameplay proof.",
+      "images": {
+        "frame_01559.png": "ee4947d0cdeea2d9a88f906c36dd7ac3cdc3953fb2fe12ed05b1cb4207dc027c",
+        "frame_01864.png": "9591d54173a78e31ff7079293245549b8057e45b7581617e73bcb0987d37e4e6"
+      },
+      "managedLoaderExitCode": 0,
+      "scope": "Original BDAE body recovery, not invented replacement geometry. Source originals unchanged. Muted run; no audio or full campaign acceptance."
+    },
     {
       "repairs": [
         {

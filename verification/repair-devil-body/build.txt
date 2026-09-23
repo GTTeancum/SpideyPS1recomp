@@ -1,0 +1,25 @@
+C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\Diagnostics\SpAudit.cs(66,41): warning CS8618: Non-nullable field '_pool' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the field as nullable. [C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\RecompOne.Runtime.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\Host\Window\Panels\Debug\CdDebugPanel.cs(24,9): warning CS8602: Dereference of a possibly null reference. [C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\RecompOne.Runtime.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\Host\Window\Panels\Debug\SpuViewerPanel.cs(24,9): warning CS8602: Dereference of a possibly null reference. [C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\RecompOne.Runtime.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\Cdrom\Disc\SectorImage.cs(23,37): warning CA2014: Potential stack overflow. Move the stackalloc out of the loop. (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2014) [C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\RecompOne.Runtime.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\spiderman\generated\Entry.cs(11,45): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\SpiderMan.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\spiderman\generated\Entry.cs(11,69): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\SpiderMan.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\spiderman\patches\DcModelCompatibility.cs(32,15): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\SpiderMan.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\spiderman\patches\Trace.cs(33,17): warning CS0169: The field 'Trace._waitEvt' is never used [C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\SpiderMan.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\spiderman\patches\Diag.cs(28,17): warning CS0169: The field 'Diag._lastLogic' is never used [C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\SpiderMan.csproj]
+
+Build succeeded.
+
+C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\Diagnostics\SpAudit.cs(66,41): warning CS8618: Non-nullable field '_pool' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the field as nullable. [C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\RecompOne.Runtime.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\Host\Window\Panels\Debug\CdDebugPanel.cs(24,9): warning CS8602: Dereference of a possibly null reference. [C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\RecompOne.Runtime.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\Host\Window\Panels\Debug\SpuViewerPanel.cs(24,9): warning CS8602: Dereference of a possibly null reference. [C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\RecompOne.Runtime.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\Cdrom\Disc\SectorImage.cs(23,37): warning CA2014: Potential stack overflow. Move the stackalloc out of the loop. (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2014) [C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\RecompOne.Runtime.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\spiderman\generated\Entry.cs(11,45): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\SpiderMan.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\spiderman\generated\Entry.cs(11,69): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\SpiderMan.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\spiderman\patches\DcModelCompatibility.cs(32,15): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\SpiderMan.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\spiderman\patches\Trace.cs(33,17): warning CS0169: The field 'Trace._waitEvt' is never used [C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\SpiderMan.csproj]
+C:\Programming\GitHub\OpenSpideyPS1\spiderman\patches\Diag.cs(28,17): warning CS0169: The field 'Diag._lastLogic' is never used [C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\SpiderMan.csproj]
+    9 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:27.30

@@ -35,6 +35,9 @@ DISPLAY={'1602':'SMU 1602','2099':'SMU 2099','2099_new':'SMU 2099 NEW',
  'scarlet_spiderham':'SMU SCARLET HAM','2211':'SMU 2211'}
 
 def inventory(samples:Path):
+    repair_path=Path(__file__).with_name('SOURCE-REPAIRS.json')
+    repairs=json.loads(repair_path.read_text()) if repair_path.exists() else {}
+    project=Path(__file__).resolve().parents[2]
     rows=list(csv.DictReader((samples/'costume-catalogue.csv').open(encoding='utf-8-sig')))
     exported={x['name']:x for x in json.loads((samples/'costume-export-report.json').read_text())}
     ready=json.loads((samples/'costumes.json').read_text());assert {r['Costume'] for r in rows}=={r['name'] for r in ready}==set(exported)
@@ -47,6 +50,13 @@ def inventory(samples:Path):
     for row in rows:
         key=row['Costume'];fbx=samples/row['FBX'];r=exported[key]
         if not fbx.is_file():raise ValueError('Missing ready-catalogue FBX: '+key)
+        repair=repairs.get(key)
+        if repair:
+            if sha(fbx)!=repair['originalFbxSha256'] or sha(samples/repair['bdae'])!=repair['bdaeSha256']:
+                raise ValueError('Source repair original identity changed: '+key)
+            fbx=(project/repair['fbx']).resolve()
+            if not fbx.is_relative_to(project) or sha(fbx)!=repair['fbxSha256']:
+                raise ValueError('Source repair derived identity changed: '+key)
         authored=[x.strip() for x in row['Diffuse textures'].split(';') if x.strip()]
         if authored!=r['diffuse_textures']:raise ValueError('Catalogue/report texture disagreement: '+key)
         textures=[]
@@ -54,9 +64,9 @@ def inventory(samples:Path):
             stem=Path(tex).stem.casefold();resolved=TEXTURE_ALIASES.get(stem,stem)
             if resolved not in png:raise ValueError('Unresolved authored diffuse: '+tex)
             textures.append(str(png[resolved].relative_to(samples)))
-        result.append(dict(key=key,id='smu-'+key.replace('_','-'),fbx=row['FBX'],fbxSha256=sha(fbx),
+        result.append(dict(key=key,id='smu-'+key.replace('_','-'),fbx=str(fbx) if repair else row['FBX'],fbxSha256=sha(fbx),
             textureFiles=textures,textureSha256=[sha(samples/p) for p in textures],
-            sourceMeshCount=r['meshes'],sourceVertices=int(row['Vertices']),sourceTriangles=int(row['Triangles']),
+            sourceMeshCount=r['meshes'],sourceVertices=repair['vertices'] if repair else int(row['Vertices']),sourceTriangles=repair['triangles'] if repair else int(row['Triangles']),
             sourceBoneCount=int(row['Bones']),authoredDiffuseNames=authored,status='pending'))
     return result
 

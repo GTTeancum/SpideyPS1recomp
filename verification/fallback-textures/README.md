@@ -27,3 +27,9 @@ The complete managed catalogue audit still fails one manifest, Devil Spider,
 whose 1024x6144 repeat atlas exceeds the current dimension cap. All 231 native
 actor containers and the other 230 manifests pass. These are separate gates;
 an exact texture match does not prove the host can load that texture.
+
+The later original-body recovery resolves Devil Spider without increasing any
+loader limit. `installed-231-body-repaired.json` passes all 231 suits and 261
+material slots; `verification/repair-devil-body/catalogue.txt` reports all 231
+actor containers and manifests passing. The earlier failures remain historical
+evidence. See `verification/source-repairs/devilspider` for the upstream cause.

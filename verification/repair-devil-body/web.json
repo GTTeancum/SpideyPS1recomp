@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 1,
+  "requested": 1,
+  "results": [
+    {
+      "key": "devilspider",
+      "id": "smu-devilspider",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.404541015625,
+        9.806396484375
+      ],
+      "assetSha256": "1c0bb48832b9c6df54fc1848e5de9107a2fddd71ec5573e09fd2a301f568f75d",
+      "captureSha256": "96be0afcd74b060486726d644a005c241edf89dbf6e62c540169f7e3736e27a7"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "suit": "smu-devilspider",
+  "previousActorSha256": "f81c535976e46cac5ebe693c00f89d469c89c70ce0cfd8dc03d119d7ce670f55",
+  "actorSha256": "1c0bb48832b9c6df54fc1848e5de9107a2fddd71ec5573e09fd2a301f568f75d",
+  "visualReview": "Individually reviewed both native framebuffer images. Correct Devil Spider body is visible in a swing and deep crouch, with red mask/gloves/boots, dark torso/limbs and trailing red mask ties. Web reaches the raised hand. Free fingers remain open; fist closure is not accepted. Earlier helper-only captures were invisible and are explicitly failed evidence, not successful gameplay proof.",
+  "images": {
+    "frame_01559.png": "ee4947d0cdeea2d9a88f906c36dd7ac3cdc3953fb2fe12ed05b1cb4207dc027c",
+    "frame_01864.png": "9591d54173a78e31ff7079293245549b8057e45b7581617e73bcb0987d37e4e6"
+  },
+  "managedLoaderExitCode": 0,
+  "scope": "Original BDAE body recovery, not invented replacement geometry. Source originals unchanged. Muted run; no audio or full campaign acceptance."
+}

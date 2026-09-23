@@ -1,0 +1,174 @@
+{
+  "status": "PASS",
+  "scope": "Native assets + compiled C++ runtime core + original animation decoding oracle; C# integration checks are static only. Full .NET build/game execution NOT run.",
+  "passed": 30,
+  "failed": 0,
+  "metrics": {
+    "smu-devilspider": {
+      "bones": 66,
+      "sourceControlPoints": 1819,
+      "sourceInfluences": 3833,
+      "runtimeVertices": 1819,
+      "runtimeInfluences": 3833,
+      "triangles": 3058,
+      "nativeBytes": 769560,
+      "sha256": "1c0bb48832b9c6df54fc1848e5de9107a2fddd71ec5573e09fd2a301f568f75d",
+      "rootScale": 0.9027983546257019,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007820664905011654,
+      "maxRoundedComponentError": 0.85833740234375,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 4.947062399995048
+    }
+  },
+  "results": [
+    {
+      "name": "300 native clips / 4196 source frames",
+      "passed": true
+    },
+    {
+      "name": "original decoder produces nonsingular Q12 driver rotations",
+      "passed": true,
+      "minDet": 0.9987022876739502,
+      "maxDet": 1.0010902881622314
+    },
+    {
+      "name": "smu-devilspider: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9771591747440596e-08
+    },
+    {
+      "name": "smu-devilspider: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 3058
+    },
+    {
+      "name": "smu-devilspider: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.00048828125
+    },
+    {
+      "name": "smu-devilspider: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-devilspider: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.000286102294921875,
+      "scale": 0.9027983546257019
+    },
+    {
+      "name": "smu-devilspider: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-devilspider: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-devilspider: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 3145.287109375,
+      "worst": null
+    },
+    {
+      "name": "smu-devilspider: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007820664905011654
+    },
+    {
+      "name": "smu-devilspider: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.0008544921875,
+      "maxRoundedComponentError": 0.85833740234375
+    },
+    {
+      "name": "smu-devilspider: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-devilspider: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "source integration: exactly one pose-ready hook and regeneration config",
+      "passed": true
+    },
+    {
+      "name": "source integration: resident validation / fists / culling update present",
+      "passed": true
+    },
+    {
+      "name": "Windows deployed native DLL is the tested-source build artifact",
+      "passed": true
+    }
+  ],
+  "inputHashes": {
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\verification\\source-repairs\\devilspider\\devilspider.fbx": "1c6d3bb9d000d31239543d12acf46e39e05934307cb4fcba25c48ff3a1264320",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\DevilSpider_D.png": "2b0a3eb6c6cd52c2711261c2eb96bd52d71d506ab1022f14d89cb502bafae475",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "work\\devil-corrected-batch\\suits\\smu-devilspider\\actor.psx": "1c0bb48832b9c6df54fc1848e5de9107a2fddd71ec5573e09fd2a301f568f75d"
+  },
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb"
+}

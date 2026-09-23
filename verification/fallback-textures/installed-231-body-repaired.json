@@ -1,0 +1,3623 @@
+{
+  "scope": "Exact source-derived RGB5/STP/alpha and row-order check for every native fallback material. Not gameplay or original shader equivalence.",
+  "status": "PASS",
+  "suits": 231,
+  "materials": 261,
+  "results": [
+    {
+      "suit": "smu-1602",
+      "actorSha256": "1db0f095785b2c2643dfa0b902aa3b864c07c8eabbb5c458e7180f198fb0219d",
+      "sourceSha256": "ba5265ba024d1322e8328ed3ac4b300b22ce26735093974d4d4123cf955d025d",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-2099",
+      "actorSha256": "2e11614841917401ab1aafb64d1704d1ee8e81c54236b8a3adb1304446914e68",
+      "sourceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-2099-new",
+      "actorSha256": "15d7cc63649ea7a19207dc251368105988ef3631de33ed95bf51177efb246b4a",
+      "sourceSha256": "3d6d7fdf228354ab40f23f3ab89a4628a895b136a0f4ddae9a473e2de3160500",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-2211",
+      "actorSha256": "5738017a475e2fac87348ea1fec1bd74a355476d7b1f81ba0da5e30cecabb6a1",
+      "sourceSha256": "4a0a7372e8dc2f4fc72f9ed5ce6eb7cbe2150a1e20b59345988e77ba9c4c43dd",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-aaron-davis",
+      "actorSha256": "d2ab6c4d3a1d6bdd2dc6f055a608f10d39f4bf0c8dcd655be802b4b6585b2ad1",
+      "sourceSha256": "26e54c009e63b102ff4add9a08e9d756753d52cac5e43f1e354506140c711a52",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-aaronnicholson",
+      "actorSha256": "b42c45b0bb7cf4baaac651d03b5932c0ff35a4a6f1cc7f70c774a74f22c053c3",
+      "sourceSha256": "3d002506de8c8aeea422a036049d4145ee882facf8899ca19ee3a9cdcbf48441",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-abarton",
+      "actorSha256": "deb79c3ca80f51f357c85cd924b1d00c3193069969a2e2390981f544973212a0",
+      "sourceSha256": "29bcf4ab147c2ab1f29540fe31335008abef8c1c09dc1c6caf048f31e021da5a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-adriana-soria",
+      "actorSha256": "9912298adf5b3a09d98ef6d3943b3861c0f5d1364000de78600b12569567fc85",
+      "sourceSha256": "0a5d351beb6ca108a0eafdbcfc5a83f813ed2e2df21e0c5da51f0c6d4a9ec338",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-agent-anti-venom",
+      "actorSha256": "494d7e086546ff385517784c4bc6a26f94f025d013019f95ed7b6ba4dc4b360e",
+      "sourceSha256": "d4155c1b211baedc66a1f49478d48b63d3a1111449a14704e29f732d5a6c855f",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-agent-nine",
+      "actorSha256": "c263ef04deacb1b9ff9a2c8e9971cc35a3012fa4b52f9aee73fd6021f633f327",
+      "sourceSha256": "329706000c0bca6150738cf7aaef6c3c07803c48c8c971b2d86f6dfd98725296",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-agentv",
+      "actorSha256": "0c6255018af6de567d6796802e25cb4766db49a011f72c4401f052892e565ce0",
+      "sourceSha256": "33305f734491a82bda6c58c8b1d97aa9373e437bd56d9801c527f4f327ce2229",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-agony",
+      "actorSha256": "6462041bd154130877e1bd17f9f2705dfe11ab812772c067d01f097fd5842a9b",
+      "sourceSha256": "3acb19416e1370fc859c13d97021d0d64f34ca4abe022bbe517693572c5a93f9",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-aiapaec",
+      "actorSha256": "a265af282f49d6796921257b411bd9a201778687a480d675cbe86fa6030f9ba0",
+      "sourceSha256": "b4e8978196c9ad5ab2baab9ba8eb9ae98dc747b34703f9cfb363b3bb1401174d",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-aikman",
+      "actorSha256": "c1439cdcff0cc30ac1ddda3b6f517fe89b52e08416c662620caefbdb11f3e951",
+      "sourceSha256": "bdcaf81f9bfdb70fb3871cc9d56f254369e2009217918295d1643ec0b6f66da1",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-alistaire-smythe",
+      "actorSha256": "9017bd1c96923393f55fa089972b68a5d2061c27a1c1f4b6d811f96c30ddd96b",
+      "sourceSha256": "84251c5b33fa8beff46dd5bf01bda8ddfa01f918b95ad20edceae197e8acd10b",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-all-new-agent-venom",
+      "actorSha256": "609342620e95177d7dd19d2fe053453667cc470d092a948fcf08c01aa9b09171",
+      "sourceSha256": "04fc365d510f64c9768d686e9c5472bdf8ecc007355771aa7782be9da62dbe59",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-amazing-spider",
+      "actorSha256": "245056c0b7f7163a8ef328bb7bf45b3eba3abf8aa4826c5326a69af223834c10",
+      "sourceSha256": "994988a674ee7fd10e41e575d28f1362027dc51d448febdd21c31444875a5d82",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-ancientvenom",
+      "actorSha256": "2022d19b9e81f5550ddac21f7b9f4f3ade564d90b05d9fc854d468c7cc9cfb78",
+      "sourceSha256": "8575b5de6b96bf7b213412d4251ebe944aa814f9fb48571f2996837c254dcae8",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-angelo-fortunato",
+      "actorSha256": "3e631d1c8c95e36bf463e807bbccc8349b2609e2d413c109f927f157dc493243",
+      "sourceSha256": "66b8743c1766dbf3baa2c56def1077cf651ff86218e9bd3e443d5471f85c850d",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-annie-parker",
+      "actorSha256": "91d268392394cdea5d68c6727f90b6ebb2df5ce22bb9be6e6f360e63ec90ee2d",
+      "sourceSha256": "5a0ca37b127e359b48faa98350b79c599fd6da01e0fcbc735c9f1518855c7920",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-anti-venom",
+      "actorSha256": "049a602a30ce771dab34aa6d0cee6e6985c8fa6b578cce0b18c554118c5fc247",
+      "sourceSha256": "06b5a5ef957f830cd04047715334e07f9198a99dd4c97e516656c47b6b214d55",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": true,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-anya",
+      "actorSha256": "17371e628fd4b1d9c99ee2745146b7bb518d057620c6256ed2569501a687a32c",
+      "sourceSha256": "14ac7f8ab2c8bde138ff0146e9c10d5341511a9ab90070638644cc2cbe8b5462",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-arachnido",
+      "actorSha256": "707f3f04ad91b1d79224db1e7586c5f56d6b6607ca9d74fcb17df48273986346",
+      "sourceSha256": "512d58496e5f109701622c90157f629ae1d5be87247e5da350c579fdaeff4c45",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-arachnoman",
+      "actorSha256": "f323dcaa9e729afc2bd3c789b929d944ad2d6092081d28f6d2630a79b6361f01",
+      "sourceSha256": "3e04b9db5548386ea618b103518ecacc0f383f30a65170d64f28b43a078b489c",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-arana",
+      "actorSha256": "38b45f82565895f62d69f093739a0c90474d0a8cb3fd3cc1ee67475c3aa80eef",
+      "sourceSha256": "27818e2eac10de79fa54577251b889d2f2175de2a0b78add7054426ffce5a0b3",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-arana-gymnast",
+      "actorSha256": "a373efc19c48ca8af269c969c8dda8891b1c336ce394cc608be98810a8fd1bfa",
+      "sourceSha256": "8cbc3a2a80e5ad8092a3e32e0dd1d3ff10455233a5bc7d42d0aa4536d8822ca1",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-baal",
+      "actorSha256": "acc30d1a0d826a7357b4930f53cf2824564bf0a8fce54038b4dd12c70c55722d",
+      "sourceSha256": "aaa8c58276b11c410aef39bb2f66d28b21c13a0260d0d024c814d6b151ed93f4",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-baghead",
+      "actorSha256": "99396acbe52dee96526205557d033892fabc2a033cbf07a981940f1fdb0aa476",
+      "sourceSha256": "5559a47482a7932120c3c5211f71e1d830cd08f1afec978ae5469a04152c2c25",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-battledamaged",
+      "actorSha256": "b8bfe7ef5ca5a0a59f5f955af3aae791982da1ea8f7fce366d3e0140d9327825",
+      "sourceSha256": "97a7dd5b47055bc499d30a88f527cc9e60ceae357b7df13e4515560a18aaab35",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-batty-brant",
+      "actorSha256": "8d0431e6f4575bc95160ca187decf3752e6f8239fe4a5596f802ae973ab581ea",
+      "sourceSha256": "505ee47fdc44383e89271da42f2616c01eedef58d467f062ca3bb52cfd537753",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": true,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-ben-reilly-unmasked",
+      "actorSha256": "c4077ee8d8015c7af9044669e6b4c675c896cce457c899771af5220bb4764395",
+      "sourceSha256": "0e1c93ba48f741e36ef527de702a74dfafb6ab71c46bba2852357b2dc10abbb6",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-benreilly",
+      "actorSha256": "bb31ee59f3c1ad48e4c4bd1f1236da0ea395fddb033f5ff2b34e7dd1b3bf794e",
+      "sourceSha256": "69ce4d9e8c0d1791a1b03edba1a2ce011c8113666863389c3276c06d989783b6",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-bigtime",
+      "actorSha256": "58eea78f6dd4007cacdc79bc14b6a10f711da9c625316f40ff770841b5ebe00d",
+      "sourceSha256": "15921259d991c9bf3bbe8187e89b1721460303042590b4b37787f34c24c5f0af",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-bigtime-red",
+      "actorSha256": "00a6769824baf438edcc7a31983a3c38e1cacaa57a27db8fa5e7b1d4dbee3b3a",
+      "sourceSha256": "52a621a6739e20fe219e1cc03bf3fad61e4ed5ce5af91164777ca249df41eaa7",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-black-suit-swiney-girl",
+      "actorSha256": "82bc4e700af07578017acdb6ffb1f41996d9df1307c1e0f00a3759fc5832a023",
+      "sourceSha256": "ade4e652789c1a66ced4309a22052189b02e61fbf3288d3936f1bd928329eac9",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-black-tarantula",
+      "actorSha256": "458344d3ead4ace3ccaf2409831fc49f4a0410b707df158cd610acb82f72ec23",
+      "sourceSha256": "474f13a20d87a7b0d7c7fff9bae4c11c659d7d0e35d80f67604c4fbe31bd1eec",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-blackcat",
+      "actorSha256": "89914fcf0fa5adfc9ba507d3222d45ee66e0b6fc8282cf8372f85cd8eaeb9e03",
+      "sourceSha256": "db3ba4e128300c57f4398d879a2e95b5c228735e2359362e2c150e110020dffc",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-blackcatvenom",
+      "actorSha256": "0db440fff9eecf668854ea3222ad8332bb807e34afa6786cebe9d7069d328141",
+      "sourceSha256": "fddcb2b97d41097717bf686f26a7663c2d7c10bd0eb8ab2ddc46925c196fcffc",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-blacksuit-spidergirl",
+      "actorSha256": "967596961b83dff429e75621e78c109293e8da226886b44a67b77a28a47f9042",
+      "sourceSha256": "5069475bf8f1a457a66c2889f5271ed13ef23cfaf4e8937732a7cc907f15f672",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-blackwidow",
+      "actorSha256": "77b7c5757aeb6592546247a1d913a372600bd02efbbad9bcc9b381024eccdd19",
+      "sourceSha256": "d2a42430b5e43312077e2d626f73dfb66b47eba47033622cc3be41bb7db5d1ba",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-blood",
+      "actorSha256": "20e65b0836502f51f23c75825e9cd5926f2843a21b89a804b7012ef48597edf3",
+      "sourceSha256": "6ec470d0e3f1365a9880a96331e85a8ad94d52ea22c9bad2dc688b32951b50a0",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-bulletpoints",
+      "actorSha256": "360e8b92bf742d597b793808bc985fd8c8b007c891deb2e1e724616200b97925",
+      "sourceSha256": "213d8b906ac81f9a507866465363bd987ee3c7e23c3ced5b0d354068833802bc",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-buzz",
+      "actorSha256": "a8d5919828772bb464609e1c2ce701ef1aa3a569a5b06b814217a2aa2f3096da",
+      "sourceSha256": "793b8f2a7eed6d1ef77f594c5dfadb769cfc7f860b2163bc3f500335d181a741",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-captain",
+      "actorSha256": "a67ac10b520784365c5eb2e0e0a64c8c727f4b031864e3603eb856523a033494",
+      "sourceSha256": "81fc4b9dec024df81c3339c89d5892ee453febe432020be5a2db0c301057287a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-carliespiderisland",
+      "actorSha256": "4d536356d5df404a7f0db04103fb47f52930376568bc785d736a197576aaaaf2",
+      "sourceSha256": "792f5997869ec14e773156de481462e33d967c0d3bc029f94ec9375183092ee5",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-carnage",
+      "actorSha256": "20cefd39803fa2d599efef6ea61235a946ce5a570e3ec8432000799faf499a90",
+      "sourceSha256": "44fffd333f6eb5c7f7814da32cee6dab1243b00ce509ffa28a70aed5de073304",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-carnageultimate",
+      "actorSha256": "e8e0040ff8b64ddf445f8622a59dc523e2b6a16d9454321a50ec2e8c54aad67c",
+      "sourceSha256": "8b9ee7d68e33c8cda6f516ec300674790f0408efb698749258f00b8ee0c2f0e1",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-charlottewitter",
+      "actorSha256": "874844311fe700ddc7456f30f8afa1b65032e047a30c2e0d3e344d57034e9935",
+      "sourceSha256": "e58e8026d3711959efcb0aa891c1408ebd1c51e3241b1bc7610b59cf6ea4b2b3",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-civilwarpeterparker",
+      "actorSha256": "1c9baa1adc9673429a30dd49cb813d23a694bc2f3cf98eb459ff9b6d0362552d",
+      "sourceSha256": "98120b9447cf698703ddf5ead294a653075b19283ccb791a9871e8c1a53a8801",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-cosmic",
+      "actorSha256": "61b5a411a467cb61b5b9fb1c0658d9fc2fd726206920c10c5b666e0ecd23bf14",
+      "sourceSha256": "255fbdfe31ac3caf3d8631c940340d53fa908b62f5dd4588c2b9c64057b85c0c",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-cyborg",
+      "actorSha256": "971dabdb6483969d5bf417377ce3cb0c9c4e21cf3ca5237ba5d2c5fc44fde0d0",
+      "sourceSha256": "da17eebe5fe44755fd46733ad6e21ae9873b5c9b2b134f9e6f30267cfa275e7d",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-deadaim",
+      "actorSha256": "a6659248d40fb8eb7b5a08c84df11aa9e865a7b8ae792642d03dfc650a23e372",
+      "sourceSha256": "3d29f2c12e8ed73cfd4eb603d74c5d8454c0cbc909d20688d5c56b721869615f",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-devilspider",
+      "actorSha256": "1c0bb48832b9c6df54fc1848e5de9107a2fddd71ec5573e09fd2a301f568f75d",
+      "sourceSha256": "1c6d3bb9d000d31239543d12acf46e39e05934307cb4fcba25c48ff3a1264320",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-doppleganger",
+      "actorSha256": "3352bdf4bf1e2fc86741f1132c8f1cf13b5d56ad9ad2425e3170eb52ec902fac",
+      "sourceSha256": "3bfa7b47a6f244e88e42ee6556fd087915ae09da43df8fbead254d9510aaae11",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-dorma",
+      "actorSha256": "f14bf25ebcb468bbf184c08a786dd85f412445538ad9a09a751510b97d8af422",
+      "sourceSha256": "08d1ef72deab04be41952c763d1e46d1c0fccfcc86f96a69f2d9172ac2d57a0c",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-dusk",
+      "actorSha256": "480c0f7f447c315bade3dd98b3a5d456583a32667237aeb5e33b1a21a7c65bc0",
+      "sourceSha256": "7ecf810c367ab0858b4c8d07ae9a4239f949b44a5c58d83965a697eec27a057d",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-earth62412",
+      "actorSha256": "b23515b5069361d0dfb783434777adba7971cae332aa73bfddf9790544d76ece",
+      "sourceSha256": "9e53fa4bbe198bd44c4e4c71acf6f5b3d055fa331850068e5fa0baf2c59b3b1d",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-earthx",
+      "actorSha256": "5328bceb3e914700046080cc8b4071bd9dda040bffe27fe08a807c5fa0d12878",
+      "sourceSha256": "00582e069b45f1c0eb865401aee7462e4c67355c11d2db6c62d6249dcfb84eb9",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-edward-brock",
+      "actorSha256": "e7cd2cd0be11cc30d2f968afdadfdf070d4a55105af331465b9b67635e1efe51",
+      "sourceSha256": "4e6fa5a302b4882a53e1baf174fdf5f6180d30712c16a207a43de9c27c1dc573",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-edwardbrock-earth11080",
+      "actorSha256": "6f317925684e8740bbabb1dd6111107b829b17190d73026e7765ef9f034a3dff",
+      "sourceSha256": "e8f25ffccfb4bdd534574b7151a754e8a46237c49b0b09db6443d1a8c5fa2420",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-electroproof",
+      "actorSha256": "e3cde982573718baaab50ad3e756e70f084cb09f167bab51566749445ec874a7",
+      "sourceSha256": "fddca381eea81746a9dea77a5ac09f3bae4b7fa7d06ef6ab3f6f9ed8865e67db",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-endofearth",
+      "actorSha256": "1857e91da3e7c8a063f8cacf5fc7f90b9ce729579f329b68d431abfa0af70fc6",
+      "sourceSha256": "83e680930a647e6e483960b64f16346b092093f9f90d7564a414399857dd8d60",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-enrage-toxin",
+      "actorSha256": "64e36887a0cfb3391457fbe162e745b191d8acfd941794bca7d560ce4dc0d3d0",
+      "sourceSha256": "b2e6c9bffee15cb5fc0923d583ff929eacd70db298d95286afba0e50d251516e",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-ezekiel",
+      "actorSha256": "2b0cd8257d70efda3dc41b22529c577aadfaaef4f60f636c9de10f58d04528d7",
+      "sourceSha256": "9853864dadd03d2b98c62e208f0db2abc205c2b48cedebb37f902f73e94fc11a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-fatherspider",
+      "actorSha256": "fd1251d0f4db50b17ab0429863e9703948c855d9c4796ab230d81958c36e8891",
+      "sourceSha256": "bba48b424e8981260f03f2b739b225376d45463564d5d6f455faab784821b3a6",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-fearitself",
+      "actorSha256": "69466554d6be1822d791c00fdc0e8b8994155aba4670dbe14bd4b6a9ca24b394",
+      "sourceSha256": "f7a5277e9233326814be686762ca86faec2b9963b89c80a05b1d6d629b89faf6",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-felicityhardy",
+      "actorSha256": "f8b5b1ed9076a5d45984c3f212630eaf163408760e2a070e82a1e7fa072212bb",
+      "sourceSha256": "3620c8cd1fc506bc39ae4c2393f818e0f32ff5eb245a6c6a01d88360e4136541",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-flashthompson-unmasked",
+      "actorSha256": "6f2d6cfa7750eb3175b49ba0ade96a1853e737739544aba23472387704826765",
+      "sourceSha256": "1bfddf76c704b53999bebcf269bed0a3171464c44ac666cd9204249053a771da",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-flipside",
+      "actorSha256": "d4f445241837efacaf083bc7cf58f07d4471f17ea81b703ae358235081e0a884",
+      "sourceSha256": "e47d4e80be37410adfdd6f539af8adb64e1872b5c3cfc0deaab393efecc75736",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-futurefoundation",
+      "actorSha256": "d10dfa7bffacf463d8305c165d54b91275acddb81f6e800293c117b69858454c",
+      "sourceSha256": "276734fbf2620b1fbac94b0316dccebe71f97a1264498eabd0ede1ced3e5270a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-gabrielgant",
+      "actorSha256": "648c7098959c72dd7c2f1d7a7a74de44ea7e950953582f9ec9845be4ba5af518",
+      "sourceSha256": "79aa4f2958a412c2753e2572c15ba55de601c985c9b0e7fdf34ee24e8b84b62c",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-ghost",
+      "actorSha256": "a46761041b64bcf85ea5a58d1f49374f34f26e8e2fdc49c9be21eb857331689a",
+      "sourceSha256": "0a0a6f8d8936bb23b6127bcf321c16c8827e5042976e242fe3d5f9d2ec49404a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-girl",
+      "actorSha256": "2a8984717137565d573cff70a7eb3b371d73f7e36ec1e6a59cff32ab0ea44dda",
+      "sourceSha256": "1c5f1b060c405bb82ff20c0812bac8d04fe058616975e2ec871232085af05aaa",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-goblinspider",
+      "actorSha256": "2459d8b6cda68265b279aa279766cb2d8985b0db35e7d91aa3fd70a2a0104b37",
+      "sourceSha256": "97515e63d28f0445b869059bfe89eb9a4f1e2916031b1ef05571295e94280410",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-god",
+      "actorSha256": "da7bc78ecda33cf0875bb547242ddf8b4e95dd0ec5c466c0ed2e98c0bd70590b",
+      "sourceSha256": "485d94f1935f315e2dc46e2b7cdcf44a466a78520e8c70ca338a1b58229c16e7",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-guardian",
+      "actorSha256": "46daac2330c9de5f9efdd47eaca39d4ddbf23b2797355894882f95984eafae68",
+      "sourceSha256": "81845fa785f6eb3b17f0689025047f4309c0776e0fb40052bcdd7bc63a9c5160",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-gwen",
+      "actorSha256": "f990711ad5bc6916a9346ff8876bfa1e21886243fbd624174aa4d3dca6c086b6",
+      "sourceSha256": "cc279fecee315f2c6dfa13c20c3402af5d63e15d9ccd8c7d07f135e0c2dce85f",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-gwenom",
+      "actorSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
+      "sourceSha256": "2490068258b663dd4a75d4eed77fa65769ff89fc810808fbbacedc7db1893b78",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-gwenstacy-unmasked",
+      "actorSha256": "a5c5fe67705a023a55588de1b1b36f48721fb245aa06c9a16a8461a4351158dd",
+      "sourceSha256": "436a84c9220761032726c095de1a60df1e5e6ebb1f9239080baead9a15405103",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-hammerhead",
+      "actorSha256": "6cdd4b7afa57a4262e201e045b886f86af01048680afa42e21222e38856966e7",
+      "sourceSha256": "57a90802f1f68b87564e088c7e05086ca0af017bbfab4488c4c78dbdbc8e0d03",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-hobartbrown",
+      "actorSha256": "bde2623a201248573ddd55648a81e89dd27c29e892fb517d0d4079d34f7e25f2",
+      "sourceSha256": "0d871f97feec5a2730aaf383b3cabb4261f25a5e0cf2aee4f72b820c0f56b527",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-hobie",
+      "actorSha256": "a2239c6624b7cc9fe5b355d39507e49c1f1488e636b1ab15e90b546199373589",
+      "sourceSha256": "9c1df8122d91ecf49d65e53a2dde82099de54155939d668e5ab270d977e5dd4a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-homemade",
+      "actorSha256": "feba808d52c9b726d6628c72a4e06a49f89cf241058f6d5ed66386a0f4fc792e",
+      "sourceSha256": "0efd413f9d23bb2a43ff35065f4c0a3ca3a82c6fe5c4dee9d59ce1abd9a2c7d2",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-hornet",
+      "actorSha256": "825a5a9a202cb87e53e23130d0ab017e35788ea62522bb11c4f12d1ee261eafe",
+      "sourceSha256": "479744c12a5baf179f6eae98afddf1436900c59d3ea8e9e9e2c2b7a974c94d8f",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-houseofm",
+      "actorSha256": "2c33a04f3217734b2b1752317c37aeb1fb8e6f95b46ca959089ddbadb8aa5e35",
+      "sourceSha256": "f425fd7025607dfa401b84c6eb427cf984341986e3f2df3b644babd42b343582",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-hunter-arana",
+      "actorSha256": "4e03f2559e0f774da74430ec7a2c2b745623df7874648360fac7f653451a7b1e",
+      "sourceSha256": "4076a7c57c5d3f67492c5b17309e912ff9871c84d700d66684382e86152fd141",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-ichor",
+      "actorSha256": "c015c5b2b02cf3cdbd544c5d7c4d7cab00291e4f330886664327f289706f130b",
+      "sourceSha256": "2b08df1c777f93b83a31caa466e4d83d4ba3a85c058bf642e81c75fff12e6f1a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-iguana",
+      "actorSha256": "35452c646e093cf6d93c49df7418aef4fa2274b06121f2e9e986525e94aae2ab",
+      "sourceSha256": "53b44792999cc9bb72d78b0eeac689e01b9959386ef620b83afa710ac0366abe",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-india",
+      "actorSha256": "f70cb7b1e81a8a16f44cb5b3fa202ae2f44446901ed77fe6aab8997685295f83",
+      "sourceSha256": "35ac68ad7e76a317a2a6724d61c61dc18e0fb4da6d49bad20ed0a26c5baf3e5a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-ironspider",
+      "actorSha256": "d819e9111c5d002552f8ce165ef6a280da78fbf9bdafe85d1746a811d6357dd6",
+      "sourceSha256": "70abc944cd7f6343fb7159b193b3173ee63858a387ad8b7a86cd2dfe578884da",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-ironspider-unmasked",
+      "actorSha256": "bb04bb74d99aa2e24c7ffbc5cec695bcc453636f42f827faab2395c9e9b35d07",
+      "sourceSha256": "0a52f6d4b9f65203e2a1e884434651cc932e5ef0bb74d71115bfe3a2e60e6db4",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-ironspidernew",
+      "actorSha256": "9f6f7f120d255bb97100c92665a79d474b769b48ac6914c4069eadcc644189b0",
+      "sourceSha256": "372967cd4eb34fe93186744045b79bb062c1827174b43d17045cf41b2a2f4896",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-ironspidernewwithtentackles",
+      "actorSha256": "c94dc3efb4884f26149cda3fce8844c07b11bf415d70f480322d7aaef51ed255",
+      "sourceSha256": "ef80dc67a056eb6d536709b5056d7df6b2edd92a72cc2b8970ee534500ad49b6",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-izumi",
+      "actorSha256": "9fcd785fb95ec4c193dbe889c62c8c856127048b3e4ffcb30f43e0ee47306260",
+      "sourceSha256": "8dadb2304e06cc5a7f9c9fb67b4b1937d8d3af1dd901ba8d659ae523fd3f257a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-jessica-drew",
+      "actorSha256": "75bd02ccc1fe5ad5f40a217817aee477dc73a0b993f2aaec8a58fa56dbeea044",
+      "sourceSha256": "44f6da89f66c621aaa3a734374676f9049349cfa95cb1d225e6c2569f41f38a8",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": true,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-julia-carpenter",
+      "actorSha256": "fb8884482879fdf3418e156758e764586c2fa879b7979c4cad4c0cba372e0d82",
+      "sourceSha256": "4d4540e8cdd3962adcbb860a5e3925401cd46815dfef80b59961cb39996dfa13",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-knull",
+      "actorSha256": "eeefdb96ac77475150e7e36b9ba173713970f875354fbf1159601459244aaf74",
+      "sourceSha256": "958e2d9b66337162237467b58bb2a5cfdaf3dfc7711c8320f6d877c08c1c879b",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-kung-fu",
+      "actorSha256": "7dc0254b53849d23cf5fd1f4103939e628cb823ba2b1aa2a6ac3ce65fde91dc0",
+      "sourceSha256": "9425712a7e0d02d8d57b711e5006eed249ca8e0772b8b74828e6330786dcc1cc",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-lana-baumgartner",
+      "actorSha256": "c93903a1df4b92bb9511804e051a8a431d3a253e41b95166eb78811a2bc8504a",
+      "sourceSha256": "e8b64fbae622b13ef98aa7a54023078c2a81ccc58ece74a9dbb5aa3a3347d06e",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-lasher",
+      "actorSha256": "92a9d31bdc383f6552ac9b24c4735aacf570e17c6e039a25d77a1bb72039ddb8",
+      "sourceSha256": "6c3057d060daf0b6d6e77c579732a2a693a443fe17e4e2fda1961ce04ab703ca",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-lasher-cell",
+      "actorSha256": "26836dcad207c86f2630535aa47bf11b885a11e60d66f4874409fa8f8056ed30",
+      "sourceSha256": "05545b7198e225785824c5c7159087b212592e7aa02556fea2b28f1052148fd3",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-lily-hollister",
+      "actorSha256": "424a0358f349c088f3b05947f6189cec1c60b0084f46084bc12a2476bb8ded78",
+      "sourceSha256": "f4964f4d6380c91510baff8e23deb80ccdc12b02f4991393aeece70b021bc736",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-lizard",
+      "actorSha256": "b51e0b2ef156045ab68a56be845fd4e5ba44c5824523ba9185c53df4c4d63b06",
+      "sourceSha256": "0f094676377768b4d6a6f94748937f1847e70bcfaca9951ea0e4ce6088a206cf",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mac-gargan",
+      "actorSha256": "1f2258690dba8b1cef19ef9b950659f82f553902e46a208b2a6d40e004e1e16d",
+      "sourceSha256": "dd96479157e31058d713f94b883abc98c316af74ea359bcf78e97022b233cbb1",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mace",
+      "actorSha256": "fac6ff13134777cb63126d4b9080861d73495b648041fcf00a2e1adcb319dff6",
+      "sourceSha256": "6619b098d4e7f0ec3011d3027c87be8453dc09aa489f6f0e840adfefe11908a5",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-madamweb",
+      "actorSha256": "9b096e8b0489168522fe0c74b978fa5fdb76cf4ef508e167109c8c6445e7397a",
+      "sourceSha256": "b1f215e4c91e59be455bd23a96d9712c4ec856b44ebf7ac906531a86d8d6a08d",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mangaverse",
+      "actorSha256": "43a24734ef6ab00ad73051e8e6d828fd8648708e2630abcadc21127dc5c6fc91",
+      "sourceSha256": "f8595bd9d2a38052565595c30b8807113a3e3f13a66897d468bdb1e32df4242f",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mangaverse-black-cat",
+      "actorSha256": "82a1e0276698eb7ded100802f1fea937606079af7451af4e0431ba813bc32711",
+      "sourceSha256": "88617b72e8763d6ac8ff50d84f17db18ed5b4303d517eba7761d9cc9ee11a084",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mangaversegirl",
+      "actorSha256": "4bdbd5fca167cb21cc34e59da914ebd67a8502ff4d7acea987120de229bf4bc9",
+      "sourceSha256": "31279f6983d406a3860d892e001d7c4b85a59a8afc205d45a7df067a5ca53927",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mania",
+      "actorSha256": "e5d46e4cf0e1dfec8ac93e4de9712a5dbbe22e21a8ed1402aea93628110863e3",
+      "sourceSha256": "b40154517885415f9802acc1e9d389a8da6fc82d77155c569706ee20e08e5c3a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-maniac",
+      "actorSha256": "495429a11d0d45487dd4eec1701d4ea2d76744e548383c199c047fbe8c19eb5e",
+      "sourceSha256": "5d4477c470ccaf5a14946aad85d9199a7b59c51c0fe0f68331b0e362d44a6242",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-maniacal-mayhem",
+      "actorSha256": "54e4cdd412cb7170c347afbd956d0d451ea5ee7d62a46001a942715dad9a87a4",
+      "sourceSha256": "7a252b13ee992e59ce33f0877f236e5cf05cb3dd3e2b2ea4f13b4a9aa0b3cf5b",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-maskedmarvel",
+      "actorSha256": "8f1a7af3b0f7d1cc059e8903b5089c08c00556767a5c0e38405e5c0dce27cbf4",
+      "sourceSha256": "946cab503334c8482b49ce0ad40de172a906ce24645ce041252746cb08034901",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mattie-franklin-5",
+      "actorSha256": "6c3dfb999a5aa511118bcf82cf4c79ed1b594660bc5a136e3cb8317218cf6c1d",
+      "sourceSha256": "3845ca83c61374b7348a0cbd58820555a6ee344f79382269ca12e82947fe2ada",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mattie-franklin-body-suit",
+      "actorSha256": "134990c727377bbff4ec5191d24998b433cb46c9e2398274cf4ec22a365a312c",
+      "sourceSha256": "3cf6bf6550c86f2fcaa67985443595657698848201760f4a284c45139de3a96b",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mattiefranklin",
+      "actorSha256": "668c14dca7919e1ae9bcd9e72698a2f367f662f6a2c0a4b955215d6c330ace96",
+      "sourceSha256": "47c6553fb8696e9c32ec84e3b60aac5819da647bd7b2ba26b7cea1e59854212b",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": true,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mayday",
+      "actorSha256": "7cb05249f59edc7f8bd381acd868f8ec8a01c8deaeece2bce07e2e9b259eab87",
+      "sourceSha256": "864e00a22c329df1484d89320ca36daaad11ee710aba9b39120cc305e88ee5a1",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mayhem",
+      "actorSha256": "ed1f008d62c7422965179aafce8b75de1d4530f294237ef59d60b87cbbc0316c",
+      "sourceSha256": "7d39b34848392f3bf00fa28e92d01c8565b3a99504690454dfe9547f909418de",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mayparker-unmasked",
+      "actorSha256": "003a23dfe136a05d804911c4b953bdf2648f482f45f5334a5e03c6eed64cf34f",
+      "sourceSha256": "02e7c62047ddcab4ff9db03b164a181d2a8026df9e4ad24e9ee392219ba4e120",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mech",
+      "actorSha256": "b4c049d0bd3bc0784fb3ed0e38fe8da8ac6475b6301d26b6f0ebd71e23bef1fa",
+      "sourceSha256": "bbb6424a8e9ece55086d9339aa1919b85c037b4214a785574a942c49b073b765",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mercenary",
+      "actorSha256": "7f83b26befcf066f577d33414ac99a9166e544fe2f4395475bad87af8afea1e7",
+      "sourceSha256": "1f9905101ea8b67eb7358d45ff63a10d14b537f9e99cc6ecf7e4576e46708a05",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-michaelbingham",
+      "actorSha256": "f4546fd5e97a80e777837de6fa6d5afe28007a5ba02ba138366cc04289f1b393",
+      "sourceSha256": "743b7a792a3a878dcd1f60b407b3131d63fe18f996e7720d91f76bd26b410db9",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-michaelmorbius",
+      "actorSha256": "a31743c94bf64eac3f30191c382e1c641b7750e8bd6e197cf9c8795f44f34a9d",
+      "sourceSha256": "e788412d9306c67800dda3a309ed7dd049c26a98cff73471d0d0682587769de9",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": true,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-milesmorales",
+      "actorSha256": "f9ad9f422aa1a65849bb9d83bf153bc41c29f0bb7d2eb6f486b7ffec3e192250",
+      "sourceSha256": "2bcf59884aec6bd25d34efa1be2f350ec05ee2198a7005186dcca54ffadbeef8",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-milesmorales-uk-mesh",
+      "actorSha256": "c8efdc491c82f82cb3a0a1bca6138a146c6a1ca3816d361e85822612b7d5b29f",
+      "sourceSha256": "89aa53005a589627f8b821045d5911e2596875c0de623a7670db9d5350e866aa",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-milesmoralesdemasked",
+      "actorSha256": "003e3fc841c6b1d432fdb6c788fd40482a9c1ba3a8958b0c7458c89e2c8cf820",
+      "sourceSha256": "fd3eccb28f5ee80c6da9dbdb46e50a0291db0467924d0f63610c9f9ea490cd59",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mj-regent-power-suit",
+      "actorSha256": "d604fb569b3ce6acca0c1e9319de7d55df514bfc03d7fd018afad9708516e9d9",
+      "sourceSha256": "3cfee6213ad856b54203826e7ccf241a6ec99e283e6ba838c556eb9ac3f5f9c4",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mj-sexy",
+      "actorSha256": "a9a1e3768b325836f690498b619f7226fb52b6565d9664d98e33960fff6e7a82",
+      "sourceSha256": "a9e39ec92e3cd3d9e00fd3d692e22df8d351b1f8838c37b20dd0cfe3db72322e",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mj-venom",
+      "actorSha256": "5cb1d23f13b5725c8753909c29222488870c6dcf525b703892c13c280d7bfa37",
+      "sourceSha256": "646dacd6f8589646aab2afff813a91a0c580a464f6bee85e221ee1793b1f6bb6",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mjiron",
+      "actorSha256": "c794fc724d6eb384af9f19a569ee8766a2ca4e921877d7a3cfae8f4427c16864",
+      "sourceSha256": "322427c31612ab7082f85d3a09b76758f2c717a35e0e45d117cd5ddd7c75d666",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-modernscarlet",
+      "actorSha256": "90a7c036fe706fc4151d25998963e83cda439b1f35179b042c710917bde1676e",
+      "sourceSha256": "6bb957889f7abb1afb5e9ade86ac333586beff8859c345a41aea37eff09d4a15",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-modernsilk",
+      "actorSha256": "268c8e8edc1838e4b0ff4979aa5422f92d23faec44036e55108d9f6abc22e766",
+      "sourceSha256": "058ad701b471884c79dd51c62df0997c3324a7aab2ba68ad16cda1e13ae7e41d",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-mutantjonah",
+      "actorSha256": "2f5e38c7cf6b440b190c62780ef4e283a185b947286f7dbeb18e9d2d193371e1",
+      "sourceSha256": "4b4111080b611acd5a9ab00cf4c70bde00483a6e9bf1cea80e7385afa0f3ce1a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-native-american",
+      "actorSha256": "5e49afb2c41d7b7831de94f154614cff9cad7870d5448204e1bc00de1b01b43a",
+      "sourceSha256": "5712111367f14783bafdf7abcd05c349b6a14e774db82b0db74ebeaddff59123",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-new-year-spiderman",
+      "actorSha256": "0e52803ecb94fce0bfc034ae553bb5ecfe455e213a64dce08d5c0010be002726",
+      "sourceSha256": "7fa727fdd9946110842ed1acf7709c4dd2bf30aa6f528cb27ef2b65d56382be1",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-newarmor",
+      "actorSha256": "585c3f040c0ee931f97f190e54fdcc1fc90ef004c8520c764e38a2598ee4eba3",
+      "sourceSha256": "77761d56f2ea3f89e8634040f791e74c7f05b922c50dd1f344720942800d7148",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-nickfury",
+      "actorSha256": "68ab67b033ed1e45960ef3d04f205d784bb12170dd0a1e9dc14f67ff028d027c",
+      "sourceSha256": "9ce45091980b020d6f19aa265e3393bf5f2a17aac5b82369f1a28d3e434670e3",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-noir",
+      "actorSha256": "850f703ff7e3953c4ec21f4437813545c2340c9b8203cb6250b854b2b0f18caf",
+      "sourceSha256": "2adecc144cd1b68389abfa1384768afa186d04750b1d0c2eb528fd5044ea611b",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-noirnew",
+      "actorSha256": "3d3ab675637cd11d462a1aa31c776f3713ff5f1698a02011d8e2e272aa5bcd14",
+      "sourceSha256": "f29ad6ada8084279ba2611318d677ec426834b926cfba06fe5ec3aaae656d470",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-nurotox",
+      "actorSha256": "17ea297b927cc08ade9eebcaaf2a17932ededdcf8ce836804332a0830cf07c2f",
+      "sourceSha256": "b5204dcdb3a960c6eb4bda549c9ca1c19d169be578eee92eb6df9ce3ba34aa47",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-octavius",
+      "actorSha256": "91cf8512473599792a9c3300e5a9e7296cd786bf241894e18583767dd73644af",
+      "sourceSha256": "d1653c949774e6e6b9cc0e535d3b00c9766c54321afb508d5a94b97cb3a15189",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-payback",
+      "actorSha256": "90ace414edebd6fbe59bafa696397430b4bb1a325c702693eb2959ac835837b3",
+      "sourceSha256": "c1cefd208e89c8b724d284832c4dbc93716e4294da0e43610c6973ddf8d7a536",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-peter-porker-unmasked",
+      "actorSha256": "ede0d6805348f30fb9b6613a940ab8e57096aa4ce453827ab121b8478181bb05",
+      "sourceSha256": "fe729ad20c7fbd66416d00d7aac6023baa9ebdea9d9c9f4d974f620cd24b55c7",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-peter-urich",
+      "actorSha256": "497748e87d893c3dfa74cdc7f4b2c07c85d1afd2e3d98b961d4ccf0ad9892c91",
+      "sourceSha256": "1db71fb639c60231cb9a5d0f26975fae34d5310a45d61b44e320c6d85a0eb8b7",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-peterparker",
+      "actorSha256": "343a0dcb98f22975d539e9d42786b96551677ad4053990cfde5c4aa1bc123843",
+      "sourceSha256": "eb6baeb33a7f0dcb4741fe8f5a4deb0de98348d904605682da4ea3d9dacbb40c",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-peterparkerearth11080",
+      "actorSha256": "5106624a9462d6fc10d7bb699f1abfe6039c0b9bfec2907a3b2a227a963be668",
+      "sourceSha256": "448a2504b9e1b1d7825213f32c6db204ccecf696c48827c4e069fb3f9387d460",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-phage",
+      "actorSha256": "667d79211111ad6c026a3e9aaaa64215f62c13a1544da0307b256d25ef71356d",
+      "sourceSha256": "19fa7e32482d24a43fec03a4195c9fb6e7450644425de6f14d15802919e8ee72",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-poison",
+      "actorSha256": "bc409bf0111825222f7929753ad0826f69c9dec39dd6dba0f705fb75992b5ff8",
+      "sourceSha256": "b8e31a54c01898f33b9316cab904df200cd743dbeb5d5638d5111c97264ddae9",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-poison-doctor-octopus",
+      "actorSha256": "dcdc013a3feece0127a330928e083d220daa4dbde57cd42d334acdc6238564e0",
+      "sourceSha256": "91f3bda4fe1393714f8336a7cab0edd247ab1e4d51d38729ec2b8c180869afac",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-poison-hunter",
+      "actorSha256": "0359833d090cf04c225b7bf9499dd379503902fa4949638ad833bf175574db1e",
+      "sourceSha256": "f9381b62ed9280a0e8913ea8bb784e4ce920666942eab051202d11ddbab286d0",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-poisonrhino",
+      "actorSha256": "e4f7cc4c350f904ea424b1c62601350b0c9ddd7ec0c477294963df3b4ed6d194",
+      "sourceSha256": "646eeda902d0c9cdf792f4523fe1fdc0b399d72b34829d1bc2232bcd74258ab0",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-poisonspiderman",
+      "actorSha256": "9f350f4a90c354d04339a18521d3f7eddd306b2f6a2250118a1794f853776d55",
+      "sourceSha256": "2f0e15f42cd4eb789e5060e683adb0217bee42b1d0663abb89265645c7f18ac9",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-pork-grind",
+      "actorSha256": "159abdb51035dd5b6c78f8b69198606cf1d1e9b11ac0ce6e4b91ebb64ac5938c",
+      "sourceSha256": "2db8ec47678d41a7a85369f57e6b50247b4af9b872b2eb31c904b08b4a8243da",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-prodigy",
+      "actorSha256": "2ec80be36fed64fa3b090c8948674afc15088cf776ad0c8d6ac5e7d43be2d91b",
+      "sourceSha256": "15dfe44891bfedfaa5c7a24d65468a04d6a4eb5330d151358527cccd2e13df71",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-prowler",
+      "actorSha256": "982084a97a36c49ce773d13c9f74b90ae5fd4a6720c9396821c3930007c88d17",
+      "sourceSha256": "db8106b0ded9124d0f92622fad728722c9b52208a20ded8a41cf0ee536ede148",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-punk",
+      "actorSha256": "c757fef786915715b0f19d7fc7213f69dc82e42dbf5af592325ec14afceca348",
+      "sourceSha256": "0a3eb65084f25e322d82e26effa3517db380e4984a9a9cede0444b412bbb4834",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-quickchange",
+      "actorSha256": "ae88b47321384480873213d2ff4d8504ffe715efb63a44e7b50321ca7e73fbcc",
+      "sourceSha256": "89088552e11b933a44899aea26d65b2ab6a474746dc7b8e977f2f899d56a5bca",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-rafael-carago",
+      "actorSha256": "02ddda71e707d43d7ccb3f3fdac7afb7bad9201287eb4655d04ff5a57a760cb6",
+      "sourceSha256": "1762b8ba9a9f797500d6866e2c3f0f4d1a87bcc658eba050f235d756fe67cfc0",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-raze",
+      "actorSha256": "25d20d4e6b34d7e397ea33e4c05194744768cff5702d3b249e81e283425b1dd3",
+      "sourceSha256": "dacb07a2def134542a2e5c0a048e4f81a872dfa294ab950547822f530042b2f7",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-red-goblin-boss",
+      "actorSha256": "17de6ef71c6e487ab7e2403c803835aefab1ef4cd39e5b3b5e0852c43432bc11",
+      "sourceSha256": "98d4656c6186a6297505452b449bb684b0b5ef7f1b0f75b2224f94132f676ad2",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-riot",
+      "actorSha256": "506574930952d467c8b5863d22fc8b67d6ba752d6a8cf96249a245b052bb3082",
+      "sourceSha256": "0e1cc9a3328379fdd11da9753a03a05167b90fa45b8a4d2b2d347ae32f817f0d",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-scarlet",
+      "actorSha256": "713c660e49ba71e897e6216f4c48aaf2cd8b4beaa26fa78989b9842d9cce8f05",
+      "sourceSha256": "b852ba07f1ae8aca6cf728ca39525b181603673857d76aca5d6b0cb19577b3f7",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-scarlet-spider",
+      "actorSha256": "94be06ed0b62cb493e4e6f7bccfb716e99ef530ce3bdc7d76dd135068b83f214",
+      "sourceSha256": "4352b6433159db6a73ffa7e76e8ea51e73ac89ef724dadf94a1767ea75d364ab",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-scarlet-spiderham",
+      "actorSha256": "b85d786817dcef34cf964656dde6d3926a3ebb2b4b1f74c78ea64cc85b0d65bd",
+      "sourceSha256": "1f70df27e610144cc9d587932d48a9be27b49ad3d8cc513a5192d3203651e119",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-scarlet-spiderham-benreilly",
+      "actorSha256": "874ea85c9d61026184aa0baba3ecf147dfbb3d2161ec2716a2652724b5ecda0f",
+      "sourceSha256": "7fd0b6b6f738a512cb944c1972d0160f2e854e3c5c3439c9d6b16d5e82c0c0f0",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-scarletgirl",
+      "actorSha256": "a6dbdceaf5acbf7f5a5cb0d4935cdc11e9ad7c8142fff23e02ca78bc8945ce15",
+      "sourceSha256": "1581a8bf3764986dd274453e4ac8f36bd2e32f0e49be92ec3ba135cf86c83616",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-scarletjoe",
+      "actorSha256": "3767c8223d69149b77f1267231e9a1c97ec2fc9951a6bcfa01967297988edfae",
+      "sourceSha256": "83e153651e209171ab2ef46d7974406d5ca6229a32ca1deaf61e8f2369996bbc",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-scorn",
+      "actorSha256": "c2815446c7ef83ef27ac69df3005b8f28d7832a724ad64b1fae33cd454faf536",
+      "sourceSha256": "7d090ca17955b54533dab72728a279cd550aabb0233cb276df742a165320e77c",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-scream",
+      "actorSha256": "ebe72ee68be647094847d6f98cfc4a863957973974580a6eb8f198a874048eb2",
+      "sourceSha256": "2c358e93b6b4ddd4e8fed44e76a0f504617dae4938ca2e3a75bdf6d44c069591",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-secretwar",
+      "actorSha256": "202fb571e7046a5e0b9b9f2196f5080f0897a55689bd836f8b73d0ab0ef23c90",
+      "sourceSha256": "cef551bd9ed19b22a42ff0539e2319d017c05f5b2289b12a68892cd3f5b16ed9",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-shevenom",
+      "actorSha256": "441e436db29ec5d516b38d0760477c115fd6c7d2cc9b1116116635052f7ef37e",
+      "sourceSha256": "7645a475d53f6f03b2794e8e8418e38626e0590ee37e544617fde1cad27ca9a1",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-silk",
+      "actorSha256": "fdce0a43a75b4d9dd30ada65ff58a2a9d9b30f7b0ca17d917233869f09bd8742",
+      "sourceSha256": "7d6fb5457a79b094e9f08c3b5e005b6c6e3be9927e67f7c855e8d18f7eb96810",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-silk2",
+      "actorSha256": "33dbf63ba7b6e8867fec8824f7556454fc2498f5ba35e7195fecca488ab2e2c6",
+      "sourceSha256": "28c0a2024f049d577aaa33d8987c269acf420f342abbe8fc271c2613ae673962",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-silversable-play",
+      "actorSha256": "3c9734c05d17c8b8e1b32c86a8b153c84535712ed115679dece8dca9ddf8fff3",
+      "sourceSha256": "069405d6e4519ea26f8f60858bd7033daa0e06db39c237dff4bb34888e1642be",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-sixarmed-spiderman",
+      "actorSha256": "03d77ed60fbb5926a7dbd7518bef2a6d83056c3f32061e0e8cdecf1ed8671294",
+      "sourceSha256": "efc8e73098441c62f727fd16ac9f6338d7195cf403bcad901f934df70c2f2a44",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-small-ed-brook",
+      "actorSha256": "8b23ef365e537acd2310448a2aa037908a8f9614f57f3fe8017af7906f374924",
+      "sourceSha256": "63bf976f9c1cd68320109293d294ecf9a760a2c3af4078e8a56c6c3b206d3bf0",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spacesuit",
+      "actorSha256": "88cdcb0e44b2cced8bbd11523cb27ae2ae035b947ac4482f59920bc7669dd96a",
+      "sourceSha256": "9599e2ff7f274e1e30b7b74b902ab13042677638e30b6022cc31a8facf6e9dcc",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": true,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spdr",
+      "actorSha256": "116ee8f98b628336f65790c6fe7463b3fccdf7492aa402c18ba232e9796aec2d",
+      "sourceSha256": "3d6e2b63cd943b70898abcb51c151af0e411c379cc8d58b4be6c77d835efd3c3",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spider-carnage",
+      "actorSha256": "bd6834cc03e24f9184cfbfbca0d02a7f80685ec856ac53037830586166c3d954",
+      "sourceSha256": "1e093467402bf4615022cad878c9ab97a93b02be20a1af49c24197f0750344bf",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": true,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spider-cowboy",
+      "actorSha256": "62a10a5033eda28fa0f3dbb45f53baa1d25cd113cc76d4aa978a18f820811e9d",
+      "sourceSha256": "f6924e43dcea7996f10c58f269fb25ad4df3aabf736d5d250928693385d2f223",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spider-demon",
+      "actorSha256": "86f38be3f21e3b3fd48fada05fc26e7125d776a098bc166bbe835cef3211a170",
+      "sourceSha256": "1fc1f162bc5da34f90edf305e7a0c0e2e9d30aa7d9b491b0799c640a38f39fc2",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spider-herc",
+      "actorSha256": "98b0d20f80f2b1d86f5df0600e66f88377603d5837910086f02acaead18147e4",
+      "sourceSha256": "129a6b97267d197825c38dea36c63d2e73ecabc7f42b6a5bb794627e6364dc8c",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spider-ninja",
+      "actorSha256": "c2ba2a426f6a3597610a6c79394816e5a84600d3b9acbaeabe8d7ef49ad6c227",
+      "sourceSha256": "20ca47b9bab94884347f414022b78145367c74334dc98cd7587b56be3f0479ab",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spider-spiner",
+      "actorSha256": "50319dde973be7fed7d2d3245b3445f79925ab6fb554b734c267202e584fb689",
+      "sourceSha256": "2f7b5a812388493ad25fbbae4fc0fa2c7bfeb54c33d108d697cb9d18591ad6d3",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spiderarmor",
+      "actorSha256": "45458b8a3c6cd9f9f1599af87552641c2ab6b196c98cc862607a751bab7e9866",
+      "sourceSha256": "1be26fb80e71fc0a5f99ecb73fec9239708588c317aa77f0dfadac6ece3ccfbd",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spidergwen-earth1036",
+      "actorSha256": "81a72231909808125a963ed4befd71c67ec6a26051e665b76a2b03a22f7162ce",
+      "sourceSha256": "0328d35292b7abcb1c07ed8da269a76aca83aa0f5ae4f9a0c1208dce06f074d3",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spiderham",
+      "actorSha256": "b07acca3e69bdb506acfd10504aef1cf0e76a4e173e5663c8745a1de9d584663",
+      "sourceSha256": "dd3ed0f1fa0cfc791b59e78d09729caa98b26a6239209fcda32f825d4de4cc9a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spiderham-2099",
+      "actorSha256": "cdadf5ccefd4a3e37bb48805724576fbe7ffd6723753fb6cc6c41a6a06d88d2f",
+      "sourceSha256": "e370a8108b7e0d44a501693b6b9b4131bf9fe878cd08e15956447db0c6c62d74",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spiderjameson",
+      "actorSha256": "b8f1b3b4ca0da89d4976086d3f49ab042410594d5c90d6ffa811169e4d975553",
+      "sourceSha256": "d2195d88a9d56cdcaa7fb295495aeb7bf65a901ea98b8da61af7665e7a293c35",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spiderknight",
+      "actorSha256": "1cf7a590314d09f605a59d99995e0834a1e4eac6ae73dbeb11d0239480aef12d",
+      "sourceSha256": "9c5ca607612bf0fb13093a6f81fcfe6265245035fb2a6eca295b5b89babac2e0",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spidermaam",
+      "actorSha256": "1a68bccfb5d6498490938c32d6f740731bd92af741ad2fb338e0d0a73b74383d",
+      "sourceSha256": "656944f3567d11eb21aacd88425dcf21d6cc4c6fbfeae6ae9f5ab5c0c8834aee",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spiderman",
+      "actorSha256": "dbba261441277944b5fbbbabccfec004951f576199647b1caf067511d09c9ac5",
+      "sourceSha256": "7c6e2a7e4aac545e60b95e895b0a0da55f707b2c268bc2d0ca15a746af8f5fb6",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spiderman-2020",
+      "actorSha256": "1ba76da5aea4a925466c5a8b7fc03aee651244566390d61a04a85502adc84b77",
+      "sourceSha256": "08670c3f48be455eca19f8816da7108747ec1a84df815d2cd9b950d45e77d43e",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spiderman-newdesign",
+      "actorSha256": "4a207d58850d3367eaf245910cfd6d1a2afb90f5f37b245fb7b228540d7926bd",
+      "sourceSha256": "fca83c403a92632c0535289679a209d9118c47a9eccc18616e144db440becd02",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spiderman-surveillancesuit",
+      "actorSha256": "26359bdfef24173c177dfcd93685eacd14a1cd6df6848bc0f0d705b3492ee69f",
+      "sourceSha256": "d294aa6ec3037adb896827a207ba4fbc026633ceb881f13ba18f3ef7174c6bc1",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spidermanhomecoming",
+      "actorSha256": "7fca5686430cc2c22c0647a714a12bf666ae5a10721aca14531d51fcb08e7ad5",
+      "sourceSha256": "7093920c706793f37eac9e49bec4811c81b6b7109616e4cc59354015da3bf7e7",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spidermj",
+      "actorSha256": "ccba47b5cc5339893fa2c4522b74fd5f1a3d3fe78161c8bbdd082e07b8182e5b",
+      "sourceSha256": "80bd974dd548e45dc321b22cdb4f8e48168ca890cbaeb8d2637ad2191197d7f1",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spidersman",
+      "actorSha256": "470bb8b711a5ac6bc86caecbd659168f2d012311eb181a2419fdbea6c2fc4194",
+      "sourceSha256": "e404a8ee5d3ca5a94fa375b509778d06a8447f1c2d4086a185ad017b6f26820e",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spidervenom",
+      "actorSha256": "f9489ac821dd3210b5ad7a3a6ffce9510b958975030d23acf2256ea737fe4c3f",
+      "sourceSha256": "a64a7c9843f41fdb568da984a5e9f7b1cb8479cc7fae6fc374f380262d6042b3",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-spiderx",
+      "actorSha256": "7c514ed762b9562df2cc632406e7a3db6591f2cd0d0c10ab6d8c8f73e4f7ad1a",
+      "sourceSha256": "794a42744fc33f1407952d297632a86717b17086006a762a4b542e33d9b9a837",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-steampunk",
+      "actorSha256": "8f80f18c5118dab64d2b00b4af57d66717557e664fc37dff1f0d5c8ac7f79f0b",
+      "sourceSha256": "8473c9237099c5cf9cf6066e6f4000b2905cf46fe83edc63ac8d769a52066fb3",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-steel",
+      "actorSha256": "c9656e52833bd05d7ce91176b717d4d0e6f0925dc678e7b9f6980db87fdc7c2c",
+      "sourceSha256": "57eecaced9c9dcc2b5202d4f7b3ff2bc79f0fd673e8121fa2fc7e40aa173e10a",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-superior",
+      "actorSha256": "1dee81e71048f303175f66af6e70d8b4a3bd1811f18bd50fd24e399f3d4aca5c",
+      "sourceSha256": "0fd15afb3befa07bcb2f58b1b65efb5ec11c5422313f66f32fd43c83bcec3d6b",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-superior-carnage",
+      "actorSha256": "a2c39c21ac9368b40c18d01a7747ab23502f952644e8064260722c5c627e23f6",
+      "sourceSha256": "13e1538860d29189b01cacf1cddcd1cdef9554c499649fd5af0330569e83b3b8",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-superiorb",
+      "actorSha256": "c6ca58e044ba3fd789becfd03562b413cdc7a1f44bafb63695ce18b2e8dc3bf2",
+      "sourceSha256": "e8941886c4c2eb63fa23d49a92de4c41c7b4ab3587c121a9da977afd72b99655",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-supvenom",
+      "actorSha256": "114289760515f9d2f3a969e30169986430275e418f6b3361d929c772537dfec6",
+      "sourceSha256": "89da63a206d5b24816b55ee2550f41992a05496474f2c4982f56b45d0206653f",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-swift",
+      "actorSha256": "a8215563c47d30206c15a64e9b7e114ea0543011ad24ca72deb8c26c8bdc937a",
+      "sourceSha256": "188883aa1c7abdf946d2f250986378cf570230d3f7e39727a26600f455da25b3",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-symbiote",
+      "actorSha256": "2f3edec128c3d9ea7d806d77b3b923838425997c3c00fb329311cab8839419b9",
+      "sourceSha256": "18b920250f547e4d277dc7f50f298c75aa986679c6da0f6278146c8c391f5686",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-symbiote-2018",
+      "actorSha256": "96b678077156d2a18e5ab6a9229810b57442927a0b1e856203e0dab73b1ff631",
+      "sourceSha256": "ad132c904f0a11e5d583bb8ac26032e9f4075fb9d8e5e8f479616f0b993763da",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": true,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-symbiote-kraven",
+      "actorSha256": "a916044be0a69f102114caee4024d631f0d66616ff29ea48bd944748744ac7c9",
+      "sourceSha256": "4ebbe1acce8348ef6943cbb82ae1ef2bfb577eb8fb3e64b85a4421a56e7524af",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-tarantula",
+      "actorSha256": "b272d9c8d2b8060c1cf650b2248df1055c11b4a031f28c140e6d764c8e009316",
+      "sourceSha256": "1a266132d952fea5ff031bdd73807ecf4f95528fad3833d140388b3d645fb004",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-the-amazing-octo-spidey",
+      "actorSha256": "accd4c494986f673195a46f89230a15528d1712f36bc0d96dc502fa75214c4b8",
+      "sourceSha256": "5ecd8d9c917884a2dd75961d29e1c2c9960484bf624b557e614b283d84540e91",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-the-spider-peter-parker",
+      "actorSha256": "ffdb3fd945b298efa51132ec45821483d88c476d68b1430f08d3e3829f622ca6",
+      "sourceSha256": "c54f0eec13fbbdaa03a588635143d4c037805dcc5f07f57603846288ea27627c",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-timesleep",
+      "actorSha256": "280984b5a67410c8aa536c5dafc79609c1f8418b492dddde4a08a30f9d2b4850",
+      "sourceSha256": "b352ffc35c9b1be579efdbb1d2635d19137cee03da063dcc08d4833c778a1efc",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-toxin",
+      "actorSha256": "cf81e0edad078217234b271720bf7cc90705ce5ae02841152828968e207a44ea",
+      "sourceSha256": "db498445fd1efd99ff5a46ce4584067f12f078f951a11adf49755a9e5387bd0f",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-uk",
+      "actorSha256": "29edb890dedef6e6df94276a7be4771f828e63da82f54c213efaef1815c9daea",
+      "sourceSha256": "b43f2f2eaeacd9a8486468edaf9a963ef72d1fa75c2f3786d336f4a5d421090b",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-ultimate-spiderham",
+      "actorSha256": "6c4118929efbd15cf7ec55e48f191c80675c9dcdbc57db0118ff9578305714c2",
+      "sourceSha256": "f540af38744d68007abfcb64e9d40aaedff90b5192fa891e99e6a3f9daa6857d",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-ultimatedrew",
+      "actorSha256": "2c5c6f1c7e9b6ffccfbdba6a31357b6d356663b36c7c7ca3c20880cdf8d0f237",
+      "sourceSha256": "51bdba09cefabce9f105c38c1598fa9ec7ea01e853142c0d472315e3db9de016",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-uncleb",
+      "actorSha256": "576a9fe44c4b83bdf05f35ebc09a909917cdb563c4a76871dc2e43927d8bbb7b",
+      "sourceSha256": "8a4fe1b4ea0706e177849d95c87c25c2960cfcf37abd6c4a5006a8c747b6f894",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-venom",
+      "actorSha256": "e519899ce1a15c0a104b33797ccd8ef2b81ef80bd968be4c296de6bf86155342",
+      "sourceSha256": "0dab98f6e05d0c00965437b91d1f345e43df22349def22d6c8ff3319093d860e",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-venom-2099",
+      "actorSha256": "25e813dc1bab12baffb1081b48bbcff4771421ce6651bc5a09aef19a2e4d9e6c",
+      "sourceSha256": "9e01d4d4e38e5806d1c503166f5a6b2e0127e7bc4e3eea06f81b5372431e9507",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-venom-verse-carnage",
+      "actorSha256": "41a9b92d9bf443e321c891a83e74b67a7aaae89fccd5a1412aa18a28d1870590",
+      "sourceSha256": "ac7bb565a2e4a894d8acdf7a48272d759b1a08a6002c1c47261cb02e2ca7c677",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-venomx",
+      "actorSha256": "5914d5113261fa81ecc9194541de74f5320ca726d2b188f66aae24a2f3814342",
+      "sourceSha256": "36c27f29fc3cb419de8a0bb7d8d4b60e0b561d3ac6df768499449813293fb391",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-venomzombie",
+      "actorSha256": "e1aef106f479be8dcf4ddf770aa86992fdb50d7a362bc3406614e5e81cd18507",
+      "sourceSha256": "d6bf07f689ea8f737ed944371af3541ede297a3a3d6bd758a21f9b6730ce9052",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-wallace-jackson",
+      "actorSha256": "739cc60ddaf12621d5661e7d090766558bde6a37f1be17725bb00d4f2c6c038f",
+      "sourceSha256": "b1e3f104ae1d266e05b6b1f19f2c31640ce9cc60175ba75ae3d2f119eebe3711",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-weblisher",
+      "actorSha256": "96fe8c35f680b64dd3565f3590bb585f92fc0329d270baacc27de0519f4657ab",
+      "sourceSha256": "a744ba7a2b630ec68ed023a210ef8c313cd1e7b14e637324f7fcdc0a839ff238",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-werewolf",
+      "actorSha256": "dd68be7308d79e62f84361f761d12038ddc15b12f390dbdb5b2b25ce11485187",
+      "sourceSha256": "0104cdda6af5bf24082cd18db6d2357ce6df27256bf36508621fffc094b835cd",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-who",
+      "actorSha256": "7ce8e4a771a79e065a5f4de18fa71d4faf5f827512dfabf335ddbaed906ca43e",
+      "sourceSha256": "b024e0149047d28e5d278b920e9becba35856f11f3d0412eb5397b717ce1170b",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-woman",
+      "actorSha256": "3f9cbe6ce186726c5a8de3a417ea738337ff54d56c6d2bc202b9ff9a518661c6",
+      "sourceSha256": "6c1d82f830e79e00a57c369432d187e421789b3b852c02c2f71fb3e89f0ff075",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-womannew",
+      "actorSha256": "bb79e2711240fcd1d57efdce0a6c6f8f1ce735ca2af5b04ae94e0d9794189975",
+      "sourceSha256": "bca7cae219bb405272af2ba23ac4b76e96e99b7d669f3b9eea10e4d0d2ae583d",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-wraith",
+      "actorSha256": "ef6c88f8cd76e830c85d3b02ee886f523906c3fe1470b2c4b7fa60c8d2d0b27d",
+      "sourceSha256": "2d7458592cb33d299d818da3accc7a724e565ed8a1b75b8f9ca875efe15d08a7",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 1,
+      "actualMaterialCount": 1,
+      "status": "PASS"
+    }
+  ]
+}

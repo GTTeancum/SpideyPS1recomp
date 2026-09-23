@@ -1,0 +1,23 @@
+PASS: source/guest size bound 4194305
+PASS: source/guest size bound 1048577
+PASS: wrong container version
+PASS: metadata pointer overflow
+PASS: incompatible hierarchy size
+PASS: mesh points into header
+PASS: native vertex limit
+PASS: unresolved stitch
+PASS: triangle index out of range
+PASS: normal index out of range
+PASS: unsupported face record
+PASS: native quads and extended triangles
+PASS: quad fourth index out of range
+PASS: extended triangle with short record
+PASS: unsupported transparent face
+PASS: extended triangle crosses mesh boundary
+PASS: converted actor C:\Users\smmel\Documents\Codex\2026-09-22\referenced-chatgpt-conversation-this-is-an-5\work\devil-corrected-batch\suits\smu-devilspider\actor.psx: 452116 bytes, 1 material IDs
+PASS: real custom manifest and actor material mapping: smu-devilspider
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Users\smmel\Documents\Codex\2026-09-22\referenced-chatgpt-conversation-this-is-an-5\work\devil-corrected-batch\suits\smu-devilspider\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+Catalogue audit: 1 actors, 0 failures.

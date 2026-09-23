@@ -1,0 +1,12 @@
+{
+  "devilspider": {
+    "originalFbxSha256": "f1e1008adf0048c5452f6cec72a798359bc56385f3a2ea333244cd06ce9b6591",
+    "bdae": "models/Mesh_DevilSpider/Mesh_DevilSpider.bdae",
+    "bdaeSha256": "5a5d5c250aeba44556ef6a235a20e218d6ac3e93c5975215ca493ec13784bdf6",
+    "fbx": "verification/source-repairs/devilspider/devilspider.fbx",
+    "fbxSha256": "1c6d3bb9d000d31239543d12acf46e39e05934307cb4fcba25c48ff3a1264320",
+    "vertices": 1819,
+    "triangles": 3058,
+    "reason": "Original export skipped the 0x150/92-byte body descriptor and mislabeled a web helper as the costume. Derived FBX restores the original BDAE body, rig and material."
+  }
+}

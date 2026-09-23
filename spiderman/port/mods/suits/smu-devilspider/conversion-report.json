@@ -2,129 +2,129 @@
   "schema": 2,
   "status": "converted and core-evaluated; game execution is a separate acceptance gate",
   "sourceRigBones": 66,
-  "sourceControlPoints": 304,
-  "sourcePositiveInfluences": 524,
-  "runtimeVertices": 304,
-  "runtimeInfluences": 524,
-  "originalTriangles": 152,
-  "uniqueOutputTriangles": 152,
-  "nativeBytes": 390552,
-  "rigBytes": 118244,
-  "packetSpilloverTriangles": 24,
+  "sourceControlPoints": 1819,
+  "sourcePositiveInfluences": 3833,
+  "runtimeVertices": 1819,
+  "runtimeInfluences": 3833,
+  "originalTriangles": 3058,
+  "uniqueOutputTriangles": 3058,
+  "nativeBytes": 769560,
+  "rigBytes": 317436,
+  "packetSpilloverTriangles": 241,
   "packets": [
     {
       "packet": 0,
-      "vertices": 256,
-      "triangles": 128
+      "vertices": 185,
+      "triangles": 272
     },
     {
       "packet": 1,
-      "vertices": 4,
-      "triangles": 2
+      "vertices": 256,
+      "triangles": 369
     },
     {
       "packet": 2,
-      "vertices": 4,
-      "triangles": 2
+      "vertices": 102,
+      "triangles": 134
     },
     {
       "packet": 3,
-      "vertices": 4,
-      "triangles": 2
+      "vertices": 107,
+      "triangles": 126
     },
     {
       "packet": 4,
-      "vertices": 4,
-      "triangles": 2
+      "vertices": 106,
+      "triangles": 132
     },
     {
       "packet": 5,
-      "vertices": 0,
-      "triangles": 0
+      "vertices": 133,
+      "triangles": 200
     },
     {
       "packet": 6,
-      "vertices": 0,
-      "triangles": 0
+      "vertices": 133,
+      "triangles": 200
     },
     {
       "packet": 7,
-      "vertices": 4,
-      "triangles": 2
+      "vertices": 256,
+      "triangles": 438
     },
     {
       "packet": 8,
-      "vertices": 4,
-      "triangles": 2
+      "vertices": 101,
+      "triangles": 119
     },
     {
       "packet": 9,
-      "vertices": 4,
-      "triangles": 2
+      "vertices": 107,
+      "triangles": 139
     },
     {
       "packet": 10,
-      "vertices": 0,
-      "triangles": 0
+      "vertices": 133,
+      "triangles": 200
     },
     {
       "packet": 11,
-      "vertices": 0,
-      "triangles": 0
+      "vertices": 133,
+      "triangles": 200
     },
     {
       "packet": 12,
-      "vertices": 4,
-      "triangles": 2
+      "vertices": 103,
+      "triangles": 134
     },
     {
       "packet": 13,
-      "vertices": 4,
-      "triangles": 2
+      "vertices": 134,
+      "triangles": 203
     },
     {
       "packet": 14,
-      "vertices": 4,
-      "triangles": 2
+      "vertices": 102,
+      "triangles": 119
     },
     {
       "packet": 15,
-      "vertices": 4,
-      "triangles": 2
+      "vertices": 124,
+      "triangles": 150
     },
     {
       "packet": 16,
-      "vertices": 4,
-      "triangles": 2
+      "vertices": 130,
+      "triangles": 201
     },
     {
       "packet": 17,
-      "vertices": 0,
-      "triangles": 0
+      "vertices": 106,
+      "triangles": 122
     }
   ],
   "unitScale": 19.161587330459145,
   "rootAnimationScale": 0.9027983758524698,
   "neutralBounds": [
     [
-      -47.90400695800781,
-      407.1861572265625,
-      -118.06925964355469
+      -524.5069580078125,
+      -1663.9923095703125,
+      -402.2427978515625
     ],
     [
-      47.903995513916016,
-      1718.9998779296875,
-      -22.26047134399414
+      523.5421142578125,
+      1719.0,
+      458.259033203125
     ]
   ],
-  "sourceBindReconstructionMaxError": 0.0001915594939418952,
+  "sourceBindReconstructionMaxError": 0.0006073891545383958,
   "inputHashes": {
-    "C:\\Programming\\SMU-Costumes\\costumes\\devilspider\\devilspider.fbx": "f1e1008adf0048c5452f6cec72a798359bc56385f3a2ea333244cd06ce9b6591",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\verification\\source-repairs\\devilspider\\devilspider.fbx": "1c6d3bb9d000d31239543d12acf46e39e05934307cb4fcba25c48ff3a1264320",
     "C:\\Programming\\SMU-Costumes\\costumes\\2099\\2099.fbx": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\DevilSpider_D.png": "2b0a3eb6c6cd52c2711261c2eb96bd52d71d506ab1022f14d89cb502bafae475"
   },
-  "outputSha256": "f81c535976e46cac5ebe693c00f89d469c89c70ce0cfd8dc03d119d7ce670f55",
+  "outputSha256": "1c0bb48832b9c6df54fc1848e5de9107a2fddd71ec5573e09fd2a301f568f75d",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -199,9 +199,9 @@
       "bone": "Clown001LArmDigit32",
       "angleDegrees": 85,
       "axisLocal": [
-        -0.007812777202035171,
-        -0.040883566690270864,
-        -0.9991333717212505
+        -0.007812852431185825,
+        -0.040882839715956534,
+        -0.9991334008798061
       ]
     },
     {
@@ -295,9 +295,9 @@
       "bone": "Clown001RArmDigit32",
       "angleDegrees": 85,
       "axisLocal": [
-        0.00780097806147138,
-        0.040885079598770815,
-        -0.9991334020077031
+        0.007801206290310811,
+        0.0408854018466215,
+        -0.9991333870391161
       ]
     },
     {
@@ -321,16 +321,16 @@
   ],
   "materials": [
     {
-      "name": "Iron",
+      "name": "DevilSpider",
       "source": "C:\\Programming\\SMU-Costumes\\textures-png\\DevilSpider_D.png",
-      "alphaBound": true,
+      "alphaBound": false,
       "tileOrigin": [
         0,
-        -2
+        0
       ],
       "tileCount": [
         1,
-        6
+        1
       ],
       "slot": 0
     }
