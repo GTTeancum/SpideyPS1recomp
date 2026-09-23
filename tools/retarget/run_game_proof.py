@@ -19,6 +19,7 @@ def main():
     parser.add_argument('--level', default='l1a1')
     parser.add_argument('--frames', type=int, default=2400)
     parser.add_argument('--script', default='')
+    parser.add_argument('--shots', default='180,360,600')
     args = parser.parse_args()
     build, data, suits, out = (p.resolve() for p in (args.build, args.data, args.suits, args.out))
     if out.exists():
@@ -42,7 +43,7 @@ def main():
         SPIDEY_SCRIPT_EXCLUSIVE='1', SPIDEY_SCRIPT=script, SPIDEY_LEVEL=args.level,
         SPIDEY_BOOT_SKIP_UNTIL='title.bmr', SPIDEY_SUIT_MOD_DIR=str(fixture),
         SPIDEY_RETARGET_TRACE='1', SPIDEY_MOD_TRACE='1', SPIDEY_SHOT_DIR=str(out),
-        SPIDEY_SHOTS=f'{args.level}_t.trg+180,{args.level}_t.trg+360,{args.level}_t.trg+600',
+        SPIDEY_SHOTS=','.join(f'{args.level}_t.trg+{int(offset)}' for offset in args.shots.split(',')),
         SPIDEY_CAPTURE_PRESENTED='1', SPIDEY_EXIT=str(args.frames), SPIDEY_LOG_DIR=str(out),
         SPIDEY_STALL_EXIT='1', SPIDEY_STALL='20')
     executable = runtime / 'SpiderMan.exe'

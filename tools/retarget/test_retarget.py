@@ -15,6 +15,7 @@ from rig_blob import Rig,MAGIC
 from proof_render import load_asset
 from animation_bank import read
 from native_asset import parse,U,H
+from materials import bindings
 
 def digest(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def chunks(data):
@@ -53,7 +54,7 @@ def main():
     selected=[('smu-spiderham','costumes/spiderham/spiderham.fbx','textures-png/SpiderHam_D.png'),('smu-2099','costumes/2099/2099.fbx','textures-png/Spiderman2099_D.png')]
     if a.batch_manifest:
         batch=json.loads(a.batch_manifest.read_text())
-        if not batch.get('results') or any(r['status']!='converted' or len(r['textureFiles'])!=1 for r in batch['results']):
+        if not batch.get('results') or any(r['status']!='converted' for r in batch['results']):
             raise ValueError('Batch contains unconverted or unsupported records')
         selected=[(r['id'],r['fbx'],r['textureFiles'][0]) for r in batch['results']]
     for suit,fbx,tex in selected:
@@ -65,6 +66,10 @@ def main():
         c.check(pre+'native animation/HIER bytes preserved',all(tags.get(k)==v for k,v in dtags.items()))
         c.check(pre+'source skeleton names, parents and complete bind matrices preserved',p['boneNames']==s.names and p['sourceParents']==s.parents and np.array_equal(p['sourceBindMatrices'],s.source_bind))
         c.check(pre+'original cluster matrices and exact unnormalized weights preserved',p['sourceClusters']==s.clusters and p['sourceProperties']==s.source_properties and np.array_equal(p['meshBind'],s.mesh_bind))
+        if hasattr(s,'source_meshes'):
+            c.check(pre+'all source meshes retain their own bind, control points and clusters',p.get('sourceMeshes')==s.source_meshes)
+        if s.normal_repairs:
+            c.check(pre+'only undefined source normals are repaired with provenance',p.get('sourceNormalRepairs')==s.normal_repairs)
         wc=[];influence_error=0
         for i,ctrl in enumerate(controls):
             first,count=struct.unpack_from('<II',rig.blob,rig.h[8]+i*32+24)
@@ -87,7 +92,8 @@ def main():
         finger=[i for i,n in enumerate(s.names) if 'ArmDigit' in n];nonfinger=[i for i in range(rig.bones) if i not in finger]
         posechanges=[np.max(abs(ob[i,:,:3]-cb[i,:,:3])) for i in finger]
         c.check(pre+'finger/thumb fist pose articulated independently of wrists/body',all(x>.05 for x in posechanges) and np.array_equal(ob[nonfinger],cb[nonfinger]),fingerBones=len(finger))
-        c.check(pre+'thumb opposition retained on both hands',sum(x.get('method')=='opposed-thumb-across-knuckles' for x in p['fistPose'])==4)
+        thumb_count=sum(n in s.names for n in ['Clown001'+side+'ArmDigit0'+segment for side in ('L','R') for segment in ('1','2')])
+        c.check(pre+'thumb opposition retained on all authored thumb joints',sum(x.get('method')=='opposed-thumb-across-knuckles' for x in p['fistPose'])==thumb_count)
         perturbed=rig.rest_driver();perturbed[[3,4,5,6,8,9,10,11],:,3]+=np.array([2500,-3500,1700])
         c.check(pre+'donor arm/shoulder translations cannot produce shoulder shrug',np.array_equal(rig.evaluate(perturbed)[0],closed))
         dr=rig.rest_driver();delta=np.array([23,-141,72],np.float32);dr[0,:,3]+=delta
@@ -98,8 +104,18 @@ def main():
         c.check(pre+'A-B-A evaluation has no accumulated drift',np.array_equal(v1,v2) and np.array_equal(b1,b2))
         guest=guest_strip(data);g=parse(guest)
         c.check(pre+'host rig strip / texture relocation yields ordinary native guest asset',MAGIC not in chunks(guest)[0] and all(chunks(guest)[0].get(k)==v for k,v in dtags.items()) and all(np.array_equal(g['textures'][k],v) for k,v in parsed['textures'].items()) and guest[12:660]==raw[12:660])
-        c.check(pre+'full-resolution texture is source RGB, not altered artwork',np.array_equal(np.array(Image.open(folder/'textures/diffuse.png').convert('RGB')),np.array(Image.open(texture).convert('RGB'))))
-        small=np.array(Image.open(texture).convert('RGB').resize((128,128),Image.Resampling.LANCZOS),float);native=parsed['textures'][0][:,:,:3].astype(float)
+        material_records,images,material_indices,render_uv=bindings(s,texture)
+        texture_identity=all(np.array_equal(np.array(Image.open(folder/'textures'/('diffuse.png' if i==0 else f'diffuse-{i}.png'))),np.array(im)) for i,im in enumerate(images))
+        c.check(pre+'all full-resolution material textures preserve authored RGB/alpha and repeat tiles',texture_identity)
+        expected_materials=collections.Counter((tuple(face),int(slot)) for face,slot in zip(s.faces,material_indices))
+        observed_materials=[]
+        for i,m in enumerate(parsed['meshes']):
+            if i in (6,11):continue
+            for face in m['faces']:
+                indices=controls[packets[i][np.array(face['indices'])[[0,2,1]]]]
+                observed_materials.append((tuple(indices.tolist()),face['slot']))
+        c.check(pre+'every triangle retains its authored material slot',collections.Counter(observed_materials)==expected_materials)
+        small=np.array(images[0].convert('RGB').resize((128,128),Image.Resampling.LANCZOS),float);native=parsed['textures'][0][:,:,:3].astype(float)
         err=float(abs(small-native).mean());flipped=float(abs(small-native[::-1]).mean())
         c.check(pre+'native fallback atlas has correct vertical orientation',err<15 and err<flipped,meanRGBError=err,flippedMeanRGBError=flipped)
         manifest=json.loads((folder/'suit.json').read_text());c.check(pre+'native costume manifest matches loader fields',manifest.get('version')==1 and manifest.get('id')==suit and manifest.get('model')=='spiderman' and manifest.get('modelFile')=='actor.psx' and manifest.get('abilities')=={'profile':'spiderman'} and 1<=len(manifest['name'])<=19)
@@ -138,7 +154,7 @@ def main():
             buf=ctypes.create_string_buffer(blob);rejections.append(rig.lib.rtg_validate(buf,len(blob))!=0)
         c.check(pre+'truncated/corrupt rigs rejected before guest write',all(rejections),malformedCases=len(bad))
         report=json.loads((folder/'conversion-report.json').read_text())
-        current_inputs=[source,texture,donor,a.samples/'costumes/2099/2099.fbx']
+        current_inputs=[source,texture,donor,a.samples/'costumes/2099/2099.fbx']+[Path(r['source']) for r in material_records]
         c.check(pre+'all conversion inputs remain hash-identical',
                 sorted(report['inputHashes'].values())==sorted({str(path.resolve()):digest(path) for path in current_inputs}.values()))
         metrics[suit]=dict(bones=rig.bones,sourceControlPoints=len(s.vertices),sourceInfluences=sum(map(len,s.weights)),runtimeVertices=rig.count,runtimeInfluences=rig.h[5],triangles=len(observed),nativeBytes=len(data),sha256=digest(asset),rootScale=ratio,unitScale=p['referenceUnitScale'],maxLinkRelativeError=max_length_rel,maxRoundedComponentError=max_quant_error,frames=frames,clips=len(clips),testSeconds=elapsed)

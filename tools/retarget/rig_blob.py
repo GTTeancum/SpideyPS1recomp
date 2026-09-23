@@ -38,11 +38,40 @@ def packetize(faces,controls,scene,cal):
     candidates=[0,1,2,3,4,7,8,9,12,13,14,15,16,17]
     for fi in overflow:
         f=faces[fi];opts=[i for i in candidates if len(ids[i]|set(f))<=256]
-        if not opts:raise ValueError('Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles')
+        if not opts:return compact_packets(faces,owner)
         part=min(opts,key=lambda i:(len(set(f)-ids[i]),len(ids[i])))
         bins[part].append(fi);ids[part].update(f)
     for alias,primary in [(6,5),(11,10)]:bins[alias]=bins[primary].copy();ids[alias]=ids[primary].copy()
     return [sorted(v) for v in ids],bins,len(overflow)
+
+def compact_packets(faces,owner):
+    """Connected meshlets reduce duplicated boundary vertices without changing faces."""
+    bins=[[] for _ in range(18)];ids=[set() for _ in range(18)]
+    pending=set();triangles=[set(map(int,f)) for f in faces]
+    adjacency={}
+    for fi,f in enumerate(faces):
+        scores={}
+        for v in f:scores[owner[v]]=scores.get(owner[v],0)+1
+        part=max(scores,key=scores.get)
+        if part in (5,10) and len(ids[part]|triangles[fi])<=256:
+            bins[part].append(fi);ids[part].update(triangles[fi])
+        else:pending.add(fi)
+        for v in f:adjacency.setdefault(int(v),set()).add(fi)
+    for part in [0,1,2,3,4,7,8,9,12,13,14,15,16,17]:
+        frontier=set()
+        while pending:
+            options=[fi for fi in frontier if len(ids[part]|triangles[fi])<=256]
+            if not options:
+                options=[fi for fi in pending if len(ids[part]|triangles[fi])<=256]
+            if not options:break
+            fi=min(options,key=lambda i:(len(triangles[i]-ids[part]),i))
+            pending.remove(fi);bins[part].append(fi);ids[part].update(triangles[fi])
+            for v in triangles[fi]:frontier.update(adjacency[v]&pending)
+            frontier.discard(fi)
+    if pending:
+        raise ValueError(f'Full-quality mesh exceeds native 18-packet capacity ({len(pending)} triangles unplaced); refused to decimate or drop triangles')
+    for alias,primary in [(6,5),(11,10)]:bins[alias]=bins[primary].copy();ids[alias]=ids[primary].copy()
+    return [sorted(v) for v in ids],bins,len(faces)
 
 def make_blob(scene,cal,vertices,controls,faces,packets):
     d=bytearray(280);bo=len(d)
@@ -64,6 +93,8 @@ def make_blob(scene,cal,vertices,controls,faces,packets):
                 'sourceBindMatrices':scene.source_bind.tolist(),'sourceProperties':scene.source_properties,'sourceClusters':scene.clusters,
                 'meshBind':scene.mesh_bind.tolist(),'controlPointForVertex':controls,'sourceControlPointCount':len(scene.vertices),
                 'rootAnimationTranslationScale':cal['root_scale'],'referenceUnitScale':cal['scale'],'fistPose':cal['finger_report'],'method':'bind-calibrated-global-rotation/local-length-FK/full-weight-LBS'}
+    if scene.normal_repairs:provenance['sourceNormalRepairs']=scene.normal_repairs
+    if hasattr(scene,'source_meshes'):provenance['sourceMeshes']=scene.source_meshes
     text=json.dumps(provenance,separators=(',',':'),allow_nan=False).encode();d.extend(text)
     while len(d)%4:d.append(0)
     header=[MAGIC,2,len(d),len(scene.names),len(vertices),len(weights),cal['anchor'],bo,vo,wo,po,jo,len(text),to,len(faces),0]

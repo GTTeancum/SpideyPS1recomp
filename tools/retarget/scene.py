@@ -29,15 +29,39 @@ def axis_angle(axis, degrees):
     return np.eye(3)+np.sin(t)*k+(1-np.cos(t))*k@k
 
 class Scene:
-    def __init__(self,path):
+    def __init__(self,path,geometry_index=None):
         self.path=Path(path);self.fbx=Fbx(path);f=self.fbx
         self.sha256=hashlib.sha256(f.data).hexdigest()
         gs=[(k,n) for k,n in f.objects.items() if n.name=='Geometry' and n.props[2]=='Mesh']
-        if len(gs)!=1: raise ValueError('This converter requires exactly one skinned mesh per FBX; multi-mesh scenes are rejected')
-        gid,g=gs[0];self.geometry=g
+        if not gs:raise ValueError('No source meshes')
+        if len(gs)>1 and geometry_index is None:
+            parts=[Scene(path,i) for i in range(len(gs))]
+            self.__dict__.update(parts[0].__dict__)
+            self.parts=parts;self.source_meshes=[];self.clusters=[];self.normal_repairs=[]
+            faces=[];weights=[];offset=0;face_offset=0
+            for part in parts:
+                if part.ids!=self.ids or part.parents!=self.parents or not np.array_equal(part.source_bind,self.source_bind):
+                    raise ValueError('Multiple meshes use incompatible authoritative rigs')
+                self.source_meshes.append(dict(name=clean(part.geometry.props[1]),
+                    meshBind=part.mesh_bind.tolist(),vertices=part.vertices.tolist(),
+                    clusters=part.clusters,vertexOffset=offset,faceOffset=face_offset))
+                faces.extend(part.faces+offset);weights.extend(part.weights)
+                for cluster in part.clusters:
+                    self.clusters.append(dict(cluster,indices=[i+offset for i in cluster['indices']]))
+                self.normal_repairs.extend(dict(r,face=r['face']+face_offset) for r in part.normal_repairs)
+                offset+=len(part.vertices);face_offset+=len(part.faces)
+            self.vertices=np.concatenate([p.world_vertices for p in parts]);self.world_vertices=self.vertices.copy()
+            self.mesh_bind=np.eye(4);self.faces=np.asarray(faces,int);self.weights=weights
+            self.weight_sums=np.concatenate([p.weight_sums for p in parts])
+            self.uv=np.concatenate([p.uv for p in parts])
+            self.world_normals=np.concatenate([p.world_normals for p in parts])
+            self.corner_normals=self.world_normals.copy()
+            return
+        gid,g=gs[geometry_index or 0];self.geometry=g
         modelids=[c[2] for c in f.connections if c[0]=='OO' and c[1]==gid and f.objects.get(c[2],g).name=='Model']
         if len(modelids)!=1:raise ValueError('Missing mesh model connection')
-        mid=modelids[0];models={k:n for k,n in f.objects.items() if n.name=='Model' and k!=mid}
+        mesh_models={c[2] for c in f.connections if c[0]=='OO' and c[1] in {gid for gid,_ in gs}}
+        mid=modelids[0];models={k:n for k,n in f.objects.items() if n.name=='Model' and k not in mesh_models}
         poses={}
         for n in f.objects.values():
             if n.name=='Pose' and n.props[2]=='BindPose':
@@ -111,7 +135,24 @@ class Scene:
         self.faces=np.array(self.faces,int);self.uv=np.array(self.uv,float);self.corner_normals=np.array(self.corner_normals,float)
         self.world_vertices=(self.mesh_bind@np.c_[self.vertices,np.ones(len(self.vertices))].T).T[:,:3]
         self.world_normals=self.corner_normals@np.linalg.inv(self.mesh_bind[:3,:3])
-        self.world_normals/=np.linalg.norm(self.world_normals,axis=2)[:,:,None]
+        lengths=np.linalg.norm(self.world_normals,axis=2)
+        self.normal_repairs=[]
+        bad=np.argwhere(lengths<1e-12)
+        if len(bad):
+            triangles=self.world_vertices[self.faces]
+            geometric=np.cross(triangles[:,1]-triangles[:,0],triangles[:,2]-triangles[:,0])
+            adjacent=np.zeros_like(self.world_vertices)
+            for corner in range(3):np.add.at(adjacent,self.faces[:,corner],geometric)
+            for face,corner in bad:
+                derived=geometric[face].copy()
+                if np.linalg.norm(derived)<1e-12:derived=adjacent[self.faces[face,corner]].copy()
+                # Fully degenerate geometry is retained but has no shading normal.
+                if np.linalg.norm(derived)<1e-12:derived=np.array([0.,1.,0.])
+                derived=unit(derived)
+                self.normal_repairs.append(dict(face=int(face),corner=int(corner),
+                    original=self.corner_normals[face,corner].tolist(),derivedWorld=derived.tolist()))
+                self.world_normals[face,corner]=derived;lengths[face,corner]=1
+        self.world_normals/=lengths[:,:,None]
     def index(self,suffix):
         x=[i for i,n in enumerate(self.names) if n=='Clown001'+suffix]
         if len(x)!=1:raise ValueError('Required SMU rig bone missing: '+suffix)
@@ -170,7 +211,8 @@ def calibrate(scene,reference,native_origins,ground):
     # Curl across the palm, not around arbitrary FBX X/Y Euler axes. The palm's
     # rest joint plane provides an invariant curl axis for mirrored/rotated rigs.
     for side in ('L','R'):
-        palm=s.index(side+'ArmPalm');middle=s.index(side+'ArmDigit31');index=s.index(side+'ArmDigit21');little=s.index(side+'ArmDigit51')
+        palm=s.index(side+'ArmPalm');index=s.index(side+'ArmDigit21');little=s.index(side+'ArmDigit51')
+        middle=s.index(side+'ArmDigit31') if 'Clown001'+side+'ArmDigit31' in s.names else index
         forward=unit(bind[middle,:3,3]-bind[palm,:3,3]);across=unit(bind[little,:3,3]-bind[index,:3,3])
         # Choose inward side consistently using the original palm's local X axis;
         # sample rigs have their flexion toward local +X (verify with visual test).
@@ -187,18 +229,22 @@ def calibrate(scene,reference,native_origins,ground):
             finger_report.append({'bone':name,'angleDegrees':angle,'axisLocal':local_axis.tolist()})
         # Thumb opposition is not ordinary finger flexion. Aim the preserved
         # thumb chain across the curled index/middle fingers, keeping both lengths.
-        thumb1=s.index(side+'ArmDigit01');thumb2=s.index(side+'ArmDigit02')
-        phalanx=np.linalg.norm(bind[s.index(side+'ArmDigit32'),:3,3]-bind[middle,:3,3])
+        thumb1=s.index(side+'ArmDigit01')
+        thumb2=s.index(side+'ArmDigit02') if 'Clown001'+side+'ArmDigit02' in s.names else None
+        middle_child=next((i for i,p in enumerate(s.parents) if p==middle),None)
+        phalanx=(np.linalg.norm(bind[middle_child,:3,3]-bind[middle,:3,3]) if middle_child is not None
+                 else np.linalg.norm(bind[middle,:3,3]-bind[palm,:3,3])*.35)
         target=(bind[index,:3,3]+bind[middle,:3,3])/2+inward*phalanx*.65+forward*phalanx*.15
-        b=bind[thumb1,:3,3];c=bind[thumb2,:3,3]
+        b=bind[thumb1,:3,3];c=bind[thumb2,:3,3] if thumb2 is not None else b+bind[thumb1,:3,1]*phalanx
         first=align(c-b,target-b)
         desired=unit(across+forward*.25-inward*.05)
-        second=align(bind[thumb2,:3,1],desired)
-        r1=bind[thumb1,:3,:3];r2=bind[thumb2,:3,:3]
+        r1=bind[thumb1,:3,:3]
         fist[thumb1]=r1.T@first@r1
-        fist[thumb2]=r2.T@first.T@second@r2
+        if thumb2 is not None:
+            second=align(bind[thumb2,:3,1],desired);r2=bind[thumb2,:3,:3]
+            fist[thumb2]=r2.T@first.T@second@r2
         for report in finger_report:
-            if report['bone'] in (s.names[thumb1],s.names[thumb2]):
+            if report['bone'] in ([s.names[thumb1]]+([s.names[thumb2]] if thumb2 is not None else [])):
                 bi=thumb1 if report['bone']==s.names[thumb1] else thumb2
                 report.clear();report.update(bone=s.names[bi],method='opposed-thumb-across-knuckles',localRotation=fist[bi].tolist())
 

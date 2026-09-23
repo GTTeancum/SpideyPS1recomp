@@ -20,8 +20,6 @@ def main():
     for row in inventory(args.samples):
         result = dict(key=row['key'], status='unsupported')
         try:
-            if row['sourceMeshCount'] != 1 or len(row['textureFiles']) != 1:
-                raise ValueError('Requires lossless multi-mesh/material support')
             material_policy(args.samples / row['fbx'], args.samples / row['textureFiles'][0])
             source = Scene(args.samples / row['fbx'])
             calibration = calibrate(source, reference, origins, ground)

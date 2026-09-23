@@ -3,17 +3,26 @@
 
 Never overwrite FBX/source textures or replace failed suits with simplified ones.
 Each success is hash-checked and journalled before moving to the next costume.
-The existing Repair06 converter supports single-mesh/single-diffuse suits;
-unsupported scenes remain pending for a later converter update, not 'complete'.
+Unsupported scenes remain pending, never substituted or marked complete.
 """
 from __future__ import annotations
 import argparse,contextlib,csv,hashlib,json,os,re,sys,traceback
 from pathlib import Path
-from PIL import Image
 from convert import convert
-from fbx_binary import Fbx
+from scene import Scene
+from materials import bindings
 
 def sha(path:Path)->str:return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def selector_names(rows):
+    names={};used=set()
+    for number,row in enumerate(rows,1):
+        key=row['key'];text=DISPLAY.get(key,'SMU '+key.replace('_',' ').upper())
+        if len(text)>19:text=key.replace('_',' ').upper()
+        if len(text)>19 or text in used:text=text[:14].rstrip()+f' #{number:03}'
+        if len(text)>19 or text in used:raise ValueError('Selector name collision: '+key)
+        names[key]=text;used.add(text)
+    return names
 def save_json(path:Path,value):
     path.parent.mkdir(parents=True,exist_ok=True);tmp=path.with_suffix(path.suffix+'.tmp');tmp.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n');os.replace(tmp,path)
 
@@ -53,32 +62,12 @@ def inventory(samples:Path):
 
 def material_policy(fbx:Path,texture:Path):
     """Follow authored FBX material connections, not raw diffuse-alpha guesses."""
-    f=Fbx(fbx);defaults={};definitions=f.root.child('Definitions')
-    if definitions:
-        for n in definitions.all('ObjectType'):
-            if n.props and n.props[0]=='Material':
-                for t in n.all('PropertyTemplate'):defaults.update(t.properties())
-    materials={k:n for k,n in f.objects.items() if n.name=='Material'}
-    if not materials:raise ValueError('Missing authored material')
-    records=[]
-    for mid,n in materials.items():
-        properties=dict(defaults);properties.update(n.properties())
-        factor=float(properties.get('TransparencyFactor',[0.0])[0]);opacity=float(properties.get('Opacity',[1.0])[0])
-        if factor!=0.0 or opacity!=1.0:raise ValueError('Non-opaque FBX material requires explicit blend handling')
-        links=[c for c in f.connections if c[0]=='OP' and c[2]==mid]
-        if any('transparen' in str(c[3]).casefold() or 'opacity' in str(c[3]).casefold() for c in links):
-            raise ValueError('Opacity/transparent texture connection requires explicit handling')
-        diffuse=[f.objects[c[1]] for c in links if c[3]=='DiffuseColor' and f.objects[c[1]].name=='Texture']
-        if len(diffuse)!=1:raise ValueError('Expected one authored diffuse per FBX material')
-        relative=str(diffuse[0].value('RelativeFilename') or diffuse[0].value('FileName')).replace(chr(92),'/')
-        if Path(relative).name.casefold()!=texture.name.casefold():raise ValueError('FBX diffuse binding differs from the catalogue')
-        records.append(dict(material=str(n.props[1]).split(chr(0))[0],transparencyFactor=factor,opacity=opacity,diffuse=Path(relative).name))
-    with Image.open(texture) as im:alpha=im.getchannel('A').getextrema() if 'A' in im.getbands() else (255,255)
-    return dict(mode='opaque diffuse RGB, matching FBX material connections and Repair06',materials=records,
-        sourceAlphaRange=list(alpha),sourceAlphaBoundAsTransparency=False,sourceFileUnchanged=True)
+    records,images,indices,uv=bindings(Scene(fbx),texture)
+    return dict(mode='Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles',
+        materials=records,sourceFileUnchanged=True)
 
 def run(args):
-    rows=inventory(args.samples);bykey={r['key']:r for r in rows};keys=args.keys
+    rows=inventory(args.samples);bykey={r['key']:r for r in rows};keys=args.keys;names=selector_names(rows)
     if len(keys)!=len(set(keys)) or any(k not in bykey for k in keys):raise ValueError('Duplicate/unknown costume key')
     report=args.out/'batch-progress.json';args.out.mkdir(parents=True,exist_ok=True)
     state={'schema':1,'batch':args.batch,'scope':'SM1 native assets/core; .NET game not built/tested',
@@ -99,12 +88,10 @@ def run(args):
         if dest.exists() and any(dest.iterdir()):raise ValueError('Unjournalled existing output: '+str(dest))
         result=dict(row)
         try:
-            if row['sourceMeshCount']!=1 or len(row['textureFiles'])!=1:raise ValueError('Requires multi-mesh/material conversion; no geometry or texture is dropped')
             tex=args.samples/row['textureFiles'][0]
             result['materialPolicy']=material_policy(args.samples/row['fbx'],tex)
-            if key not in DISPLAY:raise ValueError('Needs an explicit <=19 character selector display name')
             with log.open('w') as f,contextlib.redirect_stdout(f):
-                converted=convert(args.samples/row['fbx'],args.samples/state['reference'],args.donor,tex,dest,row['id'],DISPLAY[key])
+                converted=convert(args.samples/row['fbx'],args.samples/state['reference'],args.donor,tex,dest,row['id'],names[key])
             result.update(status='converted',sourceRigNodes=converted['sourceRigBones'],nativeBytes=converted['nativeBytes'],
                 outputs={str(p.relative_to(dest)):sha(p) for p in sorted(dest.rglob('*')) if p.is_file()})
             print('CONVERTED '+key+': '+str(converted['originalTriangles'])+' triangles, '+str(converted['sourceRigBones'])+' rig nodes',flush=True)
