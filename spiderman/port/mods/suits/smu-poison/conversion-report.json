@@ -8,8 +8,8 @@
   "runtimeInfluences": 5421,
   "originalTriangles": 4364,
   "uniqueOutputTriangles": 4364,
-  "nativeBytes": 964152,
-  "rigBytes": 419780,
+  "nativeBytes": 964512,
+  "rigBytes": 420140,
   "packetSpilloverTriangles": 841,
   "packets": [
     {
@@ -109,7 +109,7 @@
     [
       -830.471435546875,
       -1804.2069091796875,
-      -805.79443359375
+      -1052.716552734375
     ],
     [
       669.96630859375,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Poison_D.png": "d716d79141f6a489218b6484f21ce35af5650f46ddf708e3dffff06c492b6643"
   },
-  "outputSha256": "0fdca9121168db7302c6858fd5becb9a80d32e0780d4e8bc96c8d75f8012bfab",
+  "outputSha256": "bc409bf0111825222f7929753ad0826f69c9dec39dd6dba0f705fb75992b5ff8",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

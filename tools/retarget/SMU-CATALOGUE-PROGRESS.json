@@ -1,12 +1,12 @@
 {
   "catalogueCount": 233,
-  "convertedInstalled": 167,
-  "batchVerified": 167,
-  "remainingUnconverted": 66,
+  "convertedInstalled": 177,
+  "batchVerified": 177,
+  "remainingUnconverted": 56,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 4251,
-  "animationFrames": 700732,
-  "offlineSwingFrames": 19205,
+  "offlineChecks": 4536,
+  "animationFrames": 742692,
+  "offlineSwingFrames": 20355,
   "structuralBlockers": [
     {
       "key": "damon_ryder",
@@ -185,6 +185,16 @@
       "slowRunWarnings": 1
     },
     {
+      "batch": 18,
+      "representative": "smu-spidermj",
+      "images": {
+        "frame_01581.png": "d7af7acaeb6bfd3bd10dbc4a766eab6f5db13bd117fcc290bbc32f0153ea321f",
+        "frame_01886.png": "de9448e2d0b1bbe974b3b815c815f86b61acbb7481ab1a69ef13e48ecb091c15"
+      },
+      "notes": "Reviewed both Spider-MJ native frames. Red/white suit panels, tied hair, footwear, hands and complete body are present in swing and crouched grounded poses. Web line visibly meets the raised hand region. Free-hand fist closure is not established at this scale and remains separately tracked. Offline checks cover all ten suits; these two gameplay images cover Spider-MJ only.",
+      "slowRunWarnings": 0
+    },
+    {
       "batch": 26,
       "representative": "smu-poison-hunter",
       "images": {
@@ -208,15 +218,12 @@
       "id": "symbiote-tongue-pose",
       "status": "open",
       "suit": "smu-poison",
-      "finding": "User-reported odd tongue silhouette. Front gameplay view shows attachment at the mouth but a rigid upward-curled source pose. All 4196 offline frames preserve head-relative tongue bones and weighted vertices within 0.002 native units. Attachment correctness does not establish acceptable tongue pose.",
-      "next": "Apply and validate a preserved-chain tongue pose correction, including front and crouched game views. Audit other symbiote tongue poses."
-    },
-    {
-      "id": "extra-arm-retargeting",
-      "status": "open",
-      "suit": "smu-sixarmed-spiderman",
-      "finding": "Batch16 native captures retain all six arms, but extra arms remain in their source rest pose and their hands remain open.",
-      "next": "Retarget extra limb chains and their finger bones without changing source hierarchy, binds, weights or proportions."
+      "resolvedSuits": [
+        "smu-poison"
+      ],
+      "finding": "Poison's distal tongue hook is corrected with a pose-only rotation. Source bind matrices, hierarchy, weights and chain lengths are preserved. All 4196 frames leave the mouth, body, fingers and 2816 unaffected vertices exactly unchanged. Native front and grounded-rear views show the revised silhouette. The rear view is not a frame-matched deep crouch comparison.",
+      "evidence": "verification/repair-poison-tip/review.json",
+      "next": "Review remaining symbiote poses as their batches are completed; extend corrective policies only when supported by visual evidence. Retain deep-crouch coverage as a remaining targeted visual check."
     },
     {
       "id": "visual-fist-closure",
@@ -234,5 +241,42 @@
       "finding": "6500 and 4511 runtime vertices exceed the current 4096-vertex, 18-packet renderer transport. Raising only metadata limits cannot support these assets.",
       "next": "Extend actual rendering transport without losing triangles, normals, weights or materials, and test in the game."
     }
-  ]
+  ],
+  "sourceLimitations": [
+    {
+      "id": "extra-arm-retargeting",
+      "status": "resolved-source-fidelity",
+      "suit": "smu-sixarmed-spiderman",
+      "finding": "Both source FBXs contain only the standard two arm chains. The 356 upper extra-arm vertices are weighted only to the collarbones; there are no independent extra-arm or extra-finger chains to retarget. The observed rest pose is authored source behavior, not dropped rig data.",
+      "resolution": "Preserve source hierarchy and weights as requested. Independent extra-arm animation would require an explicitly authorized change to that source rig/weight policy.",
+      "evidence": "verification/extra-arm-authoring/source-audit.json"
+    }
+  ],
+  "repairReviews": [
+    {
+      "suit": "smu-poison",
+      "previousActorSha256": "0fdca9121168db7302c6858fd5becb9a80d32e0780d4e8bc96c8d75f8012bfab",
+      "actorSha256": "bc409bf0111825222f7929753ad0826f69c9dec39dd6dba0f705fb75992b5ff8",
+      "visualReview": "Front native game frame shows mouth attachment with the tall upward hook relaxed into a forward/downward distal curve. Grounded rear frame retains body, thin appendages and the sideways visible tongue tip. The rear frame is not the original deep crouch animation; it is labeled grounded, not a frame-matched crouch comparison.",
+      "scope": "Poison-specific pose correction, not universal symbiote visual acceptance or dynamic tongue simulation.",
+      "images": [
+        {
+          "file": "front.png",
+          "original": "frame_01824.png",
+          "run": "live",
+          "sha256": "68d162a0a6a2b1493650df8904884e8df5939a34e59896698e8b40c88e5001d1"
+        },
+        {
+          "file": "grounded-rear.png",
+          "original": "frame_01887.png",
+          "run": "live-crouch",
+          "sha256": "7b78315859acaf6a0bd37e58dfb8ed97d93ca35288af7e3f83da5a4198ed8208"
+        }
+      ],
+      "managedLoaderExitCode": 0,
+      "unaffectedVertices": 2816,
+      "maxUnaffectedVertexError": 0.0
+    }
+  ],
+  "installedHashesMatchLatestRigEvidence": true
 }

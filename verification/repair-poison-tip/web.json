@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 1,
+  "requested": 1,
+  "results": [
+    {
+      "key": "poison",
+      "id": "smu-poison",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.7646484375,
+        11.166748046875
+      ],
+      "assetSha256": "bc409bf0111825222f7929753ad0826f69c9dec39dd6dba0f705fb75992b5ff8",
+      "captureSha256": "0bb4553d18080db45be8f479787630d8338b3449cb00230170249e007d8cf830"
+    }
+  ]
+}

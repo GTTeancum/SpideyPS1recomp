@@ -1,0 +1,24 @@
+{
+  "suit": "smu-poison",
+  "previousActorSha256": "0fdca9121168db7302c6858fd5becb9a80d32e0780d4e8bc96c8d75f8012bfab",
+  "actorSha256": "bc409bf0111825222f7929753ad0826f69c9dec39dd6dba0f705fb75992b5ff8",
+  "visualReview": "Front native game frame shows mouth attachment with the tall upward hook relaxed into a forward/downward distal curve. Grounded rear frame retains body, thin appendages and the sideways visible tongue tip. The rear frame is not the original deep crouch animation; it is labeled grounded, not a frame-matched crouch comparison.",
+  "scope": "Poison-specific pose correction, not universal symbiote visual acceptance or dynamic tongue simulation.",
+  "images": [
+    {
+      "file": "front.png",
+      "original": "frame_01824.png",
+      "run": "live",
+      "sha256": "68d162a0a6a2b1493650df8904884e8df5939a34e59896698e8b40c88e5001d1"
+    },
+    {
+      "file": "grounded-rear.png",
+      "original": "frame_01887.png",
+      "run": "live-crouch",
+      "sha256": "7b78315859acaf6a0bd37e58dfb8ed97d93ca35288af7e3f83da5a4198ed8208"
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "unaffectedVertices": 2816,
+  "maxUnaffectedVertexError": 0.0
+}

@@ -110,6 +110,7 @@ def make_blob(scene,cal,vertices,controls,faces,packets):
                 'meshBind':scene.mesh_bind.tolist(),'controlPointForVertex':controls,'sourceControlPointCount':len(scene.vertices),
                 'rootAnimationTranslationScale':cal['root_scale'],'referenceUnitScale':cal['scale'],'fistPose':cal['finger_report'],'method':'bind-calibrated-global-rotation/local-length-FK/full-weight-LBS'}
     if scene.normal_repairs:provenance['sourceNormalRepairs']=scene.normal_repairs
+    if cal.get('appendage_report'):provenance['appendagePose']=cal['appendage_report']
     if hasattr(scene,'source_meshes'):provenance['sourceMeshes']=scene.source_meshes
     text=json.dumps(provenance,separators=(',',':'),allow_nan=False).encode();d.extend(text)
     while len(d)%4:d.append(0)

@@ -159,6 +159,28 @@ class Scene:
         return x[0]
     def p(self,s):return self.source_bind[self.index(s),:3,3]
 
+def relax_tongue_tip(scene,bind,local,rest,up):
+    """Pose-only correction for Poison's rigid, upward-hooked distal tongue."""
+    if scene.path.stem!='poison':return []
+    joint=scene.names.index('Tongue_c');tip=scene.names.index('Tongue_d')
+    if scene.parents[tip]!=joint:raise ValueError('Poison tongue policy requires the authored c/d chain')
+    head=scene.index('Head')
+    head_up=rest[head,:3,:3]@bind[head,:3,:3].T@up
+    direction=rest[tip,:3,3]-rest[joint,:3,3]
+    horizontal=direction-head_up*(direction@head_up)
+    if direction@head_up<=0:return []
+    target=unit(horizontal-head_up*np.linalg.norm(horizontal)*.15)
+    correction=align(direction,target)
+    rest[joint,:3,:3]=correction@rest[joint,:3,:3]
+    changed={joint}
+    for i,parent in enumerate(scene.parents):
+        if parent in changed:
+            rest[i]=rest[parent]@local[i];changed.add(i)
+    return [dict(policy='poison-relaxed-distal-tongue-v1',bone=scene.names[joint],
+                 child=scene.names[tip],rotation=correction.tolist(),
+                 downwardSlope=.15,sourceBindAndWeightsUnchanged=True)]
+
+
 def calibrate(scene,reference,native_origins,ground):
     """Preserve target lengths; align segment axes, never copy driver shoulder translations.
 
@@ -196,6 +218,7 @@ def calibrate(scene,reference,native_origins,ground):
         elif drivers[i]>=0 and suffix not in ('Pelvis','Spine1'):
             # Preserve hand/head/foot rest orientation relative to their calibrated parent.
             pass
+    appendage_report=relax_tongue_tip(s,bind,local,rest,tu)
     virtual_local=rest.copy()
     for i,p in enumerate(s.parents):
         if p>=0:virtual_local[i]=np.linalg.inv(rest[p])@rest[i]
@@ -249,4 +272,4 @@ def calibrate(scene,reference,native_origins,ground):
                 report.clear();report.update(bone=s.names[bi],method='opposed-thumb-across-knuckles',localRotation=fist[bi].tolist())
 
     leg_ratio=(np.linalg.norm(bind[s.index('LLeg2'),:3,3]-bind[s.index('LLeg1'),:3,3])+np.linalg.norm(bind[s.index('LLegAnkle'),:3,3]-bind[s.index('LLeg2'),:3,3]))/(np.linalg.norm(n[15]-n[16])+np.linalg.norm(n[17]-n[15]))
-    return dict(root_scale=float(leg_ratio),bind=bind,rest=rest,local=virtual_local,drivers=drivers,parents=np.array(s.parents),fist=fist,vertices=verts,normals=normals,anchor=anchor,scale=scale,native_origins=n,finger_report=finger_report)
+    return dict(root_scale=float(leg_ratio),bind=bind,rest=rest,local=virtual_local,drivers=drivers,parents=np.array(s.parents),fist=fist,vertices=verts,normals=normals,anchor=anchor,scale=scale,native_origins=n,finger_report=finger_report,appendage_report=appendage_report)

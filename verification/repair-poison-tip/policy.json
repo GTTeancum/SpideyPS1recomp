@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "frames": 4196,
+  "scope": "Offline exact runtime core. Original source data and unaffected mouth/body/fingers must remain unchanged.",
+  "beforeSha256": "0fdca9121168db7302c6858fd5becb9a80d32e0780d4e8bc96c8d75f8012bfab",
+  "afterSha256": "bc409bf0111825222f7929753ad0826f69c9dec39dd6dba0f705fb75992b5ff8",
+  "affectedVertices": 53,
+  "unaffectedVertices": 2816,
+  "maxUnaffectedBoneError": 0.0,
+  "maxUnaffectedVertexError": 0.0,
+  "tipPositionChange": 95.19672393798828,
+  "distalLengthChange": 7.62939453125e-06,
+  "policy": [
+    {
+      "policy": "poison-relaxed-distal-tongue-v1",
+      "bone": "Tongue_c",
+      "child": "Tongue_d",
+      "rotation": [
+        [
+          0.9997743743505996,
+          0.020437876414112287,
+          -0.005787365510204914
+        ],
+        [
+          -0.012971264130059916,
+          0.3716661007898687,
+          -0.9282758511512208
+        ],
+        [
+          -0.01682101955100991,
+          0.9281414777561321,
+          0.3718473484777429
+        ]
+      ],
+      "downwardSlope": 0.15,
+      "sourceBindAndWeightsUnchanged": true
+    }
+  ]
+}

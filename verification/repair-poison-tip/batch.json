@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "batch": "poison-tip-repair",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "poison"
+  ],
+  "results": [
+    {
+      "key": "poison",
+      "id": "smu-poison",
+      "fbx": "costumes/poison/poison.fbx",
+      "fbxSha256": "b8e31a54c01898f33b9316cab904df200cd743dbeb5d5638d5111c97264ddae9",
+      "textureFiles": [
+        "textures-png\\Poison_D.png"
+      ],
+      "textureSha256": [
+        "d716d79141f6a489218b6484f21ce35af5650f46ddf708e3dffff06c492b6643"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2869,
+      "sourceTriangles": 4364,
+      "sourceBoneCount": 71,
+      "authoredDiffuseNames": [
+        "Poison_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Character_Material",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Poison_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 72,
+      "nativeBytes": 964512,
+      "outputs": {
+        "actor.psx": "bc409bf0111825222f7929753ad0826f69c9dec39dd6dba0f705fb75992b5ff8",
+        "conversion-report.json": "95b44d001fddb9221d90381e9ba788e50cf40c78ffef9be03049f25a696dca3e",
+        "suit.json": "6d5e31d5bdc84218f1a5ebc886f3363c13aa80ae1d8b9d5f26126d9b953e4cd4",
+        "textures\\diffuse.png": "0ec0ff42a077abe4dedf5294e33e89304a90aa1e57d5ea350142cf3723f0bc8a"
+      }
+    }
+  ]
+}

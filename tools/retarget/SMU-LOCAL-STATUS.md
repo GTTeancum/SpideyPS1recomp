@@ -2,7 +2,7 @@
 
 ## Current checkpoint
 
-167 of 233 suits are installed and committed through batch17 plus capacity
+177 of 233 suits are installed and committed through batch18 plus capacity
 recovery batch26. Each has full
 offline rig/animation/web regression evidence; native gameplay evidence is
 representative per batch, not per suit. These are conversion checkpoints, not
@@ -22,15 +22,21 @@ limit and need a rendering transport extension, not asset simplification.
 Multi-material, authored alpha/repeat textures, multiple source meshes,
 undefined-normal repair, and alternate finger layouts are supported. Source
 geometry, full skin influences, hierarchy, bind transforms and provenance remain.
-Batch18 has offline results but is not installed or accepted yet. Remaining
+Batch18 has full offline results and reviewed native Spider-MJ evidence. Remaining
 planned batches are preserved in the local task workspace.
 
-The reported Poison tongue is attached to the mouth in a front-facing native
-game capture. Its rigid upward-curled source pose still needs visual correction.
-An explicit head-relative regression passes all 4,196 frames for its four tongue
-bones and 82 weighted vertices. This is attachment evidence, not pose acceptance.
-Six-Armed Spider-Man's extra arms retain their source rest pose, and visual fist
-closure is not established for every rig. Both remain open work.
+Poison's reported upward tongue hook now has a distal-joint pose correction.
+All 4,196 animation frames leave the other 2,816 vertices and unaffected bones
+exactly unchanged. Original source bind matrices, hierarchy, weights and lengths
+are intact. Front and grounded-rear native captures were inspected; the rear
+capture is not a frame-matched deep crouch comparison. Finger, web, attachment,
+managed loading and full rig regressions pass. Remaining symbiote poses and
+visual fist closure still require review.
+
+Both Six-Armed Spider-Man source FBXs have only two articulated arm chains.
+The 356 upper extra-arm vertices are weighted solely to collarbones. Their source
+behavior is retained deliberately; independent articulation would require
+changing the rig/weights, contrary to the preservation requirement.
 
 The sections below are the retained initial 15-suit checkpoint and its original
 test totals/blockers. They are historical, not the current catalogue status.
