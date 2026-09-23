@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-mj-regent-power-suit",
+  "name": "MJ REGENT POWE #128",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "15DB2B61": "textures/diffuse.png"
+  }
+}

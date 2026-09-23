@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-mayparker-unmasked",
+  "name": "MAYPARKER UNMASKED",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "CD8D533F": "textures/diffuse.png"
+  }
+}

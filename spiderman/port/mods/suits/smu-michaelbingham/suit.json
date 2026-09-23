@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-michaelbingham",
+  "name": "SMU MICHAELBINGHAM",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "C8395ABF": "textures/diffuse.png"
+  }
+}

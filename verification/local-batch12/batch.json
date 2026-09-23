@@ -1,0 +1,502 @@
+{
+  "schema": 1,
+  "batch": "batch-12",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "mayhem",
+    "mayparker_unmasked",
+    "mech",
+    "mercenary",
+    "michaelbingham",
+    "milesmorales",
+    "milesmorales_uk_mesh",
+    "milesmoralesdemasked",
+    "mj_regent_power_suit",
+    "mj_sexy"
+  ],
+  "results": [
+    {
+      "key": "mayhem",
+      "id": "smu-mayhem",
+      "fbx": "costumes/mayhem/mayhem.fbx",
+      "fbxSha256": "7d39b34848392f3bf00fa28e92d01c8565b3a99504690454dfe9547f909418de",
+      "textureFiles": [
+        "textures-png\\Mayhem_D.png"
+      ],
+      "textureSha256": [
+        "54fd41a562f97b348b8c62f09950a5e00d175b7223a829b504b826146c5c1f53"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2005,
+      "sourceTriangles": 3454,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mayhem_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Mayhem",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Mayhem_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 866744,
+      "outputs": {
+        "actor.psx": "ed1f008d62c7422965179aafce8b75de1d4530f294237ef59d60b87cbbc0316c",
+        "conversion-report.json": "135664361fad1a18b9a6fe6efbb698197dfe2c039a4e5220938217328d03cce4",
+        "suit.json": "09458ea78e3be6d193e04e2d931a0648b214183f93a00dd9da4c859fbb2f6771",
+        "textures\\diffuse.png": "b26fbc52f6bf73731b20c3a14b615f69ca7ec13393e30edf6ad60ecd8d215d6e"
+      }
+    },
+    {
+      "key": "mayparker_unmasked",
+      "id": "smu-mayparker-unmasked",
+      "fbx": "costumes/mayparker_unmasked/mayparker_unmasked.fbx",
+      "fbxSha256": "02e7c62047ddcab4ff9db03b164a181d2a8026df9e4ad24e9ee392219ba4e120",
+      "textureFiles": [
+        "textures-png\\MayParker_unmasked_D.png"
+      ],
+      "textureSha256": [
+        "f2d9be757d156c455ea1cdc3fb3b4cd86c634c82428a1209b71a6f8bd0fd7cf9"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2375,
+      "sourceTriangles": 4035,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MayParker_unmasked_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "MayParker",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MayParker_unmasked_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 914408,
+      "outputs": {
+        "actor.psx": "003a23dfe136a05d804911c4b953bdf2648f482f45f5334a5e03c6eed64cf34f",
+        "conversion-report.json": "d799ed3d2f1877c07058aed69eef380bc196e1ce67b453efdf80f729bc9ec9a9",
+        "suit.json": "2d1141b3194fba80f96bc65bc811d7ffad57832356ee242ab351dabfff9222fc",
+        "textures\\diffuse.png": "6cddfd9aacd782e936025841d661a3c424bb6118dc114d3ed020253c8af9b59d"
+      }
+    },
+    {
+      "key": "mech",
+      "id": "smu-mech",
+      "fbx": "costumes/mech/mech.fbx",
+      "fbxSha256": "bbb6424a8e9ece55086d9339aa1919b85c037b4214a785574a942c49b073b765",
+      "textureFiles": [
+        "textures-png\\SpidermanMech_D.png"
+      ],
+      "textureSha256": [
+        "ffc50d7965768afed363610d0c4bb575da8f675641b6c68537f71c4e8339d896"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2197,
+      "sourceTriangles": 3654,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMech_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Mech",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanMech_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 861940,
+      "outputs": {
+        "actor.psx": "b4c049d0bd3bc0784fb3ed0e38fe8da8ac6475b6301d26b6f0ebd71e23bef1fa",
+        "conversion-report.json": "723269d7543e38cefecc0bebb7cf06e33b7e67aa5905ad4b8c84d93ae8651b0e",
+        "suit.json": "03b5a70940d0b912f807b5152804fe81d2c896d3db081cf19e9025e35f25c79e",
+        "textures\\diffuse.png": "c56cff6adebd130f252cfe26546d8b6715c347495434595f5fb1744d9eff618f"
+      }
+    },
+    {
+      "key": "mercenary",
+      "id": "smu-mercenary",
+      "fbx": "costumes/mercenary/mercenary.fbx",
+      "fbxSha256": "1f9905101ea8b67eb7358d45ff63a10d14b537f9e99cc6ecf7e4576e46708a05",
+      "textureFiles": [
+        "textures-png\\SpidermanMerc_D.png"
+      ],
+      "textureSha256": [
+        "0bfaccdbc516ea9ec5354c2d4350132f41e845f76149f037ee823badd53fdfd3"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1689,
+      "sourceTriangles": 2886,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMerc_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Mercenary",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanMerc_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 701488,
+      "outputs": {
+        "actor.psx": "7f83b26befcf066f577d33414ac99a9166e544fe2f4395475bad87af8afea1e7",
+        "conversion-report.json": "e7718b4b50919d40d392d6b3926be353e60046266bb21ff3c70730be8408689e",
+        "suit.json": "7de6c4434be7ff7e6f5bfc93713cd848c6621dd6b26fef4296a41d2028a801d5",
+        "textures\\diffuse.png": "01031d074f0e8768554e7672fd8796634fb21fc6163065e0dcf5d1f68b8b8c07"
+      }
+    },
+    {
+      "key": "michaelbingham",
+      "id": "smu-michaelbingham",
+      "fbx": "costumes/michaelbingham/michaelbingham.fbx",
+      "fbxSha256": "743b7a792a3a878dcd1f60b407b3131d63fe18f996e7720d91f76bd26b410db9",
+      "textureFiles": [
+        "textures-png\\MichaelBingham_D.png"
+      ],
+      "textureSha256": [
+        "39105eff733790041ff091f139e967f416c375128ca510381de12dc65bba1971"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3134,
+      "sourceTriangles": 4406,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MichaelBingham_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Spiderman",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MichaelBingham_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1021852,
+      "outputs": {
+        "actor.psx": "f4546fd5e97a80e777837de6fa6d5afe28007a5ba02ba138366cc04289f1b393",
+        "conversion-report.json": "e690a9726ad1dfa3c2521515822dfbe2a587f98b638072910cefbf34f88f901b",
+        "suit.json": "2520fc3c44513c483189b2a9085289fe8466d29ddb75aa81dd7562268b8c622a",
+        "textures\\diffuse.png": "941961ea93800a663805aa7e099ac68225f1ce56b442bf4bba4159eea44c6bc0"
+      }
+    },
+    {
+      "key": "milesmorales",
+      "id": "smu-milesmorales",
+      "fbx": "costumes/milesmorales/milesmorales.fbx",
+      "fbxSha256": "2bcf59884aec6bd25d34efa1be2f350ec05ee2198a7005186dcca54ffadbeef8",
+      "textureFiles": [
+        "textures-png\\SpidermanMorales_D.png"
+      ],
+      "textureSha256": [
+        "84f6d8299961501492ea2c35f126c69f6361726b1d2ebc446ca2439e1fd7da55"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMorales_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanMorales_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 699860,
+      "outputs": {
+        "actor.psx": "f9ad9f422aa1a65849bb9d83bf153bc41c29f0bb7d2eb6f486b7ffec3e192250",
+        "conversion-report.json": "a63e936e17d65782541b985462819e6b23dfb16e4460303c025dbef12a98fe55",
+        "suit.json": "0fb128e5fec6059701ed2c0ca2cf9cd942645589a790fd60e3c1b3d36e332fbd",
+        "textures\\diffuse.png": "cdf9033f4a02319f611ad93cfb15902147af4baf76a023eda46e22ebcad309bf"
+      }
+    },
+    {
+      "key": "milesmorales_uk_mesh",
+      "id": "smu-milesmorales-uk-mesh",
+      "fbx": "costumes/milesmorales_uk_mesh/milesmorales_uk_mesh.fbx",
+      "fbxSha256": "89aa53005a589627f8b821045d5911e2596875c0de623a7670db9d5350e866aa",
+      "textureFiles": [
+        "textures-png\\SpidermanMorales_D.png"
+      ],
+      "textureSha256": [
+        "84f6d8299961501492ea2c35f126c69f6361726b1d2ebc446ca2439e1fd7da55"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1682,
+      "sourceTriangles": 2936,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMorales_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "UK",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanMorales_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 712520,
+      "outputs": {
+        "actor.psx": "c8efdc491c82f82cb3a0a1bca6138a146c6a1ca3816d361e85822612b7d5b29f",
+        "conversion-report.json": "56d37dd3b6460deb748ea5266b55f8be8e54aa5a805ca34f5e9b5b67c07a5cf5",
+        "suit.json": "ed31982bb16a6f92bf33cdc8b95ce6ba98a1ec0bcd325bed824917740b34990e",
+        "textures\\diffuse.png": "cdf9033f4a02319f611ad93cfb15902147af4baf76a023eda46e22ebcad309bf"
+      }
+    },
+    {
+      "key": "milesmoralesdemasked",
+      "id": "smu-milesmoralesdemasked",
+      "fbx": "costumes/milesmoralesdemasked/milesmoralesdemasked.fbx",
+      "fbxSha256": "fd3eccb28f5ee80c6da9dbdb46e50a0291db0467924d0f63610c9f9ea490cd59",
+      "textureFiles": [
+        "textures-png\\MilesMoralesDemasked_D.png"
+      ],
+      "textureSha256": [
+        "f85166089d3d3b65abfde061f16b54fddae7293068bdd5b9556d4021b924c9fe"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1907,
+      "sourceTriangles": 3244,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MilesMoralesDemasked_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "MilesMoralesDemasked",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MilesMoralesDemasked_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 774796,
+      "outputs": {
+        "actor.psx": "003e3fc841c6b1d432fdb6c788fd40482a9c1ba3a8958b0c7458c89e2c8cf820",
+        "conversion-report.json": "c7223be36e6629021c8a45cf1a13d4d1ac84fa0c2b632143ecb2d1176b58250b",
+        "suit.json": "dfbb0ded514c6cbae12d0c3c8e5fedb5ab8f4f39119cb864d0298f85b7c8fcf8",
+        "textures\\diffuse.png": "f5ec0cf18750411607b2e87d10cbb1bbd29c7735b9d37c42418120f3126c2173"
+      }
+    },
+    {
+      "key": "mj_regent_power_suit",
+      "id": "smu-mj-regent-power-suit",
+      "fbx": "costumes/mj_regent_power_suit/mj_regent_power_suit.fbx",
+      "fbxSha256": "3cfee6213ad856b54203826e7ccf241a6ec99e283e6ba838c556eb9ac3f5f9c4",
+      "textureFiles": [
+        "textures-png\\MJ_Regent_Power_Suit_D.png"
+      ],
+      "textureSha256": [
+        "48c05333c971f337f2a9b1d707138bb526c1a123099b3f062632967d9400786d"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2952,
+      "sourceTriangles": 4408,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MJ_Regent_Power_Suit_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "MJ_Regent_Power_Suit",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MJ_Regent_Power_Suit_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1025540,
+      "outputs": {
+        "actor.psx": "d604fb569b3ce6acca0c1e9319de7d55df514bfc03d7fd018afad9708516e9d9",
+        "conversion-report.json": "7e55efb2995b5ae9abf5de8bfb60f66f45822dad7d642d2e4716fcee6d21222b",
+        "suit.json": "1200c4e8bfdd04132b5d59d16ee42b8e83c02179631503ab8a21b117480eed11",
+        "textures\\diffuse.png": "5dffb24a7a46f82ff1f5e96d4f70bb7125373f8d2377cf8d4babf93aeaf819ac"
+      }
+    },
+    {
+      "key": "mj_sexy",
+      "id": "smu-mj-sexy",
+      "fbx": "costumes/mj_sexy/mj_sexy.fbx",
+      "fbxSha256": "a9e39ec92e3cd3d9e00fd3d692e22df8d351b1f8838c37b20dd0cfe3db72322e",
+      "textureFiles": [
+        "textures-png\\MJ_Sexy_D.png"
+      ],
+      "textureSha256": [
+        "6403b70262f7bf88028c2aab9a18bb345d83766583e6e665b5ece82a71399e69"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1991,
+      "sourceTriangles": 3420,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MJ_Sexy_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "MJ_Sexy",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MJ_Sexy_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 838696,
+      "outputs": {
+        "actor.psx": "a9a1e3768b325836f690498b619f7226fb52b6565d9664d98e33960fff6e7a82",
+        "conversion-report.json": "e9781beaa39cafee95d97026a2a930e5f9ba181613251bb484661dbe0700865f",
+        "suit.json": "d389a1df496d20eccd6b5fd7bd265de741d7608a4f695cc15558a48468880df9",
+        "textures\\diffuse.png": "1df37ad925a3554bcbac4330d571a852e6db4da6b06ba17c641f2e17c4c9127a"
+      }
+    }
+  ]
+}

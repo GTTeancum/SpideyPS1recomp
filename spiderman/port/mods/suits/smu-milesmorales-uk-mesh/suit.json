@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-milesmorales-uk-mesh",
+  "name": "MILESMORALES U #126",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "7D81C378": "textures/diffuse.png"
+  }
+}

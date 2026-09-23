@@ -1,0 +1,26 @@
+{
+  "batch": 12,
+  "keys": [
+    "mayhem",
+    "mayparker_unmasked",
+    "mech",
+    "mercenary",
+    "michaelbingham",
+    "milesmorales",
+    "milesmorales_uk_mesh",
+    "milesmoralesdemasked",
+    "mj_regent_power_suit",
+    "mj_sexy"
+  ],
+  "representative": "smu-michaelbingham",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed two native frames: Michael Bingham swinging at 1533 and grounded at 1838. Backpack, shoulder tubing, mask, hands and legs remain attached through the poses; line reaches the raised hand. Detailed finger closure is not resolved in the wide view. Run exits normally with three slow-frame warnings; full offline checks cover every suit in the batch.",
+  "liveSwingImages": [
+    "frame_01533.png"
+  ],
+  "images": {
+    "frame_01533.png": "2569b1a04a6d40a0dbb9d907500c5f39b434d517f5e61d558e043088527af93a",
+    "frame_01838.png": "7ee060741a7d2e898492993e00d893655fd8918b20bd7e663c452d09aa8be01f"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

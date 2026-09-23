@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-milesmoralesdemasked",
+  "name": "MILESMORALESDE #127",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "C8A1247F": "textures/diffuse.png"
+  }
+}
