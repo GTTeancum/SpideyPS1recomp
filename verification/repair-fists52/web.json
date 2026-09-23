@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "ironspidernewwithtentackles",
+      "id": "smu-ironspidernewwithtentackles",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.080078125,
+        11.110595703125
+      ],
+      "assetSha256": "829f4b4ee5839e1e971071d4ad53827170a912282d2823bb33d2257a4df2cdab",
+      "captureSha256": "dfc7885abcc3e3ab331e0f96c9a95624ff1716d6e7021a27d26e0c6a67a868cb"
+    },
+    {
+      "key": "modernscarlet",
+      "id": "smu-modernscarlet",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "e3714504c40eb7e9be29b5d925a5679045b31894be6ae103dc9fe8d9211c86c9",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    },
+    {
+      "key": "sixarmed_spiderman",
+      "id": "smu-sixarmed-spiderman",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.591552734375,
+        6.04541015625
+      ],
+      "assetSha256": "f4f0b63f383889538eed9d76915ebe1dec993b0591e08a062dea371c9fdf8455",
+      "captureSha256": "d3f63136963d3ed111232f21f2ee00a0decefbaead2409c8af6e1ad1cb00814c"
+    }
+  ]
+}

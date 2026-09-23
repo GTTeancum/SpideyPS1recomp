@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-ironspidernewwithtentackles",
+      "previousActorSha256": "b9d22da25120b661cb13fe98f517e5cdc0c44902fec1e0277e766176c516a96a",
+      "actorSha256": "829f4b4ee5839e1e971071d4ad53827170a912282d2823bb33d2257a4df2cdab",
+      "visualReview": "Native review waived by the user on 2026-09-23. This suit is not visually accepted; full rig, animation, web, loading and before/after isolation checks pass.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-modernscarlet",
+      "previousActorSha256": "90a7c036fe706fc4151d25998963e83cda439b1f35179b042c710917bde1676e",
+      "actorSha256": "e3714504c40eb7e9be29b5d925a5679045b31894be6ae103dc9fe8d9211c86c9",
+      "visualReview": "Native review waived by the user on 2026-09-23. This suit is not visually accepted; full rig, animation, web, loading and before/after isolation checks pass.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-sixarmed-spiderman",
+      "previousActorSha256": "03d77ed60fbb5926a7dbd7518bef2a6d83056c3f32061e0e8cdecf1ed8671294",
+      "actorSha256": "f4f0b63f383889538eed9d76915ebe1dec993b0591e08a062dea371c9fdf8455",
+      "visualReview": "Native review waived by the user on 2026-09-23. This suit is not visually accepted; full rig, animation, web, loading and before/after isolation checks pass. Exception: User approved the source-authored upper hands remaining open on 2026-09-23. Those upper appendages are weighted only to the collarbones and have no independent finger chains; the ordinary lower pair uses the approved palm-width closure.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [],
+  "nativeReviewWaivedByUser": true,
+  "exceptionNotes": {
+    "smu-sixarmed-spiderman": "User approved the source-authored upper hands remaining open on 2026-09-23. Those upper appendages are weighted only to the collarbones and have no independent finger chains; the ordinary lower pair uses the approved palm-width closure."
+  },
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative when present. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-ironspidernewwithtentackles\\actor.psx",
+    "smu-ironspidernewwithtentackles\\conversion-report.json",
+    "smu-modernscarlet\\actor.psx",
+    "smu-modernscarlet\\conversion-report.json",
+    "smu-sixarmed-spiderman\\actor.psx",
+    "smu-sixarmed-spiderman\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": null,
+    "nativeReviewWaivedByUser": true
+  }
+}

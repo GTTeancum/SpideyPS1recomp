@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-ironspidernewwithtentackles",
+    "beforeActorSha256": "b9d22da25120b661cb13fe98f517e5cdc0c44902fec1e0277e766176c516a96a",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-modernscarlet",
+    "beforeActorSha256": "90a7c036fe706fc4151d25998963e83cda439b1f35179b042c710917bde1676e",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-sixarmed-spiderman",
+    "beforeActorSha256": "03d77ed60fbb5926a7dbd7518bef2a6d83056c3f32061e0e8cdecf1ed8671294",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]
