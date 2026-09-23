@@ -20,3 +20,10 @@ use the same image; the second is assigned to 3 and 280 triangles respectively.
 are tracked in SMU-OPEN-ISSUES.json and must be repaired, not waived.
 
 This is offline texture evidence, not gameplay or original shader equivalence.
+
+After installation of the reviewed Gwenom/Venom repairs, the exact audit passes
+all 231 installed suits and 261 material slots (`installed-231-repaired.json`).
+The complete managed catalogue audit still fails one manifest, Devil Spider,
+whose 1024x6144 repeat atlas exceeds the current dimension cap. All 231 native
+actor containers and the other 230 manifests pass. These are separate gates;
+an exact texture match does not prove the host can load that texture.

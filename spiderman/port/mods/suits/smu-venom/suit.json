@@ -9,6 +9,7 @@
     "profile": "spiderman"
   },
   "textures": {
-    "0B930543": "textures/diffuse.png"
+    "0B930543": "textures/diffuse.png",
+    "9E902F66": "textures/diffuse-1.png"
   }
 }

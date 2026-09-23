@@ -8,7 +8,7 @@
   "runtimeInfluences": 6493,
   "originalTriangles": 3986,
   "uniqueOutputTriangles": 3986,
-  "nativeBytes": 969400,
+  "nativeBytes": 986328,
   "rigBytes": 445612,
   "packetSpilloverTriangles": 844,
   "packets": [
@@ -119,12 +119,12 @@
   ],
   "sourceBindReconstructionMaxError": 0.0008283251145257964,
   "inputHashes": {
-    "/mnt/data/smu07/samples/SMU-Costumes/costumes/gwenom/gwenom.fbx": "2490068258b663dd4a75d4eed77fa65769ff89fc810808fbbacedc7db1893b78",
-    "/mnt/data/smu07/samples/SMU-Costumes/costumes/2099/2099.fbx": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
-    "/mnt/data/smu07/project/spiderman/extracted/wad/spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
-    "/mnt/data/smu07/samples/SMU-Costumes/textures-png/Gwenom_D.png": "76542f14a5b72b5cd61c2cab17a56811f41f65cee8d76073abffb06532203180"
+    "C:\\Programming\\SMU-Costumes\\costumes\\gwenom\\gwenom.fbx": "2490068258b663dd4a75d4eed77fa65769ff89fc810808fbbacedc7db1893b78",
+    "C:\\Programming\\SMU-Costumes\\costumes\\2099\\2099.fbx": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\Gwenom_D.png": "76542f14a5b72b5cd61c2cab17a56811f41f65cee8d76073abffb06532203180"
   },
-  "outputSha256": "6cce60683532b5e9c7ceaf44fa9f1862f2cf303635fafa2e4fbdb6a1082071f6",
+  "outputSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -317,6 +317,36 @@
         -0.05994614301482083,
         -0.9910161557208862
       ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "Spiderman_1",
+      "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Gwenom_D.png",
+      "alphaBound": false,
+      "tileOrigin": [
+        0,
+        0
+      ],
+      "tileCount": [
+        1,
+        1
+      ],
+      "slot": 0
+    },
+    {
+      "name": "Spiderma__2",
+      "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Gwenom_D.png",
+      "alphaBound": false,
+      "tileOrigin": [
+        0,
+        0
+      ],
+      "tileCount": [
+        1,
+        1
+      ],
+      "slot": 1
     }
   ]
 }

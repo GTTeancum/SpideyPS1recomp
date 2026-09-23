@@ -5,16 +5,17 @@
       "id": "repeated-texture-loader-dimensions",
       "status": "open",
       "suits": ["smu-devilspider"],
-      "finding": "The full installed-catalogue managed loader rejects Devil Spider's preserved repeat atlas, 1024 by 6144 pixels, because SuitManifest limits each PNG dimension to 4096. This suit passes offline conversion checks but is not yet loadable through its manifest. Batch representative gameplay does not cover this failure.",
+      "finding": "The complete 231-suit managed catalogue audit reports exactly one failing manifest: Devil Spider's preserved repeat atlas, 1024 by 6144 pixels, exceeds SuitManifest's 4096 limit. All 231 native actor containers pass; 230 manifests decode and map their materials. Devil Spider passes offline conversion checks but is not yet loadable through its manifest. Batch representative gameplay does not cover this failure.",
+      "evidence": "verification/fallback-textures/managed-catalogue-231-complete.txt",
       "next": "Support the authored repeat texture through the actual host texture path with bounded memory and GPU-size validation, preserve source RGB/alpha, and prove this suit loads and renders in game."
     },
     {
       "id": "initial-material-slot-fidelity",
-      "status": "open",
+      "status": "resolved",
       "suits": ["smu-gwenom", "smu-venom"],
-      "finding": "The exact fallback audit passes 208 of 210 installed suits. Imported Gwenom and Venom each have one native slot instead of two authored slots. The second slot uses the same diffuse image and is assigned to 3 and 280 source triangles respectively. This is an authored material assignment loss, not evidence of missing geometry or a different missing texture image.",
-      "evidence": "verification/fallback-textures/installed-210.json",
-      "next": "Reconvert these two early assets with the current per-material pipeline, retain backups, and run full structural, animation, web, managed loading and native gameplay regressions before replacing them."
+      "finding": "Gwenom and Venom now retain both authored material slots and every original triangle. Both repaired assets passed full structural and 4196-frame animation tests, 115-frame web tests, exact texture and finger-policy checks, managed loading and individually reviewed native swing/grounded captures. Originals were hash-checked and fully backed up before replacement.",
+      "evidence": "verification/repair-initial-materials/review.json",
+      "resolution": "Installed current per-material conversions. The material repair does not accept visual fist closure, source shader equivalence or tongue appearance in rear-view captures."
     },
     {
       "id": "symbiote-tongue-pose",

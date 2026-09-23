@@ -4,7 +4,7 @@
   "batchVerified": 231,
   "remainingUnconverted": 2,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 5928,
+  "offlineChecks": 5983,
   "animationFrames": 969276,
   "offlineSwingFrames": 26565,
   "structuralBlockers": [
@@ -290,19 +290,9 @@
       "suits": [
         "smu-devilspider"
       ],
-      "finding": "The full installed-catalogue managed loader rejects Devil Spider's preserved repeat atlas, 1024 by 6144 pixels, because SuitManifest limits each PNG dimension to 4096. This suit passes offline conversion checks but is not yet loadable through its manifest. Batch representative gameplay does not cover this failure.",
+      "finding": "The complete 231-suit managed catalogue audit reports exactly one failing manifest: Devil Spider's preserved repeat atlas, 1024 by 6144 pixels, exceeds SuitManifest's 4096 limit. All 231 native actor containers pass; 230 manifests decode and map their materials. Devil Spider passes offline conversion checks but is not yet loadable through its manifest. Batch representative gameplay does not cover this failure.",
+      "evidence": "verification/fallback-textures/managed-catalogue-231-complete.txt",
       "next": "Support the authored repeat texture through the actual host texture path with bounded memory and GPU-size validation, preserve source RGB/alpha, and prove this suit loads and renders in game."
-    },
-    {
-      "id": "initial-material-slot-fidelity",
-      "status": "open",
-      "suits": [
-        "smu-gwenom",
-        "smu-venom"
-      ],
-      "finding": "The exact fallback audit passes 208 of 210 installed suits. Imported Gwenom and Venom each have one native slot instead of two authored slots. The second slot uses the same diffuse image and is assigned to 3 and 280 source triangles respectively. This is an authored material assignment loss, not evidence of missing geometry or a different missing texture image.",
-      "evidence": "verification/fallback-textures/installed-210.json",
-      "next": "Reconvert these two early assets with the current per-material pipeline, retain backups, and run full structural, animation, web, managed loading and native gameplay regressions before replacing them."
     },
     {
       "id": "symbiote-tongue-pose",
@@ -345,6 +335,32 @@
   ],
   "repairReviews": [
     {
+      "repairs": [
+        {
+          "suit": "smu-gwenom",
+          "previousActorSha256": "6cce60683532b5e9c7ceaf44fa9f1862f2cf303635fafa2e4fbdb6a1082071f6",
+          "actorSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
+          "visualReview": "Individually reviewed both native framebuffer captures. Gwenom swings with the web reaching the raised hand and is visible in a grounded stance. Hood, white emblem, complete limbs and pink foot/calf accents are visible. The free hand remains open; this is not closed-fist acceptance. Rear views do not establish mouth or tongue detail. No secondary hood animation or full campaign acceptance is claimed.",
+          "images": {
+            "frame_01582.png": "ccd6056d865c4a46c064f12cad30132200330aaaab20d445bd8994244f50c307",
+            "frame_01887.png": "abbf6bd230793ad73226f9881b91d194b9c72daf5d03683da7da72b26e5d20c5"
+          }
+        },
+        {
+          "suit": "smu-venom",
+          "previousActorSha256": "7b24805504beb82687b03742e3c879d1aa2223d85bb8593ede677422de7e2215",
+          "actorSha256": "e519899ce1a15c0a104b33797ccd8ef2b81ef80bd968be4c296de6bf86155342",
+          "visualReview": "Individually reviewed both native framebuffer captures. Venom appears as a large blue-bodied suit with white back emblem and complete limbs, first swinging with the web reaching the raised hand, then in a deep crouch. No gross missing body section is visible. The free hand is visibly open and is not accepted as a closed fist. These rear views do not show the tongue or establish mouth attachment visually. Source shader equivalence, dynamic tongue motion and full campaign behavior are not claimed.",
+          "images": {
+            "frame_01582.png": "cc9c2574b393f5f7632aba14ad2acb7334035d74dfac6047d3ca64b5e0322a1f",
+            "frame_01887.png": "457113703f171727593ca97da4bd04dbffb76fa964acdf3a098d378a87c24fc4"
+          }
+        }
+      ],
+      "managedLoaderExitCode": 0,
+      "scope": "Two native gameplay images per repaired suit. Not visual fist closure, dynamic tongue behavior, audio or full campaign acceptance."
+    },
+    {
       "suit": "smu-poison",
       "previousActorSha256": "0fdca9121168db7302c6858fd5becb9a80d32e0780d4e8bc96c8d75f8012bfab",
       "actorSha256": "bc409bf0111825222f7929753ad0826f69c9dec39dd6dba0f705fb75992b5ff8",
@@ -367,6 +383,18 @@
       "managedLoaderExitCode": 0,
       "unaffectedVertices": 2816,
       "maxUnaffectedVertexError": 0.0
+    }
+  ],
+  "targetedReviews": [
+    {
+      "suit": "smu-werewolf",
+      "actorSha256": "dd68be7308d79e62f84361f761d12038ddc15b12f390dbdb5b2b25ce11485187",
+      "visualReview": "Individually reviewed both native frames. Werewolf appears in a swing and grounded stance with textured head/ears, golden mane, red arms, blue body and legs, and clawed feet visible. Web reaches the raised hand. Native capture complements the offline proof that both source meshes and all 4802 triangles survive; these two views do not individually expose every triangle. Free hand remains open, so closed-fist appearance is not accepted.",
+      "images": {
+        "frame_01584.png": "dce3da97eb8f0c441b6d70f6f0a4aeb13266d35664e04e1bde9bdb6ac94207f2",
+        "frame_01889.png": "327e369070119277f038bd9beb145d04f7f5e5d9d388497aab1fa238f0ab8945"
+      },
+      "scope": "Genuine game framebuffer, process-local input. Muted run; no desktop capture. Two individually reviewed images, not full animation or campaign visual acceptance."
     }
   ],
   "installedHashesMatchLatestRigEvidence": true

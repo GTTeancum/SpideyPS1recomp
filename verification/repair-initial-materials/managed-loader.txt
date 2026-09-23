@@ -1,0 +1,29 @@
+PASS: source/guest size bound 4194305
+PASS: source/guest size bound 1048577
+PASS: wrong container version
+PASS: metadata pointer overflow
+PASS: incompatible hierarchy size
+PASS: mesh points into header
+PASS: native vertex limit
+PASS: unresolved stitch
+PASS: triangle index out of range
+PASS: normal index out of range
+PASS: unsupported face record
+PASS: native quads and extended triangles
+PASS: quad fourth index out of range
+PASS: extended triangle with short record
+PASS: unsupported transparent face
+PASS: extended triangle crosses mesh boundary
+PASS: converted actor 540708 bytes, 2 material IDs
+PASS: converted actor 502444 bytes, 2 material IDs
+Custom actor validation passed.
+PASS: real custom manifest and actor material mapping: smu-gwenom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Users\smmel\Documents\Codex\2026-09-22\referenced-chatgpt-conversation-this-is-an-5\work\repair-initial-materials\suits\smu-gwenom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-venom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Users\smmel\Documents\Codex\2026-09-22\referenced-chatgpt-conversation-this-is-an-5\work\repair-initial-materials\suits\smu-venom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx

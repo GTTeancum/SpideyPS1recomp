@@ -1,0 +1,10 @@
+{
+  "suit": "smu-werewolf",
+  "actorSha256": "dd68be7308d79e62f84361f761d12038ddc15b12f390dbdb5b2b25ce11485187",
+  "visualReview": "Individually reviewed both native frames. Werewolf appears in a swing and grounded stance with textured head/ears, golden mane, red arms, blue body and legs, and clawed feet visible. Web reaches the raised hand. Native capture complements the offline proof that both source meshes and all 4802 triangles survive; these two views do not individually expose every triangle. Free hand remains open, so closed-fist appearance is not accepted.",
+  "images": {
+    "frame_01584.png": "dce3da97eb8f0c441b6d70f6f0a4aeb13266d35664e04e1bde9bdb6ac94207f2",
+    "frame_01889.png": "327e369070119277f038bd9beb145d04f7f5e5d9d388497aab1fa238f0ab8945"
+  },
+  "scope": "Genuine game framebuffer, process-local input. Muted run; no desktop capture. Two individually reviewed images, not full animation or campaign visual acceptance."
+}

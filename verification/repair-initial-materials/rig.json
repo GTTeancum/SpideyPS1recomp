@@ -1,0 +1,320 @@
+{
+  "status": "PASS",
+  "scope": "Native assets + compiled C++ runtime core + original animation decoding oracle; C# integration checks are static only. Full .NET build/game execution NOT run.",
+  "passed": 55,
+  "failed": 0,
+  "metrics": {
+    "smu-gwenom": {
+      "bones": 67,
+      "sourceControlPoints": 2377,
+      "sourceInfluences": 6493,
+      "runtimeVertices": 2377,
+      "runtimeInfluences": 6493,
+      "triangles": 3986,
+      "nativeBytes": 986328,
+      "sha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
+      "rootScale": 0.902794599533081,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007819448946975172,
+      "maxRoundedComponentError": 0.855010986328125,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 8.956928500032518
+    },
+    "smu-venom": {
+      "bones": 71,
+      "sourceControlPoints": 2204,
+      "sourceInfluences": 4931,
+      "runtimeVertices": 2214,
+      "runtimeInfluences": 4941,
+      "triangles": 3516,
+      "nativeBytes": 881076,
+      "sha256": "e519899ce1a15c0a104b33797ccd8ef2b81ef80bd968be4c296de6bf86155342",
+      "rootScale": 0.9208386540412903,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007818244048394263,
+      "maxRoundedComponentError": 0.852813720703125,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 7.663486099976581
+    }
+  },
+  "results": [
+    {
+      "name": "300 native clips / 4196 source frames",
+      "passed": true
+    },
+    {
+      "name": "original decoder produces nonsingular Q12 driver rotations",
+      "passed": true,
+      "minDet": 0.9987022876739502,
+      "maxDet": 1.0010902881622314
+    },
+    {
+      "name": "smu-gwenom: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9789543276592667e-08
+    },
+    {
+      "name": "smu-gwenom: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 3986
+    },
+    {
+      "name": "smu-gwenom: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.000732421875
+    },
+    {
+      "name": "smu-gwenom: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-gwenom: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.000396728515625,
+      "scale": 0.902794599533081
+    },
+    {
+      "name": "smu-gwenom: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-gwenom: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-gwenom: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 3335.4853515625,
+      "worst": null
+    },
+    {
+      "name": "smu-gwenom: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007819448946975172
+    },
+    {
+      "name": "smu-gwenom: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.0008544921875,
+      "maxRoundedComponentError": 0.855010986328125
+    },
+    {
+      "name": "smu-gwenom: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-gwenom: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9733602358028577e-08
+    },
+    {
+      "name": "smu-venom: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 3516
+    },
+    {
+      "name": "smu-venom: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.00048828125
+    },
+    {
+      "name": "smu-venom: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-venom: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.000244140625,
+      "scale": 0.9208386540412903
+    },
+    {
+      "name": "smu-venom: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-venom: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-venom: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 3092.734375,
+      "worst": null
+    },
+    {
+      "name": "smu-venom: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007818244048394263
+    },
+    {
+      "name": "smu-venom: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.0008544921875,
+      "maxRoundedComponentError": 0.852813720703125
+    },
+    {
+      "name": "smu-venom: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-venom: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "source integration: exactly one pose-ready hook and regeneration config",
+      "passed": true
+    },
+    {
+      "name": "source integration: resident validation / fists / culling update present",
+      "passed": true
+    },
+    {
+      "name": "Windows deployed native DLL is the tested-source build artifact",
+      "passed": true
+    }
+  ],
+  "inputHashes": {
+    "C:\\Programming\\SMU-Costumes\\costumes\\gwenom\\gwenom.fbx": "2490068258b663dd4a75d4eed77fa65769ff89fc810808fbbacedc7db1893b78",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\Gwenom_D.png": "76542f14a5b72b5cd61c2cab17a56811f41f65cee8d76073abffb06532203180",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "work\\repair-initial-materials\\suits\\smu-gwenom\\actor.psx": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
+    "C:\\Programming\\SMU-Costumes\\costumes\\venom\\venom.fbx": "0dab98f6e05d0c00965437b91d1f345e43df22349def22d6c8ff3319093d860e",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\Venom_D.png": "1ff92e673e36198a45ce1cd13ff5cef78d08a3d3d6d7ccf82c82840c78030549",
+    "work\\repair-initial-materials\\suits\\smu-venom\\actor.psx": "e519899ce1a15c0a104b33797ccd8ef2b81ef80bd968be4c296de6bf86155342"
+  },
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb"
+}

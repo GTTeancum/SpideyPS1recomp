@@ -1,0 +1,26 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-gwenom",
+      "previousActorSha256": "6cce60683532b5e9c7ceaf44fa9f1862f2cf303635fafa2e4fbdb6a1082071f6",
+      "actorSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
+      "visualReview": "Individually reviewed both native framebuffer captures. Gwenom swings with the web reaching the raised hand and is visible in a grounded stance. Hood, white emblem, complete limbs and pink foot/calf accents are visible. The free hand remains open; this is not closed-fist acceptance. Rear views do not establish mouth or tongue detail. No secondary hood animation or full campaign acceptance is claimed.",
+      "images": {
+        "frame_01582.png": "ccd6056d865c4a46c064f12cad30132200330aaaab20d445bd8994244f50c307",
+        "frame_01887.png": "abbf6bd230793ad73226f9881b91d194b9c72daf5d03683da7da72b26e5d20c5"
+      }
+    },
+    {
+      "suit": "smu-venom",
+      "previousActorSha256": "7b24805504beb82687b03742e3c879d1aa2223d85bb8593ede677422de7e2215",
+      "actorSha256": "e519899ce1a15c0a104b33797ccd8ef2b81ef80bd968be4c296de6bf86155342",
+      "visualReview": "Individually reviewed both native framebuffer captures. Venom appears as a large blue-bodied suit with white back emblem and complete limbs, first swinging with the web reaching the raised hand, then in a deep crouch. No gross missing body section is visible. The free hand is visibly open and is not accepted as a closed fist. These rear views do not show the tongue or establish mouth attachment visually. Source shader equivalence, dynamic tongue motion and full campaign behavior are not claimed.",
+      "images": {
+        "frame_01582.png": "cc9c2574b393f5f7632aba14ad2acb7334035d74dfac6047d3ca64b5e0322a1f",
+        "frame_01887.png": "457113703f171727593ca97da4bd04dbffb76fa964acdf3a098d378a87c24fc4"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "scope": "Two native gameplay images per repaired suit. Not visual fist closure, dynamic tongue behavior, audio or full campaign acceptance."
+}

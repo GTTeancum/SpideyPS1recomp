@@ -60,14 +60,30 @@ string[] actors = args.Length == 2 && args[0] == "--catalogue"
     ? Directory.GetFiles(args[1], "actor.psx", SearchOption.AllDirectories).Order().ToArray()
     : args;
 if (args.Length != 0 && actors.Length == 0) throw new Exception("empty actor catalogue");
+var failures = new List<string>();
 foreach (string actorPath in actors)
 {
-    var real = SuitModel.Read(actorPath);
-    Console.WriteLine($"PASS: converted actor {real.Bytes.Length} bytes, {real.Materials.Count} material IDs");
+    try
+    {
+        var real = SuitModel.Read(actorPath);
+        Console.WriteLine($"PASS: converted actor {actorPath}: {real.Bytes.Length} bytes, {real.Materials.Count} material IDs");
+    }
+    catch (Exception e)
+    {
+        failures.Add($"actor {actorPath}: {e.Message}");
+    }
 }
-Console.WriteLine("Custom actor validation passed.");
 
 foreach (string actorPath in actors)
+{
+    try { CheckManifest(actorPath); }
+    catch (Exception e) { failures.Add($"manifest {actorPath}: {e.Message}"); }
+}
+foreach (string failure in failures) Console.Error.WriteLine("FAIL: " + failure);
+Console.WriteLine($"Catalogue audit: {actors.Length} actors, {failures.Count} failures.");
+return failures.Count == 0 ? 0 : 1;
+
+void CheckManifest(string actorPath)
 {
     string manifestPath = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(actorPath))!, "suit.json");
     var suit = SuitManifest.Read(manifestPath);
@@ -78,17 +94,23 @@ foreach (string actorPath in actors)
     Console.WriteLine("PASS: real custom manifest and actor material mapping: " + suit.Id);
     string testDir = Path.Combine(Path.GetTempPath(), "custom-suit-test-" + Guid.NewGuid());
     Directory.CreateDirectory(testDir);
-    var doc = System.Text.Json.Nodes.JsonNode.Parse(File.ReadAllText(manifestPath))!;
-    foreach (string bad in new[] { "../actor.psx", Path.GetFullPath(actorPath), "actor.fbx", "missing.psx" })
+    try
     {
-        doc["modelFile"] = bad;
-        string target = Path.Combine(testDir, "suit.json");
-        File.WriteAllText(target, doc.ToJsonString());
-        bool rejected = false;
-        try { SuitManifest.Read(target); } catch (Exception e) when (e is InvalidDataException or IOException) { rejected = true; }
-        if (!rejected) throw new Exception("accepted invalid modelFile " + bad);
-        Console.WriteLine("PASS: rejected modelFile " + bad);
+        var doc = System.Text.Json.Nodes.JsonNode.Parse(File.ReadAllText(manifestPath))!;
+        foreach (string bad in new[] { "../actor.psx", Path.GetFullPath(actorPath), "actor.fbx", "missing.psx" })
+        {
+            doc["modelFile"] = bad;
+            string target = Path.Combine(testDir, "suit.json");
+            File.WriteAllText(target, doc.ToJsonString());
+            bool rejected = false;
+            try { SuitManifest.Read(target); } catch (Exception e) when (e is InvalidDataException or IOException) { rejected = true; }
+            if (!rejected) throw new Exception("accepted invalid modelFile " + bad);
+            Console.WriteLine("PASS: rejected modelFile " + bad);
+        }
     }
-    File.Delete(Path.Combine(testDir, "suit.json"));
-    Directory.Delete(testDir);
+    finally
+    {
+        File.Delete(Path.Combine(testDir, "suit.json"));
+        Directory.Delete(testDir);
+    }
 }

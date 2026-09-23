@@ -8,7 +8,7 @@
   "runtimeInfluences": 4941,
   "originalTriangles": 3516,
   "uniqueOutputTriangles": 3516,
-  "nativeBytes": 864148,
+  "nativeBytes": 881076,
   "rigBytes": 378624,
   "packetSpilloverTriangles": 628,
   "packets": [
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Venom_D.png": "1ff92e673e36198a45ce1cd13ff5cef78d08a3d3d6d7ccf82c82840c78030549"
   },
-  "outputSha256": "7b24805504beb82687b03742e3c879d1aa2223d85bb8593ede677422de7e2215",
+  "outputSha256": "e519899ce1a15c0a104b33797ccd8ef2b81ef80bd968be4c296de6bf86155342",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -317,6 +317,36 @@
         -0.11650053677370668,
         -0.9705732463067033
       ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "_1_-_Default__1",
+      "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Venom_D.png",
+      "alphaBound": false,
+      "tileOrigin": [
+        0,
+        0
+      ],
+      "tileCount": [
+        1,
+        1
+      ],
+      "slot": 0
+    },
+    {
+      "name": "_0_-_Default",
+      "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Venom_D.png",
+      "alphaBound": false,
+      "tileOrigin": [
+        0,
+        0
+      ],
+      "tileCount": [
+        1,
+        1
+      ],
+      "slot": 1
     }
   ]
 }

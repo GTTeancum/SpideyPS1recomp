@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 2,
+  "requested": 2,
+  "results": [
+    {
+      "key": "gwenom",
+      "id": "smu-gwenom",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.084228515625,
+        6.486328125
+      ],
+      "assetSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
+      "captureSha256": "5e0665c45977845134e26dc56c4d06d6cf0e60d8a95c31a3c28f7025499aee84"
+    },
+    {
+      "key": "venom",
+      "id": "smu-venom",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -4.76904296875,
+        0.03076171875
+      ],
+      "assetSha256": "e519899ce1a15c0a104b33797ccd8ef2b81ef80bd968be4c296de6bf86155342",
+      "captureSha256": "ce58eb4ffbb900894b0274dbb1ed43aa83467f8e3221a929e3d05ff3a3bad013"
+    }
+  ]
+}
