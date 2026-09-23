@@ -1,0 +1,118 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-lasher-cell",
+      "previousActorSha256": "26836dcad207c86f2630535aa47bf11b885a11e60d66f4874409fa8f8056ed30",
+      "actorSha256": "e0b044913c990a5e105cda08a3bcb84722ffde03ab261658661779bcae7dac00",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mangaverse, smu-lizard.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-lily-hollister",
+      "previousActorSha256": "424a0358f349c088f3b05947f6189cec1c60b0084f46084bc12a2476bb8ded78",
+      "actorSha256": "9ac7d10cd7b0b632c708e3fd725e239e4a539d828958264dcaf0fdb24f27d856",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mangaverse, smu-lizard.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-lizard",
+      "previousActorSha256": "b51e0b2ef156045ab68a56be845fd4e5ba44c5824523ba9185c53df4c4d63b06",
+      "actorSha256": "0be23517a25522401c2efd91f34dd774563d2869f347c2f8c4e866be2e455c81",
+      "visualReview": "Individually inspected native frames 01523 and 01533. Side and frontal movement retain the green head, teeth, full tail, red/blue costume and bare feet. Both hands show folded fingers with thumb openings. A red tongue tip is visible at the mouth in both poses, not beside an arm; the side angle partly hides its root, so no exhaustive mouth-intersection claim is made. Neither frame contains a web. The separate full-animation attachment test passes all 4196 frames for 34 head-relative tongue vertices with no mixed body/tongue vertices. All 3496 triangles and source weights are preserved. These are two native game frames, not all-pose finger or tongue contact acceptance.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01523.png": "b91ad659737b285e5bc5943312fb1c62d13ba6c33d29f1934276ccc3996d7c89",
+        "frame_01533.png": "5af92ac55f8e733a90316d65d066ae7bef123a49fd817042ebfded5622dfbd46"
+      }
+    },
+    {
+      "suit": "smu-mac-gargan",
+      "previousActorSha256": "1f2258690dba8b1cef19ef9b950659f82f553902e46a208b2a6d40e004e1e16d",
+      "actorSha256": "aa375b94cd011c5cad076b96ee34ece81bb33a5605d454c4bc94d0c4021dc9c6",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mangaverse, smu-lizard.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-mace",
+      "previousActorSha256": "fac6ff13134777cb63126d4b9080861d73495b648041fcf00a2e1adcb319dff6",
+      "actorSha256": "c1bd7ce88c0094332d14fbce87f0789847ed26a39baa17d9327a102cdd17fb8f",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mangaverse, smu-lizard.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-madamweb",
+      "previousActorSha256": "9b096e8b0489168522fe0c74b978fa5fdb76cf4ef508e167109c8c6445e7397a",
+      "actorSha256": "9f705878501c3cb1ea800c96243f14eceb6639974e09f8ae421f99da14a02e54",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mangaverse, smu-lizard.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-mangaverse",
+      "previousActorSha256": "43a24734ef6ab00ad73051e8e6d828fd8648708e2630abcadc21127dc5c6fc91",
+      "actorSha256": "f78d4f5caf41a4e48ee01ce1496ef6abac5b0c0f07efe9a238ae0b34104b437b",
+      "visualReview": "Individually inspected native frames 01583 and 01903. Rear swing and side-facing movement retain the stylized body proportions, oversized tan gloves, red/white shoes, backpack and forearm wraps. The glove silhouettes are folded, with red digit ends visible; bulky glove surfaces obscure fine palm contact. The swing web visibly meets the raised glove/wrist region. Both frames retain full body geometry, but the second is side-facing rather than a clear frontal pose. All 2896 triangles and original texture bytes are separately preserved by tests. No exhaustive contact or source-shader equivalence is claimed.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01583.png": "5448bea558efffc6d675efcd2548402a8296f7d54b576e9d6530efa67ead79a8",
+        "frame_01903.png": "c369867b6f70f72d5aa0c9debee89b23943215e49269e3e56ecf298965fe9bad"
+      }
+    },
+    {
+      "suit": "smu-mangaverse-black-cat",
+      "previousActorSha256": "82a1e0276698eb7ded100802f1fea937606079af7451af4e0431ba813bc32711",
+      "actorSha256": "01d7673617097a3d8da6cbf4680fc9ba55bc438340301816ff85da5b8c81d88d",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mangaverse, smu-lizard.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-mania",
+      "previousActorSha256": "e5d46e4cf0e1dfec8ac93e4de9712a5dbbe22e21a8ed1402aea93628110863e3",
+      "actorSha256": "8bb10c83c7cae9e2f069e178e0001a16adc0bb30c0fa13fafd7c63a9c807d5c8",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mangaverse, smu-lizard.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-mangaverse",
+    "smu-lizard"
+  ],
+  "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast, Batty Brant and Black Cat Venom sources instead use measured per-digit source-relative closure with narrow per-hand overrides. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 946,
+  "changedFiles": [
+    "smu-lasher-cell\\actor.psx",
+    "smu-lasher-cell\\conversion-report.json",
+    "smu-lily-hollister\\actor.psx",
+    "smu-lily-hollister\\conversion-report.json",
+    "smu-lizard\\actor.psx",
+    "smu-lizard\\conversion-report.json",
+    "smu-mac-gargan\\actor.psx",
+    "smu-mac-gargan\\conversion-report.json",
+    "smu-mace\\actor.psx",
+    "smu-mace\\conversion-report.json",
+    "smu-madamweb\\actor.psx",
+    "smu-madamweb\\conversion-report.json",
+    "smu-mangaverse-black-cat\\actor.psx",
+    "smu-mangaverse-black-cat\\conversion-report.json",
+    "smu-mangaverse\\actor.psx",
+    "smu-mangaverse\\conversion-report.json",
+    "smu-mania\\actor.psx",
+    "smu-mania\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+    "exitCode": 0,
+    "warnings": 0,
+    "errors": 0,
+    "scope": "Observed Windows game build for batch15, 1.46 seconds. Native captures use the matching game DLL. Linux game execution not performed."
+  }
+}

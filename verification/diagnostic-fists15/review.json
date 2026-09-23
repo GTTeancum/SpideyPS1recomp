@@ -1,0 +1,12 @@
+{
+  "status": "held-for-visual-correction",
+  "suit": "smu-mangaversegirl",
+  "installed": false,
+  "actorSha256": "52cbc9b84ecab3b57558e46a4210b92dbcfcf642501028708f55fc03aade4d53",
+  "visualReview": "Individually inspected native frames 01557 and 01877. Rear jump and clear front-facing movement retain the large head, long red hair, red costume, yellow chest emblem, forearm wraps and shoes. The right hand appears folded, but the left hand has separated downward-facing finger tips and does not clearly demonstrate closed-fist acceptance. Hold for focused left-hand inspection and correction. Neither frame provides a visible web, so no native web-endpoint claim is made. All 5686 triangles and both materials are retained by separate structural checks.",
+  "tests": "All ten staged suits pass 255 structural checks, 4196 animation frames each, 115 web frames each, managed loading and before/after isolation. Numeric success does not override the visual hold.",
+  "images": {
+    "frame_01557.png": "d174d45945bd48befa4bd7c63bac2ae85d322583241566422958bcc9b814d32e",
+    "frame_01877.png": "83351ba67f77999663e1ab99816b31bbff686421eea4ec67cf07c430ffa78d5e"
+  }
+}

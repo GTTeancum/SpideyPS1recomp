@@ -1,0 +1,486 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch15",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "lasher_cell",
+    "lily_hollister",
+    "lizard",
+    "mac_gargan",
+    "mace",
+    "madamweb",
+    "mangaverse",
+    "mangaverse_black_cat",
+    "mania"
+  ],
+  "results": [
+    {
+      "key": "lasher_cell",
+      "id": "smu-lasher-cell",
+      "fbx": "costumes/lasher_cell/lasher_cell.fbx",
+      "fbxSha256": "05545b7198e225785824c5c7159087b212592e7aa02556fea2b28f1052148fd3",
+      "textureFiles": [
+        "textures-png\\Lasher_Cell_D.png"
+      ],
+      "textureSha256": [
+        "508f556db30139ebf3d0c4b30bfdb717c5fdfcfc0f888666997b2c46fba81f4a"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2196,
+      "sourceTriangles": 3420,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Lasher_Cell_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Lasher",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Lasher_Cell_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              2,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 867604,
+      "outputs": {
+        "actor.psx": "e0b044913c990a5e105cda08a3bcb84722ffde03ab261658661779bcae7dac00",
+        "conversion-report.json": "f176f7bca6e9a6260bc3344ad486fd54addb3987f5f55f45808e541c3c90c4a6",
+        "suit.json": "166f39758bc95e5862c89b23d5cf77f9137409201f50ba872b11cd9cdf9aae04",
+        "textures\\diffuse.png": "799fd9d692e36ec16347eb394a0be9802c3e3983470dafb33564bd8a5eb2e563"
+      }
+    },
+    {
+      "key": "lily_hollister",
+      "id": "smu-lily-hollister",
+      "fbx": "costumes/lily_hollister/lily_hollister.fbx",
+      "fbxSha256": "f4964f4d6380c91510baff8e23deb80ccdc12b02f4991393aeece70b021bc736",
+      "textureFiles": [
+        "textures-png\\Lily_Hollister_D.png"
+      ],
+      "textureSha256": [
+        "0423898bbcbce4ba1271914124cd5eabf86b8cda973af20c18278e1450598b6b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2511,
+      "sourceTriangles": 4018,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Lily_Hollister_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Material__0",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Lily_Hollister_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 929840,
+      "outputs": {
+        "actor.psx": "9ac7d10cd7b0b632c708e3fd725e239e4a539d828958264dcaf0fdb24f27d856",
+        "conversion-report.json": "a871994f6c5e937b06003434cd80104900dad908fbcf9f0ee93c129e73571264",
+        "suit.json": "b5f15e344e3ddb02e0d513241eda4cc0dff6876f5a872fa0d6cbf53815c9c183",
+        "textures\\diffuse.png": "7e08ec59c58a467f511639834e2a37acbe63ec5cd687707b0c4a060077d03d2e"
+      }
+    },
+    {
+      "key": "lizard",
+      "id": "smu-lizard",
+      "fbx": "costumes/lizard/lizard.fbx",
+      "fbxSha256": "0f094676377768b4d6a6f94748937f1847e70bcfaca9951ea0e4ce6088a206cf",
+      "textureFiles": [
+        "textures-png\\lizard_D.png"
+      ],
+      "textureSha256": [
+        "e6c97ba6ce28f98d5ae751c8a4e9a4f27d1c3283dbffe0b4561d279742a99868"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2491,
+      "sourceTriangles": 3496,
+      "sourceBoneCount": 70,
+      "authoredDiffuseNames": [
+        "lizard_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "_1_-_Default",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\lizard_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 71,
+      "nativeBytes": 867268,
+      "outputs": {
+        "actor.psx": "0be23517a25522401c2efd91f34dd774563d2869f347c2f8c4e866be2e455c81",
+        "conversion-report.json": "31122eb0e8b246d6def7e488e40e6ff4b6a5d1012011ad1b74d08f8d420e5ff3",
+        "suit.json": "186777b6d5893b49a12b675f8acd12f9e9a4a5528f9a692313abab90798744cc",
+        "textures\\diffuse.png": "66d654e98a1d3607407d566014ff52cbf15cd909a63c3e6bacabd0be5a648ee3"
+      }
+    },
+    {
+      "key": "mac_gargan",
+      "id": "smu-mac-gargan",
+      "fbx": "costumes/mac_gargan/mac_gargan.fbx",
+      "fbxSha256": "dd96479157e31058d713f94b883abc98c316af74ea359bcf78e97022b233cbb1",
+      "textureFiles": [
+        "textures-png\\Mac_Gargan_D.png"
+      ],
+      "textureSha256": [
+        "bf68f4cb10180183def822ba62941745a2b0d3c2194dc54cc1a1700cd468a46d"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2467,
+      "sourceTriangles": 3906,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mac_Gargan_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "MacGargan",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Mac_Gargan_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 917772,
+      "outputs": {
+        "actor.psx": "aa375b94cd011c5cad076b96ee34ece81bb33a5605d454c4bc94d0c4021dc9c6",
+        "conversion-report.json": "b140c840b6b5955049290457946f72ff86884ebb02bf1faebc25ddcf816bdcd9",
+        "suit.json": "a95ef31ae6b2962ef264fea49054c053dc26c5fe148fe24c8615d89450b14876",
+        "textures\\diffuse.png": "13aad6c2046765700585b66e927cd0fbae08b34a22cdddcbfa90a0b75542bb7a"
+      }
+    },
+    {
+      "key": "mace",
+      "id": "smu-mace",
+      "fbx": "costumes/mace/mace.fbx",
+      "fbxSha256": "6619b098d4e7f0ec3011d3027c87be8453dc09aa489f6f0e840adfefe11908a5",
+      "textureFiles": [
+        "textures-png\\Mace_D.png"
+      ],
+      "textureSha256": [
+        "3fb4e2d16ee25db41d4be50e80ee05b52966322ac37e94ea704e444437fd047c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2052,
+      "sourceTriangles": 3286,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mace_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Mace",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Mace_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 852688,
+      "outputs": {
+        "actor.psx": "c1bd7ce88c0094332d14fbce87f0789847ed26a39baa17d9327a102cdd17fb8f",
+        "conversion-report.json": "808251e3f46b911d5c681bf74521336352a9d137cb71f2b37043999019abd104",
+        "suit.json": "1bb519730ddb12e0233fdf343e8a1093e3483b25341cdd5a4c4ae830a120ca26",
+        "textures\\diffuse.png": "75445e46bf7050102c35b07018537184739e0ca8514e7884bda507a43149d1db"
+      }
+    },
+    {
+      "key": "madamweb",
+      "id": "smu-madamweb",
+      "fbx": "costumes/madamweb/madamweb.fbx",
+      "fbxSha256": "b1f215e4c91e59be455bd23a96d9712c4ec856b44ebf7ac906531a86d8d6a08d",
+      "textureFiles": [
+        "textures-png\\MadamWeb_D.png"
+      ],
+      "textureSha256": [
+        "add04be06d22f6cb66d973da863f375b4f848687bfa587a797b9b4a565a92036"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1930,
+      "sourceTriangles": 3195,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MadamWeb_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "MadamWeb",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MadamWeb_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 792768,
+      "outputs": {
+        "actor.psx": "9f705878501c3cb1ea800c96243f14eceb6639974e09f8ae421f99da14a02e54",
+        "conversion-report.json": "4c85d4ddfedee5843eae4d0e641c25913630cc284733a1e2f2c5e19a3df08e9e",
+        "suit.json": "1e87cf8dc65d85897ec007664a0fe55b86825d68b6938d2278e3c79015ceb54e",
+        "textures\\diffuse.png": "28b20c846d0e365c744f813d4d1d043d6b29d12c6e9b99345eeb168b8f009f76"
+      }
+    },
+    {
+      "key": "mangaverse",
+      "id": "smu-mangaverse",
+      "fbx": "costumes/mangaverse/mangaverse.fbx",
+      "fbxSha256": "f8595bd9d2a38052565595c30b8807113a3e3f13a66897d468bdb1e32df4242f",
+      "textureFiles": [
+        "textures-png\\SpidermanManga_D.png"
+      ],
+      "textureSha256": [
+        "2ddfeaacbccaaf1178f1109c2092469baacb6d703ec7ca8139579d2f3cb03917"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1676,
+      "sourceTriangles": 2896,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanManga_D.TGA"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "MangaVerse",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanManga_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 708972,
+      "outputs": {
+        "actor.psx": "f78d4f5caf41a4e48ee01ce1496ef6abac5b0c0f07efe9a238ae0b34104b437b",
+        "conversion-report.json": "c15207cc5863438ab696a895e2e81898960bb93491750faf7ca459398f2ebbc2",
+        "suit.json": "326f65f803b0d6660c3d2f7db28bdd6473449514b0077bd2c96980c167116213",
+        "textures\\diffuse.png": "7e60fa33a23f53b50f9ca99618ea9d22e768dd3330d2add9c058cfe6384c0006"
+      }
+    },
+    {
+      "key": "mangaverse_black_cat",
+      "id": "smu-mangaverse-black-cat",
+      "fbx": "costumes/mangaverse_black_cat/mangaverse_black_cat.fbx",
+      "fbxSha256": "88617b72e8763d6ac8ff50d84f17db18ed5b4303d517eba7761d9cc9ee11a084",
+      "textureFiles": [
+        "textures-png\\Mangaverse_Black_Cat_D.png"
+      ],
+      "textureSha256": [
+        "5f42ae9e21f21e4e3f56bd03cefe1c0e61b4218a5e71da91f00b459aa1aa2f7f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2780,
+      "sourceTriangles": 4464,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mangaverse_Black_Cat_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Silk2",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Mangaverse_Black_Cat_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              2
+            ],
+            "slot": 0
+          },
+          {
+            "name": "ault",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Mangaverse_Black_Cat_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 977712,
+      "outputs": {
+        "actor.psx": "01d7673617097a3d8da6cbf4680fc9ba55bc438340301816ff85da5b8c81d88d",
+        "conversion-report.json": "f6def75c44ee607b5c05a0a9ebbdad3bfffa568b5b477c9c918c91e4525fa488",
+        "suit.json": "ee8172a6f588ebeec3aef4c0dfd5d8602e7c245961531f656673898caf317592",
+        "textures\\diffuse-1.png": "f078a2bd45ff9b68c1af7df5ffc53bd70f0a797f96d71a1ef1f98aee7d2d3a2f",
+        "textures\\diffuse.png": "bb63a063acd878579e250bb1e7922dccf8b63f65123c453bf45dbb59a9d8cf70"
+      }
+    },
+    {
+      "key": "mania",
+      "id": "smu-mania",
+      "fbx": "costumes/mania/mania.fbx",
+      "fbxSha256": "b40154517885415f9802acc1e9d389a8da6fc82d77155c569706ee20e08e5c3a",
+      "textureFiles": [
+        "textures-png\\Mania_D.png"
+      ],
+      "textureSha256": [
+        "749cb6cb02ad6d1f44fe70ed9896ccbe23716a205a7a1d91eaf56055d99e366b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2723,
+      "sourceTriangles": 3938,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mania_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Mania",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Mania_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 954896,
+      "outputs": {
+        "actor.psx": "8bb10c83c7cae9e2f069e178e0001a16adc0bb30c0fa13fafd7c63a9c807d5c8",
+        "conversion-report.json": "b6e99d3d33aa57df221c01428d87b5cbfe77ea7959d274b144c755c77701d646",
+        "suit.json": "b2226ec7f5bbad05e5397dfc57c7bd58f821589cfc50e88e2403e0adc624ea46",
+        "textures\\diffuse.png": "266df0b4dc92c9d65727662c6b519d8e89c80627dd72c2e96920881e141ab65e"
+      }
+    }
+  ],
+  "selection": {
+    "originalRequested": [
+      "lasher_cell",
+      "lily_hollister",
+      "lizard",
+      "mac_gargan",
+      "mace",
+      "madamweb",
+      "mangaverse",
+      "mangaverse_black_cat",
+      "mangaversegirl",
+      "mania"
+    ],
+    "excluded": [
+      "smu-mangaversegirl"
+    ],
+    "reason": "Native left-hand closure concern; not installed."
+  }
+}

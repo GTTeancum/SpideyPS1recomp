@@ -1,0 +1,23 @@
+{
+  "scope": "Offline full-animation attachment invariant. Does not accept tongue pose, mouth intersection, dynamic tongue motion, or live game appearance. Mixed body/tongue vertices are counted but excluded from the rigid head-relative vertex test.",
+  "scannedAssets": 1,
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb",
+  "results": [
+    {
+      "suit": "smu-lizard",
+      "assetSha256": "0be23517a25522401c2efd91f34dd774563d2869f347c2f8c4e866be2e455c81",
+      "tongueBones": [
+        "Tongue_a",
+        "Tongue_b",
+        "Tongue_c"
+      ],
+      "frames": 4196,
+      "headRelativeVertices": 34,
+      "mixedBodyTongueVertices": 0,
+      "maxHeadRelativeBoneError": 0.0008654299962245204,
+      "maxHeadRelativeVertexError": 0.0010743783097950654,
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

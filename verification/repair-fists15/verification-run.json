@@ -1,0 +1,54 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-lasher-cell-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-lily-hollister-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-lizard-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mac-gargan-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mace-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-madamweb-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mangaverse-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mangaverse-black-cat-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mangaversegirl-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mania-isolation",
+    "exitCode": 0
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "suit": "smu-lasher-cell",
+    "beforeActorSha256": "26836dcad207c86f2630535aa47bf11b885a11e60d66f4874409fa8f8056ed30",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-lily-hollister",
+    "beforeActorSha256": "424a0358f349c088f3b05947f6189cec1c60b0084f46084bc12a2476bb8ded78",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-lizard",
+    "beforeActorSha256": "b51e0b2ef156045ab68a56be845fd4e5ba44c5824523ba9185c53df4c4d63b06",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mac-gargan",
+    "beforeActorSha256": "1f2258690dba8b1cef19ef9b950659f82f553902e46a208b2a6d40e004e1e16d",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mace",
+    "beforeActorSha256": "fac6ff13134777cb63126d4b9080861d73495b648041fcf00a2e1adcb319dff6",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-madamweb",
+    "beforeActorSha256": "9b096e8b0489168522fe0c74b978fa5fdb76cf4ef508e167109c8c6445e7397a",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mangaverse",
+    "beforeActorSha256": "43a24734ef6ab00ad73051e8e6d828fd8648708e2630abcadc21127dc5c6fc91",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mangaverse-black-cat",
+    "beforeActorSha256": "82a1e0276698eb7ded100802f1fea937606079af7451af4e0431ba813bc32711",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mangaversegirl",
+    "beforeActorSha256": "4bdbd5fca167cb21cc34e59da914ebd67a8502ff4d7acea987120de229bf4bc9",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mania",
+    "beforeActorSha256": "e5d46e4cf0e1dfec8ac93e4de9712a5dbbe22e21a8ed1402aea93628110863e3",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

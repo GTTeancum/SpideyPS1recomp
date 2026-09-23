@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "lasher_cell",
+      "id": "smu-lasher-cell",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.430908203125,
+        10.903564453125
+      ],
+      "assetSha256": "e0b044913c990a5e105cda08a3bcb84722ffde03ab261658661779bcae7dac00",
+      "captureSha256": "1a1638c7267a303d262e1e9606a2ed3c1bb55e41d2ebe89ed7b7fa5a50938b8a"
+    },
+    {
+      "key": "lily_hollister",
+      "id": "smu-lily-hollister",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.97607421875,
+        5.940673828125
+      ],
+      "assetSha256": "9ac7d10cd7b0b632c708e3fd725e239e4a539d828958264dcaf0fdb24f27d856",
+      "captureSha256": "7727489b625406a936879dbfac10befaa01410eb84ba479837f18c0b949aaf59"
+    },
+    {
+      "key": "lizard",
+      "id": "smu-lizard",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.244873046875,
+        9.48974609375
+      ],
+      "assetSha256": "0be23517a25522401c2efd91f34dd774563d2869f347c2f8c4e866be2e455c81",
+      "captureSha256": "24f1eb67d56a9bad62406283fa3e310dfc1b07d68efc825eab3fc24e6423e3d7"
+    },
+    {
+      "key": "mac_gargan",
+      "id": "smu-mac-gargan",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.533203125,
+        6.935302734375
+      ],
+      "assetSha256": "aa375b94cd011c5cad076b96ee34ece81bb33a5605d454c4bc94d0c4021dc9c6",
+      "captureSha256": "4df62058f34fd44cfbe5842e96315b81fd8e2efd7f2e0ab14de366cf61409cee"
+    },
+    {
+      "key": "mace",
+      "id": "smu-mace",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.715576171875,
+        7.117431640625
+      ],
+      "assetSha256": "c1bd7ce88c0094332d14fbce87f0789847ed26a39baa17d9327a102cdd17fb8f",
+      "captureSha256": "e354f4df3815d956de48b9250ecf94f7271e9b0415400be658c36a8367e50335"
+    },
+    {
+      "key": "madamweb",
+      "id": "smu-madamweb",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        0.723876953125,
+        5.125732421875
+      ],
+      "assetSha256": "9f705878501c3cb1ea800c96243f14eceb6639974e09f8ae421f99da14a02e54",
+      "captureSha256": "3b95b511539b8da72b1f31d03a5f172b6437640623d5c5403f0aac09e56de5a2"
+    },
+    {
+      "key": "mangaverse",
+      "id": "smu-mangaverse",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.271484375,
+        8.673583984375
+      ],
+      "assetSha256": "f78d4f5caf41a4e48ee01ce1496ef6abac5b0c0f07efe9a238ae0b34104b437b",
+      "captureSha256": "b8b75e5696e1406dea5385963bc02dc530114cfc3e2d3110bc087a3a2f02762c"
+    },
+    {
+      "key": "mangaverse_black_cat",
+      "id": "smu-mangaverse-black-cat",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.1240234375,
+        11.526123046875
+      ],
+      "assetSha256": "01d7673617097a3d8da6cbf4680fc9ba55bc438340301816ff85da5b8c81d88d",
+      "captureSha256": "738713c1129450d8c5c2e9cdd56bfa1ee15d7a2b4d6e0ebb8c24563be710f684"
+    },
+    {
+      "key": "mangaversegirl",
+      "id": "smu-mangaversegirl",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.59912109375,
+        18.369873046875
+      ],
+      "assetSha256": "52cbc9b84ecab3b57558e46a4210b92dbcfcf642501028708f55fc03aade4d53",
+      "captureSha256": "19c8acb18e0386043bf907037f3af814d895a05414e17c946c23a33338f794ca"
+    },
+    {
+      "key": "mania",
+      "id": "smu-mania",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -0.94189453125,
+        3.460205078125
+      ],
+      "assetSha256": "8bb10c83c7cae9e2f069e178e0001a16adc0bb30c0fa13fafd7c63a9c807d5c8",
+      "captureSha256": "5a648db6715c70fb86d4ce4e0c9bd8a9e0a941740c6246446204917cd3b1bed6"
+    }
+  ]
+}
