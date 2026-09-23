@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 5,
+  "requested": 5,
+  "results": [
+    {
+      "key": "venom",
+      "id": "smu-venom",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -4.76904296875,
+        0.03076171875
+      ],
+      "assetSha256": "7b24805504beb82687b03742e3c879d1aa2223d85bb8593ede677422de7e2215",
+      "captureSha256": "ce58eb4ffbb900894b0274dbb1ed43aa83467f8e3221a929e3d05ff3a3bad013"
+    },
+    {
+      "key": "poisonrhino",
+      "id": "smu-poisonrhino",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.689208984375,
+        9.09130859375
+      ],
+      "assetSha256": "e4f7cc4c350f904ea424b1c62601350b0c9ddd7ec0c477294963df3b4ed6d194",
+      "captureSha256": "80f27123c7739d6ff37bb28ee6702a69048c13b328736a4744a52fc9fd5e539d"
+    },
+    {
+      "key": "scarlet_spiderham",
+      "id": "smu-scarlet-spiderham",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        133.387939453125,
+        144.9931640625
+      ],
+      "assetSha256": "b85d786817dcef34cf964656dde6d3926a3ebb2b4b1f74c78ea64cc85b0d65bd",
+      "captureSha256": "c86fe31b7fc5b037f7d4a57894e574f96f531e4f63dff71388e68843d44fb31c"
+    },
+    {
+      "key": "2211",
+      "id": "smu-2211",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.956298828125,
+        10.3583984375
+      ],
+      "assetSha256": "5738017a475e2fac87348ea1fec1bd74a355476d7b1f81ba0da5e30cecabb6a1",
+      "captureSha256": "ada2ac55e0ab197313b9c2e076d38e08191a827f37d4b0e4e797114a97bc7850"
+    },
+    {
+      "key": "venom_2099",
+      "id": "smu-venom-2099",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.037109375,
+        10.439208984375
+      ],
+      "assetSha256": "25e813dc1bab12baffb1081b48bbcff4771421ce6651bc5a09aef19a2e4d9e6c",
+      "captureSha256": "fb50c801e906e2b7d5b37a24b40f9498e550c194321d51a2931365474c705e6f"
+    }
+  ]
+}

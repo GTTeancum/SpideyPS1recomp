@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-venom-2099",
+  "name": "SMU VENOM 2099",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "E497C169": "textures/diffuse.png"
+  }
+}

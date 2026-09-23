@@ -58,7 +58,8 @@ conversion; structural validation alone does not establish visual quality.
 `modelFile` is relative to the suit folder, cannot traverse out or follow links,
 and must name the converter's native v4 actor format: 18 parts, at most 256 vertices
 per part, supported triangle records and valid attachment references, at most
-1 MiB. FBX is not loaded at runtime. Material IDs come from the validated actor;
+4 MiB including preserved RTG2 metadata; guest geometry remains limited to 1 MiB
+after that metadata is removed. FBX is not loaded at runtime. Material IDs come from the validated actor;
 the converter assigns a private body material from the mod ID. Keep IDs unique.
 
 `abilities.profile` remains independent of appearance. SM2 supports its nineteen

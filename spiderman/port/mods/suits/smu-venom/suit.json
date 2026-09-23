@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-venom",
+  "name": "SMU VENOM",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "0B930543": "textures/diffuse.png"
+  }
+}

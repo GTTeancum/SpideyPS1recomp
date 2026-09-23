@@ -1,41 +1,38 @@
 {
   "schema": 1,
-  "checkpoint": "SMU-B01",
-  "base": "Cumulative06",
+  "checkpoint": "SMU-LOCAL-B02",
+  "base": "Cumulative07a",
   "scope": "SM1 suit retargeting; previous shared Linux/SFD/sewer code retained",
   "catalogueCount": 233,
-  "completed": 10,
+  "completed": 15,
   "newlyConverted": [
-    "1602",
-    "2099_new",
-    "ben_reilly_unmasked",
-    "bigtime",
-    "bigtime_red",
-    "gwen",
-    "gwenom",
-    "noir"
+    "venom",
+    "poisonrhino",
+    "scarlet_spiderham",
+    "2211",
+    "venom_2099"
   ],
   "regressionControls": [
     "2099",
     "spiderham"
   ],
-  "remaining": 223,
+  "remaining": 218,
   "nextTasks": [
-    "Expand the native suit selector beyond its current 40 mod entries, with native routing/list/persistence tests",
-    "Add lossless multi-mesh/material and oversized-packet handling before converting the affected suits",
-    "Continue converting remaining catalogue entries in journalled batches and rerun per-suit validation"
+    "Resolve the 35 structural blockers recorded by the full catalogue audit",
+    "Convert and verify the remaining 183 preflight-compatible suits in small batches",
+    "Diagnose l1a1 intro crash; complete full movie/audio and Linux acceptance"
   ],
-  "selectorModCapacity": 40,
+  "selectorModCapacity": 233,
   "multiDiffuseCatalogueEntries": 12,
   "gameExeIncluded": false,
-  "managedGameBuilt": false,
-  "gameplayTested": false,
+  "managedGameBuilt": true,
+  "gameplayTested": "Representative SM1 l5a3 runs only; see live-captures.json",
   "sm2SuitRetargetingImplemented": false,
-  "nativeChecks": 246,
-  "characterFrames": 41960,
-  "swingFrames": 1150,
-  "nativeWebSegments": 18400,
-  "proofType": "Offline native-asset/core render, not gameplay",
+  "nativeChecks": 371,
+  "characterFrames": 62940,
+  "swingFrames": 1725,
+  "nativeWebSegments": 27600,
+  "proofType": "Offline per-suit checks plus separately reviewed live framebuffer captures",
   "catalogue": [
     {
       "key": "1602",
@@ -103,7 +100,7 @@
       "fbx": "costumes/2211/2211.fbx",
       "fbxSha256": "4a0a7372e8dc2f4fc72f9ed5ce6eb7cbe2150a1e20b59345988e77ba9c4c43dd",
       "textureFiles": [
-        "textures-png/Spiderman2211_D.png"
+        "textures-png\\Spiderman2211_D.png"
       ],
       "textureSha256": [
         "c99d4b8c98e21fb1bec67c80be0d69d9e0f73d692cd2aedbd4c29e8e171e86a0"
@@ -115,7 +112,32 @@
       "authoredDiffuseNames": [
         "Spiderman2211_D.tga"
       ],
-      "status": "pending"
+      "status": "verified-offline",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "Material__1",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "Spiderman2211_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          0,
+          255
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 869776,
+      "outputs": {
+        "actor.psx": "5738017a475e2fac87348ea1fec1bd74a355476d7b1f81ba0da5e30cecabb6a1",
+        "conversion-report.json": "b94a74cbe34049b2208d77c4a90d763e295aa4f2b263c85daf875d28c72abd71",
+        "suit.json": "1bcf2d558f32b88a03e0524d931ce19e9ade8cdd908f8c8fa445c282a3b5888b",
+        "textures\\diffuse.png": "09c91eff59b625374574f8e8c70bc76140b1c0eb879710096c04657346f261a1"
+      }
     },
     {
       "key": "aaron_davis",
@@ -138,7 +160,8 @@
         "Aaron_Davis_D.tga",
         "Aaron_Davis_Gun.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "aaronnicholson",
@@ -198,7 +221,8 @@
       "authoredDiffuseNames": [
         "Adriana_Soria_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
     },
     {
       "key": "agent_anti_venom",
@@ -258,7 +282,8 @@
       "authoredDiffuseNames": [
         "Spiderman_AgentV_D.TGA"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Runtime rig validator rejected blob, code 9"
     },
     {
       "key": "agony",
@@ -458,7 +483,8 @@
       "authoredDiffuseNames": [
         "Anti_venom_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Opacity/transparent texture connection requires explicit handling"
     },
     {
       "key": "anya",
@@ -558,7 +584,8 @@
       "authoredDiffuseNames": [
         "Arana_gymnast_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
     },
     {
       "key": "baal",
@@ -641,7 +668,8 @@
         "BettyBrant_D.tga",
         "SpiderWeb.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "ben_reilly_unmasked",
@@ -741,7 +769,8 @@
       "authoredDiffuseNames": [
         "Black_Suit_Swiney_Girl_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Required SMU rig bone missing: LArmDigit32"
     },
     {
       "key": "black_tarantula",
@@ -1084,7 +1113,8 @@
         "Damon_Ryder_gun.tga",
         "damon_ryder_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "deadaim",
@@ -1124,7 +1154,8 @@
       "authoredDiffuseNames": [
         "DevilSpider_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Opacity/transparent texture connection requires explicit handling"
     },
     {
       "key": "doppleganger",
@@ -1144,7 +1175,8 @@
       "authoredDiffuseNames": [
         "Doppleganger_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Required SMU rig bone missing: LArmDigit31"
     },
     {
       "key": "dorma",
@@ -1164,7 +1196,8 @@
       "authoredDiffuseNames": [
         "Dorma_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
     },
     {
       "key": "dusk",
@@ -1187,7 +1220,8 @@
         "Black_Char.tga",
         "Black_Char_body.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "earth62412",
@@ -1427,7 +1461,8 @@
       "authoredDiffuseNames": [
         "FlashThompson_unmasked_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Runtime rig validator rejected blob, code 9"
     },
     {
       "key": "flipside",
@@ -1910,7 +1945,8 @@
         "IronSpiderNew_D.tga",
         "SpiderWeb.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "ironspidernewwithtentackles",
@@ -1933,7 +1969,8 @@
         "IronSpiderNewWithTentackles_D.tga",
         "IronSpiderNew_light.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "izumi",
@@ -1953,7 +1990,8 @@
       "authoredDiffuseNames": [
         "Izumi_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
     },
     {
       "key": "jessica_drew",
@@ -1973,7 +2011,8 @@
       "authoredDiffuseNames": [
         "Jessica_Drew_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Opacity/transparent texture connection requires explicit handling"
     },
     {
       "key": "julia_carpenter",
@@ -2253,7 +2292,8 @@
       "authoredDiffuseNames": [
         "MangaverseGirl_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
     },
     {
       "key": "mania",
@@ -2396,7 +2436,8 @@
         "MattieFranklinWings_D.tga",
         "MattieFranklin_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "mayday",
@@ -2539,7 +2580,8 @@
         "MichaelMorbiusMantle_D.tga",
         "MichaelMorbius_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "milesmorales",
@@ -2759,7 +2801,8 @@
       "authoredDiffuseNames": [
         "Native_american_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Runtime rig validator rejected blob, code 9"
     },
     {
       "key": "new_year_spiderman",
@@ -2859,7 +2902,8 @@
       "authoredDiffuseNames": [
         "NoirNew_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Runtime rig validator rejected blob, code 9"
     },
     {
       "key": "nurotox",
@@ -2899,7 +2943,8 @@
       "authoredDiffuseNames": [
         "Octavius_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
     },
     {
       "key": "other",
@@ -2919,7 +2964,8 @@
       "authoredDiffuseNames": [
         "other_d.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
     },
     {
       "key": "payback",
@@ -3079,7 +3125,8 @@
       "authoredDiffuseNames": [
         "Poison_Doctor_Octopus_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
     },
     {
       "key": "poison_hunter",
@@ -3102,7 +3149,8 @@
         "Glow.tga",
         "Poison_Hunter_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "poisonrhino",
@@ -3110,7 +3158,7 @@
       "fbx": "costumes/poisonrhino/poisonrhino.fbx",
       "fbxSha256": "646eeda902d0c9cdf792f4523fe1fdc0b399d72b34829d1bc2232bcd74258ab0",
       "textureFiles": [
-        "textures-png/PoisonRhino_D.png"
+        "textures-png\\PoisonRhino_D.png"
       ],
       "textureSha256": [
         "a90b7c226aafd543f347c35de92b9a88fe8c390dd0980e41637d036d81553ca0"
@@ -3122,7 +3170,32 @@
       "authoredDiffuseNames": [
         "PoisonRhino_D.tga"
       ],
-      "status": "pending"
+      "status": "verified-offline",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "PoisonRhino",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "PoisonRhino_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          186,
+          189
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 915908,
+      "outputs": {
+        "actor.psx": "e4f7cc4c350f904ea424b1c62601350b0c9ddd7ec0c477294963df3b4ed6d194",
+        "conversion-report.json": "ec29c32b5f43599eaee90e927019d6dddcd95518d47c6ab82d1a0aabf6deddfa",
+        "suit.json": "8e2ecfeacc444396785c41b624e2904e42bd94ca633c7b21ba22dedc69c5753b",
+        "textures\\diffuse.png": "eb475fcf16e2e9be10c54e9270ba98987601fc25f10860731733dc72940fdfcf"
+      }
     },
     {
       "key": "poisonspiderman",
@@ -3370,7 +3443,7 @@
       "fbx": "costumes/scarlet_spiderham/scarlet_spiderham.fbx",
       "fbxSha256": "1f70df27e610144cc9d587932d48a9be27b49ad3d8cc513a5192d3203651e119",
       "textureFiles": [
-        "textures-png/Scarlet_SpiderHam_D.png"
+        "textures-png\\Scarlet_SpiderHam_D.png"
       ],
       "textureSha256": [
         "0451587dab8cbf223868bb2208aedcdcff962d0d93f8b5df54166a0388fc7a28"
@@ -3382,7 +3455,32 @@
       "authoredDiffuseNames": [
         "Scarlet_SpiderHam_D.tga"
       ],
-      "status": "pending"
+      "status": "verified-offline",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "ScarletGirl",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "Scarlet_SpiderHam_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          255,
+          255
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 63,
+      "nativeBytes": 647920,
+      "outputs": {
+        "actor.psx": "b85d786817dcef34cf964656dde6d3926a3ebb2b4b1f74c78ea64cc85b0d65bd",
+        "conversion-report.json": "6b4e1ee4bf6fd5e616f1164bc7acfd511961e461d4a115fe268eacbdada8f6da",
+        "suit.json": "93a8ca0b64df08ff76ffc1bbc9fd134ce6ef560f8c45d6caee0c3b84cfedc9bd",
+        "textures\\diffuse.png": "8d433ae4119c7f9440235bab738d0baf200e442fad8370634251296096146ed0"
+      }
     },
     {
       "key": "scarlet_spiderham_benreilly",
@@ -3645,7 +3743,8 @@
         "SpaceSuitGlass_D.tga",
         "SpaceSuit_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "spdr",
@@ -3685,7 +3784,8 @@
       "authoredDiffuseNames": [
         "Spider_Carnage_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Opacity/transparent texture connection requires explicit handling"
     },
     {
       "key": "spider_cowboy",
@@ -4005,7 +4105,8 @@
       "authoredDiffuseNames": [
         "SurveillanceSuit_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
     },
     {
       "key": "spidermanhomecoming",
@@ -4165,7 +4266,8 @@
       "authoredDiffuseNames": [
         "SpidermanSuperior_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Runtime rig validator rejected blob, code 9"
     },
     {
       "key": "superior_carnage",
@@ -4288,7 +4390,8 @@
         "Symbiote_2018_D.tga",
         "Symbiote_2018_D_wings.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "symbiote_kraven",
@@ -4496,7 +4599,7 @@
       "fbx": "costumes/venom/venom.fbx",
       "fbxSha256": "0dab98f6e05d0c00965437b91d1f345e43df22349def22d6c8ff3319093d860e",
       "textureFiles": [
-        "textures-png/Venom_D.png"
+        "textures-png\\Venom_D.png"
       ],
       "textureSha256": [
         "1ff92e673e36198a45ce1cd13ff5cef78d08a3d3d6d7ccf82c82840c78030549"
@@ -4508,7 +4611,38 @@
       "authoredDiffuseNames": [
         "Venom_D.tga"
       ],
-      "status": "pending"
+      "status": "verified-offline",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "_1_-_Default__1",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "Venom_D.png"
+          },
+          {
+            "material": "_0_-_Default",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "Venom_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          0,
+          255
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 71,
+      "nativeBytes": 864148,
+      "outputs": {
+        "actor.psx": "7b24805504beb82687b03742e3c879d1aa2223d85bb8593ede677422de7e2215",
+        "conversion-report.json": "5c6b0ead152de93842df8fb8e58918b018aa3b59b6d974915ee274aed29d5428",
+        "suit.json": "f6b994a520f218cd1ab18e48cadf37de21af090b318835fa701f6255e0b88851",
+        "textures\\diffuse.png": "48cf3520d5b63f7705fa2f56d2b41cea9c9ee264c080824d06414fe3d3ff6e64"
+      }
     },
     {
       "key": "venom_2099",
@@ -4516,7 +4650,7 @@
       "fbx": "costumes/venom_2099/venom_2099.fbx",
       "fbxSha256": "9e01d4d4e38e5806d1c503166f5a6b2e0127e7bc4e3eea06f81b5372431e9507",
       "textureFiles": [
-        "textures-png/Venom_2099_D.png"
+        "textures-png\\Venom_2099_D.png"
       ],
       "textureSha256": [
         "79888fa36a65ff3ce004be909986bcec9195c3bc86c04c0005d532e7e75c67c1"
@@ -4528,7 +4662,32 @@
       "authoredDiffuseNames": [
         "Venom_2099_D.tga"
       ],
-      "status": "pending"
+      "status": "verified-offline",
+      "materialPolicy": {
+        "mode": "opaque diffuse RGB, matching FBX material connections and Repair06",
+        "materials": [
+          {
+            "material": "venom_2099",
+            "transparencyFactor": 0.0,
+            "opacity": 1.0,
+            "diffuse": "Venom_2099_D.png"
+          }
+        ],
+        "sourceAlphaRange": [
+          0,
+          255
+        ],
+        "sourceAlphaBoundAsTransparency": false,
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1074028,
+      "outputs": {
+        "actor.psx": "25e813dc1bab12baffb1081b48bbcff4771421ce6651bc5a09aef19a2e4d9e6c",
+        "conversion-report.json": "d1643cc2ca67668a34c1d060334f658ba3d168bbcfabb1b8f5343e548ff9c910",
+        "suit.json": "72b0e4f8042a1e11fd29e8bdcca8942f9c6f4e07626d066dd15ec0221c543a6e",
+        "textures\\diffuse.png": "31fabe4c1fd109c909801c57f9dc810fec57094b2fe6c973ea0459e66ed66387"
+      }
     },
     {
       "key": "venom_verse_carnage",
@@ -4548,7 +4707,8 @@
       "authoredDiffuseNames": [
         "Venom_verse_carnage_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
     },
     {
       "key": "venomx",
@@ -4628,7 +4788,8 @@
       "authoredDiffuseNames": [
         "WebSlinger_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Required SMU rig bone missing: LArmDigit31"
     },
     {
       "key": "werewolf",
@@ -4648,7 +4809,8 @@
       "authoredDiffuseNames": [
         "Werewolf_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "who",
@@ -4691,7 +4853,8 @@
         "SpiderWomanWings_D.TGA",
         "SpiderWoman_D.tga"
       ],
-      "status": "pending"
+      "status": "blocked-preflight",
+      "reason": "Requires lossless multi-mesh/material support"
     },
     {
       "key": "womannew",

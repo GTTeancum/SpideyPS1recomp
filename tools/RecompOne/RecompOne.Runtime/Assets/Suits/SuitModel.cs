@@ -5,7 +5,8 @@ namespace RecompOne.Runtime.Assets.Suits;
 /// <summary>A bounded native, 18-part player actor. FBX conversion happens offline.</summary>
 public sealed class SuitModel
 {
-    public const int ByteLimit = 1024 * 1024;
+    public const int ByteLimit = 4 * 1024 * 1024;
+    public const int GuestByteLimit = 1024 * 1024;
     readonly byte[] _bytes;
     public ReadOnlyMemory<byte> Bytes => _bytes;
     public IReadOnlySet<uint> Materials { get; }
@@ -16,7 +17,7 @@ public sealed class SuitModel
     {
         using var stream = File.OpenRead(path);
         if (stream.Length < 1024 || stream.Length > ByteLimit)
-            throw new InvalidDataException("custom player model must be 1 KiB..1 MiB");
+            throw new InvalidDataException("custom player model must be 1 KiB..4 MiB including preserved rig metadata");
         byte[] data = new byte[(int)stream.Length];
         stream.ReadExactly(data);
         return Parse(data);
@@ -24,6 +25,8 @@ public sealed class SuitModel
 
     public static SuitModel Parse(ReadOnlySpan<byte> source)
     {
+        if (source.Length < 1024 || source.Length > ByteLimit)
+            throw new InvalidDataException("custom player model exceeds its source file limit");
         byte[] b = source.ToArray();
         void Need(long offset, long size)
         {
@@ -136,6 +139,8 @@ public sealed class SuitModel
             }
             b = guest;
         }
+        if (b.Length > GuestByteLimit)
+            throw new InvalidDataException("custom player geometry exceeds the 1 MiB guest limit after rig removal");
         NativeActorLodValidator.Validate(b, "custom player model", LooseWadOverrides.MaxUnpackedAnimationBones);
         return new SuitModel(b, materials, rig);
     }

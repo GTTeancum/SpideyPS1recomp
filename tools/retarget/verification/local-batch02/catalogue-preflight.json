@@ -1,0 +1,2162 @@
+{
+  "scope": "Structural preflight only; no converted assets or gameplay acceptance",
+  "complete": 233,
+  "requested": 233,
+  "results": [
+    {
+      "key": "1602",
+      "status": "preflight-pass",
+      "triangles": 2948,
+      "rigBones": 66,
+      "vertices": 1803,
+      "metadataBytes": 281680,
+      "spilloverTriangles": 141,
+      "height": 3372.37939453125
+    },
+    {
+      "key": "2099",
+      "status": "preflight-pass",
+      "triangles": 2918,
+      "rigBones": 66,
+      "vertices": 1684,
+      "metadataBytes": 267504,
+      "spilloverTriangles": 6,
+      "height": 3373.27783203125
+    },
+    {
+      "key": "2099_new",
+      "status": "preflight-pass",
+      "triangles": 2918,
+      "rigBones": 66,
+      "vertices": 1709,
+      "metadataBytes": 268700,
+      "spilloverTriangles": 6,
+      "height": 3385.51904296875
+    },
+    {
+      "key": "2211",
+      "status": "preflight-pass",
+      "triangles": 3754,
+      "rigBones": 66,
+      "vertices": 2252,
+      "metadataBytes": 373732,
+      "spilloverTriangles": 472,
+      "height": 3364.9521484375
+    },
+    {
+      "key": "aaron_davis",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "aaronnicholson",
+      "status": "preflight-pass",
+      "triangles": 3408,
+      "rigBones": 66,
+      "vertices": 2054,
+      "metadataBytes": 396736,
+      "spilloverTriangles": 368,
+      "height": 3386.460205078125
+    },
+    {
+      "key": "abarton",
+      "status": "preflight-pass",
+      "triangles": 3688,
+      "rigBones": 66,
+      "vertices": 2165,
+      "metadataBytes": 357408,
+      "spilloverTriangles": 521,
+      "height": 3406.009521484375
+    },
+    {
+      "key": "adriana_soria",
+      "status": "unsupported",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
+    },
+    {
+      "key": "agent_anti_venom",
+      "status": "preflight-pass",
+      "triangles": 4152,
+      "rigBones": 66,
+      "vertices": 2887,
+      "metadataBytes": 433372,
+      "spilloverTriangles": 391,
+      "height": 3461.3740234375
+    },
+    {
+      "key": "agent_nine",
+      "status": "preflight-pass",
+      "triangles": 3258,
+      "rigBones": 66,
+      "vertices": 2117,
+      "metadataBytes": 390392,
+      "spilloverTriangles": 395,
+      "height": 3394.951171875
+    },
+    {
+      "key": "agentv",
+      "status": "unsupported",
+      "reason": "Runtime rig validator rejected blob, code 9"
+    },
+    {
+      "key": "agony",
+      "status": "preflight-pass",
+      "triangles": 3872,
+      "rigBones": 66,
+      "vertices": 2481,
+      "metadataBytes": 395936,
+      "spilloverTriangles": 899,
+      "height": 3483.770751953125
+    },
+    {
+      "key": "aiapaec",
+      "status": "preflight-pass",
+      "triangles": 4900,
+      "rigBones": 66,
+      "vertices": 3037,
+      "metadataBytes": 438844,
+      "spilloverTriangles": 1891,
+      "height": 3906.02197265625
+    },
+    {
+      "key": "aikman",
+      "status": "preflight-pass",
+      "triangles": 2614,
+      "rigBones": 65,
+      "vertices": 1611,
+      "metadataBytes": 294916,
+      "spilloverTriangles": 0,
+      "height": 3323.84521484375
+    },
+    {
+      "key": "alistaire_smythe",
+      "status": "preflight-pass",
+      "triangles": 4540,
+      "rigBones": 66,
+      "vertices": 3120,
+      "metadataBytes": 447740,
+      "spilloverTriangles": 1617,
+      "height": 3454.195556640625
+    },
+    {
+      "key": "all_new_agent_venom",
+      "status": "preflight-pass",
+      "triangles": 2866,
+      "rigBones": 66,
+      "vertices": 1723,
+      "metadataBytes": 318868,
+      "spilloverTriangles": 22,
+      "height": 3202.314208984375
+    },
+    {
+      "key": "amazing_spider",
+      "status": "preflight-pass",
+      "triangles": 4378,
+      "rigBones": 66,
+      "vertices": 2783,
+      "metadataBytes": 443524,
+      "spilloverTriangles": 691,
+      "height": 3390.383544921875
+    },
+    {
+      "key": "ancientvenom",
+      "status": "preflight-pass",
+      "triangles": 3677,
+      "rigBones": 69,
+      "vertices": 2336,
+      "metadataBytes": 403700,
+      "spilloverTriangles": 696,
+      "height": 3372.15625
+    },
+    {
+      "key": "angelo_fortunato",
+      "status": "preflight-pass",
+      "triangles": 3961,
+      "rigBones": 66,
+      "vertices": 2560,
+      "metadataBytes": 431168,
+      "spilloverTriangles": 825,
+      "height": 3408.08349609375
+    },
+    {
+      "key": "annie_parker",
+      "status": "preflight-pass",
+      "triangles": 4325,
+      "rigBones": 66,
+      "vertices": 3031,
+      "metadataBytes": 416136,
+      "spilloverTriangles": 1182,
+      "height": 2268.006591796875
+    },
+    {
+      "key": "anti_venom",
+      "status": "unsupported",
+      "reason": "Opacity/transparent texture connection requires explicit handling"
+    },
+    {
+      "key": "anya",
+      "status": "preflight-pass",
+      "triangles": 3762,
+      "rigBones": 66,
+      "vertices": 2181,
+      "metadataBytes": 375944,
+      "spilloverTriangles": 462,
+      "height": 3503.140380859375
+    },
+    {
+      "key": "arachnido",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261860,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "arachnoman",
+      "status": "preflight-pass",
+      "triangles": 3018,
+      "rigBones": 66,
+      "vertices": 1751,
+      "metadataBytes": 302352,
+      "spilloverTriangles": 3,
+      "height": 3358.94287109375
+    },
+    {
+      "key": "arana",
+      "status": "preflight-pass",
+      "triangles": 3658,
+      "rigBones": 66,
+      "vertices": 2158,
+      "metadataBytes": 368644,
+      "spilloverTriangles": 519,
+      "height": 3488.1884765625
+    },
+    {
+      "key": "arana_gymnast",
+      "status": "unsupported",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
+    },
+    {
+      "key": "baal",
+      "status": "preflight-pass",
+      "triangles": 3380,
+      "rigBones": 66,
+      "vertices": 1931,
+      "metadataBytes": 361908,
+      "spilloverTriangles": 242,
+      "height": 3349.06396484375
+    },
+    {
+      "key": "baghead",
+      "status": "preflight-pass",
+      "triangles": 2336,
+      "rigBones": 66,
+      "vertices": 1391,
+      "metadataBytes": 265196,
+      "spilloverTriangles": 0,
+      "height": 3475.766357421875
+    },
+    {
+      "key": "battledamaged",
+      "status": "preflight-pass",
+      "triangles": 2946,
+      "rigBones": 66,
+      "vertices": 1687,
+      "metadataBytes": 266904,
+      "spilloverTriangles": 17,
+      "height": 3373.244140625
+    },
+    {
+      "key": "batty_brant",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "ben_reilly_unmasked",
+      "status": "preflight-pass",
+      "triangles": 3532,
+      "rigBones": 66,
+      "vertices": 2167,
+      "metadataBytes": 357100,
+      "spilloverTriangles": 634,
+      "height": 3380.025390625
+    },
+    {
+      "key": "benreilly",
+      "status": "preflight-pass",
+      "triangles": 2934,
+      "rigBones": 66,
+      "vertices": 1705,
+      "metadataBytes": 267188,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "bigtime",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261860,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "bigtime_red",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261864,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "black_suit_swiney_girl",
+      "status": "unsupported",
+      "reason": "Required SMU rig bone missing: LArmDigit32"
+    },
+    {
+      "key": "black_tarantula",
+      "status": "preflight-pass",
+      "triangles": 4542,
+      "rigBones": 67,
+      "vertices": 2795,
+      "metadataBytes": 452332,
+      "spilloverTriangles": 857,
+      "height": 3377.246337890625
+    },
+    {
+      "key": "blackcat",
+      "status": "preflight-pass",
+      "triangles": 3313,
+      "rigBones": 66,
+      "vertices": 2050,
+      "metadataBytes": 343888,
+      "spilloverTriangles": 519,
+      "height": 3391.81201171875
+    },
+    {
+      "key": "blackcatvenom",
+      "status": "preflight-pass",
+      "triangles": 4390,
+      "rigBones": 66,
+      "vertices": 2792,
+      "metadataBytes": 474664,
+      "spilloverTriangles": 1288,
+      "height": 3373.792236328125
+    },
+    {
+      "key": "blacksuit_spidergirl",
+      "status": "preflight-pass",
+      "triangles": 3454,
+      "rigBones": 66,
+      "vertices": 2005,
+      "metadataBytes": 377332,
+      "spilloverTriangles": 329,
+      "height": 3391.537353515625
+    },
+    {
+      "key": "blackwidow",
+      "status": "preflight-pass",
+      "triangles": 3356,
+      "rigBones": 66,
+      "vertices": 2006,
+      "metadataBytes": 347924,
+      "spilloverTriangles": 286,
+      "height": 3373.62890625
+    },
+    {
+      "key": "blood",
+      "status": "preflight-pass",
+      "triangles": 3512,
+      "rigBones": 66,
+      "vertices": 2128,
+      "metadataBytes": 347172,
+      "spilloverTriangles": 242,
+      "height": 3373.2587890625
+    },
+    {
+      "key": "bulletpoints",
+      "status": "preflight-pass",
+      "triangles": 2910,
+      "rigBones": 66,
+      "vertices": 1729,
+      "metadataBytes": 265064,
+      "spilloverTriangles": 41,
+      "height": 3373.2822265625
+    },
+    {
+      "key": "buzz",
+      "status": "preflight-pass",
+      "triangles": 3330,
+      "rigBones": 66,
+      "vertices": 2078,
+      "metadataBytes": 363388,
+      "spilloverTriangles": 431,
+      "height": 3347.6171875
+    },
+    {
+      "key": "captain",
+      "status": "preflight-pass",
+      "triangles": 3112,
+      "rigBones": 66,
+      "vertices": 1810,
+      "metadataBytes": 317024,
+      "spilloverTriangles": 102,
+      "height": 3571.485595703125
+    },
+    {
+      "key": "carliespiderisland",
+      "status": "preflight-pass",
+      "triangles": 3257,
+      "rigBones": 66,
+      "vertices": 1965,
+      "metadataBytes": 330724,
+      "spilloverTriangles": 426,
+      "height": 3454.888427734375
+    },
+    {
+      "key": "carnage",
+      "status": "preflight-pass",
+      "triangles": 3389,
+      "rigBones": 72,
+      "vertices": 2203,
+      "metadataBytes": 368832,
+      "spilloverTriangles": 499,
+      "height": 3414.8115234375
+    },
+    {
+      "key": "carnageultimate",
+      "status": "preflight-pass",
+      "triangles": 3914,
+      "rigBones": 70,
+      "vertices": 2635,
+      "metadataBytes": 450468,
+      "spilloverTriangles": 1032,
+      "height": 3404.94775390625
+    },
+    {
+      "key": "charlottewitter",
+      "status": "preflight-pass",
+      "triangles": 4147,
+      "rigBones": 66,
+      "vertices": 2519,
+      "metadataBytes": 411600,
+      "spilloverTriangles": 724,
+      "height": 3622.255126953125
+    },
+    {
+      "key": "civilwarpeterparker",
+      "status": "preflight-pass",
+      "triangles": 4256,
+      "rigBones": 66,
+      "vertices": 2884,
+      "metadataBytes": 452220,
+      "spilloverTriangles": 1013,
+      "height": 3419.11279296875
+    },
+    {
+      "key": "cosmic",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261860,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "cyborg",
+      "status": "preflight-pass",
+      "triangles": 3716,
+      "rigBones": 66,
+      "vertices": 2340,
+      "metadataBytes": 352512,
+      "spilloverTriangles": 537,
+      "height": 3373.360595703125
+    },
+    {
+      "key": "damon_ryder",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "deadaim",
+      "status": "preflight-pass",
+      "triangles": 4880,
+      "rigBones": 66,
+      "vertices": 2935,
+      "metadataBytes": 490452,
+      "spilloverTriangles": 1178,
+      "height": 3362.18994140625
+    },
+    {
+      "key": "devilspider",
+      "status": "unsupported",
+      "reason": "Opacity/transparent texture connection requires explicit handling"
+    },
+    {
+      "key": "doppleganger",
+      "status": "unsupported",
+      "reason": "Required SMU rig bone missing: LArmDigit31"
+    },
+    {
+      "key": "dorma",
+      "status": "unsupported",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
+    },
+    {
+      "key": "dusk",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "earth62412",
+      "status": "preflight-pass",
+      "triangles": 3100,
+      "rigBones": 66,
+      "vertices": 1828,
+      "metadataBytes": 354936,
+      "spilloverTriangles": 21,
+      "height": 3399.1044921875
+    },
+    {
+      "key": "earthx",
+      "status": "preflight-pass",
+      "triangles": 2584,
+      "rigBones": 66,
+      "vertices": 1577,
+      "metadataBytes": 291048,
+      "spilloverTriangles": 0,
+      "height": 3358.988525390625
+    },
+    {
+      "key": "edward_brock",
+      "status": "preflight-pass",
+      "triangles": 3173,
+      "rigBones": 71,
+      "vertices": 2128,
+      "metadataBytes": 379140,
+      "spilloverTriangles": 329,
+      "height": 3337.5908203125
+    },
+    {
+      "key": "edwardbrock_earth11080",
+      "status": "preflight-pass",
+      "triangles": 3988,
+      "rigBones": 72,
+      "vertices": 2933,
+      "metadataBytes": 481204,
+      "spilloverTriangles": 954,
+      "height": 3376.759033203125
+    },
+    {
+      "key": "electroproof",
+      "status": "preflight-pass",
+      "triangles": 2806,
+      "rigBones": 66,
+      "vertices": 1635,
+      "metadataBytes": 296148,
+      "spilloverTriangles": 73,
+      "height": 3373.16943359375
+    },
+    {
+      "key": "endofearth",
+      "status": "preflight-pass",
+      "triangles": 3446,
+      "rigBones": 66,
+      "vertices": 2020,
+      "metadataBytes": 291852,
+      "spilloverTriangles": 39,
+      "height": 3370.009521484375
+    },
+    {
+      "key": "enrage_toxin",
+      "status": "preflight-pass",
+      "triangles": 3570,
+      "rigBones": 72,
+      "vertices": 2483,
+      "metadataBytes": 372168,
+      "spilloverTriangles": 1576,
+      "height": 3874.521240234375
+    },
+    {
+      "key": "ezekiel",
+      "status": "preflight-pass",
+      "triangles": 3834,
+      "rigBones": 66,
+      "vertices": 2361,
+      "metadataBytes": 389764,
+      "spilloverTriangles": 772,
+      "height": 3483.242431640625
+    },
+    {
+      "key": "fatherspider",
+      "status": "preflight-pass",
+      "triangles": 3480,
+      "rigBones": 66,
+      "vertices": 2037,
+      "metadataBytes": 359368,
+      "spilloverTriangles": 705,
+      "height": 3429.8935546875
+    },
+    {
+      "key": "fearitself",
+      "status": "preflight-pass",
+      "triangles": 3580,
+      "rigBones": 66,
+      "vertices": 2478,
+      "metadataBytes": 396816,
+      "spilloverTriangles": 306,
+      "height": 3445.9462890625
+    },
+    {
+      "key": "felicityhardy",
+      "status": "preflight-pass",
+      "triangles": 3518,
+      "rigBones": 66,
+      "vertices": 2124,
+      "metadataBytes": 401444,
+      "spilloverTriangles": 279,
+      "height": 3349.7783203125
+    },
+    {
+      "key": "flashthompson_unmasked",
+      "status": "unsupported",
+      "reason": "Runtime rig validator rejected blob, code 9"
+    },
+    {
+      "key": "flipside",
+      "status": "preflight-pass",
+      "triangles": 2790,
+      "rigBones": 66,
+      "vertices": 1713,
+      "metadataBytes": 308944,
+      "spilloverTriangles": 0,
+      "height": 3388.642578125
+    },
+    {
+      "key": "futurefoundation",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261868,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "gabrielgant",
+      "status": "preflight-pass",
+      "triangles": 4965,
+      "rigBones": 66,
+      "vertices": 3302,
+      "metadataBytes": 543048,
+      "spilloverTriangles": 1477,
+      "height": 3543.37060546875
+    },
+    {
+      "key": "ghost",
+      "status": "preflight-pass",
+      "triangles": 3162,
+      "rigBones": 66,
+      "vertices": 1797,
+      "metadataBytes": 302544,
+      "spilloverTriangles": 293,
+      "height": 3370.91455078125
+    },
+    {
+      "key": "girl",
+      "status": "preflight-pass",
+      "triangles": 3454,
+      "rigBones": 66,
+      "vertices": 2005,
+      "metadataBytes": 376904,
+      "spilloverTriangles": 329,
+      "height": 3374.869140625
+    },
+    {
+      "key": "goblinspider",
+      "status": "preflight-pass",
+      "triangles": 3004,
+      "rigBones": 66,
+      "vertices": 1822,
+      "metadataBytes": 316600,
+      "spilloverTriangles": 171,
+      "height": 3440.57080078125
+    },
+    {
+      "key": "god",
+      "status": "preflight-pass",
+      "triangles": 3558,
+      "rigBones": 66,
+      "vertices": 2188,
+      "metadataBytes": 355604,
+      "spilloverTriangles": 376,
+      "height": 3652.96923828125
+    },
+    {
+      "key": "guardian",
+      "status": "preflight-pass",
+      "triangles": 4019,
+      "rigBones": 66,
+      "vertices": 2483,
+      "metadataBytes": 400364,
+      "spilloverTriangles": 1061,
+      "height": 3446.904296875
+    },
+    {
+      "key": "gwen",
+      "status": "preflight-pass",
+      "triangles": 3719,
+      "rigBones": 66,
+      "vertices": 2177,
+      "metadataBytes": 364160,
+      "spilloverTriangles": 611,
+      "height": 3389.02392578125
+    },
+    {
+      "key": "gwenom",
+      "status": "preflight-pass",
+      "triangles": 3986,
+      "rigBones": 67,
+      "vertices": 2377,
+      "metadataBytes": 445612,
+      "spilloverTriangles": 844,
+      "height": 3511.64404296875
+    },
+    {
+      "key": "gwenstacy_unmasked",
+      "status": "preflight-pass",
+      "triangles": 4144,
+      "rigBones": 66,
+      "vertices": 2501,
+      "metadataBytes": 406248,
+      "spilloverTriangles": 1000,
+      "height": 3412.1533203125
+    },
+    {
+      "key": "hammerhead",
+      "status": "preflight-pass",
+      "triangles": 2584,
+      "rigBones": 66,
+      "vertices": 1588,
+      "metadataBytes": 302288,
+      "spilloverTriangles": 253,
+      "height": 3399.93994140625
+    },
+    {
+      "key": "hobartbrown",
+      "status": "preflight-pass",
+      "triangles": 3272,
+      "rigBones": 66,
+      "vertices": 1943,
+      "metadataBytes": 359828,
+      "spilloverTriangles": 328,
+      "height": 3327.87646484375
+    },
+    {
+      "key": "hobie",
+      "status": "preflight-pass",
+      "triangles": 4066,
+      "rigBones": 66,
+      "vertices": 2554,
+      "metadataBytes": 437188,
+      "spilloverTriangles": 903,
+      "height": 3319.722900390625
+    },
+    {
+      "key": "homemade",
+      "status": "preflight-pass",
+      "triangles": 3384,
+      "rigBones": 66,
+      "vertices": 2195,
+      "metadataBytes": 353472,
+      "spilloverTriangles": 536,
+      "height": 3434.716796875
+    },
+    {
+      "key": "hornet",
+      "status": "preflight-pass",
+      "triangles": 3434,
+      "rigBones": 66,
+      "vertices": 2106,
+      "metadataBytes": 346428,
+      "spilloverTriangles": 175,
+      "height": 3355.06787109375
+    },
+    {
+      "key": "houseofm",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261860,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "hunter_arana",
+      "status": "preflight-pass",
+      "triangles": 3408,
+      "rigBones": 66,
+      "vertices": 2045,
+      "metadataBytes": 378036,
+      "spilloverTriangles": 233,
+      "height": 3411.083251953125
+    },
+    {
+      "key": "ichor",
+      "status": "preflight-pass",
+      "triangles": 4406,
+      "rigBones": 66,
+      "vertices": 2725,
+      "metadataBytes": 432828,
+      "spilloverTriangles": 648,
+      "height": 3379.600830078125
+    },
+    {
+      "key": "iguana",
+      "status": "preflight-pass",
+      "triangles": 3704,
+      "rigBones": 66,
+      "vertices": 2225,
+      "metadataBytes": 383400,
+      "spilloverTriangles": 312,
+      "height": 3691.6611328125
+    },
+    {
+      "key": "india",
+      "status": "preflight-pass",
+      "triangles": 3524,
+      "rigBones": 66,
+      "vertices": 2034,
+      "metadataBytes": 348656,
+      "spilloverTriangles": 16,
+      "height": 3480.1650390625
+    },
+    {
+      "key": "ironspider",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261864,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "ironspider_unmasked",
+      "status": "preflight-pass",
+      "triangles": 3548,
+      "rigBones": 66,
+      "vertices": 2163,
+      "metadataBytes": 367080,
+      "spilloverTriangles": 329,
+      "height": 3372.57470703125
+    },
+    {
+      "key": "ironspidernew",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "ironspidernewwithtentackles",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "izumi",
+      "status": "unsupported",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
+    },
+    {
+      "key": "jessica_drew",
+      "status": "unsupported",
+      "reason": "Opacity/transparent texture connection requires explicit handling"
+    },
+    {
+      "key": "julia_carpenter",
+      "status": "preflight-pass",
+      "triangles": 3696,
+      "rigBones": 66,
+      "vertices": 2168,
+      "metadataBytes": 398036,
+      "spilloverTriangles": 554,
+      "height": 3355.7060546875
+    },
+    {
+      "key": "knull",
+      "status": "preflight-pass",
+      "triangles": 4189,
+      "rigBones": 66,
+      "vertices": 2936,
+      "metadataBytes": 454804,
+      "spilloverTriangles": 1007,
+      "height": 3388.204345703125
+    },
+    {
+      "key": "kung_fu",
+      "status": "preflight-pass",
+      "triangles": 3826,
+      "rigBones": 66,
+      "vertices": 2377,
+      "metadataBytes": 411876,
+      "spilloverTriangles": 201,
+      "height": 3362.00341796875
+    },
+    {
+      "key": "lana_baumgartner",
+      "status": "preflight-pass",
+      "triangles": 3520,
+      "rigBones": 67,
+      "vertices": 2151,
+      "metadataBytes": 371924,
+      "spilloverTriangles": 687,
+      "height": 3321.548828125
+    },
+    {
+      "key": "lasher",
+      "status": "preflight-pass",
+      "triangles": 3452,
+      "rigBones": 66,
+      "vertices": 2183,
+      "metadataBytes": 364956,
+      "spilloverTriangles": 437,
+      "height": 3343.28515625
+    },
+    {
+      "key": "lasher_cell",
+      "status": "preflight-pass",
+      "triangles": 3420,
+      "rigBones": 66,
+      "vertices": 2196,
+      "metadataBytes": 384928,
+      "spilloverTriangles": 544,
+      "height": 3374.396240234375
+    },
+    {
+      "key": "lily_hollister",
+      "status": "preflight-pass",
+      "triangles": 4018,
+      "rigBones": 66,
+      "vertices": 2512,
+      "metadataBytes": 408116,
+      "spilloverTriangles": 1132,
+      "height": 3457.67822265625
+    },
+    {
+      "key": "lizard",
+      "status": "preflight-pass",
+      "triangles": 3496,
+      "rigBones": 71,
+      "vertices": 2491,
+      "metadataBytes": 386464,
+      "spilloverTriangles": 527,
+      "height": 3346.86767578125
+    },
+    {
+      "key": "mac_gargan",
+      "status": "preflight-pass",
+      "triangles": 3906,
+      "rigBones": 66,
+      "vertices": 2467,
+      "metadataBytes": 408816,
+      "spilloverTriangles": 713,
+      "height": 3408.765625
+    },
+    {
+      "key": "mace",
+      "status": "preflight-pass",
+      "triangles": 3286,
+      "rigBones": 66,
+      "vertices": 2522,
+      "metadataBytes": 379460,
+      "spilloverTriangles": 417,
+      "height": 3405.26318359375
+    },
+    {
+      "key": "madamweb",
+      "status": "preflight-pass",
+      "triangles": 3195,
+      "rigBones": 66,
+      "vertices": 1930,
+      "metadataBytes": 329264,
+      "spilloverTriangles": 536,
+      "height": 3473.4384765625
+    },
+    {
+      "key": "mangaverse",
+      "status": "preflight-pass",
+      "triangles": 2896,
+      "rigBones": 66,
+      "vertices": 1676,
+      "metadataBytes": 264144,
+      "spilloverTriangles": 60,
+      "height": 3416.0419921875
+    },
+    {
+      "key": "mangaverse_black_cat",
+      "status": "preflight-pass",
+      "triangles": 4464,
+      "rigBones": 66,
+      "vertices": 2780,
+      "metadataBytes": 408856,
+      "spilloverTriangles": 1698,
+      "height": 3352.35302734375
+    },
+    {
+      "key": "mangaversegirl",
+      "status": "unsupported",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
+    },
+    {
+      "key": "mania",
+      "status": "preflight-pass",
+      "triangles": 3938,
+      "rigBones": 66,
+      "vertices": 2723,
+      "metadataBytes": 440716,
+      "spilloverTriangles": 233,
+      "height": 3598.262939453125
+    },
+    {
+      "key": "maniac",
+      "status": "preflight-pass",
+      "triangles": 3902,
+      "rigBones": 66,
+      "vertices": 2654,
+      "metadataBytes": 417608,
+      "spilloverTriangles": 592,
+      "height": 3500.02734375
+    },
+    {
+      "key": "maniacal_mayhem",
+      "status": "preflight-pass",
+      "triangles": 3612,
+      "rigBones": 66,
+      "vertices": 2273,
+      "metadataBytes": 360460,
+      "spilloverTriangles": 689,
+      "height": 3553.80419921875
+    },
+    {
+      "key": "maskedmarvel",
+      "status": "preflight-pass",
+      "triangles": 2634,
+      "rigBones": 66,
+      "vertices": 1570,
+      "metadataBytes": 249892,
+      "spilloverTriangles": 142,
+      "height": 3382.74951171875
+    },
+    {
+      "key": "mattie_franklin_5",
+      "status": "preflight-pass",
+      "triangles": 4602,
+      "rigBones": 66,
+      "vertices": 3121,
+      "metadataBytes": 489272,
+      "spilloverTriangles": 1679,
+      "height": 3395.53369140625
+    },
+    {
+      "key": "mattie_franklin_body_suit",
+      "status": "preflight-pass",
+      "triangles": 3956,
+      "rigBones": 66,
+      "vertices": 2269,
+      "metadataBytes": 385724,
+      "spilloverTriangles": 695,
+      "height": 3314.1201171875
+    },
+    {
+      "key": "mattiefranklin",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "mayday",
+      "status": "preflight-pass",
+      "triangles": 3454,
+      "rigBones": 66,
+      "vertices": 2105,
+      "metadataBytes": 368684,
+      "spilloverTriangles": 281,
+      "height": 3400.86181640625
+    },
+    {
+      "key": "mayhem",
+      "status": "preflight-pass",
+      "triangles": 3454,
+      "rigBones": 66,
+      "vertices": 2005,
+      "metadataBytes": 376860,
+      "spilloverTriangles": 329,
+      "height": 3393.988037109375
+    },
+    {
+      "key": "mayparker_unmasked",
+      "status": "preflight-pass",
+      "triangles": 4035,
+      "rigBones": 66,
+      "vertices": 2375,
+      "metadataBytes": 392160,
+      "spilloverTriangles": 862,
+      "height": 3420.1572265625
+    },
+    {
+      "key": "mech",
+      "status": "preflight-pass",
+      "triangles": 3654,
+      "rigBones": 66,
+      "vertices": 2197,
+      "metadataBytes": 373768,
+      "spilloverTriangles": 207,
+      "height": 3348.09326171875
+    },
+    {
+      "key": "mercenary",
+      "status": "preflight-pass",
+      "triangles": 2886,
+      "rigBones": 66,
+      "vertices": 1689,
+      "metadataBytes": 260484,
+      "spilloverTriangles": 16,
+      "height": 3373.3662109375
+    },
+    {
+      "key": "michaelbingham",
+      "status": "preflight-pass",
+      "triangles": 4406,
+      "rigBones": 66,
+      "vertices": 3134,
+      "metadataBytes": 482144,
+      "spilloverTriangles": 843,
+      "height": 3399.11767578125
+    },
+    {
+      "key": "michaelmorbius",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "milesmorales",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261864,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "milesmorales_uk_mesh",
+      "status": "preflight-pass",
+      "triangles": 2936,
+      "rigBones": 66,
+      "vertices": 1682,
+      "metadataBytes": 267684,
+      "spilloverTriangles": 16,
+      "height": 3373.35693359375
+    },
+    {
+      "key": "milesmoralesdemasked",
+      "status": "preflight-pass",
+      "triangles": 3244,
+      "rigBones": 66,
+      "vertices": 1907,
+      "metadataBytes": 313864,
+      "spilloverTriangles": 353,
+      "height": 3366.7421875
+    },
+    {
+      "key": "mj_regent_power_suit",
+      "status": "preflight-pass",
+      "triangles": 4408,
+      "rigBones": 66,
+      "vertices": 2952,
+      "metadataBytes": 472112,
+      "spilloverTriangles": 645,
+      "height": 3641.2890625
+    },
+    {
+      "key": "mj_sexy",
+      "status": "preflight-pass",
+      "triangles": 3420,
+      "rigBones": 66,
+      "vertices": 1991,
+      "metadataBytes": 347300,
+      "spilloverTriangles": 487,
+      "height": 3410.162109375
+    },
+    {
+      "key": "mj_venom",
+      "status": "preflight-pass",
+      "triangles": 3840,
+      "rigBones": 66,
+      "vertices": 2252,
+      "metadataBytes": 386204,
+      "spilloverTriangles": 610,
+      "height": 3387.51513671875
+    },
+    {
+      "key": "mjiron",
+      "status": "preflight-pass",
+      "triangles": 3721,
+      "rigBones": 66,
+      "vertices": 2198,
+      "metadataBytes": 375468,
+      "spilloverTriangles": 858,
+      "height": 3372.892578125
+    },
+    {
+      "key": "modernscarlet",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261864,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "modernsilk",
+      "status": "preflight-pass",
+      "triangles": 3788,
+      "rigBones": 66,
+      "vertices": 2237,
+      "metadataBytes": 376708,
+      "spilloverTriangles": 461,
+      "height": 3307.00732421875
+    },
+    {
+      "key": "mutantjonah",
+      "status": "preflight-pass",
+      "triangles": 3412,
+      "rigBones": 66,
+      "vertices": 2076,
+      "metadataBytes": 336408,
+      "spilloverTriangles": 711,
+      "height": 3827.39794921875
+    },
+    {
+      "key": "native_american",
+      "status": "unsupported",
+      "reason": "Runtime rig validator rejected blob, code 9"
+    },
+    {
+      "key": "new_year_spiderman",
+      "status": "preflight-pass",
+      "triangles": 3966,
+      "rigBones": 66,
+      "vertices": 2406,
+      "metadataBytes": 396544,
+      "spilloverTriangles": 801,
+      "height": 3502.400390625
+    },
+    {
+      "key": "newarmor",
+      "status": "preflight-pass",
+      "triangles": 3740,
+      "rigBones": 66,
+      "vertices": 2151,
+      "metadataBytes": 319852,
+      "spilloverTriangles": 508,
+      "height": 3344.7099609375
+    },
+    {
+      "key": "nickfury",
+      "status": "preflight-pass",
+      "triangles": 3734,
+      "rigBones": 66,
+      "vertices": 2251,
+      "metadataBytes": 378004,
+      "spilloverTriangles": 821,
+      "height": 3437.63525390625
+    },
+    {
+      "key": "noir",
+      "status": "preflight-pass",
+      "triangles": 3565,
+      "rigBones": 66,
+      "vertices": 2964,
+      "metadataBytes": 341692,
+      "spilloverTriangles": 526,
+      "height": 3362.416259765625
+    },
+    {
+      "key": "noirnew",
+      "status": "unsupported",
+      "reason": "Runtime rig validator rejected blob, code 9"
+    },
+    {
+      "key": "nurotox",
+      "status": "preflight-pass",
+      "triangles": 3908,
+      "rigBones": 66,
+      "vertices": 2396,
+      "metadataBytes": 384668,
+      "spilloverTriangles": 838,
+      "height": 3549.97412109375
+    },
+    {
+      "key": "octavius",
+      "status": "unsupported",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
+    },
+    {
+      "key": "other",
+      "status": "unsupported",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
+    },
+    {
+      "key": "payback",
+      "status": "preflight-pass",
+      "triangles": 4286,
+      "rigBones": 66,
+      "vertices": 2613,
+      "metadataBytes": 413272,
+      "spilloverTriangles": 1033,
+      "height": 3431.828857421875
+    },
+    {
+      "key": "peter_porker_unmasked",
+      "status": "preflight-pass",
+      "triangles": 2360,
+      "rigBones": 63,
+      "vertices": 1579,
+      "metadataBytes": 283720,
+      "spilloverTriangles": 517,
+      "height": 2222.06201171875
+    },
+    {
+      "key": "peter_urich",
+      "status": "preflight-pass",
+      "triangles": 3956,
+      "rigBones": 66,
+      "vertices": 2542,
+      "metadataBytes": 411012,
+      "spilloverTriangles": 546,
+      "height": 3348.236083984375
+    },
+    {
+      "key": "peterparker",
+      "status": "preflight-pass",
+      "triangles": 2598,
+      "rigBones": 66,
+      "vertices": 1519,
+      "metadataBytes": 280144,
+      "spilloverTriangles": 178,
+      "height": 3387.80078125
+    },
+    {
+      "key": "peterparkerearth11080",
+      "status": "preflight-pass",
+      "triangles": 3466,
+      "rigBones": 66,
+      "vertices": 2069,
+      "metadataBytes": 374824,
+      "spilloverTriangles": 475,
+      "height": 3345.76416015625
+    },
+    {
+      "key": "phage",
+      "status": "preflight-pass",
+      "triangles": 3912,
+      "rigBones": 66,
+      "vertices": 2691,
+      "metadataBytes": 390552,
+      "spilloverTriangles": 436,
+      "height": 3417.62841796875
+    },
+    {
+      "key": "poison",
+      "status": "preflight-pass",
+      "triangles": 4364,
+      "rigBones": 72,
+      "vertices": 2869,
+      "metadataBytes": 419780,
+      "spilloverTriangles": 841,
+      "height": 3523.20703125
+    },
+    {
+      "key": "poison_doctor_octopus",
+      "status": "unsupported",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
+    },
+    {
+      "key": "poison_hunter",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "poisonrhino",
+      "status": "preflight-pass",
+      "triangles": 3776,
+      "rigBones": 66,
+      "vertices": 2321,
+      "metadataBytes": 416240,
+      "spilloverTriangles": 544,
+      "height": 3296.99658203125
+    },
+    {
+      "key": "poisonspiderman",
+      "status": "preflight-pass",
+      "triangles": 3678,
+      "rigBones": 66,
+      "vertices": 2134,
+      "metadataBytes": 372724,
+      "spilloverTriangles": 725,
+      "height": 3363.650634765625
+    },
+    {
+      "key": "pork_grind",
+      "status": "preflight-pass",
+      "triangles": 3578,
+      "rigBones": 63,
+      "vertices": 2055,
+      "metadataBytes": 331252,
+      "spilloverTriangles": 934,
+      "height": 3145.3544921875
+    },
+    {
+      "key": "prodigy",
+      "status": "preflight-pass",
+      "triangles": 3196,
+      "rigBones": 66,
+      "vertices": 1894,
+      "metadataBytes": 282372,
+      "spilloverTriangles": 286,
+      "height": 3372.677978515625
+    },
+    {
+      "key": "prowler",
+      "status": "preflight-pass",
+      "triangles": 3378,
+      "rigBones": 66,
+      "vertices": 2225,
+      "metadataBytes": 356812,
+      "spilloverTriangles": 402,
+      "height": 3378.9033203125
+    },
+    {
+      "key": "punk",
+      "status": "preflight-pass",
+      "triangles": 3020,
+      "rigBones": 66,
+      "vertices": 1805,
+      "metadataBytes": 342732,
+      "spilloverTriangles": 108,
+      "height": 3436.82666015625
+    },
+    {
+      "key": "quickchange",
+      "status": "preflight-pass",
+      "triangles": 2478,
+      "rigBones": 66,
+      "vertices": 1470,
+      "metadataBytes": 241364,
+      "spilloverTriangles": 0,
+      "height": 3365.02001953125
+    },
+    {
+      "key": "rafael_carago",
+      "status": "preflight-pass",
+      "triangles": 3638,
+      "rigBones": 66,
+      "vertices": 2166,
+      "metadataBytes": 378564,
+      "spilloverTriangles": 643,
+      "height": 3368.2080078125
+    },
+    {
+      "key": "raze",
+      "status": "preflight-pass",
+      "triangles": 4059,
+      "rigBones": 66,
+      "vertices": 2839,
+      "metadataBytes": 394896,
+      "spilloverTriangles": 1149,
+      "height": 3506.85791015625
+    },
+    {
+      "key": "red_goblin_boss",
+      "status": "preflight-pass",
+      "triangles": 3956,
+      "rigBones": 66,
+      "vertices": 2848,
+      "metadataBytes": 425216,
+      "spilloverTriangles": 557,
+      "height": 3545.8662109375
+    },
+    {
+      "key": "riot",
+      "status": "preflight-pass",
+      "triangles": 3181,
+      "rigBones": 71,
+      "vertices": 1942,
+      "metadataBytes": 338592,
+      "spilloverTriangles": 349,
+      "height": 3330.215576171875
+    },
+    {
+      "key": "scarlet",
+      "status": "preflight-pass",
+      "triangles": 3246,
+      "rigBones": 66,
+      "vertices": 1863,
+      "metadataBytes": 285008,
+      "spilloverTriangles": 252,
+      "height": 3350.921875
+    },
+    {
+      "key": "scarlet_spider",
+      "status": "preflight-pass",
+      "triangles": 3730,
+      "rigBones": 66,
+      "vertices": 2397,
+      "metadataBytes": 393064,
+      "spilloverTriangles": 904,
+      "height": 3464.373046875
+    },
+    {
+      "key": "scarlet_spiderham",
+      "status": "preflight-pass",
+      "triangles": 2068,
+      "rigBones": 63,
+      "vertices": 1294,
+      "metadataBytes": 250620,
+      "spilloverTriangles": 162,
+      "height": 2225.332763671875
+    },
+    {
+      "key": "scarlet_spiderham_benreilly",
+      "status": "preflight-pass",
+      "triangles": 2796,
+      "rigBones": 63,
+      "vertices": 1735,
+      "metadataBytes": 314404,
+      "spilloverTriangles": 313,
+      "height": 2242.03466796875
+    },
+    {
+      "key": "scarletgirl",
+      "status": "preflight-pass",
+      "triangles": 3498,
+      "rigBones": 66,
+      "vertices": 2034,
+      "metadataBytes": 358132,
+      "spilloverTriangles": 232,
+      "height": 3384.63623046875
+    },
+    {
+      "key": "scarletjoe",
+      "status": "preflight-pass",
+      "triangles": 2814,
+      "rigBones": 66,
+      "vertices": 1634,
+      "metadataBytes": 262504,
+      "spilloverTriangles": 6,
+      "height": 3373.262451171875
+    },
+    {
+      "key": "scorn",
+      "status": "preflight-pass",
+      "triangles": 3532,
+      "rigBones": 66,
+      "vertices": 2044,
+      "metadataBytes": 336288,
+      "spilloverTriangles": 257,
+      "height": 3348.241943359375
+    },
+    {
+      "key": "scream",
+      "status": "preflight-pass",
+      "triangles": 3692,
+      "rigBones": 66,
+      "vertices": 2363,
+      "metadataBytes": 397172,
+      "spilloverTriangles": 682,
+      "height": 3691.41943359375
+    },
+    {
+      "key": "secretwar",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261860,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "shevenom",
+      "status": "preflight-pass",
+      "triangles": 4025,
+      "rigBones": 72,
+      "vertices": 2661,
+      "metadataBytes": 394148,
+      "spilloverTriangles": 979,
+      "height": 3169.28125
+    },
+    {
+      "key": "silk",
+      "status": "preflight-pass",
+      "triangles": 3801,
+      "rigBones": 66,
+      "vertices": 2204,
+      "metadataBytes": 376528,
+      "spilloverTriangles": 496,
+      "height": 3396.49072265625
+    },
+    {
+      "key": "silk2",
+      "status": "preflight-pass",
+      "triangles": 3801,
+      "rigBones": 66,
+      "vertices": 2204,
+      "metadataBytes": 376532,
+      "spilloverTriangles": 496,
+      "height": 3396.49072265625
+    },
+    {
+      "key": "silversable_play",
+      "status": "preflight-pass",
+      "triangles": 3287,
+      "rigBones": 66,
+      "vertices": 2261,
+      "metadataBytes": 354584,
+      "spilloverTriangles": 483,
+      "height": 3383.250732421875
+    },
+    {
+      "key": "sixarmed_spiderman",
+      "status": "preflight-pass",
+      "triangles": 4900,
+      "rigBones": 66,
+      "vertices": 3037,
+      "metadataBytes": 438864,
+      "spilloverTriangles": 1891,
+      "height": 3906.02197265625
+    },
+    {
+      "key": "small_ed_brook",
+      "status": "preflight-pass",
+      "triangles": 3183,
+      "rigBones": 65,
+      "vertices": 2193,
+      "metadataBytes": 320108,
+      "spilloverTriangles": 1088,
+      "height": 2287.80517578125
+    },
+    {
+      "key": "spacesuit",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "spdr",
+      "status": "preflight-pass",
+      "triangles": 5236,
+      "rigBones": 66,
+      "vertices": 3497,
+      "metadataBytes": 512720,
+      "spilloverTriangles": 1171,
+      "height": 3361.2998046875
+    },
+    {
+      "key": "spider_carnage",
+      "status": "unsupported",
+      "reason": "Opacity/transparent texture connection requires explicit handling"
+    },
+    {
+      "key": "spider_cowboy",
+      "status": "preflight-pass",
+      "triangles": 3564,
+      "rigBones": 66,
+      "vertices": 2340,
+      "metadataBytes": 369804,
+      "spilloverTriangles": 734,
+      "height": 3446.12255859375
+    },
+    {
+      "key": "spider_demon",
+      "status": "preflight-pass",
+      "triangles": 3442,
+      "rigBones": 66,
+      "vertices": 2088,
+      "metadataBytes": 339316,
+      "spilloverTriangles": 270,
+      "height": 3450.917236328125
+    },
+    {
+      "key": "spider_herc",
+      "status": "preflight-pass",
+      "triangles": 3624,
+      "rigBones": 66,
+      "vertices": 2578,
+      "metadataBytes": 372804,
+      "spilloverTriangles": 1294,
+      "height": 3463.95703125
+    },
+    {
+      "key": "spider_ninja",
+      "status": "preflight-pass",
+      "triangles": 3074,
+      "rigBones": 66,
+      "vertices": 1777,
+      "metadataBytes": 326972,
+      "spilloverTriangles": 93,
+      "height": 3321.27294921875
+    },
+    {
+      "key": "spider_spiner",
+      "status": "preflight-pass",
+      "triangles": 2768,
+      "rigBones": 66,
+      "vertices": 1733,
+      "metadataBytes": 318340,
+      "spilloverTriangles": 216,
+      "height": 3300.5771484375
+    },
+    {
+      "key": "spiderarmor",
+      "status": "preflight-pass",
+      "triangles": 3134,
+      "rigBones": 66,
+      "vertices": 1818,
+      "metadataBytes": 279500,
+      "spilloverTriangles": 23,
+      "height": 3344.62548828125
+    },
+    {
+      "key": "spidergwen_earth1036",
+      "status": "preflight-pass",
+      "triangles": 4230,
+      "rigBones": 66,
+      "vertices": 2555,
+      "metadataBytes": 437596,
+      "spilloverTriangles": 1146,
+      "height": 3368.6640625
+    },
+    {
+      "key": "spiderham",
+      "status": "preflight-pass",
+      "triangles": 2044,
+      "rigBones": 63,
+      "vertices": 1280,
+      "metadataBytes": 218624,
+      "spilloverTriangles": 137,
+      "height": 2250.0
+    },
+    {
+      "key": "spiderham_2099",
+      "status": "preflight-pass",
+      "triangles": 2348,
+      "rigBones": 63,
+      "vertices": 1563,
+      "metadataBytes": 282544,
+      "spilloverTriangles": 159,
+      "height": 2306.47119140625
+    },
+    {
+      "key": "spiderjameson",
+      "status": "preflight-pass",
+      "triangles": 3020,
+      "rigBones": 66,
+      "vertices": 1775,
+      "metadataBytes": 303196,
+      "spilloverTriangles": 334,
+      "height": 3401.6328125
+    },
+    {
+      "key": "spiderknight",
+      "status": "preflight-pass",
+      "triangles": 2976,
+      "rigBones": 66,
+      "vertices": 1881,
+      "metadataBytes": 354360,
+      "spilloverTriangles": 131,
+      "height": 3600.171875
+    },
+    {
+      "key": "spidermaam",
+      "status": "preflight-pass",
+      "triangles": 3693,
+      "rigBones": 66,
+      "vertices": 2352,
+      "metadataBytes": 375552,
+      "spilloverTriangles": 599,
+      "height": 3405.40478515625
+    },
+    {
+      "key": "spiderman",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261860,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "spiderman_2020",
+      "status": "preflight-pass",
+      "triangles": 2822,
+      "rigBones": 66,
+      "vertices": 1639,
+      "metadataBytes": 296804,
+      "spilloverTriangles": 16,
+      "height": 3487.27880859375
+    },
+    {
+      "key": "spiderman_newdesign",
+      "status": "preflight-pass",
+      "triangles": 2874,
+      "rigBones": 66,
+      "vertices": 1689,
+      "metadataBytes": 267260,
+      "spilloverTriangles": 40,
+      "height": 3360.345703125
+    },
+    {
+      "key": "spiderman_surveillancesuit",
+      "status": "unsupported",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
+    },
+    {
+      "key": "spidermanhomecoming",
+      "status": "preflight-pass",
+      "triangles": 2906,
+      "rigBones": 66,
+      "vertices": 1709,
+      "metadataBytes": 272008,
+      "spilloverTriangles": 22,
+      "height": 3500.8056640625
+    },
+    {
+      "key": "spidermj",
+      "status": "preflight-pass",
+      "triangles": 3961,
+      "rigBones": 66,
+      "vertices": 2376,
+      "metadataBytes": 384404,
+      "spilloverTriangles": 755,
+      "height": 3406.084716796875
+    },
+    {
+      "key": "spidersman",
+      "status": "preflight-pass",
+      "triangles": 2834,
+      "rigBones": 66,
+      "vertices": 1669,
+      "metadataBytes": 302972,
+      "spilloverTriangles": 125,
+      "height": 3385.826904296875
+    },
+    {
+      "key": "spidervenom",
+      "status": "preflight-pass",
+      "triangles": 2685,
+      "rigBones": 72,
+      "vertices": 1791,
+      "metadataBytes": 300356,
+      "spilloverTriangles": 200,
+      "height": 3375.23681640625
+    },
+    {
+      "key": "spiderx",
+      "status": "preflight-pass",
+      "triangles": 3300,
+      "rigBones": 66,
+      "vertices": 1979,
+      "metadataBytes": 331496,
+      "spilloverTriangles": 245,
+      "height": 3541.666015625
+    },
+    {
+      "key": "steampunk",
+      "status": "preflight-pass",
+      "triangles": 3900,
+      "rigBones": 66,
+      "vertices": 2836,
+      "metadataBytes": 386632,
+      "spilloverTriangles": 904,
+      "height": 3322.65771484375
+    },
+    {
+      "key": "steel",
+      "status": "preflight-pass",
+      "triangles": 3546,
+      "rigBones": 66,
+      "vertices": 2193,
+      "metadataBytes": 353588,
+      "spilloverTriangles": 446,
+      "height": 3387.444580078125
+    },
+    {
+      "key": "superior",
+      "status": "unsupported",
+      "reason": "Runtime rig validator rejected blob, code 9"
+    },
+    {
+      "key": "superior_carnage",
+      "status": "preflight-pass",
+      "triangles": 3936,
+      "rigBones": 66,
+      "vertices": 2458,
+      "metadataBytes": 410680,
+      "spilloverTriangles": 829,
+      "height": 3721.50048828125
+    },
+    {
+      "key": "superiorb",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261860,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "supvenom",
+      "status": "preflight-pass",
+      "triangles": 3074,
+      "rigBones": 66,
+      "vertices": 1837,
+      "metadataBytes": 329548,
+      "spilloverTriangles": 38,
+      "height": 3338.84375
+    },
+    {
+      "key": "swift",
+      "status": "preflight-pass",
+      "triangles": 3936,
+      "rigBones": 66,
+      "vertices": 2426,
+      "metadataBytes": 414516,
+      "spilloverTriangles": 378,
+      "height": 3452.0693359375
+    },
+    {
+      "key": "symbiote",
+      "status": "preflight-pass",
+      "triangles": 2838,
+      "rigBones": 66,
+      "vertices": 1633,
+      "metadataBytes": 261860,
+      "spilloverTriangles": 16,
+      "height": 3373.37255859375
+    },
+    {
+      "key": "symbiote_2018",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "symbiote_kraven",
+      "status": "preflight-pass",
+      "triangles": 3514,
+      "rigBones": 66,
+      "vertices": 2060,
+      "metadataBytes": 365112,
+      "spilloverTriangles": 567,
+      "height": 3440.740478515625
+    },
+    {
+      "key": "tarantula",
+      "status": "preflight-pass",
+      "triangles": 3470,
+      "rigBones": 66,
+      "vertices": 2163,
+      "metadataBytes": 361792,
+      "spilloverTriangles": 254,
+      "height": 3505.58642578125
+    },
+    {
+      "key": "the_amazing_octo_spidey",
+      "status": "preflight-pass",
+      "triangles": 3844,
+      "rigBones": 66,
+      "vertices": 2524,
+      "metadataBytes": 416668,
+      "spilloverTriangles": 881,
+      "height": 3373.4375
+    },
+    {
+      "key": "the_spider_peter_parker",
+      "status": "preflight-pass",
+      "triangles": 4018,
+      "rigBones": 66,
+      "vertices": 2363,
+      "metadataBytes": 412084,
+      "spilloverTriangles": 482,
+      "height": 3357.409423828125
+    },
+    {
+      "key": "timesleep",
+      "status": "preflight-pass",
+      "triangles": 3700,
+      "rigBones": 66,
+      "vertices": 2307,
+      "metadataBytes": 393764,
+      "spilloverTriangles": 429,
+      "height": 3403.01953125
+    },
+    {
+      "key": "toxin",
+      "status": "preflight-pass",
+      "triangles": 3781,
+      "rigBones": 66,
+      "vertices": 2419,
+      "metadataBytes": 398304,
+      "spilloverTriangles": 245,
+      "height": 3465.412841796875
+    },
+    {
+      "key": "uk",
+      "status": "preflight-pass",
+      "triangles": 2936,
+      "rigBones": 66,
+      "vertices": 1682,
+      "metadataBytes": 267664,
+      "spilloverTriangles": 16,
+      "height": 3373.35693359375
+    },
+    {
+      "key": "ultimate_spiderham",
+      "status": "preflight-pass",
+      "triangles": 2536,
+      "rigBones": 63,
+      "vertices": 1640,
+      "metadataBytes": 298080,
+      "spilloverTriangles": 385,
+      "height": 2184.68017578125
+    },
+    {
+      "key": "ultimatedrew",
+      "status": "preflight-pass",
+      "triangles": 3635,
+      "rigBones": 66,
+      "vertices": 2148,
+      "metadataBytes": 373956,
+      "spilloverTriangles": 377,
+      "height": 3385.445556640625
+    },
+    {
+      "key": "uncleb",
+      "status": "preflight-pass",
+      "triangles": 2394,
+      "rigBones": 66,
+      "vertices": 1459,
+      "metadataBytes": 275892,
+      "spilloverTriangles": 0,
+      "height": 3345.201171875
+    },
+    {
+      "key": "venom",
+      "status": "preflight-pass",
+      "triangles": 3516,
+      "rigBones": 71,
+      "vertices": 2214,
+      "metadataBytes": 378624,
+      "spilloverTriangles": 628,
+      "height": 3465.7470703125
+    },
+    {
+      "key": "venom_2099",
+      "status": "preflight-pass",
+      "triangles": 4454,
+      "rigBones": 66,
+      "vertices": 2927,
+      "metadataBytes": 521312,
+      "spilloverTriangles": 1001,
+      "height": 3361.62255859375
+    },
+    {
+      "key": "venom_verse_carnage",
+      "status": "unsupported",
+      "reason": "Full-quality mesh exceeds native 18-packet capacity; refused to decimate or drop triangles"
+    },
+    {
+      "key": "venomx",
+      "status": "preflight-pass",
+      "triangles": 3454,
+      "rigBones": 66,
+      "vertices": 2005,
+      "metadataBytes": 356760,
+      "spilloverTriangles": 204,
+      "height": 3414.47607421875
+    },
+    {
+      "key": "venomzombie",
+      "status": "preflight-pass",
+      "triangles": 3120,
+      "rigBones": 71,
+      "vertices": 2013,
+      "metadataBytes": 376328,
+      "spilloverTriangles": 253,
+      "height": 3424.628662109375
+    },
+    {
+      "key": "wallace_jackson",
+      "status": "preflight-pass",
+      "triangles": 3939,
+      "rigBones": 66,
+      "vertices": 2327,
+      "metadataBytes": 381188,
+      "spilloverTriangles": 864,
+      "height": 3372.30908203125
+    },
+    {
+      "key": "weblisher",
+      "status": "unsupported",
+      "reason": "Required SMU rig bone missing: LArmDigit31"
+    },
+    {
+      "key": "werewolf",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "who",
+      "status": "preflight-pass",
+      "triangles": 2722,
+      "rigBones": 66,
+      "vertices": 1764,
+      "metadataBytes": 318572,
+      "spilloverTriangles": 37,
+      "height": 3304.634765625
+    },
+    {
+      "key": "woman",
+      "status": "unsupported",
+      "reason": "Requires lossless multi-mesh/material support"
+    },
+    {
+      "key": "womannew",
+      "status": "preflight-pass",
+      "triangles": 2873,
+      "rigBones": 66,
+      "vertices": 1717,
+      "metadataBytes": 311132,
+      "spilloverTriangles": 244,
+      "height": 3404.65380859375
+    },
+    {
+      "key": "wraith",
+      "status": "preflight-pass",
+      "triangles": 3620,
+      "rigBones": 66,
+      "vertices": 2156,
+      "metadataBytes": 380996,
+      "spilloverTriangles": 254,
+      "height": 3368.5166015625
+    }
+  ]
+}

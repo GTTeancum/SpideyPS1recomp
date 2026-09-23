@@ -1,0 +1,178 @@
+[
+  {
+    "suit": "smu-spiderham",
+    "level": "l5a3",
+    "executableSha256": "74368740ce1720f16f7238eabe71fec4e687567ea659bb8700be3f4b48496c29",
+    "actorSha256": "b07acca3e69bdb506acfd10504aef1cf0e76a4e173e5663c8745a1de9d584663",
+    "capture": "Game framebuffer; process-local input only; no desktop capture or OS input",
+    "environment": {
+      "RECOMP_CAPTURE_HIDDEN": "1",
+      "RECOMP_RENDER_SCALE": "3",
+      "SPIDEY_WIDE": "1",
+      "SPIDEY_SCRIPT_EXCLUSIVE": "1",
+      "SPIDEY_SCRIPT": "title.bmr+120:start:12;title.bmr+420:cross:12;title.bmr+720:cross:12;l5a3_t.trg+240:cross:12;l5a3_t.trg+275:r2:120",
+      "SPIDEY_LEVEL": "l5a3",
+      "SPIDEY_BOOT_SKIP_UNTIL": "title.bmr",
+      "SPIDEY_SUIT_MOD_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\live-spiderham-02\\suits",
+      "SPIDEY_RETARGET_TRACE": "1",
+      "SPIDEY_MOD_TRACE": "1",
+      "SPIDEY_SHOT_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\live-spiderham-02",
+      "SPIDEY_SHOTS": "l5a3_t.trg+180,l5a3_t.trg+360,l5a3_t.trg+600",
+      "SPIDEY_CAPTURE_PRESENTED": "1",
+      "SPIDEY_EXIT": "2400",
+      "SPIDEY_LOG_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\live-spiderham-02",
+      "SPIDEY_STALL_EXIT": "1",
+      "SPIDEY_STALL": "20"
+    },
+    "exitCode": 0,
+    "seconds": 64.65700000000652,
+    "images": [
+      "frame_01267.png",
+      "frame_01447.png",
+      "frame_01687.png"
+    ],
+    "acceptance": "Listed gameplay frames inspected: selected suit, environment, swing line and post-release pose visible",
+    "acceptedGameplayImages": [
+      "frame_01447.png",
+      "frame_01687.png"
+    ],
+    "notVerified": [
+      "Full level completion",
+      "Audio",
+      "Every animation in gameplay",
+      "Other levels"
+    ]
+  },
+  {
+    "suit": "smu-2099",
+    "level": "l5a3",
+    "executableSha256": "00964957baa38fe8c0adb204536c33731d02d29bc2de44d85a023067a56f669a",
+    "actorSha256": "2e11614841917401ab1aafb64d1704d1ee8e81c54236b8a3adb1304446914e68",
+    "capture": "Game framebuffer; process-local input only; no desktop capture or OS input",
+    "environment": {
+      "RECOMP_CAPTURE_HIDDEN": "1",
+      "RECOMP_RENDER_SCALE": "3",
+      "SPIDEY_WIDE": "1",
+      "SPIDEY_SCRIPT_EXCLUSIVE": "1",
+      "SPIDEY_SCRIPT": "title.bmr+120:start:12;title.bmr+420:cross:12;title.bmr+720:cross:12;l5a3_t.trg+240:cross:12;l5a3_t.trg+275:r2:120",
+      "SPIDEY_LEVEL": "l5a3",
+      "SPIDEY_BOOT_SKIP_UNTIL": "title.bmr",
+      "SPIDEY_SUIT_MOD_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\live-2099-01\\suits",
+      "SPIDEY_RETARGET_TRACE": "1",
+      "SPIDEY_MOD_TRACE": "1",
+      "SPIDEY_SHOT_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\live-2099-01",
+      "SPIDEY_SHOTS": "l5a3_t.trg+180,l5a3_t.trg+360,l5a3_t.trg+600",
+      "SPIDEY_CAPTURE_PRESENTED": "1",
+      "SPIDEY_EXIT": "2400",
+      "SPIDEY_LOG_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\live-2099-01",
+      "SPIDEY_STALL_EXIT": "1",
+      "SPIDEY_STALL": "20"
+    },
+    "exitCode": 0,
+    "seconds": 102.06300000002375,
+    "images": [
+      "frame_01244.png",
+      "frame_01424.png",
+      "frame_01664.png"
+    ],
+    "acceptance": "Listed gameplay frames inspected: selected suit, environment, swing line and post-release pose visible",
+    "acceptedGameplayImages": [
+      "frame_01424.png",
+      "frame_01664.png"
+    ],
+    "notVerified": [
+      "Full level completion",
+      "Audio",
+      "Every animation in gameplay",
+      "Other levels"
+    ]
+  },
+  {
+    "suit": "smu-poisonrhino",
+    "level": "l5a3",
+    "executableSha256": "00964957baa38fe8c0adb204536c33731d02d29bc2de44d85a023067a56f669a",
+    "actorSha256": "e4f7cc4c350f904ea424b1c62601350b0c9ddd7ec0c477294963df3b4ed6d194",
+    "capture": "Game framebuffer; process-local input only; no desktop capture or OS input",
+    "environment": {
+      "RECOMP_CAPTURE_HIDDEN": "1",
+      "RECOMP_RENDER_SCALE": "3",
+      "SPIDEY_WIDE": "1",
+      "SPIDEY_SCRIPT_EXCLUSIVE": "1",
+      "SPIDEY_SCRIPT": "title.bmr+120:start:12;title.bmr+420:cross:12;title.bmr+720:cross:12;l5a3_t.trg+240:cross:12;l5a3_t.trg+275:r2:120",
+      "SPIDEY_LEVEL": "l5a3",
+      "SPIDEY_BOOT_SKIP_UNTIL": "title.bmr",
+      "SPIDEY_SUIT_MOD_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\live-poisonrhino-01\\suits",
+      "SPIDEY_RETARGET_TRACE": "1",
+      "SPIDEY_MOD_TRACE": "1",
+      "SPIDEY_SHOT_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\live-poisonrhino-01",
+      "SPIDEY_SHOTS": "l5a3_t.trg+180,l5a3_t.trg+360,l5a3_t.trg+600",
+      "SPIDEY_CAPTURE_PRESENTED": "1",
+      "SPIDEY_EXIT": "2400",
+      "SPIDEY_LOG_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\live-poisonrhino-01",
+      "SPIDEY_STALL_EXIT": "1",
+      "SPIDEY_STALL": "20"
+    },
+    "exitCode": 0,
+    "seconds": 98.96799999999348,
+    "images": [
+      "frame_01266.png",
+      "frame_01446.png",
+      "frame_01686.png"
+    ],
+    "acceptance": "Listed gameplay frames inspected: selected suit, environment, swing line and post-release pose visible",
+    "acceptedGameplayImages": [
+      "frame_01446.png",
+      "frame_01686.png"
+    ],
+    "notVerified": [
+      "Full level completion",
+      "Audio",
+      "Every animation in gameplay",
+      "Other levels"
+    ]
+  },
+  {
+    "suit": "smu-venom-2099",
+    "level": "l5a3",
+    "executableSha256": "00964957baa38fe8c0adb204536c33731d02d29bc2de44d85a023067a56f669a",
+    "actorSha256": "25e813dc1bab12baffb1081b48bbcff4771421ce6651bc5a09aef19a2e4d9e6c",
+    "capture": "Game framebuffer; process-local input only; no desktop capture or OS input",
+    "environment": {
+      "RECOMP_CAPTURE_HIDDEN": "1",
+      "RECOMP_RENDER_SCALE": "3",
+      "SPIDEY_WIDE": "1",
+      "SPIDEY_SCRIPT_EXCLUSIVE": "1",
+      "SPIDEY_SCRIPT": "title.bmr+120:start:12;title.bmr+420:cross:12;title.bmr+720:cross:12;l5a3_t.trg+240:cross:12;l5a3_t.trg+275:r2:120",
+      "SPIDEY_LEVEL": "l5a3",
+      "SPIDEY_BOOT_SKIP_UNTIL": "title.bmr",
+      "SPIDEY_SUIT_MOD_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\live-venom2099-01\\suits",
+      "SPIDEY_RETARGET_TRACE": "1",
+      "SPIDEY_MOD_TRACE": "1",
+      "SPIDEY_SHOT_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\live-venom2099-01",
+      "SPIDEY_SHOTS": "l5a3_t.trg+180,l5a3_t.trg+360,l5a3_t.trg+600",
+      "SPIDEY_CAPTURE_PRESENTED": "1",
+      "SPIDEY_EXIT": "2400",
+      "SPIDEY_LOG_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\live-venom2099-01",
+      "SPIDEY_STALL_EXIT": "1",
+      "SPIDEY_STALL": "20"
+    },
+    "exitCode": 0,
+    "seconds": 122.92200000002049,
+    "images": [
+      "frame_01243.png",
+      "frame_01423.png",
+      "frame_01663.png"
+    ],
+    "acceptance": "Listed gameplay frames inspected: selected suit, environment, swing line and post-release pose visible",
+    "acceptedGameplayImages": [
+      "frame_01423.png",
+      "frame_01663.png"
+    ],
+    "notVerified": [
+      "Full level completion",
+      "Audio",
+      "Every animation in gameplay",
+      "Other levels"
+    ]
+  }
+]

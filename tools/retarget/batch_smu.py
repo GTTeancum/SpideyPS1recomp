@@ -21,7 +21,9 @@ def save_json(path:Path,value):
 TEXTURE_ALIASES={'_099_new_d':'2099_new_d'}
 DISPLAY={'1602':'SMU 1602','2099':'SMU 2099','2099_new':'SMU 2099 NEW',
  'ben_reilly_unmasked':'SMU BEN UNMASKED','bigtime':'SMU BIG TIME','bigtime_red':'SMU BIG TIME RED',
- 'gwen':'SMU SPIDER-GWEN','gwenom':'SMU GWENOM','noir':'SMU NOIR','spiderham':'SMU SPIDER-HAM'}
+ 'gwen':'SMU SPIDER-GWEN','gwenom':'SMU GWENOM','noir':'SMU NOIR','spiderham':'SMU SPIDER-HAM',
+ 'venom':'SMU VENOM','poisonrhino':'SMU POISON RHINO','venom_2099':'SMU VENOM 2099',
+ 'scarlet_spiderham':'SMU SCARLET HAM','2211':'SMU 2211'}
 
 def inventory(samples:Path):
     rows=list(csv.DictReader((samples/'costume-catalogue.csv').open(encoding='utf-8-sig')))

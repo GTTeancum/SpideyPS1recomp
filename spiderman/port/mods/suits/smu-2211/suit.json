@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-2211",
+  "name": "SMU 2211",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "8BC5D8B3": "textures/diffuse.png"
+  }
+}

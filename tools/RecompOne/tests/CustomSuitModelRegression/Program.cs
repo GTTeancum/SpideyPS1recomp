@@ -22,6 +22,13 @@ byte[] Fixture(int flags = 0x1f, int faceLength = 36)
 }
 byte[] bytes = Fixture();
 var model = SuitModel.Parse(bytes);
+foreach (int size in new[] { SuitModel.ByteLimit + 1, SuitModel.GuestByteLimit + 1 })
+{
+    byte[] oversized = new byte[size];
+    bytes.CopyTo(oversized, 0);
+    try { SuitModel.Parse(oversized); throw new Exception("accepted oversized non-retargeted actor"); }
+    catch (InvalidDataException) { Console.WriteLine("PASS: source/guest size bound " + size); }
+}
 if (!model.Materials.SetEquals(new[] { 0xDEADBEEFu })) throw new Exception("material IDs not read from model");
 void Reject(Action<byte[]> mutate, string name)
 {

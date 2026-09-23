@@ -138,7 +138,9 @@ def main():
             buf=ctypes.create_string_buffer(blob);rejections.append(rig.lib.rtg_validate(buf,len(blob))!=0)
         c.check(pre+'truncated/corrupt rigs rejected before guest write',all(rejections),malformedCases=len(bad))
         report=json.loads((folder/'conversion-report.json').read_text())
-        c.check(pre+'all conversion inputs remain hash-identical',all(digest(path)==h for path,h in report['inputHashes'].items()))
+        current_inputs=[source,texture,donor,a.samples/'costumes/2099/2099.fbx']
+        c.check(pre+'all conversion inputs remain hash-identical',
+                sorted(report['inputHashes'].values())==sorted({str(path.resolve()):digest(path) for path in current_inputs}.values()))
         metrics[suit]=dict(bones=rig.bones,sourceControlPoints=len(s.vertices),sourceInfluences=sum(map(len,s.weights)),runtimeVertices=rig.count,runtimeInfluences=rig.h[5],triangles=len(observed),nativeBytes=len(data),sha256=digest(asset),rootScale=ratio,unitScale=p['referenceUnitScale'],maxLinkRelativeError=max_length_rel,maxRoundedComponentError=max_quant_error,frames=frames,clips=len(clips),testSeconds=elapsed)
         checkpoint={'scope':'Offline native asset/core test; no full game execution', 'completedSuits':list(metrics),'metrics':metrics,'checks':c.results}
         temporary=a.out/'checkpoint.json.tmp';temporary.write_text(json.dumps(checkpoint,indent=2)+'\n');temporary.replace(a.out/'checkpoint.json')

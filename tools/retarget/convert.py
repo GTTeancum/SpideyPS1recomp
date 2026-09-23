@@ -93,7 +93,8 @@ def convert(fbx,reference,donor,texture,out,suit_id,name):
     # DC quantizer there is no corrective flip/row shift to undo.
     rows=np.array(small)
     data.extend(struct.pack('<II',1,len(data)+8));data.extend(struct.pack('<IIIIHH',0,0x100,palette,0,128,128));data.extend(rows.tobytes())
-    if len(data)>1024*1024:raise ValueError(f'Native actor exceeds current 1 MiB bound: {len(data)}')
+    if len(data)>4*1024*1024:raise ValueError(f'Native actor exceeds 4 MiB host bound: {len(data)}')
+    if len(data)-len(blob)-8>1024*1024:raise ValueError('Native geometry exceeds 1 MiB guest bound after rig removal')
     if bytes(data[12:660])!=raw[12:660]:raise AssertionError('Object flags/origins changed')
     out.mkdir(parents=True,exist_ok=True);(out/'textures').mkdir()
     (out/'actor.psx').write_bytes(data);source_image.save(out/'textures'/'diffuse.png')
