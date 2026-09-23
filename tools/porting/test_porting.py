@@ -142,6 +142,10 @@ class DiscTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'endian'):sfd.both32(struct.pack('<II',1,2),0)
 
 class BuildStaticTests(unittest.TestCase):
+    def test_freestanding_linux_commands_reject_external_symbols(self):
+        command=commands_for('linux-x64',Path('/temporary'),freestanding_linux=True)[0]
+        self.assertIn('-nostdlib',command);self.assertIn('-fuse-ld=lld',command)
+        self.assertIn('-Wl,--no-undefined',command)
     def test_linux_native_commands_do_not_require_windows_linker(self):
         cmds=commands_for('linux-x64',Path('/temporary'));self.assertEqual(len(cmds),1);self.assertIn('--target=x86_64-unknown-linux-gnu',cmds[0]);self.assertFalse(any('lld-link' in c for c in cmds))
     def test_windows_native_commands_do_not_build_elf(self):

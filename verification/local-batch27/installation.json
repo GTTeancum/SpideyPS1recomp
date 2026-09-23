@@ -1,0 +1,14 @@
+{
+  "installedCatalogueCount": 233,
+  "addedSuits": ["smu-damon-ryder", "smu-other"],
+  "previousFilesHashCheckedUnchanged": 954,
+  "safetyBranch": "safety/pre-paged-install-20260923",
+  "managedCatalogueActors": 233,
+  "managedCatalogueFailures": 0,
+  "linuxCrossBuild": "PASS: ELF x86-64 shared object, expected seven exports, no unresolved symbols or external dependencies",
+  "linuxRuntimeExecuted": false,
+  "portabilityTests": 27,
+  "windowsGameplay": "Two individually reviewed native images for each added suit, live pose/web traces and all extra pages scheduled. See review.json and verification/paged-transport per-suit reviews.",
+  "finalVisualAcceptance": false,
+  "remaining": ["Visual fist closure", "Symbiote tongue pose review/corrections", "Linux runtime execution not verified on this Windows host"]
+}

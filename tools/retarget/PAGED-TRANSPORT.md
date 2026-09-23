@@ -1,9 +1,10 @@
 # Paged Transport Integration
 
 Status: metadata/core, native actor writing, managed loading, independent decoding
-and drawing hooks are implemented. Both large suits are staged candidates, not
-installed or accepted gameplay conversions. Windows core DLLs have been updated;
-the previous DLL is backed up. The Linux core still needs rebuilding and testing.
+and drawing hooks are implemented. Both large suits passed Windows game checks
+and are installed as batch 27. Windows and Linux core binaries are updated, with
+previous binaries backed up. Linux was cross-built and statically inspected, not
+executed; this does not claim Linux game acceptance.
 
 RTG2 version 2 remains byte-layout compatible. Version 3 retains the first 280
 header bytes and adds four uint32 fields: page count, driver-map offset, and two
@@ -40,11 +41,20 @@ bones, weights, bind matrices and skinning arithmetic do not change.
 - Both candidates now complete native sewer runs, with all extra pages scheduled,
   live pose/web traces and two individually reviewed images each. The original
   failed run remains evidence. A same-build Anti-Venom control also completed.
-- Installation and Linux core rebuild remain pending. Fist closure and other
-  catalogue-wide visual issues are separate from this transport checkpoint.
+- The two suits are installed with preserved prior catalogue files. Linux
+  freestanding cross-build has no external dependencies/unresolved symbols and
+  passes ELF/export/provenance checks; Linux execution remains unverified.
+  Fist closure and other catalogue-wide visual issues remain separate.
 
 `test_paged_rig.py` exercises the real Damon Ryder and Other sources over all
 4196 frames. It checks complete triangle assignment, page round trips, bind
 reconstruction, preserved source metadata, and malformed-page rejection. It
 also compares five specified poses for all 231 installed version-2 suits against
-the then-shipping version-2 core. This evidence is not native rendering or visual acceptance.
+the explicitly supplied `--reference-library` baseline. Identical library hashes
+are rejected so the comparison cannot silently compare the new core to itself.
+This evidence is not native rendering or visual acceptance.
+
+Linux cross-build: `python tools/retarget/build_native.py --target linux-x64 --freestanding-linux`
+requires LLVM clang++, ld.lld and llvm-readobj. It fails on unresolved symbols,
+unexpected exports or dependencies. Provenance marks `runtimeExecuted: false`
+on non-Linux hosts; ordinary Linux builds still load the library to read its ABI.

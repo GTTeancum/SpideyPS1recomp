@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "batch": "27",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "damon_ryder",
+    "other"
+  ],
+  "results": [
+    {
+      "key": "damon_ryder",
+      "id": "smu-damon-ryder",
+      "fbx": "costumes/damon_ryder/damon_ryder.fbx",
+      "fbxSha256": "f1dc4da9772d19fa9f38f0c346321c214778db2f5819d033cb94e905bbc309ee",
+      "textureFiles": [
+        "textures-png\\Damon_Ryder_gun.png",
+        "textures-png\\damon_ryder_D.png"
+      ],
+      "textureSha256": [
+        "bc0ebce53add59c2d1b143e23e88729dbfe8f85a023e350e9276de37391b42cb",
+        "fe8543de877273408a2ed4bb5bb42ed682ad5bae48e98d820e30e91ab0643d42"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 6500,
+      "sourceTriangles": 8032,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Damon_Ryder_gun.tga",
+        "damon_ryder_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Spiderman",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\damon_ryder_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "EarthX",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Damon_Ryder_gun.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1517884,
+      "outputs": {
+        "actor.psx": "5363dd706c9cdef6ad5f96ff1f6859f9e93df4902cb3ebd439515a78b62e66f3",
+        "conversion-report.json": "2c94867d29dec04883af859d3627af78675b836bd5c183d345c66cc943440cd4",
+        "suit.json": "f94eecb97336faab6f435caa65c859cfb4dcd1c48cbbc7fb4e436e27ae4848ad",
+        "textures\\diffuse-1.png": "c6c1ac2ebf01f8bfae11b33c8bad6466b29b31d745e44cbf399fa40431a01849",
+        "textures\\diffuse.png": "0dcdf59bb0b74f0fc97c2499527f3f599813709c9e9044f8a47216963cb3c14d"
+      }
+    },
+    {
+      "key": "other",
+      "id": "smu-other",
+      "fbx": "costumes/other/other.fbx",
+      "fbxSha256": "178792360da26b30b4bbf35373bc0c2e2035ba19645863d62533b7a2b705b3f8",
+      "textureFiles": [
+        "textures-png\\other_d.png"
+      ],
+      "textureSha256": [
+        "433a3657f4c7eb2d71110d3fd132828ea475d0d4583380997c62df5ec86c7758"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 4511,
+      "sourceTriangles": 5022,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "other_d.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "BlackCat",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\other_d.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Material__25",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\other_d.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1247376,
+      "outputs": {
+        "actor.psx": "9031a434b35c287c93f0ee8bc9b2f411bc6d3257dc1583133e9a149070baa870",
+        "conversion-report.json": "7fbfdf0d52f7eecad8955acef9b2ae01b34297afa34247e463d4d3614e1aa7ef",
+        "suit.json": "34fd3c303548ec8cb2645c3df210a44d103f6c4be05e96640f7ab994027756fa",
+        "textures\\diffuse-1.png": "f14447e367ac59b06fd01ea1fd4e5743979cbdb1f966a5cf4d8c61aa7361771d",
+        "textures\\diffuse.png": "f14447e367ac59b06fd01ea1fd4e5743979cbdb1f966a5cf4d8c61aa7361771d"
+      }
+    }
+  ]
+}

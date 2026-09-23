@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-other",
+  "name": "SMU OTHER",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "FDAC5987": "textures/diffuse.png",
+    "53DBD6CC": "textures/diffuse-1.png"
+  }
+}

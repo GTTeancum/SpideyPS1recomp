@@ -1,0 +1,48 @@
+{
+  "batch": 27,
+  "keys": [
+    "damon_ryder",
+    "other"
+  ],
+  "representative": "smu-damon-ryder",
+  "representatives": [
+    "smu-damon-ryder",
+    "smu-other"
+  ],
+  "images": {
+    "smu-damon-ryder/frame_01556.png": "98676ee1839ff8dcd5ab1ac70d360da48c09e31c974541e3c16720f3c698a91d",
+    "smu-damon-ryder/frame_01861.png": "64bfc2d4846a89a21f9f8461144e1bbd2a2ba53cb2763ff62abda1f2bc880237",
+    "smu-other/frame_01581.png": "03c0b80a4d2a972a00a38d68efc8dead2c0ad9d1c0fabcb82f289e0d6b0668d4",
+    "smu-other/frame_01886.png": "510bca3b1f517a9a326754f29ae1942826151e75e96e12bd17ad00e93deba2fe"
+  },
+  "visualReview": "Both candidates individually reviewed in two genuine native game captures each; full body/material/page transport checkpoint passes. Free-hand fist closure remains unresolved. See per-suit reviews.",
+  "perSuitReviews": [
+    {
+      "suit": "smu-damon-ryder",
+      "actorSha256": "5363dd706c9cdef6ad5f96ff1f6859f9e93df4902cb3ebd439515a78b62e66f3",
+      "visualReview": "Individually reviewed swing frame 1556 and post-swing frame 1861. Blue/white outfit, bare forearms, gloves, belt, both holstered accessories, legs and boots are present with textures. Web reaches the raised hand. Swing camera intersects the near ceiling, producing clipped ceiling edges; the post-swing sewer view is clear. Free hand remains open. Native trace schedules all 11 extra pages; offline checks prove all 8032 triangles and both material slots. The two views cannot expose every triangle.",
+      "pages": 29,
+      "images": {
+        "frame_01556.png": "98676ee1839ff8dcd5ab1ac70d360da48c09e31c974541e3c16720f3c698a91d",
+        "frame_01861.png": "64bfc2d4846a89a21f9f8461144e1bbd2a2ba53cb2763ff62abda1f2bc880237"
+      },
+      "installed": false,
+      "scope": "Individually reviewed native framebuffer images with process-local input. No desktop capture. Offline triangle coverage and native page scheduling supplement these two views; this is not full animation visual acceptance. Fist closure remains open."
+    },
+    {
+      "suit": "smu-other",
+      "actorSha256": "9031a434b35c287c93f0ee8bc9b2f411bc6d3257dc1583133e9a149070baa870",
+      "visualReview": "Individually reviewed swing frame 1581 and crouch frame 1886. Pink body, black surface markings and red back emblem are visible with head, torso, arms and legs present. The raised hand meets the web; sewer background and HUD render normally. The free hand is open in the swing. Native trace schedules all three extra pages; offline checks prove all 5022 triangles and both material slots. Rear views do not independently expose every surface or any occluded mouth detail.",
+      "pages": 21,
+      "images": {
+        "frame_01581.png": "03c0b80a4d2a972a00a38d68efc8dead2c0ad9d1c0fabcb82f289e0d6b0668d4",
+        "frame_01886.png": "510bca3b1f517a9a326754f29ae1942826151e75e96e12bd17ad00e93deba2fe"
+      },
+      "installed": false,
+      "scope": "Individually reviewed native framebuffer images with process-local input. No desktop capture. Offline triangle coverage and native page scheduling supplement these two views; this is not full animation visual acceptance. Fist closure remains open."
+    }
+  ],
+  "installed": true,
+  "previousFilesUnchanged": 954,
+  "limitations": "Windows native game runs are verified. Linux core cross-built and statically inspected, not executed. Muted runs do not verify audio; two images do not establish full animation visual acceptance."
+}

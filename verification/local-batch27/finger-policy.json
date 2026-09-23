@@ -1,0 +1,49 @@
+{
+  "scope": "Offline compiled-core geometry check of fist-policy curl; not visual hand closure or contact validation.",
+  "status": "PASS",
+  "count": 2,
+  "results": [
+    {
+      "suit": "smu-damon-ryder",
+      "assetSha256": "5363dd706c9cdef6ad5f96ff1f6859f9e93df4902cb3ebd439515a78b62e66f3",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 356.7789306640625,
+          "meanForwardClosed": 180.86431884765625,
+          "distalVertices": 105
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 349.8869934082031,
+          "meanForwardClosed": 187.1142578125,
+          "distalVertices": 120
+        }
+      ]
+    },
+    {
+      "suit": "smu-other",
+      "assetSha256": "9031a434b35c287c93f0ee8bc9b2f411bc6d3257dc1583133e9a149070baa870",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 357.83343505859375,
+          "meanForwardClosed": 170.15174865722656,
+          "distalVertices": 31
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 349.4293212890625,
+          "meanForwardClosed": 179.80078125,
+          "distalVertices": 37
+        }
+      ]
+    }
+  ]
+}

@@ -1,24 +1,13 @@
 {
   "catalogueCount": 233,
-  "convertedInstalled": 231,
-  "batchVerified": 231,
-  "remainingUnconverted": 2,
+  "convertedInstalled": 233,
+  "batchVerified": 233,
+  "remainingUnconverted": 0,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 6013,
-  "animationFrames": 969276,
-  "offlineSwingFrames": 26565,
-  "structuralBlockers": [
-    {
-      "key": "damon_ryder",
-      "status": "unsupported",
-      "reason": "Full-quality mesh has 6500 runtime vertices; native RTG2 supports at most 4096. Refused to merge normals, weights or drop geometry"
-    },
-    {
-      "key": "other",
-      "status": "unsupported",
-      "reason": "Full-quality mesh has 4511 runtime vertices; native RTG2 supports at most 4096. Refused to merge normals, weights or drop geometry"
-    }
-  ],
+  "offlineChecks": 6068,
+  "animationFrames": 977668,
+  "offlineSwingFrames": 26795,
+  "structuralBlockers": [],
   "verificationScope": "Full offline animation and web tests per verified suit; representative native gameplay per batch, not all suits. Batch-verified counts are conversion checkpoints, not final visual acceptance; see openIssues.",
   "liveReviews": [
     {
@@ -273,11 +262,23 @@
       },
       "notes": "Reviewed both native Poison Hunter frames: full body, limbs, head details and both material regions appear during swing and grounded poses. Web line reaches the raised wrist region. Both hand-variant packets retain identical full geometry; all 5852 original triangles pass exact coverage tests. Free hand remains claw-like, covered by the open visual-fist issue. Arana Gymnast has its own separately reviewed two-frame native capture in the arana evidence folder. These are conversion/rendering checkpoints, not final catalogue or finger-pose acceptance.",
       "slowRunWarnings": 0
+    },
+    {
+      "batch": 27,
+      "representative": "smu-damon-ryder",
+      "images": {
+        "smu-damon-ryder/frame_01556.png": "98676ee1839ff8dcd5ab1ac70d360da48c09e31c974541e3c16720f3c698a91d",
+        "smu-damon-ryder/frame_01861.png": "64bfc2d4846a89a21f9f8461144e1bbd2a2ba53cb2763ff62abda1f2bc880237",
+        "smu-other/frame_01581.png": "03c0b80a4d2a972a00a38d68efc8dead2c0ad9d1c0fabcb82f289e0d6b0668d4",
+        "smu-other/frame_01886.png": "510bca3b1f517a9a326754f29ae1942826151e75e96e12bd17ad00e93deba2fe"
+      },
+      "notes": "Both candidates individually reviewed in two genuine native game captures each; full body/material/page transport checkpoint passes. Free-hand fist closure remains unresolved. See per-suit reviews.",
+      "slowRunWarnings": 0
     }
   ],
   "noPush": true,
   "limitations": [
-    "2 native mesh-capacity failures remain; no source geometry was decimated.",
+    "0 native mesh-capacity failures remain; no source geometry was decimated.",
     "Some Debug game runs have low-frame-rate warnings.",
     "Transparency uses the existing PSX-compatible shader path; source RGB/alpha and material bindings are retained.",
     "Full campaign, live SFD/audio, Linux execution and SM2 suit retargeting are not accepted by these tests."
@@ -302,16 +303,6 @@
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
       "evidence": "verification/finger-policy/installed-231.json",
       "next": "Inspect and correct finger curl/orientation using representative hand geometry and native close views."
-    },
-    {
-      "id": "runtime-vertex-capacity",
-      "status": "open",
-      "suits": [
-        "smu-damon-ryder",
-        "smu-other"
-      ],
-      "finding": "6500 and 4511 runtime vertices exceed the current 4096-vertex, 18-packet renderer transport. Raising only metadata limits cannot support these assets.",
-      "next": "Extend actual rendering transport without losing triangles, normals, weights or materials, and test in the game."
     }
   ],
   "sourceLimitations": [

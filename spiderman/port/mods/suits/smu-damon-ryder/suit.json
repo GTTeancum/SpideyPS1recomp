@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-damon-ryder",
+  "name": "SMU DAMON RYDER",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "6312AACD": "textures/diffuse.png",
+    "7DF94C5B": "textures/diffuse-1.png"
+  }
+}

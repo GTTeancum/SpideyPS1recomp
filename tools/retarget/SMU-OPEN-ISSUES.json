@@ -51,10 +51,11 @@
     },
     {
       "id": "runtime-vertex-capacity",
-      "status": "open",
+      "status": "resolved",
       "suits": ["smu-damon-ryder", "smu-other"],
-      "finding": "6500 and 4511 runtime vertices exceed the current 4096-vertex, 18-packet renderer transport. Raising only metadata limits cannot support these assets.",
-      "next": "Extend actual rendering transport without losing triangles, normals, weights or materials, and test in the game."
+      "finding": "Damon Ryder's 6500 vertices/8032 triangles and Other's 4511 vertices/5022 triangles are preserved across 29 and 21 native mesh pages. Both retain 18 animation drivers, source rigs/weights and both materials. Full animation/web/managed checks pass, and two individually reviewed native images per suit complement all-extra-pages scheduling traces. Packed animation required a scoped count correction, now covered by native runs and regression checks.",
+      "evidence": "verification/local-batch27/review.json",
+      "resolution": "Paged transport supports both full-quality suits without decimation. Windows gameplay is verified; the rebuilt Linux core is cross-compiled and statically inspected, not executed on Linux. Visual fist closure remains a separate open issue."
     }
   ]
 }

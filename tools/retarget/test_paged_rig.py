@@ -18,7 +18,7 @@ from rig_blob import MAGIC
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    for name in ('project','samples','library','animation-bank','out'):
+    for name in ('project','samples','library','reference-library','animation-bank','out'):
         p.add_argument('--'+name,type=Path,required=True)
     a=p.parse_args()
     origins,ground,_,_=donor_info((a.project/'spiderman/extracted/wad/spidey.psx').read_bytes())
@@ -27,13 +27,16 @@ def main():
     poses=np.concatenate(read(a.animation_bank))
     assert len(poses)==4196
     report={'scope':'Offline paged metadata/core only; no native actor or game acceptance.',
-            'librarySha256':hashlib.sha256(a.library.read_bytes()).hexdigest(),'suits':[]}
+            'librarySha256':hashlib.sha256(a.library.read_bytes()).hexdigest(),
+            'referenceLibrarySha256':hashlib.sha256(a.reference_library.read_bytes()).hexdigest(),'suits':[]}
+    assert report['librarySha256']!=report['referenceLibrarySha256'], 'Legacy comparison requires a distinct baseline core'
     a.out.mkdir(parents=True,exist_ok=True)
     legacy=[]
     for actor in sorted((a.project/'spiderman/port/mods/suits').glob('*/actor.psx')):
         tags,_,_=chunks(actor.read_bytes())
         if MAGIC not in tags:continue
-        original=Rig(tags[MAGIC]);candidate=Rig(tags[MAGIC],library=a.library)
+        if struct.unpack_from('<I',tags[MAGIC],4)[0]!=2:continue
+        original=Rig(tags[MAGIC],library=a.reference_library);candidate=Rig(tags[MAGIC],library=a.library)
         assert original.h[1]==2
         for index in (0,1,1000,2500,4195):
             old_vertices,old_bones=original.evaluate(poses[index])

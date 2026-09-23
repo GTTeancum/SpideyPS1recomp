@@ -1,15 +1,237 @@
 {
   "target": "linux-x64",
-  "abi": "0x00020002",
+  "abi": null,
+  "runtimeExecuted": false,
+  "freestanding": true,
+  "inspection": {
+    "FileSummary": {
+      "File": "C:\\Programming\\GitHub\\OpenSpideyPS1\\tools\\retarget\\native\\bin\\libOpenSpideyRetarget.so",
+      "Format": "elf64-x86-64",
+      "Arch": "x86_64",
+      "AddressSize": "64bit",
+      "LoadName": "<Not found>"
+    },
+    "NeededLibraries": [],
+    "DynamicSymbols": [
+      {
+        "Symbol": {
+          "Name": {
+            "Name": "",
+            "Value": 0
+          },
+          "Value": 0,
+          "Size": 0,
+          "Binding": {
+            "Name": "Local",
+            "Value": 0
+          },
+          "Type": {
+            "Name": "None",
+            "Value": 0
+          },
+          "Other": {
+            "Value": 0,
+            "Flags": []
+          },
+          "Section": {
+            "Name": "Undefined",
+            "Value": 0
+          }
+        }
+      },
+      {
+        "Symbol": {
+          "Name": {
+            "Name": "rtg_abi",
+            "Value": 1
+          },
+          "Value": 5792,
+          "Size": 6,
+          "Binding": {
+            "Name": "Global",
+            "Value": 1
+          },
+          "Type": {
+            "Name": "Function",
+            "Value": 2
+          },
+          "Other": {
+            "Value": 0,
+            "Flags": []
+          },
+          "Section": {
+            "Name": ".text",
+            "Value": 8
+          }
+        }
+      },
+      {
+        "Symbol": {
+          "Name": {
+            "Name": "rtg_validate",
+            "Value": 9
+          },
+          "Value": 5808,
+          "Size": 1952,
+          "Binding": {
+            "Name": "Global",
+            "Value": 1
+          },
+          "Type": {
+            "Name": "Function",
+            "Value": 2
+          },
+          "Other": {
+            "Value": 0,
+            "Flags": []
+          },
+          "Section": {
+            "Name": ".text",
+            "Value": 8
+          }
+        }
+      },
+      {
+        "Symbol": {
+          "Name": {
+            "Name": "rtg_pose",
+            "Value": 22
+          },
+          "Value": 7760,
+          "Size": 1979,
+          "Binding": {
+            "Name": "Global",
+            "Value": 1
+          },
+          "Type": {
+            "Name": "Function",
+            "Value": 2
+          },
+          "Other": {
+            "Value": 0,
+            "Flags": []
+          },
+          "Section": {
+            "Name": ".text",
+            "Value": 8
+          }
+        }
+      },
+      {
+        "Symbol": {
+          "Name": {
+            "Name": "rtg_evaluate",
+            "Value": 31
+          },
+          "Value": 10320,
+          "Size": 1112,
+          "Binding": {
+            "Name": "Global",
+            "Value": 1
+          },
+          "Type": {
+            "Name": "Function",
+            "Value": 2
+          },
+          "Other": {
+            "Value": 0,
+            "Flags": []
+          },
+          "Section": {
+            "Name": ".text",
+            "Value": 8
+          }
+        }
+      },
+      {
+        "Symbol": {
+          "Name": {
+            "Name": "rtg_to_part",
+            "Value": 44
+          },
+          "Value": 11440,
+          "Size": 2037,
+          "Binding": {
+            "Name": "Global",
+            "Value": 1
+          },
+          "Type": {
+            "Name": "Function",
+            "Value": 2
+          },
+          "Other": {
+            "Value": 0,
+            "Flags": []
+          },
+          "Section": {
+            "Name": ".text",
+            "Value": 8
+          }
+        }
+      },
+      {
+        "Symbol": {
+          "Name": {
+            "Name": "rtg_web_target",
+            "Value": 56
+          },
+          "Value": 13488,
+          "Size": 1158,
+          "Binding": {
+            "Name": "Global",
+            "Value": 1
+          },
+          "Type": {
+            "Name": "Function",
+            "Value": 2
+          },
+          "Other": {
+            "Value": 0,
+            "Flags": []
+          },
+          "Section": {
+            "Name": ".text",
+            "Value": 8
+          }
+        }
+      },
+      {
+        "Symbol": {
+          "Name": {
+            "Name": "rtg_web_segment",
+            "Value": 71
+          },
+          "Value": 14656,
+          "Size": 760,
+          "Binding": {
+            "Name": "Global",
+            "Value": 1
+          },
+          "Type": {
+            "Name": "Function",
+            "Value": 2
+          },
+          "Other": {
+            "Value": 0,
+            "Flags": []
+          },
+          "Section": {
+            "Name": ".text",
+            "Value": 8
+          }
+        }
+      }
+    ]
+  },
   "boundary": "Native library build only; not a complete game build.",
   "files": [
     {
-      "path": "tools/retarget/native/retarget_core.cpp",
-      "sha256": "b49029ee8d2fd7be8f4fe99d859fe300ad44d3132f766933c288cd32aaafc221"
+      "path": "tools\\retarget\\native\\retarget_core.cpp",
+      "sha256": "e99198a1ab0909875fd9ca0f7907db598494da5a924a44cfcad40fd257cf3c58"
     },
     {
-      "path": "tools/retarget/native/bin/libOpenSpideyRetarget.so",
-      "sha256": "46bbe188b7ab98e25fcc88be0d56c6b23d728a321a8f87abdf725b47d5141753"
+      "path": "tools\\retarget\\native\\bin\\libOpenSpideyRetarget.so",
+      "sha256": "c165fe12628ad4229af41426653040bcad43d6abcb41fe8cede8ff24f47813a6"
     }
   ]
 }
