@@ -1,0 +1,26 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-2211-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-benreilly-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-bigtime-isolation",
+    "exitCode": 0
+  }
+]

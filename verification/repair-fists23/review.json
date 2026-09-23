@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-2211",
+      "previousActorSha256": "1786ebede9ca8f94014df24b59404daecd5bac371f3faf3ea264ad1dca391a69",
+      "actorSha256": "8a330f0f31e2172030c0f0d8ef5f63342efeba1d5ace0a1c47b73d82bf9f5f96",
+      "visualReview": "Reviewed the two native game images sequentially: frame_01607.png and its exact native close-up crop. Spider-Man 2211 retains its high-geometry body, white/red/blue materials and forearm armor. Both partially visible hands remain compact within their palm silhouettes, with no lateral finger spread. This is representative native silhouette evidence, not exhaustive contact proof. The pose has no visible web strand; live web appearance is not claimed, while the separate 115-frame offline endpoint regression passes.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01607.png": "64f418e9b0b9961a89ac76b6cc189dc6f06973aa6a47bd3fb8be185cdffcf4c0",
+        "frame_01607_closeup.png": "a7135f7a30ac8fbffa45a61541c468bb99a667209e24119bdeec249e46a99c07"
+      }
+    },
+    {
+      "suit": "smu-benreilly",
+      "previousActorSha256": "9df5673ea82e166ab4dc2cfd529bc047160d012d952e71866d8ee988a5a9946e",
+      "actorSha256": "137ddf645d35f8eef65249ded31aa498dac12ff573bd8ba5726b04f68320676c",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2211.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-bigtime",
+      "previousActorSha256": "64d595cda9ae79f3b7624011241cd0438723c3450761c4ee3a98f50fd840b0b6",
+      "actorSha256": "ae11bc25f1ae02b61b0760fa879f5b0b0a2b31a8ff4382602ab499ac9d7aedd0",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2211.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-2211"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-2211\\actor.psx",
+    "smu-2211\\conversion-report.json",
+    "smu-benreilly\\actor.psx",
+    "smu-benreilly\\conversion-report.json",
+    "smu-bigtime\\actor.psx",
+    "smu-bigtime\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-2211/frame_01607.png plus its exact close-up crop"
+  }
+}

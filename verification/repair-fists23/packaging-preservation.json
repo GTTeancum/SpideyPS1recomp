@@ -1,0 +1,31 @@
+[
+  {
+    "suit": "smu-2211",
+    "beforeActorSha256": "1786ebede9ca8f94014df24b59404daecd5bac371f3faf3ea264ad1dca391a69",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-benreilly",
+    "beforeActorSha256": "9df5673ea82e166ab4dc2cfd529bc047160d012d952e71866d8ee988a5a9946e",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-bigtime",
+    "beforeActorSha256": "64d595cda9ae79f3b7624011241cd0438723c3450761c4ee3a98f50fd840b0b6",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": [
+      {
+        "file": "suit.json",
+        "generatedSha256": "e98cea154c0a3721e04a801ca02a6954bb31be277cc07d382437918c1e5bc6ce",
+        "retainedSha256": "51b3d8cbc516094bf536a6b77a9d3c6ec10ca4d93869dc32cc32a9c777d80d3b"
+      },
+      {
+        "file": "textures/diffuse.png",
+        "generatedSha256": "68651cbf97aaf177e4638967ca0625f48ef6e0b5fd8f0cb35177c16c7d466a58",
+        "retainedSha256": "024c220de7a3a7197b4d0c18bd18662af67b6982c992c2cf87045ea85a96d3c2"
+      }
+    ]
+  }
+]
