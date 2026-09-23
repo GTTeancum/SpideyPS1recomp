@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-dusk",
+      "previousActorSha256": "e4eddb1f1c49a63db9245d7ea894c8c2b79ba85e494baa03a8cb90a4a7ee49a3",
+      "actorSha256": "13ad42c27277f20acca5efa3fb303003cd47e0bfcacf562d3c4113e7acb35074",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-fearitself.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-endofearth",
+      "previousActorSha256": "0c9ea7a2573fb00a2a48d5643bbd7954fc11e85270063f38a0fb582f3053b957",
+      "actorSha256": "802fc05103884ac944a1bccda8dfbbb7977f85c05def4141467d4d3c35c37748",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-fearitself.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-fearitself",
+      "previousActorSha256": "1d66f4dfc8606118b8e048776e31454ef5352b66eaac57ef8095ade9751abc36",
+      "actorSha256": "76cf80512eb2e8bc9918afbb89028871274aa5258ac3064f940526f65abe64b3",
+      "visualReview": "Reviewed the two native game images sequentially: frame_01583.png and its exact native close-up crop. Fear Itself retains its luminous material, complete body geometry and both large forearm blades. The visible fists are compact within their palm silhouettes without lateral finger spread. This is representative native silhouette evidence, not exhaustive contact proof. The pose has no visible web strand; live web appearance is not claimed, while the separate 115-frame offline endpoint regression passes.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01583.png": "8b6d18f4ae7c80e95e95b74c09ce92820fc2cebfd74494fd42a7276388efa8a7",
+        "frame_01583_closeup.png": "e3ded6e6f5ed9a2e147d0ef8cc906681192910a69eab295c4a6544b3003063f3"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-fearitself"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-dusk\\actor.psx",
+    "smu-dusk\\conversion-report.json",
+    "smu-endofearth\\actor.psx",
+    "smu-endofearth\\conversion-report.json",
+    "smu-fearitself\\actor.psx",
+    "smu-fearitself\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-fearitself/frame_01583.png plus its exact close-up crop"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "dusk",
+      "id": "smu-dusk",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.92822265625,
+        9.330322265625
+      ],
+      "assetSha256": "13ad42c27277f20acca5efa3fb303003cd47e0bfcacf562d3c4113e7acb35074",
+      "captureSha256": "ed8b5e77d9dd3d7d7382fd7ffc4b779d3f50bca55c2b96143abca808a4dc098e"
+    },
+    {
+      "key": "endofearth",
+      "id": "smu-endofearth",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.05859375,
+        10.460693359375
+      ],
+      "assetSha256": "802fc05103884ac944a1bccda8dfbbb7977f85c05def4141467d4d3c35c37748",
+      "captureSha256": "83fbf8b9f4d42d503beb78b28c338b0b739b219008628bd60e901b8721046720"
+    },
+    {
+      "key": "fearitself",
+      "id": "smu-fearitself",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.72021484375,
+        6.122314453125
+      ],
+      "assetSha256": "76cf80512eb2e8bc9918afbb89028871274aa5258ac3064f940526f65abe64b3",
+      "captureSha256": "b8b481d4c5d6cbc805f5324913393a4d14aac3b9f569ba09b3066b1144e21ce1"
+    }
+  ]
+}

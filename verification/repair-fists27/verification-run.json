@@ -1,0 +1,26 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-dusk-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-endofearth-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-fearitself-isolation",
+    "exitCode": 0
+  }
+]

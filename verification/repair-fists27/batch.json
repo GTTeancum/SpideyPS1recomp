@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch27",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "dusk",
+    "endofearth",
+    "fearitself"
+  ],
+  "results": [
+    {
+      "key": "dusk",
+      "id": "smu-dusk",
+      "fbx": "costumes/dusk/dusk.fbx",
+      "fbxSha256": "7ecf810c367ab0858b4c8d07ae9a4239f949b44a5c58d83965a697eec27a057d",
+      "textureFiles": [
+        "textures-png\\Black_Char.png",
+        "textures-png\\Black_Char_body.png"
+      ],
+      "textureSha256": [
+        "3c1a8ee2ada3d3f270125a43d17971946c1ac33fa18e8f62dcea1789661a1403",
+        "4d6ffe0b3eb87e07aaffb446701c1347d546634d2d4be6eeaacca803de41d097"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1753,
+      "sourceTriangles": 2946,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Black_Char.tga",
+        "Black_Char_body.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Hole",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Black_Char_body.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Material_01",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Black_Char.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              1,
+              0
+            ],
+            "tileCount": [
+              1,
+              2
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 740808,
+      "outputs": {
+        "actor.psx": "13ad42c27277f20acca5efa3fb303003cd47e0bfcacf562d3c4113e7acb35074",
+        "conversion-report.json": "15ee1cd8c118ecc8f093cd41b662b2cb496cf4e208587d58940b762e4fbcdad7",
+        "suit.json": "3cfffc6b9b2e3cdb1f9818f4e7e98b0cb994417bf674ab8231714b2a33841b04",
+        "textures\\diffuse-1.png": "a88580df410d2f08e04a85a176b0512079a3a7b12450894bbd7a87a11de8c5b6",
+        "textures\\diffuse.png": "d92c2d121d13f46c450efacf59b5eddf1199875a83fcee9d92c3a2758e6716a2"
+      }
+    },
+    {
+      "key": "endofearth",
+      "id": "smu-endofearth",
+      "fbx": "costumes/endofearth/endofearth.fbx",
+      "fbxSha256": "83e680930a647e6e483960b64f16346b092093f9f90d7564a414399857dd8d60",
+      "textureFiles": [
+        "textures-png\\SpidermanEOE_D.png"
+      ],
+      "textureSha256": [
+        "816b25be627d999bdb4ff44ac52eb2e3621e261f781c571f22802674e445e3f5"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2020,
+      "sourceTriangles": 3446,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanEOE_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "EndsOfEarth",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanEOE_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 766284,
+      "outputs": {
+        "actor.psx": "802fc05103884ac944a1bccda8dfbbb7977f85c05def4141467d4d3c35c37748",
+        "conversion-report.json": "2ee5b2eff20013be7f897ba3f3f59c8649398058050313f25ba262d441a707a1",
+        "suit.json": "d880bc80575cb5034d7ce123c224ed37707a3f785f5ebb0654b2a99afb11efd8",
+        "textures\\diffuse.png": "c51466f8311d0f6bfa2816ef246ca279efe5b49dce475405988fb6ca75de86a8"
+      }
+    },
+    {
+      "key": "fearitself",
+      "id": "smu-fearitself",
+      "fbx": "costumes/fearitself/fearitself.fbx",
+      "fbxSha256": "f7a5277e9233326814be686762ca86faec2b9963b89c80a05b1d6d629b89faf6",
+      "textureFiles": [
+        "textures-png\\FearItself_D.png"
+      ],
+      "textureSha256": [
+        "4cc9f84b90b2beed02c1d3119e2d4f5f2913327ccd9258f790a168b5fa238bc8"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2478,
+      "sourceTriangles": 3580,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "FearItself_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "FearItself",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\FearItself_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 892364,
+      "outputs": {
+        "actor.psx": "76cf80512eb2e8bc9918afbb89028871274aa5258ac3064f940526f65abe64b3",
+        "conversion-report.json": "6c4b2925034c0b43ffef4c3ad9c771b66c9fb9f7abe8b43b0e5059a80451e4f2",
+        "suit.json": "e8d29e80257877ad6b0572b918d449cbd09ddb2ff4953def218bf25996cfdb31",
+        "textures\\diffuse.png": "115e311625df6ddf95166605778dfa1144fb7fb42d5e01bbd0ee8b9ac000c971"
+      }
+    }
+  ]
+}
