@@ -20,6 +20,23 @@ public static class SuitRetargeting
     static bool Ram(uint p, uint n) => n <= 0x800000 && p >= 0x80000000 && p <= 0x80800000 - n;
     static short Quantize(float x) => checked((short)MathF.Round(x));
     static Vector3 Point(float[] v, int i) => new(v[i * 6], v[i * 6 + 1], v[i * 6 + 2]);
+    public static void UsePreservedAnimationCount(CpuContext c, IMemory m)
+    {
+        int selected = Costume.LoadedCostume;
+        if (selected != SuitMods.Active || !SuitMods.IsMod(selected)) return;
+        NativeRetargetRig rig = SuitMods.At(selected).CustomModel?.RetargetRig;
+        if (rig == null || rig.Packets.Length <= 18 || !Ram(c.S5, 0x198)) return;
+        uint slot = m.ReadU8(c.S5 + 0x1B), entry = 0x800A0904 + slot * 64;
+        if (slot >= 40 || c.FP != entry || m.ReadU32(entry) != 0x64697073 ||
+            m.ReadU16(entry + 4) != 0x7965 || m.ReadU8(entry + 6) != 0) return;
+        uint table = m.ReadU32(entry + 0x10);
+        if (!Ram(table - 4, 4 + (uint)rig.Packets.Length * 4) ||
+            m.ReadU32(table - 4) != rig.Packets.Length || c.S3 != rig.Packets.Length)
+            throw new InvalidDataException("paged animation count differs from resident meshes");
+        // Packed native animation counts meshes, unlike the unpacked terminal-LOD path.
+        // The authored stream and HIER still contain exactly the original 18 drivers.
+        c.S3 = 18;
+    }
     static void Normal(IMemory m, uint p, Vector3 n)
     {
         n = n.LengthSquared() > 1e-12f ? Vector3.Normalize(n) : new Vector3(0, -1, 0);

@@ -1,0 +1,12 @@
+{
+  "suit": "smu-other",
+  "actorSha256": "9031a434b35c287c93f0ee8bc9b2f411bc6d3257dc1583133e9a149070baa870",
+  "visualReview": "Individually reviewed swing frame 1581 and crouch frame 1886. Pink body, black surface markings and red back emblem are visible with head, torso, arms and legs present. The raised hand meets the web; sewer background and HUD render normally. The free hand is open in the swing. Native trace schedules all three extra pages; offline checks prove all 5022 triangles and both material slots. Rear views do not independently expose every surface or any occluded mouth detail.",
+  "pages": 21,
+  "images": {
+    "frame_01581.png": "03c0b80a4d2a972a00a38d68efc8dead2c0ad9d1c0fabcb82f289e0d6b0668d4",
+    "frame_01886.png": "510bca3b1f517a9a326754f29ae1942826151e75e96e12bd17ad00e93deba2fe"
+  },
+  "installed": false,
+  "scope": "Individually reviewed native framebuffer images with process-local input. No desktop capture. Offline triangle coverage and native page scheduling supplement these two views; this is not full animation visual acceptance. Fist closure remains open."
+}

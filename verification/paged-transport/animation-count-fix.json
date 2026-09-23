@@ -1,0 +1,14 @@
+{
+  "status": "WINDOWS-CANDIDATE-GAMEPLAY-CHECKPOINT",
+  "installed": false,
+  "cause": "func_80010614 reads full mesh count into S3 at 80010674. Packed animation then uses 29 pages as animation channels against unchanged 18-driver data and HIER. The title startup failed before the retarget pose hook.",
+  "correction": "Instruction hook 80010678 supplies 18 drivers only for the selected, loaded paged custom spidey actor, after checking slot identity and resident page count. No source hierarchy, animation bytes or weights are changed.",
+  "processLocalChecks": 372,
+  "control": "The previous build runs Anti-Venom normally with two reviewed native captures and zero stall warnings, isolating the failure to paged actors.",
+  "damon": "smu-damon-ryder/review.json",
+  "other": "smu-other/review.json",
+  "nativeExtraPagesScheduled": {"smu-damon-ryder": 11, "smu-other": 3},
+  "bothGameRuns": {"exitCode": 0, "stallWarnings": 0, "reviewedImagesPerSuit": 2},
+  "numericFingerPolicy": "PASS for both candidates; open free hands in native swing captures remain a visual issue.",
+  "remaining": ["Linux core rebuild and compatibility evidence", "Install validated candidate assets and commit batch", "Catalogue-wide visual fist closure and tongue review"]
+}

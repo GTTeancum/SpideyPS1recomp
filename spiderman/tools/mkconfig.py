@@ -185,6 +185,8 @@ def main():
     patches.extend([
         {'overlay': 'main', 'address': '80077418', 'mode': 'instruction',
          'target': 'Recompiled.SuitRetargeting.ApplyPose'},
+        {'overlay': 'main', 'address': '80010678', 'mode': 'instruction',
+         'target': 'Recompiled.SuitRetargeting.UsePreservedAnimationCount'},
         {'overlay': 'main', 'address': '800775B0', 'mode': 'instruction_branch',
          'resumeAddress': '800776C8', 'target': 'Recompiled.SuitRetargeting.BeginPagedPart'},
         {'overlay': 'main', 'address': '800779B0', 'mode': 'instruction_branch',

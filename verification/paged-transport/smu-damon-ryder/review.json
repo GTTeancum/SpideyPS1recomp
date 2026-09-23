@@ -1,0 +1,12 @@
+{
+  "suit": "smu-damon-ryder",
+  "actorSha256": "5363dd706c9cdef6ad5f96ff1f6859f9e93df4902cb3ebd439515a78b62e66f3",
+  "visualReview": "Individually reviewed swing frame 1556 and post-swing frame 1861. Blue/white outfit, bare forearms, gloves, belt, both holstered accessories, legs and boots are present with textures. Web reaches the raised hand. Swing camera intersects the near ceiling, producing clipped ceiling edges; the post-swing sewer view is clear. Free hand remains open. Native trace schedules all 11 extra pages; offline checks prove all 8032 triangles and both material slots. The two views cannot expose every triangle.",
+  "pages": 29,
+  "images": {
+    "frame_01556.png": "98676ee1839ff8dcd5ab1ac70d360da48c09e31c974541e3c16720f3c698a91d",
+    "frame_01861.png": "64bfc2d4846a89a21f9f8461144e1bbd2a2ba53cb2763ff62abda1f2bc880237"
+  },
+  "installed": false,
+  "scope": "Individually reviewed native framebuffer images with process-local input. No desktop capture. Offline triangle coverage and native page scheduling supplement these two views; this is not full animation visual acceptance. Fist closure remains open."
+}

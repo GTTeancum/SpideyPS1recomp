@@ -2,6 +2,7 @@ using System.Reflection;
 using Recompiled;
 using RecompOne.Runtime.Context;
 using RecompOne.Runtime.Memory;
+using RecompOne.Runtime.Assets.Suits;
 
 var memory = new PSMemory(0x800000);
 var cpu = new CpuContext();
@@ -65,4 +66,27 @@ foreach (int count in new[] {21, 29, 64})
 Root();
 SuitRetargeting.ApplyPose(cpu, memory);
 Check(!SuitRetargeting.BeginPagedPart(cpu, memory), "new non-custom draw clears stale page context");
-Console.WriteLine($"PASS: {checks} process-local page scheduling checks; no GPU or visual acceptance.");
+foreach (string manifest in args)
+{
+    SuitMods.Catalogue.Clear();
+    SuitMods.Catalogue.Add(SuitManifest.Read(manifest));
+    typeof(SuitMods).GetField("<Active>k__BackingField", BindingFlags.Static | BindingFlags.NonPublic)!.SetValue(null, SuitMods.StockCount);
+    typeof(Costume).GetField("_loadedCostume", BindingFlags.Static | BindingFlags.NonPublic)!.SetValue(null, SuitMods.StockCount);
+    int count = SuitMods.At(SuitMods.StockCount).CustomModel!.RetargetRig!.Packets.Length;
+    const uint entry = 0x800A0904;
+    cpu.S5 = actor; cpu.FP = entry; cpu.S3 = (uint)count;
+    memory.WriteU8(actor + 0x1B, 0); memory.WriteU32(entry, 0x64697073);
+    memory.WriteU16(entry + 4, 0x7965); memory.WriteU8(entry + 6, 0);
+    memory.WriteU32(entry + 0x10, table); memory.WriteU32(table - 4, (uint)count);
+    SuitRetargeting.UsePreservedAnimationCount(cpu, memory);
+    Check(cpu.S3 == 18, "paged native animation uses exactly 18 authored drivers");
+    cpu.S3 = (uint)count; memory.WriteU32(entry, 0);
+    SuitRetargeting.UsePreservedAnimationCount(cpu, memory);
+    Check(cpu.S3 == count, "NPC packed animation count unchanged");
+    memory.WriteU32(entry, 0x64697073); cpu.S3--;
+    bool rejected = false;
+    try { SuitRetargeting.UsePreservedAnimationCount(cpu, memory); }
+    catch (InvalidDataException) { rejected = true; }
+    Check(rejected, "inconsistent packed animation count rejected");
+}
+Console.WriteLine($"PASS: {checks} process-local page/animation scheduling checks; no GPU or visual acceptance.");

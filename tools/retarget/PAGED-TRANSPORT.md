@@ -33,9 +33,15 @@ bones, weights, bind matrices and skinning arithmetic do not change.
 - Both staged actors pass 55 structural/full-animation checks, 115 web frames
   each, and managed loading/evaluation, including six malformed-chain cases each.
   All 231 installed legacy actors still pass managed loading with the new DLL.
-- Native loading, drawing/page counts and actual gameplay must pass before
-  either staged suit is installed. The first Damon run stalled during title
-  startup before a live pose trace; it is diagnostic evidence, not acceptance.
+- The first Damon run stalled because packed animation used the full mesh count
+  (29) against the original 18-driver stream/HIER. The scoped 80010678 hook now
+  supplies the preserved driver count only for the active paged custom actor.
+  Unpacked animation and unrelated actors retain their original path.
+- Both candidates now complete native sewer runs, with all extra pages scheduled,
+  live pose/web traces and two individually reviewed images each. The original
+  failed run remains evidence. A same-build Anti-Venom control also completed.
+- Installation and Linux core rebuild remain pending. Fist closure and other
+  catalogue-wide visual issues are separate from this transport checkpoint.
 
 `test_paged_rig.py` exercises the real Damon Ryder and Other sources over all
 4196 frames. It checks complete triangle assignment, page round trips, bind
