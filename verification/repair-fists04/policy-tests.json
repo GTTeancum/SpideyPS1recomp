@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "command": "python tools/retarget/test_finger_flexion_policy.py",
+  "tests": 6,
+  "exitCode": 0,
+  "scope": "Existing narrow 2099 policies; exact Arana source-name and SHA guard; only twelve non-thumb rotations changed, all other calibration data exact; rotation orthogonality and determinant one. Complements actual full-animation isolation and reviewed native captures; not exhaustive collision acceptance."
+}

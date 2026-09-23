@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "batch": "fist-arana-production",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "arana_gymnast"
+  ],
+  "results": [
+    {
+      "key": "arana_gymnast",
+      "id": "smu-arana-gymnast",
+      "fbx": "costumes/arana_gymnast/arana_gymnast.fbx",
+      "fbxSha256": "8cbc3a2a80e5ad8092a3e32e0dd1d3ff10455233a5bc7d42d0aa4536d8822ca1",
+      "textureFiles": [
+        "textures-png\\Arana_gymnast_D.png"
+      ],
+      "textureSha256": [
+        "17c698ae551c233fb0aa9107a96daa4cf6af344a01343dc9e54810f0493d7b7f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3754,
+      "sourceTriangles": 5586,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Arana_gymnast_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Material__88",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Arana_gymnast_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1244808,
+      "outputs": {
+        "actor.psx": "0a7790fa33caa574c41d0e6b218d5220e7107b50364a9d3f0b6becca35ce9518",
+        "conversion-report.json": "62dfb4906de9c875e7ae1e8f1ee086513c62ec251603234b90cf5aa695b3f37f",
+        "suit.json": "760bb814ae3e732b28eac7ac789f935079c4d1bf05ef132ee82c2dab0043e913",
+        "textures\\diffuse.png": "f9de8320a7efbff02596fb5d70198470a43b147d97c4d903a453b7618a726bfa"
+      }
+    }
+  ]
+}

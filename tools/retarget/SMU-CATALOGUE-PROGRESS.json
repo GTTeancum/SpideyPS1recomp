@@ -4,7 +4,7 @@
   "batchVerified": 233,
   "remainingUnconverted": 0,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 6659,
+  "offlineChecks": 6689,
   "animationFrames": 977668,
   "offlineSwingFrames": 26795,
   "structuralBlockers": [],
@@ -301,25 +301,30 @@
       "id": "visual-fist-closure",
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
-      "evidence": "verification/repair-fists03/review.json",
+      "evidence": "verification/repair-fists04/review.json",
       "nativeReviewedRepairs": [
         "smu-amazing-spider",
         "smu-spiderham",
         "smu-other",
         "smu-2099",
         "smu-anti-venom",
-        "smu-ancientvenom"
+        "smu-ancientvenom",
+        "smu-arana-gymnast"
       ],
       "heldBatch": {
         "batch": "fist-repair-batch04",
-        "count": 10,
+        "count": 9,
+        "originalCount": 10,
+        "separatelyRepaired": [
+          "smu-arana-gymnast"
+        ],
         "installed": false,
         "evidence": "verification/diagnostic-fists04/review.json",
         "followupEvidence": "verification/experimental-finger-aim01/review.json",
         "diagnosis": "Source-weighted digit tracing identifies the sideways tips as the index and little fingers. Their source spread survives shared-axis flexion. A source-relative aiming experiment reduces that spread without changing bind/weights/lengths, but completed native closeups still show a gap rather than a closed fist. Both candidates remain uninstalled despite passing all 55 structural checks, 4196-frame animation/isolation checks, 115-frame web checks and managed loading. Completed captures show jumping rather than swinging, so they are not live web-endpoint proof. Next: refine distal closure toward the palm and check for penetration before installation.",
-        "finding": "All staged numerical gates pass, but native Arana Gymnast and Batty Brant still show projecting free-hand tips. Their native crops miss useful hand detail. Neither is accepted as final closed-fist proof. The complete offline diagnostic now fits both compared poses at any yaw; an experimental 110-degree curl is uninstalled and not accepted. Trace source-weighted tips and validate a justified correction before installing this batch."
+        "finding": "The original ten-suit staging remains historical and uninstalled. Arana Gymnast was subsequently repaired and installed separately with hash-guarded per-digit closure and an individually reviewed native swing/crop pair; see verification/repair-fists04/review.json. Nine other suits remain held, including Batty Brant's unresolved finger appearance. Earlier uniform-curl and first aiming experiments remain rejected, not replacement installation candidates."
       },
-      "progress": "Twenty-three production actors now have the tighter base curl after full animation, web, loader and before/after isolation checks, with representative native full-frame/exact-crop or two-frame proof. The two original 2099 source meshes require 65-degree distal flexion to avoid the below-palm claw projection seen with uniform 90/85 curl; other suits retain 85-degree distal flexion. Authored claws are not shortened or removed. Anti-Venom and Ancient Venom retain pointed authored claws; their latest native views accept representative silhouettes, not exhaustive palm contact or tongue poses. Thumb opposition is unchanged. Original display names and texture bytes remain intact. The other 210 suits still use the previous base curl. Visual review is representative, not every suit or exhaustive finger/palm contact testing.",
+      "progress": "Twenty-four production actors now have verified finger repairs after full animation, web, loading and isolation checks. Arana Gymnast uses source-hash-guarded independent finger aiming with measured distal closure; its native swing/crop pair shows a compact free-hand fist and web at the raised hand. The original 2099 meshes retain their eased distal policy; other repaired suits use the tighter base curl. Authored claws, thumb opposition, display names and texture bytes remain intact. The other 209 suits still await the follow-up finger pass. Visual review is representative, not every suit or exhaustive contact/collision testing.",
       "next": "Roll the verified base-curl repair through the remaining catalogue in small tested batches. Preserve earlier material, tongue and source-body repairs. Use complete anatomical geometry, not packet-5-only close-ups, and retain at most two native images per representative."
     }
   ],
@@ -669,6 +674,40 @@
     {
       "repairs": [
         {
+          "suit": "smu-arana-gymnast",
+          "previousActorSha256": "a373efc19c48ca8af269c969c8dda8891b1c336ce394cc608be98810a8fd1bfa",
+          "actorSha256": "0a7790fa33caa574c41d0e6b218d5220e7107b50364a9d3f0b6becca35ce9518",
+          "visualReview": "Individually inspected native frame 01511 and its exact native crop on the production actor hash. Full body, clothing, hair, backpack and limbs remain visible during a web swing; web meets the raised hand. The crop includes the free left hand, which has a compact closed-fist silhouette without the earlier sideways index/little projections. No detached fragment or gross collapse is visible. The palm side is occluded; this is representative visible silhouette acceptance, not exhaustive finger/palm/other-finger contact testing. The separate offline palm-normal tip clearance diagnostic found positive sampled tip gaps after rejecting penetrating uniform bends. That sampling is not full collision coverage. The actual run exited zero with zero slow-run warnings.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01511.png": "c687a9d73f7326b5114f1f22e5d3c46196029804ee8d97e64bec0b3c63101f45",
+            "frame_01511_closeup.png": "74cf4e2d4242a559b679c3acc3f7b8c016de4f28281e4460e8da57d5428266b5"
+          }
+        }
+      ],
+      "managedLoaderExitCode": 0,
+      "representatives": [
+        "smu-arana-gymnast"
+      ],
+      "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast source instead uses measured per-digit source-relative closure. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+      "previousFilesUnchanged": 962,
+      "changedFiles": [
+        "smu-arana-gymnast\\actor.psx",
+        "smu-arana-gymnast\\conversion-report.json"
+      ],
+      "originalManifestAndTextureBytesPreserved": true,
+      "build": {
+        "status": "PASS",
+        "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+        "exitCode": 0,
+        "warnings": 0,
+        "errors": 0,
+        "scope": "Incremental Windows game build observed this turn; production native capture uses DLL SHA340d6995cbcbd7236b618998e436ec63649f4ca593896c986312063c7794ca82. Linux game execution not tested."
+      }
+    },
+    {
+      "repairs": [
+        {
           "suit": "smu-gwenom",
           "previousActorSha256": "6cce60683532b5e9c7ceaf44fa9f1862f2cf303635fafa2e4fbdb6a1082071f6",
           "actorSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
@@ -775,8 +814,11 @@
       "2099": 65,
       "2099_new": 65
     },
-    "updatedInstalled": 23,
-    "remaining": 210,
+    "sourceSpecificAiming": {
+      "arana_gymnast": "source-relative-digit-closure-v1"
+    },
+    "updatedInstalled": 24,
+    "remaining": 209,
     "suits": [
       "smu-1602",
       "smu-2099",
@@ -799,6 +841,7 @@
       "smu-angelo-fortunato",
       "smu-annie-parker",
       "smu-anti-venom",
+      "smu-arana-gymnast",
       "smu-other",
       "smu-spiderham"
     ],

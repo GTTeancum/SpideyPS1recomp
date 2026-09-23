@@ -34,6 +34,43 @@ def non_thumb_flexion(source_stem,segment):
     # tips cross the palm under the tighter base curl; retain length and ease the tip.
     return 65 if source_stem in ('2099','2099_new') else 85
 
+
+FINGER_AIM_SOURCE = 'arana_gymnast'
+FINGER_AIM_SHA256 = '8cbc3a2a80e5ad8092a3e32e0dd1d3ff10455233a5bc7d42d0aa4536d8822ca1'
+FINGER_AIM_SETTINGS = {2: (.6, .35, 3.0000000000000004),
+                       3: (0, .35, 1.7000000000000002),
+                       5: (.2, 1., 3.0000000000000004)}
+
+
+def apply_finger_aim(scene, bind, fist, reports):
+    if scene.path.stem != FINGER_AIM_SOURCE:
+        return
+    if scene.sha256 != FINGER_AIM_SHA256:
+        raise ValueError('Arana Gymnast finger policy requires the verified source hash')
+    # This source's splayed fingers need independent aiming, not a shared curl axis.
+    for side in ('L', 'R'):
+        palm, middle, index, little = [scene.index(side+n) for n in
+                                      ('ArmPalm', 'ArmDigit31', 'ArmDigit21', 'ArmDigit51')]
+        forward = unit(bind[middle,:3,3]-bind[palm,:3,3])
+        across = unit(bind[little,:3,3]-bind[index,:3,3])
+        inward = unit(np.cross(across, forward))
+        if inward@bind[palm,:3,0] < 0:
+            inward = -inward
+        for digit, (lean, convergence, closure) in FINGER_AIM_SETTINGS.items():
+            first, second = [scene.index(side+f'ArmDigit{digit}{segment}') for segment in (1, 2)]
+            length = np.linalg.norm(bind[second,:3,3]-bind[first,:3,3])
+            lateral = (bind[middle,:3,3]-bind[first,:3,3])@across
+            q1 = align(bind[second,:3,3]-bind[first,:3,3], inward-forward*lean)
+            q2 = align(bind[second,:3,1], -forward+across*(lateral/length)*convergence-inward*closure)
+            r1, r2 = bind[first,:3,:3], bind[second,:3,:3]
+            for i, pose in ((first, r1.T@q1@r1), (second, r2.T@q1.T@q2@r2)):
+                fist[i] = pose
+                report = next(r for r in reports if r['bone'] == scene.names[i])
+                report.clear()
+                report.update(bone=scene.names[i], method='source-relative-digit-closure-v1',
+                              baseLean=lean, convergence=convergence, closure=closure,
+                              localRotation=pose.tolist())
+
 class Scene:
     def __init__(self,path,geometry_index=None):
         self.path=Path(path);self.fbx=Fbx(path);f=self.fbx
@@ -281,5 +318,6 @@ def calibrate(scene,reference,native_origins,ground):
                 bi=thumb1 if report['bone']==s.names[thumb1] else thumb2
                 report.clear();report.update(bone=s.names[bi],method='opposed-thumb-across-knuckles',localRotation=fist[bi].tolist())
 
+    apply_finger_aim(s,bind,fist,finger_report)
     leg_ratio=(np.linalg.norm(bind[s.index('LLeg2'),:3,3]-bind[s.index('LLeg1'),:3,3])+np.linalg.norm(bind[s.index('LLegAnkle'),:3,3]-bind[s.index('LLeg2'),:3,3]))/(np.linalg.norm(n[15]-n[16])+np.linalg.norm(n[17]-n[15]))
     return dict(root_scale=float(leg_ratio),bind=bind,rest=rest,local=virtual_local,drivers=drivers,parents=np.array(s.parents),fist=fist,vertices=verts,normals=normals,anchor=anchor,scale=scale,native_origins=n,finger_report=finger_report,appendage_report=appendage_report)

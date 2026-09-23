@@ -1,0 +1,34 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-arana-gymnast",
+      "previousActorSha256": "a373efc19c48ca8af269c969c8dda8891b1c336ce394cc608be98810a8fd1bfa",
+      "actorSha256": "0a7790fa33caa574c41d0e6b218d5220e7107b50364a9d3f0b6becca35ce9518",
+      "visualReview": "Individually inspected native frame 01511 and its exact native crop on the production actor hash. Full body, clothing, hair, backpack and limbs remain visible during a web swing; web meets the raised hand. The crop includes the free left hand, which has a compact closed-fist silhouette without the earlier sideways index/little projections. No detached fragment or gross collapse is visible. The palm side is occluded; this is representative visible silhouette acceptance, not exhaustive finger/palm/other-finger contact testing. The separate offline palm-normal tip clearance diagnostic found positive sampled tip gaps after rejecting penetrating uniform bends. That sampling is not full collision coverage. The actual run exited zero with zero slow-run warnings.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01511.png": "c687a9d73f7326b5114f1f22e5d3c46196029804ee8d97e64bec0b3c63101f45",
+        "frame_01511_closeup.png": "74cf4e2d4242a559b679c3acc3f7b8c016de4f28281e4460e8da57d5428266b5"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-arana-gymnast"
+  ],
+  "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast source instead uses measured per-digit source-relative closure. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 962,
+  "changedFiles": [
+    "smu-arana-gymnast\\actor.psx",
+    "smu-arana-gymnast\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+    "exitCode": 0,
+    "warnings": 0,
+    "errors": 0,
+    "scope": "Incremental Windows game build observed this turn; production native capture uses DLL SHA340d6995cbcbd7236b618998e436ec63649f4ca593896c986312063c7794ca82. Linux game execution not tested."
+  }
+}

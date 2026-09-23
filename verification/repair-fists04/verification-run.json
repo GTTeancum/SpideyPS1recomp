@@ -1,0 +1,18 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-arana-gymnast-isolation",
+    "exitCode": 0
+  }
+]
