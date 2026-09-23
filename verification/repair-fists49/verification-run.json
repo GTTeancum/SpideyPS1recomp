@@ -1,0 +1,26 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-the-spider-peter-parker-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-timesleep-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-uk-isolation",
+    "exitCode": 0
+  }
+]

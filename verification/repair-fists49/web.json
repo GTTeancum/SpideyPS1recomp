@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "the_spider_peter_parker",
+      "id": "smu-the-spider-peter-parker",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.478759765625,
+        10.17724609375
+      ],
+      "assetSha256": "01ec26bcfe4bf45fb96bab127927e930e25fd2b494cec802f004ced9817e2c1c",
+      "captureSha256": "23c33892c11c2026fa63eb730647451ca504ca982fa09bcdd547df1207a0406c"
+    },
+    {
+      "key": "timesleep",
+      "id": "smu-timesleep",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.605712890625,
+        6.0078125
+      ],
+      "assetSha256": "0bf16b4d4d8ab849ee80d4f6a37f04cd6b7ac01f2748bb0e2717679b1f0de806",
+      "captureSha256": "e251db3eff3d30d7c25fafd91e14858c9afd2cb3c3f02b6d2f5b43b722862ac0"
+    },
+    {
+      "key": "uk",
+      "id": "smu-uk",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927978515625,
+        9.329833984375
+      ],
+      "assetSha256": "0f97c6261190fbb9d7dd417e66febf3e7fd11df8354c7e29dd1fa206dffee657",
+      "captureSha256": "b8bad32f34082dbf3f50354d709de107e13b39f02d126a3d81c9d0aa94459f9c"
+    }
+  ]
+}

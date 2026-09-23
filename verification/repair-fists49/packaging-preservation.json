@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-the-spider-peter-parker",
+    "beforeActorSha256": "ffdb3fd945b298efa51132ec45821483d88c476d68b1430f08d3e3829f622ca6",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-timesleep",
+    "beforeActorSha256": "280984b5a67410c8aa536c5dafc79609c1f8418b492dddde4a08a30f9d2b4850",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-uk",
+    "beforeActorSha256": "29edb890dedef6e6df94276a7be4771f828e63da82f54c213efaef1815c9daea",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

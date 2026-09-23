@@ -1,0 +1,50 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-the-spider-peter-parker",
+      "previousActorSha256": "ffdb3fd945b298efa51132ec45821483d88c476d68b1430f08d3e3829f622ca6",
+      "actorSha256": "01ec26bcfe4bf45fb96bab127927e930e25fd2b494cec802f004ced9817e2c1c",
+      "visualReview": "Native review waived by the user on 2026-09-23. This suit is not visually accepted; full rig, animation, web, loading and before/after isolation checks pass.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-timesleep",
+      "previousActorSha256": "280984b5a67410c8aa536c5dafc79609c1f8418b492dddde4a08a30f9d2b4850",
+      "actorSha256": "0bf16b4d4d8ab849ee80d4f6a37f04cd6b7ac01f2748bb0e2717679b1f0de806",
+      "visualReview": "Native review waived by the user on 2026-09-23. This suit is not visually accepted; full rig, animation, web, loading and before/after isolation checks pass.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-uk",
+      "previousActorSha256": "29edb890dedef6e6df94276a7be4771f828e63da82f54c213efaef1815c9daea",
+      "actorSha256": "0f97c6261190fbb9d7dd417e66febf3e7fd11df8354c7e29dd1fa206dffee657",
+      "visualReview": "Native review waived by the user on 2026-09-23. This suit is not visually accepted; full rig, animation, web, loading and before/after isolation checks pass.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [],
+  "nativeReviewWaivedByUser": true,
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative when present. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-the-spider-peter-parker\\actor.psx",
+    "smu-the-spider-peter-parker\\conversion-report.json",
+    "smu-timesleep\\actor.psx",
+    "smu-timesleep\\conversion-report.json",
+    "smu-uk\\actor.psx",
+    "smu-uk\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": null,
+    "nativeReviewWaivedByUser": true
+  }
+}
