@@ -8,8 +8,8 @@
   "runtimeInfluences": 5657,
   "originalTriangles": 3526,
   "uniqueOutputTriangles": 3526,
-  "nativeBytes": 911224,
-  "rigBytes": 401260,
+  "nativeBytes": 911252,
+  "rigBytes": 401288,
   "packetSpilloverTriangles": 340,
   "packets": [
     {
@@ -125,7 +125,7 @@
     "C:\\Programming\\SMU-Costumes\\textures-png\\BettyBrant_D.png": "b0653985154bd5d8c3eb4770f254ef36e6374909ab93970bf1b6644cfec3dc81",
     "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderWeb.png": "e158bef64c2c987c1e10665ce51ed75835edfbfee716dc93fa54de329fb909a7"
   },
-  "outputSha256": "2d6b9cafcea84a6bf4cced499277046e6767919291db3aedbb493387b55678f8",
+  "outputSha256": "81c35039fea3f615e8ffb066ffab56e3610af61335110db5f726f6842b4c458e",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -454,48 +454,48 @@
     {
       "bone": "Clown001RArmDigit51",
       "method": "source-relative-digit-closure-v1",
-      "baseLean": 1.0,
-      "convergence": 1.0,
-      "closure": 1.8000000000000003,
+      "baseLean": 2.4000000000000004,
+      "convergence": 0.7,
+      "closure": 0.30000000000000004,
       "localRotation": [
         [
-          -0.14273173899948877,
-          0.9835586699683616,
-          -0.11063450371492739
+          -0.48421618974598785,
+          0.8476671777704838,
+          -0.2167833880132431
         ],
         [
-          -0.9835586803406448,
-          -0.15344289962692598,
-          -0.09522394069061402
+          -0.8476672465098669,
+          -0.5158793526834227,
+          -0.12380925922285684
         ],
         [
-          -0.11063441150361093,
-          0.09522404782484045,
-          0.9892888393725572
+          -0.2167831192280847,
+          0.1238097298501008,
+          0.9683368370624894
         ]
       ]
     },
     {
       "bone": "Clown001RArmDigit52",
       "method": "source-relative-digit-closure-v1",
-      "baseLean": 1.0,
-      "convergence": 1.0,
-      "closure": 1.8000000000000003,
+      "baseLean": 2.4000000000000004,
+      "convergence": 0.7,
+      "closure": 0.30000000000000004,
       "localRotation": [
         [
-          -0.1150854477962426,
-          0.9297740148901672,
-          -0.34967931157069343
+          0.28512854773280527,
+          0.3082104953890336,
+          -0.9075836059558525
         ],
         [
-          0.9687848703978366,
-          0.18286458060943614,
-          0.1673810623899305
+          0.39715058233001455,
+          0.8237907695216301,
+          0.4045246383174847
         ],
         [
-          0.2195705230530387,
-          -0.319500902023063,
-          -0.921796050660156
+          0.8723377363284887,
+          -0.4757888802641433,
+          0.11248028802541564
         ]
       ]
     }

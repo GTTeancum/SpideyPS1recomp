@@ -50,6 +50,9 @@ FINGER_AIM_POLICIES = {
                       5: (3.2, 2., 1.5000000000000002)}),
 }
 FINGER_AIM_SIDE_OVERRIDES = {
+    ('arana_gymnast', 'R'): {**FINGER_AIM_SETTINGS, 3: (0., 0, 1.2000000000000002)},
+    ('batty_brant', 'R'): {**FINGER_AIM_POLICIES['batty_brant'][1],
+                         5: (2.4000000000000004, .7, .30000000000000004)},
     ('blackcatvenom', 'R'): {2: (1.4, 2., 2.3000000000000003),
                            3: (.4, 0, 1.3000000000000003),
                            5: (2.4000000000000004, 1.5, .8)},

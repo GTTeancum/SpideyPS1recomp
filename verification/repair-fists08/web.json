@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 2,
+  "requested": 2,
+  "results": [
+    {
+      "key": "arana_gymnast",
+      "id": "smu-arana-gymnast",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.43359375,
+        7.835693359375
+      ],
+      "assetSha256": "518befe52dac1f429b971fbdae287e0616ba2051b80b70b55b1108ddb308389e",
+      "captureSha256": "489dc3be38b8410e3ab47882f50cbe70931117bb661f8e96ed7277cdc6fe39e0"
+    },
+    {
+      "key": "batty_brant",
+      "id": "smu-batty-brant",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.3046875,
+        7.70703125
+      ],
+      "assetSha256": "81c35039fea3f615e8ffb066ffab56e3610af61335110db5f726f6842b4c458e",
+      "captureSha256": "ac95b7ccd8b1783143162fd11d1d817edd3b02565bf86af76dba7502a011c734"
+    }
+  ]
+}

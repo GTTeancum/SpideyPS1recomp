@@ -1,0 +1,14 @@
+[
+  {
+    "suit": "smu-arana-gymnast",
+    "beforeActorSha256": "0a7790fa33caa574c41d0e6b218d5220e7107b50364a9d3f0b6becca35ce9518",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-batty-brant",
+    "beforeActorSha256": "2d6b9cafcea84a6bf4cced499277046e6767919291db3aedbb493387b55678f8",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

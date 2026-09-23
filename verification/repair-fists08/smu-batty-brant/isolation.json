@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "beforeSha256": "2d6b9cafcea84a6bf4cced499277046e6767919291db3aedbb493387b55678f8",
+  "afterSha256": "81c35039fea3f615e8ffb066ffab56e3610af61335110db5f726f6842b4c458e",
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb",
+  "frames": 4196,
+  "changedBones": [
+    "Clown001RArmDigit51",
+    "Clown001RArmDigit52"
+  ],
+  "errors": {
+    "closedUnaffectedBones": 0.0,
+    "closedUnaffectedVertices": 0.0,
+    "openAllBones": 0.0,
+    "openAllVertices": 0.0
+  },
+  "unaffectedVertices": 2044,
+  "unaffectedBones": 64,
+  "sourceBindWeightsGeometryPacketsAndNonFistProvenanceUnchanged": true,
+  "scope": "Experimental uninstalled pose-only candidate. Exact source/bind/weights/geometry and thumb preservation; full closed-body/open-hand isolation. Not visual closure/contact acceptance or production-policy validation."
+}

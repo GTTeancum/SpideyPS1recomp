@@ -1,0 +1,30 @@
+{
+  "status": "PASS-sampled-contact-correction",
+  "repairs": [
+    {
+      "suit": "smu-arana-gymnast",
+      "actorSha256": "518befe52dac1f429b971fbdae287e0616ba2051b80b70b55b1108ddb308389e",
+      "changedBones": [
+        "Clown001RArmDigit32"
+      ],
+      "minimumSampledRightClearance": 6.720184326171875,
+      "maximumSampledRightClearance": 12.895111083984375,
+      "samples": 13,
+      "leftHandAndOtherRotationsUnchanged": true
+    },
+    {
+      "suit": "smu-batty-brant",
+      "actorSha256": "81c35039fea3f615e8ffb066ffab56e3610af61335110db5f726f6842b4c458e",
+      "changedBones": [
+        "Clown001RArmDigit51",
+        "Clown001RArmDigit52"
+      ],
+      "minimumSampledRightClearance": 5.971649169921875,
+      "maximumSampledRightClearance": 13.826690673828125,
+      "samples": 8,
+      "leftHandAndOtherRotationsUnchanged": true
+    }
+  ],
+  "scope": "Offline right-hand sampled palm-envelope correction, not exhaustive collision acceptance. Native review is separate. All non-target bones, thumb, left hand, source geometry, weights, bind and open poses remain unchanged across 4196 frames.",
+  "firstVerification": "The first harness run incorrectly expected two changed bones for both suits. Actual binary inspection showed only RArmDigit32 changed for Arana, and RArmDigit51/52 for Batty. Rerun enforces those exact named sets, not a relaxed count. The initial failed run is retained."
+}

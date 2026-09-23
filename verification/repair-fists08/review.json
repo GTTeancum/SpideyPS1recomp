@@ -1,0 +1,48 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-arana-gymnast",
+      "previousActorSha256": "0a7790fa33caa574c41d0e6b218d5220e7107b50364a9d3f0b6becca35ce9518",
+      "actorSha256": "518befe52dac1f429b971fbdae287e0616ba2051b80b70b55b1108ddb308389e",
+      "visualReview": "Individually inspected native frames 01557 and 01877. First is a rear jump, not a swing; no live web-endpoint acceptance is claimed from it. Second shows a front-facing moving pose with right glove folded at the belt and no visibly detached or projecting fingertip. Body, backpack, clothing, markings and limbs remain intact. These full frames do not expose every palm surface or prove exhaustive contact freedom. The isolated right distal-middle correction has separate positive sampled palm-envelope clearance, and full offline web/animation tests pass. Both runs' frames are native framebuffer, not diagnostics. Exit zero, zero slow-run warnings.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01557.png": "c8d7670c4cc7958aab6b00c3cd8bd09fb1578dcd62f65717b3c7fa8c40a42aca",
+        "frame_01877.png": "17775f121c3197d6e462f0df1dfbd79fdb3a5c1f3a510772329567d6e32df83c"
+      }
+    },
+    {
+      "suit": "smu-batty-brant",
+      "previousActorSha256": "2d6b9cafcea84a6bf4cced499277046e6767919291db3aedbb493387b55678f8",
+      "actorSha256": "81c35039fea3f615e8ffb066ffab56e3610af61335110db5f726f6842b4c458e",
+      "visualReview": "Individually inspected native frames 01584 and 01904. First is a web swing with line meeting the raised right hand. Second is a side-facing grounded pose with the right glove clearly visible as a folded fist; no separate little-finger projection is visible. Cyan clothing, web-pattern gloves/boots, body and limbs remain intact. The thumb opening is visible; this is silhouette acceptance, not exhaustive palm/finger contact testing. The right little-finger correction has separate positive sampled palm-envelope clearance and full source-preserving isolation checks. Exit zero, zero slow-run warnings.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01584.png": "b02d16ede9ddfb94f4d5d3944edf624a056073be736ed1bcd75f090ad6cedc85",
+        "frame_01904.png": "61067f17041ae913e197c78b17a1724d734870a9c3b6e3bf8a5a4490e7e36453"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-arana-gymnast",
+    "smu-batty-brant"
+  ],
+  "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast, Batty Brant and Black Cat Venom sources instead use measured per-digit source-relative closure with narrow per-hand overrides. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 960,
+  "changedFiles": [
+    "smu-arana-gymnast\\actor.psx",
+    "smu-arana-gymnast\\conversion-report.json",
+    "smu-batty-brant\\actor.psx",
+    "smu-batty-brant\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+    "exitCode": 0,
+    "warnings": 0,
+    "errors": 0,
+    "scope": "Observed Windows incremental game build. Ten finger-policy tests pass, including exact right-only rotation changes against previous policies. No Linux game execution."
+  }
+}

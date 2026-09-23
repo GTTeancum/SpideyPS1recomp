@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch08",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "arana_gymnast",
+    "batty_brant"
+  ],
+  "results": [
+    {
+      "key": "arana_gymnast",
+      "id": "smu-arana-gymnast",
+      "fbx": "costumes/arana_gymnast/arana_gymnast.fbx",
+      "fbxSha256": "8cbc3a2a80e5ad8092a3e32e0dd1d3ff10455233a5bc7d42d0aa4536d8822ca1",
+      "textureFiles": [
+        "textures-png\\Arana_gymnast_D.png"
+      ],
+      "textureSha256": [
+        "17c698ae551c233fb0aa9107a96daa4cf6af344a01343dc9e54810f0493d7b7f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3754,
+      "sourceTriangles": 5586,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Arana_gymnast_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Material__88",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Arana_gymnast_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1244808,
+      "outputs": {
+        "actor.psx": "518befe52dac1f429b971fbdae287e0616ba2051b80b70b55b1108ddb308389e",
+        "conversion-report.json": "fc9b2141870ba59b845a01459f5858cce5684f62f8bffc9446bb1a0d810d0f1d",
+        "suit.json": "760bb814ae3e732b28eac7ac789f935079c4d1bf05ef132ee82c2dab0043e913",
+        "textures\\diffuse.png": "f9de8320a7efbff02596fb5d70198470a43b147d97c4d903a453b7618a726bfa"
+      }
+    },
+    {
+      "key": "batty_brant",
+      "id": "smu-batty-brant",
+      "fbx": "costumes/batty_brant/batty_brant.fbx",
+      "fbxSha256": "505ee47fdc44383e89271da42f2616c01eedef58d467f062ca3bb52cfd537753",
+      "textureFiles": [
+        "textures-png\\BettyBrant_D.png",
+        "textures-png\\SpiderWeb.png"
+      ],
+      "textureSha256": [
+        "b0653985154bd5d8c3eb4770f254ef36e6374909ab93970bf1b6644cfec3dc81",
+        "e158bef64c2c987c1e10665ce51ed75835edfbfee716dc93fa54de329fb909a7"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2093,
+      "sourceTriangles": 3526,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "BettyBrant_D.tga",
+        "SpiderWeb.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "BettyBrant_Web",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderWeb.png",
+            "alphaBound": true,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "BettyBrant",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\BettyBrant_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 911252,
+      "outputs": {
+        "actor.psx": "81c35039fea3f615e8ffb066ffab56e3610af61335110db5f726f6842b4c458e",
+        "conversion-report.json": "7b4781e4ae7a842fd50b0b2c1df0d340505d59d0945694ef76f73f199ed02aa8",
+        "suit.json": "5a97c54803f454f26e703851bd73d0da02f5653b71cc05675a165d73c8372140",
+        "textures\\diffuse-1.png": "48f6a213472dcdb99e24e26afdc7bbc14e7ad4ee5d118811410513a383bf57bb",
+        "textures\\diffuse.png": "e158bef64c2c987c1e10665ce51ed75835edfbfee716dc93fa54de329fb909a7"
+      }
+    }
+  ]
+}

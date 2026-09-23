@@ -1,0 +1,316 @@
+{
+  "status": "PASS",
+  "scope": "Native assets + compiled C++ runtime core + original animation decoding oracle; C# integration checks are static only. Full .NET build/game execution NOT run.",
+  "passed": 55,
+  "failed": 0,
+  "metrics": {
+    "smu-arana-gymnast": {
+      "bones": 66,
+      "sourceControlPoints": 3754,
+      "sourceInfluences": 10177,
+      "runtimeVertices": 3754,
+      "runtimeInfluences": 10177,
+      "triangles": 5586,
+      "nativeBytes": 1244808,
+      "sha256": "518befe52dac1f429b971fbdae287e0616ba2051b80b70b55b1108ddb308389e",
+      "rootScale": 0.902794599533081,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007818631129339337,
+      "maxRoundedComponentError": 0.853515625,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 11.146856300008949
+    },
+    "smu-batty-brant": {
+      "bones": 66,
+      "sourceControlPoints": 2093,
+      "sourceInfluences": 5657,
+      "runtimeVertices": 2093,
+      "runtimeInfluences": 5657,
+      "triangles": 3526,
+      "nativeBytes": 911252,
+      "sha256": "81c35039fea3f615e8ffb066ffab56e3610af61335110db5f726f6842b4c458e",
+      "rootScale": 0.9027945399284363,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007816991419531405,
+      "maxRoundedComponentError": 0.8588027954101562,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 11.855522199999541
+    }
+  },
+  "results": [
+    {
+      "name": "300 native clips / 4196 source frames",
+      "passed": true
+    },
+    {
+      "name": "original decoder produces nonsingular Q12 driver rotations",
+      "passed": true,
+      "minDet": 0.9987022876739502,
+      "maxDet": 1.0010902881622314
+    },
+    {
+      "name": "smu-arana-gymnast: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9759196107370656e-08
+    },
+    {
+      "name": "smu-arana-gymnast: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 5586
+    },
+    {
+      "name": "smu-arana-gymnast: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.00048828125
+    },
+    {
+      "name": "smu-arana-gymnast: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-arana-gymnast: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.000335693359375,
+      "scale": 0.902794599533081
+    },
+    {
+      "name": "smu-arana-gymnast: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-arana-gymnast: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 3400.08740234375,
+      "worst": null
+    },
+    {
+      "name": "smu-arana-gymnast: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007818631129339337
+    },
+    {
+      "name": "smu-arana-gymnast: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.0008544921875,
+      "maxRoundedComponentError": 0.853515625
+    },
+    {
+      "name": "smu-arana-gymnast: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-arana-gymnast: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9802320611338473e-08
+    },
+    {
+      "name": "smu-batty-brant: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 3526
+    },
+    {
+      "name": "smu-batty-brant: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.0003662109375
+    },
+    {
+      "name": "smu-batty-brant: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-batty-brant: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.00028228759765625,
+      "scale": 0.9027945399284363
+    },
+    {
+      "name": "smu-batty-brant: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-batty-brant: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-batty-brant: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 1410.2645263671875,
+      "worst": null
+    },
+    {
+      "name": "smu-batty-brant: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007816991419531405
+    },
+    {
+      "name": "smu-batty-brant: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.00042724609375,
+      "maxRoundedComponentError": 0.8588027954101562
+    },
+    {
+      "name": "smu-batty-brant: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-batty-brant: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "source integration: exactly one pose-ready hook and regeneration config",
+      "passed": true
+    },
+    {
+      "name": "source integration: resident validation / fists / culling update present",
+      "passed": true
+    },
+    {
+      "name": "Windows deployed native DLL is the tested-source build artifact",
+      "passed": true
+    }
+  ],
+  "inputHashes": {
+    "C:\\Programming\\SMU-Costumes\\costumes\\arana_gymnast\\arana_gymnast.fbx": "8cbc3a2a80e5ad8092a3e32e0dd1d3ff10455233a5bc7d42d0aa4536d8822ca1",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\Arana_gymnast_D.png": "17c698ae551c233fb0aa9107a96daa4cf6af344a01343dc9e54810f0493d7b7f",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch08\\suits\\smu-arana-gymnast\\actor.psx": "518befe52dac1f429b971fbdae287e0616ba2051b80b70b55b1108ddb308389e",
+    "C:\\Programming\\SMU-Costumes\\costumes\\batty_brant\\batty_brant.fbx": "505ee47fdc44383e89271da42f2616c01eedef58d467f062ca3bb52cfd537753",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\BettyBrant_D.png": "b0653985154bd5d8c3eb4770f254ef36e6374909ab93970bf1b6644cfec3dc81",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch08\\suits\\smu-batty-brant\\actor.psx": "81c35039fea3f615e8ffb066ffab56e3610af61335110db5f726f6842b4c458e"
+  },
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb"
+}

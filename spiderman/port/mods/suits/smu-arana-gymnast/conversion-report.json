@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Arana_gymnast_D.png": "17c698ae551c233fb0aa9107a96daa4cf6af344a01343dc9e54810f0493d7b7f"
   },
-  "outputSha256": "0a7790fa33caa574c41d0e6b218d5220e7107b50364a9d3f0b6becca35ce9518",
+  "outputSha256": "518befe52dac1f429b971fbdae287e0616ba2051b80b70b55b1108ddb308389e",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -405,9 +405,9 @@
     {
       "bone": "Clown001RArmDigit31",
       "method": "source-relative-digit-closure-v1",
-      "baseLean": 0,
-      "convergence": 0.35,
-      "closure": 1.7000000000000002,
+      "baseLean": 0.0,
+      "convergence": 0,
+      "closure": 1.2000000000000002,
       "localRotation": [
         [
           0.3549171707156497,
@@ -429,24 +429,24 @@
     {
       "bone": "Clown001RArmDigit32",
       "method": "source-relative-digit-closure-v1",
-      "baseLean": 0,
-      "convergence": 0.35,
-      "closure": 1.7000000000000002,
+      "baseLean": 0.0,
+      "convergence": 0,
+      "closure": 1.2000000000000002,
       "localRotation": [
         [
-          -0.4472242227385165,
-          0.8621208647316229,
-          -0.23819762633239028
+          0.3464146372037885,
+          0.9329231081033668,
+          -0.09824140419612017
         ],
         [
-          -0.763105481512621,
-          -0.5066971823491774,
-          -0.4011583097542034
+          0.8952380645609902,
+          -0.3600632994842087,
+          -0.26249424398595406
         ],
         [
-          -0.4665410150044415,
-          0.0023622010626214314,
-          0.8844964111429559
+          -0.28026007009932197,
+          0.0029824037461884017,
+          -0.9599194749439177
         ]
       ]
     },

@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "command": [
+    "dotnet",
+    "run",
+    "--no-build",
+    "--project",
+    "tools/RecompOne/tests/CustomSuitModelRegression",
+    "--",
+    "--catalogue",
+    "spiderman/port/mods/suits"
+  ],
+  "exitCode": 0,
+  "expectedActors": 233,
+  "actors": 233,
+  "failures": 0,
+  "scope": "Full installed catalogue managed loading and per-actor negative fixtures; not native visual review."
+}

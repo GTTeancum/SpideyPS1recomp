@@ -46,8 +46,10 @@ class FlexionPolicyTests(unittest.TestCase):
 
     def test_per_hand_settings_are_narrow_and_explicit(self):
         self.assertNotEqual(finger_aim_settings('blackcatvenom','L'),finger_aim_settings('blackcatvenom','R'))
-        for source in ('arana_gymnast','batty_brant'):
-            self.assertEqual(finger_aim_settings(source,'L'),finger_aim_settings(source,'R'))
+        for source,digit in (('arana_gymnast',3),('batty_brant',5)):
+            left,right=finger_aim_settings(source,'L'),finger_aim_settings(source,'R')
+            self.assertEqual({key for key in left if left[key]!=right[key]}, {digit})
+            self.assertEqual(left,FINGER_AIM_POLICIES[source][1])
         with self.assertRaises(ValueError):
             finger_aim_settings('blackcatvenom','unknown')
 
@@ -79,6 +81,25 @@ class FlexionPolicyTests(unittest.TestCase):
         for report in reports:
             expected=finger_aim_settings(source.path.stem,report['bone'][8])[int(report['bone'][-2])]
             self.assertEqual((report['baseLean'],report['convergence'],report['closure']),expected)
+
+    def test_right_contact_corrections_preserve_existing_finger_rotations(self):
+        samples=Path('C:/Programming/SMU-Costumes/costumes')
+        reference=Scene(samples/'2099/2099.fbx')
+        donor=Path(__file__).resolve().parents[2]/'spiderman/extracted/wad/spidey.psx'
+        origins,ground,_,_=donor_info(donor.read_bytes())
+        for key,bones in (('arana_gymnast',('RArmDigit32',)),
+                          ('batty_brant',('RArmDigit51','RArmDigit52'))):
+            with self.subTest(source=key):
+                source=Scene(samples/key/(key+'.fbx'))
+                with patch('scene.FINGER_AIM_SIDE_OVERRIDES',{}):
+                    before=calibrate(source,reference,origins,ground)
+                after=calibrate(source,reference,origins,ground)
+                changed=set(np.where(np.any(before['fist']!=after['fist'],axis=(1,2)))[0])
+                self.assertEqual(changed,{source.index(bone) for bone in bones})
+                for field in before:
+                    if field in ('fist','finger_report'):continue
+                    if isinstance(before[field],np.ndarray):np.testing.assert_array_equal(before[field],after[field])
+                    else:self.assertEqual(before[field],after[field])
 
 
 if __name__=='__main__':

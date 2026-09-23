@@ -1,0 +1,40 @@
+{
+  "suit": "smu-batty-brant",
+  "level": "l5a3",
+  "executableSha256": "340d6995cbcbd7236b618998e436ec63649f4ca593896c986312063c7794ca82",
+  "actorSha256": "81c35039fea3f615e8ffb066ffab56e3610af61335110db5f726f6842b4c458e",
+  "capture": "Game framebuffer; process-local input only; no desktop capture or OS input",
+  "environment": {
+    "RECOMP_CAPTURE_HIDDEN": "1",
+    "RECOMP_RENDER_SCALE": "6",
+    "SPIDEY_WIDE": "1",
+    "SPIDEY_SCRIPT_EXCLUSIVE": "1",
+    "SPIDEY_SCRIPT": "title.bmr+120:start:12;title.bmr+420:cross:12;title.bmr+720:cross:12;l5a3_t.trg+240:cross:12;l5a3_t.trg+450:cross:12;l5a3_t.trg+485:r2:120;l5a3_t.trg+800:down:24",
+    "SPIDEY_LEVEL": "l5a3",
+    "SPIDEY_BOOT_SKIP_UNTIL": "title.bmr",
+    "SPIDEY_SUIT_MOD_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch08\\smu-batty-brant\\suits",
+    "SPIDEY_RETARGET_TRACE": "1",
+    "SPIDEY_MOD_TRACE": "1",
+    "SPIDEY_SHOT_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch08\\smu-batty-brant",
+    "SPIDEY_SHOTS": "l5a3_t.trg+495,l5a3_t.trg+815",
+    "SPIDEY_CAPTURE_PRESENTED": "1",
+    "SPIDEY_EXIT": "2000",
+    "SPIDEY_LOG_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch08\\smu-batty-brant",
+    "SPIDEY_STALL": "20"
+  },
+  "requestedView": {
+    "width": 2560,
+    "height": 1440,
+    "renderScale": 6,
+    "nativeCrop": null
+  },
+  "exitCode": 0,
+  "slowRunWarnings": 0,
+  "seconds": 61.98499999998603,
+  "images": [
+    "frame_01584.png",
+    "frame_01904.png"
+  ],
+  "acceptance": "Capture pending visual and gameplay review",
+  "captureComplete": true
+}
