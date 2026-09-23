@@ -1,0 +1,49 @@
+{
+  "status": "EXPERIMENT_NOT_ACCEPTED",
+  "installed": false,
+  "repairs": [
+    {
+      "suit": "smu-arana-gymnast",
+      "installed": false,
+      "actorSha256": "52d5b399e731072d00b13948752e4deb24ca41e1fa0f44a63ba19e2134eccf74",
+      "visualAcceptance": false,
+      "review": "Individually inspected full frame 01508 and its exact crop. Body, clothing, hair, backpack and limbs remain visible in an airborne jump. The crop now includes the left hand: fingers point inward but retain a visible open gap, so closed-fist appearance is not accepted. No web line is visible; this is not a completed native swing proof. Exit zero and capture completeness pass, with five slow-run warnings; not performance acceptance.",
+      "images": {
+        "frame_01508.png": "0dfeaa5fb383bd9f1a4015660e3297b0a6e339fbf722e808fe1b9972c74407f3",
+        "frame_01508_closeup.png": "f249d006d74def2b37e0d5017c16ff0fb44bc84dbd1d4defcca3d7b68093ff6d"
+      }
+    },
+    {
+      "suit": "smu-batty-brant",
+      "installed": false,
+      "actorSha256": "3e94db27eac02fc37b4448242bb07fb3d4a6720ecaa3339238f407fb3f792972",
+      "visualAcceptance": false,
+      "review": "Individually inspected full frame 01559 and exact crop. Body, cyan clothing and red web-pattern gloves/boots remain visible in an airborne jump. The left-hand crop clearly shows the curled fingers with a remaining gap rather than a fully closed fist. No web line is visible, so this is not native swing/endpoint acceptance. Exit zero, no slow-run warnings and capture completeness pass; visual fist acceptance still fails.",
+      "images": {
+        "frame_01559.png": "7dec5010939d2c0564d895e0f47e2bec8f32a9c00575774e967daed779beb395",
+        "frame_01559_closeup.png": "16c6e651327fe543b157e16553a9b137c437d38e0f7b90652546585cac890946"
+      }
+    }
+  ],
+  "diagnosis": "Offline source-weight color trace identifies the prior sideways projections as index and little fingers. All digit animation-driver mappings are -1, with the source palm/segment parents retained. Shared-axis flexion retains source finger spread; this is not detached geometry or thumb misidentification.",
+  "experiment": "Pose rotations only: aim each two-joint non-thumb proximal segment along the inward palm normal and its distal segment back along palm-forward, with 0.35 lateral convergence toward the middle-finger base. Thumb opposition unchanged. Experimental metadata is explicit and production conversion policy is unchanged.",
+  "regressions": {
+    "structuralChecks": 55,
+    "structuralFailures": 0,
+    "animationFramesPerSuit": 4196,
+    "webFramesPerSuit": 115,
+    "isolation": "All unaffected closed-pose bones/vertices and ALL open-pose bones/vertices bit-exact across all 4196 frames.",
+    "managedLoaderActors": 2,
+    "managedLoaderFailures": 0,
+    "managedLoaderExitCode": 0
+  },
+  "nativeTiming": "Input replay is wall-clock-paced and not deterministic, as documented in spiderman/patches/Replay.cs. The completed captures are jumping, not swinging. Numerical web tests do not replace native swing proof.",
+  "initialAttempt": "The scale-8 Arana run timed out after producing two images. Those images were individually inspected and showed a more compact back-hand silhouette, but the run failed its capture gate. Its run record is retained separately, not counted as accepted evidence.",
+  "next": "Refine distal closure toward the palm without penetration or length/weight changes; inspect both palm and back views, then repeat full regressions and genuine native pose checks. Do not install either experiment or held batch04 yet.",
+  "sourceScripts": {
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\trace-hand-digits.py": "3bec8e84dafc656f0da6be2d5685a1c412b0c66e0fa25535a89e1604e130c385",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\prepare-aimed-fist-candidate.py": "26066bd2a1f9f6f4d5b17fe8a585ab318bd94c5a46f00c3f80f7a7a23e87fc52",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\prepare-fist-batch.py": "c725949f200d5af3053898e14b90ce44e7a53c85702da120a4156f28622d7a02",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\check-aimed-fist-isolation.py": "2c08abff5061fceaf7036b93dde68ff125beaa0c9c48f16dbac1ff904227d4cb"
+  }
+}
