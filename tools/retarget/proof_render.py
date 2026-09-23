@@ -26,7 +26,7 @@ def triangles(parsed,rig,driver=None,flags=0,quantize=True):
         normals=v[:,3:]@np.linalg.inv(matrix[:,:3]);normals/=np.maximum(1e-9,np.linalg.norm(normals,axis=1))[:,None]
         for f in mesh['faces']:
             order=[0,2,1];ii=np.array(f['indices'])[order]
-            result.append({'p':p[ii],'n':normals[ii],'uv':np.array(f['uv'])[order]/127,'slot':f['slot'],'mesh':i})
+            result.append({'p':p[ii],'n':normals[ii],'uv':np.array(f['uv'])[order]/127,'slot':f['slot'],'mesh':i,'vertex_ids':ids[ii]})
     return result,bones,maximum_error
 
 def render(tris,texture,width=620,height=740,yaw=-12,scale=.18,center=None,ground=True):

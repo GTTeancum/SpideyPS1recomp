@@ -1,0 +1,12 @@
+{
+  "suit": "smu-2099",
+  "candidateInstalled": false,
+  "finalAcceptance": false,
+  "candidateActorSha256": "d64aaf98ed73fc0dc29b3df00eb91bd1fb701b5900379c9e3d042c49d8bc04f7",
+  "installedActorSha256": "2e11614841917401ab1aafb64d1704d1ee8e81c54236b8a3adb1304446914e68",
+  "visualReview": "Individually reviewed native frames 1581 and 1886: complete suit visible during swing and crouch; web meets raised hand region. Wide framing and hand occlusion do not prove finger contact or absence of palm penetration. Do not install based on these images. The 90-degree base/85-degree distal policy remains experimental.",
+  "diagnosticCorrection": "Earlier offline close-ups selected packet 5 only and omitted hand faces. The new anatomical diagnostic selects all hand-influenced faces across every packet. Amazing Spider has 529 left-hand faces across packets 3,4,5,9,14,17. Complete-hand images show a tighter curl, but do not establish general closure or contact. Earlier incomplete views are not sufficient evidence to accept or reject clipping.",
+  "checks": "Full 4196-frame rig checks, before/after isolation, 115-frame native web oracle and managed loading pass. No installed actor changed.",
+  "next": "Use complete anatomical geometry on both hands and short/large representatives; obtain native views that expose fingers before installing a shared policy.",
+  "scope": "Candidate experiment only; native gameplay and offline diagnostics are separate."
+}

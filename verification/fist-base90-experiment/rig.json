@@ -1,0 +1,174 @@
+{
+  "status": "PASS",
+  "scope": "Native assets + compiled C++ runtime core + original animation decoding oracle; C# integration checks are static only. Full .NET build/game execution NOT run.",
+  "passed": 30,
+  "failed": 0,
+  "metrics": {
+    "smu-2099": {
+      "bones": 66,
+      "sourceControlPoints": 1684,
+      "sourceInfluences": 2693,
+      "runtimeVertices": 1684,
+      "runtimeInfluences": 2693,
+      "triangles": 2918,
+      "nativeBytes": 709548,
+      "sha256": "d64aaf98ed73fc0dc29b3df00eb91bd1fb701b5900379c9e3d042c49d8bc04f7",
+      "rootScale": 0.9027954339981079,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.000797199085354805,
+      "maxRoundedComponentError": 0.85107421875,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 4.777331300021615
+    }
+  },
+  "results": [
+    {
+      "name": "300 native clips / 4196 source frames",
+      "passed": true
+    },
+    {
+      "name": "original decoder produces nonsingular Q12 driver rotations",
+      "passed": true,
+      "minDet": 0.9987022876739502,
+      "maxDet": 1.0010902881622314
+    },
+    {
+      "name": "smu-2099: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9431815207203726e-08
+    },
+    {
+      "name": "smu-2099: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 2918
+    },
+    {
+      "name": "smu-2099: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.00048828125
+    },
+    {
+      "name": "smu-2099: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-2099: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.000274658203125,
+      "scale": 0.9027954339981079
+    },
+    {
+      "name": "smu-2099: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-2099: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-2099: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 1159.2559814453125,
+      "worst": null
+    },
+    {
+      "name": "smu-2099: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.000797199085354805
+    },
+    {
+      "name": "smu-2099: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.000244140625,
+      "maxRoundedComponentError": 0.85107421875
+    },
+    {
+      "name": "smu-2099: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-2099: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "source integration: exactly one pose-ready hook and regeneration config",
+      "passed": true
+    },
+    {
+      "name": "source integration: resident validation / fists / culling update present",
+      "passed": true
+    },
+    {
+      "name": "Windows deployed native DLL is the tested-source build artifact",
+      "passed": true
+    }
+  ],
+  "inputHashes": {
+    "C:\\Programming\\SMU-Costumes\\costumes\\2099\\2099.fbx": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman2099_D.png": "5d36f62a7bf9534266fa380918f65a21e47ef3aaa50d5075b6ed05b00531be05",
+    "spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-base90-candidate\\suits\\smu-2099\\actor.psx": "d64aaf98ed73fc0dc29b3df00eb91bd1fb701b5900379c9e3d042c49d8bc04f7"
+  },
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb"
+}

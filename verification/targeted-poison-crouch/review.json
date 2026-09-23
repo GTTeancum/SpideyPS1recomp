@@ -1,0 +1,11 @@
+{
+  "suit": "smu-poison",
+  "actorSha256": "bc409bf0111825222f7929753ad0826f69c9dec39dd6dba0f705fb75992b5ff8",
+  "assetModified": false,
+  "visualReview": "Individually reviewed native frames 1581 and 1886. Swing view retains the body, markings and appendages, with the web reaching the raised hand region. Frame 1886 shows the deep crouch matching the pose in the user-provided screenshot: the red distal tongue segment projects outward with a low tip, rather than the previous tall upward hook. No separate red fragment is visible. Mouth attachment remains occluded from this rear angle and is covered by the earlier front-view evidence, not inferred from this image. This is a visually matched pose, not a proven identical animation index to the user screenshot. Free-hand closure is still unaccepted.",
+  "images": {
+    "frame_01581.png": "5155ef1e81671e5c58a411fdac87325b574e1aca9602125255ab694ef6810be6",
+    "frame_01886.png": "eb67339bbd24040096a41191f5620d3931c18916fcf8ee089b0a195caca4fa1e"
+  },
+  "scope": "Two genuine native framebuffer images, process-local input, no desktop capture. Targeted deep-crouch silhouette verification, not exhaustive tongue/body intersection testing."
+}

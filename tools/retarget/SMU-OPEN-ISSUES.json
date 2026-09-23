@@ -30,9 +30,9 @@
       "suit": "smu-poison",
       "additionalVisualConcern": "Anti-Venom's rear-view apparent arm attachment is resolved: a native front-facing turn frame shows the tongue emerging from the mouth and hanging in front of the torso. All 150 tongue-weighted vertices stay head-relative across 4196 frames, with no body-mixed weights. No asset change was needed. Evidence: verification/targeted-anti-venom-tongue/review.json. This does not accept all tongue intersections or all poses.",
       "resolvedSuits": ["smu-poison"],
-      "finding": "Poison's distal tongue hook is corrected with a pose-only rotation. Source bind matrices, hierarchy, weights and chain lengths are preserved. All 4196 frames leave the mouth, body, fingers and 2816 unaffected vertices exactly unchanged. Native front and grounded-rear views show the revised silhouette. The rear view is not a frame-matched deep crouch comparison.",
+      "finding": "Poison's distal tongue hook is corrected with a pose-only rotation. Source bind matrices, hierarchy, weights and chain lengths are preserved. All 4196 frames leave the mouth, body, fingers and 2816 unaffected vertices exactly unchanged. Native front and grounded-rear views show the revised silhouette. A new deep-crouch native capture visually matches the user's reported pose and shows the distal tip projecting outward rather than forming the tall upward hook. Its mouth is occluded from the rear; it does not replace front-view attachment evidence. See verification/targeted-poison-crouch/review.json. The refreshed attachment audit scans all 233 installed assets and passes all 4196 frames for 15 tongue-bearing suits, with mixed body/tongue vertices explicitly excluded from the rigid vertex invariant.",
       "evidence": "verification/repair-poison-tip/review.json",
-      "next": "Review remaining symbiote poses as their batches are completed; extend corrective policies only when supported by visual evidence. Retain deep-crouch coverage as a remaining targeted visual check."
+      "next": "Review remaining symbiote front/posed views; extend corrective policies only when supported by visual evidence. Poison's reported deep-crouch silhouette now has targeted coverage. Current attachment evidence is verification/head-appendages/installed-233.json, not visual intersection acceptance."
     },
     {
       "id": "extra-arm-retargeting",
@@ -47,7 +47,7 @@
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
       "evidence": "verification/finger-policy/installed-231.json",
-      "next": "Inspect and correct finger curl/orientation using representative hand geometry and native close views."
+      "next": "The uninstalled 90-degree base/85-degree distal candidate passes full rig, web, managed and before/after isolation checks, but wide native views do not establish closure/contact. Use inspect_hand_pose.py for complete anatomical faces across packets: older packet-5-only diagnostics omitted hand geometry. Check both hands and short/large representatives, then native views exposing the fingers. Evidence: verification/fist-base90-experiment/review.json."
     },
     {
       "id": "runtime-vertex-capacity",

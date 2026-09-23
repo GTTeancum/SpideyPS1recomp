@@ -293,16 +293,16 @@
       "resolvedSuits": [
         "smu-poison"
       ],
-      "finding": "Poison's distal tongue hook is corrected with a pose-only rotation. Source bind matrices, hierarchy, weights and chain lengths are preserved. All 4196 frames leave the mouth, body, fingers and 2816 unaffected vertices exactly unchanged. Native front and grounded-rear views show the revised silhouette. The rear view is not a frame-matched deep crouch comparison.",
+      "finding": "Poison's distal tongue hook is corrected with a pose-only rotation. Source bind matrices, hierarchy, weights and chain lengths are preserved. All 4196 frames leave the mouth, body, fingers and 2816 unaffected vertices exactly unchanged. Native front and grounded-rear views show the revised silhouette. A new deep-crouch native capture visually matches the user's reported pose and shows the distal tip projecting outward rather than forming the tall upward hook. Its mouth is occluded from the rear; it does not replace front-view attachment evidence. See verification/targeted-poison-crouch/review.json. The refreshed attachment audit scans all 233 installed assets and passes all 4196 frames for 15 tongue-bearing suits, with mixed body/tongue vertices explicitly excluded from the rigid vertex invariant.",
       "evidence": "verification/repair-poison-tip/review.json",
-      "next": "Review remaining symbiote poses as their batches are completed; extend corrective policies only when supported by visual evidence. Retain deep-crouch coverage as a remaining targeted visual check."
+      "next": "Review remaining symbiote front/posed views; extend corrective policies only when supported by visual evidence. Poison's reported deep-crouch silhouette now has targeted coverage. Current attachment evidence is verification/head-appendages/installed-233.json, not visual intersection acceptance."
     },
     {
       "id": "visual-fist-closure",
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
       "evidence": "verification/finger-policy/installed-231.json",
-      "next": "Inspect and correct finger curl/orientation using representative hand geometry and native close views."
+      "next": "The uninstalled 90-degree base/85-degree distal candidate passes full rig, web, managed and before/after isolation checks, but wide native views do not establish closure/contact. Use inspect_hand_pose.py for complete anatomical faces across packets: older packet-5-only diagnostics omitted hand geometry. Check both hands and short/large representatives, then native views exposing the fingers. Evidence: verification/fist-base90-experiment/review.json."
     }
   ],
   "sourceLimitations": [
@@ -400,6 +400,17 @@
       },
       "assetModified": false,
       "scope": "Two native framebuffer images from process-local input, individually inspected; no desktop capture. Supplemented by a full-4196-frame offline head-relative attachment check, not exhaustive visual pose acceptance."
+    },
+    {
+      "suit": "smu-poison",
+      "actorSha256": "bc409bf0111825222f7929753ad0826f69c9dec39dd6dba0f705fb75992b5ff8",
+      "assetModified": false,
+      "visualReview": "Individually reviewed native frames 1581 and 1886. Swing view retains the body, markings and appendages, with the web reaching the raised hand region. Frame 1886 shows the deep crouch matching the pose in the user-provided screenshot: the red distal tongue segment projects outward with a low tip, rather than the previous tall upward hook. No separate red fragment is visible. Mouth attachment remains occluded from this rear angle and is covered by the earlier front-view evidence, not inferred from this image. This is a visually matched pose, not a proven identical animation index to the user screenshot. Free-hand closure is still unaccepted.",
+      "images": {
+        "frame_01581.png": "5155ef1e81671e5c58a411fdac87325b574e1aca9602125255ab694ef6810be6",
+        "frame_01886.png": "eb67339bbd24040096a41191f5620d3931c18916fcf8ee089b0a195caca4fa1e"
+      },
+      "scope": "Two genuine native framebuffer images, process-local input, no desktop capture. Targeted deep-crouch silhouette verification, not exhaustive tongue/body intersection testing."
     },
     {
       "suit": "smu-werewolf",

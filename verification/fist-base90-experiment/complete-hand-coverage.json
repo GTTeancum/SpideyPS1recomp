@@ -1,0 +1,95 @@
+{
+  "actorSha256": "245056c0b7f7163a8ef328bb7bf45b3eba3abf8aa4826c5326a69af223834c10",
+  "scope": "Offline anatomical hand diagnostic, including adjacent wrist triangles. No game or visual closure acceptance. Thumb policy unchanged.",
+  "side": "L",
+  "handInfluencedVertices": 364,
+  "coverage": [
+    {
+      "label": "current",
+      "triangles": 529,
+      "packets": [
+        3,
+        4,
+        5,
+        9,
+        14,
+        17
+      ]
+    },
+    {
+      "label": "candidate",
+      "triangles": 529,
+      "packets": [
+        3,
+        4,
+        5,
+        9,
+        14,
+        17
+      ]
+    }
+  ],
+  "candidateAngles": [
+    {
+      "bone": "Clown001LArmDigit21",
+      "before": 60,
+      "after": 90
+    },
+    {
+      "bone": "Clown001LArmDigit22",
+      "before": 85,
+      "after": 85
+    },
+    {
+      "bone": "Clown001LArmDigit31",
+      "before": 60,
+      "after": 90
+    },
+    {
+      "bone": "Clown001LArmDigit32",
+      "before": 85,
+      "after": 85
+    },
+    {
+      "bone": "Clown001LArmDigit51",
+      "before": 60,
+      "after": 90
+    },
+    {
+      "bone": "Clown001LArmDigit52",
+      "before": 85,
+      "after": 85
+    },
+    {
+      "bone": "Clown001RArmDigit21",
+      "before": 60,
+      "after": 90
+    },
+    {
+      "bone": "Clown001RArmDigit22",
+      "before": 85,
+      "after": 85
+    },
+    {
+      "bone": "Clown001RArmDigit31",
+      "before": 60,
+      "after": 90
+    },
+    {
+      "bone": "Clown001RArmDigit32",
+      "before": 85,
+      "after": 85
+    },
+    {
+      "bone": "Clown001RArmDigit51",
+      "before": 60,
+      "after": 90
+    },
+    {
+      "bone": "Clown001RArmDigit52",
+      "before": 85,
+      "after": 85
+    }
+  ],
+  "candidateInstalled": false
+}

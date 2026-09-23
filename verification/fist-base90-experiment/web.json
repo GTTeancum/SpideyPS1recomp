@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 1,
+  "requested": 1,
+  "results": [
+    {
+      "key": "2099",
+      "id": "smu-2099",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.932861328125,
+        9.3349609375
+      ],
+      "assetSha256": "d64aaf98ed73fc0dc29b3df00eb91bd1fb701b5900379c9e3d042c49d8bc04f7",
+      "captureSha256": "570adf93c3ecac5f2d3f2e574669b3e36bb13883cc66897388a1e7cc24942c15"
+    }
+  ]
+}
