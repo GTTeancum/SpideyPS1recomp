@@ -1,0 +1,132 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-gabrielgant",
+      "previousActorSha256": "648c7098959c72dd7c2f1d7a7a74de44ea7e950953582f9ec9845be4ba5af518",
+      "actorSha256": "02146df7356c7d7a5b2a13e3acf6fc9415464c17d026e3ddb0cb7a2e4faaa499",
+      "visualReview": "Individually inspected native frames 01582 and 01902. Rear swing and subsequent side-facing movement retain the blue/red body, hood/cape, silver shoulder armor and long paired spikes. The free glove in the swing and both side-view gloves show folded finger silhouettes with thumb openings. A web is visible in the swing, but armor/hood overlap obscures the raised hand and limits live endpoint precision; the separate 115-frame offline endpoint test is exact. The cape obscures much of the back, and the second frame is side-facing rather than frontal. All 4965 triangles, source weights and original texture bytes are retained by tests. No exhaustive contact, cape/body intersection or front-face acceptance is claimed.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01582.png": "aba4b587aef74716a37f51dc0e37eb8faef0bc8f7b9d50481dcdfd64bed16581",
+        "frame_01902.png": "ed2d8058d29a5311852be5b2c61ee05ba8c1bb7b973fc9145000b2384a517ded"
+      }
+    },
+    {
+      "suit": "smu-ghost",
+      "previousActorSha256": "a46761041b64bcf85ea5a58d1f49374f34f26e8e2fdc49c9be21eb857331689a",
+      "actorSha256": "df9d10eb8ff1a05c39fb052d9c02f79f94557f867363de9bbca6946917211b2d",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-gabrielgant, smu-god, smu-gwenom.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-girl",
+      "previousActorSha256": "2a8984717137565d573cff70a7eb3b371d73f7e36ec1e6a59cff32ab0ea44dda",
+      "actorSha256": "0e0b858f55f884f61fc6b15a3352103ff715b2220b93f0c1b51e62409cc7864d",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-gabrielgant, smu-god, smu-gwenom.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-goblinspider",
+      "previousActorSha256": "2459d8b6cda68265b279aa279766cb2d8985b0db35e7d91aa3fd70a2a0104b37",
+      "actorSha256": "dab16cc97174605be282be5c61dfe2175b22164cce337dad51fe81ab7ff5fb4c",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-gabrielgant, smu-god, smu-gwenom.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-god",
+      "previousActorSha256": "da7bc78ecda33cf0875bb547242ddf8b4e95dd0ec5c466c0ed2e98c0bd70590b",
+      "actorSha256": "ae4a89047bea47819416046f2c7bd2936c94e4db84bbb2c57e2418969d028970",
+      "visualReview": "Individually inspected native frames 01582 and 01887. Rear swing and subsequent rear movement retain the headdress, pale-blue body markings, wrist/ankle jewelry, wide orange shorts and bare feet. The free fingers are folded with the thumb exposed, and the web meets the raised hand. Both hands are visible from the rear in the second frame, but full palm contact and face detail are not established. Skin and pale markings are brightly lit; exact source shading is not claimed. All 3558 triangles and original texture bytes are separately retained by the preservation gates. No exhaustive contact, foot-contact or all-animation visual acceptance is claimed.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01582.png": "d0842c121e6342408aceda041dcfc0baba5a15263cd5c97449acee5683755cef",
+        "frame_01887.png": "7f5b1fa7cfa656780e41e223bb706b3c1aa606fd84644af44f6c1149952eaacf"
+      }
+    },
+    {
+      "suit": "smu-guardian",
+      "previousActorSha256": "46daac2330c9de5f9efdd47eaca39d4ddbf23b2797355894882f95984eafae68",
+      "actorSha256": "2bf9ee2757437592effa957dc1b5a55956310ca935a5cc4bcf282ac8655fc7dd",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-gabrielgant, smu-god, smu-gwenom.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-gwen",
+      "previousActorSha256": "f990711ad5bc6916a9346ff8876bfa1e21886243fbd624174aa4d3dca6c086b6",
+      "actorSha256": "72387e67f608cb9455d9e4b811a415ceee3f8079c2fc0e7c1d618bd2ac8e5e4c",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-gabrielgant, smu-god, smu-gwenom.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-gwenom",
+      "previousActorSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
+      "actorSha256": "a1fe99b375bb39e3d594632c69fbbe5ec94d84f9a03a292b25ba64cd2a871268",
+      "visualReview": "Individually inspected native frames 01584 and 01904. Rear swing and side-facing movement retain the dark body, hood, white upper markings/glove patches and pink accents/soles. The free glove and opposite side-view glove have folded finger silhouettes with visible thumb openings; the swing web reaches the raised hand. Both authored material slots and all 3986 triangles remain preserved. These views do not clearly expose the mouth; the red/pink hood-edge appendage is not accepted as independently animated tongue proof. The preserved 67-node rig has no separately named tongue chain, and the named-tongue attachment audit does not cover it. Full before/after isolation separately proves all 2019 non-finger vertices exactly unchanged across 4196 frames. No exhaustive finger/palm or tongue/body intersection acceptance is claimed.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01584.png": "48f5cab12768bd5b94dd4cdb87d9292fd0402cc70656cfe918a8045739d169c6",
+        "frame_01904.png": "e27310b7bbd28e9a047b029736851b9d33405aa4d5951ff02290412d19d0eea6"
+      }
+    },
+    {
+      "suit": "smu-gwenstacy-unmasked",
+      "previousActorSha256": "a5c5fe67705a023a55588de1b1b36f48721fb245aa06c9a16a8461a4351158dd",
+      "actorSha256": "1517cfa722b69e27aec3f00e5e329637d7bb9be6085bdef968d7cbe0ad5c4ad3",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-gabrielgant, smu-god, smu-gwenom.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-hammerhead",
+      "previousActorSha256": "6cdd4b7afa57a4262e201e045b886f86af01048680afa42e21222e38856966e7",
+      "actorSha256": "7faaeee135748c1da9e8221bf43839820545b7cbe2b220b5d2f53f7d4b569c45",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-gabrielgant, smu-god, smu-gwenom.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-gabrielgant",
+    "smu-god",
+    "smu-gwenom"
+  ],
+  "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast, Batty Brant and Black Cat Venom sources instead use measured per-digit source-relative closure with narrow per-hand overrides. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 944,
+  "changedFiles": [
+    "smu-gabrielgant\\actor.psx",
+    "smu-gabrielgant\\conversion-report.json",
+    "smu-ghost\\actor.psx",
+    "smu-ghost\\conversion-report.json",
+    "smu-girl\\actor.psx",
+    "smu-girl\\conversion-report.json",
+    "smu-goblinspider\\actor.psx",
+    "smu-goblinspider\\conversion-report.json",
+    "smu-god\\actor.psx",
+    "smu-god\\conversion-report.json",
+    "smu-guardian\\actor.psx",
+    "smu-guardian\\conversion-report.json",
+    "smu-gwen\\actor.psx",
+    "smu-gwen\\conversion-report.json",
+    "smu-gwenom\\actor.psx",
+    "smu-gwenom\\conversion-report.json",
+    "smu-gwenstacy-unmasked\\actor.psx",
+    "smu-gwenstacy-unmasked\\conversion-report.json",
+    "smu-hammerhead\\actor.psx",
+    "smu-hammerhead\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+    "exitCode": 0,
+    "warnings": 0,
+    "errors": 0,
+    "scope": "Observed Windows game build for batch12, 1.42 seconds. Native captures use the matching game DLL. Linux game execution not performed."
+  }
+}

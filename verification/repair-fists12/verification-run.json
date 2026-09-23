@@ -1,0 +1,54 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-gabrielgant-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-ghost-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-girl-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-goblinspider-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-god-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-guardian-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-gwen-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-gwenom-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-gwenstacy-unmasked-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-hammerhead-isolation",
+    "exitCode": 0
+  }
+]

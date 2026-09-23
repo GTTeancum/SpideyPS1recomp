@@ -1,0 +1,532 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch12",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "gabrielgant",
+    "ghost",
+    "girl",
+    "goblinspider",
+    "god",
+    "guardian",
+    "gwen",
+    "gwenom",
+    "gwenstacy_unmasked",
+    "hammerhead"
+  ],
+  "results": [
+    {
+      "key": "gabrielgant",
+      "id": "smu-gabrielgant",
+      "fbx": "costumes/gabrielgant/gabrielgant.fbx",
+      "fbxSha256": "79aa4f2958a412c2753e2572c15ba55de601c985c9b0e7fdf34ee24e8b84b62c",
+      "textureFiles": [
+        "textures-png\\GabrielGant_D.png"
+      ],
+      "textureSha256": [
+        "2d40fec966b50abbac48ed14b6ab9514890f33c31059b7c2437f3afa714be744"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3302,
+      "sourceTriangles": 4965,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "GabrielGant_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "body",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\GabrielGant_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Material_01",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\GabrielGant_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1132552,
+      "outputs": {
+        "actor.psx": "02146df7356c7d7a5b2a13e3acf6fc9415464c17d026e3ddb0cb7a2e4faaa499",
+        "conversion-report.json": "f4f59f94dfbbdcb0491a5096984797b392b159da970f24bb35d1e71d645a9111",
+        "suit.json": "d07ec85ad7c8739cb211d0c65c431945673cd72c4c0731b232dd81a2d353ca44",
+        "textures\\diffuse-1.png": "c8289f72c24a622ff2dbdf0e690598fedad6c2f27cabc98b5e14cdaf43110e58",
+        "textures\\diffuse.png": "c8289f72c24a622ff2dbdf0e690598fedad6c2f27cabc98b5e14cdaf43110e58"
+      }
+    },
+    {
+      "key": "ghost",
+      "id": "smu-ghost",
+      "fbx": "costumes/ghost/ghost.fbx",
+      "fbxSha256": "0a0a6f8d8936bb23b6127bcf321c16c8827e5042976e242fe3d5f9d2ec49404a",
+      "textureFiles": [
+        "textures-png\\SpidermanGhost_D.png"
+      ],
+      "textureSha256": [
+        "cf75709c8bb5b80469084212776be2135a2d0b61ff0aceed55410e64ff424a16"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1797,
+      "sourceTriangles": 3162,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanGhost_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ghost",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanGhost_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 759052,
+      "outputs": {
+        "actor.psx": "df9d10eb8ff1a05c39fb052d9c02f79f94557f867363de9bbca6946917211b2d",
+        "conversion-report.json": "b6fee4f8f5732643b9716255bdfb22bc931e3f47ab698a60004a6c63415d8784",
+        "suit.json": "f0bf821221602c1293560406105b585e9e753f7e881eeaf0629ccc7ac47c41e6",
+        "textures\\diffuse.png": "18e52ab962855c2a7fb26802654d68ff341bedcc371a597675ec71bb7fc06545"
+      }
+    },
+    {
+      "key": "girl",
+      "id": "smu-girl",
+      "fbx": "costumes/girl/girl.fbx",
+      "fbxSha256": "1c5f1b060c405bb82ff20c0812bac8d04fe058616975e2ec871232085af05aaa",
+      "textureFiles": [
+        "textures-png\\Spidergirl_D.png"
+      ],
+      "textureSha256": [
+        "8d95013033a04dab0bc7f2cda57afff3394df3f52ce77befe669c79842a2c303"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2005,
+      "sourceTriangles": 3454,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spidergirl_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "SpiderGirl",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spidergirl_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 866788,
+      "outputs": {
+        "actor.psx": "0e0b858f55f884f61fc6b15a3352103ff715b2220b93f0c1b51e62409cc7864d",
+        "conversion-report.json": "a7b8332d3091d58fc34d6cfc9bf0f269f5f805785d1171c82243a28f3da0f8f1",
+        "suit.json": "6d9c88c4b1dbabc89e44879ce22c527ef1d01921a2a427223fb81f60edb22946",
+        "textures\\diffuse.png": "1a00a617691b00c2d5ae3b454e62fa8b5d5ed5853b4c726a54ea78b48066ad14"
+      }
+    },
+    {
+      "key": "goblinspider",
+      "id": "smu-goblinspider",
+      "fbx": "costumes/goblinspider/goblinspider.fbx",
+      "fbxSha256": "97515e63d28f0445b869059bfe89eb9a4f1e2916031b1ef05571295e94280410",
+      "textureFiles": [
+        "textures-png\\GoblinSpider_D.png"
+      ],
+      "textureSha256": [
+        "d2f1e77a78492d3486d33110ad314a55b9e8ff2687c8f43e5fa9ae4483da8c8b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1822,
+      "sourceTriangles": 3004,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "GoblinSpider_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "GoblinSpider",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\GoblinSpider_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 767372,
+      "outputs": {
+        "actor.psx": "dab16cc97174605be282be5c61dfe2175b22164cce337dad51fe81ab7ff5fb4c",
+        "conversion-report.json": "73a32837cab87f26f3a17c0d7d38047335f00b229dc7b7a4e1934e363a024ca6",
+        "suit.json": "85b156a113d396c59fdbe16b5626605cbf47e23ac80c8d25ca01635450d0b0b3",
+        "textures\\diffuse.png": "16627bea0b3cbd6b0198819f0c8dbdabf8b2eb622ad52072c04d398c044fe75f"
+      }
+    },
+    {
+      "key": "god",
+      "id": "smu-god",
+      "fbx": "costumes/god/god.fbx",
+      "fbxSha256": "485d94f1935f315e2dc46e2b7cdcf44a466a78520e8c70ca338a1b58229c16e7",
+      "textureFiles": [
+        "textures-png\\SpidermanGod_D.png"
+      ],
+      "textureSha256": [
+        "2c5abbae7b837fda50aa220dc7c0fac374c6eaae6ecf9b57796ceed96506c3fe"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2188,
+      "sourceTriangles": 3558,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanGod_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "God",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanGod_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 851024,
+      "outputs": {
+        "actor.psx": "ae4a89047bea47819416046f2c7bd2936c94e4db84bbb2c57e2418969d028970",
+        "conversion-report.json": "869fe5b7ad4a97925fbe52947f4c19cabe7b768d6da79b064a606e0dd57cdcaf",
+        "suit.json": "cee12dfb825480f4d3af46aef4cd8ef0700a2fbb30546af7b746b8580ed3a70f",
+        "textures\\diffuse.png": "df388076f98280ad4661ea53b44d2424d770b5a4cd5bc8ee6ddbdf05e856c6ee"
+      }
+    },
+    {
+      "key": "guardian",
+      "id": "smu-guardian",
+      "fbx": "costumes/guardian/guardian.fbx",
+      "fbxSha256": "81845fa785f6eb3b17f0689025047f4309c0776e0fb40052bcdd7bc63a9c5160",
+      "textureFiles": [
+        "textures-png\\Guardian_D.png"
+      ],
+      "textureSha256": [
+        "88afd24210cd1ed6863320d7ed68c0cc22cf3d595597c50bda5af5ffe99a684c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2483,
+      "sourceTriangles": 4019,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Guardian_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "EarthX",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Guardian_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              2,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 916156,
+      "outputs": {
+        "actor.psx": "2bf9ee2757437592effa957dc1b5a55956310ca935a5cc4bcf282ac8655fc7dd",
+        "conversion-report.json": "af3565cfffa96d43d42b31779a6e4c9d6bca3cbb99d531066c8dfa1c885ab609",
+        "suit.json": "a35db48dccc361e66049f07bbcf9cd33ac96faffbb349f839320f0049bde012a",
+        "textures\\diffuse.png": "c1862450d97abedf1ec6955543c90ba135f1631a6c2124587844b5635be0ec0d"
+      }
+    },
+    {
+      "key": "gwen",
+      "id": "smu-gwen",
+      "fbx": "costumes/gwen/gwen.fbx",
+      "fbxSha256": "cc279fecee315f2c6dfa13c20c3402af5d63e15d9ccd8c7d07f135e0c2dce85f",
+      "textureFiles": [
+        "textures-png\\SpidermanGwen_D.png"
+      ],
+      "textureSha256": [
+        "0de536f0ca20e44b3b62d93099e8df0eb463d05e97118068b976d917f2e794c5"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2177,
+      "sourceTriangles": 3719,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanGwen_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "_7_-_Default",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanGwen_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 871000,
+      "outputs": {
+        "actor.psx": "72387e67f608cb9455d9e4b811a415ceee3f8079c2fc0e7c1d618bd2ac8e5e4c",
+        "conversion-report.json": "151fec3dc1b81a41dc237a7c55e52f690647389b94caa256e8ac549fd8baec39",
+        "suit.json": "9992a94952b9234482c834d6e01f1b31620d4a32b98b75e9da8f57b3d4d25c22",
+        "textures\\diffuse.png": "a7c196cf1df70df3bc5c3841b2eaa0a83e24f527292fcc373605183e7d400073"
+      }
+    },
+    {
+      "key": "gwenom",
+      "id": "smu-gwenom",
+      "fbx": "costumes/gwenom/gwenom.fbx",
+      "fbxSha256": "2490068258b663dd4a75d4eed77fa65769ff89fc810808fbbacedc7db1893b78",
+      "textureFiles": [
+        "textures-png\\Gwenom_D.png"
+      ],
+      "textureSha256": [
+        "76542f14a5b72b5cd61c2cab17a56811f41f65cee8d76073abffb06532203180"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2377,
+      "sourceTriangles": 3986,
+      "sourceBoneCount": 66,
+      "authoredDiffuseNames": [
+        "Gwenom_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Spiderman_1",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Gwenom_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Spiderma__2",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Gwenom_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 67,
+      "nativeBytes": 986328,
+      "outputs": {
+        "actor.psx": "a1fe99b375bb39e3d594632c69fbbe5ec94d84f9a03a292b25ba64cd2a871268",
+        "conversion-report.json": "1f6f26b47b6814bb042898cfeffb35794d0529e3543cf9663b3cb77fd0feab6a",
+        "suit.json": "f09e2b3833095425aa892468aeab169920ac754a4a405af32dcf6dad0a47271c",
+        "textures\\diffuse-1.png": "b6ce811c4b4bcc492be4cd3a87f324d4d1de321607bc941ff1d63c23632934d4",
+        "textures\\diffuse.png": "b6ce811c4b4bcc492be4cd3a87f324d4d1de321607bc941ff1d63c23632934d4"
+      }
+    },
+    {
+      "key": "gwenstacy_unmasked",
+      "id": "smu-gwenstacy-unmasked",
+      "fbx": "costumes/gwenstacy_unmasked/gwenstacy_unmasked.fbx",
+      "fbxSha256": "436a84c9220761032726c095de1a60df1e5e6ebb1f9239080baead9a15405103",
+      "textureFiles": [
+        "textures-png\\GwenStacy_unmasked_D.png"
+      ],
+      "textureSha256": [
+        "a33f5fb933b3693c21b71e709493633d4eb6708f4b29cda3cf471f3bf3a7c5d2"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2501,
+      "sourceTriangles": 4144,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "GwenStacy_unmasked_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Gwen",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\GwenStacy_unmasked_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 934676,
+      "outputs": {
+        "actor.psx": "1517cfa722b69e27aec3f00e5e329637d7bb9be6085bdef968d7cbe0ad5c4ad3",
+        "conversion-report.json": "290183527b1603beb9bca7a532316fbfb71e5a49acce6f354f576e397b979965",
+        "suit.json": "0301a96c33bc4bbbe9640ec4e82169b3ddcb2c1aedd7f3e02a05a9f1e765664b",
+        "textures\\diffuse.png": "9c993e46a71a4d6bcf23422cce6935ecdf1166a5c2a259a491076c9b1c802758"
+      }
+    },
+    {
+      "key": "hammerhead",
+      "id": "smu-hammerhead",
+      "fbx": "costumes/hammerhead/hammerhead.fbx",
+      "fbxSha256": "57a90802f1f68b87564e088c7e05086ca0af017bbfab4488c4c78dbdbc8e0d03",
+      "textureFiles": [
+        "textures-png\\hummerhead_D.png"
+      ],
+      "textureSha256": [
+        "eb8901a584f571e3756edf2d44653c68fc3d4816f2a5b552e00bfcea9fa54e09"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1586,
+      "sourceTriangles": 2584,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "hummerhead_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Hummerhead",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\hummerhead_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 747364,
+      "outputs": {
+        "actor.psx": "7faaeee135748c1da9e8221bf43839820545b7cbe2b220b5d2f53f7d4b569c45",
+        "conversion-report.json": "e34e6dfb73f3adc53444091c0112e1207bf8f25895b470bb06c8459d15a63f9e",
+        "suit.json": "d5d8eb1397a25e8348d9eb9c8b0a0a2bd0f6568c59b566f9e310ee8a333cd4d9",
+        "textures\\diffuse.png": "422de37bd9ad5c3fe7295af3ea74ebe77987f871a889de91215f7b33ce10bc6a"
+      }
+    }
+  ]
+}
