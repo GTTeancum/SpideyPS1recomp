@@ -1,0 +1,26 @@
+{
+  "batch": 17,
+  "keys": [
+    "spdr",
+    "spider_cowboy",
+    "spider_demon",
+    "spider_herc",
+    "spider_ninja",
+    "spider_spiner",
+    "spiderarmor",
+    "spidergwen_earth1036",
+    "spiderham_2099",
+    "spiderjameson"
+  ],
+  "representative": "smu-spdr",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed both native SP//dr captures: large mechanical torso, segmented limbs, claw feet and red/gray/yellow materials are present in swing and grounded states. Web reaches the raised hand area; wrist partly obscured. Camera intersects low sewer ceiling in swing shot; this is not clean camera-clearance acceptance. No floating untransformed geometry is apparent in these views. Offline regression covers all ten assets; live images cover this representative only.",
+  "liveSwingImages": [
+    "frame_01559.png"
+  ],
+  "images": {
+    "frame_01559.png": "6212ff861c52b4fe837e824920851b922edd2c84244c4e5b6a7f05104fb36700",
+    "frame_01864.png": "379d461f283940b1af83b7db8a8713182abdf27f0204705c4b50380970034307"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-spdr",
+  "name": "SMU SPDR",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "F36A077E": "textures/diffuse.png"
+  }
+}

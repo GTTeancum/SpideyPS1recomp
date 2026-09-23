@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-spidergwen-earth1036",
+  "name": "SPIDERGWEN EAR #188",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "E6159639": "textures/diffuse.png"
+  }
+}
