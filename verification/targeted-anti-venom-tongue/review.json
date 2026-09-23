@@ -1,0 +1,11 @@
+{
+  "suit": "smu-anti-venom",
+  "actorSha256": "049a602a30ce771dab34aa6d0cee6e6985c8fa6b578cce0b18c554118c5fc247",
+  "visualReview": "Individually reviewed native frames 1566 and 1572. First view is rear-facing during the turn; second clearly shows the front of the head, teeth and red tongue emerging from the mouth and extending down in front of the torso. No visible mouth disconnect in that view. The previously seen red segment beside the arm was an occluded rear-view silhouette, not arm attachment. Keep the authored tongue pose. This does not prove absence of intersections throughout every animation; free-hand fist closure remains open.",
+  "images": {
+    "frame_01566.png": "56b1873ec9e7fcd8922dbc2f36c85e2313b4e0385f3be99ec70a941a6670665d",
+    "frame_01572.png": "061773cce334299970feb0287c6862ac50c74b6a6fd5fe2f0d6e14897dc49df4"
+  },
+  "assetModified": false,
+  "scope": "Two native framebuffer images from process-local input, individually inspected; no desktop capture. Supplemented by a full-4196-frame offline head-relative attachment check, not exhaustive visual pose acceptance."
+}
