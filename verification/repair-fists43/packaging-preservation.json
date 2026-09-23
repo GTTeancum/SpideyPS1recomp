@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-peter-urich",
+    "beforeActorSha256": "497748e87d893c3dfa74cdc7f4b2c07c85d1afd2e3d98b961d4ccf0ad9892c91",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-prodigy",
+    "beforeActorSha256": "2ec80be36fed64fa3b090c8948674afc15088cf776ad0c8d6ac5e7d43be2d91b",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-punk",
+    "beforeActorSha256": "c757fef786915715b0f19d7fc7213f69dc82e42dbf5af592325ec14afceca348",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

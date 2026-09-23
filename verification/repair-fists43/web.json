@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "peter_urich",
+      "id": "smu-peter-urich",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.107177734375,
+        9.5087890625
+      ],
+      "assetSha256": "0bf44cde77b46a4d88ccfd78ca93583ee7768d12ddb6d31645af05fee52c0cb6",
+      "captureSha256": "0f1be98ef1e7837d7fd40b8c2665438ed8add2f31a9a97844313321fe4a772ee"
+    },
+    {
+      "key": "prodigy",
+      "id": "smu-prodigy",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.685546875,
+        10.087646484375
+      ],
+      "assetSha256": "b129cc5e83720273ccf6d8ed5324b3d4633e5d1cc53a8da02cea7769b2a767b5",
+      "captureSha256": "e1e66e74e50b81e77821014a13b42ff9f649e8efdb50d7c4428316df97b1e452"
+    },
+    {
+      "key": "punk",
+      "id": "smu-punk",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.5849609375,
+        10.987060546875
+      ],
+      "assetSha256": "e6aa5c30fcec6864c03ed3b6dfb268a53b6532bea345b5f61bae171087d4ce6d",
+      "captureSha256": "96f059e9514f30e314bbd9de23f3a92b3b5cb8b227cf7d071c170327de6e7ef7"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-peter-urich",
+      "previousActorSha256": "497748e87d893c3dfa74cdc7f4b2c07c85d1afd2e3d98b961d4ccf0ad9892c91",
+      "actorSha256": "0bf44cde77b46a4d88ccfd78ca93583ee7768d12ddb6d31645af05fee52c0cb6",
+      "visualReview": "Reviewed the two native game images sequentially. Peter Urich retains the orange head and shoulder armor, glowing chest disk, blue limbs, orange forearms, component details, and compact hands without dropped geometry. No web line is visible in this running capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01608.png": "8931b8bac196d13d65347c93e9e5613a06b3b9e625d6494284e8dbd0827d069f",
+        "frame_01608_closeup.png": "7b232cb27a2247990c8fb33b298ee8ae325a1aa3be8b380f5a6724b323180021"
+      }
+    },
+    {
+      "suit": "smu-prodigy",
+      "previousActorSha256": "2ec80be36fed64fa3b090c8948674afc15088cf776ad0c8d6ac5e7d43be2d91b",
+      "actorSha256": "b129cc5e83720273ccf6d8ed5324b3d4633e5d1cc53a8da02cea7769b2a767b5",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-peter-urich.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-punk",
+      "previousActorSha256": "c757fef786915715b0f19d7fc7213f69dc82e42dbf5af592325ec14afceca348",
+      "actorSha256": "e6aa5c30fcec6864c03ed3b6dfb268a53b6532bea345b5f61bae171087d4ce6d",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-peter-urich.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-peter-urich"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-peter-urich\\actor.psx",
+    "smu-peter-urich\\conversion-report.json",
+    "smu-prodigy\\actor.psx",
+    "smu-prodigy\\conversion-report.json",
+    "smu-punk\\actor.psx",
+    "smu-punk\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-peter-urich/frame_01608.png and frame_01608_closeup.png"
+  }
+}

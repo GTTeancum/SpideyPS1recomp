@@ -1,0 +1,26 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-peter-urich-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-prodigy-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-punk-isolation",
+    "exitCode": 0
+  }
+]
