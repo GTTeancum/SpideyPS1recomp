@@ -1,0 +1,26 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-spiderjameson-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-steel-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-swift-isolation",
+    "exitCode": 0
+  }
+]

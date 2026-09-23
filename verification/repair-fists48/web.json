@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "spiderjameson",
+      "id": "smu-spiderjameson",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.46240234375,
+        9.8642578125
+      ],
+      "assetSha256": "b7601247ad46bf199b80bdbe51255c3d6684be10f8283ef29de7420a8fe55251",
+      "captureSha256": "61b8241245623bc47e6f9cb024856766f355dd2384c14a52a6acef62cb4d8cf9"
+    },
+    {
+      "key": "steel",
+      "id": "smu-steel",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.991943359375,
+        9.394287109375
+      ],
+      "assetSha256": "a482946354028bbcd361dd93493f51d39dc8124c7051b89262897ec281f4e1c8",
+      "captureSha256": "e143af3bc2cb8994e1ae4d6728d5ef50ae65aa0538c0a1c91f1d7bcc3cd395c3"
+    },
+    {
+      "key": "swift",
+      "id": "smu-swift",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.13134765625,
+        18.307373046875
+      ],
+      "assetSha256": "ae7b961c3aca93898b08c42527db484389295ec4b45fb0c52ea46745624af169",
+      "captureSha256": "1663a72ba4f35638dc016608aadca1662d3f8dca1af56248c571222f0be8fb43"
+    }
+  ]
+}
