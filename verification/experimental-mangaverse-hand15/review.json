@@ -1,0 +1,332 @@
+{
+  "status": "rejected-offline-experiments",
+  "installed": false,
+  "suit": "smu-mangaversegirl",
+  "stagedActorSha256": "52cbc9b84ecab3b57558e46a4210b92dbcfcf642501028708f55fc03aade4d53",
+  "installedActorSha256": "4bdbd5fca167cb21cc34e59da914ebd67a8502ff4d7acea987120de229bf4bc9",
+  "sourceSha256": "31279f6983d406a3860d892e001d7c4b85a59a8afc205d45a7df067a5ca53927",
+  "findings": [
+    "Complete source-weighted hand inspection includes 463 left and 463 right hand-influenced faces across all relevant packets, not a packet-5-only subset. Both offline views of each case were individually inspected.",
+    "The staged left hand has a large open arch; sampled middle-tip palm-normal clearances are 75 to 96 model units. The right middle tips have negative clearances, approximately -29 to -5. These are sampled envelope measurements, not exhaustive collision tests.",
+    "Wide per-hand fits reduce sampled tip gaps but flatten the outer finger silhouettes. The left wide fit flattens all three groups; the right wide fit combines flattened outer fingers with a tall middle arch. Reject both shapes.",
+    "The limited left fit retains an upright middle arch but still has an uneven whole-hand silhouette and approximately 43 units of little-tip clearance. Reject this shape too.",
+    "Independent digit search scores are not combined-pose acceptance: the right combined wide fit reduces minimum middle-tip clearance to approximately 0.59, below the search per-digit minimum of 2, because neighboring finger weights also move the palm surface."
+  ],
+  "scope": "Offline diagnostics only. In-memory local non-thumb rotations; no serialized candidate, installed actor, source mesh, bind, weights, thumb policy or production conversion policy changed. No new native game run or build was performed for rejected offline fits. Earlier native evidence remains limited to the two held batch15 frames.",
+  "next": "Fit the combined hand with a coherent knuckle silhouette and re-evaluate the deformed palm after all rotations. Preserve source data and both materials. Require full isolation, animation/web gates and two native frames before any installation.",
+  "cases": {
+    "baseline-left": {
+      "faceLabels": {
+        "palm/wrist": 207,
+        "thumb 0": 52,
+        "index 2": 56,
+        "middle 3": 110,
+        "little 5": 38
+      },
+      "tipSurfaceDistances": [
+        {
+          "digit": 2,
+          "tipVertices": [
+            1213,
+            1226
+          ],
+          "minimum": 83.47051239013672,
+          "maximum": 83.47051239013672,
+          "mean": 83.47051239013672,
+          "signedPalmNormalClearance": [
+            null,
+            null
+          ]
+        },
+        {
+          "digit": 3,
+          "tipVertices": [
+            1165,
+            1169,
+            1171,
+            1172
+          ],
+          "minimum": 57.43449020385742,
+          "maximum": 73.72703552246094,
+          "mean": 64.20187187194824,
+          "signedPalmNormalClearance": [
+            75.30668640136719,
+            75.30668640136719,
+            96.10098266601562,
+            88.80445861816406
+          ]
+        },
+        {
+          "digit": 5,
+          "tipVertices": [
+            1118,
+            1128
+          ],
+          "minimum": 106.46973419189453,
+          "maximum": 106.46973419189453,
+          "mean": 106.46973419189453,
+          "signedPalmNormalClearance": [
+            null,
+            null
+          ]
+        }
+      ],
+      "images": {
+        "digits-0.png": "73c5e5f0d3e97ab78653355af1b1f2cb665a2d66a9f3ef416ada64b9c5923d1e",
+        "digits-180.png": "f674b64bb540ba2f21b906e49e18f77e4b6651fd43d600d8c6c3bb36d75d55ee"
+      }
+    },
+    "baseline-right": {
+      "faceLabels": {
+        "palm/wrist": 220,
+        "thumb 0": 49,
+        "index 2": 50,
+        "middle 3": 106,
+        "little 5": 38
+      },
+      "tipSurfaceDistances": [
+        {
+          "digit": 2,
+          "tipVertices": [
+            3371,
+            3384
+          ],
+          "minimum": 38.36646270751953,
+          "maximum": 38.36646270751953,
+          "mean": 38.36646270751953,
+          "signedPalmNormalClearance": [
+            null,
+            null
+          ]
+        },
+        {
+          "digit": 3,
+          "tipVertices": [
+            3323,
+            3325,
+            3326,
+            3327,
+            3329,
+            3330
+          ],
+          "minimum": 4.7295989990234375,
+          "maximum": 17.326398849487305,
+          "mean": 10.541297594706217,
+          "signedPalmNormalClearance": [
+            -28.924163818359375,
+            -4.82647705078125,
+            -28.924163818359375,
+            -14.58270263671875,
+            -18.03857421875,
+            -4.82647705078125
+          ]
+        },
+        {
+          "digit": 5,
+          "tipVertices": [
+            3276,
+            3286
+          ],
+          "minimum": 50.499141693115234,
+          "maximum": 50.499141693115234,
+          "mean": 50.499141693115234,
+          "signedPalmNormalClearance": [
+            null,
+            null
+          ]
+        }
+      ],
+      "images": {
+        "digits-0.png": "84b5d31c623e17ecca3439220dee64c95f35ddaa79f9703f11a4cf6655032025",
+        "digits-180.png": "cab57275ddb206699bc3fc00bf49d7af10456f0c8db6ccf1d7f75e95379f31c7"
+      }
+    },
+    "wide-left": {
+      "faceLabels": {
+        "palm/wrist": 207,
+        "thumb 0": 52,
+        "index 2": 56,
+        "middle 3": 110,
+        "little 5": 38
+      },
+      "tipSurfaceDistances": [
+        {
+          "digit": 2,
+          "tipVertices": [
+            1213,
+            1226
+          ],
+          "minimum": 5.387360095977783,
+          "maximum": 5.387360095977783,
+          "mean": 5.387360095977783,
+          "signedPalmNormalClearance": [
+            5.952552795410156,
+            5.952552795410156
+          ]
+        },
+        {
+          "digit": 3,
+          "tipVertices": [
+            1165,
+            1169,
+            1171,
+            1172
+          ],
+          "minimum": 2.7116427421569824,
+          "maximum": 4.9078145027160645,
+          "mean": 3.6615792512893677,
+          "signedPalmNormalClearance": [
+            4.162528991699219,
+            4.162528991699219,
+            6.62408447265625,
+            7.533729553222656
+          ]
+        },
+        {
+          "digit": 5,
+          "tipVertices": [
+            1118,
+            1128
+          ],
+          "minimum": 2.840329647064209,
+          "maximum": 2.840329647064209,
+          "mean": 2.840329647064209,
+          "signedPalmNormalClearance": [
+            6.330078125,
+            6.330078125
+          ]
+        }
+      ],
+      "images": {
+        "digits-0.png": "87c4ddeecfd2515768eae41a70df671145dc49b861ec0360050cd6d4d515bbfe",
+        "digits-180.png": "073ae4c5de947e0bec5fc225cf873d78723a341108f38d781a6eff1744c41aee"
+      }
+    },
+    "wide-right": {
+      "faceLabels": {
+        "palm/wrist": 220,
+        "thumb 0": 49,
+        "index 2": 50,
+        "middle 3": 106,
+        "little 5": 38
+      },
+      "tipSurfaceDistances": [
+        {
+          "digit": 2,
+          "tipVertices": [
+            3371,
+            3384
+          ],
+          "minimum": 4.967866897583008,
+          "maximum": 4.967866897583008,
+          "mean": 4.967866897583008,
+          "signedPalmNormalClearance": [
+            5.971099853515625,
+            5.971099853515625
+          ]
+        },
+        {
+          "digit": 3,
+          "tipVertices": [
+            3323,
+            3325,
+            3326,
+            3327,
+            3329,
+            3330
+          ],
+          "minimum": 0.5815293192863464,
+          "maximum": 17.752065658569336,
+          "mean": 5.867195745309194,
+          "signedPalmNormalClearance": [
+            0.58892822265625,
+            3.96502685546875,
+            0.58892822265625,
+            17.895263671875,
+            8.504119873046875,
+            3.96502685546875
+          ]
+        },
+        {
+          "digit": 5,
+          "tipVertices": [
+            3276,
+            3286
+          ],
+          "minimum": 5.504689693450928,
+          "maximum": 5.504689693450928,
+          "mean": 5.504689693450928,
+          "signedPalmNormalClearance": [
+            5.829437255859375,
+            5.829437255859375
+          ]
+        }
+      ],
+      "images": {
+        "digits-0.png": "e52bb6dc659dd1b02e990f141a78d596c6e7da6b2ea917db1a610882969190f1",
+        "digits-180.png": "a34c4e45007268b11f63986432077281b4b26c58bb240734359a340bd74b69da"
+      }
+    },
+    "limited-left": {
+      "faceLabels": {
+        "palm/wrist": 207,
+        "thumb 0": 52,
+        "index 2": 56,
+        "middle 3": 110,
+        "little 5": 38
+      },
+      "tipSurfaceDistances": [
+        {
+          "digit": 2,
+          "tipVertices": [
+            1213,
+            1226
+          ],
+          "minimum": 5.332876205444336,
+          "maximum": 5.332876205444336,
+          "mean": 5.332876205444336,
+          "signedPalmNormalClearance": [
+            5.341957092285156,
+            5.341957092285156
+          ]
+        },
+        {
+          "digit": 3,
+          "tipVertices": [
+            1165,
+            1169,
+            1171,
+            1172
+          ],
+          "minimum": 1.2070735692977905,
+          "maximum": 16.47091293334961,
+          "mean": 7.789046466350555,
+          "signedPalmNormalClearance": [
+            1.217742919921875,
+            1.217742919921875,
+            16.616676330566406,
+            12.551841735839844
+          ]
+        },
+        {
+          "digit": 5,
+          "tipVertices": [
+            1118,
+            1128
+          ],
+          "minimum": 30.574064254760742,
+          "maximum": 30.574064254760742,
+          "mean": 30.574064254760742,
+          "signedPalmNormalClearance": [
+            43.28022003173828,
+            43.28022003173828
+          ]
+        }
+      ],
+      "images": {
+        "digits-0.png": "d61153d7fb049b470760bdead1cf8620e2eaf0cb928699928cc9bc12665b180b",
+        "digits-180.png": "10b990cc5191494478150fc56612fceae1b22d792a50ce221fdf4843a6f6772d"
+      }
+    }
+  }
+}

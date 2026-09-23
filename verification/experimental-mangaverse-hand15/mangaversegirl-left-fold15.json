@@ -1,0 +1,50 @@
+{
+  "scope": "Experimental signed palm-normal sampled tip clearance; not full collision or native acceptance.",
+  "side": "L",
+  "dynamicPalm": true,
+  "wideSearch": false,
+  "compactObjective": true,
+  "best": [
+    {
+      "digit": 2,
+      "baseLean": 1.0,
+      "convergence": 0.7,
+      "closure": 0.6,
+      "gaps": [
+        5.339080810546875,
+        5.339080810546875
+      ],
+      "score": 0.43681417498737574,
+      "forwardReach": 208.0020294189453,
+      "palmFront": 250.75369262695312
+    },
+    {
+      "digit": 3,
+      "baseLean": 0,
+      "convergence": 0.35,
+      "closure": 1.5000000000000002,
+      "gaps": [
+        2.4065704345703125,
+        2.4065704345703125,
+        18.435791015625,
+        12.862693786621094
+      ],
+      "score": 56.892734069158905,
+      "forwardReach": 248.21287536621094,
+      "palmFront": 250.75369262695312
+    },
+    {
+      "digit": 5,
+      "baseLean": 1.0,
+      "convergence": 1.0,
+      "closure": 1.9000000000000001,
+      "gaps": [
+        42.89292907714844,
+        42.89292907714844
+      ],
+      "score": 1361.0882158915047,
+      "forwardReach": 205.29934692382812,
+      "palmFront": 250.75369262695312
+    }
+  ]
+}

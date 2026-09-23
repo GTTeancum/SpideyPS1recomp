@@ -65,6 +65,8 @@
           "installed": false,
           "suits": ["smu-mangaversegirl"],
           "evidence": "verification/diagnostic-fists15/review.json",
+          "followupEvidence": "verification/experimental-mangaverse-hand15/review.json",
+          "followupFinding": "Complete offline inspection of 463 hand-influenced faces per side confirms a left open arch and negative right-middle sampled palm clearance. Wide per-hand fits flatten outer fingers; a restricted left fit keeps an uneven arch. Both strategies are rejected without serializing or installing an actor. Independently fitted digit scores also change when combined: the right middle minimum clearance falls from above 2 to approximately 0.59. Next fit must evaluate the complete deformed hand and coherent knuckle silhouette, not tip distances alone. No new native proof is claimed.",
           "finding": "The staged left hand shows separated downward-facing finger tips in the native front view and does not clearly demonstrate closed-fist acceptance. All 5686 triangles and both materials survive; full animation, web, loading and isolation checks pass. Neither native frame contains a visible web. Hold for focused source-preserving left-hand diagnosis rather than accepting numeric checks as visual proof."
         },
         {
