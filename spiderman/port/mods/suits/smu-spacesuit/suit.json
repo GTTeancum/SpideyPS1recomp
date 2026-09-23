@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-spacesuit",
+  "name": "SMU SPACESUIT",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "6441AB24": "textures/diffuse.png",
+    "8542333B": "textures/diffuse-1.png"
+  }
+}

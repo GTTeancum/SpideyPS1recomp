@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-spiderman-surveillancesuit",
+  "name": "SPIDERMAN SURV #197",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "C4D9F638": "textures/diffuse.png",
+    "76EFE3B7": "textures/diffuse-1.png"
+  }
+}

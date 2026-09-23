@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-werewolf",
+  "name": "SMU WEREWOLF",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "7A54DDC4": "textures/diffuse.png",
+    "625A0ACB": "textures/diffuse-1.png"
+  }
+}

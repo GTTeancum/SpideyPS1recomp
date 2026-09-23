@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-poison-doctor-octopus",
+  "name": "POISON DOCTOR #151",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "A4A824C6": "textures/diffuse.png"
+  }
+}

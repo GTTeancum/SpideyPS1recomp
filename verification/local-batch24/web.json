@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "octavius",
+      "id": "smu-octavius",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.219482421875,
+        6.62158203125
+      ],
+      "assetSha256": "91cf8512473599792a9c3300e5a9e7296cd786bf241894e18583767dd73644af",
+      "captureSha256": "53f3f63402b5b5923f05ff58a937f119e5f815d1b21b6c01a0214576096a424c"
+    },
+    {
+      "key": "poison_doctor_octopus",
+      "id": "smu-poison-doctor-octopus",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.39404296875,
+        11.796142578125
+      ],
+      "assetSha256": "dcdc013a3feece0127a330928e083d220daa4dbde57cd42d334acdc6238564e0",
+      "captureSha256": "f22bbee1e6faa7e25046d6b392acbc54010c53f8bcd176993576c19290fcede3"
+    },
+    {
+      "key": "spacesuit",
+      "id": "smu-spacesuit",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.5400390625,
+        5.942138671875
+      ],
+      "assetSha256": "88cdcb0e44b2cced8bbd11523cb27ae2ae035b947ac4482f59920bc7669dd96a",
+      "captureSha256": "edf49814dd595305c33f18f1396483b3723e68c304ba9b0e98a828a43cdd555f"
+    },
+    {
+      "key": "spider_carnage",
+      "id": "smu-spider-carnage",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -0.501708984375,
+        4.298095703125
+      ],
+      "assetSha256": "bd6834cc03e24f9184cfbfbca0d02a7f80685ec856ac53037830586166c3d954",
+      "captureSha256": "9b032b9eb7b8bf94b6903e8e0e8a55e32d9ebfdd3a50079a72f99f07a17ac11b"
+    },
+    {
+      "key": "spiderman_surveillancesuit",
+      "id": "smu-spiderman-surveillancesuit",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.43408203125,
+        5.8359375
+      ],
+      "assetSha256": "26359bdfef24173c177dfcd93685eacd14a1cd6df6848bc0f0d705b3492ee69f",
+      "captureSha256": "5dc0c3e39192f754fca557e2c6071b1bddeaa33cc3cde754babd1b2c8d3a9021"
+    },
+    {
+      "key": "superior",
+      "id": "smu-superior",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.6015625,
+        10.003662109375
+      ],
+      "assetSha256": "1dee81e71048f303175f66af6e70d8b4a3bd1811f18bd50fd24e399f3d4aca5c",
+      "captureSha256": "8740fb8e2ee82901a06dae809702789cbb755b354fb0aa51c97c55abc6af352e"
+    },
+    {
+      "key": "symbiote_2018",
+      "id": "smu-symbiote-2018",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.0341796875,
+        9.392333984375
+      ],
+      "assetSha256": "96b678077156d2a18e5ab6a9229810b57442927a0b1e856203e0dab73b1ff631",
+      "captureSha256": "4cbdb669c41be734b075c4cdb5f5075d30452721ebe5158aff81517cfbbe798a"
+    },
+    {
+      "key": "venom_verse_carnage",
+      "id": "smu-venom-verse-carnage",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.27880859375,
+        8.376953125
+      ],
+      "assetSha256": "41a9b92d9bf443e321c891a83e74b67a7aaae89fccd5a1412aa18a28d1870590",
+      "captureSha256": "129867ef1c1742f4d9d3a3fad13667552a71bfb0a63c77b9c7597700174ad202"
+    },
+    {
+      "key": "weblisher",
+      "id": "smu-weblisher",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -3.897705078125,
+        0.50439453125
+      ],
+      "assetSha256": "96fe8c35f680b64dd3565f3590bb585f92fc0329d270baacc27de0519f4657ab",
+      "captureSha256": "4282ba4e20ad61cbe3a00827ab8cee3b40f7b1741e0228af43df15063bfe8aaa"
+    },
+    {
+      "key": "werewolf",
+      "id": "smu-werewolf",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -0.172607421875,
+        4.627197265625
+      ],
+      "assetSha256": "dd68be7308d79e62f84361f761d12038ddc15b12f390dbdb5b2b25ce11485187",
+      "captureSha256": "bb451b256fea42e80ec89e1e5bbd50c6028744c13ed738d786cb22127b9dd78e"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-spider-carnage",
+  "name": "SMU SPIDER CARNAGE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "57BE009D": "textures/diffuse.png",
+    "F1416F55": "textures/diffuse-1.png"
+  }
+}

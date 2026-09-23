@@ -1,0 +1,26 @@
+{
+  "batch": 24,
+  "keys": [
+    "octavius",
+    "poison_doctor_octopus",
+    "spacesuit",
+    "spider_carnage",
+    "spiderman_surveillancesuit",
+    "superior",
+    "symbiote_2018",
+    "venom_verse_carnage",
+    "weblisher",
+    "werewolf"
+  ],
+  "representative": "smu-octavius",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Individually reviewed both native framebuffer images. Octavius appears in a swing and deep crouch with black/yellow body, full limbs, back unit and four mechanical appendages visible in the swing silhouette. Web meets the raised hand. No independent mechanical appendage animation or closed-fist acceptance from these frames. Werewolf two-mesh geometry is covered offline but still needs its own targeted native capture.",
+  "liveSwingImages": [
+    "frame_01581.png"
+  ],
+  "images": {
+    "frame_01581.png": "f7de784784a2a87f14c0185ef1851c4fedca74857f0c11d1688e100f6d2061fb",
+    "frame_01886.png": "e97608d7f4cff66c93ed1b88a94ade55d0acca1aaae9cf678abee9ac005e5616"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

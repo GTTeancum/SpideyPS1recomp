@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-symbiote-2018",
+  "name": "SMU SYMBIOTE 2018",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "B975960A": "textures/diffuse.png",
+    "D62DAB32": "textures/diffuse-1.png"
+  }
+}

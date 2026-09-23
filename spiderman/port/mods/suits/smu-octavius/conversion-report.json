@@ -1,0 +1,338 @@
+{
+  "schema": 2,
+  "status": "converted and core-evaluated; game execution is a separate acceptance gate",
+  "sourceRigBones": 66,
+  "sourceControlPoints": 3848,
+  "sourcePositiveInfluences": 6334,
+  "runtimeVertices": 3848,
+  "runtimeInfluences": 6334,
+  "originalTriangles": 5442,
+  "uniqueOutputTriangles": 5442,
+  "nativeBytes": 1082304,
+  "rigBytes": 477968,
+  "packetSpilloverTriangles": 5442,
+  "packets": [
+    {
+      "packet": 0,
+      "vertices": 256,
+      "triangles": 461
+    },
+    {
+      "packet": 1,
+      "vertices": 256,
+      "triangles": 432
+    },
+    {
+      "packet": 2,
+      "vertices": 256,
+      "triangles": 381
+    },
+    {
+      "packet": 3,
+      "vertices": 256,
+      "triangles": 399
+    },
+    {
+      "packet": 4,
+      "vertices": 256,
+      "triangles": 363
+    },
+    {
+      "packet": 5,
+      "vertices": 256,
+      "triangles": 350
+    },
+    {
+      "packet": 6,
+      "vertices": 256,
+      "triangles": 350
+    },
+    {
+      "packet": 7,
+      "vertices": 256,
+      "triangles": 367
+    },
+    {
+      "packet": 8,
+      "vertices": 256,
+      "triangles": 349
+    },
+    {
+      "packet": 9,
+      "vertices": 256,
+      "triangles": 318
+    },
+    {
+      "packet": 10,
+      "vertices": 256,
+      "triangles": 357
+    },
+    {
+      "packet": 11,
+      "vertices": 256,
+      "triangles": 357
+    },
+    {
+      "packet": 12,
+      "vertices": 256,
+      "triangles": 321
+    },
+    {
+      "packet": 13,
+      "vertices": 256,
+      "triangles": 280
+    },
+    {
+      "packet": 14,
+      "vertices": 254,
+      "triangles": 266
+    },
+    {
+      "packet": 15,
+      "vertices": 255,
+      "triangles": 270
+    },
+    {
+      "packet": 16,
+      "vertices": 256,
+      "triangles": 290
+    },
+    {
+      "packet": 17,
+      "vertices": 215,
+      "triangles": 238
+    }
+  ],
+  "unitScale": 19.161587330459145,
+  "rootAnimationScale": 0.9027922398907894,
+  "neutralBounds": [
+    [
+      -582.846923828125,
+      -2016.9178466796875,
+      -508.9478759765625
+    ],
+    [
+      582.8438720703125,
+      1719.0,
+      979.775390625
+    ]
+  ],
+  "sourceBindReconstructionMaxError": 0.0007957978164085944,
+  "inputHashes": {
+    "C:\\Programming\\SMU-Costumes\\costumes\\octavius\\octavius.fbx": "d1653c949774e6e6b9cc0e535d3b00c9766c54321afb508d5a94b97cb3a15189",
+    "C:\\Programming\\SMU-Costumes\\costumes\\2099\\2099.fbx": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\Octavius_D.png": "030a47b454d3a094d7179dcd390de29bbd50fc85adc7630d5b829af9aee3ac64"
+  },
+  "outputSha256": "91cf8512473599792a9c3300e5a9e7296cd786bf241894e18583767dd73644af",
+  "fistBones": [
+    {
+      "bone": "Clown001LArmDigit01",
+      "method": "opposed-thumb-across-knuckles",
+      "localRotation": [
+        [
+          0.9963629154710852,
+          -0.0763984322855121,
+          -0.037738842301736734
+        ],
+        [
+          0.076399307709847,
+          0.6047983738916982,
+          0.7927055397304934
+        ],
+        [
+          -0.037737070042804945,
+          -0.7927056241015787,
+          0.6084354584196342
+        ]
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit02",
+      "method": "opposed-thumb-across-knuckles",
+      "localRotation": [
+        [
+          0.4630862954280417,
+          0.540043249750365,
+          0.702783303291846
+        ],
+        [
+          -0.8847067891718268,
+          0.32937214261327435,
+          0.3298604081480815
+        ],
+        [
+          -0.053338355617798476,
+          -0.7745109941565753,
+          0.6303076548405412
+        ]
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit21",
+      "angleDegrees": 60,
+      "axisLocal": [
+        0.3330499422108143,
+        -0.30885292649486723,
+        -0.8908914668964616
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit22",
+      "angleDegrees": 85,
+      "axisLocal": [
+        0.4473341803280309,
+        -0.07875688356481919,
+        -0.8908925212400239
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit31",
+      "angleDegrees": 60,
+      "axisLocal": [
+        -0.02670723171872015,
+        -0.031942713310512634,
+        -0.9991328174173265
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit32",
+      "angleDegrees": 85,
+      "axisLocal": [
+        -0.007805356647677131,
+        -0.04089398432992345,
+        -0.9991330033850484
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit51",
+      "angleDegrees": 60,
+      "axisLocal": [
+        -0.07912827034077707,
+        0.107814976700971,
+        -0.9910169764599627
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit52",
+      "angleDegrees": 85,
+      "axisLocal": [
+        -0.11954580271725516,
+        0.05994794626373004,
+        -0.99101717683976
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit01",
+      "method": "opposed-thumb-across-knuckles",
+      "localRotation": [
+        [
+          0.9963628986336309,
+          -0.07639891109136697,
+          0.0377383175359311
+        ],
+        [
+          0.07639926959595071,
+          0.604800201457421,
+          -0.7927041490507448
+        ],
+        [
+          0.037737591756690315,
+          0.7927041836026314,
+          0.6084373028236265
+        ]
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit02",
+      "method": "opposed-thumb-across-knuckles",
+      "localRotation": [
+        [
+          0.46308395133710384,
+          0.5400451349627649,
+          -0.7027833992184682
+        ],
+        [
+          -0.8847081041646094,
+          0.3293699088669756,
+          -0.3298591116801591
+        ],
+        [
+          0.05333689566780129,
+          0.7745106295823261,
+          0.6303082263658885
+        ]
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit21",
+      "angleDegrees": 60,
+      "axisLocal": [
+        -0.47458263171867915,
+        0.44899747684340785,
+        -0.757081628002705
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit22",
+      "angleDegrees": 85,
+      "axisLocal": [
+        -0.6281220930318537,
+        0.17969738030689483,
+        -0.7570808990828668
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit31",
+      "angleDegrees": 60,
+      "axisLocal": [
+        0.026700578232523055,
+        0.03193381153436192,
+        -0.9991332797995155
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit32",
+      "angleDegrees": 85,
+      "axisLocal": [
+        0.007805769459123819,
+        0.04088532232339544,
+        -0.9991333546537544
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit51",
+      "angleDegrees": 60,
+      "axisLocal": [
+        0.0791223525749326,
+        -0.10782612312287206,
+        -0.9910162362420202
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit52",
+      "angleDegrees": 85,
+      "axisLocal": [
+        0.11955285619864835,
+        -0.05994867421204869,
+        -0.9910162819222313
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "Octavius",
+      "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Octavius_D.png",
+      "alphaBound": false,
+      "tileOrigin": [
+        0,
+        0
+      ],
+      "tileCount": [
+        1,
+        1
+      ],
+      "slot": 0
+    }
+  ]
+}

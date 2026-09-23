@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-venom-verse-carnage",
+  "name": "VENOM VERSE CARNAGE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "A98969E9": "textures/diffuse.png"
+  }
+}

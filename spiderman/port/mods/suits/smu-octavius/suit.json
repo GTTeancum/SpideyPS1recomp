@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-octavius",
+  "name": "SMU OCTAVIUS",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "DFEFD199": "textures/diffuse.png"
+  }
+}
