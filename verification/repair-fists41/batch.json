@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch41",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "mangaverse",
+    "maskedmarvel",
+    "mech"
+  ],
+  "results": [
+    {
+      "key": "mangaverse",
+      "id": "smu-mangaverse",
+      "fbx": "costumes/mangaverse/mangaverse.fbx",
+      "fbxSha256": "f8595bd9d2a38052565595c30b8807113a3e3f13a66897d468bdb1e32df4242f",
+      "textureFiles": [
+        "textures-png\\SpidermanManga_D.png"
+      ],
+      "textureSha256": [
+        "2ddfeaacbccaaf1178f1109c2092469baacb6d703ec7ca8139579d2f3cb03917"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1676,
+      "sourceTriangles": 2896,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanManga_D.TGA"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "MangaVerse",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanManga_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 711712,
+      "outputs": {
+        "actor.psx": "35a00354ee86bb46e2a646f9fe36e2ebf0e657f8302a9e0581607b3467983f1d",
+        "conversion-report.json": "a9af022a1706e14e54a0644674ff6a322770bbb9a2e7fa0e3c96bcefe4fb4f0f",
+        "suit.json": "326f65f803b0d6660c3d2f7db28bdd6473449514b0077bd2c96980c167116213",
+        "textures\\diffuse.png": "7e60fa33a23f53b50f9ca99618ea9d22e768dd3330d2add9c058cfe6384c0006"
+      }
+    },
+    {
+      "key": "maskedmarvel",
+      "id": "smu-maskedmarvel",
+      "fbx": "costumes/maskedmarvel/maskedmarvel.fbx",
+      "fbxSha256": "946cab503334c8482b49ce0ad40de172a906ce24645ce041252746cb08034901",
+      "textureFiles": [
+        "textures-png\\SpidermanMmarvel_D.png"
+      ],
+      "textureSha256": [
+        "8ab89eca24f04270368d49cc69a9c5e3fc0a83e7b900884981ec6f420729ad48"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1570,
+      "sourceTriangles": 2634,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMmarvel_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "MaskedMarvel",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanMmarvel_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 681476,
+      "outputs": {
+        "actor.psx": "36f63607a6625e95ebc1a254428532ba6d54187a4f679479aba192cdde67b6eb",
+        "conversion-report.json": "c8b9f499310128699d9ea7f915d9b9e41ef39aa79bbc7628c56ea71d1ce09d04",
+        "suit.json": "4de5288cbe3ecd708990551c11a0dd49a8485c0c9475fa02f000258376cff2a4",
+        "textures\\diffuse.png": "d3d5cfac6b7ef84c063738154300affe18f68d8d461f1cd3fc0bd97cf0e7c1ae"
+      }
+    },
+    {
+      "key": "mech",
+      "id": "smu-mech",
+      "fbx": "costumes/mech/mech.fbx",
+      "fbxSha256": "bbb6424a8e9ece55086d9339aa1919b85c037b4214a785574a942c49b073b765",
+      "textureFiles": [
+        "textures-png\\SpidermanMech_D.png"
+      ],
+      "textureSha256": [
+        "ffc50d7965768afed363610d0c4bb575da8f675641b6c68537f71c4e8339d896"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2197,
+      "sourceTriangles": 3654,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMech_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Mech",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanMech_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 864696,
+      "outputs": {
+        "actor.psx": "0381bff3cf438e1966ef44bf8ee4b571b0f10fdb7bc04422ff438ef082534cec",
+        "conversion-report.json": "b56cf18e0a988e0ce3e4fd236d5b35345be7e4c704ab2438d1922be58c2aa037",
+        "suit.json": "03b5a70940d0b912f807b5152804fe81d2c896d3db081cf19e9025e35f25c79e",
+        "textures\\diffuse.png": "c56cff6adebd130f252cfe26546d8b6715c347495434595f5fb1744d9eff618f"
+      }
+    }
+  ]
+}

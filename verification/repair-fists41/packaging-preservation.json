@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-mangaverse",
+    "beforeActorSha256": "f78d4f5caf41a4e48ee01ce1496ef6abac5b0c0f07efe9a238ae0b34104b437b",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-maskedmarvel",
+    "beforeActorSha256": "f358ff0c7319fda952348cbddd1002bc8657a7badf7434190393b7d6129caf58",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mech",
+    "beforeActorSha256": "53959f855caa7e0638394ab722cf774ecb751db7cf5db7315c4e5c00c01d9132",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "mangaverse",
+      "id": "smu-mangaverse",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.271484375,
+        8.673583984375
+      ],
+      "assetSha256": "35a00354ee86bb46e2a646f9fe36e2ebf0e657f8302a9e0581607b3467983f1d",
+      "captureSha256": "b8b75e5696e1406dea5385963bc02dc530114cfc3e2d3110bc087a3a2f02762c"
+    },
+    {
+      "key": "maskedmarvel",
+      "id": "smu-maskedmarvel",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.274169921875,
+        9.67626953125
+      ],
+      "assetSha256": "36f63607a6625e95ebc1a254428532ba6d54187a4f679479aba192cdde67b6eb",
+      "captureSha256": "8c33539d9138a87a7e1fbadcce41da213e9e55f3d4fff017bb94a04d83c4d10a"
+    },
+    {
+      "key": "mech",
+      "id": "smu-mech",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.5068359375,
+        10.908935546875
+      ],
+      "assetSha256": "0381bff3cf438e1966ef44bf8ee4b571b0f10fdb7bc04422ff438ef082534cec",
+      "captureSha256": "2137b8f3c508b31f8c1cb353ca8c06a173dccfee973b7790f7ea516c8346b4bd"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-mangaverse",
+      "previousActorSha256": "f78d4f5caf41a4e48ee01ce1496ef6abac5b0c0f07efe9a238ae0b34104b437b",
+      "actorSha256": "35a00354ee86bb46e2a646f9fe36e2ebf0e657f8302a9e0581607b3467983f1d",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mech.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-maskedmarvel",
+      "previousActorSha256": "f358ff0c7319fda952348cbddd1002bc8657a7badf7434190393b7d6129caf58",
+      "actorSha256": "36f63607a6625e95ebc1a254428532ba6d54187a4f679479aba192cdde67b6eb",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mech.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-mech",
+      "previousActorSha256": "53959f855caa7e0638394ab722cf774ecb751db7cf5db7315c4e5c00c01d9132",
+      "actorSha256": "0381bff3cf438e1966ef44bf8ee4b571b0f10fdb7bc04422ff438ef082534cec",
+      "visualReview": "Reviewed the two native game images sequentially. Mech retains its large pale shoulder plates, articulated pale forearms, dark compact hands, red chest and shin panels, blue body, and gold lenses without dropped geometry. No web line is visible in this running capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01607.png": "f48db17cdbe1f1e926c0963a25972bc11e7bd768aba79ec8304d8798c6097008",
+        "frame_01607_closeup.png": "3cefb01c952752216b714317f6364860d9dbf95208c9d3a02f43ecc9de5bd475"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-mech"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-mangaverse\\actor.psx",
+    "smu-mangaverse\\conversion-report.json",
+    "smu-maskedmarvel\\actor.psx",
+    "smu-maskedmarvel\\conversion-report.json",
+    "smu-mech\\actor.psx",
+    "smu-mech\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-mech/frame_01607.png and frame_01607_closeup.png"
+  }
+}
