@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Deliberately BCL-only: exercise production files without a game/ROM/window. -->
+    <Compile Include="../../RecompOne.Runtime/Host/RuntimePaths.cs" Link="RuntimePaths.cs" />
+    <Compile Include="../../RecompOne.Runtime/Assets/NativeActorLodValidator.cs" Link="NativeActorLodValidator.cs" />
+    <Compile Include="../../RecompOne.Runtime/Assets/LooseWadOverrides.cs" Link="LooseWadOverrides.cs" />
+  </ItemGroup>
+</Project>

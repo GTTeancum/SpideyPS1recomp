@@ -9,7 +9,8 @@ public sealed class SuitModel
     readonly byte[] _bytes;
     public ReadOnlyMemory<byte> Bytes => _bytes;
     public IReadOnlySet<uint> Materials { get; }
-    SuitModel(byte[] bytes, IReadOnlySet<uint> materials) { _bytes = bytes; Materials = materials; }
+    public NativeRetargetRig? RetargetRig { get; }
+    SuitModel(byte[] bytes, IReadOnlySet<uint> materials, NativeRetargetRig? rig = null) { _bytes = bytes; Materials = materials; RetargetRig = rig; }
 
     public static SuitModel Read(string path)
     {
@@ -76,13 +77,25 @@ public sealed class SuitModel
             }
             if (cursor != end) throw new InvalidDataException("unexpected custom mesh trailing data");
         }
+        int rigStart = -1, rigBlockSize = 0;
+        NativeRetargetRig? rig = null;
         int p = metadata;
         for (int blocks = 0; ; blocks++)
         {
             uint tag = U(p); p += 4;
             if (tag == uint.MaxValue) break;
             if (blocks >= 64) throw new InvalidDataException("too many custom actor metadata blocks");
-            int size = checked((int)U(p)); p += 4; Need(p, size); p += size;
+            int size = checked((int)U(p)); p += 4; Need(p, size);
+            if (tag == NativeRetargetRig.Tag)
+            {
+                if (rigStart >= 0) throw new InvalidDataException("duplicate RTG2 rig");
+                rigStart = p - 8; rigBlockSize = checked(size + 8);
+                rig = new NativeRetargetRig(b.AsSpan(p, size).ToArray());
+                for (int i = 0; i < 18; i++)
+                    if (H(checked((int)U(table + 4 + i * 4)) + 2) != rig.Packets[i].Length)
+                        throw new InvalidDataException("RTG2 packet mapping differs from native mesh");
+            }
+            p += size;
         }
         Need(p, 18 * 4); p += 18 * 4;
         int hashes = Count(p, 128); p += 4;
@@ -108,6 +121,22 @@ public sealed class SuitModel
             if ((U(t + 4) & 0x100) == 0) bytes = (bytes + 1) / 2;
             Need(t + 20, bytes);
         }
-        return new SuitModel(b, materials);
+        if (rigStart >= 0)
+        {
+            // Keep the complete rig host-side; give the original guest loader a
+            // strictly legacy-native stream. No unknown-tag behavior is assumed.
+            byte[] guest = new byte[b.Length - rigBlockSize];
+            b.AsSpan(0, rigStart).CopyTo(guest);
+            b.AsSpan(rigStart + rigBlockSize).CopyTo(guest.AsSpan(rigStart));
+            for (int i = 0; i < textures; i++)
+            {
+                uint texture = U(p + i * 4);
+                if (texture < rigStart + rigBlockSize) throw new InvalidDataException("overlapping RTG2 texture");
+                BinaryPrimitives.WriteUInt32LittleEndian(guest.AsSpan(p - rigBlockSize + i * 4), texture - (uint)rigBlockSize);
+            }
+            b = guest;
+        }
+        NativeActorLodValidator.Validate(b, "custom player model", LooseWadOverrides.MaxUnpackedAnimationBones);
+        return new SuitModel(b, materials, rig);
     }
 }

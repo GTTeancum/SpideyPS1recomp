@@ -1,0 +1,15 @@
+{
+  "target": "linux-x64",
+  "abi": "0x00020002",
+  "boundary": "Native library build only; not a complete game build.",
+  "files": [
+    {
+      "path": "tools/retarget/native/retarget_core.cpp",
+      "sha256": "b49029ee8d2fd7be8f4fe99d859fe300ad44d3132f766933c288cd32aaafc221"
+    },
+    {
+      "path": "tools/retarget/native/bin/libOpenSpideyRetarget.so",
+      "sha256": "46bbe188b7ab98e25fcc88be0d56c6b23d728a321a8f87abdf725b47d5141753"
+    }
+  ]
+}

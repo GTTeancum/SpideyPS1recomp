@@ -31,7 +31,8 @@
     -->
     <PropertyGroup Condition="'$(_IsPublishing)' == 'true'">
         <DefineConstants>$(DefineConstants);STANDALONE_DISTRIBUTION</DefineConstants>
-        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == '' and $([MSBuild]::IsOSPlatform('Windows'))">win-x64</RuntimeIdentifier>
+        <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == '' and $([MSBuild]::IsOSPlatform('Linux'))">linux-x64</RuntimeIdentifier>
         <SelfContained>true</SelfContained>
         <PublishSingleFile>true</PublishSingleFile>
         <!-- Compile first-use game code at publish time: otherwise hundreds of
@@ -49,7 +50,17 @@
         <PublishTrimmed>false</PublishTrimmed>
         <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
         <DebugType>none</DebugType>
-        <PublishDir>$(MSBuildProjectDirectory)\dist\</PublishDir>
+        <PublishDir>$(MSBuildProjectDirectory)/dist/</PublishDir>
+        <PublishDir Condition="'$(RuntimeIdentifier)' == 'linux-x64'">$(MSBuildProjectDirectory)/dist/linux-x64/</PublishDir>
+    </PropertyGroup>
+
+    <!-- Keep Linux native dependencies at stable paths beside the apphost. No
+         executable temp extraction or host-Windows native DLL selection is needed. -->
+    <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'linux-x64'">
+        <OutputType>Exe</OutputType>
+        <PublishSingleFile>false</PublishSingleFile>
+        <IncludeAllContentForSelfExtract>false</IncludeAllContentForSelfExtract>
+        <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -82,5 +93,5 @@
         </EmbeddedResource>
     </ItemGroup>
 
-    <Import Project="../../tools/RecompOne/native/win-x64/Runtime.props" />
+    <Import Project="../../tools/RecompOne/native/Runtime.props" />
 </Project>

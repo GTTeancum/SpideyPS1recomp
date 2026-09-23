@@ -55,7 +55,7 @@ public static class PerformanceLog
             { SingleWriter = true, SingleReader = true, FullMode = BoundedChannelFullMode.Wait });
         if (OperatingSystem.IsWindows()) _mainThreadId = GetCurrentThreadId();
         string directory = Environment.GetEnvironmentVariable("SPIDEY_LOG_DIR") ??
-            Path.GetDirectoryName(Environment.ProcessPath) ?? AppContext.BaseDirectory;
+            Host.RuntimePaths.ApplicationDirectory;
         _writer = new Thread(() => Write(directory)) { IsBackground = true, Name = "PerformanceLog" };
         _writer.Start();
         AppDomain.CurrentDomain.ProcessExit += (_, _) => { _queue.Writer.TryComplete(); _writer.Join(1000); };
@@ -94,7 +94,7 @@ public static class PerformanceLog
                 cpu = Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\CentralProcessor\0", "ProcessorNameString", cpu)?.ToString() ?? cpu;
             ulong ramKb = 0;
             if (OperatingSystem.IsWindows()) GetPhysicallyInstalledSystemMemory(out ramKb);
-            string? executable = Environment.ProcessPath;
+            string? executable = Host.RuntimePaths.ApplicationFile;
             string hash = "unavailable";
             if (executable != null) { using var file = File.OpenRead(executable); hash = Convert.ToHexString(SHA256.HashData(file)); }
             using var process = Process.GetCurrentProcess();

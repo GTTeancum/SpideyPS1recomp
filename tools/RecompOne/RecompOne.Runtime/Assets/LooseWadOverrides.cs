@@ -22,8 +22,12 @@ public static class LooseWadOverrides
     static readonly SortedDictionary<uint, uint> _arenaFree = new();
     static readonly Dictionary<uint, (uint Size, string Name)> _arenaUsed = new();
 
-    public static void Initialize(string gameDataRoot)
+    public static int MaxUnpackedAnimationBones { get; private set; }
+
+    public static void Initialize(string gameDataRoot, int maxUnpackedAnimationBones = 0)
     {
+        if (maxUnpackedAnimationBones < 0) throw new ArgumentOutOfRangeException(nameof(maxUnpackedAnimationBones));
+        MaxUnpackedAnimationBones = maxUnpackedAnimationBones;
         Cdrom.LooseDiscImporter.EnsureWad(gameDataRoot);
         _files = Index(Path.Combine(gameDataRoot, "wad"), required: true);
         string? external = Environment.GetEnvironmentVariable("SPIDEY_ASSET_DIR");
@@ -129,19 +133,38 @@ public static class LooseWadOverrides
         else if (!_files.TryGetValue(name, out path)) return;
 
         byte[] data = File.ReadAllBytes(path);
+        // Validate replacement actors before allocation or any guest write.
+        // Reject a bad override and use the real retail entry, not guessed data.
+        // Stock level/texture formats keep their original loading path.
+        if (_pendingExternal && path.EndsWith(".psx", StringComparison.OrdinalIgnoreCase))
+        {
+            try { NativeActorLodValidator.Validate(data, Path.GetFileName(path), MaxUnpackedAnimationBones); }
+            catch (InvalidDataException e)
+            {
+                Console.Error.WriteLine($"[loose-wad] rejected {path}: {e.Message}; using retail {name}");
+                _pendingExternal = false;
+                if (!_files.TryGetValue(name, out path)) return;
+                data = File.ReadAllBytes(path);
+            }
+        }
         if (data.Length == 0) throw new InvalidDataException($"loose WAD entry is empty: {path}");
         _pending = data;
-        _pendingAliased = externalAlias != null &&
+        _pendingAliased = _pendingExternal && externalAlias != null &&
             !name.Equals(overrideName, StringComparison.OrdinalIgnoreCase);
-        _pendingName = externalAlias == null || name.Equals(overrideName, StringComparison.OrdinalIgnoreCase)
-            ? name
-            : $"{name} <- {overrideName}";
+        _pendingName = _pendingAliased ? $"{name} <- {overrideName}" : name;
         _pendingRoundedSize = checked((uint)((data.Length + 0x7FF) & ~0x7FF));
     }
 
     /// <summary>Serve an already validated mod actor through the normal native loader.</summary>
     public static void FindModel(string name, ReadOnlyMemory<byte> bytes)
     {
+        // A rejected lookup must not leave bytes from an earlier request pending.
+        _pending = null;
+        _pendingName = null;
+        _pendingExternal = false;
+        _pendingAliased = false;
+        _pendingRoundedSize = 0;
+        NativeActorLodValidator.Validate(bytes.Span, name, MaxUnpackedAnimationBones);
         _pending = bytes.ToArray();
         _pendingName = name + " <- suit model";
         _pendingExternal = true;

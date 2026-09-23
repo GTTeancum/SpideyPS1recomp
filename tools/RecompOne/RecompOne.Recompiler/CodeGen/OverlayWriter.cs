@@ -469,6 +469,48 @@ public static class OverlayWriter
         {
             uint? addr = string.IsNullOrEmpty(patch.Address) ? null : Convert.ToUInt32(patch.Address, 16);
             int matched = 0;
+            if (patch.Mode.Equals("instruction_branch", StringComparison.OrdinalIgnoreCase))
+            {
+                if (!addr.HasValue || string.IsNullOrEmpty(patch.ResumeAddress))
+                    throw new InvalidDataException("instruction_branch requires address and resumeAddress");
+                uint resume = Convert.ToUInt32(patch.ResumeAddress, 16);
+                foreach (var func in funcs)
+                {
+                    if (!patch.MatchesOverlay(func.OverlayName)) continue;
+                    int from = Array.FindIndex(func.Instructions, i => i.Vram == addr.Value);
+                    if (from < 0) continue;
+                    int to = Array.FindIndex(func.Instructions, i => i.Vram == resume);
+                    if (func.IsPatch || func.IsStub || to < 0 || from == to ||
+                        (from > 0 && func.Instructions[from-1].HasDelaySlot) ||
+                        (to > 0 && func.Instructions[to-1].HasDelaySlot))
+                        throw new InvalidDataException("instruction_branch requires non-delay instructions in one non-replaced function");
+                    if (!func.InstructionBranchHooks.TryGetValue(addr.Value, out var hooks))
+                        func.InstructionBranchHooks[addr.Value] = hooks = [];
+                    var hook = (patch.Target, resume);
+                    if (!hooks.Contains(hook)) hooks.Add(hook);
+                    matched++; applied++;
+                }
+                if (matched != 1) throw new InvalidDataException($"instruction_branch {patch.Target} matched {matched} functions, expected one");
+                continue;
+            }
+            if (patch.Mode.Equals("instruction", StringComparison.OrdinalIgnoreCase))
+            {
+                if (!addr.HasValue) throw new InvalidDataException("instruction hook requires an address");
+                foreach (var func in funcs)
+                {
+                    if (!patch.MatchesOverlay(func.OverlayName)) continue;
+                    int index = Array.FindIndex(func.Instructions, i => i.Vram == addr.Value);
+                    if (index < 0) continue;
+                    if (index > 0 && func.Instructions[index - 1].HasDelaySlot)
+                        throw new InvalidDataException("instruction hooks in branch delay slots are unsupported");
+                    if (!func.InstructionHookTargets.TryGetValue(addr.Value, out var hooks))
+                        func.InstructionHookTargets[addr.Value] = hooks = [];
+                    if (!hooks.Contains(patch.Target)) hooks.Add(patch.Target);
+                    matched++; applied++;
+                }
+                if (matched == 0) throw new InvalidDataException($"instruction hook {patch.Target} matched no instruction");
+                continue;
+            }
             foreach (var func in funcs)
             {
                 if (!patch.MatchesOverlay(func.OverlayName)) continue;

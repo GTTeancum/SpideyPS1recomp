@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-bigtime",
+  "name": "SMU BIG TIME",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "6E3E138D": "textures/diffuse.png"
+  }
+}

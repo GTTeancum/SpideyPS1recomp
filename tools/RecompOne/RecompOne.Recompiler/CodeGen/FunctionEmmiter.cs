@@ -11,6 +11,11 @@ public static class FunctionEmitter
         var sb = new StringBuilder();
         var instrs = func.Instructions;
         
+        // Conditional instruction hooks may only resume inside the same function.
+        // Add their labels before delay-slot placement is computed.
+        foreach (var hooks in func.InstructionBranchHooks.Values)
+            foreach (var hook in hooks) ctx.Labels.Add(hook.Resume);
+
         //a delay slot of an unconditional transfer is emitted only inline (before the
         // jump) and skipped here but  for the edge case where that same instruction is also a branch target it needs to
         // also be emitted at its ""natural(?)"" position (and the label too) so jumps to it need to be into the following
@@ -74,6 +79,16 @@ public static class FunctionEmitter
 
             if (ctx.Labels.Contains(instr.Vram))
                 sb.AppendLine($"        L{instr.Vram:X8}: ;");
+
+            // A pose-ready observer runs at the instruction's normal location,
+            // after its label, without changing native control flow or RA.
+            if (func.InstructionHookTargets.TryGetValue(instr.Vram, out var instructionHooks))
+                foreach (string target in instructionHooks)
+                    sb.AppendLine($"{ind}{target}(c, m);");
+
+            if (func.InstructionBranchHooks.TryGetValue(instr.Vram, out var branchHooks))
+                foreach (var hook in branchHooks)
+                    sb.AppendLine($"{ind}if ({hook.Target}(c, m)) goto L{hook.Resume:X8};");
 
             if (instr.Vram != func.Start && ctx.InteriorHooks.TryGetValue(instr.Vram, out var interiorHook))
             {

@@ -1,0 +1,4737 @@
+{
+  "schema": 1,
+  "checkpoint": "SMU-B01",
+  "base": "Cumulative06",
+  "scope": "SM1 suit retargeting; previous shared Linux/SFD/sewer code retained",
+  "catalogueCount": 233,
+  "completed": 10,
+  "newlyConverted": [
+    "1602",
+    "2099_new",
+    "ben_reilly_unmasked",
+    "bigtime",
+    "bigtime_red",
+    "gwen",
+    "gwenom",
+    "noir"
+  ],
+  "regressionControls": [
+    "2099",
+    "spiderham"
+  ],
+  "remaining": 223,
+  "nextTasks": [
+    "Expand the native suit selector beyond its current 40 mod entries, with native routing/list/persistence tests",
+    "Add lossless multi-mesh/material and oversized-packet handling before converting the affected suits",
+    "Continue converting remaining catalogue entries in journalled batches and rerun per-suit validation"
+  ],
+  "selectorModCapacity": 40,
+  "multiDiffuseCatalogueEntries": 12,
+  "gameExeIncluded": false,
+  "managedGameBuilt": false,
+  "gameplayTested": false,
+  "sm2SuitRetargetingImplemented": false,
+  "nativeChecks": 246,
+  "characterFrames": 41960,
+  "swingFrames": 1150,
+  "nativeWebSegments": 18400,
+  "proofType": "Offline native-asset/core render, not gameplay",
+  "catalogue": [
+    {
+      "key": "1602",
+      "id": "smu-1602",
+      "fbx": "costumes/1602/1602.fbx",
+      "fbxSha256": "ba5265ba024d1322e8328ed3ac4b300b22ce26735093974d4d4123cf955d025d",
+      "textureFiles": [
+        "textures-png/Spiderman1602_D.png"
+      ],
+      "textureSha256": [
+        "0c101a41fb245f7dd137199754e5c5c42180d429286dc48151a7baf299503b6f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1803,
+      "sourceTriangles": 2948,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman1602_D.TGA"
+      ],
+      "status": "native-asset/core-verified-B01"
+    },
+    {
+      "key": "2099",
+      "id": "smu-2099",
+      "fbx": "costumes/2099/2099.fbx",
+      "fbxSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+      "textureFiles": [
+        "textures-png/Spiderman2099_D.png"
+      ],
+      "textureSha256": [
+        "5d36f62a7bf9534266fa380918f65a21e47ef3aaa50d5075b6ed05b00531be05"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1684,
+      "sourceTriangles": 2918,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman2099_D.tga"
+      ],
+      "status": "native-asset/core-verified-B01"
+    },
+    {
+      "key": "2099_new",
+      "id": "smu-2099-new",
+      "fbx": "costumes/2099_new/2099_new.fbx",
+      "fbxSha256": "3d6d7fdf228354ab40f23f3ab89a4628a895b136a0f4ddae9a473e2de3160500",
+      "textureFiles": [
+        "textures-png/2099_New_D.png"
+      ],
+      "textureSha256": [
+        "98ef439cf178113edf5ae1c9b1d3c96aa05dd9ff500cb12f7487189d96db68d4"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1709,
+      "sourceTriangles": 2918,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "_099_New_D.tga"
+      ],
+      "status": "native-asset/core-verified-B01"
+    },
+    {
+      "key": "2211",
+      "id": "smu-2211",
+      "fbx": "costumes/2211/2211.fbx",
+      "fbxSha256": "4a0a7372e8dc2f4fc72f9ed5ce6eb7cbe2150a1e20b59345988e77ba9c4c43dd",
+      "textureFiles": [
+        "textures-png/Spiderman2211_D.png"
+      ],
+      "textureSha256": [
+        "c99d4b8c98e21fb1bec67c80be0d69d9e0f73d692cd2aedbd4c29e8e171e86a0"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2252,
+      "sourceTriangles": 3754,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman2211_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "aaron_davis",
+      "id": "smu-aaron-davis",
+      "fbx": "costumes/aaron_davis/aaron_davis.fbx",
+      "fbxSha256": "26e54c009e63b102ff4add9a08e9d756753d52cac5e43f1e354506140c711a52",
+      "textureFiles": [
+        "textures-png/Aaron_Davis_D.png",
+        "textures-png/Aaron_Davis_Gun.png"
+      ],
+      "textureSha256": [
+        "29e7a3d054a0939465340f11dbc5131cbc4b45f3bdad784ffe09459ccfa072b3",
+        "4f2955c06ca5519ea26c7f2b2f9d79e5cd692adfc526ac57814f2c49bf3029f8"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2438,
+      "sourceTriangles": 3876,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Aaron_Davis_D.tga",
+        "Aaron_Davis_Gun.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "aaronnicholson",
+      "id": "smu-aaronnicholson",
+      "fbx": "costumes/aaronnicholson/aaronnicholson.fbx",
+      "fbxSha256": "3d002506de8c8aeea422a036049d4145ee882facf8899ca19ee3a9cdcbf48441",
+      "textureFiles": [
+        "textures-png/AaronNicholson_D.png"
+      ],
+      "textureSha256": [
+        "f2db41d10e67a43ab59da4ed8ca7d01de3836a0d993248d97408219b41cb2409"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2054,
+      "sourceTriangles": 3408,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "AaronNicholson_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "abarton",
+      "id": "smu-abarton",
+      "fbx": "costumes/abarton/abarton.fbx",
+      "fbxSha256": "29bcf4ab147c2ab1f29540fe31335008abef8c1c09dc1c6caf048f31e021da5a",
+      "textureFiles": [
+        "textures-png/SpidergirlABarton_D.png"
+      ],
+      "textureSha256": [
+        "9863ef867958e5141c7cfdafc049c086b972736b1980047699edffab7e0defc2"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2164,
+      "sourceTriangles": 3688,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidergirlABarton_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "adriana_soria",
+      "id": "smu-adriana-soria",
+      "fbx": "costumes/adriana_soria/adriana_soria.fbx",
+      "fbxSha256": "0a5d351beb6ca108a0eafdbcfc5a83f813ed2e2df21e0c5da51f0c6d4a9ec338",
+      "textureFiles": [
+        "textures-png/Adriana_Soria_D.png"
+      ],
+      "textureSha256": [
+        "bb89ca215ce1f4ddb6cfce75a5a2e526505b32ba27ff851e942485e58cc840d1"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3444,
+      "sourceTriangles": 5135,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Adriana_Soria_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "agent_anti_venom",
+      "id": "smu-agent-anti-venom",
+      "fbx": "costumes/agent_anti_venom/agent_anti_venom.fbx",
+      "fbxSha256": "d4155c1b211baedc66a1f49478d48b63d3a1111449a14704e29f732d5a6c855f",
+      "textureFiles": [
+        "textures-png/Agent_Anti_Venom_D.png"
+      ],
+      "textureSha256": [
+        "0d9f4764a820778de61e99b7732a6b70f437bd68063cdf77e07a240583123203"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2887,
+      "sourceTriangles": 4152,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Agent_Anti_Venom_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "agent_nine",
+      "id": "smu-agent-nine",
+      "fbx": "costumes/agent_nine/agent_nine.fbx",
+      "fbxSha256": "329706000c0bca6150738cf7aaef6c3c07803c48c8c971b2d86f6dfd98725296",
+      "textureFiles": [
+        "textures-png/Agent_nine_D.png"
+      ],
+      "textureSha256": [
+        "e1c5000ba49b2ac07413cb3810a0119e5021406e6fc58759eba3d031793de23a"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2117,
+      "sourceTriangles": 3258,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Agent_nine_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "agentv",
+      "id": "smu-agentv",
+      "fbx": "costumes/agentv/agentv.fbx",
+      "fbxSha256": "33305f734491a82bda6c58c8b1d97aa9373e437bd56d9801c527f4f327ce2229",
+      "textureFiles": [
+        "textures-png/Spiderman_AgentV_D.png"
+      ],
+      "textureSha256": [
+        "d8c844c151f385dd0286026164c6b95a1c4131d6b5f8c7e3467a9cab8f8915bc"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2400,
+      "sourceTriangles": 3426,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman_AgentV_D.TGA"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "agony",
+      "id": "smu-agony",
+      "fbx": "costumes/agony/agony.fbx",
+      "fbxSha256": "3acb19416e1370fc859c13d97021d0d64f34ca4abe022bbe517693572c5a93f9",
+      "textureFiles": [
+        "textures-png/Agony_D.png"
+      ],
+      "textureSha256": [
+        "8b9fb728f60a5b3e8821150c5d5149aba53594900312db468e18f5b50e692e36"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2481,
+      "sourceTriangles": 3872,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Agony_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "aiapaec",
+      "id": "smu-aiapaec",
+      "fbx": "costumes/aiapaec/aiapaec.fbx",
+      "fbxSha256": "b4e8978196c9ad5ab2baab9ba8eb9ae98dc747b34703f9cfb363b3bb1401174d",
+      "textureFiles": [
+        "textures-png/AiApaec_D.png"
+      ],
+      "textureSha256": [
+        "59efffbd91e15ff7a9fd6c9d807872056ffd0d5a03496b6c99a2e6cb45a87535"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3037,
+      "sourceTriangles": 4900,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "AiApaec_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "aikman",
+      "id": "smu-aikman",
+      "fbx": "costumes/aikman/aikman.fbx",
+      "fbxSha256": "bdcaf81f9bfdb70fb3871cc9d56f254369e2009217918295d1643ec0b6f66da1",
+      "textureFiles": [
+        "textures-png/Spiderman_Aikman_D.png"
+      ],
+      "textureSha256": [
+        "9b37a3020c73dc192f8156e601a5f3eaf24f317d68a0a9bf165b88e99bc15eb7"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1611,
+      "sourceTriangles": 2614,
+      "sourceBoneCount": 64,
+      "authoredDiffuseNames": [
+        "Spiderman_Aikman_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "alistaire_smythe",
+      "id": "smu-alistaire-smythe",
+      "fbx": "costumes/alistaire_smythe/alistaire_smythe.fbx",
+      "fbxSha256": "84251c5b33fa8beff46dd5bf01bda8ddfa01f918b95ad20edceae197e8acd10b",
+      "textureFiles": [
+        "textures-png/Alistaire_Smythe_D.png"
+      ],
+      "textureSha256": [
+        "a4bbf49de8d1ee2c80761882397cc4be92671927adc199a8d0cfbc493bf39e61"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3120,
+      "sourceTriangles": 4540,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Alistaire_Smythe_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "all_new_agent_venom",
+      "id": "smu-all-new-agent-venom",
+      "fbx": "costumes/all_new_agent_venom/all_new_agent_venom.fbx",
+      "fbxSha256": "04fc365d510f64c9768d686e9c5472bdf8ecc007355771aa7782be9da62dbe59",
+      "textureFiles": [
+        "textures-png/All_new_agent_venom_D.png"
+      ],
+      "textureSha256": [
+        "eb65b07e5c62cf375682ec1195e6f6a04618c5c25e14fb709dca025b11133ff2"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1723,
+      "sourceTriangles": 2866,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "All_new_agent_venom_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "amazing_spider",
+      "id": "smu-amazing-spider",
+      "fbx": "costumes/amazing_spider/amazing_spider.fbx",
+      "fbxSha256": "994988a674ee7fd10e41e575d28f1362027dc51d448febdd21c31444875a5d82",
+      "textureFiles": [
+        "textures-png/The_Amazing_Spider_D.png"
+      ],
+      "textureSha256": [
+        "a201497394fd3ea53b47e3258b07ba6b20b11a5946ee1ff4447b9ef45a58bb83"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2783,
+      "sourceTriangles": 4378,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "The_Amazing_Spider_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "ancientvenom",
+      "id": "smu-ancientvenom",
+      "fbx": "costumes/ancientvenom/ancientvenom.fbx",
+      "fbxSha256": "8575b5de6b96bf7b213412d4251ebe944aa814f9fb48571f2996837c254dcae8",
+      "textureFiles": [
+        "textures-png/AncientVenom_D.png"
+      ],
+      "textureSha256": [
+        "cd8dfcd530d008d5f41fbde5649b4da81527b92e352029f48ca9b2d9a58fea41"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2336,
+      "sourceTriangles": 3677,
+      "sourceBoneCount": 68,
+      "authoredDiffuseNames": [
+        "AncientVenom_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "angelo_fortunato",
+      "id": "smu-angelo-fortunato",
+      "fbx": "costumes/angelo_fortunato/angelo_fortunato.fbx",
+      "fbxSha256": "66b8743c1766dbf3baa2c56def1077cf651ff86218e9bd3e443d5471f85c850d",
+      "textureFiles": [
+        "textures-png/Angelo_Fortunato_D.png"
+      ],
+      "textureSha256": [
+        "1224723f566f6eba14f72e06f8b0120eddfb1e5308024e9c4600df5b58127da5"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2560,
+      "sourceTriangles": 3961,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Angelo_Fortunato_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "annie_parker",
+      "id": "smu-annie-parker",
+      "fbx": "costumes/annie_parker/annie_parker.fbx",
+      "fbxSha256": "5a0ca37b127e359b48faa98350b79c599fd6da01e0fcbc735c9f1518855c7920",
+      "textureFiles": [
+        "textures-png/AnnieParker_D.png"
+      ],
+      "textureSha256": [
+        "d62c5876da089c027b24f3ff1ab304cd98509794d87ccbb80269fcf9122b76c8"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3031,
+      "sourceTriangles": 4325,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "AnnieParker_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "anti_venom",
+      "id": "smu-anti-venom",
+      "fbx": "costumes/anti_venom/anti_venom.fbx",
+      "fbxSha256": "06b5a5ef957f830cd04047715334e07f9198a99dd4c97e516656c47b6b214d55",
+      "textureFiles": [
+        "textures-png/Anti_venom_D.png"
+      ],
+      "textureSha256": [
+        "bc2247c3222ed21359b52d21287eb14bfd9beb017547df2fd58a7d14272ab46d"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2352,
+      "sourceTriangles": 3330,
+      "sourceBoneCount": 71,
+      "authoredDiffuseNames": [
+        "Anti_venom_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "anya",
+      "id": "smu-anya",
+      "fbx": "costumes/anya/anya.fbx",
+      "fbxSha256": "14ac7f8ab2c8bde138ff0146e9c10d5341511a9ab90070638644cc2cbe8b5462",
+      "textureFiles": [
+        "textures-png/SpidergirlAnya_D.png"
+      ],
+      "textureSha256": [
+        "80a683162631ecc251c1b114e758b81f1b12a7545001b01bdba9a24f28062698"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2181,
+      "sourceTriangles": 3762,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidergirlAnya_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "arachnido",
+      "id": "smu-arachnido",
+      "fbx": "costumes/arachnido/arachnido.fbx",
+      "fbxSha256": "512d58496e5f109701622c90157f629ae1d5be87247e5da350c579fdaeff4c45",
+      "textureFiles": [
+        "textures-png/SpidermanMexican_D.png"
+      ],
+      "textureSha256": [
+        "a48eeb642034a9e20f87a3e46138ea7d1ab2f8517f46eb270b984dee7e07d021"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMexican_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "arachnoman",
+      "id": "smu-arachnoman",
+      "fbx": "costumes/arachnoman/arachnoman.fbx",
+      "fbxSha256": "3e04b9db5548386ea618b103518ecacc0f383f30a65170d64f28b43a078b489c",
+      "textureFiles": [
+        "textures-png/ArachnoMan_D.png"
+      ],
+      "textureSha256": [
+        "f7faf7ff4b3e0fe720e87d139eea53c53bb6936e70ec4f801fc42139da3b4254"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1751,
+      "sourceTriangles": 3018,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "ArachnoMan_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "arana",
+      "id": "smu-arana",
+      "fbx": "costumes/arana/arana.fbx",
+      "fbxSha256": "27818e2eac10de79fa54577251b889d2f2175de2a0b78add7054426ffce5a0b3",
+      "textureFiles": [
+        "textures-png/Arana_D.png"
+      ],
+      "textureSha256": [
+        "182451f9d90def500e58c2094bc95507dfd8440f2511a87563704ea4b1434cc9"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2156,
+      "sourceTriangles": 3658,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Arana_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "arana_gymnast",
+      "id": "smu-arana-gymnast",
+      "fbx": "costumes/arana_gymnast/arana_gymnast.fbx",
+      "fbxSha256": "8cbc3a2a80e5ad8092a3e32e0dd1d3ff10455233a5bc7d42d0aa4536d8822ca1",
+      "textureFiles": [
+        "textures-png/Arana_gymnast_D.png"
+      ],
+      "textureSha256": [
+        "17c698ae551c233fb0aa9107a96daa4cf6af344a01343dc9e54810f0493d7b7f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3754,
+      "sourceTriangles": 5586,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Arana_gymnast_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "baal",
+      "id": "smu-baal",
+      "fbx": "costumes/baal/baal.fbx",
+      "fbxSha256": "aaa8c58276b11c410aef39bb2f66d28b21c13a0260d0d024c814d6b151ed93f4",
+      "textureFiles": [
+        "textures-png/Baal_D.png"
+      ],
+      "textureSha256": [
+        "55bffcc2e721f70ad0f3aa9f43c69b85b1fff0c4834a4dea83ef65e0a3307125"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1931,
+      "sourceTriangles": 3380,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Baal_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "baghead",
+      "id": "smu-baghead",
+      "fbx": "costumes/baghead/baghead.fbx",
+      "fbxSha256": "5559a47482a7932120c3c5211f71e1d830cd08f1afec978ae5469a04152c2c25",
+      "textureFiles": [
+        "textures-png/SpidermanBagHead_D.png"
+      ],
+      "textureSha256": [
+        "3d59de7ded1612d9138d33c24606c1bd4311ce5bb1d5f3cfc7a3049cc5a1021a"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1391,
+      "sourceTriangles": 2336,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanBagHead_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "battledamaged",
+      "id": "smu-battledamaged",
+      "fbx": "costumes/battledamaged/battledamaged.fbx",
+      "fbxSha256": "97a7dd5b47055bc499d30a88f527cc9e60ceae357b7df13e4515560a18aaab35",
+      "textureFiles": [
+        "textures-png/SpidermanBattleDamaged_D.png"
+      ],
+      "textureSha256": [
+        "063bf9f32361570c64a7ddeab8b6d15aa92b0f6a11d9e3717f774d14c54c9316"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1687,
+      "sourceTriangles": 2946,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanBattleDamaged_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "batty_brant",
+      "id": "smu-batty-brant",
+      "fbx": "costumes/batty_brant/batty_brant.fbx",
+      "fbxSha256": "505ee47fdc44383e89271da42f2616c01eedef58d467f062ca3bb52cfd537753",
+      "textureFiles": [
+        "textures-png/BettyBrant_D.png",
+        "textures-png/SpiderWeb.png"
+      ],
+      "textureSha256": [
+        "b0653985154bd5d8c3eb4770f254ef36e6374909ab93970bf1b6644cfec3dc81",
+        "e158bef64c2c987c1e10665ce51ed75835edfbfee716dc93fa54de329fb909a7"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2093,
+      "sourceTriangles": 3526,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "BettyBrant_D.tga",
+        "SpiderWeb.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "ben_reilly_unmasked",
+      "id": "smu-ben-reilly-unmasked",
+      "fbx": "costumes/ben_reilly_unmasked/ben_reilly_unmasked.fbx",
+      "fbxSha256": "0e1c93ba48f741e36ef527de702a74dfafb6ab71c46bba2852357b2dc10abbb6",
+      "textureFiles": [
+        "textures-png/Ben_Reilly_unmasked_D.png"
+      ],
+      "textureSha256": [
+        "abb8f470aae5d07733fe561089756867fdfe5021fa40cdccc50b2defd9a2dc1d"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2167,
+      "sourceTriangles": 3532,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Ben_Reilly_unmasked_D.tga"
+      ],
+      "status": "native-asset/core-verified-B01"
+    },
+    {
+      "key": "benreilly",
+      "id": "smu-benreilly",
+      "fbx": "costumes/benreilly/benreilly.fbx",
+      "fbxSha256": "69ce4d9e8c0d1791a1b03edba1a2ce011c8113666863389c3276c06d989783b6",
+      "textureFiles": [
+        "textures-png/SpidermanAston_D.png"
+      ],
+      "textureSha256": [
+        "15e11ba9f1bf1c3c11bf36d3636603118a7397f965829e3426ffdc76c28db920"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1705,
+      "sourceTriangles": 2934,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanAston_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "bigtime",
+      "id": "smu-bigtime",
+      "fbx": "costumes/bigtime/bigtime.fbx",
+      "fbxSha256": "15921259d991c9bf3bbe8187e89b1721460303042590b4b37787f34c24c5f0af",
+      "textureFiles": [
+        "textures-png/SpidermanStealth_D.png"
+      ],
+      "textureSha256": [
+        "325df3be0507a12236a63046b27b230d7d679c6d0f5e1f3cdf268d1de091cfa2"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanStealth_D.tga"
+      ],
+      "status": "native-asset/core-verified-B01"
+    },
+    {
+      "key": "bigtime_red",
+      "id": "smu-bigtime-red",
+      "fbx": "costumes/bigtime_red/bigtime_red.fbx",
+      "fbxSha256": "52a621a6739e20fe219e1cc03bf3fad61e4ed5ce5af91164777ca249df41eaa7",
+      "textureFiles": [
+        "textures-png/SpidermanStealth_Red_D.png"
+      ],
+      "textureSha256": [
+        "14d92308111c41d65bb352e99eb4310dd097a2b41439e388a0769c9816819bab"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanStealth_Red_D.tga"
+      ],
+      "status": "native-asset/core-verified-B01"
+    },
+    {
+      "key": "black_suit_swiney_girl",
+      "id": "smu-black-suit-swiney-girl",
+      "fbx": "costumes/black_suit_swiney_girl/black_suit_swiney_girl.fbx",
+      "fbxSha256": "ade4e652789c1a66ced4309a22052189b02e61fbf3288d3936f1bd928329eac9",
+      "textureFiles": [
+        "textures-png/Black_Suit_Swiney_Girl_D.png"
+      ],
+      "textureSha256": [
+        "46a007d8361f5cf515ad32b086003570abe0879464de35a0414831e3793124a7"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1654,
+      "sourceTriangles": 2574,
+      "sourceBoneCount": 56,
+      "authoredDiffuseNames": [
+        "Black_Suit_Swiney_Girl_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "black_tarantula",
+      "id": "smu-black-tarantula",
+      "fbx": "costumes/black_tarantula/black_tarantula.fbx",
+      "fbxSha256": "474f13a20d87a7b0d7c7fff9bae4c11c659d7d0e35d80f67604c4fbe31bd1eec",
+      "textureFiles": [
+        "textures-png/Black_Tarantula_D.png"
+      ],
+      "textureSha256": [
+        "494c45326eeaf5ba53814d76fa8f1d0dc2553cfd357234850d2c155a910e0ba4"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2795,
+      "sourceTriangles": 4542,
+      "sourceBoneCount": 66,
+      "authoredDiffuseNames": [
+        "Black_Tarantula_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "blackcat",
+      "id": "smu-blackcat",
+      "fbx": "costumes/blackcat/blackcat.fbx",
+      "fbxSha256": "db3ba4e128300c57f4398d879a2e95b5c228735e2359362e2c150e110020dffc",
+      "textureFiles": [
+        "textures-png/BlackCat_D.png"
+      ],
+      "textureSha256": [
+        "edda755f0b2eabb8e5a9eefa1d1ee802eae7d3e872354c8114d19b2e8e0bd8c5"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2050,
+      "sourceTriangles": 3313,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "BlackCat_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "blackcatvenom",
+      "id": "smu-blackcatvenom",
+      "fbx": "costumes/blackcatvenom/blackcatvenom.fbx",
+      "fbxSha256": "fddcb2b97d41097717bf686f26a7663c2d7c10bd0eb8ab2ddc46925c196fcffc",
+      "textureFiles": [
+        "textures-png/BlackCatVenom_D.png"
+      ],
+      "textureSha256": [
+        "79a5d57ed3514bb0c0906b373b40db45d38896bb26ea9f58a93c596ca99a3fbb"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2792,
+      "sourceTriangles": 4390,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "BlackCatVenom_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "blacksuit_spidergirl",
+      "id": "smu-blacksuit-spidergirl",
+      "fbx": "costumes/blacksuit_spidergirl/blacksuit_spidergirl.fbx",
+      "fbxSha256": "5069475bf8f1a457a66c2889f5271ed13ef23cfaf4e8937732a7cc907f15f672",
+      "textureFiles": [
+        "textures-png/BlackSuit_SpiderGirl_D.png"
+      ],
+      "textureSha256": [
+        "9041bad3dd840145af21c4025e469ed91cf0568a007d6746449f10b759f69081"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2005,
+      "sourceTriangles": 3454,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "BlackSuit_SpiderGirl_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "blackwidow",
+      "id": "smu-blackwidow",
+      "fbx": "costumes/blackwidow/blackwidow.fbx",
+      "fbxSha256": "d2a42430b5e43312077e2d626f73dfb66b47eba47033622cc3be41bb7db5d1ba",
+      "textureFiles": [
+        "textures-png/SpidergirlBlackWidow_D.png"
+      ],
+      "textureSha256": [
+        "a751d918f494a997eb13206d289a93029acd8453b44e3de3eafb900e91578da8"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2006,
+      "sourceTriangles": 3356,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidergirlBlackWidow_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "blood",
+      "id": "smu-blood",
+      "fbx": "costumes/blood/blood.fbx",
+      "fbxSha256": "6ec470d0e3f1365a9880a96331e85a8ad94d52ea22c9bad2dc688b32951b50a0",
+      "textureFiles": [
+        "textures-png/SpidermanBlood_D.png"
+      ],
+      "textureSha256": [
+        "f9e5c290f06be2832f8a00a450c78342c78f3dec01e7081ec68556c9725f40f8"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2128,
+      "sourceTriangles": 3512,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanBlood_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "bulletpoints",
+      "id": "smu-bulletpoints",
+      "fbx": "costumes/bulletpoints/bulletpoints.fbx",
+      "fbxSha256": "213d8b906ac81f9a507866465363bd987ee3c7e23c3ced5b0d354068833802bc",
+      "textureFiles": [
+        "textures-png/SpidermanBulletPoints_D.png"
+      ],
+      "textureSha256": [
+        "45fca8a696cdcb9f4703b7f02ee467c18f24d4162c7339f9c91af8d037118024"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1729,
+      "sourceTriangles": 2910,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanBulletPoints_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "buzz",
+      "id": "smu-buzz",
+      "fbx": "costumes/buzz/buzz.fbx",
+      "fbxSha256": "793b8f2a7eed6d1ef77f594c5dfadb769cfc7f860b2163bc3f500335d181a741",
+      "textureFiles": [
+        "textures-png/Buzz_D.png"
+      ],
+      "textureSha256": [
+        "27aebec1c27291ff0c5cba03104ba3612371ddade8891251e56e6a8e79366558"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2078,
+      "sourceTriangles": 3330,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Buzz_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "captain",
+      "id": "smu-captain",
+      "fbx": "costumes/captain/captain.fbx",
+      "fbxSha256": "81fc4b9dec024df81c3339c89d5892ee453febe432020be5a2db0c301057287a",
+      "textureFiles": [
+        "textures-png/Spiderman_Captain_D.png"
+      ],
+      "textureSha256": [
+        "4fe438cf288c72c6fa246f9852ddc4a2b26533b889617a3b572165751f43b63c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1809,
+      "sourceTriangles": 3112,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman_Captain_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "carliespiderisland",
+      "id": "smu-carliespiderisland",
+      "fbx": "costumes/carliespiderisland/carliespiderisland.fbx",
+      "fbxSha256": "792f5997869ec14e773156de481462e33d967c0d3bc029f94ec9375183092ee5",
+      "textureFiles": [
+        "textures-png/CarlieSpiderIsland_D.png"
+      ],
+      "textureSha256": [
+        "13ff6260a9724604152e6896189aea81657b13982d585dbc9c83830fa2420f2b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1965,
+      "sourceTriangles": 3257,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "CarlieSpiderIsland_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "carnage",
+      "id": "smu-carnage",
+      "fbx": "costumes/carnage/carnage.fbx",
+      "fbxSha256": "44fffd333f6eb5c7f7814da32cee6dab1243b00ce509ffa28a70aed5de073304",
+      "textureFiles": [
+        "textures-png/Carnage_D.png"
+      ],
+      "textureSha256": [
+        "6b82d76b341bb332caf8949e479730a07f70d4155918d25c87af8f7f9f6873d1"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2194,
+      "sourceTriangles": 3389,
+      "sourceBoneCount": 71,
+      "authoredDiffuseNames": [
+        "Carnage_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "carnageultimate",
+      "id": "smu-carnageultimate",
+      "fbx": "costumes/carnageultimate/carnageultimate.fbx",
+      "fbxSha256": "8b9ee7d68e33c8cda6f516ec300674790f0408efb698749258f00b8ee0c2f0e1",
+      "textureFiles": [
+        "textures-png/CarnageUltimate_D.png"
+      ],
+      "textureSha256": [
+        "6806b956fd748d6fcada33803761582dcb78b9f31307673c28ce34a29b656351"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2635,
+      "sourceTriangles": 3914,
+      "sourceBoneCount": 69,
+      "authoredDiffuseNames": [
+        "CarnageUltimate_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "charlottewitter",
+      "id": "smu-charlottewitter",
+      "fbx": "costumes/charlottewitter/charlottewitter.fbx",
+      "fbxSha256": "e58e8026d3711959efcb0aa891c1408ebd1c51e3241b1bc7610b59cf6ea4b2b3",
+      "textureFiles": [
+        "textures-png/CharlotteWitter_D.png"
+      ],
+      "textureSha256": [
+        "ecf5e1aa96530fe0a1c104ca05f15b3a28e49785c2b445af2191aa2685cdd37e"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2519,
+      "sourceTriangles": 4147,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "CharlotteWitter_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "civilwarpeterparker",
+      "id": "smu-civilwarpeterparker",
+      "fbx": "costumes/civilwarpeterparker/civilwarpeterparker.fbx",
+      "fbxSha256": "98120b9447cf698703ddf5ead294a653075b19283ccb791a9871e8c1a53a8801",
+      "textureFiles": [
+        "textures-png/CivilWarPeterParker_D.png"
+      ],
+      "textureSha256": [
+        "6f09d80781724b39b08ae23ad66aab6bf2ce9306ac72b3b6d888753bf9656c5e"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2882,
+      "sourceTriangles": 4256,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "CivilWarPeterParker_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "cosmic",
+      "id": "smu-cosmic",
+      "fbx": "costumes/cosmic/cosmic.fbx",
+      "fbxSha256": "255fbdfe31ac3caf3d8631c940340d53fa908b62f5dd4588c2b9c64057b85c0c",
+      "textureFiles": [
+        "textures-png/SpidermanCosmic_D.png"
+      ],
+      "textureSha256": [
+        "8b2348379034a29d859fca3aac7c2ae8670fb2c572fd63837f8d5141b20e41f9"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanCosmic_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "cyborg",
+      "id": "smu-cyborg",
+      "fbx": "costumes/cyborg/cyborg.fbx",
+      "fbxSha256": "da17eebe5fe44755fd46733ad6e21ae9873b5c9b2b134f9e6f30267cfa275e7d",
+      "textureFiles": [
+        "textures-png/Spiderman_Cyborg_D.png"
+      ],
+      "textureSha256": [
+        "8e6aa14bfe5769051c2555b548b2a2efba28d9e42ae5ea9057031dd6e119ad3f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2340,
+      "sourceTriangles": 3716,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman_Cyborg_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "damon_ryder",
+      "id": "smu-damon-ryder",
+      "fbx": "costumes/damon_ryder/damon_ryder.fbx",
+      "fbxSha256": "f1dc4da9772d19fa9f38f0c346321c214778db2f5819d033cb94e905bbc309ee",
+      "textureFiles": [
+        "textures-png/Damon_Ryder_gun.png",
+        "textures-png/damon_ryder_D.png"
+      ],
+      "textureSha256": [
+        "bc0ebce53add59c2d1b143e23e88729dbfe8f85a023e350e9276de37391b42cb",
+        "fe8543de877273408a2ed4bb5bb42ed682ad5bae48e98d820e30e91ab0643d42"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 6500,
+      "sourceTriangles": 8032,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Damon_Ryder_gun.tga",
+        "damon_ryder_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "deadaim",
+      "id": "smu-deadaim",
+      "fbx": "costumes/deadaim/deadaim.fbx",
+      "fbxSha256": "3d29f2c12e8ed73cfd4eb603d74c5d8454c0cbc909d20688d5c56b721869615f",
+      "textureFiles": [
+        "textures-png/DeadAim_D.png"
+      ],
+      "textureSha256": [
+        "93d5343847da583b8c27ab5956fb8305f896abdb3fe35faf4c7841ad86f81b63"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2934,
+      "sourceTriangles": 4880,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "DeadAim_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "devilspider",
+      "id": "smu-devilspider",
+      "fbx": "costumes/devilspider/devilspider.fbx",
+      "fbxSha256": "f1e1008adf0048c5452f6cec72a798359bc56385f3a2ea333244cd06ce9b6591",
+      "textureFiles": [
+        "textures-png/DevilSpider_D.png"
+      ],
+      "textureSha256": [
+        "2b0a3eb6c6cd52c2711261c2eb96bd52d71d506ab1022f14d89cb502bafae475"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 304,
+      "sourceTriangles": 152,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "DevilSpider_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "doppleganger",
+      "id": "smu-doppleganger",
+      "fbx": "costumes/doppleganger/doppleganger.fbx",
+      "fbxSha256": "3bfa7b47a6f244e88e42ee6556fd087915ae09da43df8fbead254d9510aaae11",
+      "textureFiles": [
+        "textures-png/Doppleganger_D.png"
+      ],
+      "textureSha256": [
+        "084728d6c4eb0edfd856fc77a4fe577779a08b3145cda87f0666f945f2a9a665"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2773,
+      "sourceTriangles": 4286,
+      "sourceBoneCount": 61,
+      "authoredDiffuseNames": [
+        "Doppleganger_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "dorma",
+      "id": "smu-dorma",
+      "fbx": "costumes/dorma/dorma.fbx",
+      "fbxSha256": "08d1ef72deab04be41952c763d1e46d1c0fccfcc86f96a69f2d9172ac2d57a0c",
+      "textureFiles": [
+        "textures-png/Dorma_D.png"
+      ],
+      "textureSha256": [
+        "98b2bcd93bb6ee7221224ad57fabf57cd59ee100bb3d209ba952869a8ed9f40d"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3305,
+      "sourceTriangles": 5376,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Dorma_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "dusk",
+      "id": "smu-dusk",
+      "fbx": "costumes/dusk/dusk.fbx",
+      "fbxSha256": "7ecf810c367ab0858b4c8d07ae9a4239f949b44a5c58d83965a697eec27a057d",
+      "textureFiles": [
+        "textures-png/Black_Char.png",
+        "textures-png/Black_Char_body.png"
+      ],
+      "textureSha256": [
+        "3c1a8ee2ada3d3f270125a43d17971946c1ac33fa18e8f62dcea1789661a1403",
+        "4d6ffe0b3eb87e07aaffb446701c1347d546634d2d4be6eeaacca803de41d097"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1753,
+      "sourceTriangles": 2946,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Black_Char.tga",
+        "Black_Char_body.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "earth62412",
+      "id": "smu-earth62412",
+      "fbx": "costumes/earth62412/earth62412.fbx",
+      "fbxSha256": "9e53fa4bbe198bd44c4e4c71acf6f5b3d055fa331850068e5fa0baf2c59b3b1d",
+      "textureFiles": [
+        "textures-png/Earth62412_D.png"
+      ],
+      "textureSha256": [
+        "da7c1f6e1825754342edbc9be26c21846c1a1d8fa1843464fb61ad035191a13b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1828,
+      "sourceTriangles": 3100,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Earth62412_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "earthx",
+      "id": "smu-earthx",
+      "fbx": "costumes/earthx/earthx.fbx",
+      "fbxSha256": "00582e069b45f1c0eb865401aee7462e4c67355c11d2db6c62d6249dcfb84eb9",
+      "textureFiles": [
+        "textures-png/SpiderEarthX_D.png"
+      ],
+      "textureSha256": [
+        "ad1f755703ec73febf1dbf41a1cd3b403b5ceee509d097f90cc904d13126d87a"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1577,
+      "sourceTriangles": 2584,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderEarthX_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "edward_brock",
+      "id": "smu-edward-brock",
+      "fbx": "costumes/edward_brock/edward_brock.fbx",
+      "fbxSha256": "4e6fa5a302b4882a53e1baf174fdf5f6180d30712c16a207a43de9c27c1dc573",
+      "textureFiles": [
+        "textures-png/Edward_Brock_D.png"
+      ],
+      "textureSha256": [
+        "efe043f64680379ac7d6b2b186f63db51e564435acab4cb829cd1e8369b113b3"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2128,
+      "sourceTriangles": 3173,
+      "sourceBoneCount": 70,
+      "authoredDiffuseNames": [
+        "Edward_Brock_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "edwardbrock_earth11080",
+      "id": "smu-edwardbrock-earth11080",
+      "fbx": "costumes/edwardbrock_earth11080/edwardbrock_earth11080.fbx",
+      "fbxSha256": "e8f25ffccfb4bdd534574b7151a754e8a46237c49b0b09db6443d1a8c5fa2420",
+      "textureFiles": [
+        "textures-png/EdwardBrock_Earth11080_D.png"
+      ],
+      "textureSha256": [
+        "9e242739a734361d1a62bd12bb0ee4a3d95469045f213312bddc7f43fa5b8dfb"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2932,
+      "sourceTriangles": 3988,
+      "sourceBoneCount": 71,
+      "authoredDiffuseNames": [
+        "EdwardBrock_Earth11080_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "electroproof",
+      "id": "smu-electroproof",
+      "fbx": "costumes/electroproof/electroproof.fbx",
+      "fbxSha256": "fddca381eea81746a9dea77a5ac09f3bae4b7fa7d06ef6ab3f6f9ed8865e67db",
+      "textureFiles": [
+        "textures-png/SpidermanElectroProof_D.png"
+      ],
+      "textureSha256": [
+        "4971dbb0dc028d154205c6f6c59e18ce4a55ac9ad91280474366d04827c648dd"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1635,
+      "sourceTriangles": 2806,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanElectroProof_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "endofearth",
+      "id": "smu-endofearth",
+      "fbx": "costumes/endofearth/endofearth.fbx",
+      "fbxSha256": "83e680930a647e6e483960b64f16346b092093f9f90d7564a414399857dd8d60",
+      "textureFiles": [
+        "textures-png/SpidermanEOE_D.png"
+      ],
+      "textureSha256": [
+        "816b25be627d999bdb4ff44ac52eb2e3621e261f781c571f22802674e445e3f5"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2020,
+      "sourceTriangles": 3446,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanEOE_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "enrage_toxin",
+      "id": "smu-enrage-toxin",
+      "fbx": "costumes/enrage_toxin/enrage_toxin.fbx",
+      "fbxSha256": "b2e6c9bffee15cb5fc0923d583ff929eacd70db298d95286afba0e50d251516e",
+      "textureFiles": [
+        "textures-png/Enraged_Toxin_D.png"
+      ],
+      "textureSha256": [
+        "a93a99e1de6a9144b76337bd328a76029ceeb98e83378431dbc7c68d42286ea1"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2483,
+      "sourceTriangles": 3570,
+      "sourceBoneCount": 71,
+      "authoredDiffuseNames": [
+        "Enraged_Toxin_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "ezekiel",
+      "id": "smu-ezekiel",
+      "fbx": "costumes/ezekiel/ezekiel.fbx",
+      "fbxSha256": "9853864dadd03d2b98c62e208f0db2abc205c2b48cedebb37f902f73e94fc11a",
+      "textureFiles": [
+        "textures-png/Ezekiel_D.png"
+      ],
+      "textureSha256": [
+        "c43568396df34759da2a296e1b7c13123395effba753b35a9635f2a2333169dc"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2361,
+      "sourceTriangles": 3834,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Ezekiel_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "fatherspider",
+      "id": "smu-fatherspider",
+      "fbx": "costumes/fatherspider/fatherspider.fbx",
+      "fbxSha256": "bba48b424e8981260f03f2b739b225376d45463564d5d6f455faab784821b3a6",
+      "textureFiles": [
+        "textures-png/FatherSpider_D.png"
+      ],
+      "textureSha256": [
+        "d04603d0fef19592179803700dc2a0cf3472f5be203902e323c7388267b850ad"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2037,
+      "sourceTriangles": 3480,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "FatherSpider_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "fearitself",
+      "id": "smu-fearitself",
+      "fbx": "costumes/fearitself/fearitself.fbx",
+      "fbxSha256": "f7a5277e9233326814be686762ca86faec2b9963b89c80a05b1d6d629b89faf6",
+      "textureFiles": [
+        "textures-png/FearItself_D.png"
+      ],
+      "textureSha256": [
+        "4cc9f84b90b2beed02c1d3119e2d4f5f2913327ccd9258f790a168b5fa238bc8"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2478,
+      "sourceTriangles": 3580,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "FearItself_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "felicityhardy",
+      "id": "smu-felicityhardy",
+      "fbx": "costumes/felicityhardy/felicityhardy.fbx",
+      "fbxSha256": "3620c8cd1fc506bc39ae4c2393f818e0f32ff5eb245a6c6a01d88360e4136541",
+      "textureFiles": [
+        "textures-png/FelicityHardy_D.png"
+      ],
+      "textureSha256": [
+        "dae4c5187e7a12ce2aff89efc8b68763e62d80b48326740d2fe72deef63e6fcb"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2122,
+      "sourceTriangles": 3518,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "FelicityHardy_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "flashthompson_unmasked",
+      "id": "smu-flashthompson-unmasked",
+      "fbx": "costumes/flashthompson_unmasked/flashthompson_unmasked.fbx",
+      "fbxSha256": "1bfddf76c704b53999bebcf269bed0a3171464c44ac666cd9204249053a771da",
+      "textureFiles": [
+        "textures-png/FlashThompson_unmasked_D.png"
+      ],
+      "textureSha256": [
+        "b876a30bd6cb400307c1bb41511af11684085741233f0896611ff4c0a15cda51"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2701,
+      "sourceTriangles": 3916,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "FlashThompson_unmasked_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "flipside",
+      "id": "smu-flipside",
+      "fbx": "costumes/flipside/flipside.fbx",
+      "fbxSha256": "e47d4e80be37410adfdd6f539af8adb64e1872b5c3cfc0deaab393efecc75736",
+      "textureFiles": [
+        "textures-png/Flipside_D.png"
+      ],
+      "textureSha256": [
+        "1ff05fac258b14bcbb65d94101acf9e397270431dd0a7b6355f95807353befa5"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1713,
+      "sourceTriangles": 2790,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Flipside_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "futurefoundation",
+      "id": "smu-futurefoundation",
+      "fbx": "costumes/futurefoundation/futurefoundation.fbx",
+      "fbxSha256": "276734fbf2620b1fbac94b0316dccebe71f97a1264498eabd0ede1ced3e5270a",
+      "textureFiles": [
+        "textures-png/SpidermanFan4_D.png"
+      ],
+      "textureSha256": [
+        "c918d6ad47f2d5b431c5b171ed8630fff0b919e7f1829bcc40b546e7266d7921"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanFan4_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "gabrielgant",
+      "id": "smu-gabrielgant",
+      "fbx": "costumes/gabrielgant/gabrielgant.fbx",
+      "fbxSha256": "79aa4f2958a412c2753e2572c15ba55de601c985c9b0e7fdf34ee24e8b84b62c",
+      "textureFiles": [
+        "textures-png/GabrielGant_D.png"
+      ],
+      "textureSha256": [
+        "2d40fec966b50abbac48ed14b6ab9514890f33c31059b7c2437f3afa714be744"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3302,
+      "sourceTriangles": 4965,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "GabrielGant_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "ghost",
+      "id": "smu-ghost",
+      "fbx": "costumes/ghost/ghost.fbx",
+      "fbxSha256": "0a0a6f8d8936bb23b6127bcf321c16c8827e5042976e242fe3d5f9d2ec49404a",
+      "textureFiles": [
+        "textures-png/SpidermanGhost_D.png"
+      ],
+      "textureSha256": [
+        "cf75709c8bb5b80469084212776be2135a2d0b61ff0aceed55410e64ff424a16"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1797,
+      "sourceTriangles": 3162,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanGhost_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "girl",
+      "id": "smu-girl",
+      "fbx": "costumes/girl/girl.fbx",
+      "fbxSha256": "1c5f1b060c405bb82ff20c0812bac8d04fe058616975e2ec871232085af05aaa",
+      "textureFiles": [
+        "textures-png/Spidergirl_D.png"
+      ],
+      "textureSha256": [
+        "8d95013033a04dab0bc7f2cda57afff3394df3f52ce77befe669c79842a2c303"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2005,
+      "sourceTriangles": 3454,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spidergirl_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "goblinspider",
+      "id": "smu-goblinspider",
+      "fbx": "costumes/goblinspider/goblinspider.fbx",
+      "fbxSha256": "97515e63d28f0445b869059bfe89eb9a4f1e2916031b1ef05571295e94280410",
+      "textureFiles": [
+        "textures-png/GoblinSpider_D.png"
+      ],
+      "textureSha256": [
+        "d2f1e77a78492d3486d33110ad314a55b9e8ff2687c8f43e5fa9ae4483da8c8b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1822,
+      "sourceTriangles": 3004,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "GoblinSpider_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "god",
+      "id": "smu-god",
+      "fbx": "costumes/god/god.fbx",
+      "fbxSha256": "485d94f1935f315e2dc46e2b7cdcf44a466a78520e8c70ca338a1b58229c16e7",
+      "textureFiles": [
+        "textures-png/SpidermanGod_D.png"
+      ],
+      "textureSha256": [
+        "2c5abbae7b837fda50aa220dc7c0fac374c6eaae6ecf9b57796ceed96506c3fe"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2188,
+      "sourceTriangles": 3558,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanGod_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "guardian",
+      "id": "smu-guardian",
+      "fbx": "costumes/guardian/guardian.fbx",
+      "fbxSha256": "81845fa785f6eb3b17f0689025047f4309c0776e0fb40052bcdd7bc63a9c5160",
+      "textureFiles": [
+        "textures-png/Guardian_D.png"
+      ],
+      "textureSha256": [
+        "88afd24210cd1ed6863320d7ed68c0cc22cf3d595597c50bda5af5ffe99a684c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2483,
+      "sourceTriangles": 4019,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Guardian_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "gwen",
+      "id": "smu-gwen",
+      "fbx": "costumes/gwen/gwen.fbx",
+      "fbxSha256": "cc279fecee315f2c6dfa13c20c3402af5d63e15d9ccd8c7d07f135e0c2dce85f",
+      "textureFiles": [
+        "textures-png/SpidermanGwen_D.png"
+      ],
+      "textureSha256": [
+        "0de536f0ca20e44b3b62d93099e8df0eb463d05e97118068b976d917f2e794c5"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2177,
+      "sourceTriangles": 3719,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanGwen_D.tga"
+      ],
+      "status": "native-asset/core-verified-B01"
+    },
+    {
+      "key": "gwenom",
+      "id": "smu-gwenom",
+      "fbx": "costumes/gwenom/gwenom.fbx",
+      "fbxSha256": "2490068258b663dd4a75d4eed77fa65769ff89fc810808fbbacedc7db1893b78",
+      "textureFiles": [
+        "textures-png/Gwenom_D.png"
+      ],
+      "textureSha256": [
+        "76542f14a5b72b5cd61c2cab17a56811f41f65cee8d76073abffb06532203180"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2377,
+      "sourceTriangles": 3986,
+      "sourceBoneCount": 66,
+      "authoredDiffuseNames": [
+        "Gwenom_D.tga"
+      ],
+      "status": "native-asset/core-verified-B01"
+    },
+    {
+      "key": "gwenstacy_unmasked",
+      "id": "smu-gwenstacy-unmasked",
+      "fbx": "costumes/gwenstacy_unmasked/gwenstacy_unmasked.fbx",
+      "fbxSha256": "436a84c9220761032726c095de1a60df1e5e6ebb1f9239080baead9a15405103",
+      "textureFiles": [
+        "textures-png/GwenStacy_unmasked_D.png"
+      ],
+      "textureSha256": [
+        "a33f5fb933b3693c21b71e709493633d4eb6708f4b29cda3cf471f3bf3a7c5d2"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2501,
+      "sourceTriangles": 4144,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "GwenStacy_unmasked_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "hammerhead",
+      "id": "smu-hammerhead",
+      "fbx": "costumes/hammerhead/hammerhead.fbx",
+      "fbxSha256": "57a90802f1f68b87564e088c7e05086ca0af017bbfab4488c4c78dbdbc8e0d03",
+      "textureFiles": [
+        "textures-png/hummerhead_D.png"
+      ],
+      "textureSha256": [
+        "eb8901a584f571e3756edf2d44653c68fc3d4816f2a5b552e00bfcea9fa54e09"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1586,
+      "sourceTriangles": 2584,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "hummerhead_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "hobartbrown",
+      "id": "smu-hobartbrown",
+      "fbx": "costumes/hobartbrown/hobartbrown.fbx",
+      "fbxSha256": "0d871f97feec5a2730aaf383b3cabb4261f25a5e0cf2aee4f72b820c0f56b527",
+      "textureFiles": [
+        "textures-png/HobartBrown_D.png"
+      ],
+      "textureSha256": [
+        "472c2ae617c34193a5e4021045f047d38015e817b43c2aa908cf08f126054055"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1943,
+      "sourceTriangles": 3272,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "HobartBrown_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "hobie",
+      "id": "smu-hobie",
+      "fbx": "costumes/hobie/hobie.fbx",
+      "fbxSha256": "9c1df8122d91ecf49d65e53a2dde82099de54155939d668e5ab270d977e5dd4a",
+      "textureFiles": [
+        "textures-png/Hobie_D.png"
+      ],
+      "textureSha256": [
+        "98ab719b9d7e5b6747c898648efe6848240b34e59d96e157b3c5b68611ec373e"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2554,
+      "sourceTriangles": 4066,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Hobie_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "homemade",
+      "id": "smu-homemade",
+      "fbx": "costumes/homemade/homemade.fbx",
+      "fbxSha256": "0efd413f9d23bb2a43ff35065f4c0a3ca3a82c6fe5c4dee9d59ce1abd9a2c7d2",
+      "textureFiles": [
+        "textures-png/Hommade_D.png"
+      ],
+      "textureSha256": [
+        "f1cc6fd5723305c22341b472ae596cf31788a57f4773c41efef2ca0991b40959"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2193,
+      "sourceTriangles": 3384,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Hommade_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "hornet",
+      "id": "smu-hornet",
+      "fbx": "costumes/hornet/hornet.fbx",
+      "fbxSha256": "479744c12a5baf179f6eae98afddf1436900c59d3ea8e9e9e2c2b7a974c94d8f",
+      "textureFiles": [
+        "textures-png/SpidermanHornet_D.png"
+      ],
+      "textureSha256": [
+        "13524ae24143d828f6973e09cbabec2baaa7c2dc473fb987e3897d150f65b58d"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2106,
+      "sourceTriangles": 3434,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanHornet_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "houseofm",
+      "id": "smu-houseofm",
+      "fbx": "costumes/houseofm/houseofm.fbx",
+      "fbxSha256": "f425fd7025607dfa401b84c6eb427cf984341986e3f2df3b644babd42b343582",
+      "textureFiles": [
+        "textures-png/SpidermanHouseM_D.png"
+      ],
+      "textureSha256": [
+        "7c0b55acbb8f2fe52689ba938e38e69e2f6bc9f88cafcb763e8d674b1bc6f294"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanHouseM_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "hunter_arana",
+      "id": "smu-hunter-arana",
+      "fbx": "costumes/hunter_arana/hunter_arana.fbx",
+      "fbxSha256": "4076a7c57c5d3f67492c5b17309e912ff9871c84d700d66684382e86152fd141",
+      "textureFiles": [
+        "textures-png/HunterArana_D.png"
+      ],
+      "textureSha256": [
+        "2eae3e697b293f559385c20b00138791cfb9e7dcc181b17d6f95257ff2b52e0c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2045,
+      "sourceTriangles": 3408,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "HunterArana_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "ichor",
+      "id": "smu-ichor",
+      "fbx": "costumes/ichor/ichor.fbx",
+      "fbxSha256": "2b08df1c777f93b83a31caa466e4d83d4ba3a85c058bf642e81c75fff12e6f1a",
+      "textureFiles": [
+        "textures-png/Ichor_D.png"
+      ],
+      "textureSha256": [
+        "a96bf17ec66bbf680ecd178c4c094515de8a223f3645b3d9e3253e18f5aa7308"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2725,
+      "sourceTriangles": 4406,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Ichor_d.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "iguana",
+      "id": "smu-iguana",
+      "fbx": "costumes/iguana/iguana.fbx",
+      "fbxSha256": "53b44792999cc9bb72d78b0eeac689e01b9959386ef620b83afa710ac0366abe",
+      "textureFiles": [
+        "textures-png/Iguana_D.png"
+      ],
+      "textureSha256": [
+        "82df8cc5b791886fc367c3a7bacc363d4d045837e7bf089302d8051801ce4059"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2225,
+      "sourceTriangles": 3704,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Iguana_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "india",
+      "id": "smu-india",
+      "fbx": "costumes/india/india.fbx",
+      "fbxSha256": "35ac68ad7e76a317a2a6724d61c61dc18e0fb4da6d49bad20ed0a26c5baf3e5a",
+      "textureFiles": [
+        "textures-png/SpidermanInida_D.png"
+      ],
+      "textureSha256": [
+        "8c5cb3f01f628aed6d06db6bdc8f44a3f2209de3a081b3df8146d8d1d9d9fad0"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2034,
+      "sourceTriangles": 3524,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanInida_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "ironspider",
+      "id": "smu-ironspider",
+      "fbx": "costumes/ironspider/ironspider.fbx",
+      "fbxSha256": "70abc944cd7f6343fb7159b193b3173ee63858a387ad8b7a86cd2dfe578884da",
+      "textureFiles": [
+        "textures-png/SpidermanIron_D.png"
+      ],
+      "textureSha256": [
+        "d5f0b4dd684d387d3e4a0f1e3b7542e77dc7279d09b80adacf04085a08a5a685"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanIron_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "ironspider_unmasked",
+      "id": "smu-ironspider-unmasked",
+      "fbx": "costumes/ironspider_unmasked/ironspider_unmasked.fbx",
+      "fbxSha256": "0a52f6d4b9f65203e2a1e884434651cc932e5ef0bb74d71115bfe3a2e60e6db4",
+      "textureFiles": [
+        "textures-png/IronSpiderUnmasked_D.png"
+      ],
+      "textureSha256": [
+        "b0665e3bcf23a128533a152c8cc3ca48d8f02f5437d4ea1601f7c2839ff78432"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2163,
+      "sourceTriangles": 3548,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "IronSpiderUnmasked_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "ironspidernew",
+      "id": "smu-ironspidernew",
+      "fbx": "costumes/ironspidernew/ironspidernew.fbx",
+      "fbxSha256": "372967cd4eb34fe93186744045b79bb062c1827174b43d17045cf41b2a2f4896",
+      "textureFiles": [
+        "textures-png/IronSpiderNew_D.png",
+        "textures-png/SpiderWeb.png"
+      ],
+      "textureSha256": [
+        "903e0ac87cb6c036f26be71a878be52ea4798c9884c9d30de2bd55f2a459942a",
+        "e158bef64c2c987c1e10665ce51ed75835edfbfee716dc93fa54de329fb909a7"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2003,
+      "sourceTriangles": 3278,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "IronSpiderNew_D.tga",
+        "SpiderWeb.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "ironspidernewwithtentackles",
+      "id": "smu-ironspidernewwithtentackles",
+      "fbx": "costumes/ironspidernewwithtentackles/ironspidernewwithtentackles.fbx",
+      "fbxSha256": "ef80dc67a056eb6d536709b5056d7df6b2edd92a72cc2b8970ee534500ad49b6",
+      "textureFiles": [
+        "textures-png/IronSpiderNewWithTentackles_D.png",
+        "textures-png/IronSpiderNew_light.png"
+      ],
+      "textureSha256": [
+        "8abbe494188ce53337ad55c28b212da6f26c3bb58f7dc992c41c1dd2bb46aa21",
+        "2121aafdc8f9390a540fa7158294003391d3b755426993ab1275a8f0218a0617"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3181,
+      "sourceTriangles": 4830,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "IronSpiderNewWithTentackles_D.tga",
+        "IronSpiderNew_light.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "izumi",
+      "id": "smu-izumi",
+      "fbx": "costumes/izumi/izumi.fbx",
+      "fbxSha256": "8dadb2304e06cc5a7f9c9fb67b4b1937d8d3af1dd901ba8d659ae523fd3f257a",
+      "textureFiles": [
+        "textures-png/Izumi_D.png"
+      ],
+      "textureSha256": [
+        "e2d5241edc8c55e83839ac25376657e0ea4db6a1129f704069267e4bb1f6d639"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3561,
+      "sourceTriangles": 5356,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Izumi_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "jessica_drew",
+      "id": "smu-jessica-drew",
+      "fbx": "costumes/jessica_drew/jessica_drew.fbx",
+      "fbxSha256": "44f6da89f66c621aaa3a734374676f9049349cfa95cb1d225e6c2569f41f38a8",
+      "textureFiles": [
+        "textures-png/Jessica_Drew_D.png"
+      ],
+      "textureSha256": [
+        "2d4321308b898849159c01f71ddd431ae62975dfe9bbb249fbfd7c2e22bc942a"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2144,
+      "sourceTriangles": 3578,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Jessica_Drew_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "julia_carpenter",
+      "id": "smu-julia-carpenter",
+      "fbx": "costumes/julia_carpenter/julia_carpenter.fbx",
+      "fbxSha256": "4d4540e8cdd3962adcbb860a5e3925401cd46815dfef80b59961cb39996dfa13",
+      "textureFiles": [
+        "textures-png/Julia_Carpenter_D.png"
+      ],
+      "textureSha256": [
+        "6645a515e3565c60c4bc84587a8d6cca7bf8ce182f05474f0bd5eb4e71764051"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2168,
+      "sourceTriangles": 3696,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Julia_Carpenter_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "knull",
+      "id": "smu-knull",
+      "fbx": "costumes/knull/knull.fbx",
+      "fbxSha256": "958e2d9b66337162237467b58bb2a5cfdaf3dfc7711c8320f6d877c08c1c879b",
+      "textureFiles": [
+        "textures-png/Knull_D.png"
+      ],
+      "textureSha256": [
+        "68a35a63b0ad6814089c73915e4939b67ce5c2a18ed875e2650d3114b5eeb5b0"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2936,
+      "sourceTriangles": 4189,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Knull_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "kung_fu",
+      "id": "smu-kung-fu",
+      "fbx": "costumes/kung_fu/kung_fu.fbx",
+      "fbxSha256": "9425712a7e0d02d8d57b711e5006eed249ca8e0772b8b74828e6330786dcc1cc",
+      "textureFiles": [
+        "textures-png/Kung_FU_D.png"
+      ],
+      "textureSha256": [
+        "b1c687e1c2e8091bf1a4554d4ad0b67bbdfec88c5fc4582c56df0a6f9e56b3fb"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2377,
+      "sourceTriangles": 3826,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Kung_FU_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "lana_baumgartner",
+      "id": "smu-lana-baumgartner",
+      "fbx": "costumes/lana_baumgartner/lana_baumgartner.fbx",
+      "fbxSha256": "e8b64fbae622b13ef98aa7a54023078c2a81ccc58ece74a9dbb5aa3a3347d06e",
+      "textureFiles": [
+        "textures-png/Lana_Baumgartner_D.png"
+      ],
+      "textureSha256": [
+        "c0f2c8cf53896853f66c53e0b20046f89717ba4d0a436b544a73c6b6aabb3772"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2151,
+      "sourceTriangles": 3520,
+      "sourceBoneCount": 66,
+      "authoredDiffuseNames": [
+        "Lana_Baumgartner_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "lasher",
+      "id": "smu-lasher",
+      "fbx": "costumes/lasher/lasher.fbx",
+      "fbxSha256": "6c3057d060daf0b6d6e77c579732a2a693a443fe17e4e2fda1961ce04ab703ca",
+      "textureFiles": [
+        "textures-png/Lasher_D.png"
+      ],
+      "textureSha256": [
+        "09a23c97a7a964a5ddaece81e685b3d6165ef6b1bab2a5984ba63f2b2e79ee50"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2183,
+      "sourceTriangles": 3452,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Lasher_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "lasher_cell",
+      "id": "smu-lasher-cell",
+      "fbx": "costumes/lasher_cell/lasher_cell.fbx",
+      "fbxSha256": "05545b7198e225785824c5c7159087b212592e7aa02556fea2b28f1052148fd3",
+      "textureFiles": [
+        "textures-png/Lasher_Cell_D.png"
+      ],
+      "textureSha256": [
+        "508f556db30139ebf3d0c4b30bfdb717c5fdfcfc0f888666997b2c46fba81f4a"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2196,
+      "sourceTriangles": 3420,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Lasher_Cell_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "lily_hollister",
+      "id": "smu-lily-hollister",
+      "fbx": "costumes/lily_hollister/lily_hollister.fbx",
+      "fbxSha256": "f4964f4d6380c91510baff8e23deb80ccdc12b02f4991393aeece70b021bc736",
+      "textureFiles": [
+        "textures-png/Lily_Hollister_D.png"
+      ],
+      "textureSha256": [
+        "0423898bbcbce4ba1271914124cd5eabf86b8cda973af20c18278e1450598b6b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2511,
+      "sourceTriangles": 4018,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Lily_Hollister_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "lizard",
+      "id": "smu-lizard",
+      "fbx": "costumes/lizard/lizard.fbx",
+      "fbxSha256": "0f094676377768b4d6a6f94748937f1847e70bcfaca9951ea0e4ce6088a206cf",
+      "textureFiles": [
+        "textures-png/lizard_D.png"
+      ],
+      "textureSha256": [
+        "e6c97ba6ce28f98d5ae751c8a4e9a4f27d1c3283dbffe0b4561d279742a99868"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2491,
+      "sourceTriangles": 3496,
+      "sourceBoneCount": 70,
+      "authoredDiffuseNames": [
+        "lizard_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mac_gargan",
+      "id": "smu-mac-gargan",
+      "fbx": "costumes/mac_gargan/mac_gargan.fbx",
+      "fbxSha256": "dd96479157e31058d713f94b883abc98c316af74ea359bcf78e97022b233cbb1",
+      "textureFiles": [
+        "textures-png/Mac_Gargan_D.png"
+      ],
+      "textureSha256": [
+        "bf68f4cb10180183def822ba62941745a2b0d3c2194dc54cc1a1700cd468a46d"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2467,
+      "sourceTriangles": 3906,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mac_Gargan_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mace",
+      "id": "smu-mace",
+      "fbx": "costumes/mace/mace.fbx",
+      "fbxSha256": "6619b098d4e7f0ec3011d3027c87be8453dc09aa489f6f0e840adfefe11908a5",
+      "textureFiles": [
+        "textures-png/Mace_D.png"
+      ],
+      "textureSha256": [
+        "3fb4e2d16ee25db41d4be50e80ee05b52966322ac37e94ea704e444437fd047c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2052,
+      "sourceTriangles": 3286,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mace_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "madamweb",
+      "id": "smu-madamweb",
+      "fbx": "costumes/madamweb/madamweb.fbx",
+      "fbxSha256": "b1f215e4c91e59be455bd23a96d9712c4ec856b44ebf7ac906531a86d8d6a08d",
+      "textureFiles": [
+        "textures-png/MadamWeb_D.png"
+      ],
+      "textureSha256": [
+        "add04be06d22f6cb66d973da863f375b4f848687bfa587a797b9b4a565a92036"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1930,
+      "sourceTriangles": 3195,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MadamWeb_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mangaverse",
+      "id": "smu-mangaverse",
+      "fbx": "costumes/mangaverse/mangaverse.fbx",
+      "fbxSha256": "f8595bd9d2a38052565595c30b8807113a3e3f13a66897d468bdb1e32df4242f",
+      "textureFiles": [
+        "textures-png/SpidermanManga_D.png"
+      ],
+      "textureSha256": [
+        "2ddfeaacbccaaf1178f1109c2092469baacb6d703ec7ca8139579d2f3cb03917"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1676,
+      "sourceTriangles": 2896,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanManga_D.TGA"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mangaverse_black_cat",
+      "id": "smu-mangaverse-black-cat",
+      "fbx": "costumes/mangaverse_black_cat/mangaverse_black_cat.fbx",
+      "fbxSha256": "88617b72e8763d6ac8ff50d84f17db18ed5b4303d517eba7761d9cc9ee11a084",
+      "textureFiles": [
+        "textures-png/Mangaverse_Black_Cat_D.png"
+      ],
+      "textureSha256": [
+        "5f42ae9e21f21e4e3f56bd03cefe1c0e61b4218a5e71da91f00b459aa1aa2f7f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2780,
+      "sourceTriangles": 4464,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mangaverse_Black_Cat_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mangaversegirl",
+      "id": "smu-mangaversegirl",
+      "fbx": "costumes/mangaversegirl/mangaversegirl.fbx",
+      "fbxSha256": "31279f6983d406a3860d892e001d7c4b85a59a8afc205d45a7df067a5ca53927",
+      "textureFiles": [
+        "textures-png/MangaverseGirl_D.png"
+      ],
+      "textureSha256": [
+        "a37da7d5d22193c40926004a0ee5024fe2ba2aa3fefdccdecc8d4ef5cd5cc0a3"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3704,
+      "sourceTriangles": 5686,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MangaverseGirl_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mania",
+      "id": "smu-mania",
+      "fbx": "costumes/mania/mania.fbx",
+      "fbxSha256": "b40154517885415f9802acc1e9d389a8da6fc82d77155c569706ee20e08e5c3a",
+      "textureFiles": [
+        "textures-png/Mania_D.png"
+      ],
+      "textureSha256": [
+        "749cb6cb02ad6d1f44fe70ed9896ccbe23716a205a7a1d91eaf56055d99e366b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2723,
+      "sourceTriangles": 3938,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mania_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "maniac",
+      "id": "smu-maniac",
+      "fbx": "costumes/maniac/maniac.fbx",
+      "fbxSha256": "5d4477c470ccaf5a14946aad85d9199a7b59c51c0fe0f68331b0e362d44a6242",
+      "textureFiles": [
+        "textures-png/Maniac_D.png"
+      ],
+      "textureSha256": [
+        "70e178dc0812384a87389d721566c37b7cbefccca180db9d21ac13645ae650b1"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2654,
+      "sourceTriangles": 3902,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Maniac_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "maniacal_mayhem",
+      "id": "smu-maniacal-mayhem",
+      "fbx": "costumes/maniacal_mayhem/maniacal_mayhem.fbx",
+      "fbxSha256": "7a252b13ee992e59ce33f0877f236e5cf05cb3dd3e2b2ea4f13b4a9aa0b3cf5b",
+      "textureFiles": [
+        "textures-png/Maniacal_Mayhem_D.png"
+      ],
+      "textureSha256": [
+        "4fdeb76d7a11d5e74b5887ab7d6df03c77d44a50021fe8110fdef2b66f174e60"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2273,
+      "sourceTriangles": 3612,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Maniacal_Mayhem_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "maskedmarvel",
+      "id": "smu-maskedmarvel",
+      "fbx": "costumes/maskedmarvel/maskedmarvel.fbx",
+      "fbxSha256": "946cab503334c8482b49ce0ad40de172a906ce24645ce041252746cb08034901",
+      "textureFiles": [
+        "textures-png/SpidermanMmarvel_D.png"
+      ],
+      "textureSha256": [
+        "8ab89eca24f04270368d49cc69a9c5e3fc0a83e7b900884981ec6f420729ad48"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1570,
+      "sourceTriangles": 2634,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMmarvel_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mattie_franklin_5",
+      "id": "smu-mattie-franklin-5",
+      "fbx": "costumes/mattie_franklin_5/mattie_franklin_5.fbx",
+      "fbxSha256": "3845ca83c61374b7348a0cbd58820555a6ee344f79382269ca12e82947fe2ada",
+      "textureFiles": [
+        "textures-png/Mattie_Franklin_5_D.png"
+      ],
+      "textureSha256": [
+        "cd41000d859725c4839bd207a008d82abfac334624ac591783da975132458a4c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3121,
+      "sourceTriangles": 4602,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mattie_Franklin_5_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mattie_franklin_body_suit",
+      "id": "smu-mattie-franklin-body-suit",
+      "fbx": "costumes/mattie_franklin_body_suit/mattie_franklin_body_suit.fbx",
+      "fbxSha256": "3cf6bf6550c86f2fcaa67985443595657698848201760f4a284c45139de3a96b",
+      "textureFiles": [
+        "textures-png/Mattie_Franklin_Body_Suit_D.png"
+      ],
+      "textureSha256": [
+        "1b19dad6c37b663365e8e52bf8e2cea9fd735478e1555b14ed034db1bafaf306"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2269,
+      "sourceTriangles": 3956,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mattie_Franklin_Body_Suit_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mattiefranklin",
+      "id": "smu-mattiefranklin",
+      "fbx": "costumes/mattiefranklin/mattiefranklin.fbx",
+      "fbxSha256": "47c6553fb8696e9c32ec84e3b60aac5819da647bd7b2ba26b7cea1e59854212b",
+      "textureFiles": [
+        "textures-png/MattieFranklinWings_D.png",
+        "textures-png/MattieFranklin_D.png"
+      ],
+      "textureSha256": [
+        "390cceec42d211dc1410be80db386f19ce3a221ace800be4517ffc4fe4be0ff7",
+        "709d012f5a64d39c7996eecf6fbff2bc8a2b3f68e9272f8e85340df0a0dea760"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2727,
+      "sourceTriangles": 4368,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MattieFranklinWings_D.tga",
+        "MattieFranklin_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mayday",
+      "id": "smu-mayday",
+      "fbx": "costumes/mayday/mayday.fbx",
+      "fbxSha256": "864e00a22c329df1484d89320ca36daaad11ee710aba9b39120cc305e88ee5a1",
+      "textureFiles": [
+        "textures-png/Mayday_D.png"
+      ],
+      "textureSha256": [
+        "ab9eca21c07bc04410a0212b2e787c53407a5f2af83c0683c00afe5b424929c6"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2105,
+      "sourceTriangles": 3454,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mayday_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mayhem",
+      "id": "smu-mayhem",
+      "fbx": "costumes/mayhem/mayhem.fbx",
+      "fbxSha256": "7d39b34848392f3bf00fa28e92d01c8565b3a99504690454dfe9547f909418de",
+      "textureFiles": [
+        "textures-png/Mayhem_D.png"
+      ],
+      "textureSha256": [
+        "54fd41a562f97b348b8c62f09950a5e00d175b7223a829b504b826146c5c1f53"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2005,
+      "sourceTriangles": 3454,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mayhem_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mayparker_unmasked",
+      "id": "smu-mayparker-unmasked",
+      "fbx": "costumes/mayparker_unmasked/mayparker_unmasked.fbx",
+      "fbxSha256": "02e7c62047ddcab4ff9db03b164a181d2a8026df9e4ad24e9ee392219ba4e120",
+      "textureFiles": [
+        "textures-png/MayParker_unmasked_D.png"
+      ],
+      "textureSha256": [
+        "f2d9be757d156c455ea1cdc3fb3b4cd86c634c82428a1209b71a6f8bd0fd7cf9"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2375,
+      "sourceTriangles": 4035,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MayParker_unmasked_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mech",
+      "id": "smu-mech",
+      "fbx": "costumes/mech/mech.fbx",
+      "fbxSha256": "bbb6424a8e9ece55086d9339aa1919b85c037b4214a785574a942c49b073b765",
+      "textureFiles": [
+        "textures-png/SpidermanMech_D.png"
+      ],
+      "textureSha256": [
+        "ffc50d7965768afed363610d0c4bb575da8f675641b6c68537f71c4e8339d896"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2197,
+      "sourceTriangles": 3654,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMech_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mercenary",
+      "id": "smu-mercenary",
+      "fbx": "costumes/mercenary/mercenary.fbx",
+      "fbxSha256": "1f9905101ea8b67eb7358d45ff63a10d14b537f9e99cc6ecf7e4576e46708a05",
+      "textureFiles": [
+        "textures-png/SpidermanMerc_D.png"
+      ],
+      "textureSha256": [
+        "0bfaccdbc516ea9ec5354c2d4350132f41e845f76149f037ee823badd53fdfd3"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1689,
+      "sourceTriangles": 2886,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMerc_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "michaelbingham",
+      "id": "smu-michaelbingham",
+      "fbx": "costumes/michaelbingham/michaelbingham.fbx",
+      "fbxSha256": "743b7a792a3a878dcd1f60b407b3131d63fe18f996e7720d91f76bd26b410db9",
+      "textureFiles": [
+        "textures-png/MichaelBingham_D.png"
+      ],
+      "textureSha256": [
+        "39105eff733790041ff091f139e967f416c375128ca510381de12dc65bba1971"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3134,
+      "sourceTriangles": 4406,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MichaelBingham_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "michaelmorbius",
+      "id": "smu-michaelmorbius",
+      "fbx": "costumes/michaelmorbius/michaelmorbius.fbx",
+      "fbxSha256": "e788412d9306c67800dda3a309ed7dd049c26a98cff73471d0d0682587769de9",
+      "textureFiles": [
+        "textures-png/MichaelMorbiusMantle_D.png",
+        "textures-png/MichaelMorbius_D.png"
+      ],
+      "textureSha256": [
+        "104bec96307ed329dd55baccd233c264212dde40676e7ff203b616519f16dfa7",
+        "1302a8a92d956d90fa2ae2d73f323b41632d875daf5a84c685d99bfeb7f01b91"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2307,
+      "sourceTriangles": 3690,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MichaelMorbiusMantle_D.tga",
+        "MichaelMorbius_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "milesmorales",
+      "id": "smu-milesmorales",
+      "fbx": "costumes/milesmorales/milesmorales.fbx",
+      "fbxSha256": "2bcf59884aec6bd25d34efa1be2f350ec05ee2198a7005186dcca54ffadbeef8",
+      "textureFiles": [
+        "textures-png/SpidermanMorales_D.png"
+      ],
+      "textureSha256": [
+        "84f6d8299961501492ea2c35f126c69f6361726b1d2ebc446ca2439e1fd7da55"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMorales_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "milesmorales_uk_mesh",
+      "id": "smu-milesmorales-uk-mesh",
+      "fbx": "costumes/milesmorales_uk_mesh/milesmorales_uk_mesh.fbx",
+      "fbxSha256": "89aa53005a589627f8b821045d5911e2596875c0de623a7670db9d5350e866aa",
+      "textureFiles": [
+        "textures-png/SpidermanMorales_D.png"
+      ],
+      "textureSha256": [
+        "84f6d8299961501492ea2c35f126c69f6361726b1d2ebc446ca2439e1fd7da55"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1682,
+      "sourceTriangles": 2936,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMorales_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "milesmoralesdemasked",
+      "id": "smu-milesmoralesdemasked",
+      "fbx": "costumes/milesmoralesdemasked/milesmoralesdemasked.fbx",
+      "fbxSha256": "fd3eccb28f5ee80c6da9dbdb46e50a0291db0467924d0f63610c9f9ea490cd59",
+      "textureFiles": [
+        "textures-png/MilesMoralesDemasked_D.png"
+      ],
+      "textureSha256": [
+        "f85166089d3d3b65abfde061f16b54fddae7293068bdd5b9556d4021b924c9fe"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1907,
+      "sourceTriangles": 3244,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MilesMoralesDemasked_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mj_regent_power_suit",
+      "id": "smu-mj-regent-power-suit",
+      "fbx": "costumes/mj_regent_power_suit/mj_regent_power_suit.fbx",
+      "fbxSha256": "3cfee6213ad856b54203826e7ccf241a6ec99e283e6ba838c556eb9ac3f5f9c4",
+      "textureFiles": [
+        "textures-png/MJ_Regent_Power_Suit_D.png"
+      ],
+      "textureSha256": [
+        "48c05333c971f337f2a9b1d707138bb526c1a123099b3f062632967d9400786d"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2952,
+      "sourceTriangles": 4408,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MJ_Regent_Power_Suit_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mj_sexy",
+      "id": "smu-mj-sexy",
+      "fbx": "costumes/mj_sexy/mj_sexy.fbx",
+      "fbxSha256": "a9e39ec92e3cd3d9e00fd3d692e22df8d351b1f8838c37b20dd0cfe3db72322e",
+      "textureFiles": [
+        "textures-png/MJ_Sexy_D.png"
+      ],
+      "textureSha256": [
+        "6403b70262f7bf88028c2aab9a18bb345d83766583e6e665b5ece82a71399e69"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1991,
+      "sourceTriangles": 3420,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MJ_Sexy_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mj_venom",
+      "id": "smu-mj-venom",
+      "fbx": "costumes/mj_venom/mj_venom.fbx",
+      "fbxSha256": "646dacd6f8589646aab2afff813a91a0c580a464f6bee85e221ee1793b1f6bb6",
+      "textureFiles": [
+        "textures-png/MJ_Venom_D.png"
+      ],
+      "textureSha256": [
+        "1d38ba65fb7211d3efa6411400b3a184798d8d61ea119fbc3c9937227ddf00d9"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2252,
+      "sourceTriangles": 3840,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MJ_Venom_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mjiron",
+      "id": "smu-mjiron",
+      "fbx": "costumes/mjiron/mjiron.fbx",
+      "fbxSha256": "322427c31612ab7082f85d3a09b76758f2c717a35e0e45d117cd5ddd7c75d666",
+      "textureFiles": [
+        "textures-png/MJIron_D.png"
+      ],
+      "textureSha256": [
+        "990c0b1b1b1d528c61416e75220c716ac69b3de29fbf1ed80093e8197800e8ec"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2198,
+      "sourceTriangles": 3721,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MJIron_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "modernscarlet",
+      "id": "smu-modernscarlet",
+      "fbx": "costumes/modernscarlet/modernscarlet.fbx",
+      "fbxSha256": "6bb957889f7abb1afb5e9ade86ac333586beff8859c345a41aea37eff09d4a15",
+      "textureFiles": [
+        "textures-png/SpidermanScarletModern_D.png"
+      ],
+      "textureSha256": [
+        "e35e5a3f535eac8eb1b1518942afb59f2873941310f12c26c60f9f39fb09c614"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanScarletModern_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "modernsilk",
+      "id": "smu-modernsilk",
+      "fbx": "costumes/modernsilk/modernsilk.fbx",
+      "fbxSha256": "058ad701b471884c79dd51c62df0997c3324a7aab2ba68ad16cda1e13ae7e41d",
+      "textureFiles": [
+        "textures-png/ModernSilk_D.png"
+      ],
+      "textureSha256": [
+        "73dbb99518473ba04475c1c1635483e16a75030cc2e160ac7edfc2a30982deb0"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2237,
+      "sourceTriangles": 3788,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "ModernSilk_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "mutantjonah",
+      "id": "smu-mutantjonah",
+      "fbx": "costumes/mutantjonah/mutantjonah.fbx",
+      "fbxSha256": "4b4111080b611acd5a9ab00cf4c70bde00483a6e9bf1cea80e7385afa0f3ce1a",
+      "textureFiles": [
+        "textures-png/Jonah_Mutant_D.png"
+      ],
+      "textureSha256": [
+        "bf2baf5ceeabd204ad0dc1088b421ba41438d7625ea50c869906af24cef18438"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2076,
+      "sourceTriangles": 3412,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Jonah_Mutant_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "native_american",
+      "id": "smu-native-american",
+      "fbx": "costumes/native_american/native_american.fbx",
+      "fbxSha256": "5712111367f14783bafdf7abcd05c349b6a14e774db82b0db74ebeaddff59123",
+      "textureFiles": [
+        "textures-png/Native_american_D.png"
+      ],
+      "textureSha256": [
+        "72b03f84e383a6d63584d64dece2ed8db92cc425bc3dbd5b357f0da00f6a4c30"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3117,
+      "sourceTriangles": 4358,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Native_american_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "new_year_spiderman",
+      "id": "smu-new-year-spiderman",
+      "fbx": "costumes/new_year_spiderman/new_year_spiderman.fbx",
+      "fbxSha256": "7fa727fdd9946110842ed1acf7709c4dd2bf30aa6f528cb27ef2b65d56382be1",
+      "textureFiles": [
+        "textures-png/New_Year_Spiderman_D.png"
+      ],
+      "textureSha256": [
+        "4b9e941268c3a32931b53c526cc8cede05bf5cd90f56c2ab6053a579eaa1207f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2406,
+      "sourceTriangles": 3966,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "New_Year_Spiderman_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "newarmor",
+      "id": "smu-newarmor",
+      "fbx": "costumes/newarmor/newarmor.fbx",
+      "fbxSha256": "77761d56f2ea3f89e8634040f791e74c7f05b922c50dd1f344720942800d7148",
+      "textureFiles": [
+        "textures-png/SpidermanNewArmor_D.png"
+      ],
+      "textureSha256": [
+        "c2dcecc6fba26f48f3be57dac95652f0a5585a38c28bac3dd63fa70e1084be34"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2151,
+      "sourceTriangles": 3740,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanNewArmor_D.TGA"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "nickfury",
+      "id": "smu-nickfury",
+      "fbx": "costumes/nickfury/nickfury.fbx",
+      "fbxSha256": "9ce45091980b020d6f19aa265e3393bf5f2a17aac5b82369f1a28d3e434670e3",
+      "textureFiles": [
+        "textures-png/NickFury_D.png"
+      ],
+      "textureSha256": [
+        "0d4a95bb13bf59b4fe6ad1bfac82f90650040d9f59324e81913f7945e8e586c6"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2251,
+      "sourceTriangles": 3734,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "NickFury_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "noir",
+      "id": "smu-noir",
+      "fbx": "costumes/noir/noir.fbx",
+      "fbxSha256": "2adecc144cd1b68389abfa1384768afa186d04750b1d0c2eb528fd5044ea611b",
+      "textureFiles": [
+        "textures-png/SpidermanNoir_D.png"
+      ],
+      "textureSha256": [
+        "222d36d41cdf29fa264738ce2342916e01481a266564c936fe519ec00f0e275f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1792,
+      "sourceTriangles": 3565,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanNoir_D.tga"
+      ],
+      "status": "native-asset/core-verified-B01"
+    },
+    {
+      "key": "noirnew",
+      "id": "smu-noirnew",
+      "fbx": "costumes/noirnew/noirnew.fbx",
+      "fbxSha256": "f29ad6ada8084279ba2611318d677ec426834b926cfba06fe5ec3aaae656d470",
+      "textureFiles": [
+        "textures-png/NoirNew_D.png"
+      ],
+      "textureSha256": [
+        "f1894c466ee3cf45b449a5376e80a51f0e73405fa8f2564d4f2778f328a5dc2e"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2018,
+      "sourceTriangles": 3226,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "NoirNew_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "nurotox",
+      "id": "smu-nurotox",
+      "fbx": "costumes/nurotox/nurotox.fbx",
+      "fbxSha256": "b5204dcdb3a960c6eb4bda549c9ca1c19d169be578eee92eb6df9ce3ba34aa47",
+      "textureFiles": [
+        "textures-png/Nurotox_D.png"
+      ],
+      "textureSha256": [
+        "7c3ccdc7ff6e9a2f1fc490ed86aa18216751f5126dd7ba795cd9ed6e387252b5"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2396,
+      "sourceTriangles": 3908,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Nurotox_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "octavius",
+      "id": "smu-octavius",
+      "fbx": "costumes/octavius/octavius.fbx",
+      "fbxSha256": "d1653c949774e6e6b9cc0e535d3b00c9766c54321afb508d5a94b97cb3a15189",
+      "textureFiles": [
+        "textures-png/Octavius_D.png"
+      ],
+      "textureSha256": [
+        "030a47b454d3a094d7179dcd390de29bbd50fc85adc7630d5b829af9aee3ac64"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3848,
+      "sourceTriangles": 5442,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Octavius_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "other",
+      "id": "smu-other",
+      "fbx": "costumes/other/other.fbx",
+      "fbxSha256": "178792360da26b30b4bbf35373bc0c2e2035ba19645863d62533b7a2b705b3f8",
+      "textureFiles": [
+        "textures-png/other_d.png"
+      ],
+      "textureSha256": [
+        "433a3657f4c7eb2d71110d3fd132828ea475d0d4583380997c62df5ec86c7758"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 4511,
+      "sourceTriangles": 5022,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "other_d.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "payback",
+      "id": "smu-payback",
+      "fbx": "costumes/payback/payback.fbx",
+      "fbxSha256": "c1cefd208e89c8b724d284832c4dbc93716e4294da0e43610c6973ddf8d7a536",
+      "textureFiles": [
+        "textures-png/Payback_D.png"
+      ],
+      "textureSha256": [
+        "b29c5fb3e9a5d9a4a5a83be580396711eaa55ce2b73f7d3371793e4dceff7ecc"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2613,
+      "sourceTriangles": 4286,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Payback_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "peter_porker_unmasked",
+      "id": "smu-peter-porker-unmasked",
+      "fbx": "costumes/peter_porker_unmasked/peter_porker_unmasked.fbx",
+      "fbxSha256": "fe729ad20c7fbd66416d00d7aac6023baa9ebdea9d9c9f4d974f620cd24b55c7",
+      "textureFiles": [
+        "textures-png/Peter_Porker_unmasked_D.png"
+      ],
+      "textureSha256": [
+        "c929cf1f6efec620e9a37a3b92764e73fdf2b3a07b08e3c4270a5625f44cb7db"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1577,
+      "sourceTriangles": 2360,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "Peter_Porker_unmasked_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "peter_urich",
+      "id": "smu-peter-urich",
+      "fbx": "costumes/peter_urich/peter_urich.fbx",
+      "fbxSha256": "1db71fb639c60231cb9a5d0f26975fae34d5310a45d61b44e320c6d85a0eb8b7",
+      "textureFiles": [
+        "textures-png/Peter_Urich_D.png"
+      ],
+      "textureSha256": [
+        "5407e594c7a5957b9fb98e92d0b7b8e26e37b437f7f1be280fd98cc4778049c0"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2540,
+      "sourceTriangles": 3956,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Peter_Urich_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "peterparker",
+      "id": "smu-peterparker",
+      "fbx": "costumes/peterparker/peterparker.fbx",
+      "fbxSha256": "eb6baeb33a7f0dcb4741fe8f5a4deb0de98348d904605682da4ea3d9dacbb40c",
+      "textureFiles": [
+        "textures-png/PeterParker_D.png"
+      ],
+      "textureSha256": [
+        "0c5b33c37d666a82726e6be8107521bf778c35405187f7c932fc5b172334868c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1519,
+      "sourceTriangles": 2598,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "PeterParker_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "peterparkerearth11080",
+      "id": "smu-peterparkerearth11080",
+      "fbx": "costumes/peterparkerearth11080/peterparkerearth11080.fbx",
+      "fbxSha256": "448a2504b9e1b1d7825213f32c6db204ccecf696c48827c4e069fb3f9387d460",
+      "textureFiles": [
+        "textures-png/PeterParkerEarth11080_D.png"
+      ],
+      "textureSha256": [
+        "b753788daa18f5b05a66268cfc331e1b0a58a8f0e880475ae4dc42fb39ead661"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2069,
+      "sourceTriangles": 3466,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "PeterParkerEarth11080_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "phage",
+      "id": "smu-phage",
+      "fbx": "costumes/phage/phage.fbx",
+      "fbxSha256": "19fa7e32482d24a43fec03a4195c9fb6e7450644425de6f14d15802919e8ee72",
+      "textureFiles": [
+        "textures-png/Phage_D.png"
+      ],
+      "textureSha256": [
+        "b5ad71fe67e0ef59b29ddbe8a573d283e463bb91fa9a31f2580da15e4b636f4d"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2691,
+      "sourceTriangles": 3912,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Phage_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "poison",
+      "id": "smu-poison",
+      "fbx": "costumes/poison/poison.fbx",
+      "fbxSha256": "b8e31a54c01898f33b9316cab904df200cd743dbeb5d5638d5111c97264ddae9",
+      "textureFiles": [
+        "textures-png/Poison_D.png"
+      ],
+      "textureSha256": [
+        "d716d79141f6a489218b6484f21ce35af5650f46ddf708e3dffff06c492b6643"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2869,
+      "sourceTriangles": 4364,
+      "sourceBoneCount": 71,
+      "authoredDiffuseNames": [
+        "Poison_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "poison_doctor_octopus",
+      "id": "smu-poison-doctor-octopus",
+      "fbx": "costumes/poison_doctor_octopus/poison_doctor_octopus.fbx",
+      "fbxSha256": "91f3bda4fe1393714f8336a7cab0edd247ab1e4d51d38729ec2b8c180869afac",
+      "textureFiles": [
+        "textures-png/Poison_Doctor_Octopus_D.png"
+      ],
+      "textureSha256": [
+        "185441d7ec8414d8320b2af9d61a0f753c9831a3107b725167b7d79497b82050"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3108,
+      "sourceTriangles": 4764,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Poison_Doctor_Octopus_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "poison_hunter",
+      "id": "smu-poison-hunter",
+      "fbx": "costumes/poison_hunter/poison_hunter.fbx",
+      "fbxSha256": "f9381b62ed9280a0e8913ea8bb784e4ce920666942eab051202d11ddbab286d0",
+      "textureFiles": [
+        "textures-png/Glow.png",
+        "textures-png/Poison_Hunter_D.png"
+      ],
+      "textureSha256": [
+        "f06b8cb02395b66b761401f717d2302b3744bb769d791a75f4fc5bfb765e00af",
+        "4ec9b9b62b0f34bb0d2e88cc9fc3c04cdbf2bafe0670eaa01a9989091455396c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3890,
+      "sourceTriangles": 5852,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Glow.tga",
+        "Poison_Hunter_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "poisonrhino",
+      "id": "smu-poisonrhino",
+      "fbx": "costumes/poisonrhino/poisonrhino.fbx",
+      "fbxSha256": "646eeda902d0c9cdf792f4523fe1fdc0b399d72b34829d1bc2232bcd74258ab0",
+      "textureFiles": [
+        "textures-png/PoisonRhino_D.png"
+      ],
+      "textureSha256": [
+        "a90b7c226aafd543f347c35de92b9a88fe8c390dd0980e41637d036d81553ca0"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2321,
+      "sourceTriangles": 3776,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "PoisonRhino_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "poisonspiderman",
+      "id": "smu-poisonspiderman",
+      "fbx": "costumes/poisonspiderman/poisonspiderman.fbx",
+      "fbxSha256": "2f0e15f42cd4eb789e5060e683adb0217bee42b1d0663abb89265645c7f18ac9",
+      "textureFiles": [
+        "textures-png/PoisonSpiderMan_D.png"
+      ],
+      "textureSha256": [
+        "3ec03a1ab2d051e4a2f8c6966638a36e3f0087256842eba02ac2b43da76b2e91"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2134,
+      "sourceTriangles": 3678,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "PoisonSpiderMan_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "pork_grind",
+      "id": "smu-pork-grind",
+      "fbx": "costumes/pork_grind/pork_grind.fbx",
+      "fbxSha256": "2db8ec47678d41a7a85369f57e6b50247b4af9b872b2eb31c904b08b4a8243da",
+      "textureFiles": [
+        "textures-png/Pork_Grind_D.png"
+      ],
+      "textureSha256": [
+        "2e730438143563fa563eeed56479c4bf8fab37cc403e340fe9b48b2de73e8e7b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2055,
+      "sourceTriangles": 3578,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "Pork_Grind_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "prodigy",
+      "id": "smu-prodigy",
+      "fbx": "costumes/prodigy/prodigy.fbx",
+      "fbxSha256": "15dfe44891bfedfaa5c7a24d65468a04d6a4eb5330d151358527cccd2e13df71",
+      "textureFiles": [
+        "textures-png/SpidermanProdigy_D.png"
+      ],
+      "textureSha256": [
+        "cb1de3f76678e367afbb39ea841c4e0cd18deafec8b3f8066e271203503c8733"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1894,
+      "sourceTriangles": 3196,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanProdigy_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "prowler",
+      "id": "smu-prowler",
+      "fbx": "costumes/prowler/prowler.fbx",
+      "fbxSha256": "db8106b0ded9124d0f92622fad728722c9b52208a20ded8a41cf0ee536ede148",
+      "textureFiles": [
+        "textures-png/Prowler_D.png"
+      ],
+      "textureSha256": [
+        "b4f8332160543e0fe5105651832aa6f8d44e3877f0622a18d20e96928cd91722"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2052,
+      "sourceTriangles": 3378,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Prowler_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "punk",
+      "id": "smu-punk",
+      "fbx": "costumes/punk/punk.fbx",
+      "fbxSha256": "0a3eb65084f25e322d82e26effa3517db380e4984a9a9cede0444b412bbb4834",
+      "textureFiles": [
+        "textures-png/SpidermanPunk_D.png"
+      ],
+      "textureSha256": [
+        "928a1f355f1607b6418c12f6e1dd82ece07792a3cde8a43f562944c0f84329c9"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1805,
+      "sourceTriangles": 3020,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanPunk_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "quickchange",
+      "id": "smu-quickchange",
+      "fbx": "costumes/quickchange/quickchange.fbx",
+      "fbxSha256": "89088552e11b933a44899aea26d65b2ab6a474746dc7b8e977f2f899d56a5bca",
+      "textureFiles": [
+        "textures-png/SpidermanQuickChange_D.png"
+      ],
+      "textureSha256": [
+        "b2ed6f9a9d1607feb099596234e60275d810643cc40998ae22d1e1b3a721017b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1470,
+      "sourceTriangles": 2478,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanQuickChange_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "rafael_carago",
+      "id": "smu-rafael-carago",
+      "fbx": "costumes/rafael_carago/rafael_carago.fbx",
+      "fbxSha256": "1762b8ba9a9f797500d6866e2c3f0f4d1a87bcc658eba050f235d756fe67cfc0",
+      "textureFiles": [
+        "textures-png/Rafael_Carago_D.png"
+      ],
+      "textureSha256": [
+        "7ca7032206a1e0d7af08b18fe9c4b7818154f6c5590e59be1712a9c69cfc2f7b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2165,
+      "sourceTriangles": 3638,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Rafael_Carago_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "raze",
+      "id": "smu-raze",
+      "fbx": "costumes/raze/raze.fbx",
+      "fbxSha256": "dacb07a2def134542a2e5c0a048e4f81a872dfa294ab950547822f530042b2f7",
+      "textureFiles": [
+        "textures-png/Raze_D.png"
+      ],
+      "textureSha256": [
+        "11523f91b5d90919b989d5bca633efbaf4f98c485cfbf7c5708010c7405898a8"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2797,
+      "sourceTriangles": 4059,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Raze_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "red_goblin_boss",
+      "id": "smu-red-goblin-boss",
+      "fbx": "costumes/red_goblin_boss/red_goblin_boss.fbx",
+      "fbxSha256": "98d4656c6186a6297505452b449bb684b0b5ef7f1b0f75b2224f94132f676ad2",
+      "textureFiles": [
+        "textures-png/RedGoblin_D.png"
+      ],
+      "textureSha256": [
+        "cae6968339e31defd168d1cdcd2db58ee192855b921d21f10e6b3363a5f6f2ac"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2834,
+      "sourceTriangles": 3956,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "RedGoblin_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "riot",
+      "id": "smu-riot",
+      "fbx": "costumes/riot/riot.fbx",
+      "fbxSha256": "0e1cc9a3328379fdd11da9753a03a05167b90fa45b8a4d2b2d347ae32f817f0d",
+      "textureFiles": [
+        "textures-png/Riot_D.png"
+      ],
+      "textureSha256": [
+        "f4ec7b712ec628bbed5d0c1bbeaffe02baedc90233f20b095567025237a3e082"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1942,
+      "sourceTriangles": 3181,
+      "sourceBoneCount": 70,
+      "authoredDiffuseNames": [
+        "Riot_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "scarlet",
+      "id": "smu-scarlet",
+      "fbx": "costumes/scarlet/scarlet.fbx",
+      "fbxSha256": "b852ba07f1ae8aca6cf728ca39525b181603673857d76aca5d6b0cb19577b3f7",
+      "textureFiles": [
+        "textures-png/SpidermanScarlet_D.png"
+      ],
+      "textureSha256": [
+        "9d18b6d96542943069fb18fcbcabdd5ecdc01ff249dafe833e718cbc4520e3ed"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1863,
+      "sourceTriangles": 3246,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanScarlet_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "scarlet_spider",
+      "id": "smu-scarlet-spider",
+      "fbx": "costumes/scarlet_spider/scarlet_spider.fbx",
+      "fbxSha256": "4352b6433159db6a73ffa7e76e8ea51e73ac89ef724dadf94a1767ea75d364ab",
+      "textureFiles": [
+        "textures-png/Spider_Scarlet_D.png"
+      ],
+      "textureSha256": [
+        "3d01b20faaeedfa4f679a841ec432d9bb2e20ba09c6207d7f089348e12c1c9b8"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2397,
+      "sourceTriangles": 3730,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spider_scarlet_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "scarlet_spiderham",
+      "id": "smu-scarlet-spiderham",
+      "fbx": "costumes/scarlet_spiderham/scarlet_spiderham.fbx",
+      "fbxSha256": "1f70df27e610144cc9d587932d48a9be27b49ad3d8cc513a5192d3203651e119",
+      "textureFiles": [
+        "textures-png/Scarlet_SpiderHam_D.png"
+      ],
+      "textureSha256": [
+        "0451587dab8cbf223868bb2208aedcdcff962d0d93f8b5df54166a0388fc7a28"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1292,
+      "sourceTriangles": 2068,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "Scarlet_SpiderHam_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "scarlet_spiderham_benreilly",
+      "id": "smu-scarlet-spiderham-benreilly",
+      "fbx": "costumes/scarlet_spiderham_benreilly/scarlet_spiderham_benreilly.fbx",
+      "fbxSha256": "7fd0b6b6f738a512cb944c1972d0160f2e854e3c5c3439c9d6b16d5e82c0c0f0",
+      "textureFiles": [
+        "textures-png/Scarlet_SpiderHam_BenReilly_D.png"
+      ],
+      "textureSha256": [
+        "0c225d64d11906c368fa60d0333525f130298aa4eef5257131bc09eb13b55502"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1735,
+      "sourceTriangles": 2796,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "Scarlet_SpiderHam_BenReilly_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "scarletgirl",
+      "id": "smu-scarletgirl",
+      "fbx": "costumes/scarletgirl/scarletgirl.fbx",
+      "fbxSha256": "1581a8bf3764986dd274453e4ac8f36bd2e32f0e49be92ec3ba135cf86c83616",
+      "textureFiles": [
+        "textures-png/ScarletGirl_D.png"
+      ],
+      "textureSha256": [
+        "0a3bc04dbf9fc6c9cef2a305f021024a9d3cf43749905a3e3d442df256c024ec"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2034,
+      "sourceTriangles": 3498,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "ScarletGirl_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "scarletjoe",
+      "id": "smu-scarletjoe",
+      "fbx": "costumes/scarletjoe/scarletjoe.fbx",
+      "fbxSha256": "83e153651e209171ab2ef46d7974406d5ca6229a32ca1deaf61e8f2369996bbc",
+      "textureFiles": [
+        "textures-png/Spiderman_ScarletJoe_D.png"
+      ],
+      "textureSha256": [
+        "e668cf128adab55f96c452e7869eb10798e88d62d8b927426033f9ec953ea32b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1634,
+      "sourceTriangles": 2814,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman_ScarletJoe_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "scorn",
+      "id": "smu-scorn",
+      "fbx": "costumes/scorn/scorn.fbx",
+      "fbxSha256": "7d090ca17955b54533dab72728a279cd550aabb0233cb276df742a165320e77c",
+      "textureFiles": [
+        "textures-png/Scorn_D.png"
+      ],
+      "textureSha256": [
+        "b2b0213d9ca7f598b667bb48c956f5d0220f731ef5580d4f3248e72d01bd9536"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2044,
+      "sourceTriangles": 3532,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Scorn_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "scream",
+      "id": "smu-scream",
+      "fbx": "costumes/scream/scream.fbx",
+      "fbxSha256": "2c358e93b6b4ddd4e8fed44e76a0f504617dae4938ca2e3a75bdf6d44c069591",
+      "textureFiles": [
+        "textures-png/Scream_D.png"
+      ],
+      "textureSha256": [
+        "0f4c2a1e05e78620fbb19ab2bd2bab5dbc8e018f473cec9a7bcbbefa6191be52"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2363,
+      "sourceTriangles": 3692,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Scream_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "secretwar",
+      "id": "smu-secretwar",
+      "fbx": "costumes/secretwar/secretwar.fbx",
+      "fbxSha256": "cef551bd9ed19b22a42ff0539e2319d017c05f5b2289b12a68892cd3f5b16ed9",
+      "textureFiles": [
+        "textures-png/SpidermanSecretWar_D.png"
+      ],
+      "textureSha256": [
+        "1fab78f35d6abf24d4127b9f96d5fd8a0ad7baccae0575d22c23776f02bb392f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanSecretWar_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "shevenom",
+      "id": "smu-shevenom",
+      "fbx": "costumes/shevenom/shevenom.fbx",
+      "fbxSha256": "7645a475d53f6f03b2794e8e8418e38626e0590ee37e544617fde1cad27ca9a1",
+      "textureFiles": [
+        "textures-png/SheVenom_D.png"
+      ],
+      "textureSha256": [
+        "37a8326f7c86282857b1e04b02702c9894e635352d34617db769fac98c873e17"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2659,
+      "sourceTriangles": 4025,
+      "sourceBoneCount": 71,
+      "authoredDiffuseNames": [
+        "SheVenom_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "silk",
+      "id": "smu-silk",
+      "fbx": "costumes/silk/silk.fbx",
+      "fbxSha256": "7d6fb5457a79b094e9f08c3b5e005b6c6e3be9927e67f7c855e8d18f7eb96810",
+      "textureFiles": [
+        "textures-png/SpidergirlSilk_D.png"
+      ],
+      "textureSha256": [
+        "77359958dfef2f182105bd9e758463ad4b6ef1e9c990fd5642629f5abb59d6da"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2204,
+      "sourceTriangles": 3801,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidergirlSilk_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "silk2",
+      "id": "smu-silk2",
+      "fbx": "costumes/silk2/silk2.fbx",
+      "fbxSha256": "28c0a2024f049d577aaa33d8987c269acf420f342abbe8fc271c2613ae673962",
+      "textureFiles": [
+        "textures-png/SpidergirlSilk2_D.png"
+      ],
+      "textureSha256": [
+        "b0b618e8c8266d7b67ff7ea92fabe8207c81dc27e7e64f45161ca88345377bee"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2204,
+      "sourceTriangles": 3801,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidergirlSilk2_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "silversable_play",
+      "id": "smu-silversable-play",
+      "fbx": "costumes/silversable_play/silversable_play.fbx",
+      "fbxSha256": "069405d6e4519ea26f8f60858bd7033daa0e06db39c237dff4bb34888e1642be",
+      "textureFiles": [
+        "textures-png/SilverSable_D.png"
+      ],
+      "textureSha256": [
+        "ff6be747984f759b6415742e648cc200773f81eaca2fd2d4f34c53f8ba9d845b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2261,
+      "sourceTriangles": 3287,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SilverSable_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "sixarmed_spiderman",
+      "id": "smu-sixarmed-spiderman",
+      "fbx": "costumes/sixarmed_spiderman/sixarmed_spiderman.fbx",
+      "fbxSha256": "efc8e73098441c62f727fd16ac9f6338d7195cf403bcad901f934df70c2f2a44",
+      "textureFiles": [
+        "textures-png/SixArmed_SpiderMan_D.png"
+      ],
+      "textureSha256": [
+        "b1f72701251fa043244fe84044e3d87f88a60fbca9ddcdf3216f5f11fb90c41f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3037,
+      "sourceTriangles": 4900,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SixArmed_SpiderMan_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "small_ed_brook",
+      "id": "smu-small-ed-brook",
+      "fbx": "costumes/small_ed_brook/small_ed_brook.fbx",
+      "fbxSha256": "63bf976f9c1cd68320109293d294ecf9a760a2c3af4078e8a56c6c3b206d3bf0",
+      "textureFiles": [
+        "textures-png/Small_ed_brook_D.png"
+      ],
+      "textureSha256": [
+        "c4fe6d5116b0fcbdb1fe79d72bd5e43456b5bd3a7fb55e29a4da56eaf33c31fe"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2193,
+      "sourceTriangles": 3183,
+      "sourceBoneCount": 64,
+      "authoredDiffuseNames": [
+        "Small_ed_brook_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spacesuit",
+      "id": "smu-spacesuit",
+      "fbx": "costumes/spacesuit/spacesuit.fbx",
+      "fbxSha256": "9599e2ff7f274e1e30b7b74b902ab13042677638e30b6022cc31a8facf6e9dcc",
+      "textureFiles": [
+        "textures-png/SpaceSuitGlass_D.png",
+        "textures-png/SpaceSuit_D.png"
+      ],
+      "textureSha256": [
+        "4103ffd532593505b2ad12941d7a888ea0cc9a44239a285559a523e2ac47dce8",
+        "e966e210117a5f66da0e96376c17a34cbc983e8f0e2fd043c0fce79a2460cfd7"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2099,
+      "sourceTriangles": 3242,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpaceSuitGlass_D.tga",
+        "SpaceSuit_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spdr",
+      "id": "smu-spdr",
+      "fbx": "costumes/spdr/spdr.fbx",
+      "fbxSha256": "3d6e2b63cd943b70898abcb51c151af0e411c379cc8d58b4be6c77d835efd3c3",
+      "textureFiles": [
+        "textures-png/SPdr_D.png"
+      ],
+      "textureSha256": [
+        "9d5d50bb895e7ebf6d7ce851c6621bdd4bc4403dca3f02602a402e3729d21f13"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3497,
+      "sourceTriangles": 5236,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SPdr_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spider_carnage",
+      "id": "smu-spider-carnage",
+      "fbx": "costumes/spider_carnage/spider_carnage.fbx",
+      "fbxSha256": "1e093467402bf4615022cad878c9ab97a93b02be20a1af49c24197f0750344bf",
+      "textureFiles": [
+        "textures-png/Spider_Carnage_D.png"
+      ],
+      "textureSha256": [
+        "61a1ef57c3c44126b8cd65d9e22c4551db73c71b2c00fa59258da9e65720f666"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2136,
+      "sourceTriangles": 3021,
+      "sourceBoneCount": 71,
+      "authoredDiffuseNames": [
+        "Spider_Carnage_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spider_cowboy",
+      "id": "smu-spider-cowboy",
+      "fbx": "costumes/spider_cowboy/spider_cowboy.fbx",
+      "fbxSha256": "f6924e43dcea7996f10c58f269fb25ad4df3aabf736d5d250928693385d2f223",
+      "textureFiles": [
+        "textures-png/SpiderCowboy_D.png"
+      ],
+      "textureSha256": [
+        "7ebd381c8c53fe4fe0b9695fda0c826f87ed41a4daad09c20ff6113a03517d67"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2340,
+      "sourceTriangles": 3564,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderCowboy_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spider_demon",
+      "id": "smu-spider-demon",
+      "fbx": "costumes/spider_demon/spider_demon.fbx",
+      "fbxSha256": "1fc1f162bc5da34f90edf305e7a0c0e2e9d30aa7d9b491b0799c640a38f39fc2",
+      "textureFiles": [
+        "textures-png/SpiderDemon_D.png"
+      ],
+      "textureSha256": [
+        "ece20415045aa1cf560eac649158f24f656a7070c5a30e5ce8822f086deeec74"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2088,
+      "sourceTriangles": 3442,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderDemon_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spider_herc",
+      "id": "smu-spider-herc",
+      "fbx": "costumes/spider_herc/spider_herc.fbx",
+      "fbxSha256": "129a6b97267d197825c38dea36c63d2e73ecabc7f42b6a5bb794627e6364dc8c",
+      "textureFiles": [
+        "textures-png/Spider_Herc_D.png"
+      ],
+      "textureSha256": [
+        "b4990dd848c8ea4c4afdfe4b8e43c1672add3d502d210db0889b3966b5a89334"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2578,
+      "sourceTriangles": 3624,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spider_Herc_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spider_ninja",
+      "id": "smu-spider-ninja",
+      "fbx": "costumes/spider_ninja/spider_ninja.fbx",
+      "fbxSha256": "20ca47b9bab94884347f414022b78145367c74334dc98cd7587b56be3f0479ab",
+      "textureFiles": [
+        "textures-png/Spider_ninja_D.png"
+      ],
+      "textureSha256": [
+        "461c39b3d543edc095d5d8bcc344fa79e2857eb54869ca21c98496265070f2c2"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1777,
+      "sourceTriangles": 3074,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spider_ninja_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spider_spiner",
+      "id": "smu-spider-spiner",
+      "fbx": "costumes/spider_spiner/spider_spiner.fbx",
+      "fbxSha256": "2f7b5a812388493ad25fbbae4fc0fa2c7bfeb54c33d108d697cb9d18591ad6d3",
+      "textureFiles": [
+        "textures-png/Spider_spiner_D.png"
+      ],
+      "textureSha256": [
+        "429218b2cf0423833ea90a87f6a5a2ba0ed0af50add3be55895036cb5c04ce15"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1732,
+      "sourceTriangles": 2768,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spider_spiner_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spiderarmor",
+      "id": "smu-spiderarmor",
+      "fbx": "costumes/spiderarmor/spiderarmor.fbx",
+      "fbxSha256": "1be26fb80e71fc0a5f99ecb73fec9239708588c317aa77f0dfadac6ece3ccfbd",
+      "textureFiles": [
+        "textures-png/SpidermanArmored_D.png"
+      ],
+      "textureSha256": [
+        "f987710109cb13847247a9a76d44322a6b96e9a1827accacdc32f56f6b2a69ea"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1818,
+      "sourceTriangles": 3134,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanArmored_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spidergwen_earth1036",
+      "id": "smu-spidergwen-earth1036",
+      "fbx": "costumes/spidergwen_earth1036/spidergwen_earth1036.fbx",
+      "fbxSha256": "0328d35292b7abcb1c07ed8da269a76aca83aa0f5ae4f9a0c1208dce06f074d3",
+      "textureFiles": [
+        "textures-png/SpiderGwen_Earth1036_D.png"
+      ],
+      "textureSha256": [
+        "a22bb4ead0f6ce9df0c753b0f9b465eea206dcdc7b31cb82e5793864597fdcc3"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2554,
+      "sourceTriangles": 4230,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderGwen_Earth1036_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spiderham",
+      "id": "smu-spiderham",
+      "fbx": "costumes/spiderham/spiderham.fbx",
+      "fbxSha256": "dd3ed0f1fa0cfc791b59e78d09729caa98b26a6239209fcda32f825d4de4cc9a",
+      "textureFiles": [
+        "textures-png/SpiderHam_D.png"
+      ],
+      "textureSha256": [
+        "7da4f2e2eb7452ef3c3cddb82f2e85f4ba51856cf1d093c128bc417405165e82"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1278,
+      "sourceTriangles": 2044,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "SpiderHam_D.tga"
+      ],
+      "status": "native-asset/core-verified-B01"
+    },
+    {
+      "key": "spiderham_2099",
+      "id": "smu-spiderham-2099",
+      "fbx": "costumes/spiderham_2099/spiderham_2099.fbx",
+      "fbxSha256": "e370a8108b7e0d44a501693b6b9b4131bf9fe878cd08e15956447db0c6c62d74",
+      "textureFiles": [
+        "textures-png/SpiderHam2099_D.png"
+      ],
+      "textureSha256": [
+        "2780d86dcf9fa46116846525be16dbdb43ced6de955781361f1fb9c20dd6fd7e"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1563,
+      "sourceTriangles": 2348,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "SpiderHam2099_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spiderjameson",
+      "id": "smu-spiderjameson",
+      "fbx": "costumes/spiderjameson/spiderjameson.fbx",
+      "fbxSha256": "d2195d88a9d56cdcaa7fb295495aeb7bf65a901ea98b8da61af7665e7a293c35",
+      "textureFiles": [
+        "textures-png/SpiderJameson_D.png"
+      ],
+      "textureSha256": [
+        "c021f7721d2af818ad30fe4a4c1520e874444ed2c4b2f6c1c09ba463738d7799"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1775,
+      "sourceTriangles": 3020,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderJameson_d.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spiderknight",
+      "id": "smu-spiderknight",
+      "fbx": "costumes/spiderknight/spiderknight.fbx",
+      "fbxSha256": "9c5ca607612bf0fb13093a6f81fcfe6265245035fb2a6eca295b5b89babac2e0",
+      "textureFiles": [
+        "textures-png/Knight_D.png"
+      ],
+      "textureSha256": [
+        "23161a445e11433b5052133bc024d7acebd75ec5d3546e9c8dceee74858f8a26"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1881,
+      "sourceTriangles": 2976,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Knight_d.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spidermaam",
+      "id": "smu-spidermaam",
+      "fbx": "costumes/spidermaam/spidermaam.fbx",
+      "fbxSha256": "656944f3567d11eb21aacd88425dcf21d6cc4c6fbfeae6ae9f5ab5c0c8834aee",
+      "textureFiles": [
+        "textures-png/Spidermaam_D.png"
+      ],
+      "textureSha256": [
+        "2ac78f3be97660c729b1453da1b2622eb993511ff90c11701f363031e1a97a23"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2352,
+      "sourceTriangles": 3693,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spidermaam_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spiderman",
+      "id": "smu-spiderman",
+      "fbx": "costumes/spiderman/spiderman.fbx",
+      "fbxSha256": "7c6e2a7e4aac545e60b95e895b0a0da55f707b2c268bc2d0ca15a746af8f5fb6",
+      "textureFiles": [
+        "textures-png/SpidermanUltimate_D.png"
+      ],
+      "textureSha256": [
+        "01ca9935e4b4f387624409d786d1f6c5ad8ac11c07be9ec54e7e39870133a3ed"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanUltimate_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spiderman_2020",
+      "id": "smu-spiderman-2020",
+      "fbx": "costumes/spiderman_2020/spiderman_2020.fbx",
+      "fbxSha256": "08670c3f48be455eca19f8816da7108747ec1a84df815d2cd9b950d45e77d43e",
+      "textureFiles": [
+        "textures-png/Spiderman2020_D.png"
+      ],
+      "textureSha256": [
+        "aa3fa04285d2d29c75455eb5051f5694703f6c57f050eb6dd8575dd5a6f45302"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1639,
+      "sourceTriangles": 2822,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman2020_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spiderman_newdesign",
+      "id": "smu-spiderman-newdesign",
+      "fbx": "costumes/spiderman_newdesign/spiderman_newdesign.fbx",
+      "fbxSha256": "fca83c403a92632c0535289679a209d9118c47a9eccc18616e144db440becd02",
+      "textureFiles": [
+        "textures-png/spiderman_newdesign_D.png"
+      ],
+      "textureSha256": [
+        "0ffc4fbe35ab939ca9c58ca6cba91ee2e1d9133c74933ae7a1d500e5a94b1723"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1689,
+      "sourceTriangles": 2874,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "spiderman_newdesign_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spiderman_surveillancesuit",
+      "id": "smu-spiderman-surveillancesuit",
+      "fbx": "costumes/spiderman_surveillancesuit/spiderman_surveillancesuit.fbx",
+      "fbxSha256": "d294aa6ec3037adb896827a207ba4fbc026633ceb881f13ba18f3ef7174c6bc1",
+      "textureFiles": [
+        "textures-png/SurveillanceSuit_D.png"
+      ],
+      "textureSha256": [
+        "e89961c99a7c5781063cd29d6f26e97446263ac553ee1caafb80cc92af43a691"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3654,
+      "sourceTriangles": 5142,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SurveillanceSuit_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spidermanhomecoming",
+      "id": "smu-spidermanhomecoming",
+      "fbx": "costumes/spidermanhomecoming/spidermanhomecoming.fbx",
+      "fbxSha256": "7093920c706793f37eac9e49bec4811c81b6b7109616e4cc59354015da3bf7e7",
+      "textureFiles": [
+        "textures-png/SpiderManHomecoming_D.png"
+      ],
+      "textureSha256": [
+        "85620ab5e1111e218b059616929e3f0ba596b5562377260f4ef126fa483f2ff1"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1709,
+      "sourceTriangles": 2906,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderManHomecoming_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spidermj",
+      "id": "smu-spidermj",
+      "fbx": "costumes/spidermj/spidermj.fbx",
+      "fbxSha256": "80bd974dd548e45dc321b22cdb4f8e48168ca890cbaeb8d2637ad2191197d7f1",
+      "textureFiles": [
+        "textures-png/SpiderMJ_D.png"
+      ],
+      "textureSha256": [
+        "1a8a520d6cd04eb8f676978f2b3019a7cc2ab3ec9ddc112dbe518d8fb145d857"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2376,
+      "sourceTriangles": 3961,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderMJ_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spidersman",
+      "id": "smu-spidersman",
+      "fbx": "costumes/spidersman/spidersman.fbx",
+      "fbxSha256": "e404a8ee5d3ca5a94fa375b509778d06a8447f1c2d4086a185ad017b6f26820e",
+      "textureFiles": [
+        "textures-png/SpidersMan_D.png"
+      ],
+      "textureSha256": [
+        "b490513ddc9a24547af19c03816891513c70a6a8e0aafea799502e64673640eb"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1669,
+      "sourceTriangles": 2834,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidersMan_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spidervenom",
+      "id": "smu-spidervenom",
+      "fbx": "costumes/spidervenom/spidervenom.fbx",
+      "fbxSha256": "a64a7c9843f41fdb568da984a5e9f7b1cb8479cc7fae6fc374f380262d6042b3",
+      "textureFiles": [
+        "textures-png/SpiderVenom_D.png"
+      ],
+      "textureSha256": [
+        "ca9a1f0aa47496312036671a07e372bfd661b0347d2e2499d7a17965c2f90169"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1790,
+      "sourceTriangles": 2685,
+      "sourceBoneCount": 71,
+      "authoredDiffuseNames": [
+        "SpiderVenom_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "spiderx",
+      "id": "smu-spiderx",
+      "fbx": "costumes/spiderx/spiderx.fbx",
+      "fbxSha256": "794a42744fc33f1407952d297632a86717b17086006a762a4b542e33d9b9a837",
+      "textureFiles": [
+        "textures-png/Spiderman_X_D.png"
+      ],
+      "textureSha256": [
+        "2e96078dc252d47b8490ee11a8d6b6dd991ffaf6db4df026468901a479b0453b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1979,
+      "sourceTriangles": 3300,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman_X_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "steampunk",
+      "id": "smu-steampunk",
+      "fbx": "costumes/steampunk/steampunk.fbx",
+      "fbxSha256": "8473c9237099c5cf9cf6066e6f4000b2905cf46fe83edc63ac8d769a52066fb3",
+      "textureFiles": [
+        "textures-png/SpidergirlSteamPunk_D.png"
+      ],
+      "textureSha256": [
+        "b38babbbb58b496c5d5272075165309b3bee1c76e4cde04e02a9e99730a5d644"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2836,
+      "sourceTriangles": 3900,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidergirlSteamPunk_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "steel",
+      "id": "smu-steel",
+      "fbx": "costumes/steel/steel.fbx",
+      "fbxSha256": "57eecaced9c9dcc2b5202d4f7b3ff2bc79f0fd673e8121fa2fc7e40aa173e10a",
+      "textureFiles": [
+        "textures-png/SpidermanSteel_D.png"
+      ],
+      "textureSha256": [
+        "0411c2df69f5f73a2b11143e786f79924277db2321403f62d4489d24f10c87bd"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2192,
+      "sourceTriangles": 3546,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanSteel_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "superior",
+      "id": "smu-superior",
+      "fbx": "costumes/superior/superior.fbx",
+      "fbxSha256": "0fd15afb3befa07bcb2f58b1b65efb5ec11c5422313f66f32fd43c83bcec3d6b",
+      "textureFiles": [
+        "textures-png/SpidermanSuperior_D.png"
+      ],
+      "textureSha256": [
+        "bd4ccef57cd065073e9b51b8da905a720e799163ff96eb19fb06971a96789886"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1811,
+      "sourceTriangles": 3092,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanSuperior_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "superior_carnage",
+      "id": "smu-superior-carnage",
+      "fbx": "costumes/superior_carnage/superior_carnage.fbx",
+      "fbxSha256": "13e1538860d29189b01cacf1cddcd1cdef9554c499649fd5af0330569e83b3b8",
+      "textureFiles": [
+        "textures-png/SuperiorCarnage_D.png"
+      ],
+      "textureSha256": [
+        "906b151c4b15b318a630ff118f6e98539ec865ca03f7d8ac9cc03be5a8e05126"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2458,
+      "sourceTriangles": 3936,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SuperiorCarnage_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "superiorb",
+      "id": "smu-superiorb",
+      "fbx": "costumes/superiorb/superiorb.fbx",
+      "fbxSha256": "e8941886c4c2eb63fa23d49a92de4c41c7b4ab3587c121a9da977afd72b99655",
+      "textureFiles": [
+        "textures-png/SpidermanSuperiorB_D.png"
+      ],
+      "textureSha256": [
+        "30c3b6e6d9c1ee184102121552c2c75a173521114ba38c2a8a8cf318064a7c4c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanSuperiorB_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "supvenom",
+      "id": "smu-supvenom",
+      "fbx": "costumes/supvenom/supvenom.fbx",
+      "fbxSha256": "89da63a206d5b24816b55ee2550f41992a05496474f2c4982f56b45d0206653f",
+      "textureFiles": [
+        "textures-png/SpidermanSupVenom_D.png"
+      ],
+      "textureSha256": [
+        "b57249a48c72b584bc2f15d26c002be996b125e85e19ea2a51eca0b5cf12ae43"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1837,
+      "sourceTriangles": 3074,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanSupVenom_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "swift",
+      "id": "smu-swift",
+      "fbx": "costumes/swift/swift.fbx",
+      "fbxSha256": "188883aa1c7abdf946d2f250986378cf570230d3f7e39727a26600f455da25b3",
+      "textureFiles": [
+        "textures-png/Swift_D.png"
+      ],
+      "textureSha256": [
+        "51f399f8f445a11441d64f7236a55aa7364f686724c31631598a905d2cf800af"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2426,
+      "sourceTriangles": 3936,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Swift_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "symbiote",
+      "id": "smu-symbiote",
+      "fbx": "costumes/symbiote/symbiote.fbx",
+      "fbxSha256": "18b920250f547e4d277dc7f50f298c75aa986679c6da0f6278146c8c391f5686",
+      "textureFiles": [
+        "textures-png/SpidermanSymbiote_D.png"
+      ],
+      "textureSha256": [
+        "3480e90c6ed83fd53b36515aa58214a1ad90f22642fc4f84c2c768d2b40a340c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanSymbiote_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "symbiote_2018",
+      "id": "smu-symbiote-2018",
+      "fbx": "costumes/symbiote_2018/symbiote_2018.fbx",
+      "fbxSha256": "ad132c904f0a11e5d583bb8ac26032e9f4075fb9d8e5e8f479616f0b993763da",
+      "textureFiles": [
+        "textures-png/Symbiote_2018_D.png",
+        "textures-png/Symbiote_2018_D_wings.png"
+      ],
+      "textureSha256": [
+        "ab8780e7455d3fbcbac824e57fae104370188c2a3425e45cef496c8db4e4fe28",
+        "1c017bee92ee4cb8814deaa9b1ba38acc021c769260c29389999f95c438b75e2"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1753,
+      "sourceTriangles": 2982,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Symbiote_2018_D.tga",
+        "Symbiote_2018_D_wings.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "symbiote_kraven",
+      "id": "smu-symbiote-kraven",
+      "fbx": "costumes/symbiote_kraven/symbiote_kraven.fbx",
+      "fbxSha256": "4ebbe1acce8348ef6943cbb82ae1ef2bfb577eb8fb3e64b85a4421a56e7524af",
+      "textureFiles": [
+        "textures-png/Kraven_D.png"
+      ],
+      "textureSha256": [
+        "ac3b906c621415ae7a9b375917a94635398de92faf81a678c98e594e7cfe04c8"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2060,
+      "sourceTriangles": 3514,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Kraven_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "tarantula",
+      "id": "smu-tarantula",
+      "fbx": "costumes/tarantula/tarantula.fbx",
+      "fbxSha256": "1a266132d952fea5ff031bdd73807ecf4f95528fad3833d140388b3d645fb004",
+      "textureFiles": [
+        "textures-png/Spiderman_Tarantula_D.png"
+      ],
+      "textureSha256": [
+        "bb44ff22033412e0fb0d7a186d9b66d6596a13ab968c45ee53ad74b584320a68"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2163,
+      "sourceTriangles": 3470,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman_Tarantula_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "the_amazing_octo_spidey",
+      "id": "smu-the-amazing-octo-spidey",
+      "fbx": "costumes/the_amazing_octo_spidey/the_amazing_octo_spidey.fbx",
+      "fbxSha256": "5ecd8d9c917884a2dd75961d29e1c2c9960484bf624b557e614b283d84540e91",
+      "textureFiles": [
+        "textures-png/The_Amazing_Octo_Spidey_D.png"
+      ],
+      "textureSha256": [
+        "21dbd0d16e25bd31e4f4f407d47c2ccfc07e001fecf0bbdb6cf8536fcfef2aae"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2524,
+      "sourceTriangles": 3844,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "The_Amazing_Octo_Spidey_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "the_spider_peter_parker",
+      "id": "smu-the-spider-peter-parker",
+      "fbx": "costumes/the_spider_peter_parker/the_spider_peter_parker.fbx",
+      "fbxSha256": "c54f0eec13fbbdaa03a588635143d4c037805dcc5f07f57603846288ea27627c",
+      "textureFiles": [
+        "textures-png/The_Spider_Peter_Parker_D.png"
+      ],
+      "textureSha256": [
+        "65b45e1626fd3f4668016e49185773023d583740a5d66b75576f341aa75b4a9e"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2363,
+      "sourceTriangles": 4018,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "The_Spider_Peter_Parker_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "timesleep",
+      "id": "smu-timesleep",
+      "fbx": "costumes/timesleep/timesleep.fbx",
+      "fbxSha256": "b352ffc35c9b1be579efdbb1d2635d19137cee03da063dcc08d4833c778a1efc",
+      "textureFiles": [
+        "textures-png/Timesleep_D.png"
+      ],
+      "textureSha256": [
+        "738f8ff1acfe931b06c765bba353ee6692a785db839c54eef5018f93d2ff08ef"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2307,
+      "sourceTriangles": 3700,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Timesleep_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "toxin",
+      "id": "smu-toxin",
+      "fbx": "costumes/toxin/toxin.fbx",
+      "fbxSha256": "db498445fd1efd99ff5a46ce4584067f12f078f951a11adf49755a9e5387bd0f",
+      "textureFiles": [
+        "textures-png/Toxin_D.png"
+      ],
+      "textureSha256": [
+        "5c2813c15b7cdf163638858272d6e4a581681a91042f36d589654458ea509ac0"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2393,
+      "sourceTriangles": 3781,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Toxin_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "uk",
+      "id": "smu-uk",
+      "fbx": "costumes/uk/uk.fbx",
+      "fbxSha256": "b43f2f2eaeacd9a8486468edaf9a963ef72d1fa75c2f3786d336f4a5d421090b",
+      "textureFiles": [
+        "textures-png/SpidermanUK_D.png"
+      ],
+      "textureSha256": [
+        "7d66bcc1ef85da03a5f8beb1f1942362d314d6f91629f1c474a93364302f212c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1682,
+      "sourceTriangles": 2936,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanUK_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "ultimate_spiderham",
+      "id": "smu-ultimate-spiderham",
+      "fbx": "costumes/ultimate_spiderham/ultimate_spiderham.fbx",
+      "fbxSha256": "f540af38744d68007abfcb64e9d40aaedff90b5192fa891e99e6a3f9daa6857d",
+      "textureFiles": [
+        "textures-png/Ultimate_SpiderHam_D.png"
+      ],
+      "textureSha256": [
+        "15c882a97c157bcc9de8956f4dcca503b794ad29e9800f8a28a79e0afa74aea1"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1640,
+      "sourceTriangles": 2536,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "Ultimate_SpiderHam_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "ultimatedrew",
+      "id": "smu-ultimatedrew",
+      "fbx": "costumes/ultimatedrew/ultimatedrew.fbx",
+      "fbxSha256": "51bdba09cefabce9f105c38c1598fa9ec7ea01e853142c0d472315e3db9de016",
+      "textureFiles": [
+        "textures-png/SpidergirlUltimateDrew_D.png"
+      ],
+      "textureSha256": [
+        "780dac7e52ab8556caf94e7283184e67a1fc374761d17d11c224008d10093d90"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2148,
+      "sourceTriangles": 3635,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidergirlUltimateDrew_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "uncleb",
+      "id": "smu-uncleb",
+      "fbx": "costumes/uncleb/uncleb.fbx",
+      "fbxSha256": "8a4fe1b4ea0706e177849d95c87c25c2960cfcf37abd6c4a5006a8c747b6f894",
+      "textureFiles": [
+        "textures-png/SpidermanUncleB_D.png"
+      ],
+      "textureSha256": [
+        "dbc8cb18013f1ea30984e2bc69b7607741a97a588ed2631b5b98e41a6a46741e"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1459,
+      "sourceTriangles": 2394,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanUncleB_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "venom",
+      "id": "smu-venom",
+      "fbx": "costumes/venom/venom.fbx",
+      "fbxSha256": "0dab98f6e05d0c00965437b91d1f345e43df22349def22d6c8ff3319093d860e",
+      "textureFiles": [
+        "textures-png/Venom_D.png"
+      ],
+      "textureSha256": [
+        "1ff92e673e36198a45ce1cd13ff5cef78d08a3d3d6d7ccf82c82840c78030549"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2204,
+      "sourceTriangles": 3516,
+      "sourceBoneCount": 70,
+      "authoredDiffuseNames": [
+        "Venom_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "venom_2099",
+      "id": "smu-venom-2099",
+      "fbx": "costumes/venom_2099/venom_2099.fbx",
+      "fbxSha256": "9e01d4d4e38e5806d1c503166f5a6b2e0127e7bc4e3eea06f81b5372431e9507",
+      "textureFiles": [
+        "textures-png/Venom_2099_D.png"
+      ],
+      "textureSha256": [
+        "79888fa36a65ff3ce004be909986bcec9195c3bc86c04c0005d532e7e75c67c1"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2913,
+      "sourceTriangles": 4454,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Venom_2099_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "venom_verse_carnage",
+      "id": "smu-venom-verse-carnage",
+      "fbx": "costumes/venom_verse_carnage/venom_verse_carnage.fbx",
+      "fbxSha256": "ac7bb565a2e4a894d8acdf7a48272d759b1a08a6002c1c47261cb02e2ca7c677",
+      "textureFiles": [
+        "textures-png/Venom_verse_carnage_D.png"
+      ],
+      "textureSha256": [
+        "180c0d12b06fa6877a343d2ad2ff89c56c4f3b268953ca8afb674d38bc601d19"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3177,
+      "sourceTriangles": 4755,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Venom_verse_carnage_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "venomx",
+      "id": "smu-venomx",
+      "fbx": "costumes/venomx/venomx.fbx",
+      "fbxSha256": "36c27f29fc3cb419de8a0bb7d8d4b60e0b561d3ac6df768499449813293fb391",
+      "textureFiles": [
+        "textures-png/VenomX_D.png"
+      ],
+      "textureSha256": [
+        "664638195f318f1c9c7d7adb2506e4f1fdd085e6ad56b24115137577bf066ea7"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2005,
+      "sourceTriangles": 3454,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "VenomX_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "venomzombie",
+      "id": "smu-venomzombie",
+      "fbx": "costumes/venomzombie/venomzombie.fbx",
+      "fbxSha256": "d6bf07f689ea8f737ed944371af3541ede297a3a3d6bd758a21f9b6730ce9052",
+      "textureFiles": [
+        "textures-png/VenomZombie_D.png"
+      ],
+      "textureSha256": [
+        "8f240e9630f0b23aa4d2ee9767e9d704a7aa02c525359bb8a3e4774958e570e9"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2013,
+      "sourceTriangles": 3120,
+      "sourceBoneCount": 70,
+      "authoredDiffuseNames": [
+        "VenomZombie_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "wallace_jackson",
+      "id": "smu-wallace-jackson",
+      "fbx": "costumes/wallace_jackson/wallace_jackson.fbx",
+      "fbxSha256": "b1e3f104ae1d266e05b6b1f19f2c31640ce9cc60175ba75ae3d2f119eebe3711",
+      "textureFiles": [
+        "textures-png/Wallace_Jackson_D.png"
+      ],
+      "textureSha256": [
+        "02ac1633fd744e0083c8828ee3978c1941568935e8790e143594f7b87b5f582c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2327,
+      "sourceTriangles": 3939,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Wallace_Jackson_d.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "weblisher",
+      "id": "smu-weblisher",
+      "fbx": "costumes/weblisher/weblisher.fbx",
+      "fbxSha256": "a744ba7a2b630ec68ed023a210ef8c313cd1e7b14e637324f7fcdc0a839ff238",
+      "textureFiles": [
+        "textures-png/WebSlinger_D.png"
+      ],
+      "textureSha256": [
+        "e6f29519275d535be16f63671b7d6e51cc4c3979ce91b536d42ea0e56cbd04bf"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2592,
+      "sourceTriangles": 3972,
+      "sourceBoneCount": 60,
+      "authoredDiffuseNames": [
+        "WebSlinger_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "werewolf",
+      "id": "smu-werewolf",
+      "fbx": "costumes/werewolf/werewolf.fbx",
+      "fbxSha256": "0104cdda6af5bf24082cd18db6d2357ce6df27256bf36508621fffc094b835cd",
+      "textureFiles": [
+        "textures-png/Werewolf_D.png"
+      ],
+      "textureSha256": [
+        "811baea5b1c6070184c7de2c17f18f984b3a6e8fb6893e47846a234da498fa51"
+      ],
+      "sourceMeshCount": 2,
+      "sourceVertices": 3399,
+      "sourceTriangles": 4802,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Werewolf_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "who",
+      "id": "smu-who",
+      "fbx": "costumes/who/who.fbx",
+      "fbxSha256": "b024e0149047d28e5d278b920e9becba35856f11f3d0412eb5397b717ce1170b",
+      "textureFiles": [
+        "textures-png/Who_D.png"
+      ],
+      "textureSha256": [
+        "f077d10b44dcee2c07a943c078f6901443cc09003dea272592eaa9536a15544c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1764,
+      "sourceTriangles": 2722,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Who_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "woman",
+      "id": "smu-woman",
+      "fbx": "costumes/woman/woman.fbx",
+      "fbxSha256": "6c1d82f830e79e00a57c369432d187e421789b3b852c02c2f71fb3e89f0ff075",
+      "textureFiles": [
+        "textures-png/SpiderWomanWings_D.png",
+        "textures-png/SpiderWoman_D.png"
+      ],
+      "textureSha256": [
+        "0d5cbfe74cb418ffc9ea44afc47aebca4e1ac694441f99dcacc556ad72f1da0b",
+        "dc9c97ccaed016134844aa3b8c5b9e5498c46bc4bcdc4a9b3c98b710d8678158"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2248,
+      "sourceTriangles": 3768,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderWomanWings_D.TGA",
+        "SpiderWoman_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "womannew",
+      "id": "smu-womannew",
+      "fbx": "costumes/womannew/womannew.fbx",
+      "fbxSha256": "bca7cae219bb405272af2ba23ac4b76e96e99b7d669f3b9eea10e4d0d2ae583d",
+      "textureFiles": [
+        "textures-png/SpiderWomanNew_D.png"
+      ],
+      "textureSha256": [
+        "c206d094046fcc9a554051c0e26dc315d8dac9e10e64dec64a6d35d72f54ea75"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1717,
+      "sourceTriangles": 2873,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderWomanNew_D.tga"
+      ],
+      "status": "pending"
+    },
+    {
+      "key": "wraith",
+      "id": "smu-wraith",
+      "fbx": "costumes/wraith/wraith.fbx",
+      "fbxSha256": "2d7458592cb33d299d818da3accc7a724e565ed8a1b75b8f9ca875efe15d08a7",
+      "textureFiles": [
+        "textures-png/Wraith_D.png"
+      ],
+      "textureSha256": [
+        "0601187adf05d7ecf7cff9cf826413dce590ad8227a6586bcd1dd7e29d4fcc56"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2156,
+      "sourceTriangles": 3620,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Wraith_D.tga"
+      ],
+      "status": "pending"
+    }
+  ]
+}

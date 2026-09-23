@@ -1,0 +1,28 @@
+{
+  "source": "authored FFmpeg testsrc2 + authored silent ADX v3; no game data",
+  "generator_command": [
+    "ffmpeg",
+    "-v",
+    "error",
+    "-f",
+    "lavfi",
+    "-i",
+    "testsrc2=size=32x32:rate=30:duration=2",
+    "-an",
+    "-c:v",
+    "mpeg1video",
+    "-g",
+    "12",
+    "-bf",
+    "2",
+    "-q:v",
+    "3",
+    "-f",
+    "mpeg1video",
+    "/tmp/tmp92_u1ke_/test.m1v"
+  ],
+  "video_frames": 60,
+  "audio_frames": 88200,
+  "file_sha256": "f7e363bbd5326c75e68fb4e0332bf20549d0af888d18968007429973aee060e5",
+  "size": 107677
+}

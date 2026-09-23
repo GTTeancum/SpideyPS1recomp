@@ -29,6 +29,31 @@ public static class LibCdStream
     static int _slots;
     static uint _dataBase;
 
+    // A host FMV replaces only presentation. Retain the native ring until its
+    // normal cleanup/restart, but stop its producer and discard obsolete XA PCM.
+    static volatile bool _hostMovieOverride;
+    public static IDisposable HoldForHostMovie()
+    {
+        if (_hostMovieOverride) throw new InvalidOperationException("nested host movie stream hold");
+        _hostMovieOverride = true;
+        StopWorker();
+        XaAudio.Reset();
+        return new HostMovieHold();
+    }
+    sealed class HostMovieHold : IDisposable
+    {
+        bool _disposed;
+        public void Dispose()
+        {
+            if (_disposed) return;
+            _disposed = true;
+            XaAudio.Reset();
+            // Do not restart the old movie when the audio owner resumes. Normal
+            // StUnSetRing cleanup, StSetStream fallback or boot Reset releases
+            // the producer hold. This scope is disposed BEFORE movie audio.
+        }
+    }
+
     static volatile bool _active;
     static volatile bool _reading;
     static int _pendingLba = -1;
@@ -54,6 +79,7 @@ public static class LibCdStream
         // CollectFrame writes outside _lock. Retire its owner before changing
         // the layout, even when replacing a ring during an active movie.
         StopWorker();
+        _hostMovieOverride = false;
         InUse = true;
         lock (_lock)
         {
@@ -69,6 +95,7 @@ public static class LibCdStream
     public static void StClearRing(CpuContext c, IMemory m)
     {
         StopWorker();
+        _hostMovieOverride = false;
         lock (_lock) ResetRing(m);
         EnsureThread();
         c.V0 = 0;
@@ -81,12 +108,14 @@ public static class LibCdStream
         _active = false;
         _reading = false;
         StopWorker();
+        _hostMovieOverride = false;
         Log.Sdk("StUnSetRing");
     }
 
     public static void StSetStream(CpuContext c, IMemory m)
     {
         StopWorker();
+        _hostMovieOverride = false;
         lock (_lock)
         {
             _streamLba = -1;
@@ -173,6 +202,7 @@ public static class LibCdStream
     internal static void Reset()
     {
         StopWorker();
+        _hostMovieOverride = false;
         lock (_lock)
         {
             InUse = false;
@@ -207,6 +237,7 @@ public static class LibCdStream
 
     static void EnsureThread()
     {
+        if (_hostMovieOverride) return;
         if (_thread is { IsAlive: true }) return;
         _run = true;
         _thread = new Thread(StreamLoop) { IsBackground = true, Name = "CdStream" };

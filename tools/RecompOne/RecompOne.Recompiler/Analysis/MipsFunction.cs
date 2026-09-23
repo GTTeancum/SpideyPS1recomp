@@ -15,5 +15,7 @@ public sealed class MipsFunction
     public string PatchTarget = "";
     public List<string> PreHookTargets = [];
     public List<string> PostHookTargets = [];
+    public Dictionary<uint, List<string>> InstructionHookTargets = [];
+    public Dictionary<uint, List<(string Target, uint Resume)>> InstructionBranchHooks = [];
     public List<JumpTable> JumpTables = [];
 }

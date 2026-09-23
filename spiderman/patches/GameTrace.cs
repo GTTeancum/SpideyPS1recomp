@@ -195,44 +195,30 @@ public static class GameTrace
         => Console.WriteLine($"[game]  Dispatch exit            s1=0x{c.S1:X8} fp=0x{c.FP:X8}");
 
     static uint _rfSp, _rfRa;
-    static uint _lastActiveRunFrameArg;
+    static bool _movieRoutineActive;
 
-    /// <summary>
-    /// Entries to the game's per-frame function. This -- not the host's present rate --
-    /// is the game's frame rate, and it is the number that has to come out at 30.
-    /// </summary>
+    /// <summary>Historical name retained for source compatibility: counts movie entries, NOT game frames.</summary>
     public static long Frames;
 
     public static void RunFrame(CpuContext c, IMemory m)
     {
         Frames++;
+        _movieRoutineActive = true;
         _rfSp = c.SP; _rfRa = c.RA;
-        // RunFrame(0) is the outer shell driver. A non-zero argument is the
-        // currently dispatched level loop. Remember that entry so a native capture
-        // can prove the requested level driver began, rather than accepting an FMV,
-        // title screen, or front-end menu that merely happens to be 16-bit.
-        if (c.A0 != 0)
-        {
-            _lastActiveRunFrameArg = c.A0;
-        }
-        if (On) Console.WriteLine($"[game]    RunFrame({c.A0}) enter  sp=0x{c.SP:X8} ra=0x{c.RA:X8} s1=0x{c.S1:X8} fp=0x{c.FP:X8}");
+        if (On) Console.WriteLine($"[game] MovieRoutine({c.A0 & 255}) enter sp=0x{c.SP:X8} ra=0x{c.RA:X8}");
     }
 
-    /// <summary>
-    /// Positive state marker attached to native screenshots. RunFrame enters once
-    /// and owns the persistent level loop, so a non-zero entry proves the requested
-    /// level has reached its runtime driver. Image gates separately reject terminal
-    /// overlays such as GAME OVER.
-    /// </summary>
+    // 8002AA0C indexes the STR descriptor table and invokes StSetStream/DecDCTin.
+    // A nonzero argument is a MOVIE INDEX, not evidence that a level was entered.
     public static string CaptureLevelState(long captureFrame)
-    {
-        if (_lastActiveRunFrameArg != 0)
-            return $"(level-runframe-entered={_lastActiveRunFrameArg})";
-        return "(no-level-runframe-entered)";
-    }
+        => _movieRoutineActive || RecompOne.Runtime.Media.DreamcastMovies.Active
+            ? "(movie-playback; not-gameplay-proof)" : "(gameplay-state-unverified)";
 
     public static void RunFrameExit(CpuContext c, IMemory m)
-    { if (On) Console.WriteLine($"[game]    RunFrame exit          sp=0x{c.SP:X8} (delta {(int)(c.SP - _rfSp)}) ra=0x{c.RA:X8} s1=0x{c.S1:X8} fp=0x{c.FP:X8}"); }
+    {
+        _movieRoutineActive = false;
+        if (On) Console.WriteLine($"[game] MovieRoutine exit sp=0x{c.SP:X8} delta={(int)(c.SP-_rfSp)}");
+    }
 
     /// <summary>
     /// pre-hook on the object renderer, which walks a linked list through offset 4.

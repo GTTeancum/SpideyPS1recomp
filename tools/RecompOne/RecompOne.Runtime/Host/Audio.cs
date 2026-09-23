@@ -4,7 +4,7 @@ using ALCtx = Silk.NET.OpenAL.Context;
 
 namespace RecompOne.Runtime.Host;
 
-internal static unsafe class Audio
+internal static unsafe partial class Audio
 {
     static ALContext? _alc;
     static AL? _al;
@@ -93,12 +93,23 @@ internal static unsafe class Audio
         {
             while (_running)
             {
+                if (_movieRequested)
+                {
+                    // The main-thread movie source owns audio until it is disposed.
+                    // Drop queued SPU samples now; never resume stale menu/XA audio.
+                    _al!.SourceStop(_source);
+                    _al.SetSourceProperty(_source, SourceInteger.Buffer, 0);
+                    _movieSuspended.Set();
+                    while (_movieRequested && _running) Thread.Sleep(1);
+                    _movieSuspended.Reset();
+                    continue;
+                }
                 var spu = _spu;
                 if (spu != null) FillBuffers(spu);
                 Thread.Sleep(3);
             }
         }
-        finally { _alc.MakeContextCurrent(null); }
+        finally { _running = false; _movieSuspended.Set(); _alc.MakeContextCurrent(null); }
     }
 
     static void FillBuffers(Spu spu)

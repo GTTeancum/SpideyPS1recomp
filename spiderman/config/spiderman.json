@@ -680,6 +680,25 @@
       "function": "ResetGraph",
       "mode": "pre",
       "target": "Recompiled.GpuPatches.ResetGraph"
+    },
+    {
+      "overlay": "main",
+      "address": "80077418",
+      "mode": "instruction",
+      "target": "Recompiled.SuitRetargeting.ApplyPose"
+    },
+    {
+      "overlay": "main",
+      "address": "8002CF80",
+      "mode": "instruction",
+      "target": "Recompiled.SuitWebAttachment.ProjectSwingSegment"
+    },
+    {
+      "overlay": "main",
+      "address": "8002AD0C",
+      "mode": "instruction_branch",
+      "resumeAddress": "8002AF8C",
+      "target": "Recompiled.DreamcastMoviePatches.Play"
     }
   ],
   "callRing": true

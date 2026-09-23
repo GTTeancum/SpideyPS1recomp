@@ -37,7 +37,7 @@ internal sealed class OutputPanel : IPanel
         if (_texId != 0 && _texW > 0 && _texH > 0)
         {
             var avail = ImGui.GetContentRegionAvail();
-            FitWindowOnce(avail);
+            if (!Media.DreamcastMovies.Active) FitWindowOnce(avail);
             FitRequestedWindow(avail);
             FitRequestedResolution(avail);
             var imageSize = FitAspect(new Vector2(_aspect, 1f), avail);

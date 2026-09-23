@@ -11,7 +11,7 @@ using RecompOne.Runtime.Host.Window;
 
 namespace RecompOne.Runtime.Host;
 
-public static class HostWindow
+public static partial class HostWindow
 {
     // Native GPU captures without showing a window or taking desktop focus.
     static readonly bool _captureHidden = Environment.GetEnvironmentVariable("RECOMP_CAPTURE_HIDDEN") == "1";
@@ -620,7 +620,11 @@ public static class HostWindow
         Memory.RamLogger.TrackWrites = Memory.RamLogger.TrackReads;
 
         var gpu = _gpu;
-        if (gpu != null)
+        if (MovieFrameActive)
+        {
+            UploadMovieTexture(gl);
+        }
+        else if (gpu != null)
         {
 
             if (Hle.GpuHle.Active && _glBackend is { Ready: true } && gpu.DisplayEnabled)
@@ -747,6 +751,7 @@ public static class HostWindow
         _glBackend?.Dispose();
         _imgui?.Dispose();
         _gl?.DeleteTexture(_displayTex);
+        _gl?.DeleteTexture(_movieTex);
         _gl?.DeleteTexture(_vramTex);
         _gl?.DeleteTexture(_ramTex);
         Diagnostics.NativeAllocationProbe.Flush(force: true);

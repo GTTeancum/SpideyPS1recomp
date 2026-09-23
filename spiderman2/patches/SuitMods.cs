@@ -29,7 +29,7 @@ public static class SuitMods
 
     public static void Install()
     {
-        string exe = Path.GetDirectoryName(Environment.ProcessPath) ?? AppContext.BaseDirectory;
+        string exe = RecompOne.Runtime.Host.RuntimePaths.ApplicationDirectory;
         _root = Path.GetFullPath(Environment.GetEnvironmentVariable("SPIDEY_SUIT_MOD_DIR") ?? Path.Combine(exe, "mods", "suits"));
         if (!Directory.Exists(_root)) return;
         if ((File.GetAttributes(_root) & FileAttributes.ReparsePoint) != 0)

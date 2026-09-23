@@ -1,0 +1,38 @@
+<Project>
+  <!-- Target RID, not build-host OS: Linux-to-Windows publication must not copy
+       an ELF library and Windows-to-Linux publication must not copy VC DLLs. -->
+  <PropertyGroup>
+    <OpenSpideyNativeRid Condition="'$(RuntimeIdentifier)' != ''">$(RuntimeIdentifier)</OpenSpideyNativeRid>
+    <OpenSpideyNativeRid Condition="'$(OpenSpideyNativeRid)' == '' and $([MSBuild]::IsOSPlatform('Windows'))">win-x64</OpenSpideyNativeRid>
+    <OpenSpideyNativeRid Condition="'$(OpenSpideyNativeRid)' == '' and $([MSBuild]::IsOSPlatform('Linux'))">linux-x64</OpenSpideyNativeRid>
+    <OpenSpideyLinuxCore>$(MSBuildThisFileDirectory)../../retarget/native/bin/libOpenSpideyRetarget.so</OpenSpideyLinuxCore>
+    <OpenSpideyLinuxSfd>$(MSBuildThisFileDirectory)../../movies/native/bin/libOpenSpideySfd.so</OpenSpideyLinuxSfd>
+  </PropertyGroup>
+  <Import Project="win-x64/Runtime.props" Condition="'$(OpenSpideyNativeRid)' == 'win-x64'" />
+  <ItemGroup Condition="'$(OpenSpideyNativeRid)' == 'linux-x64'">
+    <Content Include="$(OpenSpideyLinuxCore)" Link="libOpenSpideyRetarget.so"
+             CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="$(OpenSpideyLinuxSfd)" Link="libOpenSpideySfd.so"
+             CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- The decoder adapts MIT-licensed PL_MPEG code. Ship its notice with
+         both native targets, including self-contained/single-file publishes. -->
+    <Content Include="$(MSBuildThisFileDirectory)../../movies/native/LICENSE-PL_MPEG.txt"
+             Link="licenses/OpenSpideySfd-LICENSE-PL_MPEG.txt" ExcludeFromSingleFile="true"
+             CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="$(MSBuildThisFileDirectory)../../movies/native/SOURCES.md"
+             Link="licenses/OpenSpideySfd-SOURCES.md" ExcludeFromSingleFile="true"
+             CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+  <Target Name="ValidateOpenSpideyNativeTarget" BeforeTargets="PrepareForBuild">
+    <Error Condition="'$(OpenSpideyNativeRid)' != 'win-x64' and '$(OpenSpideyNativeRid)' != 'linux-x64'"
+           Text="OpenSpidey supports win-x64 and linux-x64 only. Select an explicit supported RuntimeIdentifier." />
+    <Error Condition="'$(OpenSpideyNativeRid)' == 'linux-x64' and !Exists('$(OpenSpideyLinuxCore)')"
+           Text="Missing Linux retarget core. Run python3 tools/retarget/build_native.py --target linux-x64 before building." />
+    <Error Condition="'$(OpenSpideyNativeRid)' == 'linux-x64' and !Exists('$(OpenSpideyLinuxSfd)')"
+           Text="Missing Linux SFD decoder. Run python3 tools/movies/build_native.py --target linux-x64." />
+    <Error Condition="'$(OpenSpideyNativeRid)' == 'win-x64' and !Exists('$(MSBuildThisFileDirectory)win-x64/OpenSpideySfd.dll')"
+           Text="Missing matching Windows SFD decoder. Restore shipped DLL or build tools/movies/build_native.py --target win-x64." />
+  </Target>
+</Project>

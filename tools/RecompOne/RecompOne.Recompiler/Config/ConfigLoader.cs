@@ -36,6 +36,8 @@ public sealed class PatchEntry
     [JsonPropertyName("target")] public string Target { get; set; } = "";
     [JsonPropertyName("mode")] public string Mode { get; set; } = "replace";
 
+    [JsonPropertyName("resumeAddress")] public string ResumeAddress { get; set; } = "";
+
     public bool MatchesOverlay(string overlayName)
     {
         if (Overlay.Length == 0) return true;

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-1602",
+  "name": "SMU 1602",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "1E6BBF7A": "textures/diffuse.png"
+  }
+}

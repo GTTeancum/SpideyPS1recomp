@@ -77,7 +77,7 @@ public static class Rates
         long vblankCallback = _mem != null ? (int)_mem.ReadU32(VBlankCallbackCounter) : 0;
 
         string s =
-            $"rates/s: RunFrame {(frames - _frames) / dt,6:F1} | " +
+            $"rates/s: movie entries {(frames - _frames) / dt,6:F1} | " +
             $"PutDispEnv {(disp - _disp) / dt,6:F1} | " +
             $"DrawOTag {(ot - _ot) / dt,6:F1} | " +
             $"VSync(0) {(wait - _wait) / dt,6:F1} | " +

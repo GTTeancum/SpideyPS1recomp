@@ -1,0 +1,120 @@
+{
+  "abi": "0x00010000",
+  "targets": {
+    "linux-x64": {
+      "commands": [
+        [
+          "/usr/local/swift/usr/bin/clang++",
+          "-O2",
+          "-std=c++17",
+          "-fno-exceptions",
+          "-fno-rtti",
+          "-fno-math-errno",
+          "-ffp-contract=off",
+          "-fno-stack-protector",
+          "-fno-builtin",
+          "-ffreestanding",
+          "-shared",
+          "-fPIC",
+          "-fvisibility=hidden",
+          "-nostdlib",
+          "-Wl,-z,defs",
+          "/mnt/data/sfd-repair/project/tools/movies/native/sfd_decoder.cpp",
+          "-o",
+          "/tmp/sfd-build-kzmwnt5e/libOpenSpideySfd.so"
+        ]
+      ],
+      "compiler": "clang version 17.0.0 (https://github.com/swiftlang/llvm-project.git 10999b6d034fe318f3d56c83bddb6572593a8bb0)",
+      "files": [
+        {
+          "path": "tools/movies/native/sfd_decoder.cpp",
+          "sha256": "65827c17251e814b46a6af555ae8604fdd69b010b85fc300d623e4201936e7de",
+          "bytes": 23578
+        },
+        {
+          "path": "tools/movies/native/sfd_decoder.h",
+          "sha256": "fb39dc32e94bc9f72e88b4f0d5285fdd2237299f77f8fb432f1dcb8d409f973b",
+          "bytes": 1898
+        },
+        {
+          "path": "tools/movies/native/mpeg1_vlc.h",
+          "sha256": "6a57288d16b958428b482b7393361950b0e49cb03e9d356fe1dfda99a773853d",
+          "bytes": 6796
+        },
+        {
+          "path": "tools/movies/native/make_vlc_tables.py",
+          "sha256": "aada710654b8cb44b0c07694e2e82c55aec7c7318607ff660fceb16f65ed8178",
+          "bytes": 3801
+        },
+        {
+          "path": "tools/movies/native/bin/libOpenSpideySfd.so",
+          "sha256": "e4ba3059c2e75c17d97acf64117d0ec093dac4a2a6db5574bd670b1f964ea25a",
+          "bytes": 39912
+        }
+      ]
+    },
+    "win-x64": {
+      "commands": [
+        [
+          "/usr/local/swift/usr/bin/clang++",
+          "--target=x86_64-pc-windows-msvc",
+          "-O2",
+          "-std=c++17",
+          "-fno-exceptions",
+          "-fno-rtti",
+          "-fno-math-errno",
+          "-ffp-contract=off",
+          "-fno-stack-protector",
+          "-fno-builtin",
+          "-ffreestanding",
+          "-c",
+          "/mnt/data/sfd-repair/project/tools/movies/native/sfd_decoder.cpp",
+          "-o",
+          "/tmp/sfd-build-kzmwnt5e/sfd.obj"
+        ],
+        [
+          "/usr/local/swift/usr/bin/lld-link",
+          "/dll",
+          "/noentry",
+          "/nodefaultlib",
+          "/machine:x64",
+          "/out:/tmp/sfd-build-kzmwnt5e/OpenSpideySfd.dll",
+          "/tmp/sfd-build-kzmwnt5e/sfd.obj"
+        ]
+      ],
+      "compiler": "clang version 17.0.0 (https://github.com/swiftlang/llvm-project.git 10999b6d034fe318f3d56c83bddb6572593a8bb0)",
+      "files": [
+        {
+          "path": "tools/movies/native/sfd_decoder.cpp",
+          "sha256": "65827c17251e814b46a6af555ae8604fdd69b010b85fc300d623e4201936e7de",
+          "bytes": 23578
+        },
+        {
+          "path": "tools/movies/native/sfd_decoder.h",
+          "sha256": "fb39dc32e94bc9f72e88b4f0d5285fdd2237299f77f8fb432f1dcb8d409f973b",
+          "bytes": 1898
+        },
+        {
+          "path": "tools/movies/native/mpeg1_vlc.h",
+          "sha256": "6a57288d16b958428b482b7393361950b0e49cb03e9d356fe1dfda99a773853d",
+          "bytes": 6796
+        },
+        {
+          "path": "tools/movies/native/make_vlc_tables.py",
+          "sha256": "aada710654b8cb44b0c07694e2e82c55aec7c7318607ff660fceb16f65ed8178",
+          "bytes": 3801
+        },
+        {
+          "path": "tools/movies/native/bin/OpenSpideySfd.dll",
+          "sha256": "da145536aa73f20e47443fb79c7a48410b5ff6e55e54e6b7ee0a81f1a51ff30a",
+          "bytes": 25600
+        },
+        {
+          "path": "tools/RecompOne/native/win-x64/OpenSpideySfd.dll",
+          "sha256": "da145536aa73f20e47443fb79c7a48410b5ff6e55e54e6b7ee0a81f1a51ff30a",
+          "bytes": 25600
+        }
+      ]
+    }
+  }
+}

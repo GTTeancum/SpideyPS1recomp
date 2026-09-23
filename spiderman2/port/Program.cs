@@ -29,19 +29,20 @@ public static class Program
 
     public static int Main(string[] args)
     {
-        RecompOne.Runtime.Host.BundledNativeRuntime.Initialize();
-        if (!AcquireRuntimeLease()) return 4;
-
-        // Everything the game writes -- logs, saves, shots -- is resolved against the
-        // working directory, so anchor that to the executable. Environment.ProcessPath,
-        // not AppContext.BaseDirectory: for a single-file build the latter is the
-        // extraction folder.
+        // A relative disc argument belongs to the caller's directory. Resolve it
+        // before anchoring portable saves/mods/logs beside the actual game binary.
         try
         {
-            string home = ExeDirectory();
-            if (home != null) Directory.SetCurrentDirectory(home);
+            args = RecompOne.Runtime.Host.RuntimePaths.PrepareLaunchArguments(args);
+            Directory.SetCurrentDirectory(ExeDirectory());
         }
-        catch { }
+        catch (Exception e)
+        {
+            Console.Error.WriteLine("[SpiderMan2] launch paths: " + e.Message);
+            return 2;
+        }
+        RecompOne.Runtime.Host.BundledNativeRuntime.Initialize();
+        if (!AcquireRuntimeLease()) return 4;
 
         string installRoot = ExeDirectory() ?? AppContext.BaseDirectory;
         string installOutput = InstallOutput(installRoot);
@@ -163,7 +164,7 @@ public static class Program
     static bool AcquireRuntimeLease()
     {
         RuntimeMutex = new System.Threading.Mutex(
-            false, @"Local\OpenSpideyPS1.GameRuntime");
+            false, RecompOne.Runtime.Host.RuntimePaths.RuntimeMutexName);
         try
         {
             if (RuntimeMutex.WaitOne(0)) return true;
@@ -206,11 +207,7 @@ public static class Program
         Console.WriteLine("[SpiderMan2] logging: " + spec);
     }
 
-    static string ExeDirectory()
-    {
-        string exe = Environment.ProcessPath;
-        return string.IsNullOrEmpty(exe) ? AppContext.BaseDirectory : Path.GetDirectoryName(exe);
-    }
+    static string ExeDirectory() => RecompOne.Runtime.Host.RuntimePaths.ApplicationDirectory;
 
     static string ResolveExistingGameData(string[] args)
     {
