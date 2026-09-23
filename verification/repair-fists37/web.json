@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "agent_nine",
+      "id": "smu-agent-nine",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.712158203125,
+        8.1142578125
+      ],
+      "assetSha256": "036bc51fdb04980b6ede60638520310982470d7090ae57da740cc7223e40d12b",
+      "captureSha256": "d845fcedd86b63b307e05d679d3b645e9bcf949d440f322be14e22fc380b5f81"
+    },
+    {
+      "key": "aikman",
+      "id": "smu-aikman",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.426513671875,
+        10.828369140625
+      ],
+      "assetSha256": "d35bc709b55a3203af41ef7d22f3069b33345b2b5f4ba9ed2b314541fd9cd2fc",
+      "captureSha256": "a64c7ca76cad1963df467d2fb20045343dab1ef692f08eadeb549f3fab0d7bca"
+    },
+    {
+      "key": "arachnoman",
+      "id": "smu-arachnoman",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.360595703125,
+        8.7626953125
+      ],
+      "assetSha256": "5e27063afdd68025109f68851ff28288eac497586df96c4806b70a00cf159c40",
+      "captureSha256": "2b5b1c2c51ebcc3054b5f8902537fb4d66ceffba2585e136716f595b8545391e"
+    }
+  ]
+}

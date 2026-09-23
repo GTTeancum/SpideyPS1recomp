@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-agent-nine",
+      "previousActorSha256": "60fe653cffc90c7c585e65301bfee0021ba5f65417dd30fba0a15befdd519a20",
+      "actorSha256": "036bc51fdb04980b6ede60638520310982470d7090ae57da740cc7223e40d12b",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-aikman.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-aikman",
+      "previousActorSha256": "f140b0d368fec0ff8c9afd1fc1cccb8df0a57d4ad78bd8fbfb4e4b78f0d9830e",
+      "actorSha256": "d35bc709b55a3203af41ef7d22f3069b33345b2b5f4ba9ed2b314541fd9cd2fc",
+      "visualReview": "Reviewed the two native game images sequentially. Aaron Aikman retains the red webbed armor sections, gray armored limbs and torso, black chest spider, bright lenses, and compact hands without dropped geometry. No web line is visible in this running capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01607.png": "c472ec8998fda9dd5bb7b1d6206eab43a8a0f9a3e0c30d32fb94a97fbe890568",
+        "frame_01607_closeup.png": "f214d9e269cc38a4604019c7ec86a9099bacb16dbdf4b35f3b20f25ac8079f17"
+      }
+    },
+    {
+      "suit": "smu-arachnoman",
+      "previousActorSha256": "cb8bcc4f79ca35f2fb4a2ca175421353999f596fb27ea4cfcfa536225440446a",
+      "actorSha256": "5e27063afdd68025109f68851ff28288eac497586df96c4806b70a00cf159c40",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-aikman.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-aikman"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-agent-nine\\actor.psx",
+    "smu-agent-nine\\conversion-report.json",
+    "smu-aikman\\actor.psx",
+    "smu-aikman\\conversion-report.json",
+    "smu-arachnoman\\actor.psx",
+    "smu-arachnoman\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-aikman/frame_01607.png and frame_01607_closeup.png"
+  }
+}

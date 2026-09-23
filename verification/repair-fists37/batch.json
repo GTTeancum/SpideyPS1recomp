@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch37",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "agent_nine",
+    "aikman",
+    "arachnoman"
+  ],
+  "results": [
+    {
+      "key": "agent_nine",
+      "id": "smu-agent-nine",
+      "fbx": "costumes/agent_nine/agent_nine.fbx",
+      "fbxSha256": "329706000c0bca6150738cf7aaef6c3c07803c48c8c971b2d86f6dfd98725296",
+      "textureFiles": [
+        "textures-png\\Agent_nine_D.png"
+      ],
+      "textureSha256": [
+        "e1c5000ba49b2ac07413cb3810a0119e5021406e6fc58759eba3d031793de23a"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2117,
+      "sourceTriangles": 3258,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Agent_nine_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Agent_9",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Agent_nine_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 858332,
+      "outputs": {
+        "actor.psx": "036bc51fdb04980b6ede60638520310982470d7090ae57da740cc7223e40d12b",
+        "conversion-report.json": "b8fe898f7a83b21f9a4bb25c5f1a1859ff1b54a6660076f3f902ce363ceff698",
+        "suit.json": "68638455238df1cbf145ede0f6f311f25680d870209a2baa04e48ec600eb4f2b",
+        "textures\\diffuse.png": "fe901d5a44950e4201ecde988ac8c43ed56e822d5c7667d3e0906d5329273e0c"
+      }
+    },
+    {
+      "key": "aikman",
+      "id": "smu-aikman",
+      "fbx": "costumes/aikman/aikman.fbx",
+      "fbxSha256": "bdcaf81f9bfdb70fb3871cc9d56f254369e2009217918295d1643ec0b6f66da1",
+      "textureFiles": [
+        "textures-png\\Spiderman_Aikman_D.png"
+      ],
+      "textureSha256": [
+        "9b37a3020c73dc192f8156e601a5f3eaf24f317d68a0a9bf165b88e99bc15eb7"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1611,
+      "sourceTriangles": 2614,
+      "sourceBoneCount": 64,
+      "authoredDiffuseNames": [
+        "Spiderman_Aikman_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "new",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman_Aikman_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 65,
+      "nativeBytes": 739512,
+      "outputs": {
+        "actor.psx": "d35bc709b55a3203af41ef7d22f3069b33345b2b5f4ba9ed2b314541fd9cd2fc",
+        "conversion-report.json": "6d2e25811b3b532457b9564334969775c90b9d6f771596ecb441c1fcc71bd857",
+        "suit.json": "66732184e2120f47a3704144e912d1087bfbd2e7a092fc382094a07130320cef",
+        "textures\\diffuse.png": "97486e0e8f339f4104c6f924342dc1a73edb1c910967f27253a2f3833f624ccb"
+      }
+    },
+    {
+      "key": "arachnoman",
+      "id": "smu-arachnoman",
+      "fbx": "costumes/arachnoman/arachnoman.fbx",
+      "fbxSha256": "3e04b9db5548386ea618b103518ecacc0f383f30a65170d64f28b43a078b489c",
+      "textureFiles": [
+        "textures-png\\ArachnoMan_D.png"
+      ],
+      "textureSha256": [
+        "f7faf7ff4b3e0fe720e87d139eea53c53bb6936e70ec4f801fc42139da3b4254"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1751,
+      "sourceTriangles": 3018,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "ArachnoMan_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\ArachnoMan_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 762216,
+      "outputs": {
+        "actor.psx": "5e27063afdd68025109f68851ff28288eac497586df96c4806b70a00cf159c40",
+        "conversion-report.json": "d7c39a820acb00300743a03ea9290c52acea34e654cecde3293e034d30f97b3a",
+        "suit.json": "1db0692b1e3dabb855ba2fca806c06e640c130bf36798c4de1dd54447d0cf535",
+        "textures\\diffuse.png": "0e9f5393eb4fd3e9da74e8561b804278c6a5221b425593a894dc3d18431241ee"
+      }
+    }
+  ]
+}
