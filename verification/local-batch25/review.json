@@ -1,0 +1,17 @@
+{
+  "batch": 25,
+  "keys": [
+    "woman"
+  ],
+  "representative": "smu-woman",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Individually reviewed both native framebuffer images. The woman catalogue suit appears in a swing and grounded stance with red/orange body, yellow gloves/boots, gray hair and bilateral underarm web panels visible. Web line reaches the raised hand. The free hand looks open and is not accepted as a closed fist. Two frames do not establish secondary hair/web-panel motion or front facial detail.",
+  "liveSwingImages": [
+    "frame_01559.png"
+  ],
+  "images": {
+    "frame_01559.png": "774ff3d28ecc67dd2ebaa198590705335ec3f3780d6f71b10306bbbe9d858208",
+    "frame_01864.png": "fa9a4e0077b46ea59d39cbe263259c36f594082d0cd199a56696d35a7eff7ea4"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

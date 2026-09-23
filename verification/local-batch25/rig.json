@@ -1,0 +1,178 @@
+{
+  "status": "PASS",
+  "scope": "Native assets + compiled C++ runtime core + original animation decoding oracle; C# integration checks are static only. Full .NET build/game execution NOT run.",
+  "passed": 30,
+  "failed": 0,
+  "metrics": {
+    "smu-woman": {
+      "bones": 66,
+      "sourceControlPoints": 2248,
+      "sourceInfluences": 5118,
+      "runtimeVertices": 2248,
+      "runtimeInfluences": 5118,
+      "triangles": 3768,
+      "nativeBytes": 916076,
+      "sha256": "3f9cbe6ce186726c5a8de3a417ea738337ff54d56c6d2bc202b9ff9a518661c6",
+      "rootScale": 0.902794361114502,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007817804580554366,
+      "maxRoundedComponentError": 0.853057861328125,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 5.9061151999630965
+    }
+  },
+  "results": [
+    {
+      "name": "300 native clips / 4196 source frames",
+      "passed": true
+    },
+    {
+      "name": "original decoder produces nonsingular Q12 driver rotations",
+      "passed": true,
+      "minDet": 0.9987022876739502,
+      "maxDet": 1.0010902881622314
+    },
+    {
+      "name": "smu-woman: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9774303911267452e-08
+    },
+    {
+      "name": "smu-woman: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 3768
+    },
+    {
+      "name": "smu-woman: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.00048828125
+    },
+    {
+      "name": "smu-woman: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-woman: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.00030517578125,
+      "scale": 0.902794361114502
+    },
+    {
+      "name": "smu-woman: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-woman: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-woman: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 3162.58935546875,
+      "worst": null
+    },
+    {
+      "name": "smu-woman: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007817804580554366
+    },
+    {
+      "name": "smu-woman: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.0008544921875,
+      "maxRoundedComponentError": 0.853057861328125
+    },
+    {
+      "name": "smu-woman: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-woman: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "source integration: exactly one pose-ready hook and regeneration config",
+      "passed": true
+    },
+    {
+      "name": "source integration: resident validation / fists / culling update present",
+      "passed": true
+    },
+    {
+      "name": "Windows deployed native DLL is the tested-source build artifact",
+      "passed": true
+    }
+  ],
+  "inputHashes": {
+    "C:\\Programming\\SMU-Costumes\\costumes\\woman\\woman.fbx": "6c1d82f830e79e00a57c369432d187e421789b3b852c02c2f71fb3e89f0ff075",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderWomanWings_D.png": "0d5cbfe74cb418ffc9ea44afc47aebca4e1ac694441f99dcacc556ad72f1da0b",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\remaining-compatible\\batch-25\\suits\\smu-woman\\actor.psx": "3f9cbe6ce186726c5a8de3a417ea738337ff54d56c6d2bc202b9ff9a518661c6"
+  },
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb"
+}

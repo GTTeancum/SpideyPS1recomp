@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-woman",
+  "name": "SMU WOMAN",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "5C820EFA": "textures/diffuse.png",
+    "3C45B40E": "textures/diffuse-1.png"
+  }
+}

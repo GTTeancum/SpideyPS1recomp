@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "batch": "batch-25",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "woman"
+  ],
+  "results": [
+    {
+      "key": "woman",
+      "id": "smu-woman",
+      "fbx": "costumes/woman/woman.fbx",
+      "fbxSha256": "6c1d82f830e79e00a57c369432d187e421789b3b852c02c2f71fb3e89f0ff075",
+      "textureFiles": [
+        "textures-png\\SpiderWomanWings_D.png",
+        "textures-png\\SpiderWoman_D.png"
+      ],
+      "textureSha256": [
+        "0d5cbfe74cb418ffc9ea44afc47aebca4e1ac694441f99dcacc556ad72f1da0b",
+        "dc9c97ccaed016134844aa3b8c5b9e5498c46bc4bcdc4a9b3c98b710d8678158"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2248,
+      "sourceTriangles": 3768,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderWomanWings_D.TGA",
+        "SpiderWoman_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Woman",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderWoman_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Material_01",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderWomanWings_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 916076,
+      "outputs": {
+        "actor.psx": "3f9cbe6ce186726c5a8de3a417ea738337ff54d56c6d2bc202b9ff9a518661c6",
+        "conversion-report.json": "2cd42458cada560ea7eccd43fba110d147fe21c25961ec47a63535b6213f4892",
+        "suit.json": "e0f90a5d8f7887f663c3393918e6bd2aeb45658aff3e2c0a5d8a358d9df792e0",
+        "textures\\diffuse-1.png": "54a0ac3f82255ec8d08981bc75e85b7e095ac18c4dd92f71a09b62d7e027f2a5",
+        "textures\\diffuse.png": "195f0bf48565b0d466fd534baa7a7a749114975172bd9251261825cd20a89d42"
+      }
+    }
+  ]
+}
