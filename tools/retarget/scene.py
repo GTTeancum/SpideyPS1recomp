@@ -246,7 +246,9 @@ def calibrate(scene,reference,native_origins,ground):
             match=re.fullmatch('Clown001'+side+r'ArmDigit([0-9])([1-3])',name)
             if not match:continue
             digit,segment=map(int,match.groups())
-            angle=45 if digit==0 and segment==1 else 65 if digit==0 else 60 if segment==1 else 85
+            # A right-angle base curl closes the free-hand silhouette while the
+            # distal flexion and separately calibrated thumb remain unchanged.
+            angle=45 if digit==0 and segment==1 else 65 if digit==0 else 90 if segment==1 else 85
             local_axis=bind[i,:3,:3].T@axis
             fist[i]=axis_angle(local_axis,angle)
             finger_report.append({'bone':name,'angleDegrees':angle,'axisLocal':local_axis.tolist()})

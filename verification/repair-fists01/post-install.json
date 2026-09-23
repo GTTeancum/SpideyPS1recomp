@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "managedCatalogue": {
+    "command": "dotnet run --no-build --project tools/RecompOne/tests/CustomSuitModelRegression -- --catalogue spiderman/port/mods/suits",
+    "actors": 233,
+    "failures": 0,
+    "exitCode": 0
+  },
+  "handDiagnosticRegression": "PASS: complete left/right hand-face coverage for normal, short and paged source rigs",
+  "captureRegression": "PASS: three tests cover exact pixel crop equality, missing/extra captures and two-image budget enforcement",
+  "installedActorHashesMatchLatestRigAndNativeCaptureEvidence": true,
+  "onlyAssetFilesChanged": "Three actor.psx files and their three conversion-report.json files",
+  "originalManifestAndTextureBytesPreserved": true,
+  "fistPolicyInstalled": 3,
+  "remainingFistPolicyRollout": 230,
+  "finalGoalAcceptance": false
+}

@@ -4,7 +4,7 @@
   "batchVerified": 233,
   "remainingUnconverted": 0,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 6068,
+  "offlineChecks": 6148,
   "animationFrames": 977668,
   "offlineSwingFrames": 26795,
   "structuralBlockers": [],
@@ -301,8 +301,14 @@
       "id": "visual-fist-closure",
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
-      "evidence": "verification/finger-policy/installed-231.json",
-      "next": "The uninstalled 90-degree base/85-degree distal candidate passes full rig, web, managed and before/after isolation checks, but wide native views do not establish closure/contact. Use inspect_hand_pose.py for complete anatomical faces across packets: older packet-5-only diagnostics omitted hand geometry. Check both hands and short/large representatives, then native views exposing the fingers. Evidence: verification/fist-base90-experiment/review.json."
+      "evidence": "verification/repair-fists01/review.json",
+      "resolvedSuits": [
+        "smu-amazing-spider",
+        "smu-spiderham",
+        "smu-other"
+      ],
+      "progress": "The 90-degree base/85-degree distal policy now has complete-hand offline review on both hands and native full-frame/exact-crop proof for normal, short and large/paged representatives. These three production actors are installed after full animation, web, loader and before/after isolation checks. Their shown free-hand silhouettes are compact fists; exhaustive finger/palm contact across all poses is not claimed. Thumb opposition is unchanged. Original display names and texture bytes remain intact. The other 230 suits still use the previous base curl.",
+      "next": "Roll the verified base-curl repair through the remaining catalogue in small tested batches. Preserve earlier material, tongue and source-body repairs. Use complete anatomical geometry, not packet-5-only close-ups, and retain at most two native images per representative."
     }
   ],
   "sourceLimitations": [
@@ -327,6 +333,75 @@
       },
       "managedLoaderExitCode": 0,
       "scope": "Original BDAE body recovery, not invented replacement geometry. Source originals unchanged. Muted run; no audio or full campaign acceptance."
+    },
+    {
+      "repairs": [
+        {
+          "suit": "smu-amazing-spider",
+          "previousActorSha256": "245056c0b7f7163a8ef328bb7bf45b3eba3abf8aa4826c5326a69af223834c10",
+          "actorSha256": "cf88dd0856de751bc14c9f1422ffa6ba381111a7d904f3c26eae9a8a6bdd4d98",
+          "visualReview": "Individually reviewed native frame 1580 and its exact pixel crop from the production actor. The free hand has a compact curled fist silhouette with folded fingers and the preserved thumb, rather than a spread hand. No detached hand or obvious projecting fingertip is visible. Cape, gauntlets, body and limbs remain intact. The raised hand meets the swing web. This accepts the shown free-hand silhouette, not exhaustive finger/palm contact across every pose.",
+          "images": {
+            "frame_01580.png": "fa3a49227a49ad511e6c8e215dca18c40d2ed5ef7abb2d5adb1f90ef0fbbddba",
+            "frame_01580_closeup.png": "0cddf7dfa42c8a3258041a8ab45c99b92028571cd7130e51590fa031234486c1"
+          }
+        },
+        {
+          "suit": "smu-spiderham",
+          "previousActorSha256": "b07acca3e69bdb506acfd10504aef1cf0e76a4e173e5663c8745a1de9d584663",
+          "actorSha256": "faef63a50e2fe22b17a36bda3ac99759bc3cbcf8c6dcd9de5cfa26bde4fec30d",
+          "visualReview": "Individually reviewed native frame 1580 and its exact 420x420 pixel crop from the production actor. The complete short-proportion suit remains visible during the swing. The close-up exposes the whole free hand as a compact rounded red fist with continuous web texture, with no detached or protruding finger fragment visible. The raised hand is partly behind the head, so precise endpoint acceptance comes from the unchanged wrist and native web oracle, not an invented visible contact point. This accepts the shown silhouette, not exhaustive contact testing.",
+          "images": {
+            "frame_01580.png": "4c6e4a71dc67885e34a4b5bc42358d35480d1a11f61febf676ae797574204f0d",
+            "frame_01580_closeup.png": "86ddd22f17b59f8c8c6dc90631ebaead6b423bec0ade2e130b93e157e78800e5"
+          }
+        },
+        {
+          "suit": "smu-other",
+          "previousActorSha256": "9031a434b35c287c93f0ee8bc9b2f411bc6d3257dc1583133e9a149070baa870",
+          "actorSha256": "625e041085bdd8cfcee0b2fffdef1801861a3109ed3a5e1c1b6d32732d8321df",
+          "visualReview": "Individually reviewed native frame 1556 and its exact pixel crop from the production actor. The large-bodied paged suit remains complete while swinging, with its markings and appendages intact. The free hand has folded fingers below the broad hand surface and a curled thumb, forming a compact fist silhouette rather than a spread claw. No detached finger or gross hand collapse is visible. The raised hand meets the web. This accepts the shown silhouette, not exhaustive finger contact or every material triangle individually.",
+          "images": {
+            "frame_01556.png": "2421ea2e9f3c29e349b94c50e7240e1b97521f1f427b8fe1f9f0a068a0ec239a",
+            "frame_01556_closeup.png": "88167fba43554ca0523500b1da340642a9002ad4907125b0c658a04ca8bc0ead"
+          }
+        }
+      ],
+      "managedLoaderExitCode": 0,
+      "scope": "Pose-only base-finger curl repair (60 to 90 degrees). Distal flexion, thumb opposition, source hierarchy, bind, weights, proportions and materials retained. Each pair is one native gameplay frame plus its exact native pixel crop, not two poses. Representative compact free-hand silhouette accepted; not exhaustive contact or all-suit acceptance.",
+      "previousFilesUnchanged": 958,
+      "changedFiles": [
+        "smu-amazing-spider\\actor.psx",
+        "smu-amazing-spider\\conversion-report.json",
+        "smu-other\\actor.psx",
+        "smu-other\\conversion-report.json",
+        "smu-spiderham\\actor.psx",
+        "smu-spiderham\\conversion-report.json"
+      ],
+      "build": {
+        "status": "PASS",
+        "warnings": 9,
+        "errors": 0
+      },
+      "remainingCatalogueFistRollout": 230,
+      "packagingPreserved": {
+        "suit": "smu-spiderham",
+        "files": [
+          {
+            "file": "suit.json",
+            "generatedSha256": "ef972c9baa75418e8878c4ee411178a3a7c015dd37c5bd10bfeed8bbbd44f26e",
+            "retainedSha256": "6467bcdb1817181024d1da575f4fedc008d5abcdd3f977798ee49666461b4b7f"
+          },
+          {
+            "file": "textures/diffuse.png",
+            "generatedSha256": "64ea2657bf8587310eecc3cac76fafff20577fd15ddeb4dc589779896401da79",
+            "retainedSha256": "112e5082692bb0439a6f57046f74fa0d7b4f71e7c20cbb7cbbd443b451ebf43b"
+          }
+        ],
+        "decodedTexturePixelsIdentical": true,
+        "manifestOnlyDisplayNameDifferent": true,
+        "note": "Original display name and PNG bytes retained after native capture. Actor bytes, material bindings and decoded pixels are identical to captured production assets."
+      }
     },
     {
       "repairs": [
@@ -423,5 +498,17 @@
       "scope": "Genuine game framebuffer, process-local input. Muted run; no desktop capture. Two individually reviewed images, not full animation or campaign visual acceptance."
     }
   ],
-  "installedHashesMatchLatestRigEvidence": true
+  "installedHashesMatchLatestRigEvidence": true,
+  "fistPolicyRollout": {
+    "baseFlexionDegrees": 90,
+    "distalFlexionDegrees": 85,
+    "updatedInstalled": 3,
+    "remaining": 230,
+    "suits": [
+      "smu-amazing-spider",
+      "smu-other",
+      "smu-spiderham"
+    ],
+    "scope": "Source-preserving tighter base curl with per-batch regressions and representative native visual review. Not exhaustive per-suit contact testing."
+  }
 }

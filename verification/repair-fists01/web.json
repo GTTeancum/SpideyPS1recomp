@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "amazing_spider",
+      "id": "smu-amazing-spider",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.13037109375,
+        6.532470703125
+      ],
+      "assetSha256": "cf88dd0856de751bc14c9f1422ffa6ba381111a7d904f3c26eae9a8a6bdd4d98",
+      "captureSha256": "cfdde4197306cc40c6d177b7d018ee2c56e8762d6a381093e0fb8acfd897cb9b"
+    },
+    {
+      "key": "spiderham",
+      "id": "smu-spiderham",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        133.66650390625,
+        145.27197265625
+      ],
+      "assetSha256": "faef63a50e2fe22b17a36bda3ac99759bc3cbcf8c6dcd9de5cfa26bde4fec30d",
+      "captureSha256": "46ed925c805b1a931bd6ab9444753f7e3f7d55257ae86499e4f44a7e70629142"
+    },
+    {
+      "key": "other",
+      "id": "smu-other",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.19775390625,
+        9.599609375
+      ],
+      "assetSha256": "625e041085bdd8cfcee0b2fffdef1801861a3109ed3a5e1c1b6d32732d8321df",
+      "captureSha256": "5fa1b37290135c634226b4c976ffeed75ecf46d6e575a3f71f692af51ee45d74"
+    }
+  ]
+}

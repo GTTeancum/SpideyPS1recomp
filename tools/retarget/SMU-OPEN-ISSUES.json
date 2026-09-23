@@ -46,8 +46,10 @@
       "id": "visual-fist-closure",
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
-      "evidence": "verification/finger-policy/installed-231.json",
-      "next": "The uninstalled 90-degree base/85-degree distal candidate passes full rig, web, managed and before/after isolation checks, but wide native views do not establish closure/contact. Use inspect_hand_pose.py for complete anatomical faces across packets: older packet-5-only diagnostics omitted hand geometry. Check both hands and short/large representatives, then native views exposing the fingers. Evidence: verification/fist-base90-experiment/review.json."
+      "evidence": "verification/repair-fists01/review.json",
+      "resolvedSuits": ["smu-amazing-spider", "smu-spiderham", "smu-other"],
+      "progress": "The 90-degree base/85-degree distal policy now has complete-hand offline review on both hands and native full-frame/exact-crop proof for normal, short and large/paged representatives. These three production actors are installed after full animation, web, loader and before/after isolation checks. Their shown free-hand silhouettes are compact fists; exhaustive finger/palm contact across all poses is not claimed. Thumb opposition is unchanged. Original display names and texture bytes remain intact. The other 230 suits still use the previous base curl.",
+      "next": "Roll the verified base-curl repair through the remaining catalogue in small tested batches. Preserve earlier material, tongue and source-body repairs. Use complete anatomical geometry, not packet-5-only close-ups, and retain at most two native images per representative."
     },
     {
       "id": "runtime-vertex-capacity",

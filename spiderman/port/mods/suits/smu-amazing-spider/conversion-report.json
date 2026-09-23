@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\The_Amazing_Spider_D.png": "a201497394fd3ea53b47e3258b07ba6b20b11a5946ee1ff4447b9ef45a58bb83"
   },
-  "outputSha256": "245056c0b7f7163a8ef328bb7bf45b3eba3abf8aa4826c5326a69af223834c10",
+  "outputSha256": "cf88dd0856de751bc14c9f1422ffa6ba381111a7d904f3c26eae9a8a6bdd4d98",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -170,7 +170,7 @@
     },
     {
       "bone": "Clown001LArmDigit21",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         0.3330650623350011,
         -0.30884892725469704,
@@ -188,7 +188,7 @@
     },
     {
       "bone": "Clown001LArmDigit31",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         -0.026694978148962566,
         -0.03193626051410115,
@@ -206,7 +206,7 @@
     },
     {
       "bone": "Clown001LArmDigit51",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         -0.07911625877872981,
         0.10782630400657066,
@@ -266,7 +266,7 @@
     },
     {
       "bone": "Clown001RArmDigit21",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         -0.3330564555738987,
         0.30884542634084267,
@@ -284,7 +284,7 @@
     },
     {
       "bone": "Clown001RArmDigit31",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         0.026703513783972066,
         0.03193226626842462,
@@ -302,7 +302,7 @@
     },
     {
       "bone": "Clown001RArmDigit51",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         0.0791253921322725,
         -0.10782724882181301,

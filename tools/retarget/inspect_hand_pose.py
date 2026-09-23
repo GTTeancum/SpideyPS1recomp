@@ -6,6 +6,7 @@ visual closure. Inspect native gameplay separately before installing a policy.
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 import struct
 
@@ -66,9 +67,10 @@ def main():
     blob = bytearray(original.blob)
     changes = []
     for row in original.provenance['fistPose']:
-        if row.get('angleDegrees') not in (60, 85):
+        match = re.fullmatch(r'Clown001[LR]ArmDigit([1-9])([1-3])', row['bone'])
+        if not match or 'angleDegrees' not in row:
             continue
-        angle = args.base if row['angleDegrees'] == 60 else args.distal
+        angle = args.base if match[2] == '1' else args.distal
         index = names.index(row['bone'])
         offset = original.h[7] + index * 196 + 160
         blob[offset:offset+36] = np.asarray(axis_angle(row['axisLocal'], angle), dtype='<f4').tobytes()
