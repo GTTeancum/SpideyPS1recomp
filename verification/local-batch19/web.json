@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "steampunk",
+      "id": "smu-steampunk",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.80029296875,
+        11.202392578125
+      ],
+      "assetSha256": "8f80f18c5118dab64d2b00b4af57d66717557e664fc37dff1f0d5c8ac7f79f0b",
+      "captureSha256": "8dfb5d276bf9b933fa7508cbc84f004244eb09e2342287bd4024aecff67c3169"
+    },
+    {
+      "key": "steel",
+      "id": "smu-steel",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.991943359375,
+        9.394287109375
+      ],
+      "assetSha256": "c9656e52833bd05d7ce91176b717d4d0e6f0925dc678e7b9f6980db87fdc7c2c",
+      "captureSha256": "e143af3bc2cb8994e1ae4d6728d5ef50ae65aa0538c0a1c91f1d7bcc3cd395c3"
+    },
+    {
+      "key": "superior_carnage",
+      "id": "smu-superior-carnage",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -11.236572265625,
+        -6.834228515625
+      ],
+      "assetSha256": "a2c39c21ac9368b40c18d01a7747ab23502f952644e8064260722c5c627e23f6",
+      "captureSha256": "483b4f32e54fc8b541139135d4c4a7132c6e04a9802022dc071cd0061e9f6e12"
+    },
+    {
+      "key": "superiorb",
+      "id": "smu-superiorb",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "c6ca58e044ba3fd789becfd03562b413cdc7a1f44bafb63695ce18b2e8dc3bf2",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    },
+    {
+      "key": "supvenom",
+      "id": "smu-supvenom",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.2236328125,
+        10.62548828125
+      ],
+      "assetSha256": "114289760515f9d2f3a969e30169986430275e418f6b3361d929c772537dfec6",
+      "captureSha256": "441e253dba1ffe274107c621d25da674b095c1dc8f2c5417e0346c785d04a9cd"
+    },
+    {
+      "key": "swift",
+      "id": "smu-swift",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.13134765625,
+        18.307373046875
+      ],
+      "assetSha256": "a8215563c47d30206c15a64e9b7e114ea0543011ad24ca72deb8c26c8bdc937a",
+      "captureSha256": "1663a72ba4f35638dc016608aadca1662d3f8dca1af56248c571222f0be8fb43"
+    },
+    {
+      "key": "symbiote",
+      "id": "smu-symbiote",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "2f3edec128c3d9ea7d806d77b3b923838425997c3c00fb329311cab8839419b9",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    },
+    {
+      "key": "symbiote_kraven",
+      "id": "smu-symbiote-kraven",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.074951171875,
+        5.47705078125
+      ],
+      "assetSha256": "a916044be0a69f102114caee4024d631f0d66616ff29ea48bd944748744ac7c9",
+      "captureSha256": "6d60b76ddfc00023a688c3ff38cfa1af5b63cf201dbe45bdd21fc1604716f8d2"
+    },
+    {
+      "key": "tarantula",
+      "id": "smu-tarantula",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.156982421875,
+        5.55908203125
+      ],
+      "assetSha256": "b272d9c8d2b8060c1cf650b2248df1055c11b4a031f28c140e6d764c8e009316",
+      "captureSha256": "44fc97bb40ce0d347ac592434ea249364a526728e00a041a0e3f70a90cc9b846"
+    },
+    {
+      "key": "the_amazing_octo_spidey",
+      "id": "smu-the-amazing-octo-spidey",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.300537109375,
+        8.70263671875
+      ],
+      "assetSha256": "accd4c494986f673195a46f89230a15528d1712f36bc0d96dc502fa75214c4b8",
+      "captureSha256": "620fbb7ec8bea403b64cd873576927e0348c90409214ae8996728f6f6594a2e0"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-supvenom",
+  "name": "SMU SUPVENOM",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "B4657CC1": "textures/diffuse.png"
+  }
+}

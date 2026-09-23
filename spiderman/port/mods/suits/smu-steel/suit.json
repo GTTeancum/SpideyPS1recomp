@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-steel",
+  "name": "SMU STEEL",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "AA6B8D34": "textures/diffuse.png",
+    "1D8D6ABD": "textures/diffuse-1.png"
+  }
+}

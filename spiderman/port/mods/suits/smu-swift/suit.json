@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-swift",
+  "name": "SMU SWIFT",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "8985102B": "textures/diffuse.png"
+  }
+}

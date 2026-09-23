@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-the-amazing-octo-spidey",
+  "name": "THE AMAZING OC #214",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "2220ABA2": "textures/diffuse.png"
+  }
+}

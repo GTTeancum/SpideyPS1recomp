@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-steampunk",
+  "name": "SMU STEAMPUNK",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "B9005FDB": "textures/diffuse.png"
+  }
+}

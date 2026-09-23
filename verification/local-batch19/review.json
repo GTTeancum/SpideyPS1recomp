@@ -1,0 +1,26 @@
+{
+  "batch": 19,
+  "keys": [
+    "steampunk",
+    "steel",
+    "superior_carnage",
+    "superiorb",
+    "supvenom",
+    "swift",
+    "symbiote",
+    "symbiote_kraven",
+    "tarantula",
+    "the_amazing_octo_spidey"
+  ],
+  "representative": "smu-steampunk",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed Steampunk native swing and grounded images individually. Full costume, brass back apparatus, colored torso, trousers and boots are present. The web reaches the raised glove region. Back apparatus remains preserved with the source rig; these views do not establish independent mechanical appendage animation. Free-hand silhouette alone does not establish finger contact or closed-fist quality.",
+  "liveSwingImages": [
+    "frame_01581.png"
+  ],
+  "images": {
+    "frame_01581.png": "2b616806842ce70211d2c527a353692f17f406d9319cc6172fd711d13491c17e",
+    "frame_01886.png": "c987c03e428e10d6dc3b5787ecb4d30f220c5932391f15a51b8318a4f3ceea9c"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-symbiote-kraven",
+  "name": "SMU SYMBIOTE KRAVEN",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "A8615BB2": "textures/diffuse.png"
+  }
+}
