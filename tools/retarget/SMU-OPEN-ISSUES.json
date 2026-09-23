@@ -1,0 +1,32 @@
+{
+  "finalAcceptance": false,
+  "issues": [
+    {
+      "id": "symbiote-tongue-pose",
+      "status": "open",
+      "suit": "smu-poison",
+      "finding": "User-reported odd tongue silhouette. Front gameplay view shows attachment at the mouth but a rigid upward-curled source pose. All 4196 offline frames preserve head-relative tongue bones and weighted vertices within 0.002 native units. Attachment correctness does not establish acceptable tongue pose.",
+      "next": "Apply and validate a preserved-chain tongue pose correction, including front and crouched game views. Audit other symbiote tongue poses."
+    },
+    {
+      "id": "extra-arm-retargeting",
+      "status": "open",
+      "suit": "smu-sixarmed-spiderman",
+      "finding": "Batch16 native captures retain all six arms, but extra arms remain in their source rest pose and their hands remain open.",
+      "next": "Retarget extra limb chains and their finger bones without changing source hierarchy, binds, weights or proportions."
+    },
+    {
+      "id": "visual-fist-closure",
+      "status": "open",
+      "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist.",
+      "next": "Inspect and correct finger curl/orientation using representative hand geometry and native close views."
+    },
+    {
+      "id": "runtime-vertex-capacity",
+      "status": "open",
+      "suits": ["smu-damon-ryder", "smu-other"],
+      "finding": "6500 and 4511 runtime vertices exceed the current 4096-vertex, 18-packet renderer transport. Raising only metadata limits cannot support these assets.",
+      "next": "Extend actual rendering transport without losing triangles, normals, weights or materials, and test in the game."
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 {
   "schema": 1,
   "checkpoint": "SMU-LOCAL-B02",
+  "historicalCheckpoint": true,
+  "currentProgressFile": "SMU-CATALOGUE-PROGRESS.json",
   "base": "Cumulative07a",
   "scope": "SM1 suit retargeting; previous shared Linux/SFD/sewer code retained",
   "catalogueCount": 233,

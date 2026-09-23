@@ -1,0 +1,238 @@
+{
+  "catalogueCount": 233,
+  "convertedInstalled": 167,
+  "batchVerified": 167,
+  "remainingUnconverted": 66,
+  "awaitingBatchAcceptance": [],
+  "offlineChecks": 4251,
+  "animationFrames": 700732,
+  "offlineSwingFrames": 19205,
+  "structuralBlockers": [
+    {
+      "key": "damon_ryder",
+      "status": "unsupported",
+      "reason": "Full-quality mesh has 6500 runtime vertices; native RTG2 supports at most 4096. Refused to merge normals, weights or drop geometry"
+    },
+    {
+      "key": "other",
+      "status": "unsupported",
+      "reason": "Full-quality mesh has 4511 runtime vertices; native RTG2 supports at most 4096. Refused to merge normals, weights or drop geometry"
+    }
+  ],
+  "verificationScope": "Full offline animation and web tests per verified suit; representative native gameplay per batch, not all suits. Batch-verified counts are conversion checkpoints, not final visual acceptance; see openIssues.",
+  "liveReviews": [
+    {
+      "batch": 3,
+      "representative": "smu-alistaire-smythe",
+      "images": {
+        "frame_01241.png": "02eaf75f625078689b2828206af8719bf8fe427d09b5ea7da6e0fb515fe43d77",
+        "frame_01631.png": "236eb97c31adbf94a10180af46b16418c0e401849af178c46a450efe30b4af82",
+        "frame_01861.png": "e8c0e55db325c7f298d747e01a79c4ffed6ee86ccabf51dfa6f0ad3ef7f16ca4"
+      },
+      "notes": "Reviewed all three live-retry framebuffer images: intro NPC Venom, then Alistaire Smythe gameplay poses at 1631 and 1861 with armor and body intact. Runtime log confirms animated-wrist swing correction, but these screenshots missed the brief swing and do not constitute visual web-endpoint proof. Full offline animation/web tests cover all ten suits.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 4,
+      "representative": "smu-annie-parker",
+      "images": {
+        "frame_01266.png": "b75bcfca09831cac03d7af75a872cf126fe3db13d8ff4b2a7497e79e0f9beab6",
+        "frame_01581.png": "90f19ee5145d1939d0231e6ad8810932164365074ab346c7cba1c3ac66a874e6",
+        "frame_01596.png": "7fd05e099e6db8851b1bcdc224c5ff5f4800c7e8cdc845f451cbd3da6e712819",
+        "frame_01626.png": "e9a7043bbb7df91e82e1a9278cd04e034c8c894252e0d3bd550495f2af36cd6d",
+        "frame_01886.png": "f58227dbeb2b20d7820a9d3a63e04fb3b149e95935fd20ff9ba871d249abd59f"
+      },
+      "notes": "Reviewed all five native framebuffer captures sequentially: intro NPC Venom; Annie Parker swings with web meeting raised wrist at 1581 and 1596, then lands at 1626 and idles at 1886. Cape, hair, limbs and material colors visible without detached geometry. Offline tests cover all ten suits; gameplay proof is representative, not every suit.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 5,
+      "representative": "smu-black-tarantula",
+      "images": {
+        "frame_01266.png": "5e8c9555e536610a92892817b09477030cfb24444da44e59a1e99356562eb48b",
+        "frame_01581.png": "c1d8764d6d0361076ada7d14abc124b378c401077450ed15ad00e44f4e2440d7",
+        "frame_01596.png": "e862e5dd77ff4ca58a98fe633389ab03fa7fe9e0c1674277ade3658a9b95dfea",
+        "frame_01626.png": "538dc53a0151b8ddebe7d688637ca0a957b6b603cc4a9089cd08fc2de676883e",
+        "frame_01886.png": "2197dd2ff6edf73127784a6e6a55bcd25d1f4215570c3121d9c9615bf2f37e2f"
+      },
+      "notes": "Reviewed all five framebuffer images: cutscene NPC first; Black Tarantula swings at 1581 and 1596 with attached wrist/web, then lands at 1626 and idles at 1886. Full body, white sleeve markings and back emblem remain intact. Representative gameplay only; all ten suits have separate offline animation and endpoint checks.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 6,
+      "representative": "smu-deadaim",
+      "images": {
+        "frame_01266.png": "e091af955b5a89ed249cdec68c73eed3dfeb69ab304ebb1a1b9d11a894d42550",
+        "frame_01581.png": "17c47686481a4c9f59c6dce3452ea237616ed950e24dddab8f71e45b5c2df936",
+        "frame_01596.png": "4d4d996f22bc22537656e0b7036b9a1702eadf1c5e71479332e779a2e9ebc79e",
+        "frame_01626.png": "9bb58a909b8bda27583ddd538bc2d29c84eee7bdaf161894428aecda4e047a3d",
+        "frame_01886.png": "b178d98b2c8c652a4645178274b19862500467d23da317d9a8ee73b67f16747d"
+      },
+      "notes": "All five native framebuffer images reviewed in order. First is NPC cutscene; Dead Aim swings at 1581 and 1596 with line at raised wrist, lands at 1626 and turns in idle at 1886. Arm equipment, hair and full body retained; no detached geometry seen. Gameplay is representative, offline animation/web checks cover all ten suits.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 7,
+      "representative": "smu-edwardbrock-earth11080",
+      "images": {
+        "frame_01267.png": "1e4bee6f5e20c86ad58b0b7f2f720c8eb7895d388dee5d4820bf0da1a364d2b0",
+        "frame_01582.png": "2f16f9d8f47a26ebbd7f51e0cffbd5bbc332d4e213cad060ee7347a126c1ed88",
+        "frame_01597.png": "e08468a68f6510bf1422278d88756c964074b83628a23c63d6c0444e8701f988",
+        "frame_01627.png": "eaa904e59a8a460497eaebc7da80c97a388b5b63849ab4f4287dce00b1d91568",
+        "frame_01887.png": "f6251a04bca245e580f9856403db2fbc2375723108eabd64974cf5b0a40e3d97"
+      },
+      "notes": "Reviewed all five native captures sequentially. Intro is NPC Venom; Earth-11080 Edward Brock swings at 1582/1597 with web attached to raised wrist, lands at 1627, idles at 1887. Broad torso, back spikes, hands, boots and markings stay intact. Offline tests cover ten suits; live evidence is representative.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 8,
+      "representative": "smu-gabrielgant",
+      "images": {
+        "frame_01534.png": "98f1d6925e6cda9304e42d11a46a58e83bae66bcfae199cf325292058bdbe8fd",
+        "frame_01839.png": "66913433c5961c203fac30df2e4656cff1a024e0afb1cb598fe8e51458f38067"
+      },
+      "notes": "Reviewed exactly two retry images: Gabriel Gant swings at 1534 and stands after landing at 1839. Cape, shoulder equipment and limbs remain visible. Swing view has native ceiling/camera clipping and the raised wrist is partly obscured; precise endpoint acceptance relies on the live hook plus offline oracle, not this image alone. Retry exits normally with one slow-run warning. Original attempt was terminated by the low-FPS watchdog and is not a successful run.",
+      "slowRunWarnings": 1
+    },
+    {
+      "batch": 9,
+      "representative": "smu-ichor",
+      "images": {
+        "frame_01533.png": "e37d6deb65bee294d4cdc8f6a4674c52446d42f7cb57534e7328d0258cc960f5",
+        "frame_01838.png": "71f5eda087506172dbea6608f8a61d646077604b1c5f9c73d046d38f49b353e3"
+      },
+      "notes": "Reviewed exactly two frames: Ichor swinging at 1533 and standing after landing at 1838. Distinctive arm extensions, head geometry, torso and blue/white textures are present. Raised wrist is partly obscured, so exact attachment is established by the live hook plus offline oracle rather than the screenshot alone. Run exits normally with two low-frame-rate warnings; performance is not accepted as smooth.",
+      "slowRunWarnings": 2
+    },
+    {
+      "batch": 10,
+      "representative": "smu-knull",
+      "images": {
+        "frame_01534.png": "b5dad655d65df2e0dcc9760cd683c1cc18f3ac4733857e0bf8f47caaf3d2a1c4",
+        "frame_01839.png": "cad2089c8f8fc85a8c6897c2dd7aca806e7d0678a7550e72d6c8e45f27f3478c"
+      },
+      "notes": "Reviewed two captures: Knull swinging at 1534 and standing after landing at 1839. Hair, armor, skirt panels and limbs remain present. Wrist attachment is partly obscured by the head; precise endpoint correctness is from live hook and oracle. Individual finger closure is not resolved at this capture scale. Run exits normally with four low-frame-rate warnings under concurrent host load; smooth performance is not accepted.",
+      "slowRunWarnings": 4
+    },
+    {
+      "batch": 11,
+      "representative": "smu-mattie-franklin-5",
+      "images": {
+        "frame_01536.png": "4aeda44699cb7f5a8ad9967b99d65fafc9fa6a1acef9e7ebf5c2b16d6c9aae47",
+        "frame_01841.png": "7dcdd827cfaf64df896db78c46ab23e59b93ba83843b64253f7e7f84c287c010"
+      },
+      "notes": "Reviewed exactly two native frames: Mattie Franklin 5 swinging at 1536, then grounded at 1841. Hair, costume, limbs and footwear are retained, with the line meeting the raised glove. The wide captures do not establish detailed fist closure. Live run exits normally with four slow-frame warnings; offline rig/animation/web tests cover all ten suits.",
+      "slowRunWarnings": 4
+    },
+    {
+      "batch": 12,
+      "representative": "smu-michaelbingham",
+      "images": {
+        "frame_01533.png": "2569b1a04a6d40a0dbb9d907500c5f39b434d517f5e61d558e043088527af93a",
+        "frame_01838.png": "7ee060741a7d2e898492993e00d893655fd8918b20bd7e663c452d09aa8be01f"
+      },
+      "notes": "Reviewed two native frames: Michael Bingham swinging at 1533 and grounded at 1838. Backpack, shoulder tubing, mask, hands and legs remain attached through the poses; line reaches the raised hand. Detailed finger closure is not resolved in the wide view. Run exits normally with three slow-frame warnings; full offline checks cover every suit in the batch.",
+      "slowRunWarnings": 3
+    },
+    {
+      "batch": 13,
+      "representative": "smu-payback",
+      "images": {
+        "frame_01558.png": "ce04d07c2d5aff2a188657d024a89f3ac1a41ecd692488415343086a08884261",
+        "frame_01863.png": "a6621b5bec017ad64bc5ce07563e31acadc5ac9e6e28bdd770e01d718b43fb1b"
+      },
+      "notes": "Reviewed two native captures: Payback swinging at 1558 with the line meeting the raised hand, then grounded at 1863. Pink patterned surface, hair shape and complete limbs remain visible in both poses. Detailed hand closure is not established by these wide views. Run exits normally without slow-run warnings; offline tests cover all ten suits.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 14,
+      "representative": "smu-poison",
+      "images": {
+        "frame_01559.png": "898f27721578728fe3d755a97101fc4067df89242141e44c2e16987a3afef4ce",
+        "frame_01864.png": "2bfc4e84d08dd24f6ee6f7178cbecf4f9658e97180708f6c23244ba67463509f"
+      },
+      "notes": "Reviewed two frames: Poison swinging at 1559 and grounded at 1864. Broad body, white markings and thin appendages are retained. Web reaches the raised-arm region, although appendages partly obscure the wrist. Exact endpoint and finger-policy checks remain separate offline evidence. Run exits normally with no slowdown warnings; representative gameplay plus per-suit offline tests for the batch.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 15,
+      "representative": "smu-red-goblin-boss",
+      "images": {
+        "frame_01583.png": "c5a06fcf0149e272f198548204ee1dc9be694f9aa80b7a694c5ff2a414301d40",
+        "frame_01888.png": "2485cf3cf3456ef3bed98c572333619cf54fdc8f70ed48b5df31f79c17dd2ec8"
+      },
+      "notes": "Reviewed both native captures: Red Goblin Boss retains red/black markings, long tail, large head and limb appendages while swinging and grounded. The line reaches the raised hand region; the exact wrist is partly obscured by the head. Free hand remains claw-like: these two views do not establish closed-fist acceptance. Tongue-specific acceptance is not implied.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 16,
+      "representative": "smu-sixarmed-spiderman",
+      "images": {
+        "frame_01583.png": "78adc0313feb4ce7790459d078da044820d9a1f108e1d3f0ad401eb209c9f189",
+        "frame_01888.png": "919dcd492e5d82832e79de92345e46ce5756760da1c8daaffa93c6f35c4bcefd"
+      },
+      "notes": "Reviewed two native Six-Armed Spider-Man captures. All six arms, suit markings and full body are present; main arms and legs participate in swing and grounded poses. Extra arms visibly retain source rest poses and extra hands are open, so extra-limb retargeting/fist acceptance is INCOMPLETE. Line reaches the cluster of raised hands, but this angle cannot prove which wrist. This commit checkpoints lossless conversion and evidence, not final visual acceptance.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 17,
+      "representative": "smu-spdr",
+      "images": {
+        "frame_01559.png": "6212ff861c52b4fe837e824920851b922edd2c84244c4e5b6a7f05104fb36700",
+        "frame_01864.png": "379d461f283940b1af83b7db8a8713182abdf27f0204705c4b50380970034307"
+      },
+      "notes": "Reviewed both native SP//dr captures: large mechanical torso, segmented limbs, claw feet and red/gray/yellow materials are present in swing and grounded states. Web reaches the raised hand area; wrist partly obscured. Camera intersects low sewer ceiling in swing shot; this is not clean camera-clearance acceptance. No floating untransformed geometry is apparent in these views. Offline regression covers all ten assets; live images cover this representative only.",
+      "slowRunWarnings": 1
+    },
+    {
+      "batch": 26,
+      "representative": "smu-poison-hunter",
+      "images": {
+        "frame_01581.png": "0872371510a3903afda0bdd4e163b84e8adfbdce43b3eef1ad8a876a82e1458f",
+        "frame_01886.png": "4b00040e28b2c8a7c87175c4fc7460c9152ada478bf9edbb79462fc9ebaf9b52"
+      },
+      "notes": "Reviewed both native Poison Hunter frames: full body, limbs, head details and both material regions appear during swing and grounded poses. Web line reaches the raised wrist region. Both hand-variant packets retain identical full geometry; all 5852 original triangles pass exact coverage tests. Free hand remains claw-like, covered by the open visual-fist issue. Arana Gymnast has its own separately reviewed two-frame native capture in the arana evidence folder. These are conversion/rendering checkpoints, not final catalogue or finger-pose acceptance.",
+      "slowRunWarnings": 0
+    }
+  ],
+  "noPush": true,
+  "limitations": [
+    "2 native mesh-capacity failures remain; no source geometry was decimated.",
+    "Some Debug game runs have low-frame-rate warnings.",
+    "Transparency uses the existing PSX-compatible shader path; source RGB/alpha and material bindings are retained.",
+    "Full campaign, live SFD/audio, Linux execution and SM2 suit retargeting are not accepted by these tests."
+  ],
+  "finalAcceptance": false,
+  "openIssues": [
+    {
+      "id": "symbiote-tongue-pose",
+      "status": "open",
+      "suit": "smu-poison",
+      "finding": "User-reported odd tongue silhouette. Front gameplay view shows attachment at the mouth but a rigid upward-curled source pose. All 4196 offline frames preserve head-relative tongue bones and weighted vertices within 0.002 native units. Attachment correctness does not establish acceptable tongue pose.",
+      "next": "Apply and validate a preserved-chain tongue pose correction, including front and crouched game views. Audit other symbiote tongue poses."
+    },
+    {
+      "id": "extra-arm-retargeting",
+      "status": "open",
+      "suit": "smu-sixarmed-spiderman",
+      "finding": "Batch16 native captures retain all six arms, but extra arms remain in their source rest pose and their hands remain open.",
+      "next": "Retarget extra limb chains and their finger bones without changing source hierarchy, binds, weights or proportions."
+    },
+    {
+      "id": "visual-fist-closure",
+      "status": "open",
+      "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist.",
+      "next": "Inspect and correct finger curl/orientation using representative hand geometry and native close views."
+    },
+    {
+      "id": "runtime-vertex-capacity",
+      "status": "open",
+      "suits": [
+        "smu-damon-ryder",
+        "smu-other"
+      ],
+      "finding": "6500 and 4511 runtime vertices exceed the current 4096-vertex, 18-packet renderer transport. Raising only metadata limits cannot support these assets.",
+      "next": "Extend actual rendering transport without losing triangles, normals, weights or materials, and test in the game."
+    }
+  ]
+}

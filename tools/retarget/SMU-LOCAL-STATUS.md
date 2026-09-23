@@ -1,5 +1,42 @@
 # Local SMU checkpoint
 
+## Current checkpoint
+
+167 of 233 suits are installed and committed through batch17 plus capacity
+recovery batch26. Each has full
+offline rig/animation/web regression evidence; native gameplay evidence is
+representative per batch, not per suit. These are conversion checkpoints, not
+final visual acceptance. See `SMU-OPEN-ISSUES.json` for unresolved visual work.
+
+Arana Gymnast and Poison Hunter now convert losslessly with a fallback that
+packs across all 16 distinct transport slots and duplicates both alternate-hand
+packets. Both pass 4,196 animation frames, 115 native web frames, and managed
+actor/material loading. Separate native game runs and two inspected images for
+each show their full bodies and costume geometry; Poison Hunter also has a visible
+wrist-connected swing line. Arana's first image catches the jump before a visible
+line, so it is not visual web proof. Their previous
+packet-capacity failures are no longer conversion blockers. Damon Ryder (6,500
+runtime vertices) and Other (4,511) still exceed the actual 4,096-vertex runtime
+limit and need a rendering transport extension, not asset simplification.
+
+Multi-material, authored alpha/repeat textures, multiple source meshes,
+undefined-normal repair, and alternate finger layouts are supported. Source
+geometry, full skin influences, hierarchy, bind transforms and provenance remain.
+Batch18 has offline results but is not installed or accepted yet. Remaining
+planned batches are preserved in the local task workspace.
+
+The reported Poison tongue is attached to the mouth in a front-facing native
+game capture. Its rigid upward-curled source pose still needs visual correction.
+An explicit head-relative regression passes all 4,196 frames for its four tongue
+bones and 82 weighted vertices. This is attachment evidence, not pose acceptance.
+Six-Armed Spider-Man's extra arms retain their source rest pose, and visual fist
+closure is not established for every rig. Both remain open work.
+
+The sections below are the retained initial 15-suit checkpoint and its original
+test totals/blockers. They are historical, not the current catalogue status.
+
+## Initial 15-suit checkpoint
+
 15 of 233 catalogue suits are converted and pass the complete offline rig and
 animation checks. 218 remain unconverted. This is not the completed suit pack.
 
