@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-scarletjoe",
+  "name": "SMU SCARLETJOE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "5C3A17A2": "textures/diffuse.png"
+  }
+}

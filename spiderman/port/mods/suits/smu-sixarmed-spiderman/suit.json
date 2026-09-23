@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-sixarmed-spiderman",
+  "name": "SIXARMED SPIDERMAN",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "7B36568E": "textures/diffuse.png"
+  }
+}

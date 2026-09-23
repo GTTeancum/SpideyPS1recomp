@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-shevenom",
+  "name": "SMU SHEVENOM",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "E17712E7": "textures/diffuse.png",
+    "D72839A8": "textures/diffuse-1.png"
+  }
+}

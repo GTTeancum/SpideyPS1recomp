@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-silk2",
+  "name": "SMU SILK2",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "15996884": "textures/diffuse.png"
+  }
+}

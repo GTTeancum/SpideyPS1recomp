@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-scorn",
+  "name": "SMU SCORN",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "81BF827E": "textures/diffuse.png"
+  }
+}

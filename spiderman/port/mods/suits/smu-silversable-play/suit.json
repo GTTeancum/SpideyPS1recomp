@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-silversable-play",
+  "name": "SILVERSABLE PLAY",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "B77FB89B": "textures/diffuse.png"
+  }
+}

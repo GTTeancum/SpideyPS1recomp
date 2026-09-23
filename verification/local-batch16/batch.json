@@ -1,0 +1,517 @@
+{
+  "schema": 1,
+  "batch": "batch-16",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "scarletjoe",
+    "scorn",
+    "scream",
+    "secretwar",
+    "shevenom",
+    "silk",
+    "silk2",
+    "silversable_play",
+    "sixarmed_spiderman",
+    "small_ed_brook"
+  ],
+  "results": [
+    {
+      "key": "scarletjoe",
+      "id": "smu-scarletjoe",
+      "fbx": "costumes/scarletjoe/scarletjoe.fbx",
+      "fbxSha256": "83e153651e209171ab2ef46d7974406d5ca6229a32ca1deaf61e8f2369996bbc",
+      "textureFiles": [
+        "textures-png\\Spiderman_ScarletJoe_D.png"
+      ],
+      "textureSha256": [
+        "e668cf128adab55f96c452e7869eb10798e88d62d8b927426033f9ec953ea32b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1634,
+      "sourceTriangles": 2814,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman_ScarletJoe_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "ScarletJoe",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman_ScarletJoe_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 698804,
+      "outputs": {
+        "actor.psx": "3767c8223d69149b77f1267231e9a1c97ec2fc9951a6bcfa01967297988edfae",
+        "conversion-report.json": "f2b3a34cdad40fa2406a35718f76788530d508ecb85ea0053f968b4e293fd748",
+        "suit.json": "b46ab0697a701679c040295c6b51803526936aaa5de8d9bcf83635935ed14df1",
+        "textures\\diffuse.png": "d883a0c31f743dad420eab7100fff0684463a1cf1539861a6d34d993256072b3"
+      }
+    },
+    {
+      "key": "scorn",
+      "id": "smu-scorn",
+      "fbx": "costumes/scorn/scorn.fbx",
+      "fbxSha256": "7d090ca17955b54533dab72728a279cd550aabb0233cb276df742a165320e77c",
+      "textureFiles": [
+        "textures-png\\Scorn_D.png"
+      ],
+      "textureSha256": [
+        "b2b0213d9ca7f598b667bb48c956f5d0220f731ef5580d4f3248e72d01bd9536"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2044,
+      "sourceTriangles": 3532,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Scorn_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "_1_-_Default",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Scorn_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 830180,
+      "outputs": {
+        "actor.psx": "c2815446c7ef83ef27ac69df3005b8f28d7832a724ad64b1fae33cd454faf536",
+        "conversion-report.json": "580d8e600aabdef97a724dcac153595b98857da81e8ca3c56e157eec24bdf80c",
+        "suit.json": "d3a9b57e7fccead8159e5c3de2678aac310ce9c04dcdeb29ca448ccd91405480",
+        "textures\\diffuse.png": "e36c3baa150fd81027f49ed4ee4ad9d51ce45710cf51ddde57501500fbdd6070"
+      }
+    },
+    {
+      "key": "scream",
+      "id": "smu-scream",
+      "fbx": "costumes/scream/scream.fbx",
+      "fbxSha256": "2c358e93b6b4ddd4e8fed44e76a0f504617dae4938ca2e3a75bdf6d44c069591",
+      "textureFiles": [
+        "textures-png\\Scream_D.png"
+      ],
+      "textureSha256": [
+        "0f4c2a1e05e78620fbb19ab2bd2bab5dbc8e018f473cec9a7bcbbefa6191be52"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2363,
+      "sourceTriangles": 3692,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Scream_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Material__88",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Scream_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 904384,
+      "outputs": {
+        "actor.psx": "ebe72ee68be647094847d6f98cfc4a863957973974580a6eb8f198a874048eb2",
+        "conversion-report.json": "bc9e05cecfa94dd5caa57d075605ea800c27c228088363fae7d286a44eee6307",
+        "suit.json": "f728f7c50f3fe7481cd807df77622c5c554352db8435f74c477d8bafd2021609",
+        "textures\\diffuse.png": "85ce4ebec89891dc2d07e0a06e727eb5b62b74103547c1c8c0ead62f208c1254"
+      }
+    },
+    {
+      "key": "secretwar",
+      "id": "smu-secretwar",
+      "fbx": "costumes/secretwar/secretwar.fbx",
+      "fbxSha256": "cef551bd9ed19b22a42ff0539e2319d017c05f5b2289b12a68892cd3f5b16ed9",
+      "textureFiles": [
+        "textures-png\\SpidermanSecretWar_D.png"
+      ],
+      "textureSha256": [
+        "1fab78f35d6abf24d4127b9f96d5fd8a0ad7baccae0575d22c23776f02bb392f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanSecretWar_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanSecretWar_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 699856,
+      "outputs": {
+        "actor.psx": "202fb571e7046a5e0b9b9f2196f5080f0897a55689bd836f8b73d0ab0ef23c90",
+        "conversion-report.json": "3210d77356df294f1f22b783682180f546becb8270e93d1a54ca60d3337d4b7b",
+        "suit.json": "457bfd25af7a1a1ac1ec774155a9c5a5d06c304509a252e6333ea8fe73011346",
+        "textures\\diffuse.png": "2cbf34908fcf7500396c26869a4ed66a372ad071de4e25bc4b851551df829e61"
+      }
+    },
+    {
+      "key": "shevenom",
+      "id": "smu-shevenom",
+      "fbx": "costumes/shevenom/shevenom.fbx",
+      "fbxSha256": "7645a475d53f6f03b2794e8e8418e38626e0590ee37e544617fde1cad27ca9a1",
+      "textureFiles": [
+        "textures-png\\SheVenom_D.png"
+      ],
+      "textureSha256": [
+        "37a8326f7c86282857b1e04b02702c9894e635352d34617db769fac98c873e17"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2659,
+      "sourceTriangles": 4025,
+      "sourceBoneCount": 71,
+      "authoredDiffuseNames": [
+        "SheVenom_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Material__SheVenom",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SheVenom_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Material_01",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SheVenom_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 72,
+      "nativeBytes": 940208,
+      "outputs": {
+        "actor.psx": "441e436db29ec5d516b38d0760477c115fd6c7d2cc9b1116116635052f7ef37e",
+        "conversion-report.json": "57f1818e08c3c078b3674ef4f78d13d7aa4fae576804bf5847766709853e966b",
+        "suit.json": "c2cc26125d850ebb89804bfe15ab0caa014b4be734fad9a9ec214340b00d3a6e",
+        "textures\\diffuse-1.png": "1093fc391e15b957e2423ae380cedf69df7c4c0f43000fb8abb6269e57bcf5e4",
+        "textures\\diffuse.png": "1093fc391e15b957e2423ae380cedf69df7c4c0f43000fb8abb6269e57bcf5e4"
+      }
+    },
+    {
+      "key": "silk",
+      "id": "smu-silk",
+      "fbx": "costumes/silk/silk.fbx",
+      "fbxSha256": "7d6fb5457a79b094e9f08c3b5e005b6c6e3be9927e67f7c855e8d18f7eb96810",
+      "textureFiles": [
+        "textures-png\\SpidergirlSilk_D.png"
+      ],
+      "textureSha256": [
+        "77359958dfef2f182105bd9e758463ad4b6ef1e9c990fd5642629f5abb59d6da"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2204,
+      "sourceTriangles": 3801,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidergirlSilk_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "_7_-_Default123",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidergirlSilk_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 887840,
+      "outputs": {
+        "actor.psx": "fdce0a43a75b4d9dd30ada65ff58a2a9d9b30f7b0ca17d917233869f09bd8742",
+        "conversion-report.json": "ddac28fa0a5079c0444a01627361bc67ceae2d46bd5bcaa62e8f3ba4c039e653",
+        "suit.json": "3603a5ab9ab5e2b23f8c9172432ed385c1ffe92f6f1bfa0578eb8967f6b71c6f",
+        "textures\\diffuse.png": "e757a8c5ac6e77d50721634b28bf5364254dd79b393d9256d649317373a7a437"
+      }
+    },
+    {
+      "key": "silk2",
+      "id": "smu-silk2",
+      "fbx": "costumes/silk2/silk2.fbx",
+      "fbxSha256": "28c0a2024f049d577aaa33d8987c269acf420f342abbe8fc271c2613ae673962",
+      "textureFiles": [
+        "textures-png\\SpidergirlSilk2_D.png"
+      ],
+      "textureSha256": [
+        "b0b618e8c8266d7b67ff7ea92fabe8207c81dc27e7e64f45161ca88345377bee"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2204,
+      "sourceTriangles": 3801,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidergirlSilk2_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "_7_-_Default123",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidergirlSilk2_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 887844,
+      "outputs": {
+        "actor.psx": "33dbf63ba7b6e8867fec8824f7556454fc2498f5ba35e7195fecca488ab2e2c6",
+        "conversion-report.json": "87f3cb2e67f3e2b0b3b76a145c60c1a60d1eeba17b245be541b7971672d10c12",
+        "suit.json": "6a8df54358be4272ba6d88e812cdbd6122f2d99b4d30a15642ee004917b87a3a",
+        "textures\\diffuse.png": "0c3cfe3380ab005923ed0a11b860f69dc042f49108b7c0489cecbf8ae2864bad"
+      }
+    },
+    {
+      "key": "silversable_play",
+      "id": "smu-silversable-play",
+      "fbx": "costumes/silversable_play/silversable_play.fbx",
+      "fbxSha256": "069405d6e4519ea26f8f60858bd7033daa0e06db39c237dff4bb34888e1642be",
+      "textureFiles": [
+        "textures-png\\SilverSable_D.png"
+      ],
+      "textureSha256": [
+        "ff6be747984f759b6415742e648cc200773f81eaca2fd2d4f34c53f8ba9d845b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2261,
+      "sourceTriangles": 3287,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SilverSable_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "SilverSable_Play",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SilverSable_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 838088,
+      "outputs": {
+        "actor.psx": "3c9734c05d17c8b8e1b32c86a8b153c84535712ed115679dece8dca9ddf8fff3",
+        "conversion-report.json": "dc043e6bba694144c14139cb51a98cab118a88c1a351eb472aa95d353a980728",
+        "suit.json": "8930090c35268b06dedae92a0bc6e9e197229c5dac4219e7c6bb3726f0282468",
+        "textures\\diffuse.png": "501915bc94bc3bbd59e8a45dca8587fb10d4f7745d914e6b5dd16407965ad552"
+      }
+    },
+    {
+      "key": "sixarmed_spiderman",
+      "id": "smu-sixarmed-spiderman",
+      "fbx": "costumes/sixarmed_spiderman/sixarmed_spiderman.fbx",
+      "fbxSha256": "efc8e73098441c62f727fd16ac9f6338d7195cf403bcad901f934df70c2f2a44",
+      "textureFiles": [
+        "textures-png\\SixArmed_SpiderMan_D.png"
+      ],
+      "textureSha256": [
+        "b1f72701251fa043244fe84044e3d87f88a60fbca9ddcdf3216f5f11fb90c41f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3037,
+      "sourceTriangles": 4900,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SixArmed_SpiderMan_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "SixArmed_SpiderMan",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SixArmed_SpiderMan_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1006132,
+      "outputs": {
+        "actor.psx": "03d77ed60fbb5926a7dbd7518bef2a6d83056c3f32061e0e8cdecf1ed8671294",
+        "conversion-report.json": "e147b83d74820faf196e8fd8dcdd85366daa2e6a2dcd1a8f35ac707b140a145e",
+        "suit.json": "885fab2a7fed091e68f59536df19f8f8d2f11e18368f2712e8fa62806a0de239",
+        "textures\\diffuse.png": "9eeae4cd6ef77e605f32fbc2b2a76d7f6f8ba807dab8dd1f759efe677d7b723d"
+      }
+    },
+    {
+      "key": "small_ed_brook",
+      "id": "smu-small-ed-brook",
+      "fbx": "costumes/small_ed_brook/small_ed_brook.fbx",
+      "fbxSha256": "63bf976f9c1cd68320109293d294ecf9a760a2c3af4078e8a56c6c3b206d3bf0",
+      "textureFiles": [
+        "textures-png\\Small_ed_brook_D.png"
+      ],
+      "textureSha256": [
+        "c4fe6d5116b0fcbdb1fe79d72bd5e43456b5bd3a7fb55e29a4da56eaf33c31fe"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2193,
+      "sourceTriangles": 3183,
+      "sourceBoneCount": 64,
+      "authoredDiffuseNames": [
+        "Small_ed_brook_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Spiderman_1",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Small_ed_brook_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 65,
+      "nativeBytes": 795188,
+      "outputs": {
+        "actor.psx": "8b23ef365e537acd2310448a2aa037908a8f9614f57f3fe8017af7906f374924",
+        "conversion-report.json": "9eb71c5846f508c57e15785235bc5f0d3c4d967cacd4200de23f1053d48114e1",
+        "suit.json": "d8ea9357b61309e095dec28cc69e93b1d422d66aba71c3d715851b2e76a63de3",
+        "textures\\diffuse.png": "cf22959681ff3470af96c5daf65b109ff3b0fe335d38f9459c68bbde67368e06"
+      }
+    }
+  ]
+}

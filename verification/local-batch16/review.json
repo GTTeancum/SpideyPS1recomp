@@ -1,0 +1,26 @@
+{
+  "batch": 16,
+  "keys": [
+    "scarletjoe",
+    "scorn",
+    "scream",
+    "secretwar",
+    "shevenom",
+    "silk",
+    "silk2",
+    "silversable_play",
+    "sixarmed_spiderman",
+    "small_ed_brook"
+  ],
+  "representative": "smu-sixarmed-spiderman",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed two native Six-Armed Spider-Man captures. All six arms, suit markings and full body are present; main arms and legs participate in swing and grounded poses. Extra arms visibly retain source rest poses and extra hands are open, so extra-limb retargeting/fist acceptance is INCOMPLETE. Line reaches the cluster of raised hands, but this angle cannot prove which wrist. This commit checkpoints lossless conversion and evidence, not final visual acceptance.",
+  "liveSwingImages": [
+    "frame_01583.png"
+  ],
+  "images": {
+    "frame_01583.png": "78adc0313feb4ce7790459d078da044820d9a1f108e1d3f0ad401eb209c9f189",
+    "frame_01888.png": "919dcd492e5d82832e79de92345e46ce5756760da1c8daaffa93c6f35c4bcefd"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}
