@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-carliespiderisland",
+  "name": "CARLIESPIDERISLAND",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "B666846D": "textures/diffuse.png"
+  }
+}

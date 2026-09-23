@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-carnageultimate",
+  "name": "SMU CARNAGEULTIMATE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "D1F986A4": "textures/diffuse.png"
+  }
+}

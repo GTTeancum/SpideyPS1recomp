@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-charlottewitter",
+  "name": "SMU CHARLOTTEWITTER",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "24D8A0F6": "textures/diffuse.png"
+  }
+}

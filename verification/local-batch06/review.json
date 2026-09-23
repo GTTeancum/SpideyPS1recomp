@@ -1,0 +1,30 @@
+{
+  "batch": 6,
+  "keys": [
+    "carliespiderisland",
+    "carnage",
+    "carnageultimate",
+    "charlottewitter",
+    "civilwarpeterparker",
+    "cosmic",
+    "cyborg",
+    "deadaim",
+    "earth62412",
+    "earthx"
+  ],
+  "representative": "smu-deadaim",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "All five native framebuffer images reviewed in order. First is NPC cutscene; Dead Aim swings at 1581 and 1596 with line at raised wrist, lands at 1626 and turns in idle at 1886. Arm equipment, hair and full body retained; no detached geometry seen. Gameplay is representative, offline animation/web checks cover all ten suits.",
+  "liveSwingImages": [
+    "frame_01581.png",
+    "frame_01596.png"
+  ],
+  "images": {
+    "frame_01266.png": "e091af955b5a89ed249cdec68c73eed3dfeb69ab304ebb1a1b9d11a894d42550",
+    "frame_01581.png": "17c47686481a4c9f59c6dce3452ea237616ed950e24dddab8f71e45b5c2df936",
+    "frame_01596.png": "4d4d996f22bc22537656e0b7036b9a1702eadf1c5e71479332e779a2e9ebc79e",
+    "frame_01626.png": "9bb58a909b8bda27583ddd538bc2d29c84eee7bdaf161894428aecda4e047a3d",
+    "frame_01886.png": "b178d98b2c8c652a4645178274b19862500467d23da317d9a8ee73b67f16747d"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

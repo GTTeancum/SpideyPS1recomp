@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-earth62412",
+  "name": "SMU EARTH62412",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "24D08AA2": "textures/diffuse.png"
+  }
+}

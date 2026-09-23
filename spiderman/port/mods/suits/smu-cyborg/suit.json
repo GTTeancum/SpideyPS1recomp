@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-cyborg",
+  "name": "SMU CYBORG",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "9F8DC0D4": "textures/diffuse.png"
+  }
+}

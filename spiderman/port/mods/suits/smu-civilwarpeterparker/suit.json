@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-civilwarpeterparker",
+  "name": "CIVILWARPETERPARKER",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "7C9A91ED": "textures/diffuse.png"
+  }
+}
