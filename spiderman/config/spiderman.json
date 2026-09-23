@@ -689,6 +689,20 @@
     },
     {
       "overlay": "main",
+      "address": "800775B0",
+      "mode": "instruction_branch",
+      "resumeAddress": "800776C8",
+      "target": "Recompiled.SuitRetargeting.BeginPagedPart"
+    },
+    {
+      "overlay": "main",
+      "address": "800779B0",
+      "mode": "instruction_branch",
+      "resumeAddress": "800776C8",
+      "target": "Recompiled.SuitRetargeting.TryNextPage"
+    },
+    {
+      "overlay": "main",
       "address": "8002CF80",
       "mode": "instruction",
       "target": "Recompiled.SuitWebAttachment.ProjectSwingSegment"

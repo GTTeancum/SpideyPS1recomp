@@ -28,6 +28,7 @@
       "id": "symbiote-tongue-pose",
       "status": "open",
       "suit": "smu-poison",
+      "additionalVisualConcern": "Anti-Venom's targeted native rear post-swing view shows a red tongue segment beside the left upper arm. The root is occluded; front/side evidence is needed before deciding whether to apply a pose correction. See verification/targeted-anti-venom/review.json.",
       "resolvedSuits": ["smu-poison"],
       "finding": "Poison's distal tongue hook is corrected with a pose-only rotation. Source bind matrices, hierarchy, weights and chain lengths are preserved. All 4196 frames leave the mouth, body, fingers and 2816 unaffected vertices exactly unchanged. Native front and grounded-rear views show the revised silhouette. The rear view is not a frame-matched deep crouch comparison.",
       "evidence": "verification/repair-poison-tip/review.json",

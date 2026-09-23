@@ -1,0 +1,10 @@
+{
+  "suit": "smu-anti-venom",
+  "actorSha256": "049a602a30ce771dab34aa6d0cee6e6985c8fa6b578cce0b18c554118c5fc247",
+  "visualReview": "Individually reviewed both native frames. Anti-Venom appears with white body, black markings and spikes in a swing and post-swing stance; the sewer background and HUD render normally. The swing web reaches the raised hand. The free hand remains open. A red tongue segment appears beside the left upper arm in the post-swing rear view; its root is occluded, so this is not tongue-placement acceptance and requires targeted front/side investigation. These views do not expose every triangle or prove closed fists.",
+  "images": {
+    "frame_01583.png": "876310375d9f20d54036fb92130919fb035a5d04e20d68054ad37eb2d75959dc",
+    "frame_01888.png": "574a518c82dd53fdcc46f7a2a9d019873e054577aa0c6b8f3fdda770909d8818"
+  },
+  "scope": "Genuine game framebuffer, process-local input. Muted run; no desktop capture. Two individually reviewed images, not full animation or campaign visual acceptance."
+}

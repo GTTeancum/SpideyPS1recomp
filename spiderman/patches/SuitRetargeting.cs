@@ -11,7 +11,9 @@ namespace Recompiled;
 public static class SuitRetargeting
 {
     static readonly float[] Driver = new float[18 * 12];
-    static readonly uint[] Mesh = new uint[18];
+    static readonly uint[] Mesh = new uint[64];
+    static uint _pagedActor, _pagedPose, _pagedStack, _pagedTable, _partVisibility;
+    static int _pageCount, _nextPage;
     static readonly bool Trace = Environment.GetEnvironmentVariable("SPIDEY_RETARGET_TRACE") == "1";
     static NativeRetargetRig _reported;
     static bool Ram(uint p, uint n) => n <= 0x800000 && p >= 0x80000000 && p <= 0x80800000 - n;
@@ -26,6 +28,7 @@ public static class SuitRetargeting
     }
     public static void ApplyPose(CpuContext c, IMemory m)
     {
+        _pageCount = 0;
         // Do not key on title/level slot numbers. Those addresses are reused by NPCs.
         int selected = Costume.LoadedCostume;
         if (selected != SuitMods.Active || !SuitMods.IsMod(selected)) return;
@@ -38,7 +41,8 @@ public static class SuitRetargeting
         uint entry = 0x800A0904 + slot * 64;
         if (m.ReadU32(entry) != 0x64697073 || m.ReadU16(entry + 4) != 0x7965 || m.ReadU8(entry + 6) != 0) return;
         uint table = m.ReadU32(entry + 0x10);
-        if (!Ram(table - 4, 4 + 18 * 4) || m.ReadU32(table - 4) != 18) return;
+        int pages = rig.Packets.Length;
+        if (pages < 18 || pages > Mesh.Length || !Ram(table - 4, 4 + (uint)pages * 4) || m.ReadU32(table - 4) != pages) return;
         for (int i = 0; i < 18; i++)
         {
             uint p = pose + (uint)i * 24;
@@ -48,6 +52,9 @@ public static class SuitRetargeting
                     Driver[i * 12 + r * 4 + k] = unchecked((short)m.ReadU16(p + (uint)(r * 3 + k) * 2)) / 4096f;
                 Driver[i * 12 + r * 4 + 3] = unchecked((short)m.ReadU16(p + 18 + (uint)r * 2));
             }
+        }
+        for (int i = 0; i < pages; i++)
+        {
             Mesh[i] = m.ReadU32(table + (uint)i * 4);
             if (!Ram(Mesh[i], 28) || m.ReadU16(Mesh[i] + 2) != rig.Packets[i].Length)
                 throw new InvalidDataException("active retarget rig does not match resident native mesh");
@@ -60,7 +67,7 @@ public static class SuitRetargeting
                     throw new InvalidDataException("invalid resident retarget face before skinning");
         }
         rig.Evaluate(Driver); // Fists by default. All validation/evaluation precedes guest writes.
-        for (int i = 0; i < 18; i++)
+        for (int i = 0; i < pages; i++)
         {
             float[] v = rig.LocalVertices[i]; uint mesh = Mesh[i]; int count = rig.Packets[i].Length;
             uint start = mesh + 28, normals = start + (uint)count * 8;
@@ -95,10 +102,37 @@ public static class SuitRetargeting
                 }
             }
         }
+        if (pages > 18)
+        {
+            _pagedActor = actor; _pagedPose = pose; _pagedStack = c.SP; _pagedTable = table;
+            _pageCount = pages; _nextPage = pages;
+        }
         if (Trace && !ReferenceEquals(_reported, rig))
         {
             _reported = rig;
             Console.WriteLine($"[retarget] live pose @ {pose:X8}: {rig.BoneCount} preserved bones, {rig.VertexCount} weighted vertices; fists; actor {actor:X8}");
         }
+    }
+
+    static bool PagedContext(CpuContext c, IMemory m) =>
+        _pageCount > 18 && c.S2 == _pagedActor && c.SP == _pagedStack && c.S1 < 18 &&
+        c.S3 == _pagedPose + c.S1 * 24 && m.ReadU32(c.SP + 0xA8) == _pagedTable;
+
+    // Extra pages are geometry, not animation parts or distance-selected LODs.
+    public static bool BeginPagedPart(CpuContext c, IMemory m)
+    {
+        if (!PagedContext(c, m)) return false;
+        if (c.S0 != Mesh[c.S1]) throw new InvalidDataException("paged actor root table changed during draw");
+        _nextPage = c.S1 == 0 ? 18 : _pageCount;
+        _partVisibility = m.ReadU32(c.GP + 0x1164);
+        return true;
+    }
+
+    public static bool TryNextPage(CpuContext c, IMemory m)
+    {
+        if (!PagedContext(c, m) || c.S1 != 0 || _nextPage >= _pageCount) return false;
+        c.S0 = Mesh[_nextPage++];
+        m.WriteU32(c.GP + 0x1164, _partVisibility);
+        return true;
     }
 }

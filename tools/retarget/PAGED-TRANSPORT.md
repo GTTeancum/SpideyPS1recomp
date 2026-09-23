@@ -1,7 +1,7 @@
 # Paged Transport Integration
 
-Status: metadata/core implemented and tested offline; actor generation remains
-gated until the native drawing loop is integrated and verified. Shipping DLLs
+Status: metadata/core and drawing hooks implemented and tested offline; actor generation remains
+gated until native paged loading and drawing are verified. Shipping DLLs
 and installed suits have not been replaced by this work.
 
 RTG2 version 2 remains byte-layout compatible. Version 3 retains the first 280
@@ -22,9 +22,13 @@ bones, weights, bind matrices and skinning arithmetic do not change.
   extra pages 18 onward; roots 1..17 remain terminal.
 - Extend independent actor decoding and managed loader validation, requiring
   version 3 and the exact page topology for actors with more than 18 meshes.
-- Skin all resident pages before drawing. Bypass ordinary LOD selection only for
-  the validated custom paged actor; draw each extra page using native driver 0.
-- Add configured instruction hooks and regenerate native code reproducibly.
+- Drawing hooks now skin all resident pages, bypass ordinary LOD selection only
+  for the active paged context, and schedule extra pages under native driver 0.
+  A 366-check process-local harness verifies ordering, termination and isolation;
+  this is not actual paged native rendering acceptance.
+- Configured instruction hooks regenerate from the current recompiler source.
+  Generation fails if a required instruction hook is absent or duplicated. The
+  config generator retains prior pose, web and native movie hooks as well.
 - Test native loading, drawing/page counts, material coverage, full regressions
   and actual gameplay before removing the converter guard or installing suits.
 

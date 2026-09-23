@@ -12,6 +12,8 @@ that follows, unreachable by any real path. Chasing it to zero is chasing noise.
 Usage: python tools/build.py [--no-dotnet]
 """
 import os
+import json
+from pathlib import Path
 import re
 import subprocess
 import sys
@@ -33,7 +35,7 @@ def fixmaps():
 
 
 def recompile():
-    p = sh(['dotnet', 'run', '--project', RECOMP, '-c', 'Release', '--no-build',
+    p = sh(['dotnet', 'run', '--project', RECOMP, '-c', 'Release',
             '--', 'config/spiderman.json'])
     for l in p.stdout.splitlines():
         if 'total functions' in l or 'applied' in l or 'reimplementations' in l:
@@ -41,6 +43,14 @@ def recompile():
     if p.returncode != 0:
         print(p.stdout[-2000:] + p.stderr[-2000:])
         raise SystemExit('recompile failed')
+    config = json.loads((Path(ROOT) / 'config/spiderman.json').read_text())
+    for patch in config['patches']:
+        if patch['mode'] not in ('instruction', 'instruction_branch'):
+            continue
+        generated = (Path(ROOT) / 'generated' / (patch['overlay'] + '.cs')).read_text()
+        call = patch['target'] + '(c,m)'
+        if generated.replace(' ', '').count(call) != 1:
+            raise SystemExit('missing or duplicated generated instruction hook: ' + patch['target'])
     p = sh([sys.executable, 'tools/patch_costume_viewer.py'])
     if p.returncode != 0:
         print(p.stdout + p.stderr)

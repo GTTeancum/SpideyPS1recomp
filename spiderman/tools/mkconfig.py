@@ -182,6 +182,18 @@ def main():
         else:
             skipped.append(fn)
 
+    patches.extend([
+        {'overlay': 'main', 'address': '80077418', 'mode': 'instruction',
+         'target': 'Recompiled.SuitRetargeting.ApplyPose'},
+        {'overlay': 'main', 'address': '800775B0', 'mode': 'instruction_branch',
+         'resumeAddress': '800776C8', 'target': 'Recompiled.SuitRetargeting.BeginPagedPart'},
+        {'overlay': 'main', 'address': '800779B0', 'mode': 'instruction_branch',
+         'resumeAddress': '800776C8', 'target': 'Recompiled.SuitRetargeting.TryNextPage'},
+        {'overlay': 'main', 'address': '8002CF80', 'mode': 'instruction',
+         'target': 'Recompiled.SuitWebAttachment.ProjectSwingSegment'},
+        {'overlay': 'main', 'address': '8002AD0C', 'mode': 'instruction_branch',
+         'resumeAddress': '8002AF8C', 'target': 'Recompiled.DreamcastMoviePatches.Play'},
+    ])
     cfg = {
         'game': {'id': 'SLUS-00875', 'name': 'SpiderMan', 'output': '../generated'},
         'cue': '../extracted',

@@ -1,0 +1,22 @@
+{
+  "status": "PARTIAL",
+  "scope": "Native page hooks compiled and process-local scheduling tested. Paged actor loading and actual large-suit drawing remain unverified.",
+  "pageSchedulingChecks": 366,
+  "instructionEmitterChecks": 7,
+  "regeneratedInstructionHooks": [
+    "SuitRetargeting.ApplyPose",
+    "SuitRetargeting.BeginPagedPart",
+    "SuitRetargeting.TryNextPage",
+    "SuitWebAttachment.ProjectSwingSegment",
+    "DreamcastMoviePatches.Play"
+  ],
+  "ordinarySuitGameplay": "verification/targeted-anti-venom/review.json",
+  "converterStillGated": true,
+  "shippingCoreUnchanged": true,
+  "remaining": [
+    "Dynamic native actor serialization and exact 18-terminal page graph",
+    "Managed loader and independent decoder validation",
+    "Full structural, animation and web regressions for generated paged actors",
+    "Native loading and actual game drawing of both large suits, with per-page evidence and visual review"
+  ]
+}
