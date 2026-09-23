@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-anti-venom",
+  "name": "SMU ANTI VENOM",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "DD9F72D4": "textures/diffuse.png",
+    "6EF10128": "textures/diffuse-1.png"
+  }
+}

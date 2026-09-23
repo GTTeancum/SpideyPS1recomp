@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-devilspider",
+  "name": "SMU DEVILSPIDER",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "09C1A3CD": "textures/diffuse.png"
+  }
+}

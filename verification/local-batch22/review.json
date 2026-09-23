@@ -1,0 +1,26 @@
+{
+  "batch": 22,
+  "keys": [
+    "aaron_davis",
+    "adriana_soria",
+    "agentv",
+    "anti_venom",
+    "batty_brant",
+    "black_suit_swiney_girl",
+    "devilspider",
+    "doppleganger",
+    "dorma",
+    "dusk"
+  ],
+  "representative": "smu-adriana-soria",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Individually reviewed both native framebuffer images. Adriana Soria is visible in a swing and deep grounded crouch, with purple cape, dark limbs and yellow boots. Swing web meets the raised hand. Free hand remains visibly open; no closed-fist acceptance. Cape silhouette is present but secondary cloth motion is not established by these two frames. No front facial or symbiote tongue acceptance from these rear views.",
+  "liveSwingImages": [
+    "frame_01558.png"
+  ],
+  "images": {
+    "frame_01558.png": "302e71d7a19f5b090f8fe156be8bcc1b6db79cd4c8f978e27be16dc88bae5ce8",
+    "frame_01863.png": "08648a7821cf43f4d7dee83fc09b9bfc73ee6079b1a6bb86e48c6265234717bb"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

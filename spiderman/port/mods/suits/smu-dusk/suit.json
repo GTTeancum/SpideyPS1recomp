@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-dusk",
+  "name": "SMU DUSK",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "598786E5": "textures/diffuse.png",
+    "127CB487": "textures/diffuse-1.png"
+  }
+}

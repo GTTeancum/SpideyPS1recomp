@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-adriana-soria",
+  "name": "SMU ADRIANA SORIA",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "3667FAEA": "textures/diffuse.png"
+  }
+}

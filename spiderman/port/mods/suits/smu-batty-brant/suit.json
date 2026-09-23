@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-batty-brant",
+  "name": "SMU BATTY BRANT",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "B3D1B50F": "textures/diffuse.png",
+    "093D24A1": "textures/diffuse-1.png"
+  }
+}

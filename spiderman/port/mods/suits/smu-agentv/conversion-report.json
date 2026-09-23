@@ -1,0 +1,338 @@
+{
+  "schema": 2,
+  "status": "converted and core-evaluated; game execution is a separate acceptance gate",
+  "sourceRigBones": 66,
+  "sourceControlPoints": 2400,
+  "sourcePositiveInfluences": 4742,
+  "runtimeVertices": 2402,
+  "runtimeInfluences": 4747,
+  "originalTriangles": 3426,
+  "uniqueOutputTriangles": 3426,
+  "nativeBytes": 862100,
+  "rigBytes": 369336,
+  "packetSpilloverTriangles": 558,
+  "packets": [
+    {
+      "packet": 0,
+      "vertices": 256,
+      "triangles": 317
+    },
+    {
+      "packet": 1,
+      "vertices": 256,
+      "triangles": 309
+    },
+    {
+      "packet": 2,
+      "vertices": 144,
+      "triangles": 159
+    },
+    {
+      "packet": 3,
+      "vertices": 147,
+      "triangles": 167
+    },
+    {
+      "packet": 4,
+      "vertices": 143,
+      "triangles": 168
+    },
+    {
+      "packet": 5,
+      "vertices": 242,
+      "triangles": 338
+    },
+    {
+      "packet": 6,
+      "vertices": 242,
+      "triangles": 338
+    },
+    {
+      "packet": 7,
+      "vertices": 153,
+      "triangles": 259
+    },
+    {
+      "packet": 8,
+      "vertices": 147,
+      "triangles": 167
+    },
+    {
+      "packet": 9,
+      "vertices": 143,
+      "triangles": 181
+    },
+    {
+      "packet": 10,
+      "vertices": 242,
+      "triangles": 338
+    },
+    {
+      "packet": 11,
+      "vertices": 242,
+      "triangles": 338
+    },
+    {
+      "packet": 12,
+      "vertices": 144,
+      "triangles": 157
+    },
+    {
+      "packet": 13,
+      "vertices": 149,
+      "triangles": 200
+    },
+    {
+      "packet": 14,
+      "vertices": 145,
+      "triangles": 181
+    },
+    {
+      "packet": 15,
+      "vertices": 141,
+      "triangles": 168
+    },
+    {
+      "packet": 16,
+      "vertices": 143,
+      "triangles": 175
+    },
+    {
+      "packet": 17,
+      "vertices": 141,
+      "triangles": 142
+    }
+  ],
+  "unitScale": 19.161587330459145,
+  "rootAnimationScale": 0.9027978335016634,
+  "neutralBounds": [
+    [
+      -628.9130859375,
+      -1709.0208740234375,
+      -740.3924560546875
+    ],
+    [
+      630.8363037109375,
+      1719.0,
+      284.3898010253906
+    ]
+  ],
+  "sourceBindReconstructionMaxError": 0.0006029823903190845,
+  "inputHashes": {
+    "C:\\Programming\\SMU-Costumes\\costumes\\agentv\\agentv.fbx": "33305f734491a82bda6c58c8b1d97aa9373e437bd56d9801c527f4f327ce2229",
+    "C:\\Programming\\SMU-Costumes\\costumes\\2099\\2099.fbx": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman_AgentV_D.png": "d8c844c151f385dd0286026164c6b95a1c4131d6b5f8c7e3467a9cab8f8915bc"
+  },
+  "outputSha256": "0c6255018af6de567d6796802e25cb4766db49a011f72c4401f052892e565ce0",
+  "fistBones": [
+    {
+      "bone": "Clown001LArmDigit01",
+      "method": "opposed-thumb-across-knuckles",
+      "localRotation": [
+        [
+          0.9963639208886478,
+          -0.07638954241811464,
+          -0.037730292346495595
+        ],
+        [
+          0.07638755259287716,
+          0.6048083706008813,
+          0.7926990454516626
+        ],
+        [
+          -0.03773432072094967,
+          -0.7926988537018692,
+          0.6084444497071778
+        ]
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit02",
+      "method": "opposed-thumb-across-knuckles",
+      "localRotation": [
+        [
+          0.46309238934400754,
+          0.5400471148958427,
+          0.7027763176319575
+        ],
+        [
+          -0.8847038458734402,
+          0.3293751621259022,
+          0.3298652871571646
+        ],
+        [
+          -0.053334266924755874,
+          -0.7745070149890257,
+          0.6303128903206617
+        ]
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit21",
+      "angleDegrees": 60,
+      "axisLocal": [
+        0.3330654397377568,
+        -0.30884812533661343,
+        -0.8908873376181493
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit22",
+      "angleDegrees": 85,
+      "axisLocal": [
+        0.4473317467206713,
+        -0.07875712860871611,
+        -0.890893721534249
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit31",
+      "angleDegrees": 60,
+      "axisLocal": [
+        -0.026693734690805257,
+        -0.03193284060534356,
+        -0.9991334936929755
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit32",
+      "angleDegrees": 85,
+      "axisLocal": [
+        -0.007811180159828787,
+        -0.04088461288046379,
+        -0.9991333413984974
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit51",
+      "angleDegrees": 60,
+      "axisLocal": [
+        -0.0791145079743051,
+        0.10782993919596894,
+        -0.991016447311031
+      ]
+    },
+    {
+      "bone": "Clown001LArmDigit52",
+      "angleDegrees": 85,
+      "axisLocal": [
+        -0.11955314608538596,
+        0.05994845446594676,
+        -0.9910162602441147
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit01",
+      "method": "opposed-thumb-across-knuckles",
+      "localRotation": [
+        [
+          0.9963627841185974,
+          -0.07640018699759876,
+          0.03773875793095012
+        ],
+        [
+          0.07640024623361903,
+          0.6047969901262101,
+          -0.7927065050254851
+        ],
+        [
+          0.03773863801041931,
+          0.7927065107345904,
+          0.6084342060076092
+        ]
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit02",
+      "method": "opposed-thumb-across-knuckles",
+      "localRotation": [
+        [
+          0.46308614943595766,
+          0.540041037285891,
+          -0.7027850996199028
+        ],
+        [
+          -0.8847067901859264,
+          0.32937208443538135,
+          -0.32986046351996584
+        ],
+        [
+          0.05333960629300756,
+          0.7745125615778413,
+          0.6303056229787547
+        ]
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit21",
+      "angleDegrees": 60,
+      "axisLocal": [
+        -0.4745818093452958,
+        0.4489987327463499,
+        -0.7570813986822797
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit22",
+      "angleDegrees": 85,
+      "axisLocal": [
+        -0.6422608229729327,
+        0.11971748494431314,
+        -0.7570790969725287
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit31",
+      "angleDegrees": 60,
+      "axisLocal": [
+        0.026701200304032828,
+        0.03193482162026079,
+        -0.9991332308908587
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit32",
+      "angleDegrees": 85,
+      "axisLocal": [
+        0.007803996262075437,
+        0.04088392749560749,
+        -0.9991334255818266
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit51",
+      "angleDegrees": 60,
+      "axisLocal": [
+        0.0791227865869985,
+        -0.10782492428896007,
+        -0.9910163320272722
+      ]
+    },
+    {
+      "bone": "Clown001RArmDigit52",
+      "angleDegrees": 85,
+      "axisLocal": [
+        0.11955165718814431,
+        -0.05994813381412464,
+        -0.9910164592557347
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "_8_-_Default",
+      "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman_AgentV_D.png",
+      "alphaBound": false,
+      "tileOrigin": [
+        0,
+        0
+      ],
+      "tileCount": [
+        1,
+        1
+      ],
+      "slot": 0
+    }
+  ]
+}

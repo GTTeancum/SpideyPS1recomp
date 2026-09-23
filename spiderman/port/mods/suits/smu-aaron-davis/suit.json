@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-aaron-davis",
+  "name": "SMU AARON DAVIS",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "DF219EF9": "textures/diffuse.png",
+    "E767F72A": "textures/diffuse-1.png"
+  }
+}
