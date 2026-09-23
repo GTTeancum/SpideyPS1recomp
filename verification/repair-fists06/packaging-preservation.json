@@ -1,0 +1,84 @@
+[
+  {
+    "suit": "smu-benreilly",
+    "beforeActorSha256": "bb31ee59f3c1ad48e4c4bd1f1236da0ea395fddb033f5ff2b34e7dd1b3bf794e",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-bigtime",
+    "beforeActorSha256": "58eea78f6dd4007cacdc79bc14b6a10f711da9c625316f40ff770841b5ebe00d",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": [
+      {
+        "file": "suit.json",
+        "generatedSha256": "e98cea154c0a3721e04a801ca02a6954bb31be277cc07d382437918c1e5bc6ce",
+        "retainedSha256": "51b3d8cbc516094bf536a6b77a9d3c6ec10ca4d93869dc32cc32a9c777d80d3b"
+      },
+      {
+        "file": "textures/diffuse.png",
+        "generatedSha256": "68651cbf97aaf177e4638967ca0625f48ef6e0b5fd8f0cb35177c16c7d466a58",
+        "retainedSha256": "024c220de7a3a7197b4d0c18bd18662af67b6982c992c2cf87045ea85a96d3c2"
+      }
+    ]
+  },
+  {
+    "suit": "smu-bigtime-red",
+    "beforeActorSha256": "00a6769824baf438edcc7a31983a3c38e1cacaa57a27db8fa5e7b1d4dbee3b3a",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": [
+      {
+        "file": "suit.json",
+        "generatedSha256": "e89a5c5f3913007e3e48752de45f9641eeffaba64834db45e17afd610e055235",
+        "retainedSha256": "8bed5322b67b813020ae852619ecc3afd163a10708cdb9c03782f3bb2e0ecc61"
+      },
+      {
+        "file": "textures/diffuse.png",
+        "generatedSha256": "70812d54b4760bc04eb1fbb1bcdb45375b7eb776c7ebed9b19568f90f8fae642",
+        "retainedSha256": "768ef3587f85935d4f67dc9f6fcc7b3dcbcb43189d203c7ca36d9c251d564989"
+      }
+    ]
+  },
+  {
+    "suit": "smu-black-suit-swiney-girl",
+    "beforeActorSha256": "82bc4e700af07578017acdb6ffb1f41996d9df1307c1e0f00a3759fc5832a023",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-black-tarantula",
+    "beforeActorSha256": "458344d3ead4ace3ccaf2409831fc49f4a0410b707df158cd610acb82f72ec23",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-blackcat",
+    "beforeActorSha256": "89914fcf0fa5adfc9ba507d3222d45ee66e0b6fc8282cf8372f85cd8eaeb9e03",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-blackcatvenom",
+    "beforeActorSha256": "0db440fff9eecf668854ea3222ad8332bb807e34afa6786cebe9d7069d328141",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-blacksuit-spidergirl",
+    "beforeActorSha256": "967596961b83dff429e75621e78c109293e8da226886b44a67b77a28a47f9042",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-blackwidow",
+    "beforeActorSha256": "77b7c5757aeb6592546247a1d913a372600bd02efbbad9bcc9b381024eccdd19",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-blood",
+    "beforeActorSha256": "20e65b0836502f51f23c75825e9cd5926f2843a21b89a804b7012ef48597edf3",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "status": "held-for-visual-correction",
+  "installed": false,
+  "suits": {
+    "smu-black-suit-swiney-girl": "Native swing shows a curled but visibly cupped free hand; offline full-hand geometry also retains a gap. Short-body proportions and live wrist web attachment are verified, not full fist closure. Distal metric coverage is incomplete in the source rig.",
+    "smu-blackcatvenom": "Native swing/crop shows projecting upper and lower finger tips around the free hand. Web meets the raised hand and body/clothing remain intact, but the tighter shared base curl does not establish a closed fist. Needs source-relative digit tracing before installation."
+  },
+  "scope": "All ten staged suits passed offline rig, 4196-frame animation, 115-frame web, managed loading and before/after isolation. Two have observed native hand concerns and are excluded from the eight-suit installation. Automated success is not visual acceptance. No source or installed actors changed by this split."
+}

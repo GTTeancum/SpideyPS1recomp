@@ -1,0 +1,406 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch06",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "benreilly",
+    "bigtime",
+    "bigtime_red",
+    "black_suit_swiney_girl",
+    "black_tarantula",
+    "blackcat",
+    "blackcatvenom",
+    "blacksuit_spidergirl",
+    "blackwidow",
+    "blood"
+  ],
+  "results": [
+    {
+      "key": "benreilly",
+      "id": "smu-benreilly",
+      "fbx": "costumes/benreilly/benreilly.fbx",
+      "fbxSha256": "69ce4d9e8c0d1791a1b03edba1a2ce011c8113666863389c3276c06d989783b6",
+      "textureFiles": [
+        "textures-png\\SpidermanAston_D.png"
+      ],
+      "textureSha256": [
+        "15e11ba9f1bf1c3c11bf36d3636603118a7397f965829e3426ffdc76c28db920"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1705,
+      "sourceTriangles": 2934,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanAston_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "BenReilly",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanAston_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 710560,
+      "outputs": {
+        "actor.psx": "9df5673ea82e166ab4dc2cfd529bc047160d012d952e71866d8ee988a5a9946e",
+        "conversion-report.json": "4e377bfc6f21d97c469150220b409207f65e985f8806e72d4e85e4741fbea39b",
+        "suit.json": "7091ffcb958b9494d18e3ca5b8f0dee518470ef05d61b73c43fc5aae93f4e908",
+        "textures\\diffuse.png": "ba04211737373f021bf6152bcd1ceab867d3e4d06d1941abac14e39b345f6994"
+      }
+    },
+    {
+      "key": "bigtime",
+      "id": "smu-bigtime",
+      "fbx": "costumes/bigtime/bigtime.fbx",
+      "fbxSha256": "15921259d991c9bf3bbe8187e89b1721460303042590b4b37787f34c24c5f0af",
+      "textureFiles": [
+        "textures-png\\SpidermanStealth_D.png"
+      ],
+      "textureSha256": [
+        "325df3be0507a12236a63046b27b230d7d679c6d0f5e1f3cdf268d1de091cfa2"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanStealth_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanStealth_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 699856,
+      "outputs": {
+        "actor.psx": "64d595cda9ae79f3b7624011241cd0438723c3450761c4ee3a98f50fd840b0b6",
+        "conversion-report.json": "980de70eb838d36ade87645c110b6bf435c4864bc2d93b171afce151d9e2a6ee",
+        "suit.json": "51b3d8cbc516094bf536a6b77a9d3c6ec10ca4d93869dc32cc32a9c777d80d3b",
+        "textures\\diffuse.png": "024c220de7a3a7197b4d0c18bd18662af67b6982c992c2cf87045ea85a96d3c2"
+      }
+    },
+    {
+      "key": "bigtime_red",
+      "id": "smu-bigtime-red",
+      "fbx": "costumes/bigtime_red/bigtime_red.fbx",
+      "fbxSha256": "52a621a6739e20fe219e1cc03bf3fad61e4ed5ce5af91164777ca249df41eaa7",
+      "textureFiles": [
+        "textures-png\\SpidermanStealth_Red_D.png"
+      ],
+      "textureSha256": [
+        "14d92308111c41d65bb352e99eb4310dd097a2b41439e388a0769c9816819bab"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanStealth_Red_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanStealth_Red_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 699860,
+      "outputs": {
+        "actor.psx": "3e3b509c043262e49ccd761299d3cd6725c73d8850dbe97601ca4e117136acb6",
+        "conversion-report.json": "a28145b9b0e7148f1526636bbcae47dade4b594e389032592cab7d802015140a",
+        "suit.json": "8bed5322b67b813020ae852619ecc3afd163a10708cdb9c03782f3bb2e0ecc61",
+        "textures\\diffuse.png": "768ef3587f85935d4f67dc9f6fcc7b3dcbcb43189d203c7ca36d9c251d564989"
+      }
+    },
+    {
+      "key": "black_tarantula",
+      "id": "smu-black-tarantula",
+      "fbx": "costumes/black_tarantula/black_tarantula.fbx",
+      "fbxSha256": "474f13a20d87a7b0d7c7fff9bae4c11c659d7d0e35d80f67604c4fbe31bd1eec",
+      "textureFiles": [
+        "textures-png\\Black_Tarantula_D.png"
+      ],
+      "textureSha256": [
+        "494c45326eeaf5ba53814d76fa8f1d0dc2553cfd357234850d2c155a910e0ba4"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2795,
+      "sourceTriangles": 4542,
+      "sourceBoneCount": 66,
+      "authoredDiffuseNames": [
+        "Black_Tarantula_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "_1_-_Default__2",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Black_Tarantula_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 67,
+      "nativeBytes": 1006580,
+      "outputs": {
+        "actor.psx": "20cda5f18a2194322ade04b5d339e9f7bdc9aa9054d1d9d70245dc0af7af9e86",
+        "conversion-report.json": "69cf5220ad72e039643082cc887beeccb72c561f09a0e88f48149800ff7aa40d",
+        "suit.json": "c94577baacbc5a3cb823570e0533c40bb090af723a43d2172d8685215b6cfa44",
+        "textures\\diffuse.png": "bfe3e27bbb64b2f6abd67cc21b6f64ca27298da0009565fc283c3d7fd970020f"
+      }
+    },
+    {
+      "key": "blackcat",
+      "id": "smu-blackcat",
+      "fbx": "costumes/blackcat/blackcat.fbx",
+      "fbxSha256": "db3ba4e128300c57f4398d879a2e95b5c228735e2359362e2c150e110020dffc",
+      "textureFiles": [
+        "textures-png\\BlackCat_D.png"
+      ],
+      "textureSha256": [
+        "edda755f0b2eabb8e5a9eefa1d1ee802eae7d3e872354c8114d19b2e8e0bd8c5"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2050,
+      "sourceTriangles": 3313,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "BlackCat_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "BlackCat",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\BlackCat_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              2,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 830192,
+      "outputs": {
+        "actor.psx": "3b85588fcca201d88ad1151ea52bf3e4033d6eb0de2608bfb71ffefe85b030ad",
+        "conversion-report.json": "9de7ec0c0f7d3da9c8e467cdd5631acdcd29a37640bb4b25fb7707fe6c66e7f8",
+        "suit.json": "decdbcb2a501aabdb54521b7cc065ab687cd897f349855876affc30040338b64",
+        "textures\\diffuse.png": "4fe057e1be0391ff987e1e1fe045efbb0418a23648260769ed8712064b6a0fb0"
+      }
+    },
+    {
+      "key": "blacksuit_spidergirl",
+      "id": "smu-blacksuit-spidergirl",
+      "fbx": "costumes/blacksuit_spidergirl/blacksuit_spidergirl.fbx",
+      "fbxSha256": "5069475bf8f1a457a66c2889f5271ed13ef23cfaf4e8937732a7cc907f15f672",
+      "textureFiles": [
+        "textures-png\\BlackSuit_SpiderGirl_D.png"
+      ],
+      "textureSha256": [
+        "9041bad3dd840145af21c4025e469ed91cf0568a007d6746449f10b759f69081"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2005,
+      "sourceTriangles": 3454,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "BlackSuit_SpiderGirl_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "SpiderGirl",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\BlackSuit_SpiderGirl_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 867216,
+      "outputs": {
+        "actor.psx": "49db7a52791fbe183a7a1b16c4af7a0afc3712f16e7601649f4001e8c9b8a6cb",
+        "conversion-report.json": "b7e8141cb12dabfbac4339a7ef0864d783a4ff74e16f6271ca4157482a946dd4",
+        "suit.json": "ec25892df48e52d73c171e68d2778d5ea30202995e50cea202bdc050d3f555be",
+        "textures\\diffuse.png": "0debf9df9346bf621cb5e5bcda1647e1875680eeb6dd50ac402f592ed2bb0cd6"
+      }
+    },
+    {
+      "key": "blackwidow",
+      "id": "smu-blackwidow",
+      "fbx": "costumes/blackwidow/blackwidow.fbx",
+      "fbxSha256": "d2a42430b5e43312077e2d626f73dfb66b47eba47033622cc3be41bb7db5d1ba",
+      "textureFiles": [
+        "textures-png\\SpidergirlBlackWidow_D.png"
+      ],
+      "textureSha256": [
+        "a751d918f494a997eb13206d289a93029acd8453b44e3de3eafb900e91578da8"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2006,
+      "sourceTriangles": 3356,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidergirlBlackWidow_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "BlackWidow",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidergirlBlackWidow_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 836088,
+      "outputs": {
+        "actor.psx": "44dfd564b08f9b87f4c448044c1fff111050a97d8921b640727d79fed5d273e7",
+        "conversion-report.json": "e10df1249f79840ce6c1311cb4d3d4d5da6f6f1016e668154bd703eacdb4259a",
+        "suit.json": "b61e09579604055ef5e25b3c4896d6fe260194dde27ab4f4f1a8656689532dca",
+        "textures\\diffuse.png": "1154b36c7cab88a0be080295b47df39cd450dad184b154da60624e6fa57d23cd"
+      }
+    },
+    {
+      "key": "blood",
+      "id": "smu-blood",
+      "fbx": "costumes/blood/blood.fbx",
+      "fbxSha256": "6ec470d0e3f1365a9880a96331e85a8ad94d52ea22c9bad2dc688b32951b50a0",
+      "textureFiles": [
+        "textures-png\\SpidermanBlood_D.png"
+      ],
+      "textureSha256": [
+        "f9e5c290f06be2832f8a00a450c78342c78f3dec01e7081ec68556c9725f40f8"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2128,
+      "sourceTriangles": 3512,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanBlood_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Blood",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanBlood_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 832072,
+      "outputs": {
+        "actor.psx": "e5a157afc87977e9c500d75f3ac47995b4be97a22930d22082faf6c26475889a",
+        "conversion-report.json": "a97f6cd926a9a4e95c32d546f280c2d1cb738ac379848bd133ccbbd2c0f16e4f",
+        "suit.json": "905651d85c9b3983cf5afab525218c74066b735eca945fadaf6aa7af600a8f0f",
+        "textures\\diffuse.png": "1cd8623d15e795d039026f26539e680810b93e65f985d59bdb01292f232b948b"
+      }
+    }
+  ]
+}

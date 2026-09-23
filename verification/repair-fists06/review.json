@@ -1,0 +1,104 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-benreilly",
+      "previousActorSha256": "bb31ee59f3c1ad48e4c4bd1f1236da0ea395fddb033f5ff2b34e7dd1b3bf794e",
+      "actorSha256": "9df5673ea82e166ab4dc2cfd529bc047160d012d952e71866d8ee988a5a9946e",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-bigtime",
+      "previousActorSha256": "58eea78f6dd4007cacdc79bc14b6a10f711da9c625316f40ff770841b5ebe00d",
+      "actorSha256": "64d595cda9ae79f3b7624011241cd0438723c3450761c4ee3a98f50fd840b0b6",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-bigtime-red",
+      "previousActorSha256": "00a6769824baf438edcc7a31983a3c38e1cacaa57a27db8fa5e7b1d4dbee3b3a",
+      "actorSha256": "3e3b509c043262e49ccd761299d3cd6725c73d8850dbe97601ca4e117136acb6",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-black-tarantula",
+      "previousActorSha256": "458344d3ead4ace3ccaf2409831fc49f4a0410b707df158cd610acb82f72ec23",
+      "actorSha256": "20cda5f18a2194322ade04b5d339e9f7bdc9aa9054d1d9d70245dc0af7af9e86",
+      "visualReview": "Individually inspected native frame 01583 and exact crop. Larger body, full limbs, white forearms and black-and-white clothing remain intact during swing. Web meets the raised hand. Free hand has a compact folded silhouette and the crop includes the whole hand and wrist. This rear/side angle does not establish exhaustive finger/palm contact or collision freedom. Exit zero, zero slow-run warnings.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01583.png": "be34d06e561dfeb120b63312544894c3d809f88e2edeb3bc5af25f9261b52b13",
+        "frame_01583_closeup.png": "68cea16a9d797d823788449726611d9b860c7cf2225cfbeea62be807722a3d4f"
+      }
+    },
+    {
+      "suit": "smu-blackcat",
+      "previousActorSha256": "89914fcf0fa5adfc9ba507d3222d45ee66e0b6fc8282cf8372f85cd8eaeb9e03",
+      "actorSha256": "3b85588fcca201d88ad1151ea52bf3e4033d6eb0de2608bfb71ffefe85b030ad",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-blacksuit-spidergirl",
+      "previousActorSha256": "967596961b83dff429e75621e78c109293e8da226886b44a67b77a28a47f9042",
+      "actorSha256": "49db7a52791fbe183a7a1b16c4af7a0afc3712f16e7601649f4001e8c9b8a6cb",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-blackwidow",
+      "previousActorSha256": "77b7c5757aeb6592546247a1d913a372600bd02efbbad9bcc9b381024eccdd19",
+      "actorSha256": "44dfd564b08f9b87f4c448044c1fff111050a97d8921b640727d79fed5d273e7",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-blood",
+      "previousActorSha256": "20e65b0836502f51f23c75825e9cd5926f2843a21b89a804b7012ef48597edf3",
+      "actorSha256": "e5a157afc87977e9c500d75f3ac47995b4be97a22930d22082faf6c26475889a",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-black-tarantula"
+  ],
+  "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast and Batty Brant sources instead use measured per-digit source-relative closure. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 948,
+  "changedFiles": [
+    "smu-benreilly\\actor.psx",
+    "smu-benreilly\\conversion-report.json",
+    "smu-bigtime-red\\actor.psx",
+    "smu-bigtime-red\\conversion-report.json",
+    "smu-bigtime\\actor.psx",
+    "smu-bigtime\\conversion-report.json",
+    "smu-black-tarantula\\actor.psx",
+    "smu-black-tarantula\\conversion-report.json",
+    "smu-blackcat\\actor.psx",
+    "smu-blackcat\\conversion-report.json",
+    "smu-blacksuit-spidergirl\\actor.psx",
+    "smu-blacksuit-spidergirl\\conversion-report.json",
+    "smu-blackwidow\\actor.psx",
+    "smu-blackwidow\\conversion-report.json",
+    "smu-blood\\actor.psx",
+    "smu-blood\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+    "exitCode": 0,
+    "warnings": 0,
+    "errors": 0,
+    "scope": "Observed incremental Windows game build for batch06. Native evidence uses the same game DLL hash. No Linux game execution."
+  }
+}

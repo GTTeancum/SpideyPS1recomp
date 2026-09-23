@@ -1,0 +1,54 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-benreilly-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-bigtime-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-bigtime-red-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-black-suit-swiney-girl-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-black-tarantula-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-blackcat-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-blackcatvenom-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-blacksuit-spidergirl-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-blackwidow-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-blood-isolation",
+    "exitCode": 0
+  }
+]

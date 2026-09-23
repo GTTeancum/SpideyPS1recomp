@@ -1,0 +1,40 @@
+{
+  "suit": "smu-black-suit-swiney-girl",
+  "level": "l5a3",
+  "executableSha256": "340d6995cbcbd7236b618998e436ec63649f4ca593896c986312063c7794ca82",
+  "actorSha256": "2ebe44554eb5b7af417217f93670e798f99a0ad18ea2fc46796080353f3802f9",
+  "capture": "Game framebuffer; process-local input only; no desktop capture or OS input",
+  "environment": {
+    "RECOMP_CAPTURE_HIDDEN": "1",
+    "RECOMP_RENDER_SCALE": "6",
+    "SPIDEY_WIDE": "1",
+    "SPIDEY_SCRIPT_EXCLUSIVE": "1",
+    "SPIDEY_SCRIPT": "title.bmr+120:start:12;title.bmr+420:cross:12;title.bmr+720:cross:12;l5a3_t.trg+240:cross:12;l5a3_t.trg+450:cross:12;l5a3_t.trg+485:r2:120",
+    "SPIDEY_LEVEL": "l5a3",
+    "SPIDEY_BOOT_SKIP_UNTIL": "title.bmr",
+    "SPIDEY_SUIT_MOD_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch06\\smu-black-suit-swiney-girl\\suits",
+    "SPIDEY_RETARGET_TRACE": "1",
+    "SPIDEY_MOD_TRACE": "1",
+    "SPIDEY_SHOT_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch06\\smu-black-suit-swiney-girl",
+    "SPIDEY_SHOTS": "l5a3_t.trg+495,l5a3_t.trg+800",
+    "SPIDEY_CAPTURE_PRESENTED": "1",
+    "SPIDEY_EXIT": "1900",
+    "SPIDEY_LOG_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch06\\smu-black-suit-swiney-girl",
+    "SPIDEY_STALL": "20"
+  },
+  "requestedView": {
+    "width": 2560,
+    "height": 1440,
+    "renderScale": 6,
+    "nativeCrop": null
+  },
+  "exitCode": 0,
+  "slowRunWarnings": 0,
+  "seconds": 68.34399999998277,
+  "images": [
+    "frame_01557.png",
+    "frame_01862.png"
+  ],
+  "acceptance": "Capture pending visual and gameplay review",
+  "captureComplete": true
+}

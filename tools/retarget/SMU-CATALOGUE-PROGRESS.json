@@ -4,7 +4,7 @@
   "batchVerified": 233,
   "remainingUnconverted": 0,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 6919,
+  "offlineChecks": 7174,
   "animationFrames": 977668,
   "offlineSwingFrames": 26795,
   "structuralBlockers": [],
@@ -301,7 +301,7 @@
       "id": "visual-fist-closure",
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
-      "evidence": "verification/repair-fists05/review.json",
+      "evidence": "verification/repair-fists06/review.json",
       "nativeReviewedRepairs": [
         "smu-amazing-spider",
         "smu-spiderham",
@@ -311,8 +311,21 @@
         "smu-ancientvenom",
         "smu-arana-gymnast",
         "smu-batty-brant",
-        "smu-baghead"
+        "smu-baghead",
+        "smu-black-tarantula"
       ],
+      "heldBatch": {
+        "batch": "fist-repair-batch06",
+        "status": "held-for-visual-correction",
+        "count": 2,
+        "installed": false,
+        "suits": [
+          "smu-black-suit-swiney-girl",
+          "smu-blackcatvenom"
+        ],
+        "evidence": "verification/diagnostic-fists06/review.json",
+        "finding": "Both candidates pass full offline checks but remain uninstalled. Swiney Girl's native swing and crouch retain short proportions and wrist web attachment; the free hand remains visibly cupped, also seen in complete anatomical offline diagnostics. Black Cat Venom's native swing/crop retains projecting finger tips. Neither is accepted as a closed fist. The other eight staged suits were installed after full regressions, with native Black Tarantula swing/crop review."
+      },
       "resolvedHeldBatch": {
         "batch": "fist-repair-batch04",
         "status": "resolved",
@@ -327,7 +340,7 @@
         "diagnosis": "Source-weighted digit tracing identifies the sideways tips as the index and little fingers. Their source spread survives shared-axis flexion. A source-relative aiming experiment reduces that spread without changing bind/weights/lengths, but completed native closeups still show a gap rather than a closed fist. Both candidates remain uninstalled despite passing all 55 structural checks, 4196-frame animation/isolation checks, 115-frame web checks and managed loading. Completed captures show jumping rather than swinging, so they are not live web-endpoint proof. Next: refine distal closure toward the palm and check for penetration before installation.",
         "finding": "The original rejected staging and first aiming experiment remain historical and uninstalled. Arana Gymnast was repaired separately in repair-fists04. The other nine suits were regenerated, fully reverified and installed in repair-fists05, with source-hash-guarded per-digit Batty Brant closure and individually reviewed native swing/crop pairs for Batty Brant and Baghead. No suits remain held from this batch. These representative views are not exhaustive contact/collision acceptance."
       },
-      "progress": "Thirty-three production actors now have verified finger repairs after full animation, web, loading and isolation checks. Arana Gymnast and Batty Brant use separately measured, source-hash-guarded per-digit closure; native swing/crop pairs show compact free-hand fists and webs at raised hands. Baghead also has reviewed native proof. The original 2099 meshes retain eased distal flexion; other repaired suits use the tighter base curl. Authored claws, thumb opposition, names and texture bytes remain intact. The other 200 suits await the follow-up finger pass. Visual review is representative, not every suit or exhaustive contact/collision testing.",
+      "progress": "Forty-one production actors now have verified finger-policy updates after full animation, web, loading and isolation checks. Arana Gymnast and Batty Brant use separately measured, source-hash-guarded per-digit closure. Black Tarantula adds native larger-body swing/crop coverage with a folded free-hand silhouette and web at the raised hand. The original 2099 meshes retain eased distal flexion; other updated suits use tighter base curl. Authored claws, thumb opposition, names and texture bytes remain intact. The other 192 suits await the follow-up finger pass, including the two explicitly held batch06 candidates. Visual review is representative, not every suit or exhaustive contact/collision testing.",
       "next": "Roll the verified base-curl repair through the remaining catalogue in small tested batches. Preserve earlier material, tongue and source-body repairs. Use complete anatomical geometry, not packet-5-only close-ups, and retain at most two native images per representative."
     }
   ],
@@ -829,6 +842,110 @@
     {
       "repairs": [
         {
+          "suit": "smu-benreilly",
+          "previousActorSha256": "bb31ee59f3c1ad48e4c4bd1f1236da0ea395fddb033f5ff2b34e7dd1b3bf794e",
+          "actorSha256": "9df5673ea82e166ab4dc2cfd529bc047160d012d952e71866d8ee988a5a9946e",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-bigtime",
+          "previousActorSha256": "58eea78f6dd4007cacdc79bc14b6a10f711da9c625316f40ff770841b5ebe00d",
+          "actorSha256": "64d595cda9ae79f3b7624011241cd0438723c3450761c4ee3a98f50fd840b0b6",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-bigtime-red",
+          "previousActorSha256": "00a6769824baf438edcc7a31983a3c38e1cacaa57a27db8fa5e7b1d4dbee3b3a",
+          "actorSha256": "3e3b509c043262e49ccd761299d3cd6725c73d8850dbe97601ca4e117136acb6",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-black-tarantula",
+          "previousActorSha256": "458344d3ead4ace3ccaf2409831fc49f4a0410b707df158cd610acb82f72ec23",
+          "actorSha256": "20cda5f18a2194322ade04b5d339e9f7bdc9aa9054d1d9d70245dc0af7af9e86",
+          "visualReview": "Individually inspected native frame 01583 and exact crop. Larger body, full limbs, white forearms and black-and-white clothing remain intact during swing. Web meets the raised hand. Free hand has a compact folded silhouette and the crop includes the whole hand and wrist. This rear/side angle does not establish exhaustive finger/palm contact or collision freedom. Exit zero, zero slow-run warnings.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01583.png": "be34d06e561dfeb120b63312544894c3d809f88e2edeb3bc5af25f9261b52b13",
+            "frame_01583_closeup.png": "68cea16a9d797d823788449726611d9b860c7cf2225cfbeea62be807722a3d4f"
+          }
+        },
+        {
+          "suit": "smu-blackcat",
+          "previousActorSha256": "89914fcf0fa5adfc9ba507d3222d45ee66e0b6fc8282cf8372f85cd8eaeb9e03",
+          "actorSha256": "3b85588fcca201d88ad1151ea52bf3e4033d6eb0de2608bfb71ffefe85b030ad",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-blacksuit-spidergirl",
+          "previousActorSha256": "967596961b83dff429e75621e78c109293e8da226886b44a67b77a28a47f9042",
+          "actorSha256": "49db7a52791fbe183a7a1b16c4af7a0afc3712f16e7601649f4001e8c9b8a6cb",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-blackwidow",
+          "previousActorSha256": "77b7c5757aeb6592546247a1d913a372600bd02efbbad9bcc9b381024eccdd19",
+          "actorSha256": "44dfd564b08f9b87f4c448044c1fff111050a97d8921b640727d79fed5d273e7",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-blood",
+          "previousActorSha256": "20e65b0836502f51f23c75825e9cd5926f2843a21b89a804b7012ef48597edf3",
+          "actorSha256": "e5a157afc87977e9c500d75f3ac47995b4be97a22930d22082faf6c26475889a",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-black-tarantula.",
+          "individuallyCaptured": false,
+          "images": {}
+        }
+      ],
+      "managedLoaderExitCode": 0,
+      "representatives": [
+        "smu-black-tarantula"
+      ],
+      "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast and Batty Brant sources instead use measured per-digit source-relative closure. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+      "previousFilesUnchanged": 948,
+      "changedFiles": [
+        "smu-benreilly\\actor.psx",
+        "smu-benreilly\\conversion-report.json",
+        "smu-bigtime-red\\actor.psx",
+        "smu-bigtime-red\\conversion-report.json",
+        "smu-bigtime\\actor.psx",
+        "smu-bigtime\\conversion-report.json",
+        "smu-black-tarantula\\actor.psx",
+        "smu-black-tarantula\\conversion-report.json",
+        "smu-blackcat\\actor.psx",
+        "smu-blackcat\\conversion-report.json",
+        "smu-blacksuit-spidergirl\\actor.psx",
+        "smu-blacksuit-spidergirl\\conversion-report.json",
+        "smu-blackwidow\\actor.psx",
+        "smu-blackwidow\\conversion-report.json",
+        "smu-blood\\actor.psx",
+        "smu-blood\\conversion-report.json"
+      ],
+      "originalManifestAndTextureBytesPreserved": true,
+      "build": {
+        "status": "PASS",
+        "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+        "exitCode": 0,
+        "warnings": 0,
+        "errors": 0,
+        "scope": "Observed incremental Windows game build for batch06. Native evidence uses the same game DLL hash. No Linux game execution."
+      }
+    },
+    {
+      "repairs": [
+        {
           "suit": "smu-gwenom",
           "previousActorSha256": "6cce60683532b5e9c7ceaf44fa9f1862f2cf303635fafa2e4fbdb6a1082071f6",
           "actorSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
@@ -939,8 +1056,8 @@
       "arana_gymnast": "source-relative-digit-closure-v1",
       "batty_brant": "source-relative-digit-closure-v1"
     },
-    "updatedInstalled": 33,
-    "remaining": 200,
+    "updatedInstalled": 41,
+    "remaining": 192,
     "suits": [
       "smu-1602",
       "smu-2099",
@@ -973,6 +1090,14 @@
       "smu-battledamaged",
       "smu-batty-brant",
       "smu-ben-reilly-unmasked",
+      "smu-benreilly",
+      "smu-bigtime",
+      "smu-bigtime-red",
+      "smu-black-tarantula",
+      "smu-blackcat",
+      "smu-blacksuit-spidergirl",
+      "smu-blackwidow",
+      "smu-blood",
       "smu-other",
       "smu-spiderham"
     ],
