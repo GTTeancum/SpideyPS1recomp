@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-milesmorales",
+    "beforeActorSha256": "f9ad9f422aa1a65849bb9d83bf153bc41c29f0bb7d2eb6f486b7ffec3e192250",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-milesmorales-uk-mesh",
+    "beforeActorSha256": "c8efdc491c82f82cb3a0a1bca6138a146c6a1ca3816d361e85822612b7d5b29f",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-milesmoralesdemasked",
+    "beforeActorSha256": "003e3fc841c6b1d432fdb6c788fd40482a9c1ba3a8958b0c7458c89e2c8cf820",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

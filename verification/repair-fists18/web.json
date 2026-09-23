@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "milesmorales",
+      "id": "smu-milesmorales",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "f1c5c9f09d820b2b916e8398b9b593ba6a20f7723bd6c6a6aee7d70ee52eac27",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    },
+    {
+      "key": "milesmorales_uk_mesh",
+      "id": "smu-milesmorales-uk-mesh",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927978515625,
+        9.329833984375
+      ],
+      "assetSha256": "eefcbd6d273860c2befe17036e27da546d13c7eb9a2f3da2e89687b9b027fbe1",
+      "captureSha256": "b8bad32f34082dbf3f50354d709de107e13b39f02d126a3d81c9d0aa94459f9c"
+    },
+    {
+      "key": "milesmoralesdemasked",
+      "id": "smu-milesmoralesdemasked",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.935546875,
+        9.337646484375
+      ],
+      "assetSha256": "ee7de4142c800db40fdd865b4111f24ba42974f54a3cbb60038207867a521167",
+      "captureSha256": "8365355979940518e57a61c6b218e78a0bebc2c070e0e162d1972bdc3c3f1b73"
+    }
+  ]
+}

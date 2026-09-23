@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch18",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "milesmorales",
+    "milesmorales_uk_mesh",
+    "milesmoralesdemasked"
+  ],
+  "results": [
+    {
+      "key": "milesmorales",
+      "id": "smu-milesmorales",
+      "fbx": "costumes/milesmorales/milesmorales.fbx",
+      "fbxSha256": "2bcf59884aec6bd25d34efa1be2f350ec05ee2198a7005186dcca54ffadbeef8",
+      "textureFiles": [
+        "textures-png\\SpidermanMorales_D.png"
+      ],
+      "textureSha256": [
+        "84f6d8299961501492ea2c35f126c69f6361726b1d2ebc446ca2439e1fd7da55"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMorales_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanMorales_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 702608,
+      "outputs": {
+        "actor.psx": "f1c5c9f09d820b2b916e8398b9b593ba6a20f7723bd6c6a6aee7d70ee52eac27",
+        "conversion-report.json": "7c109e3a33a6e5be0f601eefb920dc058665a8d974f79e315f65d13ed17384ec",
+        "suit.json": "0fb128e5fec6059701ed2c0ca2cf9cd942645589a790fd60e3c1b3d36e332fbd",
+        "textures\\diffuse.png": "cdf9033f4a02319f611ad93cfb15902147af4baf76a023eda46e22ebcad309bf"
+      }
+    },
+    {
+      "key": "milesmorales_uk_mesh",
+      "id": "smu-milesmorales-uk-mesh",
+      "fbx": "costumes/milesmorales_uk_mesh/milesmorales_uk_mesh.fbx",
+      "fbxSha256": "89aa53005a589627f8b821045d5911e2596875c0de623a7670db9d5350e866aa",
+      "textureFiles": [
+        "textures-png\\SpidermanMorales_D.png"
+      ],
+      "textureSha256": [
+        "84f6d8299961501492ea2c35f126c69f6361726b1d2ebc446ca2439e1fd7da55"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1682,
+      "sourceTriangles": 2936,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMorales_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "UK",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanMorales_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 715260,
+      "outputs": {
+        "actor.psx": "eefcbd6d273860c2befe17036e27da546d13c7eb9a2f3da2e89687b9b027fbe1",
+        "conversion-report.json": "4c33aeedcc408391623eeb3d4b5bb2333ed8e1844bea0b45f5e7dae9274759ed",
+        "suit.json": "ed31982bb16a6f92bf33cdc8b95ce6ba98a1ec0bcd325bed824917740b34990e",
+        "textures\\diffuse.png": "cdf9033f4a02319f611ad93cfb15902147af4baf76a023eda46e22ebcad309bf"
+      }
+    },
+    {
+      "key": "milesmoralesdemasked",
+      "id": "smu-milesmoralesdemasked",
+      "fbx": "costumes/milesmoralesdemasked/milesmoralesdemasked.fbx",
+      "fbxSha256": "fd3eccb28f5ee80c6da9dbdb46e50a0291db0467924d0f63610c9f9ea490cd59",
+      "textureFiles": [
+        "textures-png\\MilesMoralesDemasked_D.png"
+      ],
+      "textureSha256": [
+        "f85166089d3d3b65abfde061f16b54fddae7293068bdd5b9556d4021b924c9fe"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1907,
+      "sourceTriangles": 3244,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MilesMoralesDemasked_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "MilesMoralesDemasked",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MilesMoralesDemasked_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 777536,
+      "outputs": {
+        "actor.psx": "ee7de4142c800db40fdd865b4111f24ba42974f54a3cbb60038207867a521167",
+        "conversion-report.json": "680975f50c2b07b52d03a5be1b77828d4f42cfc04b0edcb4089190f3fed97eda",
+        "suit.json": "dfbb0ded514c6cbae12d0c3c8e5fedb5ab8f4f39119cb864d0298f85b7c8fcf8",
+        "textures\\diffuse.png": "f5ec0cf18750411607b2e87d10cbb1bbd29c7735b9d37c42418120f3126c2173"
+      }
+    }
+  ]
+}

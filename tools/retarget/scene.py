@@ -35,6 +35,14 @@ def non_thumb_flexion(source_stem,segment):
     return 65 if source_stem in ('2099','2099_new') else 85
 
 
+# The approved Amazing Spider-Man trial uses the authored palm plane to close
+# each digit toward the palm.  Unlike a shared local-axis curl, this retains
+# the source's finger spread only until it is deliberately converged inward.
+PALM_WIDTH_CLOSURE_METHOD = 'source-relative-palm-width-closure-v1'
+PALM_WIDTH_CLOSURE = dict(baseLean=.2, baseConvergence=.7,
+                          convergence=.35, closure=.5)
+
+
 FINGER_AIM_SOURCE = 'arana_gymnast'
 FINGER_AIM_SHA256 = '8cbc3a2a80e5ad8092a3e32e0dd1d3ff10455233a5bc7d42d0aa4536d8822ca1'
 FINGER_AIM_SETTINGS = {2: (.6, .35, 3.0000000000000004),
@@ -315,14 +323,34 @@ def calibrate(scene,reference,native_origins,ground):
             match=re.fullmatch('Clown001'+side+r'ArmDigit([0-9])([1-3])',name)
             if not match:continue
             digit,segment=map(int,match.groups())
-            # A right-angle base curl closes the free-hand silhouette. The
-            # separately calibrated thumb is independent of claw-tip clearance.
+            # Thumb and any authored third phalanx retain their dedicated
+            # flexion paths.  The ordinary two-bone fingers are replaced below
+            # by the palm-width closure used in the approved in-game trial.
             angle=45 if digit==0 and segment==1 else 65 if digit==0 else non_thumb_flexion(s.path.stem,segment)
             local_axis=bind[i,:3,:3].T@axis
             fist[i]=axis_angle(local_axis,angle)
             finger_report.append({'bone':name,'angleDegrees':angle,'axisLocal':local_axis.tolist()})
             if digit!=0 and segment>1 and angle!=85:
                 finger_report[-1]['clearancePolicy']='2099-long-claws-distal-clearance'
+        for digit in (2,3,5):
+            first,second=[s.index(side+f'ArmDigit{digit}{segment}') for segment in (1,2)]
+            lateral=float((bind[middle,:3,3]-bind[first,:3,3])@across)
+            length=np.linalg.norm(bind[second,:3,3]-bind[first,:3,3])
+            if length<1e-10:
+                raise ValueError(f'Degenerate {side} digit {digit} length')
+            q1=align(bind[second,:3,3]-bind[first,:3,3],
+                     inward-forward*PALM_WIDTH_CLOSURE['baseLean']+
+                     across*(lateral/length)*PALM_WIDTH_CLOSURE['baseConvergence'])
+            q2=align(bind[second,:3,1],
+                     -forward+across*(lateral/length)*PALM_WIDTH_CLOSURE['convergence']-
+                     inward*PALM_WIDTH_CLOSURE['closure'])
+            r1,r2=bind[first,:3,:3],bind[second,:3,:3]
+            for bi,pose in ((first,r1.T@q1@r1),(second,r2.T@q1.T@q2@r2)):
+                fist[bi]=pose
+                report=next(r for r in finger_report if r['bone']==s.names[bi])
+                report.clear()
+                report.update(bone=s.names[bi],method=PALM_WIDTH_CLOSURE_METHOD,
+                              **PALM_WIDTH_CLOSURE,localRotation=pose.tolist())
         # Thumb opposition is not ordinary finger flexion. Aim the preserved
         # thumb chain across the curled index/middle fingers, keeping both lengths.
         thumb1=s.index(side+'ArmDigit01')

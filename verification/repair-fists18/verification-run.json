@@ -1,0 +1,26 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-milesmorales-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-milesmorales-uk-mesh-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-milesmoralesdemasked-isolation",
+    "exitCode": 0
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 1,
+  "requested": 1,
+  "results": [
+    {
+      "key": "amazing_spider",
+      "id": "smu-amazing-spider",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.13037109375,
+        6.532470703125
+      ],
+      "assetSha256": "8b3dea48587d874b22174a2f25bed4ebd2891e62dbeb3c925ae1f860514ac574",
+      "captureSha256": "cfdde4197306cc40c6d177b7d018ee2c56e8762d6a381093e0fb8acfd897cb9b"
+    }
+  ]
+}

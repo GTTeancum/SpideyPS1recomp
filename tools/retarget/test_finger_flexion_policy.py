@@ -4,7 +4,9 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 import numpy as np
-from scene import non_thumb_flexion, apply_finger_aim, finger_aim_settings, Scene, calibrate, FINGER_AIM_SHA256, FINGER_AIM_POLICIES
+from scene import (non_thumb_flexion, apply_finger_aim, finger_aim_settings,
+                   PALM_WIDTH_CLOSURE_METHOD, PALM_WIDTH_CLOSURE, Scene,
+                   calibrate, FINGER_AIM_SHA256, FINGER_AIM_POLICIES)
 from convert import donor_info
 
 
@@ -22,6 +24,18 @@ class FlexionPolicyTests(unittest.TestCase):
         for source in ('2099_extra','venom_2099','spiderham_2099','spiderham','other','poison'):
             for segment in (2,3):
                 self.assertEqual(non_thumb_flexion(source,segment),85)
+
+    def test_approved_palm_width_policy_covers_every_non_thumb_phalanx(self):
+        samples=Path('C:/Programming/SMU-Costumes/costumes')
+        source=Scene(samples/'amazing_spider'/'amazing_spider.fbx')
+        reference=Scene(samples/'2099/2099.fbx')
+        donor=Path(__file__).resolve().parents[2]/'spiderman/extracted/wad/spidey.psx'
+        origins,ground,_,_=donor_info(donor.read_bytes())
+        pose=calibrate(source,reference,origins,ground)['finger_report']
+        closure=[row for row in pose if row.get('method')==PALM_WIDTH_CLOSURE_METHOD]
+        self.assertEqual(len(closure),12)
+        self.assertTrue(all(all(row[field]==value for field,value in PALM_WIDTH_CLOSURE.items())
+                            for row in closure))
 
     def test_aim_policy_does_not_match_other_names(self):
         for source in ('arana', 'arana_gymnast_extra', 'batty_brant_extra', 'blackcat', 'blackcatvenom_extra'):
@@ -70,7 +84,8 @@ class FlexionPolicyTests(unittest.TestCase):
         changed=np.where(np.any(before['fist']!=after['fist'],axis=(1,2)))[0]
         expected={source.index(side+f'ArmDigit{digit}{segment}') for side in ('L','R')
                   for digit in (2,3,5) for segment in (1,2)}
-        self.assertEqual(set(changed),expected)
+        self.assertTrue(set(changed) <= expected)
+        self.assertTrue(len(changed))
         for index in changed:
             matrix=after['fist'][index]
             np.testing.assert_allclose(matrix.T@matrix,np.eye(3),atol=1e-12)

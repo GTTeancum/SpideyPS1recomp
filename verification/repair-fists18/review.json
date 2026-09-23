@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-milesmorales",
+      "previousActorSha256": "f9ad9f422aa1a65849bb9d83bf153bc41c29f0bb7d2eb6f486b7ffec3e192250",
+      "actorSha256": "f1c5c9f09d820b2b916e8398b9b593ba6a20f7723bd6c6a6aee7d70ee52eac27",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-milesmorales-uk-mesh.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-milesmorales-uk-mesh",
+      "previousActorSha256": "c8efdc491c82f82cb3a0a1bca6138a146c6a1ca3816d361e85822612b7d5b29f",
+      "actorSha256": "eefcbd6d273860c2befe17036e27da546d13c7eb9a2f3da2e89687b9b027fbe1",
+      "visualReview": "Reviewed the two native game images sequentially: frame_01609.png and its exact native close-up crop. The black/red Miles Morales UK mesh retains its normal body proportions, materials, head, limbs and complete geometry. Both free hands are compact within the palm width without the prior lateral finger spread. This is genuine process-local game framebuffer evidence for the representative silhouette, not exhaustive contact or clipping proof. The captured pose has no visible web strand, so live web-endpoint appearance is not claimed; the 115-frame offline endpoint regression passes separately.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01609.png": "7d3f1a6c63223a8b044228deb38b05bae792a0e6dc6c98781796c74adc0a32fd",
+        "frame_01609_closeup.png": "f18ef54616f9c51454b817efcaeacd0640cb59b302dbd7f9067ecab4d808174e"
+      }
+    },
+    {
+      "suit": "smu-milesmoralesdemasked",
+      "previousActorSha256": "003e3fc841c6b1d432fdb6c788fd40482a9c1ba3a8958b0c7458c89e2c8cf820",
+      "actorSha256": "ee7de4142c800db40fdd865b4111f24ba42974f54a3cbb60038207867a521167",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-milesmorales-uk-mesh.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-milesmorales-uk-mesh"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials remain intact. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-milesmorales-uk-mesh\\actor.psx",
+    "smu-milesmorales-uk-mesh\\conversion-report.json",
+    "smu-milesmorales\\actor.psx",
+    "smu-milesmorales\\conversion-report.json",
+    "smu-milesmoralesdemasked\\actor.psx",
+    "smu-milesmoralesdemasked\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 0,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-milesmorales-uk-mesh/frame_01609.png plus its exact close-up crop"
+  }
+}

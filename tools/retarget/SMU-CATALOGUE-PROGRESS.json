@@ -4,7 +4,7 @@
   "batchVerified": 233,
   "remainingUnconverted": 0,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 9300,
+  "offlineChecks": 9555,
   "animationFrames": 977668,
   "offlineSwingFrames": 26795,
   "structuralBlockers": [],
@@ -306,7 +306,8 @@
       "id": "visual-fist-closure",
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
-      "evidence": "verification/repair-fists16/review.json",
+      "evidence": "verification/repair-fists17/review.json",
+      "batch17NativeReview": "Miles Morales UK retains black/red proportions and folded glove silhouettes with a visible swing web at the raised hand. MJ Regent retains segmented armor and its long back piece; bright white lighting limits fine hand and material detail, and the web junction is partly obscured. MJ Venom's side/front frames preserve the head/hair/body but show open claw-like hands, so that candidate is held. See verification/repair-fists17/review.json and verification/diagnostic-fists17/review.json. These are representative views, not every-suit or exhaustive contact acceptance.",
       "batch16NativeReview": "Mech retains broad silver armor and segmented boots with folded fingers and a visible swing web at the raised glove. Mattie Franklin 5 retains the magenta costume, pointed heeled boots and folded glove silhouette, with a projecting thumb/opening still visible; its run has one slow-run warning. Both second frames are side-facing, not frontal. Maniac's front/side views show cupped hands and are held separately. See verification/repair-fists16/review.json and verification/diagnostic-fists16/review.json. No exhaustive contact or smooth-performance acceptance is claimed.",
       "batch15NativeReview": "Lizard's side/front views show folded hands, intact tail and a tongue tip at the mouth; neither frame contains a web. Mangaverse's swing/side views retain oversized gloves, shoes and backpack, with a web meeting the raised glove. Bulky gloves limit fine palm-contact review. Mangaverse Girl is held separately because its front view does not clearly show left-hand closure. See verification/repair-fists15/review.json and verification/diagnostic-fists15/review.json.",
       "nativeReviewedRepairs": [
@@ -343,6 +344,17 @@
       "batch13OccludedHandReview": "Ichor's native rear/side views verify the retained armor and large appendage silhouette but obscure most hand surfaces. Its completed finger-policy update has full structural, animation, web and pose-isolation evidence, not clear native fist-contact proof. Iguana and Hornet provide visible folded-hand representatives for this batch. See verification/repair-fists13/review.json.",
       "batch10SourceLimitation": "Doppleganger retains all six visible arms and 4286 triangles, but its preserved 62-node rig has only two arm/palm chains and no independent extra-arm finger chains. Native swing and rear movement show folded primary fingers and open extra-hand claws. Independent extra-arm animation/closure is not accepted or fabricated by this finger-only repair.",
       "additionalHeldBatches": [
+        {
+          "batch": "fist-repair-batch17",
+          "status": "held-for-visual-correction",
+          "count": 1,
+          "installed": false,
+          "suits": [
+            "smu-mj-venom"
+          ],
+          "evidence": "verification/diagnostic-fists17/review.json",
+          "finding": "Native side/front views retain the red hair, blue body, white chest motif and face but show open claw-like hands with lifted tips. All preservation, animation, web and loading checks pass; the candidate remains uninstalled for source-preserving closure correction. No projecting tongue or web appears in these frames. Its source rig has no named tongue chain, so the named-tongue audit is not visual acceptance for this suit."
+        },
         {
           "batch": "fist-repair-batch16",
           "status": "held-for-visual-correction",
@@ -421,7 +433,7 @@
         "diagnosis": "Source-weighted digit tracing identifies the sideways tips as the index and little fingers. Their source spread survives shared-axis flexion. A source-relative aiming experiment reduces that spread without changing bind/weights/lengths, but completed native closeups still show a gap rather than a closed fist. Both candidates remain uninstalled despite passing all 55 structural checks, 4196-frame animation/isolation checks, 115-frame web checks and managed loading. Completed captures show jumping rather than swinging, so they are not live web-endpoint proof. Next: refine distal closure toward the palm and check for penetration before installation.",
         "finding": "The original rejected staging and first aiming experiment remain historical and uninstalled. Arana Gymnast was repaired separately in repair-fists04. The other nine suits were regenerated, fully reverified and installed in repair-fists05, with source-hash-guarded per-digit Batty Brant closure and individually reviewed native swing/crop pairs for Batty Brant and Baghead. No suits remain held from this batch. These representative views are not exhaustive contact/collision acceptance."
       },
-      "progress": "119 production actors now have verified finger-policy updates after full animation, web, loading and isolation checks. Batch16 adds nine updates with individually reviewed native Mech and Mattie Franklin 5 frames. Earlier paged, recovered-body, material and tongue repairs remain intact. Maniac, Mangaverse Girl, ordinary Carnage and Swiney Girl remain held. Black Cat Venom retains separate hand settings; Arana Gymnast and Batty Brant retain targeted right-hand corrections. The original 2099 meshes retain eased distal flexion; other updated suits use tighter base curl. Authored claws, thumb opposition, names and texture bytes remain intact. The other 114 suits await the follow-up finger pass. Policy rollout counts are not final per-suit visual/contact acceptance.",
+      "progress": "128 production actors now have verified finger-policy updates after full animation, web, loading and isolation checks. Batch17 adds nine updates with individually reviewed native Miles Morales UK and MJ Regent frames. Earlier paged, recovered-body, material and tongue repairs remain intact. MJ Venom, Maniac, Mangaverse Girl, ordinary Carnage and Swiney Girl remain held. Black Cat Venom retains separate hand settings; Arana Gymnast and Batty Brant retain targeted right-hand corrections. The original 2099 meshes retain eased distal flexion; other updated suits use tighter base curl. Authored claws, thumb opposition, names and texture bytes remain intact. The other 105 suits await the follow-up finger pass. Policy rollout counts are not final per-suit visual/contact acceptance.",
       "next": "Roll the verified base-curl repair through the remaining catalogue in small tested batches. Preserve earlier material, tongue and source-body repairs. Use complete anatomical geometry, not packet-5-only close-ups, and retain at most two native images per representative."
     },
     {
@@ -2135,6 +2147,124 @@
     {
       "repairs": [
         {
+          "suit": "smu-mercenary",
+          "previousActorSha256": "7f83b26befcf066f577d33414ac99a9166e544fe2f4395475bad87af8afea1e7",
+          "actorSha256": "7f4707540ec8af49d9464220e6b7dc9bb738ca67a6fae8c2e193e5cb6dbb4079",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mj-regent-power-suit, smu-milesmorales-uk-mesh.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-michaelbingham",
+          "previousActorSha256": "f4546fd5e97a80e777837de6fa6d5afe28007a5ba02ba138366cc04289f1b393",
+          "actorSha256": "1a7bd244a8e109169a53e46dcf3b26f4cdd24cdf68bc795339063794ec4626be",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mj-regent-power-suit, smu-milesmorales-uk-mesh.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-michaelmorbius",
+          "previousActorSha256": "a31743c94bf64eac3f30191c382e1c641b7750e8bd6e197cf9c8795f44f34a9d",
+          "actorSha256": "e6a5028eced5ba82a38a621bd09873ced3dc34d1979af7a6bc1ec23d70eb0218",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mj-regent-power-suit, smu-milesmorales-uk-mesh.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-milesmorales",
+          "previousActorSha256": "f9ad9f422aa1a65849bb9d83bf153bc41c29f0bb7d2eb6f486b7ffec3e192250",
+          "actorSha256": "3a47de2a94985bb2f26b58e5f258ea2be789f9fd1dda8283c1b05261d4eed5a6",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mj-regent-power-suit, smu-milesmorales-uk-mesh.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-milesmorales-uk-mesh",
+          "previousActorSha256": "c8efdc491c82f82cb3a0a1bca6138a146c6a1ca3816d361e85822612b7d5b29f",
+          "actorSha256": "1fe55511c088e2b5efaaf9b0006181cba38b3d2f0f9a43ec712875cd7004df6e",
+          "visualReview": "Individually inspected native frames 01582 and 01902. Rear swing and side movement retain the black/red costume, red web pattern and back emblem, white eye lens and body proportions. Non-thumb fingers form folded glove silhouettes with a separate thumb opening; fine palm contact is not fully exposed. The swing web visibly reaches the raised glove/wrist. All 2936 triangles and source texture bytes are separately preserved by tests. Second view is side-facing, not a front-hand closeup; no exhaustive contact or all-pose acceptance is claimed.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01582.png": "9f24cb0abac3b8c76f8553e147200000e65c6401c7603b783fe3ee16dcf2bf74",
+            "frame_01902.png": "1e7994960671585463c6be2655c8f793d993c3b5030132b4280f44fcd3329ceb"
+          }
+        },
+        {
+          "suit": "smu-milesmoralesdemasked",
+          "previousActorSha256": "003e3fc841c6b1d432fdb6c788fd40482a9c1ba3a8958b0c7458c89e2c8cf820",
+          "actorSha256": "b2c1b82d65e0dceedd2977be70a4ddeec20c376edbb7b74611b0bdd18144abd3",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mj-regent-power-suit, smu-milesmorales-uk-mesh.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-mj-regent-power-suit",
+          "previousActorSha256": "d604fb569b3ce6acca0c1e9319de7d55df514bfc03d7fd018afad9708516e9d9",
+          "actorSha256": "16603bdaa5cb6605d5c3b1974bdf57285e009915f77748e3d0b50d2ec10994f3",
+          "visualReview": "Individually inspected native frames 01559 and 01879. Rear swing and side movement retain the white segmented armor, cyan body panels, red markings/hair, long back piece and armored boots. Gloves have folded non-thumb silhouettes with a visible thumb opening. Bright white lighting washes out some surface details, so fine finger contact and source-shader equivalence are not accepted. The web reaches the raised glove region, with the exact junction partly obscured by bright armor and hair. All 4408 triangles and original texture bytes survive the separate preservation tests. No frontal face view or exhaustive contact proof is claimed.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01559.png": "80a96d4d0c8cdcc2073a1e20984493950f4910a9f318c53c06d38d399dd31a58",
+            "frame_01879.png": "592ecc189def07543fdea0be3626a4d64573dcc03e57c4b448ed7d5a960ac746"
+          }
+        },
+        {
+          "suit": "smu-mj-sexy",
+          "previousActorSha256": "a9a1e3768b325836f690498b619f7226fb52b6565d9664d98e33960fff6e7a82",
+          "actorSha256": "f36960444da8bc5354ce74e624efd7a9f77754b001df1a252afc01f2a36045ce",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mj-regent-power-suit, smu-milesmorales-uk-mesh.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-mjiron",
+          "previousActorSha256": "c794fc724d6eb384af9f19a569ee8766a2ca4e921877d7a3cfae8f4427c16864",
+          "actorSha256": "f42777a9e712f02d9ed217c348ac634fa1c45e2d7c8f5b5fd1d263d9f05615bd",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mj-regent-power-suit, smu-milesmorales-uk-mesh.",
+          "individuallyCaptured": false,
+          "images": {}
+        }
+      ],
+      "managedLoaderExitCode": 0,
+      "representatives": [
+        "smu-mj-regent-power-suit",
+        "smu-milesmorales-uk-mesh"
+      ],
+      "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast, Batty Brant and Black Cat Venom sources instead use measured per-digit source-relative closure with narrow per-hand overrides. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+      "previousFilesUnchanged": 946,
+      "changedFiles": [
+        "smu-mercenary\\actor.psx",
+        "smu-mercenary\\conversion-report.json",
+        "smu-michaelbingham\\actor.psx",
+        "smu-michaelbingham\\conversion-report.json",
+        "smu-michaelmorbius\\actor.psx",
+        "smu-michaelmorbius\\conversion-report.json",
+        "smu-milesmorales-uk-mesh\\actor.psx",
+        "smu-milesmorales-uk-mesh\\conversion-report.json",
+        "smu-milesmorales\\actor.psx",
+        "smu-milesmorales\\conversion-report.json",
+        "smu-milesmoralesdemasked\\actor.psx",
+        "smu-milesmoralesdemasked\\conversion-report.json",
+        "smu-mj-regent-power-suit\\actor.psx",
+        "smu-mj-regent-power-suit\\conversion-report.json",
+        "smu-mj-sexy\\actor.psx",
+        "smu-mj-sexy\\conversion-report.json",
+        "smu-mjiron\\actor.psx",
+        "smu-mjiron\\conversion-report.json"
+      ],
+      "originalManifestAndTextureBytesPreserved": true,
+      "build": {
+        "status": "PASS",
+        "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+        "exitCode": 0,
+        "warnings": 9,
+        "errors": 0,
+        "scope": "Observed Windows game build for batch17, 28.02 seconds. Existing nullable-reference, unused-field and stackalloc analyzer warnings were reported. No runtime source edits in this batch. Native captures use this build; Linux execution not performed."
+      }
+    },
+    {
+      "repairs": [
+        {
           "suit": "smu-gwenom",
           "previousActorSha256": "6cce60683532b5e9c7ceaf44fa9f1862f2cf303635fafa2e4fbdb6a1082071f6",
           "actorSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
@@ -2246,8 +2376,8 @@
       "batty_brant": "source-relative-digit-closure-v1",
       "blackcatvenom": "source-relative-digit-closure-v1"
     },
-    "updatedInstalled": 119,
-    "remaining": 114,
+    "updatedInstalled": 122,
+    "remaining": 111,
     "suits": [
       "smu-1602",
       "smu-2099",
@@ -2366,9 +2496,12 @@
       "smu-mayhem",
       "smu-mayparker-unmasked",
       "smu-mech",
+      "smu-milesmorales",
+      "smu-milesmorales-uk-mesh",
+      "smu-milesmoralesdemasked",
       "smu-other",
       "smu-spiderham"
     ],
-    "scope": "Source-preserving tighter base curl with per-batch regressions and representative native visual review. Not exhaustive per-suit contact testing."
+    "scope": "Source-preserving user-approved palm-width finger closure with per-batch regressions and representative native visual review. Female, Venom, symbiote, inkling and playable-villain skins are excluded from future rollout. Not exhaustive per-suit contact testing."
   }
 }

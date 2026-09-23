@@ -1,0 +1,30 @@
+{
+  "catalogueRolloutAllowed": true,
+  "fistsApprovedInGameByUser": true,
+  "practiceSuit": "smu-amazing-spider",
+  "practiceSourceKey": "amazing_spider",
+  "practiceTrialInstalled": true,
+  "awaitingUserInGameApproval": false,
+  "nativeReview": "Exact installed candidate captured in the real game. Full frame plus exact native crop show both hands in one front-facing movement pose. The user approved this exact in-game fist construction for eligible-catalogue rollout. This remains representative evidence, not exhaustive contact proof.",
+  "practiceActorSha256": "8b3dea48587d874b22174a2f25bed4ebd2891e62dbeb3c925ae1f860514ac574",
+  "practiceInstallationAuthorization": "User requested this exact version in-game and then approved it for eligible-catalogue rollout.",
+  "practiceEvidence": "verification/fist-approval-amazing01/installation.json",
+  "excludedFutureCategories": ["female", "Venom", "symbiote", "inkling", "playable villain"],
+  "excludedSourceKeys": {
+    "mercenary": "playable villain",
+    "michaelbingham": "playable villain (Blood Spider)",
+    "michaelmorbius": "playable villain",
+    "mj_regent_power_suit": "female",
+    "mj_sexy": "female",
+    "mjiron": "female"
+  },
+  "requirements": [
+    "Apply the approved palm-width closure only to suits outside the excluded categories. Add every reviewed exclusion to excludedSourceKeys before staging its surrounding batch.",
+    "Curled fingers must stay within the hand width, without lateral splay, claw gaps or collapsed finger silhouettes.",
+    "Use biomechanical studies as guidance, adapted to the authored rig rather than blindly copying joint angles.",
+    "Preserve hierarchy, bind, weights, geometry, materials and proportions. Experiments remain separate from installed suits.",
+    "Show at most two genuine native game images of the practice character, then pause the goal and await user approval."
+  ],
+  "interruptedBatch": "fist-repair-batch17",
+  "interruptedBatchState": "Nine updates were installed before the user rejected fist quality. Their hash-checked pre-batch files were restored after approval so excluded entries remain skipped and eligible entries can be regenerated with the approved policy."
+}

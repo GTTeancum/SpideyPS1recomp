@@ -1,0 +1,174 @@
+{
+  "status": "PASS",
+  "scope": "Native assets + compiled C++ runtime core + original animation decoding oracle; C# integration checks are static only. Full .NET build/game execution NOT run.",
+  "passed": 30,
+  "failed": 0,
+  "metrics": {
+    "smu-amazing-spider": {
+      "bones": 66,
+      "sourceControlPoints": 2783,
+      "sourceInfluences": 6024,
+      "runtimeVertices": 2783,
+      "runtimeInfluences": 6024,
+      "triangles": 4378,
+      "nativeBytes": 988876,
+      "sha256": "8b3dea48587d874b22174a2f25bed4ebd2891e62dbeb3c925ae1f860514ac574",
+      "rootScale": 0.9027943015098572,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007818628801032901,
+      "maxRoundedComponentError": 0.8538970947265625,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 4.348069300001953
+    }
+  },
+  "results": [
+    {
+      "name": "300 native clips / 4196 source frames",
+      "passed": true
+    },
+    {
+      "name": "original decoder produces nonsingular Q12 driver rotations",
+      "passed": true,
+      "minDet": 0.9987022876739502,
+      "maxDet": 1.0010902881622314
+    },
+    {
+      "name": "smu-amazing-spider: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9659397604575588e-08
+    },
+    {
+      "name": "smu-amazing-spider: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 4378
+    },
+    {
+      "name": "smu-amazing-spider: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.000244140625
+    },
+    {
+      "name": "smu-amazing-spider: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-amazing-spider: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.00019073486328125,
+      "scale": 0.9027943015098572
+    },
+    {
+      "name": "smu-amazing-spider: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-amazing-spider: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-amazing-spider: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 3565.537353515625,
+      "worst": null
+    },
+    {
+      "name": "smu-amazing-spider: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007818628801032901
+    },
+    {
+      "name": "smu-amazing-spider: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.0008544921875,
+      "maxRoundedComponentError": 0.8538970947265625
+    },
+    {
+      "name": "smu-amazing-spider: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-amazing-spider: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "source integration: exactly one pose-ready hook and regeneration config",
+      "passed": true
+    },
+    {
+      "name": "source integration: resident validation / fists / culling update present",
+      "passed": true
+    },
+    {
+      "name": "Windows deployed native DLL is the tested-source build artifact",
+      "passed": true
+    }
+  ],
+  "inputHashes": {
+    "C:\\Programming\\SMU-Costumes\\costumes\\amazing_spider\\amazing_spider.fbx": "994988a674ee7fd10e41e575d28f1362027dc51d448febdd21c31444875a5d82",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\The_Amazing_Spider_D.png": "a201497394fd3ea53b47e3258b07ba6b20b11a5946ee1ff4447b9ef45a58bb83",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-approval-amazing01\\suits\\smu-amazing-spider\\actor.psx": "8b3dea48587d874b22174a2f25bed4ebd2891e62dbeb3c925ae1f860514ac574"
+  },
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb"
+}

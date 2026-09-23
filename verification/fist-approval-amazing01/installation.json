@@ -1,0 +1,14 @@
+{
+  "status": "installed-for-user-review",
+  "userApprovedFists": false,
+  "authorization": "User explicitly requested: Put that exact version in-game.",
+  "suit": "smu-amazing-spider",
+  "previousActorSha256": "cf88dd0856de751bc14c9f1422ffa6ba381111a7d904f3c26eae9a8a6bdd4d98",
+  "actorSha256": "8b3dea48587d874b22174a2f25bed4ebd2891e62dbeb3c925ae1f860514ac574",
+  "targets": {
+    "repository": "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\port\\mods\\suits\\smu-amazing-spider",
+    "built-game": "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\port\\bin\\Debug\\net10.0\\mods\\suits\\smu-amazing-spider"
+  },
+  "backup": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\safety\\fist-approval-amazing01",
+  "scope": "Exact candidate copied byte-for-byte into the source mods and built game. Only this practice suit changed. No catalogue restart or fist acceptance; experimental pose remains gated on user approval."
+}
