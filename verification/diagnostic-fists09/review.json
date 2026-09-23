@@ -1,0 +1,12 @@
+{
+  "status": "held-for-visual-correction",
+  "suit": "smu-carnage",
+  "installed": false,
+  "actorSha256": "578fe8dfe2d42798362210bc1c1a6f130352e8b63763020eee8183633fe1409a",
+  "visualReview": "Individually inspected native frames 01575 and 01585. Side/front movement shows the tongue emerging from the mouth and hanging before the chest, not beside an arm. This is limited mouth-attachment evidence, not all-pose intersection acceptance. The right hand remains too open/claw-like for closed-fist acceptance. Full anatomical offline right-hand inspection also shows a substantial gap; all 243 hand-influenced faces from packets 8 and 10 are included. Preserve claws, source weights and geometry when correcting the pose.",
+  "tests": "All ten staged suits pass 255 structural checks, 4196 animation frames each, 115 web frames each, managed loading and before/after isolation. Carnage additionally passes the full-animation head-relative audit. Numeric success does not override its visual hold.",
+  "images": {
+    "frame_01575.png": "c360149f0d571d805738a6d5d4a732e4e010edeee3f50e12e3de4587842b9fad",
+    "frame_01585.png": "aec868a864e62fae67fc4c69f1fe13240fee8c4d07ce83388f376cfd9d1fd754"
+  }
+}

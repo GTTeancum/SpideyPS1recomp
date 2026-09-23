@@ -1,0 +1,118 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-bulletpoints",
+      "previousActorSha256": "360e8b92bf742d597b793808bc985fd8c8b007c891deb2e1e724616200b97925",
+      "actorSha256": "16fe0ca3c457728adc778ceb640c62e81a27443d39c6aa8bdf1e1b51465b0b73",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-cyborg, smu-carnageultimate.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-buzz",
+      "previousActorSha256": "a8d5919828772bb464609e1c2ce701ef1aa3a569a5b06b814217a2aa2f3096da",
+      "actorSha256": "764cd41232c37ef72036ae120e702e0973d64d240acc6199a1f608ae7912661f",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-cyborg, smu-carnageultimate.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-captain",
+      "previousActorSha256": "a67ac10b520784365c5eb2e0e0a64c8c727f4b031864e3603eb856523a033494",
+      "actorSha256": "08aa4783b7417ab7aeba23c67c2bceceed2f1bc009f783b78a5e226081be19b2",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-cyborg, smu-carnageultimate.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-carliespiderisland",
+      "previousActorSha256": "4d536356d5df404a7f0db04103fb47f52930376568bc785d736a197576aaaaf2",
+      "actorSha256": "94d3d299723231f8325c9ee5c214370254f9676a60a3a48ea2eafc25b8da307e",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-cyborg, smu-carnageultimate.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-carnageultimate",
+      "previousActorSha256": "e8e0040ff8b64ddf445f8622a59dc523e2b6a16d9454321a50ec2e8c54aad67c",
+      "actorSha256": "968ac78a1196b44c18ee4e68369a0c2c36a45282743da4e5062f6b91e639980a",
+      "visualReview": "Individually inspected native frames 01574 and 01584, side/front movement views. Red-and-black body, bright eye/chest markings, authored claws and back tendrils remain intact. Hands have compact curled silhouettes with retained claw tips, not round human gloves. These full-body views do not establish exhaustive palm contact. Mouth is visible but tongue geometry is not sufficiently exposed for tongue-pose acceptance; separate full-animation head-relative checks pass, with two mixed body/tongue vertices explicitly excluded from the rigid vertex invariant. No live web is present in these turn captures. Exit zero, zero slow-run warnings.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01574.png": "05dc58c7f6c1bf46975eb86283b89a447c315ae85e5863d96e079951f2027122",
+        "frame_01584.png": "f1347af77fcfa941882e793218cba8e37aa9023b5267361edaeebb7b6d36c59d"
+      }
+    },
+    {
+      "suit": "smu-charlottewitter",
+      "previousActorSha256": "874844311fe700ddc7456f30f8afa1b65032e047a30c2e0d3e344d57034e9935",
+      "actorSha256": "e29baaca284ea49d8b64726b53865b25a39a267fe939515a43c5ec62f98d86d4",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-cyborg, smu-carnageultimate.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-civilwarpeterparker",
+      "previousActorSha256": "1c9baa1adc9673429a30dd49cb813d23a694bc2f3cf98eb459ff9b6d0362552d",
+      "actorSha256": "58c7b247afe752db4da84874d8ff93a5a55e87e141289c3506b9368cba9a27ae",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-cyborg, smu-carnageultimate.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-cosmic",
+      "previousActorSha256": "61b5a411a467cb61b5b9fb1c0658d9fc2fd726206920c10c5b666e0ecd23bf14",
+      "actorSha256": "162a711563eb41a2a4aa2421feabcf8be0bd9f24e6a2d846efb4f7e5c2a5185d",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-cyborg, smu-carnageultimate.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-cyborg",
+      "previousActorSha256": "971dabdb6483969d5bf417377ce3cb0c9c4e21cf3ca5237ba5d2c5fc44fde0d0",
+      "actorSha256": "cd8e8f85e7d6c1bb3dc3bff3865c8c3e3d775a015d4a9eae288053ef89b03bf7",
+      "visualReview": "Individually inspected native frame 01557 and exact crop. Mechanical shoulder tubes, complete silver arm, folded metal fingers, red-and-blue clothing, belt and limbs remain visible. The free mechanical hand has a compact curled silhouette with the thumb opening retained. Web meets the raised opposite hand in swing. This view does not establish all palm contact or expose every triangle; full structural geometry and before/after isolation checks are separate. Exit zero, zero slow-run warnings.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01557.png": "50b97cf548849e24ebfe85e0f685ffefcdcae0b34ca4b3c39b463797880cede2",
+        "frame_01557_closeup.png": "69ebba042bb0bf1ddc06df2a7decb60a18b55a63f895c9a13e32b0e7a197df72"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-cyborg",
+    "smu-carnageultimate"
+  ],
+  "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast, Batty Brant and Black Cat Venom sources instead use measured per-digit source-relative closure with narrow per-hand overrides. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 946,
+  "changedFiles": [
+    "smu-bulletpoints\\actor.psx",
+    "smu-bulletpoints\\conversion-report.json",
+    "smu-buzz\\actor.psx",
+    "smu-buzz\\conversion-report.json",
+    "smu-captain\\actor.psx",
+    "smu-captain\\conversion-report.json",
+    "smu-carliespiderisland\\actor.psx",
+    "smu-carliespiderisland\\conversion-report.json",
+    "smu-carnageultimate\\actor.psx",
+    "smu-carnageultimate\\conversion-report.json",
+    "smu-charlottewitter\\actor.psx",
+    "smu-charlottewitter\\conversion-report.json",
+    "smu-civilwarpeterparker\\actor.psx",
+    "smu-civilwarpeterparker\\conversion-report.json",
+    "smu-cosmic\\actor.psx",
+    "smu-cosmic\\conversion-report.json",
+    "smu-cyborg\\actor.psx",
+    "smu-cyborg\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+    "exitCode": 0,
+    "warnings": 0,
+    "errors": 0,
+    "scope": "Observed incremental Windows game build for batch09. Native captures use the matching game DLL. Linux game execution not performed."
+  }
+}

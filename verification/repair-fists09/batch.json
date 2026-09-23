@@ -1,0 +1,486 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch09",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "bulletpoints",
+    "buzz",
+    "captain",
+    "carliespiderisland",
+    "carnageultimate",
+    "charlottewitter",
+    "civilwarpeterparker",
+    "cosmic",
+    "cyborg"
+  ],
+  "results": [
+    {
+      "key": "bulletpoints",
+      "id": "smu-bulletpoints",
+      "fbx": "costumes/bulletpoints/bulletpoints.fbx",
+      "fbxSha256": "213d8b906ac81f9a507866465363bd987ee3c7e23c3ced5b0d354068833802bc",
+      "textureFiles": [
+        "textures-png\\SpidermanBulletPoints_D.png"
+      ],
+      "textureSha256": [
+        "45fca8a696cdcb9f4703b7f02ee467c18f24d4162c7339f9c91af8d037118024"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1729,
+      "sourceTriangles": 2910,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanBulletPoints_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "BulletPoints",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanBulletPoints_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 707796,
+      "outputs": {
+        "actor.psx": "16fe0ca3c457728adc778ceb640c62e81a27443d39c6aa8bdf1e1b51465b0b73",
+        "conversion-report.json": "432370d0319401348cb6095e55c760d7bfa9f82088c77706d7d12dfaffb63491",
+        "suit.json": "437203fda3af043a2787a7ef182192304c184a786dc6da061c579981f1aa5ed3",
+        "textures\\diffuse.png": "5dbdf8a0bb474cce6f5d6ee9b5a12eccac8b185a80574cc5e9a80bf9e730405b"
+      }
+    },
+    {
+      "key": "buzz",
+      "id": "smu-buzz",
+      "fbx": "costumes/buzz/buzz.fbx",
+      "fbxSha256": "793b8f2a7eed6d1ef77f594c5dfadb769cfc7f860b2163bc3f500335d181a741",
+      "textureFiles": [
+        "textures-png\\Buzz_D.png"
+      ],
+      "textureSha256": [
+        "27aebec1c27291ff0c5cba03104ba3612371ddade8891251e56e6a8e79366558"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2078,
+      "sourceTriangles": 3330,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Buzz_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Buzz",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Buzz_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 832824,
+      "outputs": {
+        "actor.psx": "764cd41232c37ef72036ae120e702e0973d64d240acc6199a1f608ae7912661f",
+        "conversion-report.json": "25501b5373fb89b80988aacf1067a9f4f4f27e21a1e45a4a1bcb8869b1f75150",
+        "suit.json": "e926fb9fa5b83da15b48ff87809559e4b7f88040a54d072c4ebc161f3846029e",
+        "textures\\diffuse.png": "7fece7fd1aec18085793da9dd22abc2441c68d1712cf042e98106d0d37093a14"
+      }
+    },
+    {
+      "key": "captain",
+      "id": "smu-captain",
+      "fbx": "costumes/captain/captain.fbx",
+      "fbxSha256": "81fc4b9dec024df81c3339c89d5892ee453febe432020be5a2db0c301057287a",
+      "textureFiles": [
+        "textures-png\\Spiderman_Captain_D.png"
+      ],
+      "textureSha256": [
+        "4fe438cf288c72c6fa246f9852ddc4a2b26533b889617a3b572165751f43b63c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1809,
+      "sourceTriangles": 3112,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman_Captain_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Captain",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman_Captain_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "ault",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman_Captain_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 788276,
+      "outputs": {
+        "actor.psx": "08aa4783b7417ab7aeba23c67c2bceceed2f1bc009f783b78a5e226081be19b2",
+        "conversion-report.json": "f28ef4d3783500a1431c34d6edb57d507837464a52410af52926ede7f512dd39",
+        "suit.json": "428bdd2c684c81e0492834a5a6856b019a9848d1328c315c6bd530115c4a240b",
+        "textures\\diffuse-1.png": "2e81fee4ec1fdb95eabbbfaa6f45210a9073de167958ec8c3e1feea06a119c16",
+        "textures\\diffuse.png": "2e81fee4ec1fdb95eabbbfaa6f45210a9073de167958ec8c3e1feea06a119c16"
+      }
+    },
+    {
+      "key": "carliespiderisland",
+      "id": "smu-carliespiderisland",
+      "fbx": "costumes/carliespiderisland/carliespiderisland.fbx",
+      "fbxSha256": "792f5997869ec14e773156de481462e33d967c0d3bc029f94ec9375183092ee5",
+      "textureFiles": [
+        "textures-png\\CarlieSpiderIsland_D.png"
+      ],
+      "textureSha256": [
+        "13ff6260a9724604152e6896189aea81657b13982d585dbc9c83830fa2420f2b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1965,
+      "sourceTriangles": 3257,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "CarlieSpiderIsland_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "CarlieSpiderIsland",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\CarlieSpiderIsland_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 814292,
+      "outputs": {
+        "actor.psx": "94d3d299723231f8325c9ee5c214370254f9676a60a3a48ea2eafc25b8da307e",
+        "conversion-report.json": "85262a2531bd35f0e6e3c94beb674a52684ec6fdc12e227747858103d5ff182d",
+        "suit.json": "cf59c6230045960e3a91a1ccfd49da673d7975c5b1842bc15ef4068a1a283cb8",
+        "textures\\diffuse.png": "17143b6a6f27cc57e8e6f495c1e47c6ff6d41c33f46a7eada452a40c88ab28ef"
+      }
+    },
+    {
+      "key": "carnageultimate",
+      "id": "smu-carnageultimate",
+      "fbx": "costumes/carnageultimate/carnageultimate.fbx",
+      "fbxSha256": "8b9ee7d68e33c8cda6f516ec300674790f0408efb698749258f00b8ee0c2f0e1",
+      "textureFiles": [
+        "textures-png\\CarnageUltimate_D.png"
+      ],
+      "textureSha256": [
+        "6806b956fd748d6fcada33803761582dcb78b9f31307673c28ce34a29b656351"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2635,
+      "sourceTriangles": 3914,
+      "sourceBoneCount": 69,
+      "authoredDiffuseNames": [
+        "CarnageUltimate_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "SpiderMJ__1",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\CarnageUltimate_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 70,
+      "nativeBytes": 968592,
+      "outputs": {
+        "actor.psx": "968ac78a1196b44c18ee4e68369a0c2c36a45282743da4e5062f6b91e639980a",
+        "conversion-report.json": "88d0305f4168246b851585c6af5cfefbb2eca5f064673ac7f8faae0c1a244612",
+        "suit.json": "9d4ebda7d1ed7385b89fe39fd386fa092c99ac3e1fe816b8f1d25fb816f54c55",
+        "textures\\diffuse.png": "cb2b27ed8ea75e08255a73ecc48a0442a20278a08a7b2096cf4d5b3a2624dcdc"
+      }
+    },
+    {
+      "key": "charlottewitter",
+      "id": "smu-charlottewitter",
+      "fbx": "costumes/charlottewitter/charlottewitter.fbx",
+      "fbxSha256": "e58e8026d3711959efcb0aa891c1408ebd1c51e3241b1bc7610b59cf6ea4b2b3",
+      "textureFiles": [
+        "textures-png\\CharlotteWitter_D.png"
+      ],
+      "textureSha256": [
+        "ecf5e1aa96530fe0a1c104ca05f15b3a28e49785c2b445af2191aa2685cdd37e"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2519,
+      "sourceTriangles": 4147,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "CharlotteWitter_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "CharlotteWitter",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\CharlotteWitter_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 942984,
+      "outputs": {
+        "actor.psx": "e29baaca284ea49d8b64726b53865b25a39a267fe939515a43c5ec62f98d86d4",
+        "conversion-report.json": "9224136c03ce701ef2b72f344b352ddab9a89ab40cba434a112dc85a0cd54b5e",
+        "suit.json": "e5881be465239e8bf3e1a1b3011b3dda095f08c00d6e202e0893e26c0e32dcc7",
+        "textures\\diffuse.png": "c6aa871ec27402e0da80894e9f5d21213bcc04167161785b83ca28580477fb16"
+      }
+    },
+    {
+      "key": "civilwarpeterparker",
+      "id": "smu-civilwarpeterparker",
+      "fbx": "costumes/civilwarpeterparker/civilwarpeterparker.fbx",
+      "fbxSha256": "98120b9447cf698703ddf5ead294a653075b19283ccb791a9871e8c1a53a8801",
+      "textureFiles": [
+        "textures-png\\CivilWarPeterParker_D.png"
+      ],
+      "textureSha256": [
+        "6f09d80781724b39b08ae23ad66aab6bf2ce9306ac72b3b6d888753bf9656c5e"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2882,
+      "sourceTriangles": 4256,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "CivilWarPeterParker_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "CivilWarPeterParker",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\CivilWarPeterParker_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 991552,
+      "outputs": {
+        "actor.psx": "58c7b247afe752db4da84874d8ff93a5a55e87e141289c3506b9368cba9a27ae",
+        "conversion-report.json": "236eb9fc3c96c642ccb218858117be40cc4800dbb567dd2f8c491fad0d67d504",
+        "suit.json": "3b0d197c1acc47d7f50c46cf335b3f2d435d262e345e36ecaa5fd4c35dc893a3",
+        "textures\\diffuse.png": "b03c7ecb1a522d68e5eee461a4be0ad56a059708da6ebf147194b82b5a402279"
+      }
+    },
+    {
+      "key": "cosmic",
+      "id": "smu-cosmic",
+      "fbx": "costumes/cosmic/cosmic.fbx",
+      "fbxSha256": "255fbdfe31ac3caf3d8631c940340d53fa908b62f5dd4588c2b9c64057b85c0c",
+      "textureFiles": [
+        "textures-png\\SpidermanCosmic_D.png"
+      ],
+      "textureSha256": [
+        "8b2348379034a29d859fca3aac7c2ae8670fb2c572fd63837f8d5141b20e41f9"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanCosmic_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanCosmic_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 699856,
+      "outputs": {
+        "actor.psx": "162a711563eb41a2a4aa2421feabcf8be0bd9f24e6a2d846efb4f7e5c2a5185d",
+        "conversion-report.json": "132be4d54eae0e92e155954841699971587a6e4f6520043a1652948e9ecb91d0",
+        "suit.json": "6154cabc9678094d405d5cd92a1f1e698473b28499351192d845aeef03e6be94",
+        "textures\\diffuse.png": "f38bdf0e320b69953a15da48529edb1159d4bab862469a1a40d8b66f18180f55"
+      }
+    },
+    {
+      "key": "cyborg",
+      "id": "smu-cyborg",
+      "fbx": "costumes/cyborg/cyborg.fbx",
+      "fbxSha256": "da17eebe5fe44755fd46733ad6e21ae9873b5c9b2b134f9e6f30267cfa275e7d",
+      "textureFiles": [
+        "textures-png\\Spiderman_Cyborg_D.png"
+      ],
+      "textureSha256": [
+        "8e6aa14bfe5769051c2555b548b2a2efba28d9e42ae5ea9057031dd6e119ad3f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2340,
+      "sourceTriangles": 3716,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman_Cyborg_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Cyborg",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman_Cyborg_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 849228,
+      "outputs": {
+        "actor.psx": "cd8e8f85e7d6c1bb3dc3bff3865c8c3e3d775a015d4a9eae288053ef89b03bf7",
+        "conversion-report.json": "b182effd591b6a5aa712c365e45b28362afb95628a3b87e3ef15901e9f18da83",
+        "suit.json": "127f83018b1ec337c2d2849e3d074fd0d14b9d8df175aec8361871138eb055e5",
+        "textures\\diffuse.png": "d77f0ff640f5eae111c5c3cc41e256695a148ff2cb935ce751cd046ca495c555"
+      }
+    }
+  ],
+  "selection": {
+    "originalRequested": [
+      "bulletpoints",
+      "buzz",
+      "captain",
+      "carliespiderisland",
+      "carnage",
+      "carnageultimate",
+      "charlottewitter",
+      "civilwarpeterparker",
+      "cosmic",
+      "cyborg"
+    ],
+    "excluded": [
+      "smu-carnage"
+    ],
+    "reason": "Native hand closure concern; not installed."
+  }
+}

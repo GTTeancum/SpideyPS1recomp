@@ -1,0 +1,97 @@
+{
+  "actorSha256": "578fe8dfe2d42798362210bc1c1a6f130352e8b63763020eee8183633fe1409a",
+  "scope": "Offline anatomical hand diagnostic, including adjacent wrist triangles. No game or visual closure acceptance. Thumb policy unchanged.",
+  "side": "R",
+  "handInfluencedVertices": 168,
+  "coverage": [
+    {
+      "label": "current",
+      "triangles": 243,
+      "packets": [
+        8,
+        10
+      ]
+    },
+    {
+      "label": "candidate",
+      "triangles": 243,
+      "packets": [
+        8,
+        10
+      ]
+    }
+  ],
+  "framing": {
+    "sharedAcrossPoses": true,
+    "yaw": 20,
+    "scale": 1.6916106332689964,
+    "center": [
+      96.60570171082544,
+      -28.802566528320312
+    ],
+    "margin": 28
+  },
+  "candidateAngles": [
+    {
+      "bone": "Clown001LArmDigit21",
+      "before": 90,
+      "after": 90.0
+    },
+    {
+      "bone": "Clown001LArmDigit22",
+      "before": 85,
+      "after": 85.0
+    },
+    {
+      "bone": "Clown001LArmDigit31",
+      "before": 90,
+      "after": 90.0
+    },
+    {
+      "bone": "Clown001LArmDigit32",
+      "before": 85,
+      "after": 85.0
+    },
+    {
+      "bone": "Clown001LArmDigit51",
+      "before": 90,
+      "after": 90.0
+    },
+    {
+      "bone": "Clown001LArmDigit52",
+      "before": 85,
+      "after": 85.0
+    },
+    {
+      "bone": "Clown001RArmDigit21",
+      "before": 90,
+      "after": 90.0
+    },
+    {
+      "bone": "Clown001RArmDigit22",
+      "before": 85,
+      "after": 85.0
+    },
+    {
+      "bone": "Clown001RArmDigit31",
+      "before": 90,
+      "after": 90.0
+    },
+    {
+      "bone": "Clown001RArmDigit32",
+      "before": 85,
+      "after": 85.0
+    },
+    {
+      "bone": "Clown001RArmDigit51",
+      "before": 90,
+      "after": 90.0
+    },
+    {
+      "bone": "Clown001RArmDigit52",
+      "before": 85,
+      "after": 85.0
+    }
+  ],
+  "candidateInstalled": false
+}
