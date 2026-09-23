@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 2,
+  "requested": 2,
+  "results": [
+    {
+      "key": "arana_gymnast",
+      "id": "smu-arana-gymnast",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.43359375,
+        7.835693359375
+      ],
+      "assetSha256": "a373efc19c48ca8af269c969c8dda8891b1c336ce394cc608be98810a8fd1bfa",
+      "captureSha256": "489dc3be38b8410e3ab47882f50cbe70931117bb661f8e96ed7277cdc6fe39e0"
+    },
+    {
+      "key": "poison_hunter",
+      "id": "smu-poison-hunter",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.092529296875,
+        11.116943359375
+      ],
+      "assetSha256": "0359833d090cf04c225b7bf9499dd379503902fa4949638ad833bf175574db1e",
+      "captureSha256": "e20adfa0c7c2b811be14b811c785a7bcce34f242da430035d166f0108561711f"
+    }
+  ]
+}

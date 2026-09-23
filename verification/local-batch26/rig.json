@@ -1,0 +1,304 @@
+{
+  "status": "PASS",
+  "scope": "Native assets + compiled C++ runtime core + original animation decoding oracle; C# integration checks are static only. Full .NET build/game execution NOT run.",
+  "passed": 55,
+  "failed": 0,
+  "metrics": {
+    "smu-arana-gymnast": {
+      "bones": 66,
+      "sourceControlPoints": 3754,
+      "sourceInfluences": 10177,
+      "runtimeVertices": 3754,
+      "runtimeInfluences": 10177,
+      "triangles": 5586,
+      "nativeBytes": 1242216,
+      "sha256": "a373efc19c48ca8af269c969c8dda8891b1c336ce394cc608be98810a8fd1bfa",
+      "rootScale": 0.902794599533081,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007818631129339337,
+      "maxRoundedComponentError": 0.853240966796875,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 19.350287200009916
+    },
+    "smu-poison-hunter": {
+      "bones": 66,
+      "sourceControlPoints": 3890,
+      "sourceInfluences": 8061,
+      "runtimeVertices": 3890,
+      "runtimeInfluences": 8061,
+      "triangles": 5852,
+      "nativeBytes": 1198748,
+      "sha256": "0359833d090cf04c225b7bf9499dd379503902fa4949638ad833bf175574db1e",
+      "rootScale": 0.8993520736694336,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007820011232979596,
+      "maxRoundedComponentError": 0.85205078125,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 20.602516999992076
+    }
+  },
+  "results": [
+    {
+      "name": "300 native clips / 4196 source frames",
+      "passed": true
+    },
+    {
+      "name": "original decoder produces nonsingular Q12 driver rotations",
+      "passed": true,
+      "minDet": 0.9987022876739502,
+      "maxDet": 1.0010902881622314
+    },
+    {
+      "name": "smu-arana-gymnast: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9759196107370656e-08
+    },
+    {
+      "name": "smu-arana-gymnast: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 5586
+    },
+    {
+      "name": "smu-arana-gymnast: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.00048828125
+    },
+    {
+      "name": "smu-arana-gymnast: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-arana-gymnast: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.000335693359375,
+      "scale": 0.902794599533081
+    },
+    {
+      "name": "smu-arana-gymnast: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: native fallback atlas has correct vertical orientation",
+      "passed": true,
+      "meanRGBError": 4.39019775390625,
+      "flippedMeanRGBError": 55.195902506510414
+    },
+    {
+      "name": "smu-arana-gymnast: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-arana-gymnast: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 3400.08740234375,
+      "worst": null
+    },
+    {
+      "name": "smu-arana-gymnast: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007818631129339337
+    },
+    {
+      "name": "smu-arana-gymnast: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.0008544921875,
+      "maxRoundedComponentError": 0.853240966796875
+    },
+    {
+      "name": "smu-arana-gymnast: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-arana-gymnast: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9772050158527463e-08
+    },
+    {
+      "name": "smu-poison-hunter: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 5852
+    },
+    {
+      "name": "smu-poison-hunter: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.00048828125
+    },
+    {
+      "name": "smu-poison-hunter: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-poison-hunter: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.0002899169921875,
+      "scale": 0.8993520736694336
+    },
+    {
+      "name": "smu-poison-hunter: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: native fallback atlas has correct vertical orientation",
+      "passed": true,
+      "meanRGBError": 3.2926025390625,
+      "flippedMeanRGBError": 32.289265950520836
+    },
+    {
+      "name": "smu-poison-hunter: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-poison-hunter: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 3356.946533203125,
+      "worst": null
+    },
+    {
+      "name": "smu-poison-hunter: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007820011232979596
+    },
+    {
+      "name": "smu-poison-hunter: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.0008544921875,
+      "maxRoundedComponentError": 0.85205078125
+    },
+    {
+      "name": "smu-poison-hunter: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-poison-hunter: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "source integration: exactly one pose-ready hook and regeneration config",
+      "passed": true
+    },
+    {
+      "name": "source integration: resident validation / fists / culling update present",
+      "passed": true
+    },
+    {
+      "name": "Windows deployed native DLL is the tested-source build artifact",
+      "passed": true
+    }
+  ],
+  "inputHashes": {
+    "C:\\Programming\\SMU-Costumes\\costumes\\arana_gymnast\\arana_gymnast.fbx": "8cbc3a2a80e5ad8092a3e32e0dd1d3ff10455233a5bc7d42d0aa4536d8822ca1",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\Arana_gymnast_D.png": "17c698ae551c233fb0aa9107a96daa4cf6af344a01343dc9e54810f0493d7b7f",
+    "spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\capacity-global-packing\\suits\\smu-arana-gymnast\\actor.psx": "a373efc19c48ca8af269c969c8dda8891b1c336ce394cc608be98810a8fd1bfa",
+    "C:\\Programming\\SMU-Costumes\\costumes\\poison_hunter\\poison_hunter.fbx": "f9381b62ed9280a0e8913ea8bb784e4ce920666942eab051202d11ddbab286d0",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\Glow.png": "f06b8cb02395b66b761401f717d2302b3744bb769d791a75f4fc5bfb765e00af",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\capacity-global-packing\\suits\\smu-poison-hunter\\actor.psx": "0359833d090cf04c225b7bf9499dd379503902fa4949638ad833bf175574db1e"
+  },
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb"
+}

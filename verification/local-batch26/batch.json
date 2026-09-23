@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "batch": "capacity-global-packing",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "arana_gymnast",
+    "poison_hunter"
+  ],
+  "results": [
+    {
+      "key": "arana_gymnast",
+      "id": "smu-arana-gymnast",
+      "fbx": "costumes/arana_gymnast/arana_gymnast.fbx",
+      "fbxSha256": "8cbc3a2a80e5ad8092a3e32e0dd1d3ff10455233a5bc7d42d0aa4536d8822ca1",
+      "textureFiles": [
+        "textures-png\\Arana_gymnast_D.png"
+      ],
+      "textureSha256": [
+        "17c698ae551c233fb0aa9107a96daa4cf6af344a01343dc9e54810f0493d7b7f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3754,
+      "sourceTriangles": 5586,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Arana_gymnast_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Material__88",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Arana_gymnast_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1242216,
+      "outputs": {
+        "actor.psx": "a373efc19c48ca8af269c969c8dda8891b1c336ce394cc608be98810a8fd1bfa",
+        "conversion-report.json": "1fab7603e8b4d04e69a44ca13b0706f77888ee8f567a44f6b1f5623a61655005",
+        "suit.json": "760bb814ae3e732b28eac7ac789f935079c4d1bf05ef132ee82c2dab0043e913",
+        "textures\\diffuse.png": "f9de8320a7efbff02596fb5d70198470a43b147d97c4d903a453b7618a726bfa"
+      }
+    },
+    {
+      "key": "poison_hunter",
+      "id": "smu-poison-hunter",
+      "fbx": "costumes/poison_hunter/poison_hunter.fbx",
+      "fbxSha256": "f9381b62ed9280a0e8913ea8bb784e4ce920666942eab051202d11ddbab286d0",
+      "textureFiles": [
+        "textures-png\\Glow.png",
+        "textures-png\\Poison_Hunter_D.png"
+      ],
+      "textureSha256": [
+        "f06b8cb02395b66b761401f717d2302b3744bb769d791a75f4fc5bfb765e00af",
+        "4ec9b9b62b0f34bb0d2e88cc9fc3c04cdbf2bafe0670eaa01a9989091455396c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3890,
+      "sourceTriangles": 5852,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Glow.tga",
+        "Poison_Hunter_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "EarthX",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Poison_Hunter_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "Material__25",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Glow.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              -1
+            ],
+            "tileCount": [
+              1,
+              2
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1198748,
+      "outputs": {
+        "actor.psx": "0359833d090cf04c225b7bf9499dd379503902fa4949638ad833bf175574db1e",
+        "conversion-report.json": "b3d48998ed1a4a5efb7bbdfb310c14aa19e1ca2cf4acf5845a07c3a3b8871c6f",
+        "suit.json": "619554776e025d208dcbfb43d79aaa4037c2ceb69dfca483473ac866194356cc",
+        "textures\\diffuse-1.png": "07a57c9e4afe39e18fc42a8f6f9aa91144a73d8a13fcb78505eb6163f8d20432",
+        "textures\\diffuse.png": "050a60f3ef6db81aa81426f50df4459107477fa3e4d6b3f01516fd73032bee4e"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "batch": 26,
+  "keys": [
+    "arana_gymnast",
+    "poison_hunter"
+  ],
+  "representative": "smu-poison-hunter",
+  "scope": "Capacity recovery batch: full offline regressions and two separate native game runs; visual issues remain tracked independently.",
+  "additionalRepresentative": "smu-arana-gymnast",
+  "additionalReview": "Two native frames show full outfit, backpack, limbs and footwear while airborne and grounded. First image has no visible web line; live hook plus offline endpoint regression are separate evidence, not visual web acceptance.",
+  "visualReview": "Reviewed both native Poison Hunter frames: full body, limbs, head details and both material regions appear during swing and grounded poses. Web line reaches the raised wrist region. Both hand-variant packets retain identical full geometry; all 5852 original triangles pass exact coverage tests. Free hand remains claw-like, covered by the open visual-fist issue. Arana Gymnast has its own separately reviewed two-frame native capture in the arana evidence folder. These are conversion/rendering checkpoints, not final catalogue or finger-pose acceptance.",
+  "liveSwingImages": [
+    "frame_01581.png"
+  ],
+  "images": {
+    "frame_01581.png": "0872371510a3903afda0bdd4e163b84e8adfbdce43b3eef1ad8a876a82e1458f",
+    "frame_01886.png": "4b00040e28b2c8a7c87175c4fc7460c9152ada478bf9edbb79462fc9ebaf9b52"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

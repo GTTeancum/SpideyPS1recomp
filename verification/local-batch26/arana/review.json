@@ -1,0 +1,8 @@
+{
+  "suit": "smu-arana-gymnast",
+  "images": {
+    "frame_01558.png": "a86e3dd48ef5e3eb0066c3ccf3e855a4b42ac34241e7fe51fc19b9fe34c16907",
+    "frame_01863.png": "3bcc1d638958e7885dc4ebd2836e51e72aaf87eb6ab4aad4d8500c24adba8c41"
+  },
+  "visualReview": "Two native frames show full outfit, backpack, limbs and footwear while airborne and grounded. First image has no visible web line; live hook plus offline endpoint regression are separate evidence, not visual web acceptance."
+}
