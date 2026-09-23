@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "scarlet_spiderham",
+      "id": "smu-scarlet-spiderham",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        133.387939453125,
+        144.9931640625
+      ],
+      "assetSha256": "3be7f19415fe94f5618ad6dc6c5a713be250da61fe1459ad165a0470c03648bb",
+      "captureSha256": "c86fe31b7fc5b037f7d4a57894e574f96f531e4f63dff71388e68843d44fb31c"
+    },
+    {
+      "key": "scarlet_spiderham_benreilly",
+      "id": "smu-scarlet-spiderham-benreilly",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        133.0146484375,
+        144.619873046875
+      ],
+      "assetSha256": "234b9edc476f999fc6bf7af1e618eab29bf6c3202af4d5b1aa07365d8c68fce9",
+      "captureSha256": "126d5128f3d152a4c5f9eea487d11623af422b360951d4ba379f8675b387be7d"
+    },
+    {
+      "key": "secretwar",
+      "id": "smu-secretwar",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "b84148b6aa9938631e71bc53b30c6c4a899e5da47409449dcf11c2b02a3b5b5b",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    }
+  ]
+}

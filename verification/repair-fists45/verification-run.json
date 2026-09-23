@@ -1,0 +1,26 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-scarlet-spiderham-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-scarlet-spiderham-benreilly-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-secretwar-isolation",
+    "exitCode": 0
+  }
+]

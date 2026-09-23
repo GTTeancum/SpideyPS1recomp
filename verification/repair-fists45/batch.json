@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch45",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "scarlet_spiderham",
+    "scarlet_spiderham_benreilly",
+    "secretwar"
+  ],
+  "results": [
+    {
+      "key": "scarlet_spiderham",
+      "id": "smu-scarlet-spiderham",
+      "fbx": "costumes/scarlet_spiderham/scarlet_spiderham.fbx",
+      "fbxSha256": "1f70df27e610144cc9d587932d48a9be27b49ad3d8cc513a5192d3203651e119",
+      "textureFiles": [
+        "textures-png\\Scarlet_SpiderHam_D.png"
+      ],
+      "textureSha256": [
+        "0451587dab8cbf223868bb2208aedcdcff962d0d93f8b5df54166a0388fc7a28"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1292,
+      "sourceTriangles": 2068,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "Scarlet_SpiderHam_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "ScarletGirl",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Scarlet_SpiderHam_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 63,
+      "nativeBytes": 650660,
+      "outputs": {
+        "actor.psx": "3be7f19415fe94f5618ad6dc6c5a713be250da61fe1459ad165a0470c03648bb",
+        "conversion-report.json": "0943b04fe231afd5696804846fb0dbf82c55b36aac54d3d60677e0659cbfc724",
+        "suit.json": "93a8ca0b64df08ff76ffc1bbc9fd134ce6ef560f8c45d6caee0c3b84cfedc9bd",
+        "textures\\diffuse.png": "8d433ae4119c7f9440235bab738d0baf200e442fad8370634251296096146ed0"
+      }
+    },
+    {
+      "key": "scarlet_spiderham_benreilly",
+      "id": "smu-scarlet-spiderham-benreilly",
+      "fbx": "costumes/scarlet_spiderham_benreilly/scarlet_spiderham_benreilly.fbx",
+      "fbxSha256": "7fd0b6b6f738a512cb944c1972d0160f2e854e3c5c3439c9d6b16d5e82c0c0f0",
+      "textureFiles": [
+        "textures-png\\Scarlet_SpiderHam_BenReilly_D.png"
+      ],
+      "textureSha256": [
+        "0c225d64d11906c368fa60d0333525f130298aa4eef5257131bc09eb13b55502"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1735,
+      "sourceTriangles": 2796,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "Scarlet_SpiderHam_BenReilly_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Material__25",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Scarlet_SpiderHam_BenReilly_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 63,
+      "nativeBytes": 763216,
+      "outputs": {
+        "actor.psx": "234b9edc476f999fc6bf7af1e618eab29bf6c3202af4d5b1aa07365d8c68fce9",
+        "conversion-report.json": "e647715f69a368b819baca3adf44948b1c14da525d65a270fad17d71ab101995",
+        "suit.json": "3f4525bfac9f910de5812b42e659359e6fda43aef7a2245ec0b58bc7f0318e31",
+        "textures\\diffuse.png": "853d4fba524895a6ccfa408a36737d3d6fa37d46fcb3460d04183530fb14f9b6"
+      }
+    },
+    {
+      "key": "secretwar",
+      "id": "smu-secretwar",
+      "fbx": "costumes/secretwar/secretwar.fbx",
+      "fbxSha256": "cef551bd9ed19b22a42ff0539e2319d017c05f5b2289b12a68892cd3f5b16ed9",
+      "textureFiles": [
+        "textures-png\\SpidermanSecretWar_D.png"
+      ],
+      "textureSha256": [
+        "1fab78f35d6abf24d4127b9f96d5fd8a0ad7baccae0575d22c23776f02bb392f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1633,
+      "sourceTriangles": 2838,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanSecretWar_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanSecretWar_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 702608,
+      "outputs": {
+        "actor.psx": "b84148b6aa9938631e71bc53b30c6c4a899e5da47409449dcf11c2b02a3b5b5b",
+        "conversion-report.json": "823e7ea871cd87dca00d3a767eb3a034f4a3d3a72b7e831c62527d28f0310792",
+        "suit.json": "457bfd25af7a1a1ac1ec774155a9c5a5d06c304509a252e6333ea8fe73011346",
+        "textures\\diffuse.png": "2cbf34908fcf7500396c26869a4ed66a372ad071de4e25bc4b851551df829e61"
+      }
+    }
+  ]
+}

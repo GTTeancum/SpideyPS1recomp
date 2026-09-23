@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-scarlet-spiderham",
+      "previousActorSha256": "b85d786817dcef34cf964656dde6d3926a3ebb2b4b1f74c78ea64cc85b0d65bd",
+      "actorSha256": "3be7f19415fe94f5618ad6dc6c5a713be250da61fe1459ad165a0470c03648bb",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-scarlet-spiderham-benreilly.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-scarlet-spiderham-benreilly",
+      "previousActorSha256": "874ea85c9d61026184aa0baba3ecf147dfbb3d2161ec2716a2652724b5ecda0f",
+      "actorSha256": "234b9edc476f999fc6bf7af1e618eab29bf6c3202af4d5b1aa07365d8c68fce9",
+      "visualReview": "Reviewed the two native game images sequentially. This short Spider-Ham variant retains its oversized red head, eye shapes, antennae, collar, blue side panels, and footwear without dropped geometry. The exposed hand is compact rather than splayed. No web line is visible in this running capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01607.png": "f593fe49f08632656644df1c8f63a8daa1a0ee17c588f2572288045dfd9d15a0",
+        "frame_01607_closeup.png": "170369125a806451c8bc91034fa59a1f68b4db589b15fe2d777c2ed2778244f5"
+      }
+    },
+    {
+      "suit": "smu-secretwar",
+      "previousActorSha256": "202fb571e7046a5e0b9b9f2196f5080f0897a55689bd836f8b73d0ab0ef23c90",
+      "actorSha256": "b84148b6aa9938631e71bc53b30c6c4a899e5da47409449dcf11c2b02a3b5b5b",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-scarlet-spiderham-benreilly.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-scarlet-spiderham-benreilly"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-scarlet-spiderham-benreilly\\actor.psx",
+    "smu-scarlet-spiderham-benreilly\\conversion-report.json",
+    "smu-scarlet-spiderham\\actor.psx",
+    "smu-scarlet-spiderham\\conversion-report.json",
+    "smu-secretwar\\actor.psx",
+    "smu-secretwar\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-scarlet-spiderham-benreilly/frame_01607.png and frame_01607_closeup.png"
+  }
+}
