@@ -1,0 +1,450 @@
+{
+  "status": "PASS",
+  "scope": "Native assets + compiled C++ runtime core + original animation decoding oracle; C# integration checks are static only. Full .NET build/game execution NOT run.",
+  "passed": 80,
+  "failed": 0,
+  "metrics": {
+    "smu-electroproof": {
+      "bones": 66,
+      "sourceControlPoints": 1635,
+      "sourceInfluences": 3484,
+      "runtimeVertices": 1635,
+      "runtimeInfluences": 3484,
+      "triangles": 2806,
+      "nativeBytes": 736560,
+      "sha256": "cccb3a7f2cc43b54a09d105796216cea803f45d231398e40f60c59fda70a5d5c",
+      "rootScale": 0.9027954339981079,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007816169527359307,
+      "maxRoundedComponentError": 0.85009765625,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 3.6663636000012048
+    },
+    "smu-ezekiel": {
+      "bones": 66,
+      "sourceControlPoints": 2361,
+      "sourceInfluences": 5086,
+      "runtimeVertices": 2361,
+      "runtimeInfluences": 5086,
+      "triangles": 3834,
+      "nativeBytes": 897220,
+      "sha256": "d1dab2988c492f12b474456374f4e533a3c91a87c8fc325ff371ee9a27ddaedb",
+      "rootScale": 0.9027976989746094,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007818638114258647,
+      "maxRoundedComponentError": 0.8583984375,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 4.15181999997003
+    },
+    "smu-god": {
+      "bones": 66,
+      "sourceControlPoints": 2188,
+      "sourceInfluences": 4514,
+      "runtimeVertices": 2188,
+      "runtimeInfluences": 4514,
+      "triangles": 3558,
+      "nativeBytes": 853768,
+      "sha256": "c87ad79d5ca3c7d4c58798d58fa1583606d50d83ce4447e6834292212d42725b",
+      "rootScale": 0.902794599533081,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007818631129339337,
+      "maxRoundedComponentError": 0.8572502136230469,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 3.9252716000191867
+    }
+  },
+  "results": [
+    {
+      "name": "300 native clips / 4196 source frames",
+      "passed": true
+    },
+    {
+      "name": "original decoder produces nonsingular Q12 driver rotations",
+      "passed": true,
+      "minDet": 0.9987022876739502,
+      "maxDet": 1.0010902881622314
+    },
+    {
+      "name": "smu-electroproof: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.966889844913112e-08
+    },
+    {
+      "name": "smu-electroproof: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 2806
+    },
+    {
+      "name": "smu-electroproof: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.00048828125
+    },
+    {
+      "name": "smu-electroproof: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-electroproof: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.000274658203125,
+      "scale": 0.9027954339981079
+    },
+    {
+      "name": "smu-electroproof: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-electroproof: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-electroproof: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 1159.2464599609375,
+      "worst": null
+    },
+    {
+      "name": "smu-electroproof: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007816169527359307
+    },
+    {
+      "name": "smu-electroproof: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.000286102294921875,
+      "maxRoundedComponentError": 0.85009765625
+    },
+    {
+      "name": "smu-electroproof: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-electroproof: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9798374878708955e-08
+    },
+    {
+      "name": "smu-ezekiel: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 3834
+    },
+    {
+      "name": "smu-ezekiel: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.000244140625
+    },
+    {
+      "name": "smu-ezekiel: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-ezekiel: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.0002899169921875,
+      "scale": 0.9027976989746094
+    },
+    {
+      "name": "smu-ezekiel: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-ezekiel: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-ezekiel: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 2510.67626953125,
+      "worst": null
+    },
+    {
+      "name": "smu-ezekiel: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007818638114258647
+    },
+    {
+      "name": "smu-ezekiel: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.000732421875,
+      "maxRoundedComponentError": 0.8583984375
+    },
+    {
+      "name": "smu-ezekiel: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-ezekiel: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "smu-god: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-god: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-god: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-god: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-god: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.9770976683884953e-08
+    },
+    {
+      "name": "smu-god: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 3558
+    },
+    {
+      "name": "smu-god: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-god: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-god: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.00048828125
+    },
+    {
+      "name": "smu-god: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-god: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-god: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-god: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-god: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.000274658203125,
+      "scale": 0.902794599533081
+    },
+    {
+      "name": "smu-god: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-god: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-god: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-god: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-god: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-god: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-god: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 3439.1328125,
+      "worst": null
+    },
+    {
+      "name": "smu-god: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007818631129339337
+    },
+    {
+      "name": "smu-god: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.0008544921875,
+      "maxRoundedComponentError": 0.8572502136230469
+    },
+    {
+      "name": "smu-god: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-god: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "source integration: exactly one pose-ready hook and regeneration config",
+      "passed": true
+    },
+    {
+      "name": "source integration: resident validation / fists / culling update present",
+      "passed": true
+    },
+    {
+      "name": "Windows deployed native DLL is the tested-source build artifact",
+      "passed": true
+    }
+  ],
+  "inputHashes": {
+    "C:\\Programming\\SMU-Costumes\\costumes\\electroproof\\electroproof.fbx": "fddca381eea81746a9dea77a5ac09f3bae4b7fa7d06ef6ab3f6f9ed8865e67db",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanElectroProof_D.png": "4971dbb0dc028d154205c6f6c59e18ce4a55ac9ad91280474366d04827c648dd",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch39\\suits\\smu-electroproof\\actor.psx": "cccb3a7f2cc43b54a09d105796216cea803f45d231398e40f60c59fda70a5d5c",
+    "C:\\Programming\\SMU-Costumes\\costumes\\ezekiel\\ezekiel.fbx": "9853864dadd03d2b98c62e208f0db2abc205c2b48cedebb37f902f73e94fc11a",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\Ezekiel_D.png": "c43568396df34759da2a296e1b7c13123395effba753b35a9635f2a2333169dc",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch39\\suits\\smu-ezekiel\\actor.psx": "d1dab2988c492f12b474456374f4e533a3c91a87c8fc325ff371ee9a27ddaedb",
+    "C:\\Programming\\SMU-Costumes\\costumes\\god\\god.fbx": "485d94f1935f315e2dc46e2b7cdcf44a466a78520e8c70ca338a1b58229c16e7",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanGod_D.png": "2c5abbae7b837fda50aa220dc7c0fac374c6eaae6ecf9b57796ceed96506c3fe",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch39\\suits\\smu-god\\actor.psx": "c87ad79d5ca3c7d4c58798d58fa1583606d50d83ce4447e6834292212d42725b"
+  },
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb"
+}

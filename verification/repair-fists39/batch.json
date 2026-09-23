@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch39",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "electroproof",
+    "ezekiel",
+    "god"
+  ],
+  "results": [
+    {
+      "key": "electroproof",
+      "id": "smu-electroproof",
+      "fbx": "costumes/electroproof/electroproof.fbx",
+      "fbxSha256": "fddca381eea81746a9dea77a5ac09f3bae4b7fa7d06ef6ab3f6f9ed8865e67db",
+      "textureFiles": [
+        "textures-png\\SpidermanElectroProof_D.png"
+      ],
+      "textureSha256": [
+        "4971dbb0dc028d154205c6f6c59e18ce4a55ac9ad91280474366d04827c648dd"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1635,
+      "sourceTriangles": 2806,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanElectroProof_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "EProof",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanElectroProof_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 736560,
+      "outputs": {
+        "actor.psx": "cccb3a7f2cc43b54a09d105796216cea803f45d231398e40f60c59fda70a5d5c",
+        "conversion-report.json": "95468816dad2ee90b93882c1306ffb47a7df377b028f851dd36ec52c6b5d35ee",
+        "suit.json": "62b0250f7411b60cdca1e8478c49d0f9a0dbf8f93a83d5de074bbd21c0301f5c",
+        "textures\\diffuse.png": "f47511d8a50cffb6797ccdac5733096ce2cf083fce7cc03311df6b67879a30af"
+      }
+    },
+    {
+      "key": "ezekiel",
+      "id": "smu-ezekiel",
+      "fbx": "costumes/ezekiel/ezekiel.fbx",
+      "fbxSha256": "9853864dadd03d2b98c62e208f0db2abc205c2b48cedebb37f902f73e94fc11a",
+      "textureFiles": [
+        "textures-png\\Ezekiel_D.png"
+      ],
+      "textureSha256": [
+        "c43568396df34759da2a296e1b7c13123395effba753b35a9635f2a2333169dc"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2361,
+      "sourceTriangles": 3834,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Ezekiel_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "SpiderMJ",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Ezekiel_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 897220,
+      "outputs": {
+        "actor.psx": "d1dab2988c492f12b474456374f4e533a3c91a87c8fc325ff371ee9a27ddaedb",
+        "conversion-report.json": "ea1599dc556cd0872ed72c099542fec4962e78588a6f155a246bcad5f9c3a3aa",
+        "suit.json": "df84f81e2f2076bb6b3ea8e063ed35b9d53dc5fd32a4cb67c11531659ee28403",
+        "textures\\diffuse.png": "e041a0685ae4bbf6a4d29540ec1f3a1c3ca8ea8c5fe763029a5f003079bf9adc"
+      }
+    },
+    {
+      "key": "god",
+      "id": "smu-god",
+      "fbx": "costumes/god/god.fbx",
+      "fbxSha256": "485d94f1935f315e2dc46e2b7cdcf44a466a78520e8c70ca338a1b58229c16e7",
+      "textureFiles": [
+        "textures-png\\SpidermanGod_D.png"
+      ],
+      "textureSha256": [
+        "2c5abbae7b837fda50aa220dc7c0fac374c6eaae6ecf9b57796ceed96506c3fe"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2188,
+      "sourceTriangles": 3558,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanGod_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "God",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanGod_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 853768,
+      "outputs": {
+        "actor.psx": "c87ad79d5ca3c7d4c58798d58fa1583606d50d83ce4447e6834292212d42725b",
+        "conversion-report.json": "ec6407831685f7e37150b62a397c0874da56a80efccbd1af877b1733b18900ad",
+        "suit.json": "cee12dfb825480f4d3af46aef4cd8ef0700a2fbb30546af7b746b8580ed3a70f",
+        "textures\\diffuse.png": "df388076f98280ad4661ea53b44d2424d770b5a4cd5bc8ee6ddbdf05e856c6ee"
+      }
+    }
+  ]
+}

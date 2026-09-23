@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "electroproof",
+      "id": "smu-electroproof",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.932861328125,
+        9.3349609375
+      ],
+      "assetSha256": "cccb3a7f2cc43b54a09d105796216cea803f45d231398e40f60c59fda70a5d5c",
+      "captureSha256": "4617f195c0d6e561faa6f8319a9513a9c105b75bfef763aaff00f71ddcfd14c3"
+    },
+    {
+      "key": "ezekiel",
+      "id": "smu-ezekiel",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -2.319580078125,
+        2.39208984375
+      ],
+      "assetSha256": "d1dab2988c492f12b474456374f4e533a3c91a87c8fc325ff371ee9a27ddaedb",
+      "captureSha256": "d01284ea6917a1e384992a446bccca338107caa191bbd7982f786924a58df16f"
+    },
+    {
+      "key": "god",
+      "id": "smu-god",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -2.66845703125,
+        1.733642578125
+      ],
+      "assetSha256": "c87ad79d5ca3c7d4c58798d58fa1583606d50d83ce4447e6834292212d42725b",
+      "captureSha256": "cb931c8e5dd646e6d68199fcc2a4ae84d68c3694b110822f635e99f71e33dc7c"
+    }
+  ]
+}

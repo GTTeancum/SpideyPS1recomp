@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-electroproof",
+    "beforeActorSha256": "00db8217defea2d174d6d98668de191d3ee000908ba83e5204a8bc7297812dca",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-ezekiel",
+    "beforeActorSha256": "a24ef9f27eada284972299d09a99a4196a11fd2160d39dd66ba68cb95d9536d5",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-god",
+    "beforeActorSha256": "ae4a89047bea47819416046f2c7bd2936c94e4db84bbb2c57e2418969d028970",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]
