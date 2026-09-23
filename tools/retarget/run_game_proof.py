@@ -50,7 +50,7 @@ def main():
         SPIDEY_RETARGET_TRACE='1', SPIDEY_MOD_TRACE='1', SPIDEY_SHOT_DIR=str(out),
         SPIDEY_SHOTS=','.join(f'{args.level}_t.trg+{offset}' for offset in offsets),
         SPIDEY_CAPTURE_PRESENTED='1', SPIDEY_EXIT=str(args.frames), SPIDEY_LOG_DIR=str(out),
-        SPIDEY_STALL_EXIT='1', SPIDEY_STALL='20')
+        SPIDEY_STALL='20')
     executable = runtime / 'SpiderMan.exe'
     record = dict(suit=args.id, level=args.level, executableSha256=hashlib.sha256((runtime / 'SpiderMan.dll').read_bytes()).hexdigest(),
         actorSha256=hashlib.sha256((fixture / args.id / 'actor.psx').read_bytes()).hexdigest(),
@@ -68,6 +68,8 @@ def main():
             process.kill()
             process.wait()
             record.update(exitCode=process.returncode, timedOut=True)
+    diagnostics=out/'spidey.log'
+    record['slowRunWarnings']=diagnostics.read_text(errors='replace').count('======== STALL ========') if diagnostics.exists() else 0
     record.update(seconds=time.monotonic() - start, images=[p.name for p in out.glob('*.png')],
         acceptance='Capture pending visual and gameplay review')
     (out / 'run.json').write_text(json.dumps(record, indent=2) + '\n')
