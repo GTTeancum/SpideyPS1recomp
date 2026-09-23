@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-quickchange",
+      "previousActorSha256": "ae88b47321384480873213d2ff4d8504ffe715efb63a44e7b50321ca7e73fbcc",
+      "actorSha256": "c121b6b92c742c7443a311985e796fbb79a01c2a79c5968ba7e88f7bec0f05f5",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-scarlet-spider.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-scarlet",
+      "previousActorSha256": "713c660e49ba71e897e6216f4c48aaf2cd8b4beaa26fa78989b9842d9cce8f05",
+      "actorSha256": "2e9dbff08d26587db156a8a4ee80a9fb163a68c54e0f7f702edff78f5896acd9",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-scarlet-spider.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-scarlet-spider",
+      "previousActorSha256": "94be06ed0b62cb493e4e6f7bccfb716e99ef530ce3bdc7d76dd135068b83f214",
+      "actorSha256": "33ecf3fa94ee74590602b8042dcc24e127e3d37b7664a51ccb62b69e53cd6887",
+      "visualReview": "Reviewed the two native game images sequentially. Scarlet Spider retains the blue hood and torso, red face and limbs, chest emblem, belt, and contrasting forearm panels. Both hands are compact, with fingers contained within the hand silhouette. No web line is visible in this running capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01582.png": "8061039e7c55ff3104f8459af71f6f55854430ef74f788f55b700d1165d9029c",
+        "frame_01582_closeup.png": "355d28558a4cd8295b1444c2eb9626a985a010a4bd82c938e47edbdedb5473e9"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-scarlet-spider"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-quickchange\\actor.psx",
+    "smu-quickchange\\conversion-report.json",
+    "smu-scarlet-spider\\actor.psx",
+    "smu-scarlet-spider\\conversion-report.json",
+    "smu-scarlet\\actor.psx",
+    "smu-scarlet\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-scarlet-spider/frame_01582.png and frame_01582_closeup.png"
+  }
+}

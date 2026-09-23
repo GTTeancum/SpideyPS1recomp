@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch44",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "quickchange",
+    "scarlet",
+    "scarlet_spider"
+  ],
+  "results": [
+    {
+      "key": "quickchange",
+      "id": "smu-quickchange",
+      "fbx": "costumes/quickchange/quickchange.fbx",
+      "fbxSha256": "89088552e11b933a44899aea26d65b2ab6a474746dc7b8e977f2f899d56a5bca",
+      "textureFiles": [
+        "textures-png\\SpidermanQuickChange_D.png"
+      ],
+      "textureSha256": [
+        "b2ed6f9a9d1607feb099596234e60275d810643cc40998ae22d1e1b3a721017b"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1470,
+      "sourceTriangles": 2478,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanQuickChange_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "QuickChange",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanQuickChange_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 665788,
+      "outputs": {
+        "actor.psx": "c121b6b92c742c7443a311985e796fbb79a01c2a79c5968ba7e88f7bec0f05f5",
+        "conversion-report.json": "71ba548a8d80a7ba58f5c7382f8ea79a5e0bbb6721f13cad77629efafec83814",
+        "suit.json": "2a23c4c556d59fe8aea7dfcd2943a22c4058e6d6aab1c18a0373017e56cfceb3",
+        "textures\\diffuse.png": "5b6954d0dca4579c2c35b63b0c8dbdaf475e74117b1a24893c546d021639cd7d"
+      }
+    },
+    {
+      "key": "scarlet",
+      "id": "smu-scarlet",
+      "fbx": "costumes/scarlet/scarlet.fbx",
+      "fbxSha256": "b852ba07f1ae8aca6cf728ca39525b181603673857d76aca5d6b0cb19577b3f7",
+      "textureFiles": [
+        "textures-png\\SpidermanScarlet_D.png"
+      ],
+      "textureSha256": [
+        "9d18b6d96542943069fb18fcbcabdd5ecdc01ff249dafe833e718cbc4520e3ed"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1863,
+      "sourceTriangles": 3246,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanScarlet_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Scarlet",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanScarlet_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 748876,
+      "outputs": {
+        "actor.psx": "2e9dbff08d26587db156a8a4ee80a9fb163a68c54e0f7f702edff78f5896acd9",
+        "conversion-report.json": "8f9d1cf90a2994cf72146a3072ed1c224bf1cbe4e2b6f9c05633d67b68e615bc",
+        "suit.json": "58fc247001be8b69df472d0b2f65bf018acb4b073d642e2be651e4fc6ae337d5",
+        "textures\\diffuse.png": "a829f5e8a73ddd0b38f268d3353931e8448c9ee19b298b13980fb374de65d900"
+      }
+    },
+    {
+      "key": "scarlet_spider",
+      "id": "smu-scarlet-spider",
+      "fbx": "costumes/scarlet_spider/scarlet_spider.fbx",
+      "fbxSha256": "4352b6433159db6a73ffa7e76e8ea51e73ac89ef724dadf94a1767ea75d364ab",
+      "textureFiles": [
+        "textures-png\\Spider_Scarlet_D.png"
+      ],
+      "textureSha256": [
+        "3d01b20faaeedfa4f679a841ec432d9bb2e20ba09c6207d7f089348e12c1c9b8"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2397,
+      "sourceTriangles": 3730,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spider_scarlet_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Silk2",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spider_Scarlet_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              -1,
+              0
+            ],
+            "tileCount": [
+              2,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 891856,
+      "outputs": {
+        "actor.psx": "33ecf3fa94ee74590602b8042dcc24e127e3d37b7664a51ccb62b69e53cd6887",
+        "conversion-report.json": "896766b5832bcade64139231d0b13d173f1cdcc3da13c2bc6ba0f11988239f59",
+        "suit.json": "6705063421cf73bbbeb300f2a00346975a18a410a9cf29608b9d4a0748d68f9c",
+        "textures\\diffuse.png": "f3f94505bede2fb09a877176ae7f53f1a4a40d3d0f5a5999fb684f51811e9b62"
+      }
+    }
+  ]
+}

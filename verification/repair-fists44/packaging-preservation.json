@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-quickchange",
+    "beforeActorSha256": "ae88b47321384480873213d2ff4d8504ffe715efb63a44e7b50321ca7e73fbcc",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-scarlet",
+    "beforeActorSha256": "713c660e49ba71e897e6216f4c48aaf2cd8b4beaa26fa78989b9842d9cce8f05",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-scarlet-spider",
+    "beforeActorSha256": "94be06ed0b62cb493e4e6f7bccfb716e99ef530ce3bdc7d76dd135068b83f214",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

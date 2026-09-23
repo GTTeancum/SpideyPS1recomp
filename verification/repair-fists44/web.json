@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "quickchange",
+      "id": "smu-quickchange",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.464111328125,
+        9.865966796875
+      ],
+      "assetSha256": "c121b6b92c742c7443a311985e796fbb79a01c2a79c5968ba7e88f7bec0f05f5",
+      "captureSha256": "7b340252cd9301ba0824e972985466d0cedab642dbaa12ba866b51d2db3f3bb1"
+    },
+    {
+      "key": "scarlet",
+      "id": "smu-scarlet",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.367431640625,
+        10.76953125
+      ],
+      "assetSha256": "2e9dbff08d26587db156a8a4ee80a9fb163a68c54e0f7f702edff78f5896acd9",
+      "captureSha256": "884c367c24baca9ea3f3a74fb015cde34ee582f79cd32d270ce703c8f565c9cf"
+    },
+    {
+      "key": "scarlet_spider",
+      "id": "smu-scarlet-spider",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        0.783935546875,
+        5.18603515625
+      ],
+      "assetSha256": "33ecf3fa94ee74590602b8042dcc24e127e3d37b7664a51ccb62b69e53cd6887",
+      "captureSha256": "3ff79f11dc285abe1fcc2070828f0fe06b3b181c7441e30e74576c3ab1eeca51"
+    }
+  ]
+}
