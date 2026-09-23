@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using RecompOne.Runtime.Assets;
 using RecompOne.Runtime.Assets.Suits;
 using RecompOne.Runtime.Assets.Textures;
@@ -24,6 +25,25 @@ public static class SuitMods
     static readonly HashSet<string> _misses = new();
     static ulong _layoutSignature;
     static readonly ActorMaterialCache MaterialCache = new(0x800A0904);
+
+    static HashSet<string> LoadSmEligibility(string root)
+    {
+        string file = Path.Combine(root, "smu-eligibility.json");
+        if (!File.Exists(file)) return null;
+        using var document = JsonDocument.Parse(File.ReadAllText(file));
+        var ids = document.RootElement.GetProperty("eligibleIds");
+        if (ids.ValueKind != JsonValueKind.Array)
+            throw new InvalidDataException("SMU eligibility ids must be an array");
+        var eligible = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var id in ids.EnumerateArray())
+        {
+            if (id.ValueKind != JsonValueKind.String || !eligible.Add(id.GetString()!))
+                throw new InvalidDataException("SMU eligibility ids must be unique strings");
+        }
+        if (eligible.Count != 90)
+            throw new InvalidDataException($"expected 90 approved SMU suits, found {eligible.Count}");
+        return eligible;
+    }
     public static SuitManifest At(int index) => Catalogue[index - StockCount];
     public static bool IsMod(int index) => index >= StockCount && index < StockCount + Catalogue.Count;
 
@@ -34,6 +54,8 @@ public static class SuitMods
         if (!Directory.Exists(_root)) return;
         if ((File.GetAttributes(_root) & FileAttributes.ReparsePoint) != 0)
             throw new InvalidDataException("suit mod root cannot be a link");
+        var smuEligible = LoadSmEligibility(_root);
+        var registeredSmus = new HashSet<string>(StringComparer.Ordinal);
         foreach (string dir in Directory.EnumerateDirectories(_root).Order(StringComparer.Ordinal))
         {
             string file = Path.Combine(dir, "suit.json");
@@ -41,13 +63,22 @@ public static class SuitMods
             try
             {
                 var mod = SuitManifest.Read(file);
+                if (mod.Id.StartsWith("smu-", StringComparison.Ordinal) &&
+                    (smuEligible is null || !smuEligible.Contains(mod.Id)))
+                {
+                    Console.WriteLine($"[suit-mod] omitted {mod.Id}: outside approved SMU eligibility scope");
+                    continue;
+                }
                 if (Catalogue.Any(m => m.Id == mod.Id)) throw new InvalidDataException("duplicate suit id");
                 if (Catalogue.Count >= MaxCount - StockCount) throw new InvalidDataException($"suit selector is full ({MaxCount - StockCount} mod entries)");
                 Catalogue.Add(mod);
+                if (mod.Id.StartsWith("smu-", StringComparison.Ordinal)) registeredSmus.Add(mod.Id);
                 Console.WriteLine($"[suit-mod] registered {mod.Id}: {mod.Name}; model {mod.Model}; SM1 profile {SuitManifest.Profiles[mod.AbilityProfile]}; {mod.Textures.Count} external PNGs; always unlocked");
             }
             catch (Exception e) { Console.Error.WriteLine($"[suit-mod] rejected {file}: {e.Message}"); }
         }
+        if (smuEligible is not null && !smuEligible.SetEquals(registeredSmus))
+            throw new InvalidDataException("approved SMU eligibility manifest and registered suits differ");
         string state = Path.Combine(_root, "selected-suit.txt");
         try
         {

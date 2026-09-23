@@ -297,3 +297,18 @@ SuitMods.Select(-1, false); SuitMods.Catalogue.Clear(); SuitMods.Install();
 Check(Costume.ReadSelected(memory) == 252 && SuitMods.At(252).Id == savedId, "last slot restores after catalogue reload");
 Costume.WriteSelected(memory, 0);
 Console.WriteLine($"PASS: {tests} assertions including full 253-slot capacity");
+
+// The shipped SMU directory retains excluded assets on disk, but only the approved
+// policy list may consume selector rows.
+SuitMods.Catalogue.Clear();
+string smuRoot = Path.Combine(root, "spiderman", "port", "mods", "suits");
+Environment.SetEnvironmentVariable("SPIDEY_SUIT_MOD_DIR", smuRoot);
+using var eligibility = JsonDocument.Parse(File.ReadAllText(Path.Combine(smuRoot, "smu-eligibility.json")));
+var expectedSmus = eligibility.RootElement.GetProperty("eligibleIds").EnumerateArray()
+    .Select(id => id.GetString()!).ToHashSet(StringComparer.Ordinal);
+SuitMods.Install();
+Check(SuitMods.Catalogue.Select(mod => mod.Id).ToHashSet(StringComparer.Ordinal).SetEquals(expectedSmus),
+    "real SMU selector registers exactly the approved eligibility manifest");
+Check(SuitMods.Catalogue.Count == 90, "real SMU selector omits all 143 excluded manifests");
+Costume.WriteSelected(memory, 0);
+Console.WriteLine($"PASS: {tests} assertions including SMU eligibility filtering");
