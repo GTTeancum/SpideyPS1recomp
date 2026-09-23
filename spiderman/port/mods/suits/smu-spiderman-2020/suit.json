@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-spiderman-2020",
+  "name": "SMU SPIDERMAN 2020",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "92C1C161": "textures/diffuse.png"
+  }
+}

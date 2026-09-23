@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-spiderx",
+  "name": "SMU SPIDERX",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "C321A579": "textures/diffuse.png"
+  }
+}

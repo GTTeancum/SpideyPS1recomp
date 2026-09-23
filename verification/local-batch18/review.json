@@ -1,0 +1,26 @@
+{
+  "batch": 18,
+  "keys": [
+    "spiderknight",
+    "spidermaam",
+    "spiderman",
+    "spiderman_2020",
+    "spiderman_newdesign",
+    "spidermanhomecoming",
+    "spidermj",
+    "spidersman",
+    "spidervenom",
+    "spiderx"
+  ],
+  "representative": "smu-spidermj",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed both Spider-MJ native frames. Red/white suit panels, tied hair, footwear, hands and complete body are present in swing and crouched grounded poses. Web line visibly meets the raised hand region. Free-hand fist closure is not established at this scale and remains separately tracked. Offline checks cover all ten suits; these two gameplay images cover Spider-MJ only.",
+  "liveSwingImages": [
+    "frame_01581.png"
+  ],
+  "images": {
+    "frame_01581.png": "d7af7acaeb6bfd3bd10dbc4a766eab6f5db13bd117fcc290bbc32f0153ea321f",
+    "frame_01886.png": "de9448e2d0b1bbe974b3b815c815f86b61acbb7481ab1a69ef13e48ecb091c15"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "spiderknight",
+      "id": "smu-spiderknight",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.588134765625,
+        10.989990234375
+      ],
+      "assetSha256": "1cf7a590314d09f605a59d99995e0834a1e4eac6ae73dbeb11d0239480aef12d",
+      "captureSha256": "8bc21886668debf92ecc5c4ee5895470ae2a36fda99064ed7cbcb1874e0bc396"
+    },
+    {
+      "key": "spidermaam",
+      "id": "smu-spidermaam",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.4306640625,
+        9.832763671875
+      ],
+      "assetSha256": "1a68bccfb5d6498490938c32d6f740731bd92af741ad2fb338e0d0a73b74383d",
+      "captureSha256": "7eefc4bf17022023174e9ed3699168ca91da02c289f5bd471969f1b2b1c6d3bc"
+    },
+    {
+      "key": "spiderman",
+      "id": "smu-spiderman",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "dbba261441277944b5fbbbabccfec004951f576199647b1caf067511d09c9ac5",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    },
+    {
+      "key": "spiderman_2020",
+      "id": "smu-spiderman-2020",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -2.154296875,
+        2.24755859375
+      ],
+      "assetSha256": "1ba76da5aea4a925466c5a8b7fc03aee651244566390d61a04a85502adc84b77",
+      "captureSha256": "b767a141788ffc954053cfee6e86321e4095650064442ff2b617ccdd6f153b1d"
+    },
+    {
+      "key": "spiderman_newdesign",
+      "id": "smu-spiderman-newdesign",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.272216796875,
+        8.67431640625
+      ],
+      "assetSha256": "4a207d58850d3367eaf245910cfd6d1a2afb90f5f37b245fb7b228540d7926bd",
+      "captureSha256": "6287c8b1589f4465ca2bd9be590c116b3b0cc083b6011f0e33beb5632e556c00"
+    },
+    {
+      "key": "spidermanhomecoming",
+      "id": "smu-spidermanhomecoming",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -3.037841796875,
+        1.3642578125
+      ],
+      "assetSha256": "7fca5686430cc2c22c0647a714a12bf666ae5a10721aca14531d51fcb08e7ad5",
+      "captureSha256": "00e2a978985676263aa590f15e54f1947783ead912b0e010a8ff541e624391bd"
+    },
+    {
+      "key": "spidermj",
+      "id": "smu-spidermj",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.29296875,
+        11.6953125
+      ],
+      "assetSha256": "ccba47b5cc5339893fa2c4522b74fd5f1a3d3fe78161c8bbdd082e07b8182e5b",
+      "captureSha256": "727e246acc58cba3a3474bbf23628ffa997806be2bdcde0a068d2bd0f7ee3d4e"
+    },
+    {
+      "key": "spidersman",
+      "id": "smu-spidersman",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.79345703125,
+        9.195556640625
+      ],
+      "assetSha256": "470bb8b711a5ac6bc86caecbd659168f2d012311eb181a2419fdbea6c2fc4194",
+      "captureSha256": "62481bb307d04084eac9dbfa0ffcca2ed1f6f62c4c34ac301d1310f1dbe4defa"
+    },
+    {
+      "key": "spidervenom",
+      "id": "smu-spidervenom",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.38134765625,
+        9.783935546875
+      ],
+      "assetSha256": "f9489ac821dd3210b5ad7a3a6ffce9510b958975030d23acf2256ea737fe4c3f",
+      "captureSha256": "27bf08c0baddfd348e4a093104c6f80fd1a9edc00b762bd7c5b6067c7ad5f2d0"
+    },
+    {
+      "key": "spiderx",
+      "id": "smu-spiderx",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -2.5966796875,
+        1.8056640625
+      ],
+      "assetSha256": "7c514ed762b9562df2cc632406e7a3db6591f2cd0d0c10ab6d8c8f73e4f7ad1a",
+      "captureSha256": "85e342677cb80422dda5a995066619be0c62f4d4a36a0d9e2b982703281e686a"
+    }
+  ]
+}
