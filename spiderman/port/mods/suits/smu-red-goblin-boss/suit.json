@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-red-goblin-boss",
+  "name": "SMU RED GOBLIN BOSS",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "2E4A7278": "textures/diffuse.png"
+  }
+}

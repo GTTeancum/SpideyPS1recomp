@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-scarlet-spiderham-benreilly",
+  "name": "SCARLET SPIDER #167",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "5B382FF7": "textures/diffuse.png"
+  }
+}

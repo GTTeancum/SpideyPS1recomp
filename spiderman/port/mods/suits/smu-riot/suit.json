@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-riot",
+  "name": "SMU RIOT",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "52B6841A": "textures/diffuse.png",
+    "6F5623E8": "textures/diffuse-1.png"
+  }
+}

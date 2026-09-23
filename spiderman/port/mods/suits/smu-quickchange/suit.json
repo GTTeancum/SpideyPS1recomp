@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-quickchange",
+  "name": "SMU QUICKCHANGE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "FC5071EE": "textures/diffuse.png"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "batch": 15,
+  "keys": [
+    "punk",
+    "quickchange",
+    "rafael_carago",
+    "raze",
+    "red_goblin_boss",
+    "riot",
+    "scarlet",
+    "scarlet_spider",
+    "scarlet_spiderham_benreilly",
+    "scarletgirl"
+  ],
+  "representative": "smu-red-goblin-boss",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed both native captures: Red Goblin Boss retains red/black markings, long tail, large head and limb appendages while swinging and grounded. The line reaches the raised hand region; the exact wrist is partly obscured by the head. Free hand remains claw-like: these two views do not establish closed-fist acceptance. Tongue-specific acceptance is not implied.",
+  "liveSwingImages": [
+    "frame_01583.png"
+  ],
+  "images": {
+    "frame_01583.png": "c5a06fcf0149e272f198548204ee1dc9be694f9aa80b7a694c5ff2a414301d40",
+    "frame_01888.png": "2485cf3cf3456ef3bed98c572333619cf54fdc8f70ed48b5df31f79c17dd2ec8"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

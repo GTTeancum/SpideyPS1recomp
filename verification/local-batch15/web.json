@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "punk",
+      "id": "smu-punk",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.5849609375,
+        10.987060546875
+      ],
+      "assetSha256": "c757fef786915715b0f19d7fc7213f69dc82e42dbf5af592325ec14afceca348",
+      "captureSha256": "96f059e9514f30e314bbd9de23f3a92b3b5cb8b227cf7d071c170327de6e7ef7"
+    },
+    {
+      "key": "quickchange",
+      "id": "smu-quickchange",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.464111328125,
+        9.865966796875
+      ],
+      "assetSha256": "ae88b47321384480873213d2ff4d8504ffe715efb63a44e7b50321ca7e73fbcc",
+      "captureSha256": "7b340252cd9301ba0824e972985466d0cedab642dbaa12ba866b51d2db3f3bb1"
+    },
+    {
+      "key": "rafael_carago",
+      "id": "smu-rafael-carago",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        9.525634765625,
+        21.624755859375
+      ],
+      "assetSha256": "02ddda71e707d43d7ccb3f3fdac7afb7bad9201287eb4655d04ff5a57a760cb6",
+      "captureSha256": "a53f617236eda2d09f6a0939d07d5a6843efbe004803ceaf888b28ec8e43d470"
+    },
+    {
+      "key": "raze",
+      "id": "smu-raze",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.594970703125,
+        10.996826171875
+      ],
+      "assetSha256": "25d20d4e6b34d7e397ea33e4c05194744768cff5702d3b249e81e283425b1dd3",
+      "captureSha256": "021c2ab282bb3e89d5362ae5169ebc4864ad97c3568ec366da3025d003627b0c"
+    },
+    {
+      "key": "red_goblin_boss",
+      "id": "smu-red-goblin-boss",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.51513671875,
+        9.736328125
+      ],
+      "assetSha256": "17de6ef71c6e487ab7e2403c803835aefab1ef4cd39e5b3b5e0852c43432bc11",
+      "captureSha256": "85e4819d72978ca26526858f2eb3faacd4a21b06c793a0f0288829027e2c614a"
+    },
+    {
+      "key": "riot",
+      "id": "smu-riot",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.23486328125,
+        7.168212890625
+      ],
+      "assetSha256": "506574930952d467c8b5863d22fc8b67d6ba752d6a8cf96249a245b052bb3082",
+      "captureSha256": "f3af53b8c89cc7bea5d1fbc074e11521162f2a7335d923c0457b5146737c6b75"
+    },
+    {
+      "key": "scarlet",
+      "id": "smu-scarlet",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.367431640625,
+        10.76953125
+      ],
+      "assetSha256": "713c660e49ba71e897e6216f4c48aaf2cd8b4beaa26fa78989b9842d9cce8f05",
+      "captureSha256": "884c367c24baca9ea3f3a74fb015cde34ee582f79cd32d270ce703c8f565c9cf"
+    },
+    {
+      "key": "scarlet_spider",
+      "id": "smu-scarlet-spider",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        0.783935546875,
+        5.18603515625
+      ],
+      "assetSha256": "94be06ed0b62cb493e4e6f7bccfb716e99ef530ce3bdc7d76dd135068b83f214",
+      "captureSha256": "3ff79f11dc285abe1fcc2070828f0fe06b3b181c7441e30e74576c3ab1eeca51"
+    },
+    {
+      "key": "scarlet_spiderham_benreilly",
+      "id": "smu-scarlet-spiderham-benreilly",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        133.0146484375,
+        144.619873046875
+      ],
+      "assetSha256": "874ea85c9d61026184aa0baba3ecf147dfbb3d2161ec2716a2652724b5ecda0f",
+      "captureSha256": "126d5128f3d152a4c5f9eea487d11623af422b360951d4ba379f8675b387be7d"
+    },
+    {
+      "key": "scarletgirl",
+      "id": "smu-scarletgirl",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.9912109375,
+        9.39306640625
+      ],
+      "assetSha256": "a6dbdceaf5acbf7f5a5cb0d4935cdc11e9ad7c8142fff23e02ca78bc8945ce15",
+      "captureSha256": "de2b7e448cbbf2594efed45072db47c97d1435cc6269eaf1ef26223e17190fe7"
+    }
+  ]
+}
