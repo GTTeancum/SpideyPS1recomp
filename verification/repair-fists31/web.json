@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "spidermanhomecoming",
+      "id": "smu-spidermanhomecoming",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -3.037841796875,
+        1.3642578125
+      ],
+      "assetSha256": "7741745c334064010ad01af7164881cfd96e0402d9269d1fc3964eef159dd502",
+      "captureSha256": "00e2a978985676263aa590f15e54f1947783ead912b0e010a8ff541e624391bd"
+    },
+    {
+      "key": "spiderman_surveillancesuit",
+      "id": "smu-spiderman-surveillancesuit",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.43408203125,
+        5.8359375
+      ],
+      "assetSha256": "a1b86c747afc0e6f01d9acdd333d8ffaf6bfb1550d199c4dfc3d0ae9dbb43d9c",
+      "captureSha256": "5dc0c3e39192f754fca557e2c6071b1bddeaa33cc3cde754babd1b2c8d3a9021"
+    },
+    {
+      "key": "kung_fu",
+      "id": "smu-kung-fu",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.656494140625,
+        10.05859375
+      ],
+      "assetSha256": "8d9f9a28a1e1773f3fcccd8d35a2f893259d6c92ee9e61cc0c31d58f3697bc86",
+      "captureSha256": "3dd1abd068976762c1695d3385bbbfff889a119090cdeea316a5f11e3b9ef7c5"
+    }
+  ]
+}

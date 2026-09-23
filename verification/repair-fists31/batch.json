@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch31",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "spidermanhomecoming",
+    "spiderman_surveillancesuit",
+    "kung_fu"
+  ],
+  "results": [
+    {
+      "key": "spidermanhomecoming",
+      "id": "smu-spidermanhomecoming",
+      "fbx": "costumes/spidermanhomecoming/spidermanhomecoming.fbx",
+      "fbxSha256": "7093920c706793f37eac9e49bec4811c81b6b7109616e4cc59354015da3bf7e7",
+      "textureFiles": [
+        "textures-png\\SpiderManHomecoming_D.png"
+      ],
+      "textureSha256": [
+        "85620ab5e1111e218b059616929e3f0ba596b5562377260f4ef126fa483f2ff1"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1709,
+      "sourceTriangles": 2906,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderManHomecoming_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderManHomecoming_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 718048,
+      "outputs": {
+        "actor.psx": "7741745c334064010ad01af7164881cfd96e0402d9269d1fc3964eef159dd502",
+        "conversion-report.json": "d4f386f2e206b03c8b06635c3eccba897f080afb1d3fa90e12e71fb6e9bfd110",
+        "suit.json": "72e48ceaa75151fcf2e4dc36a1f55cae61022de248a7717a9c78e4f9a49b91ca",
+        "textures\\diffuse.png": "c9066c4a24ef6e793f9193048b01d5de10e3ffb7312439ffbdad5851db9cf9ef"
+      }
+    },
+    {
+      "key": "spiderman_surveillancesuit",
+      "id": "smu-spiderman-surveillancesuit",
+      "fbx": "costumes/spiderman_surveillancesuit/spiderman_surveillancesuit.fbx",
+      "fbxSha256": "d294aa6ec3037adb896827a207ba4fbc026633ceb881f13ba18f3ef7174c6bc1",
+      "textureFiles": [
+        "textures-png\\SurveillanceSuit_D.png"
+      ],
+      "textureSha256": [
+        "e89961c99a7c5781063cd29d6f26e97446263ac553ee1caafb80cc92af43a691"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3654,
+      "sourceTriangles": 5142,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SurveillanceSuit_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Silk2",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SurveillanceSuit_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "__134",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SurveillanceSuit_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1028680,
+      "outputs": {
+        "actor.psx": "a1b86c747afc0e6f01d9acdd333d8ffaf6bfb1550d199c4dfc3d0ae9dbb43d9c",
+        "conversion-report.json": "414b2faf0052bfbc4af07c73174b77879e5d2816bdb41521266fc363658f9dbf",
+        "suit.json": "226923a658ea6fcbce61fb82945e54fcbe83a23518129615f289e78934808141",
+        "textures\\diffuse-1.png": "00aaa4682d53d2144c5ff742a3639ba2bd4def596defc74cbf587d368cca06dd",
+        "textures\\diffuse.png": "00aaa4682d53d2144c5ff742a3639ba2bd4def596defc74cbf587d368cca06dd"
+      }
+    },
+    {
+      "key": "kung_fu",
+      "id": "smu-kung-fu",
+      "fbx": "costumes/kung_fu/kung_fu.fbx",
+      "fbxSha256": "9425712a7e0d02d8d57b711e5006eed249ca8e0772b8b74828e6330786dcc1cc",
+      "textureFiles": [
+        "textures-png\\Kung_FU_D.png"
+      ],
+      "textureSha256": [
+        "b1c687e1c2e8091bf1a4554d4ad0b67bbdfec88c5fc4582c56df0a6f9e56b3fb"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2377,
+      "sourceTriangles": 3826,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Kung_FU_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Kung-Fu_Spiderman",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Kung_FU_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 926688,
+      "outputs": {
+        "actor.psx": "8d9f9a28a1e1773f3fcccd8d35a2f893259d6c92ee9e61cc0c31d58f3697bc86",
+        "conversion-report.json": "80fb7b1931612fcab8d60f3eb927e715d4024c031bd189b53f89f1058b2a5756",
+        "suit.json": "54f0ac5792029f6bf0b6b810581759f60042388d3217b559fe0d4c5b503747b3",
+        "textures\\diffuse.png": "a389dfcbe400d632a072dae8b3c32fe792f74b25fc58e06436c36a761bf66590"
+      }
+    }
+  ]
+}

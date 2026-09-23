@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-spidermanhomecoming",
+    "beforeActorSha256": "7fca5686430cc2c22c0647a714a12bf666ae5a10721aca14531d51fcb08e7ad5",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-spiderman-surveillancesuit",
+    "beforeActorSha256": "26359bdfef24173c177dfcd93685eacd14a1cd6df6848bc0f0d705b3492ee69f",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-kung-fu",
+    "beforeActorSha256": "293285aa9e945dd2cd866f919ba6c2d5a42e64009d129ea3d7b059a4606bb2de",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

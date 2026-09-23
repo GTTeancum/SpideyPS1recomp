@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-spidermanhomecoming",
+      "previousActorSha256": "7fca5686430cc2c22c0647a714a12bf666ae5a10721aca14531d51fcb08e7ad5",
+      "actorSha256": "7741745c334064010ad01af7164881cfd96e0402d9269d1fc3964eef159dd502",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-spiderman-surveillancesuit.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-spiderman-surveillancesuit",
+      "previousActorSha256": "26359bdfef24173c177dfcd93685eacd14a1cd6df6848bc0f0d705b3492ee69f",
+      "actorSha256": "a1b86c747afc0e6f01d9acdd333d8ffaf6bfb1550d199c4dfc3d0ae9dbb43d9c",
+      "visualReview": "Reviewed the two native game images sequentially. The Surveillance Suit retains its red-and-charcoal body, white eye lenses, light-colored fingers, and all four back-mounted mechanical appendages without dropped geometry. The articulated fingers remain compact within the palm silhouette in this running pose. No web line is visible in this capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01608.png": "dc338961270e0990f22a4b51665f2d4227a0b97072f0cf7a76b207865b4b3081",
+        "frame_01608_closeup.png": "089fe34a892f6a0db600381abb0ab4c089159db8a9a2a01d77f2d9545ebe23dd"
+      }
+    },
+    {
+      "suit": "smu-kung-fu",
+      "previousActorSha256": "293285aa9e945dd2cd866f919ba6c2d5a42e64009d129ea3d7b059a4606bb2de",
+      "actorSha256": "8d9f9a28a1e1773f3fcccd8d35a2f893259d6c92ee9e61cc0c31d58f3697bc86",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-spiderman-surveillancesuit.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-spiderman-surveillancesuit"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-kung-fu\\actor.psx",
+    "smu-kung-fu\\conversion-report.json",
+    "smu-spiderman-surveillancesuit\\actor.psx",
+    "smu-spiderman-surveillancesuit\\conversion-report.json",
+    "smu-spidermanhomecoming\\actor.psx",
+    "smu-spidermanhomecoming\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-spiderman-surveillancesuit/frame_01608.png and frame_01608_closeup.png"
+  }
+}
