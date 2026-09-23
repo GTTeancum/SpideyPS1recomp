@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "madamweb",
+      "id": "smu-madamweb",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        0.723876953125,
+        5.125732421875
+      ],
+      "assetSha256": "9b096e8b0489168522fe0c74b978fa5fdb76cf4ef508e167109c8c6445e7397a",
+      "captureSha256": "3b95b511539b8da72b1f31d03a5f172b6437640623d5c5403f0aac09e56de5a2"
+    },
+    {
+      "key": "mangaverse",
+      "id": "smu-mangaverse",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.271484375,
+        8.673583984375
+      ],
+      "assetSha256": "43a24734ef6ab00ad73051e8e6d828fd8648708e2630abcadc21127dc5c6fc91",
+      "captureSha256": "b8b75e5696e1406dea5385963bc02dc530114cfc3e2d3110bc087a3a2f02762c"
+    },
+    {
+      "key": "mangaverse_black_cat",
+      "id": "smu-mangaverse-black-cat",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.1240234375,
+        11.526123046875
+      ],
+      "assetSha256": "82a1e0276698eb7ded100802f1fea937606079af7451af4e0431ba813bc32711",
+      "captureSha256": "738713c1129450d8c5c2e9cdd56bfa1ee15d7a2b4d6e0ebb8c24563be710f684"
+    },
+    {
+      "key": "mania",
+      "id": "smu-mania",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -0.94189453125,
+        3.460205078125
+      ],
+      "assetSha256": "e5d46e4cf0e1dfec8ac93e4de9712a5dbbe22e21a8ed1402aea93628110863e3",
+      "captureSha256": "5a648db6715c70fb86d4ce4e0c9bd8a9e0a941740c6246446204917cd3b1bed6"
+    },
+    {
+      "key": "maniac",
+      "id": "smu-maniac",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -2.116943359375,
+        2.285400390625
+      ],
+      "assetSha256": "495429a11d0d45487dd4eec1701d4ea2d76744e548383c199c047fbe8c19eb5e",
+      "captureSha256": "12457dc08d2968dc52a36dfb84febe5f76662aefb4addf80032ad23f8979492c"
+    },
+    {
+      "key": "maniacal_mayhem",
+      "id": "smu-maniacal-mayhem",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.7421875,
+        7.144287109375
+      ],
+      "assetSha256": "54e4cdd412cb7170c347afbd956d0d451ea5ee7d62a46001a942715dad9a87a4",
+      "captureSha256": "91cf90fbe222680afe32fb7a6ce60442e08a473c6efc42f73755c5389fd45675"
+    },
+    {
+      "key": "maskedmarvel",
+      "id": "smu-maskedmarvel",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.274169921875,
+        9.67626953125
+      ],
+      "assetSha256": "8f1a7af3b0f7d1cc059e8903b5089c08c00556767a5c0e38405e5c0dce27cbf4",
+      "captureSha256": "8c33539d9138a87a7e1fbadcce41da213e9e55f3d4fff017bb94a04d83c4d10a"
+    },
+    {
+      "key": "mattie_franklin_5",
+      "id": "smu-mattie-franklin-5",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.3896484375,
+        9.79150390625
+      ],
+      "assetSha256": "6c3dfb999a5aa511118bcf82cf4c79ed1b594660bc5a136e3cb8317218cf6c1d",
+      "captureSha256": "d23b6168cdb8d3372567aaa574dc060d72d5136f1ff8ca2c6759c699311069e5"
+    },
+    {
+      "key": "mattie_franklin_body_suit",
+      "id": "smu-mattie-franklin-body-suit",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.59326171875,
+        11.79296875
+      ],
+      "assetSha256": "134990c727377bbff4ec5191d24998b433cb46c9e2398274cf4ec22a365a312c",
+      "captureSha256": "f731a06bcdfd631478d70f754dd2bbf5696d9f7614030feaf192e3bd7bb344b4"
+    },
+    {
+      "key": "mayday",
+      "id": "smu-mayday",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.749267578125,
+        6.1513671875
+      ],
+      "assetSha256": "7cb05249f59edc7f8bd381acd868f8ec8a01c8deaeece2bce07e2e9b259eab87",
+      "captureSha256": "eae7c60d58aba0b83661ae2e073e62c7aa78bc85a6a494074f7238bed18575bb"
+    }
+  ]
+}

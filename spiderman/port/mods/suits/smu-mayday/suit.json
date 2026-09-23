@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-mayday",
+  "name": "SMU MAYDAY",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "E5BA3E69": "textures/diffuse.png"
+  }
+}

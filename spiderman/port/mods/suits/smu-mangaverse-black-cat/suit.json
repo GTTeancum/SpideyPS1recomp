@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-mangaverse-black-cat",
+  "name": "MANGAVERSE BLA #109",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "9F7CDCD7": "textures/diffuse.png",
+    "74B29EE7": "textures/diffuse-1.png"
+  }
+}

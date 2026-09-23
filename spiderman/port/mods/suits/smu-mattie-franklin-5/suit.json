@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-mattie-franklin-5",
+  "name": "MATTIE FRANKLIN 5",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "2D90983F": "textures/diffuse.png"
+  }
+}

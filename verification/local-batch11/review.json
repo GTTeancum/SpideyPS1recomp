@@ -1,0 +1,26 @@
+{
+  "batch": 11,
+  "keys": [
+    "madamweb",
+    "mangaverse",
+    "mangaverse_black_cat",
+    "mania",
+    "maniac",
+    "maniacal_mayhem",
+    "maskedmarvel",
+    "mattie_franklin_5",
+    "mattie_franklin_body_suit",
+    "mayday"
+  ],
+  "representative": "smu-mattie-franklin-5",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed exactly two native frames: Mattie Franklin 5 swinging at 1536, then grounded at 1841. Hair, costume, limbs and footwear are retained, with the line meeting the raised glove. The wide captures do not establish detailed fist closure. Live run exits normally with four slow-frame warnings; offline rig/animation/web tests cover all ten suits.",
+  "liveSwingImages": [
+    "frame_01536.png"
+  ],
+  "images": {
+    "frame_01536.png": "4aeda44699cb7f5a8ad9967b99d65fafc9fa6a1acef9e7ebf5c2b16d6c9aae47",
+    "frame_01841.png": "7dcdd827cfaf64df896db78c46ab23e59b93ba83843b64253f7e7f84c287c010"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

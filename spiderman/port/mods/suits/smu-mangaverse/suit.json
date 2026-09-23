@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-mangaverse",
+  "name": "SMU MANGAVERSE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "20544E59": "textures/diffuse.png"
+  }
+}
