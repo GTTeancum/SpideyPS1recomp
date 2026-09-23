@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-wraith",
+  "name": "SMU WRAITH",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "A0C7D803": "textures/diffuse.png"
+  }
+}

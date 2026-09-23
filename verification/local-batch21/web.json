@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "who",
+      "id": "smu-who",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.50146484375,
+        8.948486328125
+      ],
+      "assetSha256": "7ce8e4a771a79e065a5f4de18fa71d4faf5f827512dfabf335ddbaed906ca43e",
+      "captureSha256": "2b9419eb8e1d7c8330abeb55b1ed5083970e9aad141a6b2c254a87d1da915a29"
+    },
+    {
+      "key": "womannew",
+      "id": "smu-womannew",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.075439453125,
+        11.477294921875
+      ],
+      "assetSha256": "bb79e2711240fcd1d57efdce0a6c6f8f1ce735ca2af5b04ae94e0d9794189975",
+      "captureSha256": "8514b0c35739ecb53c632f47910eac7f4bb8045e1c946bb91b8138671f3968ed"
+    },
+    {
+      "key": "wraith",
+      "id": "smu-wraith",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.706298828125,
+        9.108642578125
+      ],
+      "assetSha256": "ef6c88f8cd76e830c85d3b02ee886f523906c3fe1470b2c4b7fa60c8d2d0b27d",
+      "captureSha256": "f5779b8db88ff4ac3bd0532281336309081e0443ad86226608bd1cf5054c4129"
+    }
+  ]
+}

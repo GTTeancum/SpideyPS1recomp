@@ -1,0 +1,19 @@
+{
+  "batch": 21,
+  "keys": [
+    "who",
+    "womannew",
+    "wraith"
+  ],
+  "representative": "smu-wraith",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Inspected both Wraith native images. Purple suit, gold trim, arm tassels, footwear and full body are present in swing and grounded poses. The web reaches the raised hand/wrist region. Authored hanging details remain intact; these frames do not establish secondary cloth animation or complete fist closure. Offline checks cover all three assets.",
+  "liveSwingImages": [
+    "frame_01583.png"
+  ],
+  "images": {
+    "frame_01583.png": "3336cb83d5e7300f6bac64037bc3e257a1309c2f3a77f4dbb02611759b1924e9",
+    "frame_01888.png": "06e77217b8eda840f9c85b92e99bbb2490ff7d09661bdf321007e9916d876511"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

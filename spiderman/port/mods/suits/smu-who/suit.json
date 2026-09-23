@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-who",
+  "name": "SMU WHO",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "CEDCAF4B": "textures/diffuse.png"
+  }
+}

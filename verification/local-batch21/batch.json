@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "batch": "batch-21",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "who",
+    "womannew",
+    "wraith"
+  ],
+  "results": [
+    {
+      "key": "who",
+      "id": "smu-who",
+      "fbx": "costumes/who/who.fbx",
+      "fbxSha256": "b024e0149047d28e5d278b920e9becba35856f11f3d0412eb5397b717ce1170b",
+      "textureFiles": [
+        "textures-png\\Who_D.png"
+      ],
+      "textureSha256": [
+        "f077d10b44dcee2c07a943c078f6901443cc09003dea272592eaa9536a15544c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1764,
+      "sourceTriangles": 2722,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Who_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Who",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Who_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 756688,
+      "outputs": {
+        "actor.psx": "7ce8e4a771a79e065a5f4de18fa71d4faf5f827512dfabf335ddbaed906ca43e",
+        "conversion-report.json": "3a93b641af7106cc1dca30745faf6ea249acabf7addabb22fa12c435004ddfb2",
+        "suit.json": "f916d5ed9d769625efe811e421722dd1e041c33c924621f3f60c62db5e0c2ee7",
+        "textures\\diffuse.png": "2806095c95000ddb8ad80181fda6f846bb0d337797434638ae019749b4098aec"
+      }
+    },
+    {
+      "key": "womannew",
+      "id": "smu-womannew",
+      "fbx": "costumes/womannew/womannew.fbx",
+      "fbxSha256": "bca7cae219bb405272af2ba23ac4b76e96e99b7d669f3b9eea10e4d0d2ae583d",
+      "textureFiles": [
+        "textures-png\\SpiderWomanNew_D.png"
+      ],
+      "textureSha256": [
+        "c206d094046fcc9a554051c0e26dc315d8dac9e10e64dec64a6d35d72f54ea75"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1717,
+      "sourceTriangles": 2873,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpiderWomanNew_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "WomanNew",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderWomanNew_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 773084,
+      "outputs": {
+        "actor.psx": "bb79e2711240fcd1d57efdce0a6c6f8f1ce735ca2af5b04ae94e0d9794189975",
+        "conversion-report.json": "e47e7c4c31d04271aabf6bbac86e9073772c53138a2000f6a4a194c7b2ed7f0b",
+        "suit.json": "f252a932d4fafa994fbc1b5b590beb7666b4fe42ccd204337c43046e1720b926",
+        "textures\\diffuse.png": "320695cb072f268ee4433b9157ee22768830e3e2d20d3d66047debb667446a0f"
+      }
+    },
+    {
+      "key": "wraith",
+      "id": "smu-wraith",
+      "fbx": "costumes/wraith/wraith.fbx",
+      "fbxSha256": "2d7458592cb33d299d818da3accc7a724e565ed8a1b75b8f9ca875efe15d08a7",
+      "textureFiles": [
+        "textures-png\\Wraith_D.png"
+      ],
+      "textureSha256": [
+        "0601187adf05d7ecf7cff9cf826413dce590ad8227a6586bcd1dd7e29d4fcc56"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2156,
+      "sourceTriangles": 3620,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Wraith_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Wraith",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Wraith_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 883552,
+      "outputs": {
+        "actor.psx": "ef6c88f8cd76e830c85d3b02ee886f523906c3fe1470b2c4b7fa60c8d2d0b27d",
+        "conversion-report.json": "67a5f4c5735e2a22482159c8c8029dcf2e59f270a265ec5d8fa140b602b2b7db",
+        "suit.json": "068778cf184c7a038c2699ab8d094cedd15392c03ca15e0449bd270b71add344",
+        "textures\\diffuse.png": "35527aad3753e59f0cc02bb572cf4832b7519c6427a608b00db89ba3910edf5a"
+      }
+    }
+  ]
+}
