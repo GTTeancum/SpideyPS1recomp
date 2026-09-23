@@ -1,0 +1,512 @@
+PASS: source/guest size bound 4194305
+PASS: source/guest size bound 1048577
+PASS: wrong container version
+PASS: metadata pointer overflow
+PASS: incompatible hierarchy size
+PASS: mesh points into header
+PASS: native vertex limit
+PASS: unresolved stitch
+PASS: triangle index out of range
+PASS: normal index out of range
+PASS: unsupported face record
+PASS: native quads and extended triangles
+PASS: quad fourth index out of range
+PASS: extended triangle with short record
+PASS: unsupported transparent face
+PASS: extended triangle crosses mesh boundary
+PASS: converted actor 460044 bytes, 1 material IDs
+PASS: converted actor 442036 bytes, 1 material IDs
+PASS: converted actor 441668 bytes, 1 material IDs
+PASS: converted actor 496036 bytes, 1 material IDs
+PASS: converted actor 517468 bytes, 2 material IDs
+PASS: converted actor 480444 bytes, 1 material IDs
+PASS: converted actor 504972 bytes, 1 material IDs
+PASS: converted actor 573888 bytes, 1 material IDs
+PASS: converted actor 526236 bytes, 1 material IDs
+PASS: converted actor 465188 bytes, 1 material IDs
+PASS: converted actor 492756 bytes, 1 material IDs
+PASS: converted actor 516484 bytes, 1 material IDs
+PASS: converted actor 567260 bytes, 1 material IDs
+PASS: converted actor 441844 bytes, 1 material IDs
+PASS: converted actor 556940 bytes, 1 material IDs
+PASS: converted actor 443204 bytes, 1 material IDs
+PASS: converted actor 542388 bytes, 1 material IDs
+PASS: converted actor 500232 bytes, 1 material IDs
+PASS: converted actor 523072 bytes, 1 material IDs
+PASS: converted actor 533336 bytes, 1 material IDs
+PASS: converted actor 497052 bytes, 2 material IDs
+PASS: converted actor 508532 bytes, 1 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 457108 bytes, 1 material IDs
+PASS: converted actor 605544 bytes, 1 material IDs
+PASS: converted actor 501236 bytes, 1 material IDs
+PASS: converted actor 467900 bytes, 1 material IDs
+PASS: converted actor 412620 bytes, 1 material IDs
+PASS: converted actor 443572 bytes, 1 material IDs
+PASS: converted actor 509956 bytes, 2 material IDs
+PASS: converted actor 478780 bytes, 1 material IDs
+PASS: converted actor 443364 bytes, 1 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 442180 bytes, 1 material IDs
+PASS: converted actor 554240 bytes, 1 material IDs
+PASS: converted actor 486296 bytes, 1 material IDs
+PASS: converted actor 529412 bytes, 1 material IDs
+PASS: converted actor 489876 bytes, 1 material IDs
+PASS: converted actor 488156 bytes, 1 material IDs
+PASS: converted actor 484892 bytes, 1 material IDs
+PASS: converted actor 442724 bytes, 1 material IDs
+PASS: converted actor 469428 bytes, 1 material IDs
+PASS: converted actor 471244 bytes, 2 material IDs
+PASS: converted actor 483560 bytes, 1 material IDs
+PASS: converted actor 477976 bytes, 1 material IDs
+PASS: converted actor 518116 bytes, 1 material IDs
+PASS: converted actor 531376 bytes, 1 material IDs
+PASS: converted actor 539324 bytes, 1 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 496708 bytes, 1 material IDs
+PASS: converted actor 573540 bytes, 1 material IDs
+PASS: converted actor 272300 bytes, 1 material IDs
+PASS: converted actor 521796 bytes, 1 material IDs
+PASS: converted actor 592796 bytes, 1 material IDs
+PASS: converted actor 462756 bytes, 2 material IDs
+PASS: converted actor 463164 bytes, 1 material IDs
+PASS: converted actor 443308 bytes, 1 material IDs
+PASS: converted actor 486056 bytes, 2 material IDs
+PASS: converted actor 518156 bytes, 1 material IDs
+PASS: converted actor 437652 bytes, 1 material IDs
+PASS: converted actor 471676 bytes, 1 material IDs
+PASS: converted actor 487108 bytes, 1 material IDs
+PASS: converted actor 504708 bytes, 1 material IDs
+PASS: converted actor 486748 bytes, 1 material IDs
+PASS: converted actor 492796 bytes, 1 material IDs
+PASS: converted actor 495988 bytes, 1 material IDs
+PASS: converted actor 520716 bytes, 1 material IDs
+PASS: converted actor 437172 bytes, 1 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 589496 bytes, 2 material IDs
+PASS: converted actor 456500 bytes, 1 material IDs
+PASS: converted actor 489876 bytes, 1 material IDs
+PASS: converted actor 450764 bytes, 1 material IDs
+PASS: converted actor 495412 bytes, 1 material IDs
+PASS: converted actor 515784 bytes, 1 material IDs
+PASS: converted actor 506832 bytes, 1 material IDs
+PASS: converted actor 523780 bytes, 1 material IDs
+PASS: converted actor 528420 bytes, 1 material IDs
+PASS: converted actor 445068 bytes, 1 material IDs
+PASS: converted actor 462188 bytes, 1 material IDs
+PASS: converted actor 522228 bytes, 1 material IDs
+PASS: converted actor 489868 bytes, 2 material IDs
+PASS: converted actor 483300 bytes, 1 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 488436 bytes, 1 material IDs
+PASS: converted actor 534412 bytes, 1 material IDs
+PASS: converted actor 495228 bytes, 1 material IDs
+PASS: converted actor 493628 bytes, 1 material IDs
+PASS: converted actor 493612 bytes, 1 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 498860 bytes, 2 material IDs
+PASS: converted actor 590352 bytes, 2 material IDs
+PASS: converted actor 595388 bytes, 1 material IDs
+PASS: converted actor 514932 bytes, 2 material IDs
+PASS: converted actor 505180 bytes, 1 material IDs
+PASS: converted actor 552236 bytes, 2 material IDs
+PASS: converted actor 512068 bytes, 1 material IDs
+PASS: converted actor 484860 bytes, 1 material IDs
+PASS: converted actor 482668 bytes, 1 material IDs
+PASS: converted actor 492420 bytes, 1 material IDs
+PASS: converted actor 521716 bytes, 1 material IDs
+PASS: converted actor 480796 bytes, 1 material IDs
+PASS: converted actor 508948 bytes, 1 material IDs
+PASS: converted actor 473220 bytes, 1 material IDs
+PASS: converted actor 463496 bytes, 1 material IDs
+PASS: converted actor 568848 bytes, 2 material IDs
+PASS: converted actor 444820 bytes, 1 material IDs
+PASS: converted actor 632076 bytes, 2 material IDs
+PASS: converted actor 514172 bytes, 1 material IDs
+PASS: converted actor 522344 bytes, 1 material IDs
+PASS: converted actor 494220 bytes, 1 material IDs
+PASS: converted actor 428828 bytes, 1 material IDs
+PASS: converted actor 556956 bytes, 1 material IDs
+PASS: converted actor 519044 bytes, 1 material IDs
+PASS: converted actor 544508 bytes, 2 material IDs
+PASS: converted actor 494276 bytes, 1 material IDs
+PASS: converted actor 489876 bytes, 1 material IDs
+PASS: converted actor 522240 bytes, 1 material IDs
+PASS: converted actor 488164 bytes, 1 material IDs
+PASS: converted actor 440996 bytes, 1 material IDs
+PASS: converted actor 539700 bytes, 1 material IDs
+PASS: converted actor 514788 bytes, 2 material IDs
+PASS: converted actor 444828 bytes, 1 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 460924 bytes, 1 material IDs
+PASS: converted actor 553420 bytes, 1 material IDs
+PASS: converted actor 491388 bytes, 1 material IDs
+PASS: converted actor 513756 bytes, 1 material IDs
+PASS: converted actor 508280 bytes, 2 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 511084 bytes, 1 material IDs
+PASS: converted actor 474340 bytes, 1 material IDs
+PASS: converted actor 547996 bytes, 1 material IDs
+PASS: converted actor 500468 bytes, 1 material IDs
+PASS: converted actor 489164 bytes, 1 material IDs
+PASS: converted actor 492212 bytes, 1 material IDs
+PASS: converted actor 493568 bytes, 1 material IDs
+PASS: converted actor 476868 bytes, 1 material IDs
+PASS: converted actor 503020 bytes, 1 material IDs
+PASS: converted actor 604328 bytes, 1 material IDs
+PASS: converted actor 539764 bytes, 1 material IDs
+PASS: converted actor 417276 bytes, 1 material IDs
+PASS: converted actor 502620 bytes, 1 material IDs
+PASS: converted actor 424372 bytes, 1 material IDs
+PASS: converted actor 481620 bytes, 1 material IDs
+PASS: converted actor 516284 bytes, 1 material IDs
+PASS: converted actor 555916 bytes, 1 material IDs
+PASS: converted actor 640052 bytes, 2 material IDs
+PASS: converted actor 544364 bytes, 1 material IDs
+PASS: converted actor 499660 bytes, 1 material IDs
+PASS: converted actor 495252 bytes, 1 material IDs
+PASS: converted actor 478372 bytes, 1 material IDs
+PASS: converted actor 474140 bytes, 1 material IDs
+PASS: converted actor 472484 bytes, 1 material IDs
+PASS: converted actor 448716 bytes, 1 material IDs
+PASS: converted actor 421668 bytes, 1 material IDs
+PASS: converted actor 506612 bytes, 1 material IDs
+PASS: converted actor 514400 bytes, 1 material IDs
+PASS: converted actor 525452 bytes, 1 material IDs
+PASS: converted actor 478168 bytes, 2 material IDs
+PASS: converted actor 496036 bytes, 1 material IDs
+PASS: converted actor 446068 bytes, 1 material IDs
+PASS: converted actor 397292 bytes, 1 material IDs
+PASS: converted actor 461108 bytes, 1 material IDs
+PASS: converted actor 494604 bytes, 1 material IDs
+PASS: converted actor 436292 bytes, 1 material IDs
+PASS: converted actor 493884 bytes, 1 material IDs
+PASS: converted actor 507204 bytes, 1 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 546052 bytes, 2 material IDs
+PASS: converted actor 511304 bytes, 1 material IDs
+PASS: converted actor 511304 bytes, 1 material IDs
+PASS: converted actor 483496 bytes, 1 material IDs
+PASS: converted actor 567260 bytes, 1 material IDs
+PASS: converted actor 475072 bytes, 1 material IDs
+PASS: converted actor 484340 bytes, 2 material IDs
+PASS: converted actor 593180 bytes, 1 material IDs
+PASS: converted actor 482440 bytes, 2 material IDs
+PASS: converted actor 485756 bytes, 1 material IDs
+PASS: converted actor 482636 bytes, 1 material IDs
+PASS: converted actor 491388 bytes, 1 material IDs
+PASS: converted actor 460220 bytes, 1 material IDs
+PASS: converted actor 450684 bytes, 1 material IDs
+PASS: converted actor 454764 bytes, 1 material IDs
+PASS: converted actor 537348 bytes, 1 material IDs
+PASS: converted actor 422972 bytes, 1 material IDs
+PASS: converted actor 398284 bytes, 1 material IDs
+PASS: converted actor 449140 bytes, 1 material IDs
+PASS: converted actor 449804 bytes, 1 material IDs
+PASS: converted actor 496456 bytes, 1 material IDs
+PASS: converted actor 436804 bytes, 1 material IDs
+PASS: converted actor 457572 bytes, 2 material IDs
+PASS: converted actor 593092 bytes, 2 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 443284 bytes, 1 material IDs
+PASS: converted actor 523880 bytes, 1 material IDs
+PASS: converted actor 442396 bytes, 1 material IDs
+PASS: converted actor 451128 bytes, 1 material IDs
+PASS: converted actor 480844 bytes, 1 material IDs
+PASS: converted actor 522028 bytes, 1 material IDs
+PASS: converted actor 495588 bytes, 2 material IDs
+PASS: converted actor 518476 bytes, 1 material IDs
+PASS: converted actor 453380 bytes, 1 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 471204 bytes, 1 material IDs
+PASS: converted actor 509084 bytes, 1 material IDs
+PASS: converted actor 463044 bytes, 2 material IDs
+PASS: converted actor 479012 bytes, 1 material IDs
+PASS: converted actor 437988 bytes, 1 material IDs
+PASS: converted actor 493808 bytes, 1 material IDs
+PASS: converted actor 510276 bytes, 1 material IDs
+PASS: converted actor 523828 bytes, 1 material IDs
+PASS: converted actor 487628 bytes, 1 material IDs
+PASS: converted actor 499936 bytes, 1 material IDs
+PASS: converted actor 444828 bytes, 1 material IDs
+PASS: converted actor 444468 bytes, 1 material IDs
+PASS: converted actor 502272 bytes, 1 material IDs
+PASS: converted actor 430836 bytes, 1 material IDs
+PASS: converted actor 552708 bytes, 1 material IDs
+PASS: converted actor 560740 bytes, 1 material IDs
+PASS: converted actor 485516 bytes, 1 material IDs
+PASS: converted actor 492884 bytes, 1 material IDs
+PASS: converted actor 458780 bytes, 1 material IDs
+PASS: converted actor 500320 bytes, 1 material IDs
+PASS: converted actor 506428 bytes, 1 material IDs
+PASS: converted actor 592252 bytes, 2 material IDs
+PASS: converted actor 438108 bytes, 1 material IDs
+PASS: converted actor 461944 bytes, 1 material IDs
+PASS: converted actor 502548 bytes, 1 material IDs
+Custom actor validation passed.
+PASS: real custom manifest and actor material mapping: smu-1602
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-1602\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-2099-new
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-2099-new\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-2099
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-2099\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-2211
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-2211\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-aaron-davis
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-aaron-davis\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-aaronnicholson
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-aaronnicholson\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-abarton
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-abarton\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-adriana-soria
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-adriana-soria\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-agent-anti-venom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-agent-anti-venom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-agent-nine
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-agent-nine\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-agentv
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-agentv\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-agony
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-agony\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-aiapaec
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-aiapaec\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-aikman
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-aikman\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-alistaire-smythe
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-alistaire-smythe\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-all-new-agent-venom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-all-new-agent-venom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-amazing-spider
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-amazing-spider\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ancientvenom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ancientvenom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-angelo-fortunato
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-angelo-fortunato\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-annie-parker
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-annie-parker\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-anti-venom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-anti-venom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-anya
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-anya\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-arachnido
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-arachnido\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-arachnoman
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-arachnoman\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-arana-gymnast
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-arana-gymnast\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-arana
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-arana\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-baal
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-baal\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-baghead
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-baghead\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-battledamaged
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-battledamaged\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-batty-brant
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-batty-brant\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-ben-reilly-unmasked
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-ben-reilly-unmasked\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-benreilly
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-benreilly\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-bigtime-red
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-bigtime-red\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-bigtime
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-bigtime\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-black-suit-swiney-girl
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-black-suit-swiney-girl\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-black-tarantula
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-black-tarantula\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-blackcat
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-blackcat\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-blackcatvenom
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-blackcatvenom\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-blacksuit-spidergirl
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-blacksuit-spidergirl\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-blackwidow
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-blackwidow\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-blood
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-blood\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-bulletpoints
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-bulletpoints\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-buzz
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-buzz\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-captain
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-captain\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-carliespiderisland
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-carliespiderisland\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-carnage
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-carnage\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-carnageultimate
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-carnageultimate\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-charlottewitter
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-charlottewitter\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-civilwarpeterparker
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-civilwarpeterparker\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-cosmic
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-cosmic\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-cyborg
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-cyborg\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+PASS: real custom manifest and actor material mapping: smu-deadaim
+PASS: rejected modelFile ../actor.psx
+PASS: rejected modelFile C:\Programming\GitHub\OpenSpideyPS1\spiderman\port\mods\suits\smu-deadaim\actor.psx
+PASS: rejected modelFile actor.fbx
+PASS: rejected modelFile missing.psx
+Unhandled exception. System.IO.InvalidDataException: PNG dimensions must be 1..4096 (HD is host-side)
+   at RecompOne.Runtime.Assets.Suits.SuitManifest.PngSize(ReadOnlySpan`1 data) in C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\Assets\Suits\SuitManifest.cs:line 113
+   at RecompOne.Runtime.Assets.Suits.SuitManifest.Read(String path, String[] profiles, String[][] powerText, IReadOnlyDictionary`2 playerModels, String defaultModel) in C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\Assets\Suits\SuitManifest.cs:line 177
+   at RecompOne.Runtime.Assets.Suits.SuitManifest.Read(String path) in C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\RecompOne.Runtime\Assets\Suits\SuitManifest.cs:line 117
+   at Program.<Main>$(String[] args) in C:\Programming\GitHub\OpenSpideyPS1\tools\RecompOne\tests\CustomSuitModelRegression\Program.cs:line 73

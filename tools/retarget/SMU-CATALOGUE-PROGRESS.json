@@ -1,12 +1,12 @@
 {
   "catalogueCount": 233,
-  "convertedInstalled": 210,
-  "batchVerified": 210,
-  "remainingUnconverted": 23,
+  "convertedInstalled": 231,
+  "batchVerified": 231,
+  "remainingUnconverted": 2,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 5382,
-  "animationFrames": 881160,
-  "offlineSwingFrames": 24150,
+  "offlineChecks": 5928,
+  "animationFrames": 969276,
+  "offlineSwingFrames": 26565,
   "structuralBlockers": [
     {
       "key": "damon_ryder",
@@ -235,6 +235,36 @@
       "slowRunWarnings": 0
     },
     {
+      "batch": 23,
+      "representative": "smu-mangaversegirl",
+      "images": {
+        "frame_01557.png": "6282681d53de81d1c4d5ac3f1f1b768707e41e511c0511d261a19aa61a19f37b",
+        "frame_01862.png": "db516c2bac0cd3f85951415a23c524c071f417914e75d753175a66ae4830e3c6"
+      },
+      "notes": "Individually reviewed both native framebuffer images. Mangaverse Girl is present in a swing and grounded stance, with long red hair, flared leg silhouette, wrist wraps and shoes visible. The swing line reaches the raised hand. Free fingers remain visibly curled but open, so fist closure is not accepted. Hair secondary motion and front facial detail are not established by these rear views.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 24,
+      "representative": "smu-octavius",
+      "images": {
+        "frame_01581.png": "f7de784784a2a87f14c0185ef1851c4fedca74857f0c11d1688e100f6d2061fb",
+        "frame_01886.png": "e97608d7f4cff66c93ed1b88a94ade55d0acca1aaae9cf678abee9ac005e5616"
+      },
+      "notes": "Individually reviewed both native framebuffer images. Octavius appears in a swing and deep crouch with black/yellow body, full limbs, back unit and four mechanical appendages visible in the swing silhouette. Web meets the raised hand. No independent mechanical appendage animation or closed-fist acceptance from these frames. Werewolf two-mesh geometry is covered offline but still needs its own targeted native capture.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 25,
+      "representative": "smu-woman",
+      "images": {
+        "frame_01559.png": "774ff3d28ecc67dd2ebaa198590705335ec3f3780d6f71b10306bbbe9d858208",
+        "frame_01864.png": "fa9a4e0077b46ea59d39cbe263259c36f594082d0cd199a56696d35a7eff7ea4"
+      },
+      "notes": "Individually reviewed both native framebuffer images. The woman catalogue suit appears in a swing and grounded stance with red/orange body, yellow gloves/boots, gray hair and bilateral underarm web panels visible. Web line reaches the raised hand. The free hand looks open and is not accepted as a closed fist. Two frames do not establish secondary hair/web-panel motion or front facial detail.",
+      "slowRunWarnings": 0
+    },
+    {
       "batch": 26,
       "representative": "smu-poison-hunter",
       "images": {
@@ -254,6 +284,15 @@
   ],
   "finalAcceptance": false,
   "openIssues": [
+    {
+      "id": "repeated-texture-loader-dimensions",
+      "status": "open",
+      "suits": [
+        "smu-devilspider"
+      ],
+      "finding": "The full installed-catalogue managed loader rejects Devil Spider's preserved repeat atlas, 1024 by 6144 pixels, because SuitManifest limits each PNG dimension to 4096. This suit passes offline conversion checks but is not yet loadable through its manifest. Batch representative gameplay does not cover this failure.",
+      "next": "Support the authored repeat texture through the actual host texture path with bounded memory and GPU-size validation, preserve source RGB/alpha, and prove this suit loads and renders in game."
+    },
     {
       "id": "initial-material-slot-fidelity",
       "status": "open",
@@ -279,7 +318,8 @@
     {
       "id": "visual-fist-closure",
       "status": "open",
-      "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist.",
+      "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. The installed-231 audit passes 229 suits; Black Suit Swiney Girl and Devil Spider have no vertices predominantly weighted to the selected distal joints, so this metric cannot establish their closure. Those are coverage gaps, not proof that their preserved weights are damaged.",
+      "evidence": "verification/finger-policy/installed-231.json",
       "next": "Inspect and correct finger curl/orientation using representative hand geometry and native close views."
     },
     {

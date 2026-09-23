@@ -1,0 +1,48 @@
+{
+  "scope": "Exact source-derived RGB5/STP/alpha and row-order check for every native fallback material. Not gameplay or original shader equivalence.",
+  "status": "PASS",
+  "suits": 2,
+  "materials": 4,
+  "results": [
+    {
+      "suit": "smu-gwenom",
+      "actorSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
+      "sourceSha256": "2490068258b663dd4a75d4eed77fa65769ff89fc810808fbbacedc7db1893b78",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    },
+    {
+      "suit": "smu-venom",
+      "actorSha256": "e519899ce1a15c0a104b33797ccd8ef2b81ef80bd968be4c296de6bf86155342",
+      "sourceSha256": "0dab98f6e05d0c00965437b91d1f345e43df22349def22d6c8ff3319093d860e",
+      "materials": [
+        {
+          "slot": 0,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        },
+        {
+          "slot": 1,
+          "alphaBound": false,
+          "mismatchedPixels": 0
+        }
+      ],
+      "expectedMaterialCount": 2,
+      "actualMaterialCount": 2,
+      "status": "PASS"
+    }
+  ]
+}

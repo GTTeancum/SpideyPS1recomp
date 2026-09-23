@@ -1,0 +1,4850 @@
+{
+  "scope": "Offline compiled-core geometry check of fist-policy curl; not visual hand closure or contact validation.",
+  "status": "FAIL",
+  "count": 231,
+  "results": [
+    {
+      "suit": "smu-1602",
+      "assetSha256": "1db0f095785b2c2643dfa0b902aa3b864c07c8eabbb5c458e7180f198fb0219d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.406494140625,
+          "meanForwardClosed": 180.7313690185547,
+          "distalVertices": 71
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.69281005859375,
+          "meanForwardClosed": 181.38848876953125,
+          "distalVertices": 72
+        }
+      ]
+    },
+    {
+      "suit": "smu-2099",
+      "assetSha256": "2e11614841917401ab1aafb64d1704d1ee8e81c54236b8a3adb1304446914e68",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 349.03369140625,
+          "meanForwardClosed": 178.0955352783203,
+          "distalVertices": 39
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.8854064941406,
+          "meanForwardClosed": 175.69064331054688,
+          "distalVertices": 40
+        }
+      ]
+    },
+    {
+      "suit": "smu-2099-new",
+      "assetSha256": "15d7cc63649ea7a19207dc251368105988ef3631de33ed95bf51177efb246b4a",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 350.4123840332031,
+          "meanForwardClosed": 175.6048126220703,
+          "distalVertices": 39
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 346.8074951171875,
+          "meanForwardClosed": 171.0878448486328,
+          "distalVertices": 40
+        }
+      ]
+    },
+    {
+      "suit": "smu-2211",
+      "assetSha256": "5738017a475e2fac87348ea1fec1bd74a355476d7b1f81ba0da5e30cecabb6a1",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74481201171875,
+          "meanForwardClosed": 183.29307556152344,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 342.0482177734375,
+          "meanForwardClosed": 181.0492401123047,
+          "distalVertices": 44
+        }
+      ]
+    },
+    {
+      "suit": "smu-aaron-davis",
+      "assetSha256": "d2ab6c4d3a1d6bdd2dc6f055a608f10d39f4bf0c8dcd655be802b4b6585b2ad1",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 344.88287353515625,
+          "meanForwardClosed": 187.5762481689453,
+          "distalVertices": 42
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 343.73919677734375,
+          "meanForwardClosed": 188.13455200195312,
+          "distalVertices": 43
+        }
+      ]
+    },
+    {
+      "suit": "smu-aaronnicholson",
+      "assetSha256": "b42c45b0bb7cf4baaac651d03b5932c0ff35a4a6f1cc7f70c774a74f22c053c3",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 369.7430419921875,
+          "meanForwardClosed": 164.08642578125,
+          "distalVertices": 32
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 362.6177978515625,
+          "meanForwardClosed": 164.518798828125,
+          "distalVertices": 36
+        }
+      ]
+    },
+    {
+      "suit": "smu-abarton",
+      "assetSha256": "deb79c3ca80f51f357c85cd924b1d00c3193069969a2e2390981f544973212a0",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.45184326171875,
+          "meanForwardClosed": 183.59315490722656,
+          "distalVertices": 82
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 338.915283203125,
+          "meanForwardClosed": 177.6101837158203,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-adriana-soria",
+      "assetSha256": "9912298adf5b3a09d98ef6d3943b3861c0f5d1364000de78600b12569567fc85",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 330.42822265625,
+          "meanForwardClosed": 203.22360229492188,
+          "distalVertices": 104
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 337.2456359863281,
+          "meanForwardClosed": 199.49203491210938,
+          "distalVertices": 92
+        }
+      ]
+    },
+    {
+      "suit": "smu-agent-anti-venom",
+      "assetSha256": "494d7e086546ff385517784c4bc6a26f94f025d013019f95ed7b6ba4dc4b360e",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 339.227294921875,
+          "meanForwardClosed": 169.3328857421875,
+          "distalVertices": 61
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.6328125,
+          "meanForwardClosed": 167.56314086914062,
+          "distalVertices": 61
+        }
+      ]
+    },
+    {
+      "suit": "smu-agent-nine",
+      "assetSha256": "c263ef04deacb1b9ff9a2c8e9971cc35a3012fa4b52f9aee73fd6021f633f327",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 357.4702453613281,
+          "meanForwardClosed": 171.8240203857422,
+          "distalVertices": 46
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 360.2618103027344,
+          "meanForwardClosed": 182.52618408203125,
+          "distalVertices": 47
+        }
+      ]
+    },
+    {
+      "suit": "smu-agentv",
+      "assetSha256": "0c6255018af6de567d6796802e25cb4766db49a011f72c4401f052892e565ce0",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 349.8983459472656,
+          "meanForwardClosed": 175.3875274658203,
+          "distalVertices": 91
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 343.8131103515625,
+          "meanForwardClosed": 171.81153869628906,
+          "distalVertices": 92
+        }
+      ]
+    },
+    {
+      "suit": "smu-agony",
+      "assetSha256": "6462041bd154130877e1bd17f9f2705dfe11ab812772c067d01f097fd5842a9b",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.9132080078125,
+          "meanForwardClosed": 183.9983367919922,
+          "distalVertices": 132
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 346.2872619628906,
+          "meanForwardClosed": 196.569091796875,
+          "distalVertices": 136
+        }
+      ]
+    },
+    {
+      "suit": "smu-aiapaec",
+      "assetSha256": "a265af282f49d6796921257b411bd9a201778687a480d675cbe86fa6030f9ba0",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 360.5115051269531,
+          "meanForwardClosed": 164.85659790039062,
+          "distalVertices": 61
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 374.48516845703125,
+          "meanForwardClosed": 171.209716796875,
+          "distalVertices": 61
+        }
+      ]
+    },
+    {
+      "suit": "smu-aikman",
+      "assetSha256": "c1439cdcff0cc30ac1ddda3b6f517fe89b52e08416c662620caefbdb11f3e951",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 351.8908996582031,
+          "meanForwardClosed": 172.32350158691406,
+          "distalVertices": 88
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 346.9934997558594,
+          "meanForwardClosed": 167.802001953125,
+          "distalVertices": 88
+        }
+      ]
+    },
+    {
+      "suit": "smu-alistaire-smythe",
+      "assetSha256": "9017bd1c96923393f55fa089972b68a5d2061c27a1c1f4b6d811f96c30ddd96b",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 358.26019287109375,
+          "meanForwardClosed": 158.88568115234375,
+          "distalVertices": 66
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 351.4638977050781,
+          "meanForwardClosed": 166.09336853027344,
+          "distalVertices": 58
+        }
+      ]
+    },
+    {
+      "suit": "smu-all-new-agent-venom",
+      "assetSha256": "609342620e95177d7dd19d2fe053453667cc470d092a948fcf08c01aa9b09171",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 407.24737548828125,
+          "meanForwardClosed": 185.68785095214844,
+          "distalVertices": 32
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 407.55224609375,
+          "meanForwardClosed": 185.66693115234375,
+          "distalVertices": 32
+        }
+      ]
+    },
+    {
+      "suit": "smu-amazing-spider",
+      "assetSha256": "245056c0b7f7163a8ef328bb7bf45b3eba3abf8aa4826c5326a69af223834c10",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 347.32501220703125,
+          "meanForwardClosed": 173.69679260253906,
+          "distalVertices": 68
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 357.19268798828125,
+          "meanForwardClosed": 181.2281494140625,
+          "distalVertices": 63
+        }
+      ]
+    },
+    {
+      "suit": "smu-ancientvenom",
+      "assetSha256": "2022d19b9e81f5550ddac21f7b9f4f3ade564d90b05d9fc854d468c7cc9cfb78",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 388.6651306152344,
+          "meanForwardClosed": 267.6390075683594,
+          "distalVertices": 48
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 347.5594177246094,
+          "meanForwardClosed": 235.12759399414062,
+          "distalVertices": 47
+        }
+      ]
+    },
+    {
+      "suit": "smu-angelo-fortunato",
+      "assetSha256": "3e631d1c8c95e36bf463e807bbccc8349b2609e2d413c109f927f157dc493243",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 347.1659240722656,
+          "meanForwardClosed": 166.47030639648438,
+          "distalVertices": 109
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 343.654296875,
+          "meanForwardClosed": 162.84521484375,
+          "distalVertices": 112
+        }
+      ]
+    },
+    {
+      "suit": "smu-annie-parker",
+      "assetSha256": "91d268392394cdea5d68c6727f90b6ebb2df5ce22bb9be6e6f360e63ec90ee2d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 227.74453735351562,
+          "meanForwardClosed": 112.40961456298828,
+          "distalVertices": 64
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 227.07589721679688,
+          "meanForwardClosed": 113.18673706054688,
+          "distalVertices": 64
+        }
+      ]
+    },
+    {
+      "suit": "smu-anti-venom",
+      "assetSha256": "049a602a30ce771dab34aa6d0cee6e6985c8fa6b578cce0b18c554118c5fc247",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 344.1141357421875,
+          "meanForwardClosed": 248.54891967773438,
+          "distalVertices": 60
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 335.5312805175781,
+          "meanForwardClosed": 266.5319519042969,
+          "distalVertices": 72
+        }
+      ]
+    },
+    {
+      "suit": "smu-anya",
+      "assetSha256": "17371e628fd4b1d9c99ee2745146b7bb518d057620c6256ed2569501a687a32c",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.4525146484375,
+          "meanForwardClosed": 183.593994140625,
+          "distalVertices": 82
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 341.796142578125,
+          "meanForwardClosed": 184.0349578857422,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-arachnido",
+      "assetSha256": "707f3f04ad91b1d79224db1e7586c5f56d6b6607ca9d74fcb17df48273986346",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-arachnoman",
+      "assetSha256": "f323dcaa9e729afc2bd3c789b929d944ad2d6092081d28f6d2630a79b6361f01",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 356.36676025390625,
+          "meanForwardClosed": 161.83425903320312,
+          "distalVertices": 89
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 352.9053955078125,
+          "meanForwardClosed": 164.97610473632812,
+          "distalVertices": 97
+        }
+      ]
+    },
+    {
+      "suit": "smu-arana",
+      "assetSha256": "38b45f82565895f62d69f093739a0c90474d0a8cb3fd3cc1ee67475c3aa80eef",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 342.98699951171875,
+          "meanForwardClosed": 181.97727966308594,
+          "distalVertices": 74
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 347.3256530761719,
+          "meanForwardClosed": 178.6858673095703,
+          "distalVertices": 70
+        }
+      ]
+    },
+    {
+      "suit": "smu-arana-gymnast",
+      "assetSha256": "a373efc19c48ca8af269c969c8dda8891b1c336ce394cc608be98810a8fd1bfa",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 343.4436950683594,
+          "meanForwardClosed": 178.30860900878906,
+          "distalVertices": 96
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 339.6283264160156,
+          "meanForwardClosed": 176.9436492919922,
+          "distalVertices": 96
+        }
+      ]
+    },
+    {
+      "suit": "smu-baal",
+      "assetSha256": "acc30d1a0d826a7357b4930f53cf2824564bf0a8fce54038b4dd12c70c55722d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 356.5219421386719,
+          "meanForwardClosed": 171.8948516845703,
+          "distalVertices": 40
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 343.8731384277344,
+          "meanForwardClosed": 180.39190673828125,
+          "distalVertices": 47
+        }
+      ]
+    },
+    {
+      "suit": "smu-baghead",
+      "assetSha256": "99396acbe52dee96526205557d033892fabc2a033cbf07a981940f1fdb0aa476",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 346.7563171386719,
+          "meanForwardClosed": 182.09922790527344,
+          "distalVertices": 42
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 342.0489501953125,
+          "meanForwardClosed": 179.93186950683594,
+          "distalVertices": 44
+        }
+      ]
+    },
+    {
+      "suit": "smu-battledamaged",
+      "assetSha256": "b8bfe7ef5ca5a0a59f5f955af3aae791982da1ea8f7fce366d3e0140d9327825",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.7437438964844,
+          "meanForwardClosed": 183.2682647705078,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.34686279296875,
+          "meanForwardClosed": 178.46188354492188,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-batty-brant",
+      "assetSha256": "8d0431e6f4575bc95160ca187decf3752e6f8239fe4a5596f802ae973ab581ea",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 342.3511962890625,
+          "meanForwardClosed": 185.4453887939453,
+          "distalVertices": 80
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 336.056396484375,
+          "meanForwardClosed": 181.1013946533203,
+          "distalVertices": 79
+        }
+      ]
+    },
+    {
+      "suit": "smu-ben-reilly-unmasked",
+      "assetSha256": "c4077ee8d8015c7af9044669e6b4c675c896cce457c899771af5220bb4764395",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 329.09625244140625,
+          "meanForwardClosed": 220.09014892578125,
+          "distalVertices": 47
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 319.76470947265625,
+          "meanForwardClosed": 226.433349609375,
+          "distalVertices": 52
+        }
+      ]
+    },
+    {
+      "suit": "smu-benreilly",
+      "assetSha256": "bb31ee59f3c1ad48e4c4bd1f1236da0ea395fddb033f5ff2b34e7dd1b3bf794e",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-bigtime",
+      "assetSha256": "58eea78f6dd4007cacdc79bc14b6a10f711da9c625316f40ff770841b5ebe00d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-bigtime-red",
+      "assetSha256": "00a6769824baf438edcc7a31983a3c38e1cacaa57a27db8fa5e7b1d4dbee3b3a",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-black-suit-swiney-girl",
+      "assetSha256": "82bc4e700af07578017acdb6ffb1f41996d9df1307c1e0f00a3759fc5832a023",
+      "passed": false,
+      "hands": [
+        {
+          "side": "L",
+          "passed": false,
+          "reason": "No predominantly distal-weighted vertices"
+        },
+        {
+          "side": "R",
+          "passed": false,
+          "reason": "No predominantly distal-weighted vertices"
+        }
+      ]
+    },
+    {
+      "suit": "smu-black-tarantula",
+      "assetSha256": "458344d3ead4ace3ccaf2409831fc49f4a0410b707df158cd610acb82f72ec23",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 348.3968505859375,
+          "meanForwardClosed": 177.50856018066406,
+          "distalVertices": 36
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 348.3991394042969,
+          "meanForwardClosed": 177.50733947753906,
+          "distalVertices": 36
+        }
+      ]
+    },
+    {
+      "suit": "smu-blackcat",
+      "assetSha256": "89914fcf0fa5adfc9ba507d3222d45ee66e0b6fc8282cf8372f85cd8eaeb9e03",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 336.6063537597656,
+          "meanForwardClosed": 189.28024291992188,
+          "distalVertices": 78
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 341.4322814941406,
+          "meanForwardClosed": 183.8488006591797,
+          "distalVertices": 72
+        }
+      ]
+    },
+    {
+      "suit": "smu-blackcatvenom",
+      "assetSha256": "0db440fff9eecf668854ea3222ad8332bb807e34afa6786cebe9d7069d328141",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 338.7724304199219,
+          "meanForwardClosed": 193.03164672851562,
+          "distalVertices": 52
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 330.925537109375,
+          "meanForwardClosed": 190.05030822753906,
+          "distalVertices": 54
+        }
+      ]
+    },
+    {
+      "suit": "smu-blacksuit-spidergirl",
+      "assetSha256": "967596961b83dff429e75621e78c109293e8da226886b44a67b77a28a47f9042",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 344.309814453125,
+          "meanForwardClosed": 181.71812438964844,
+          "distalVertices": 78
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.27923583984375,
+          "meanForwardClosed": 181.77215576171875,
+          "distalVertices": 78
+        }
+      ]
+    },
+    {
+      "suit": "smu-blackwidow",
+      "assetSha256": "77b7c5757aeb6592546247a1d913a372600bd02efbbad9bcc9b381024eccdd19",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.45263671875,
+          "meanForwardClosed": 183.5943145751953,
+          "distalVertices": 82
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 343.04156494140625,
+          "meanForwardClosed": 182.14483642578125,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-blood",
+      "assetSha256": "20e65b0836502f51f23c75825e9cd5926f2843a21b89a804b7012ef48597edf3",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.7481384277344,
+          "meanForwardClosed": 183.29515075683594,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3484802246094,
+          "meanForwardClosed": 178.46397399902344,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-bulletpoints",
+      "assetSha256": "360e8b92bf742d597b793808bc985fd8c8b007c891deb2e1e724616200b97925",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.7447204589844,
+          "meanForwardClosed": 183.26840209960938,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.34808349609375,
+          "meanForwardClosed": 178.46405029296875,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-buzz",
+      "assetSha256": "a8d5919828772bb464609e1c2ce701ef1aa3a569a5b06b814217a2aa2f3096da",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 343.3862609863281,
+          "meanForwardClosed": 183.3569793701172,
+          "distalVertices": 40
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 341.0393371582031,
+          "meanForwardClosed": 184.9713134765625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-captain",
+      "assetSha256": "a67ac10b520784365c5eb2e0e0a64c8c727f4b031864e3603eb856523a033494",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 346.6553955078125,
+          "meanForwardClosed": 183.0166473388672,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 341.39813232421875,
+          "meanForwardClosed": 175.3174285888672,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-carliespiderisland",
+      "assetSha256": "4d536356d5df404a7f0db04103fb47f52930376568bc785d736a197576aaaaf2",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 339.4502868652344,
+          "meanForwardClosed": 185.98248291015625,
+          "distalVertices": 86
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 352.2201843261719,
+          "meanForwardClosed": 189.62417602539062,
+          "distalVertices": 75
+        }
+      ]
+    },
+    {
+      "suit": "smu-carnage",
+      "assetSha256": "20cefd39803fa2d599efef6ea61235a946ce5a570e3ec8432000799faf499a90",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 415.7725524902344,
+          "meanForwardClosed": 128.85484313964844,
+          "distalVertices": 70
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 415.7715759277344,
+          "meanForwardClosed": 128.85597229003906,
+          "distalVertices": 70
+        }
+      ]
+    },
+    {
+      "suit": "smu-carnageultimate",
+      "assetSha256": "e8e0040ff8b64ddf445f8622a59dc523e2b6a16d9454321a50ec2e8c54aad67c",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 347.75360107421875,
+          "meanForwardClosed": 208.52423095703125,
+          "distalVertices": 60
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 362.6291809082031,
+          "meanForwardClosed": 190.29563903808594,
+          "distalVertices": 45
+        }
+      ]
+    },
+    {
+      "suit": "smu-charlottewitter",
+      "assetSha256": "874844311fe700ddc7456f30f8afa1b65032e047a30c2e0d3e344d57034e9935",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.3521423339844,
+          "meanForwardClosed": 174.96005249023438,
+          "distalVertices": 72
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 340.01739501953125,
+          "meanForwardClosed": 181.41726684570312,
+          "distalVertices": 82
+        }
+      ]
+    },
+    {
+      "suit": "smu-civilwarpeterparker",
+      "assetSha256": "1c9baa1adc9673429a30dd49cb813d23a694bc2f3cf98eb459ff9b6d0362552d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 349.02783203125,
+          "meanForwardClosed": 178.1681671142578,
+          "distalVertices": 102
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 349.0306091308594,
+          "meanForwardClosed": 178.16839599609375,
+          "distalVertices": 102
+        }
+      ]
+    },
+    {
+      "suit": "smu-cosmic",
+      "assetSha256": "61b5a411a467cb61b5b9fb1c0658d9fc2fd726206920c10c5b666e0ecd23bf14",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-cyborg",
+      "assetSha256": "971dabdb6483969d5bf417377ce3cb0c9c4e21cf3ca5237ba5d2c5fc44fde0d0",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 354.1515808105469,
+          "meanForwardClosed": 170.00885009765625,
+          "distalVertices": 86
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3476257324219,
+          "meanForwardClosed": 178.46339416503906,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-deadaim",
+      "assetSha256": "a6659248d40fb8eb7b5a08c84df11aa9e865a7b8ae792642d03dfc650a23e372",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 351.1165771484375,
+          "meanForwardClosed": 180.15757751464844,
+          "distalVertices": 88
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 347.71826171875,
+          "meanForwardClosed": 186.2252960205078,
+          "distalVertices": 99
+        }
+      ]
+    },
+    {
+      "suit": "smu-devilspider",
+      "assetSha256": "f81c535976e46cac5ebe693c00f89d469c89c70ce0cfd8dc03d119d7ce670f55",
+      "passed": false,
+      "hands": [
+        {
+          "side": "L",
+          "passed": false,
+          "reason": "No predominantly distal-weighted vertices"
+        },
+        {
+          "side": "R",
+          "passed": false,
+          "reason": "No predominantly distal-weighted vertices"
+        }
+      ]
+    },
+    {
+      "suit": "smu-doppleganger",
+      "assetSha256": "3352bdf4bf1e2fc86741f1132c8f1cf13b5d56ad9ad2425e3170eb52ec902fac",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 335.0256042480469,
+          "meanForwardClosed": 158.6413116455078,
+          "distalVertices": 23
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 342.9169006347656,
+          "meanForwardClosed": 118.86485290527344,
+          "distalVertices": 16
+        }
+      ]
+    },
+    {
+      "suit": "smu-dorma",
+      "assetSha256": "f14bf25ebcb468bbf184c08a786dd85f412445538ad9a09a751510b97d8af422",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 351.7886657714844,
+          "meanForwardClosed": 180.21180725097656,
+          "distalVertices": 85
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 372.0643310546875,
+          "meanForwardClosed": 175.81430053710938,
+          "distalVertices": 65
+        }
+      ]
+    },
+    {
+      "suit": "smu-dusk",
+      "assetSha256": "480c0f7f447c315bade3dd98b3a5d456583a32667237aeb5e33b1a21a7c65bc0",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 350.1850280761719,
+          "meanForwardClosed": 181.45008850097656,
+          "distalVertices": 53
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3477783203125,
+          "meanForwardClosed": 178.4635009765625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-earth62412",
+      "assetSha256": "b23515b5069361d0dfb783434777adba7971cae332aa73bfddf9790544d76ece",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 343.7428283691406,
+          "meanForwardClosed": 188.69418334960938,
+          "distalVertices": 56
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 355.39947509765625,
+          "meanForwardClosed": 186.09109497070312,
+          "distalVertices": 46
+        }
+      ]
+    },
+    {
+      "suit": "smu-earthx",
+      "assetSha256": "5328bceb3e914700046080cc8b4071bd9dda040bffe27fe08a807c5fa0d12878",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 351.3621520996094,
+          "meanForwardClosed": 176.09671020507812,
+          "distalVertices": 88
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 352.1909484863281,
+          "meanForwardClosed": 175.1288299560547,
+          "distalVertices": 87
+        }
+      ]
+    },
+    {
+      "suit": "smu-edward-brock",
+      "assetSha256": "e7cd2cd0be11cc30d2f968afdadfdf070d4a55105af331465b9b67635e1efe51",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 367.6430969238281,
+          "meanForwardClosed": 213.17794799804688,
+          "distalVertices": 85
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 364.8675231933594,
+          "meanForwardClosed": 213.7994842529297,
+          "distalVertices": 87
+        }
+      ]
+    },
+    {
+      "suit": "smu-edwardbrock-earth11080",
+      "assetSha256": "6f317925684e8740bbabb1dd6111107b829b17190d73026e7765ef9f034a3dff",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 351.1302795410156,
+          "meanForwardClosed": 241.3548583984375,
+          "distalVertices": 73
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 353.0135803222656,
+          "meanForwardClosed": 240.02175903320312,
+          "distalVertices": 71
+        }
+      ]
+    },
+    {
+      "suit": "smu-electroproof",
+      "assetSha256": "e3cde982573718baaab50ad3e756e70f084cb09f167bab51566749445ec874a7",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.7460632324219,
+          "meanForwardClosed": 183.29385375976562,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.4307556152344,
+          "meanForwardClosed": 178.84957885742188,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-endofearth",
+      "assetSha256": "1857e91da3e7c8a063f8cacf5fc7f90b9ce729579f329b68d431abfa0af70fc6",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 340.72265625,
+          "meanForwardClosed": 183.6833038330078,
+          "distalVertices": 46
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 342.04547119140625,
+          "meanForwardClosed": 180.94256591796875,
+          "distalVertices": 44
+        }
+      ]
+    },
+    {
+      "suit": "smu-enrage-toxin",
+      "assetSha256": "64e36887a0cfb3391457fbe162e745b191d8acfd941794bca7d560ce4dc0d3d0",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 375.8437194824219,
+          "meanForwardClosed": 151.62191772460938,
+          "distalVertices": 49
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 380.1926574707031,
+          "meanForwardClosed": 163.38624572753906,
+          "distalVertices": 50
+        }
+      ]
+    },
+    {
+      "suit": "smu-ezekiel",
+      "assetSha256": "2b0cd8257d70efda3dc41b22529c577aadfaaef4f60f636c9de10f58d04528d7",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 350.7940979003906,
+          "meanForwardClosed": 183.03672790527344,
+          "distalVertices": 56
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 343.78240966796875,
+          "meanForwardClosed": 186.03680419921875,
+          "distalVertices": 63
+        }
+      ]
+    },
+    {
+      "suit": "smu-fatherspider",
+      "assetSha256": "fd1251d0f4db50b17ab0429863e9703948c855d9c4796ab230d81958c36e8891",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 351.423583984375,
+          "meanForwardClosed": 170.90980529785156,
+          "distalVertices": 44
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 350.56317138671875,
+          "meanForwardClosed": 173.2203369140625,
+          "distalVertices": 46
+        }
+      ]
+    },
+    {
+      "suit": "smu-fearitself",
+      "assetSha256": "69466554d6be1822d791c00fdc0e8b8994155aba4670dbe14bd4b6a9ca24b394",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 348.375244140625,
+          "meanForwardClosed": 174.51747131347656,
+          "distalVertices": 49
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 352.61920166015625,
+          "meanForwardClosed": 186.73143005371094,
+          "distalVertices": 52
+        }
+      ]
+    },
+    {
+      "suit": "smu-felicityhardy",
+      "assetSha256": "f8b5b1ed9076a5d45984c3f212630eaf163408760e2a070e82a1e7fa072212bb",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.8343200683594,
+          "meanForwardClosed": 198.75840759277344,
+          "distalVertices": 69
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 349.1053771972656,
+          "meanForwardClosed": 184.36985778808594,
+          "distalVertices": 68
+        }
+      ]
+    },
+    {
+      "suit": "smu-flashthompson-unmasked",
+      "assetSha256": "6f2d6cfa7750eb3175b49ba0ade96a1853e737739544aba23472387704826765",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 350.3828125,
+          "meanForwardClosed": 176.416259765625,
+          "distalVertices": 88
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 350.38232421875,
+          "meanForwardClosed": 176.41322326660156,
+          "distalVertices": 88
+        }
+      ]
+    },
+    {
+      "suit": "smu-flipside",
+      "assetSha256": "d4f445241837efacaf083bc7cf58f07d4471f17ea81b703ae358235081e0a884",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 357.957275390625,
+          "meanForwardClosed": 159.55247497558594,
+          "distalVertices": 25
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 346.4580993652344,
+          "meanForwardClosed": 187.80506896972656,
+          "distalVertices": 43
+        }
+      ]
+    },
+    {
+      "suit": "smu-futurefoundation",
+      "assetSha256": "d10dfa7bffacf463d8305c165d54b91275acddb81f6e800293c117b69858454c",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-gabrielgant",
+      "assetSha256": "648c7098959c72dd7c2f1d7a7a74de44ea7e950953582f9ec9845be4ba5af518",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 347.65740966796875,
+          "meanForwardClosed": 180.86221313476562,
+          "distalVertices": 69
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 341.56658935546875,
+          "meanForwardClosed": 187.5259552001953,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-ghost",
+      "assetSha256": "a46761041b64bcf85ea5a58d1f49374f34f26e8e2fdc49c9be21eb857331689a",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.7445068359375,
+          "meanForwardClosed": 183.2946319580078,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.34796142578125,
+          "meanForwardClosed": 178.4635467529297,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-girl",
+      "assetSha256": "2a8984717137565d573cff70a7eb3b371d73f7e36ec1e6a59cff32ab0ea44dda",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 344.3105773925781,
+          "meanForwardClosed": 181.7186279296875,
+          "distalVertices": 78
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.27838134765625,
+          "meanForwardClosed": 181.7710723876953,
+          "distalVertices": 78
+        }
+      ]
+    },
+    {
+      "suit": "smu-goblinspider",
+      "assetSha256": "2459d8b6cda68265b279aa279766cb2d8985b0db35e7d91aa3fd70a2a0104b37",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 340.82196044921875,
+          "meanForwardClosed": 190.02980041503906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 336.6346740722656,
+          "meanForwardClosed": 186.3324737548828,
+          "distalVertices": 44
+        }
+      ]
+    },
+    {
+      "suit": "smu-god",
+      "assetSha256": "da7bc78ecda33cf0875bb547242ddf8b4e95dd0ec5c466c0ed2e98c0bd70590b",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.6920471191406,
+          "meanForwardClosed": 180.47752380371094,
+          "distalVertices": 76
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 342.5321960449219,
+          "meanForwardClosed": 173.92446899414062,
+          "distalVertices": 74
+        }
+      ]
+    },
+    {
+      "suit": "smu-guardian",
+      "assetSha256": "46daac2330c9de5f9efdd47eaca39d4ddbf23b2797355894882f95984eafae68",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 422.15704345703125,
+          "meanForwardClosed": 186.79737854003906,
+          "distalVertices": 69
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 357.6731872558594,
+          "meanForwardClosed": 147.76300048828125,
+          "distalVertices": 74
+        }
+      ]
+    },
+    {
+      "suit": "smu-gwen",
+      "assetSha256": "f990711ad5bc6916a9346ff8876bfa1e21886243fbd624174aa4d3dca6c086b6",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.4523010253906,
+          "meanForwardClosed": 183.5931854248047,
+          "distalVertices": 82
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 337.71160888671875,
+          "meanForwardClosed": 179.787353515625,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-gwenom",
+      "assetSha256": "6cce60683532b5e9c7ceaf44fa9f1862f2cf303635fafa2e4fbdb6a1082071f6",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 343.31817626953125,
+          "meanForwardClosed": 174.32131958007812,
+          "distalVertices": 77
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 343.8471984863281,
+          "meanForwardClosed": 173.38983154296875,
+          "distalVertices": 77
+        }
+      ]
+    },
+    {
+      "suit": "smu-gwenstacy-unmasked",
+      "assetSha256": "a5c5fe67705a023a55588de1b1b36f48721fb245aa06c9a16a8461a4351158dd",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 328.7889709472656,
+          "meanForwardClosed": 212.27870178222656,
+          "distalVertices": 75
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 329.79620361328125,
+          "meanForwardClosed": 218.10952758789062,
+          "distalVertices": 78
+        }
+      ]
+    },
+    {
+      "suit": "smu-hammerhead",
+      "assetSha256": "6cdd4b7afa57a4262e201e045b886f86af01048680afa42e21222e38856966e7",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 373.4975891113281,
+          "meanForwardClosed": 232.2911376953125,
+          "distalVertices": 83
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.4730529785156,
+          "meanForwardClosed": 186.00637817382812,
+          "distalVertices": 87
+        }
+      ]
+    },
+    {
+      "suit": "smu-hobartbrown",
+      "assetSha256": "bde2623a201248573ddd55648a81e89dd27c29e892fb517d0d4079d34f7e25f2",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 346.8070068359375,
+          "meanForwardClosed": 184.2694549560547,
+          "distalVertices": 41
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 347.7253723144531,
+          "meanForwardClosed": 184.090087890625,
+          "distalVertices": 41
+        }
+      ]
+    },
+    {
+      "suit": "smu-hobie",
+      "assetSha256": "a2239c6624b7cc9fe5b355d39507e49c1f1488e636b1ab15e90b546199373589",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 350.14984130859375,
+          "meanForwardClosed": 175.69757080078125,
+          "distalVertices": 85
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 348.02581787109375,
+          "meanForwardClosed": 179.0546112060547,
+          "distalVertices": 90
+        }
+      ]
+    },
+    {
+      "suit": "smu-homemade",
+      "assetSha256": "feba808d52c9b726d6628c72a4e06a49f89cf241058f6d5ed66386a0f4fc792e",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 328.4460144042969,
+          "meanForwardClosed": 180.55921936035156,
+          "distalVertices": 60
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 337.7118225097656,
+          "meanForwardClosed": 182.68666076660156,
+          "distalVertices": 57
+        }
+      ]
+    },
+    {
+      "suit": "smu-hornet",
+      "assetSha256": "825a5a9a202cb87e53e23130d0ab017e35788ea62522bb11c4f12d1ee261eafe",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 351.2117614746094,
+          "meanForwardClosed": 176.7890167236328,
+          "distalVertices": 61
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 348.6151123046875,
+          "meanForwardClosed": 178.93649291992188,
+          "distalVertices": 64
+        }
+      ]
+    },
+    {
+      "suit": "smu-houseofm",
+      "assetSha256": "2c33a04f3217734b2b1752317c37aeb1fb8e6f95b46ca959089ddbadb8aa5e35",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-hunter-arana",
+      "assetSha256": "4e03f2559e0f774da74430ec7a2c2b745623df7874648360fac7f653451a7b1e",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 343.0076599121094,
+          "meanForwardClosed": 190.4589385986328,
+          "distalVertices": 95
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 341.27093505859375,
+          "meanForwardClosed": 201.66075134277344,
+          "distalVertices": 102
+        }
+      ]
+    },
+    {
+      "suit": "smu-ichor",
+      "assetSha256": "c015c5b2b02cf3cdbd544c5d7c4d7cab00291e4f330886664327f289706f130b",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 353.8541564941406,
+          "meanForwardClosed": 170.37130737304688,
+          "distalVertices": 46
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 349.4425048828125,
+          "meanForwardClosed": 170.4470672607422,
+          "distalVertices": 46
+        }
+      ]
+    },
+    {
+      "suit": "smu-iguana",
+      "assetSha256": "35452c646e093cf6d93c49df7418aef4fa2274b06121f2e9e986525e94aae2ab",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 352.7656555175781,
+          "meanForwardClosed": 179.01275634765625,
+          "distalVertices": 53
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 346.4840087890625,
+          "meanForwardClosed": 189.7254180908203,
+          "distalVertices": 63
+        }
+      ]
+    },
+    {
+      "suit": "smu-india",
+      "assetSha256": "f70cb7b1e81a8a16f44cb5b3fa202ae2f44446901ed77fe6aab8997685295f83",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 342.5013122558594,
+          "meanForwardClosed": 183.6007080078125,
+          "distalVertices": 69
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 336.11712646484375,
+          "meanForwardClosed": 181.4019317626953,
+          "distalVertices": 72
+        }
+      ]
+    },
+    {
+      "suit": "smu-ironspider",
+      "assetSha256": "d819e9111c5d002552f8ce165ef6a280da78fbf9bdafe85d1746a811d6357dd6",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-ironspider-unmasked",
+      "assetSha256": "bb04bb74d99aa2e24c7ffbc5cec695bcc453636f42f827faab2395c9e9b35d07",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 380.4402770996094,
+          "meanForwardClosed": 219.32952880859375,
+          "distalVertices": 72
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 336.74169921875,
+          "meanForwardClosed": 178.62831115722656,
+          "distalVertices": 72
+        }
+      ]
+    },
+    {
+      "suit": "smu-ironspidernew",
+      "assetSha256": "9f6f7f120d255bb97100c92665a79d474b769b48ac6914c4069eadcc644189b0",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 355.64141845703125,
+          "meanForwardClosed": 170.9790802001953,
+          "distalVertices": 98
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 352.5030822753906,
+          "meanForwardClosed": 172.2041015625,
+          "distalVertices": 104
+        }
+      ]
+    },
+    {
+      "suit": "smu-ironspidernewwithtentackles",
+      "assetSha256": "c94dc3efb4884f26149cda3fce8844c07b11bf415d70f480322d7aaef51ed255",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 362.0093994140625,
+          "meanForwardClosed": 161.5519561767578,
+          "distalVertices": 69
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 359.36712646484375,
+          "meanForwardClosed": 162.1730499267578,
+          "distalVertices": 71
+        }
+      ]
+    },
+    {
+      "suit": "smu-izumi",
+      "assetSha256": "9fcd785fb95ec4c193dbe889c62c8c856127048b3e4ffcb30f43e0ee47306260",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 339.0057678222656,
+          "meanForwardClosed": 183.20095825195312,
+          "distalVertices": 76
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.93212890625,
+          "meanForwardClosed": 171.7960968017578,
+          "distalVertices": 79
+        }
+      ]
+    },
+    {
+      "suit": "smu-jessica-drew",
+      "assetSha256": "75bd02ccc1fe5ad5f40a217817aee477dc73a0b993f2aaec8a58fa56dbeea044",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.6021728515625,
+          "meanForwardClosed": 182.48434448242188,
+          "distalVertices": 64
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 338.87567138671875,
+          "meanForwardClosed": 182.52960205078125,
+          "distalVertices": 72
+        }
+      ]
+    },
+    {
+      "suit": "smu-julia-carpenter",
+      "assetSha256": "fb8884482879fdf3418e156758e764586c2fa879b7979c4cad4c0cba372e0d82",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 343.6669921875,
+          "meanForwardClosed": 184.23057556152344,
+          "distalVertices": 78
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 349.9045104980469,
+          "meanForwardClosed": 193.28573608398438,
+          "distalVertices": 77
+        }
+      ]
+    },
+    {
+      "suit": "smu-knull",
+      "assetSha256": "eeefdb96ac77475150e7e36b9ba173713970f875354fbf1159601459244aaf74",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 326.60150146484375,
+          "meanForwardClosed": 199.44390869140625,
+          "distalVertices": 72
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 340.2990417480469,
+          "meanForwardClosed": 178.37890625,
+          "distalVertices": 72
+        }
+      ]
+    },
+    {
+      "suit": "smu-kung-fu",
+      "assetSha256": "7dc0254b53849d23cf5fd1f4103939e628cb823ba2b1aa2a6ac3ce65fde91dc0",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 354.8569641113281,
+          "meanForwardClosed": 176.30760192871094,
+          "distalVertices": 88
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 355.3949279785156,
+          "meanForwardClosed": 175.60081481933594,
+          "distalVertices": 88
+        }
+      ]
+    },
+    {
+      "suit": "smu-lana-baumgartner",
+      "assetSha256": "c93903a1df4b92bb9511804e051a8a431d3a253e41b95166eb78811a2bc8504a",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 357.43157958984375,
+          "meanForwardClosed": 166.04710388183594,
+          "distalVertices": 62
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 365.4754943847656,
+          "meanForwardClosed": 174.36097717285156,
+          "distalVertices": 61
+        }
+      ]
+    },
+    {
+      "suit": "smu-lasher",
+      "assetSha256": "92a9d31bdc383f6552ac9b24c4735aacf570e17c6e039a25d77a1bb72039ddb8",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 361.478515625,
+          "meanForwardClosed": 155.98245239257812,
+          "distalVertices": 185
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 376.620361328125,
+          "meanForwardClosed": 150.84519958496094,
+          "distalVertices": 192
+        }
+      ]
+    },
+    {
+      "suit": "smu-lasher-cell",
+      "assetSha256": "26836dcad207c86f2630535aa47bf11b885a11e60d66f4874409fa8f8056ed30",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 337.49615478515625,
+          "meanForwardClosed": 178.30064392089844,
+          "distalVertices": 72
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 330.2913513183594,
+          "meanForwardClosed": 184.4342803955078,
+          "distalVertices": 69
+        }
+      ]
+    },
+    {
+      "suit": "smu-lily-hollister",
+      "assetSha256": "424a0358f349c088f3b05947f6189cec1c60b0084f46084bc12a2476bb8ded78",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 354.9881286621094,
+          "meanForwardClosed": 167.5700225830078,
+          "distalVertices": 60
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 348.65216064453125,
+          "meanForwardClosed": 171.1466522216797,
+          "distalVertices": 67
+        }
+      ]
+    },
+    {
+      "suit": "smu-lizard",
+      "assetSha256": "b51e0b2ef156045ab68a56be845fd4e5ba44c5824523ba9185c53df4c4d63b06",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 372.7996520996094,
+          "meanForwardClosed": 151.952880859375,
+          "distalVertices": 40
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 385.91253662109375,
+          "meanForwardClosed": 132.86776733398438,
+          "distalVertices": 40
+        }
+      ]
+    },
+    {
+      "suit": "smu-mac-gargan",
+      "assetSha256": "1f2258690dba8b1cef19ef9b950659f82f553902e46a208b2a6d40e004e1e16d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 352.5448913574219,
+          "meanForwardClosed": 178.75047302246094,
+          "distalVertices": 56
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 352.579833984375,
+          "meanForwardClosed": 179.84083557128906,
+          "distalVertices": 57
+        }
+      ]
+    },
+    {
+      "suit": "smu-mace",
+      "assetSha256": "fac6ff13134777cb63126d4b9080861d73495b648041fcf00a2e1adcb319dff6",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 352.041259765625,
+          "meanForwardClosed": 173.05596923828125,
+          "distalVertices": 49
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 349.58880615234375,
+          "meanForwardClosed": 186.54005432128906,
+          "distalVertices": 55
+        }
+      ]
+    },
+    {
+      "suit": "smu-madamweb",
+      "assetSha256": "9b096e8b0489168522fe0c74b978fa5fdb76cf4ef508e167109c8c6445e7397a",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 348.33868408203125,
+          "meanForwardClosed": 176.78765869140625,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 360.6557312011719,
+          "meanForwardClosed": 178.9357452392578,
+          "distalVertices": 38
+        }
+      ]
+    },
+    {
+      "suit": "smu-mangaverse",
+      "assetSha256": "43a24734ef6ab00ad73051e8e6d828fd8648708e2630abcadc21127dc5c6fc91",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 337.3816223144531,
+          "meanForwardClosed": 187.6870880126953,
+          "distalVertices": 47
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 340.720703125,
+          "meanForwardClosed": 179.84437561035156,
+          "distalVertices": 44
+        }
+      ]
+    },
+    {
+      "suit": "smu-mangaverse-black-cat",
+      "assetSha256": "82a1e0276698eb7ded100802f1fea937606079af7451af4e0431ba813bc32711",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.23681640625,
+          "meanForwardClosed": 182.07626342773438,
+          "distalVertices": 159
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 341.2395935058594,
+          "meanForwardClosed": 182.0786895751953,
+          "distalVertices": 159
+        }
+      ]
+    },
+    {
+      "suit": "smu-mangaversegirl",
+      "assetSha256": "4bdbd5fca167cb21cc34e59da914ebd67a8502ff4d7acea987120de229bf4bc9",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 373.6648864746094,
+          "meanForwardClosed": 237.15626525878906,
+          "distalVertices": 69
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 333.92633056640625,
+          "meanForwardClosed": 195.2073516845703,
+          "distalVertices": 79
+        }
+      ]
+    },
+    {
+      "suit": "smu-mania",
+      "assetSha256": "e5d46e4cf0e1dfec8ac93e4de9712a5dbbe22e21a8ed1402aea93628110863e3",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 342.27032470703125,
+          "meanForwardClosed": 177.58023071289062,
+          "distalVertices": 49
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 340.4078063964844,
+          "meanForwardClosed": 183.0397491455078,
+          "distalVertices": 54
+        }
+      ]
+    },
+    {
+      "suit": "smu-maniac",
+      "assetSha256": "495429a11d0d45487dd4eec1701d4ea2d76744e548383c199c047fbe8c19eb5e",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 348.67352294921875,
+          "meanForwardClosed": 180.79827880859375,
+          "distalVertices": 116
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 341.2549743652344,
+          "meanForwardClosed": 184.93490600585938,
+          "distalVertices": 132
+        }
+      ]
+    },
+    {
+      "suit": "smu-maniacal-mayhem",
+      "assetSha256": "54e4cdd412cb7170c347afbd956d0d451ea5ee7d62a46001a942715dad9a87a4",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 370.61456298828125,
+          "meanForwardClosed": 142.24688720703125,
+          "distalVertices": 28
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 370.61505126953125,
+          "meanForwardClosed": 142.24961853027344,
+          "distalVertices": 28
+        }
+      ]
+    },
+    {
+      "suit": "smu-maskedmarvel",
+      "assetSha256": "8f1a7af3b0f7d1cc059e8903b5089c08c00556767a5c0e38405e5c0dce27cbf4",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 340.50946044921875,
+          "meanForwardClosed": 183.7064971923828,
+          "distalVertices": 46
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 340.4751892089844,
+          "meanForwardClosed": 183.08006286621094,
+          "distalVertices": 46
+        }
+      ]
+    },
+    {
+      "suit": "smu-mattie-franklin-5",
+      "assetSha256": "6c3dfb999a5aa511118bcf82cf4c79ed1b594660bc5a136e3cb8317218cf6c1d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 340.2711486816406,
+          "meanForwardClosed": 177.61245727539062,
+          "distalVertices": 94
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 335.9440002441406,
+          "meanForwardClosed": 181.58644104003906,
+          "distalVertices": 117
+        }
+      ]
+    },
+    {
+      "suit": "smu-mattie-franklin-body-suit",
+      "assetSha256": "134990c727377bbff4ec5191d24998b433cb46c9e2398274cf4ec22a365a312c",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 340.4960021972656,
+          "meanForwardClosed": 167.69915771484375,
+          "distalVertices": 79
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 336.4443359375,
+          "meanForwardClosed": 177.414306640625,
+          "distalVertices": 90
+        }
+      ]
+    },
+    {
+      "suit": "smu-mattiefranklin",
+      "assetSha256": "668c14dca7919e1ae9bcd9e72698a2f367f662f6a2c0a4b955215d6c330ace96",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 336.4188232421875,
+          "meanForwardClosed": 184.42498779296875,
+          "distalVertices": 52
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 339.64080810546875,
+          "meanForwardClosed": 191.14935302734375,
+          "distalVertices": 48
+        }
+      ]
+    },
+    {
+      "suit": "smu-mayday",
+      "assetSha256": "7cb05249f59edc7f8bd381acd868f8ec8a01c8deaeece2bce07e2e9b259eab87",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 344.28839111328125,
+          "meanForwardClosed": 183.2283935546875,
+          "distalVertices": 83
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 354.09747314453125,
+          "meanForwardClosed": 183.49400329589844,
+          "distalVertices": 75
+        }
+      ]
+    },
+    {
+      "suit": "smu-mayhem",
+      "assetSha256": "ed1f008d62c7422965179aafce8b75de1d4530f294237ef59d60b87cbbc0316c",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 343.9459228515625,
+          "meanForwardClosed": 197.73863220214844,
+          "distalVertices": 78
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.2803039550781,
+          "meanForwardClosed": 181.775634765625,
+          "distalVertices": 78
+        }
+      ]
+    },
+    {
+      "suit": "smu-mayparker-unmasked",
+      "assetSha256": "003a23dfe136a05d804911c4b953bdf2648f482f45f5334a5e03c6eed64cf34f",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 336.73651123046875,
+          "meanForwardClosed": 204.70196533203125,
+          "distalVertices": 73
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 330.87078857421875,
+          "meanForwardClosed": 206.31459045410156,
+          "distalVertices": 73
+        }
+      ]
+    },
+    {
+      "suit": "smu-mech",
+      "assetSha256": "b4c049d0bd3bc0784fb3ed0e38fe8da8ac6475b6301d26b6f0ebd71e23bef1fa",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.61181640625,
+          "meanForwardClosed": 178.03164672851562,
+          "distalVertices": 64
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.5813293457031,
+          "meanForwardClosed": 177.78488159179688,
+          "distalVertices": 64
+        }
+      ]
+    },
+    {
+      "suit": "smu-mercenary",
+      "assetSha256": "7f83b26befcf066f577d33414ac99a9166e544fe2f4395475bad87af8afea1e7",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-michaelbingham",
+      "assetSha256": "f4546fd5e97a80e777837de6fa6d5afe28007a5ba02ba138366cc04289f1b393",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 347.7524719238281,
+          "meanForwardClosed": 184.33474731445312,
+          "distalVertices": 40
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 341.11541748046875,
+          "meanForwardClosed": 182.78529357910156,
+          "distalVertices": 45
+        }
+      ]
+    },
+    {
+      "suit": "smu-michaelmorbius",
+      "assetSha256": "a31743c94bf64eac3f30191c382e1c641b7750e8bd6e197cf9c8795f44f34a9d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 327.8810119628906,
+          "meanForwardClosed": 180.32997131347656,
+          "distalVertices": 56
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 330.2284851074219,
+          "meanForwardClosed": 194.22012329101562,
+          "distalVertices": 56
+        }
+      ]
+    },
+    {
+      "suit": "smu-milesmorales",
+      "assetSha256": "f9ad9f422aa1a65849bb9d83bf153bc41c29f0bb7d2eb6f486b7ffec3e192250",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-milesmorales-uk-mesh",
+      "assetSha256": "c8efdc491c82f82cb3a0a1bca6138a146c6a1ca3816d361e85822612b7d5b29f",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.7451477050781,
+          "meanForwardClosed": 183.26864624023438,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.348388671875,
+          "meanForwardClosed": 178.4643096923828,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-milesmoralesdemasked",
+      "assetSha256": "003e3fc841c6b1d432fdb6c788fd40482a9c1ba3a8958b0c7458c89e2c8cf820",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 359.0163879394531,
+          "meanForwardClosed": 167.12466430664062,
+          "distalVertices": 30
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 359.9219665527344,
+          "meanForwardClosed": 166.85281372070312,
+          "distalVertices": 30
+        }
+      ]
+    },
+    {
+      "suit": "smu-mj-regent-power-suit",
+      "assetSha256": "d604fb569b3ce6acca0c1e9319de7d55df514bfc03d7fd018afad9708516e9d9",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.7104797363281,
+          "meanForwardClosed": 173.56785583496094,
+          "distalVertices": 104
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 339.0531921386719,
+          "meanForwardClosed": 175.15200805664062,
+          "distalVertices": 110
+        }
+      ]
+    },
+    {
+      "suit": "smu-mj-sexy",
+      "assetSha256": "a9a1e3768b325836f690498b619f7226fb52b6565d9664d98e33960fff6e7a82",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 339.4493408203125,
+          "meanForwardClosed": 185.9783477783203,
+          "distalVertices": 86
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 353.0669250488281,
+          "meanForwardClosed": 192.22183227539062,
+          "distalVertices": 75
+        }
+      ]
+    },
+    {
+      "suit": "smu-mj-venom",
+      "assetSha256": "5cb1d23f13b5725c8753909c29222488870c6dcf525b703892c13c280d7bfa37",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.72119140625,
+          "meanForwardClosed": 182.21780395507812,
+          "distalVertices": 86
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 342.20904541015625,
+          "meanForwardClosed": 173.327392578125,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-mjiron",
+      "assetSha256": "c794fc724d6eb384af9f19a569ee8766a2ca4e921877d7a3cfae8f4427c16864",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 335.96112060546875,
+          "meanForwardClosed": 189.2047576904297,
+          "distalVertices": 48
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 335.9623718261719,
+          "meanForwardClosed": 189.0780792236328,
+          "distalVertices": 48
+        }
+      ]
+    },
+    {
+      "suit": "smu-modernscarlet",
+      "assetSha256": "90a7c036fe706fc4151d25998963e83cda439b1f35179b042c710917bde1676e",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-modernsilk",
+      "assetSha256": "268c8e8edc1838e4b0ff4979aa5422f92d23faec44036e55108d9f6abc22e766",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.4621276855469,
+          "meanForwardClosed": 183.56080627441406,
+          "distalVertices": 80
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 347.2733459472656,
+          "meanForwardClosed": 194.2909393310547,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-mutantjonah",
+      "assetSha256": "2f5e38c7cf6b440b190c62780ef4e283a185b947286f7dbeb18e9d2d193371e1",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 357.35980224609375,
+          "meanForwardClosed": 168.576416015625,
+          "distalVertices": 41
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 373.52301025390625,
+          "meanForwardClosed": 151.72988891601562,
+          "distalVertices": 32
+        }
+      ]
+    },
+    {
+      "suit": "smu-native-american",
+      "assetSha256": "5e49afb2c41d7b7831de94f154614cff9cad7870d5448204e1bc00de1b01b43a",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 349.6551208496094,
+          "meanForwardClosed": 171.6988067626953,
+          "distalVertices": 66
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 356.19207763671875,
+          "meanForwardClosed": 183.1612548828125,
+          "distalVertices": 67
+        }
+      ]
+    },
+    {
+      "suit": "smu-new-year-spiderman",
+      "assetSha256": "0e52803ecb94fce0bfc034ae553bb5ecfe455e213a64dce08d5c0010be002726",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 365.7789306640625,
+          "meanForwardClosed": 148.95034790039062,
+          "distalVertices": 25
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.1387023925781,
+          "meanForwardClosed": 196.64617919921875,
+          "distalVertices": 49
+        }
+      ]
+    },
+    {
+      "suit": "smu-newarmor",
+      "assetSha256": "585c3f040c0ee931f97f190e54fdcc1fc90ef004c8520c764e38a2598ee4eba3",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 330.8656921386719,
+          "meanForwardClosed": 186.85174560546875,
+          "distalVertices": 35
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 327.7544250488281,
+          "meanForwardClosed": 191.5551300048828,
+          "distalVertices": 40
+        }
+      ]
+    },
+    {
+      "suit": "smu-nickfury",
+      "assetSha256": "68ab67b033ed1e45960ef3d04f205d784bb12170dd0a1e9dc14f67ff028d027c",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 346.8695373535156,
+          "meanForwardClosed": 184.52413940429688,
+          "distalVertices": 40
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 348.38458251953125,
+          "meanForwardClosed": 182.87530517578125,
+          "distalVertices": 39
+        }
+      ]
+    },
+    {
+      "suit": "smu-noir",
+      "assetSha256": "850f703ff7e3953c4ec21f4437813545c2340c9b8203cb6250b854b2b0f18caf",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 337.4317932128906,
+          "meanForwardClosed": 187.62298583984375,
+          "distalVertices": 168
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 342.0447998046875,
+          "meanForwardClosed": 180.93641662597656,
+          "distalVertices": 44
+        }
+      ]
+    },
+    {
+      "suit": "smu-noirnew",
+      "assetSha256": "3d3ab675637cd11d462a1aa31c776f3713ff5f1698a02011d8e2e272aa5bcd14",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 354.474853515625,
+          "meanForwardClosed": 176.85995483398438,
+          "distalVertices": 47
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 349.2271728515625,
+          "meanForwardClosed": 185.7478485107422,
+          "distalVertices": 54
+        }
+      ]
+    },
+    {
+      "suit": "smu-nurotox",
+      "assetSha256": "17ea297b927cc08ade9eebcaaf2a17932ededdcf8ce836804332a0830cf07c2f",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 363.7082824707031,
+          "meanForwardClosed": 146.12242126464844,
+          "distalVertices": 52
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 360.19122314453125,
+          "meanForwardClosed": 150.4268798828125,
+          "distalVertices": 55
+        }
+      ]
+    },
+    {
+      "suit": "smu-octavius",
+      "assetSha256": "91cf8512473599792a9c3300e5a9e7296cd786bf241894e18583767dd73644af",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 360.2094421386719,
+          "meanForwardClosed": 162.54183959960938,
+          "distalVertices": 80
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 352.4267272949219,
+          "meanForwardClosed": 163.6713104248047,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-payback",
+      "assetSha256": "90ace414edebd6fbe59bafa696397430b4bb1a325c702693eb2959ac835837b3",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.2027282714844,
+          "meanForwardClosed": 177.0243377685547,
+          "distalVertices": 86
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 337.6346740722656,
+          "meanForwardClosed": 186.94528198242188,
+          "distalVertices": 83
+        }
+      ]
+    },
+    {
+      "suit": "smu-peter-porker-unmasked",
+      "assetSha256": "ede0d6805348f30fb9b6613a940ab8e57096aa4ce453827ab121b8478181bb05",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 342.7265930175781,
+          "meanForwardClosed": 142.3544921875,
+          "distalVertices": 50
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 350.1426086425781,
+          "meanForwardClosed": 139.59487915039062,
+          "distalVertices": 57
+        }
+      ]
+    },
+    {
+      "suit": "smu-peter-urich",
+      "assetSha256": "497748e87d893c3dfa74cdc7f4b2c07c85d1afd2e3d98b961d4ccf0ad9892c91",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 346.8053894042969,
+          "meanForwardClosed": 187.55470275878906,
+          "distalVertices": 41
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 340.775146484375,
+          "meanForwardClosed": 190.9783172607422,
+          "distalVertices": 48
+        }
+      ]
+    },
+    {
+      "suit": "smu-peterparker",
+      "assetSha256": "343a0dcb98f22975d539e9d42786b96551677ad4053990cfde5c4aa1bc123843",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 344.6553039550781,
+          "meanForwardClosed": 184.73043823242188,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 341.2789001464844,
+          "meanForwardClosed": 182.24305725097656,
+          "distalVertices": 44
+        }
+      ]
+    },
+    {
+      "suit": "smu-peterparkerearth11080",
+      "assetSha256": "5106624a9462d6fc10d7bb699f1abfe6039c0b9bfec2907a3b2a227a963be668",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 384.97186279296875,
+          "meanForwardClosed": 276.54290771484375,
+          "distalVertices": 73
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 351.9251708984375,
+          "meanForwardClosed": 241.26634216308594,
+          "distalVertices": 71
+        }
+      ]
+    },
+    {
+      "suit": "smu-phage",
+      "assetSha256": "667d79211111ad6c026a3e9aaaa64215f62c13a1544da0307b256d25ef71356d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 339.568359375,
+          "meanForwardClosed": 191.1800994873047,
+          "distalVertices": 80
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 339.57037353515625,
+          "meanForwardClosed": 191.18002319335938,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-poison",
+      "assetSha256": "bc409bf0111825222f7929753ad0826f69c9dec39dd6dba0f705fb75992b5ff8",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 382.8418884277344,
+          "meanForwardClosed": 149.73355102539062,
+          "distalVertices": 74
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 384.641845703125,
+          "meanForwardClosed": 144.20797729492188,
+          "distalVertices": 72
+        }
+      ]
+    },
+    {
+      "suit": "smu-poison-doctor-octopus",
+      "assetSha256": "dcdc013a3feece0127a330928e083d220daa4dbde57cd42d334acdc6238564e0",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 340.7783508300781,
+          "meanForwardClosed": 173.25439453125,
+          "distalVertices": 62
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 340.45574951171875,
+          "meanForwardClosed": 177.3544158935547,
+          "distalVertices": 66
+        }
+      ]
+    },
+    {
+      "suit": "smu-poison-hunter",
+      "assetSha256": "0359833d090cf04c225b7bf9499dd379503902fa4949638ad833bf175574db1e",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 348.42401123046875,
+          "meanForwardClosed": 170.37652587890625,
+          "distalVertices": 30
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 339.6505126953125,
+          "meanForwardClosed": 180.6190185546875,
+          "distalVertices": 41
+        }
+      ]
+    },
+    {
+      "suit": "smu-poisonrhino",
+      "assetSha256": "e4f7cc4c350f904ea424b1c62601350b0c9ddd7ec0c477294963df3b4ed6d194",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 339.59326171875,
+          "meanForwardClosed": 169.6031494140625,
+          "distalVertices": 53
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 331.99261474609375,
+          "meanForwardClosed": 176.94107055664062,
+          "distalVertices": 64
+        }
+      ]
+    },
+    {
+      "suit": "smu-poisonspiderman",
+      "assetSha256": "9f350f4a90c354d04339a18521d3f7eddd306b2f6a2250118a1794f853776d55",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 358.06634521484375,
+          "meanForwardClosed": 168.7133026123047,
+          "distalVertices": 57
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 350.0226135253906,
+          "meanForwardClosed": 183.0147705078125,
+          "distalVertices": 70
+        }
+      ]
+    },
+    {
+      "suit": "smu-pork-grind",
+      "assetSha256": "159abdb51035dd5b6c78f8b69198606cf1d1e9b11ac0ce6e4b91ebb64ac5938c",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 379.8928527832031,
+          "meanForwardClosed": 150.6939239501953,
+          "distalVertices": 35
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 379.74627685546875,
+          "meanForwardClosed": 150.76316833496094,
+          "distalVertices": 35
+        }
+      ]
+    },
+    {
+      "suit": "smu-prodigy",
+      "assetSha256": "2ec80be36fed64fa3b090c8948674afc15088cf776ad0c8d6ac5e7d43be2d91b",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 354.9884948730469,
+          "meanForwardClosed": 177.30307006835938,
+          "distalVertices": 71
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 335.2998962402344,
+          "meanForwardClosed": 182.84112548828125,
+          "distalVertices": 71
+        }
+      ]
+    },
+    {
+      "suit": "smu-prowler",
+      "assetSha256": "982084a97a36c49ce773d13c9f74b90ae5fd4a6720c9396821c3930007c88d17",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 327.4980773925781,
+          "meanForwardClosed": 212.09910583496094,
+          "distalVertices": 51
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 330.9499816894531,
+          "meanForwardClosed": 220.78558349609375,
+          "distalVertices": 51
+        }
+      ]
+    },
+    {
+      "suit": "smu-punk",
+      "assetSha256": "c757fef786915715b0f19d7fc7213f69dc82e42dbf5af592325ec14afceca348",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 358.6455078125,
+          "meanForwardClosed": 169.627685546875,
+          "distalVertices": 32
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 348.91632080078125,
+          "meanForwardClosed": 179.55239868164062,
+          "distalVertices": 40
+        }
+      ]
+    },
+    {
+      "suit": "smu-quickchange",
+      "assetSha256": "ae88b47321384480873213d2ff4d8504ffe715efb63a44e7b50321ca7e73fbcc",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 339.7735290527344,
+          "meanForwardClosed": 184.79908752441406,
+          "distalVertices": 46
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 339.739501953125,
+          "meanForwardClosed": 184.17538452148438,
+          "distalVertices": 46
+        }
+      ]
+    },
+    {
+      "suit": "smu-rafael-carago",
+      "assetSha256": "02ddda71e707d43d7ccb3f3fdac7afb7bad9201287eb4655d04ff5a57a760cb6",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 381.45306396484375,
+          "meanForwardClosed": 229.98696899414062,
+          "distalVertices": 79
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.3080139160156,
+          "meanForwardClosed": 184.8704376220703,
+          "distalVertices": 87
+        }
+      ]
+    },
+    {
+      "suit": "smu-raze",
+      "assetSha256": "25d20d4e6b34d7e397ea33e4c05194744768cff5702d3b249e81e283425b1dd3",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 334.2434997558594,
+          "meanForwardClosed": 192.10728454589844,
+          "distalVertices": 32
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 341.15728759765625,
+          "meanForwardClosed": 198.5983428955078,
+          "distalVertices": 32
+        }
+      ]
+    },
+    {
+      "suit": "smu-red-goblin-boss",
+      "assetSha256": "17de6ef71c6e487ab7e2403c803835aefab1ef4cd39e5b3b5e0852c43432bc11",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 358.249755859375,
+          "meanForwardClosed": 167.6404571533203,
+          "distalVertices": 85
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 350.38592529296875,
+          "meanForwardClosed": 177.50537109375,
+          "distalVertices": 84
+        }
+      ]
+    },
+    {
+      "suit": "smu-riot",
+      "assetSha256": "506574930952d467c8b5863d22fc8b67d6ba752d6a8cf96249a245b052bb3082",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 322.47430419921875,
+          "meanForwardClosed": 136.15257263183594,
+          "distalVertices": 60
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 325.90106201171875,
+          "meanForwardClosed": 139.13931274414062,
+          "distalVertices": 57
+        }
+      ]
+    },
+    {
+      "suit": "smu-scarlet",
+      "assetSha256": "713c660e49ba71e897e6216f4c48aaf2cd8b4beaa26fa78989b9842d9cce8f05",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 335.69482421875,
+          "meanForwardClosed": 185.7686767578125,
+          "distalVertices": 36
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 333.8793640136719,
+          "meanForwardClosed": 189.52001953125,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-scarlet-spider",
+      "assetSha256": "94be06ed0b62cb493e4e6f7bccfb716e99ef530ce3bdc7d76dd135068b83f214",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 375.979248046875,
+          "meanForwardClosed": 143.94027709960938,
+          "distalVertices": 32
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 372.4470520019531,
+          "meanForwardClosed": 173.33401489257812,
+          "distalVertices": 38
+        }
+      ]
+    },
+    {
+      "suit": "smu-scarlet-spiderham",
+      "assetSha256": "b85d786817dcef34cf964656dde6d3926a3ebb2b4b1f74c78ea64cc85b0d65bd",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 289.1484375,
+          "meanForwardClosed": 174.22476196289062,
+          "distalVertices": 35
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 279.5124206542969,
+          "meanForwardClosed": 173.45501708984375,
+          "distalVertices": 34
+        }
+      ]
+    },
+    {
+      "suit": "smu-scarlet-spiderham-benreilly",
+      "assetSha256": "874ea85c9d61026184aa0baba3ecf147dfbb3d2161ec2716a2652724b5ecda0f",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 309.7972412109375,
+          "meanForwardClosed": 168.4320526123047,
+          "distalVertices": 42
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 304.1551818847656,
+          "meanForwardClosed": 163.9186248779297,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-scarletgirl",
+      "assetSha256": "a6dbdceaf5acbf7f5a5cb0d4935cdc11e9ad7c8142fff23e02ca78bc8945ce15",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 338.54119873046875,
+          "meanForwardClosed": 186.188232421875,
+          "distalVertices": 86
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 341.88116455078125,
+          "meanForwardClosed": 180.832763671875,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-scarletjoe",
+      "assetSha256": "3767c8223d69149b77f1267231e9a1c97ec2fc9951a6bcfa01967297988edfae",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 349.0337219238281,
+          "meanForwardClosed": 178.09481811523438,
+          "distalVertices": 39
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.88592529296875,
+          "meanForwardClosed": 175.69068908691406,
+          "distalVertices": 40
+        }
+      ]
+    },
+    {
+      "suit": "smu-scorn",
+      "assetSha256": "c2815446c7ef83ef27ac69df3005b8f28d7832a724ad64b1fae33cd454faf536",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 378.3708801269531,
+          "meanForwardClosed": 150.3341064453125,
+          "distalVertices": 84
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 375.1163330078125,
+          "meanForwardClosed": 155.11058044433594,
+          "distalVertices": 84
+        }
+      ]
+    },
+    {
+      "suit": "smu-scream",
+      "assetSha256": "ebe72ee68be647094847d6f98cfc4a863957973974580a6eb8f198a874048eb2",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 363.1158752441406,
+          "meanForwardClosed": 155.1357879638672,
+          "distalVertices": 48
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 370.1332702636719,
+          "meanForwardClosed": 165.30897521972656,
+          "distalVertices": 48
+        }
+      ]
+    },
+    {
+      "suit": "smu-secretwar",
+      "assetSha256": "202fb571e7046a5e0b9b9f2196f5080f0897a55689bd836f8b73d0ab0ef23c90",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-shevenom",
+      "assetSha256": "441e436db29ec5d516b38d0760477c115fd6c7d2cc9b1116116635052f7ef37e",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 332.6575927734375,
+          "meanForwardClosed": 179.32244873046875,
+          "distalVertices": 128
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 332.6592712402344,
+          "meanForwardClosed": 179.3239288330078,
+          "distalVertices": 128
+        }
+      ]
+    },
+    {
+      "suit": "smu-silk",
+      "assetSha256": "fdce0a43a75b4d9dd30ada65ff58a2a9d9b30f7b0ca17d917233869f09bd8742",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 339.33673095703125,
+          "meanForwardClosed": 189.21389770507812,
+          "distalVertices": 78
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 334.5123596191406,
+          "meanForwardClosed": 185.95448303222656,
+          "distalVertices": 78
+        }
+      ]
+    },
+    {
+      "suit": "smu-silk2",
+      "assetSha256": "33dbf63ba7b6e8867fec8824f7556454fc2498f5ba35e7195fecca488ab2e2c6",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 339.33673095703125,
+          "meanForwardClosed": 189.21389770507812,
+          "distalVertices": 78
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 334.5123596191406,
+          "meanForwardClosed": 185.95448303222656,
+          "distalVertices": 78
+        }
+      ]
+    },
+    {
+      "suit": "smu-silversable-play",
+      "assetSha256": "3c9734c05d17c8b8e1b32c86a8b153c84535712ed115679dece8dca9ddf8fff3",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 340.3356628417969,
+          "meanForwardClosed": 182.7342529296875,
+          "distalVertices": 94
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 353.80157470703125,
+          "meanForwardClosed": 188.8542022705078,
+          "distalVertices": 83
+        }
+      ]
+    },
+    {
+      "suit": "smu-sixarmed-spiderman",
+      "assetSha256": "03d77ed60fbb5926a7dbd7518bef2a6d83056c3f32061e0e8cdecf1ed8671294",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 360.5115051269531,
+          "meanForwardClosed": 164.85659790039062,
+          "distalVertices": 61
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 374.48516845703125,
+          "meanForwardClosed": 171.209716796875,
+          "distalVertices": 61
+        }
+      ]
+    },
+    {
+      "suit": "smu-small-ed-brook",
+      "assetSha256": "8b23ef365e537acd2310448a2aa037908a8f9614f57f3fe8017af7906f374924",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 348.00152587890625,
+          "meanForwardClosed": 163.55224609375,
+          "distalVertices": 40
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 346.3305358886719,
+          "meanForwardClosed": 162.62893676757812,
+          "distalVertices": 54
+        }
+      ]
+    },
+    {
+      "suit": "smu-spacesuit",
+      "assetSha256": "88cdcb0e44b2cced8bbd11523cb27ae2ae035b947ac4482f59920bc7669dd96a",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 354.6741943359375,
+          "meanForwardClosed": 173.2446746826172,
+          "distalVertices": 44
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 354.6820983886719,
+          "meanForwardClosed": 173.25035095214844,
+          "distalVertices": 44
+        }
+      ]
+    },
+    {
+      "suit": "smu-spdr",
+      "assetSha256": "116ee8f98b628336f65790c6fe7463b3fccdf7492aa402c18ba232e9796aec2d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 393.4378356933594,
+          "meanForwardClosed": 210.54083251953125,
+          "distalVertices": 104
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 393.5599365234375,
+          "meanForwardClosed": 210.15122985839844,
+          "distalVertices": 104
+        }
+      ]
+    },
+    {
+      "suit": "smu-spider-carnage",
+      "assetSha256": "bd6834cc03e24f9184cfbfbca0d02a7f80685ec856ac53037830586166c3d954",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 348.1257629394531,
+          "meanForwardClosed": 141.91079711914062,
+          "distalVertices": 88
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 347.92327880859375,
+          "meanForwardClosed": 140.61927795410156,
+          "distalVertices": 89
+        }
+      ]
+    },
+    {
+      "suit": "smu-spider-cowboy",
+      "assetSha256": "62a10a5033eda28fa0f3dbb45f53baa1d25cd113cc76d4aa978a18f820811e9d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 350.47601318359375,
+          "meanForwardClosed": 172.4250946044922,
+          "distalVertices": 50
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 355.1365661621094,
+          "meanForwardClosed": 185.9852752685547,
+          "distalVertices": 53
+        }
+      ]
+    },
+    {
+      "suit": "smu-spider-demon",
+      "assetSha256": "86f38be3f21e3b3fd48fada05fc26e7125d776a098bc166bbe835cef3211a170",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 352.3634033203125,
+          "meanForwardClosed": 179.33509826660156,
+          "distalVertices": 70
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 349.9853820800781,
+          "meanForwardClosed": 176.72666931152344,
+          "distalVertices": 78
+        }
+      ]
+    },
+    {
+      "suit": "smu-spider-herc",
+      "assetSha256": "98b0d20f80f2b1d86f5df0600e66f88377603d5837910086f02acaead18147e4",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 348.8952331542969,
+          "meanForwardClosed": 169.37338256835938,
+          "distalVertices": 56
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 334.00921630859375,
+          "meanForwardClosed": 183.0365447998047,
+          "distalVertices": 65
+        }
+      ]
+    },
+    {
+      "suit": "smu-spider-ninja",
+      "assetSha256": "c2ba2a426f6a3597610a6c79394816e5a84600d3b9acbaeabe8d7ef49ad6c227",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 342.89776611328125,
+          "meanForwardClosed": 175.86239624023438,
+          "distalVertices": 50
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 356.3433837890625,
+          "meanForwardClosed": 162.5656280517578,
+          "distalVertices": 35
+        }
+      ]
+    },
+    {
+      "suit": "smu-spider-spiner",
+      "assetSha256": "50319dde973be7fed7d2d3245b3445f79925ab6fb554b734c267202e584fb689",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 347.34466552734375,
+          "meanForwardClosed": 178.0113983154297,
+          "distalVertices": 81
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.52294921875,
+          "meanForwardClosed": 182.74476623535156,
+          "distalVertices": 88
+        }
+      ]
+    },
+    {
+      "suit": "smu-spiderarmor",
+      "assetSha256": "45458b8a3c6cd9f9f1599af87552641c2ab6b196c98cc862607a751bab7e9866",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 337.30712890625,
+          "meanForwardClosed": 187.03860473632812,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 339.70751953125,
+          "meanForwardClosed": 181.4053955078125,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-spidergwen-earth1036",
+      "assetSha256": "81a72231909808125a963ed4befd71c67ec6a26051e665b76a2b03a22f7162ce",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.9639892578125,
+          "meanForwardClosed": 187.5839385986328,
+          "distalVertices": 99
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 343.2714538574219,
+          "meanForwardClosed": 197.94735717773438,
+          "distalVertices": 83
+        }
+      ]
+    },
+    {
+      "suit": "smu-spiderham",
+      "assetSha256": "b07acca3e69bdb506acfd10504aef1cf0e76a4e173e5663c8745a1de9d584663",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 344.7257385253906,
+          "meanForwardClosed": 138.5972900390625,
+          "distalVertices": 40
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.3874206542969,
+          "meanForwardClosed": 138.76651000976562,
+          "distalVertices": 40
+        }
+      ]
+    },
+    {
+      "suit": "smu-spiderham-2099",
+      "assetSha256": "cdadf5ccefd4a3e37bb48805724576fbe7ffd6723753fb6cc6c41a6a06d88d2f",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 358.33587646484375,
+          "meanForwardClosed": 125.53229522705078,
+          "distalVertices": 84
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 352.368896484375,
+          "meanForwardClosed": 128.1324462890625,
+          "distalVertices": 84
+        }
+      ]
+    },
+    {
+      "suit": "smu-spiderjameson",
+      "assetSha256": "b8f1b3b4ca0da89d4976086d3f49ab042410594d5c90d6ffa811169e4d975553",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 344.4376220703125,
+          "meanForwardClosed": 183.91250610351562,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 339.1372375488281,
+          "meanForwardClosed": 183.32470703125,
+          "distalVertices": 46
+        }
+      ]
+    },
+    {
+      "suit": "smu-spiderknight",
+      "assetSha256": "1cf7a590314d09f605a59d99995e0834a1e4eac6ae73dbeb11d0239480aef12d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 348.5009765625,
+          "meanForwardClosed": 182.2058563232422,
+          "distalVertices": 36
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 346.5120849609375,
+          "meanForwardClosed": 185.9254608154297,
+          "distalVertices": 36
+        }
+      ]
+    },
+    {
+      "suit": "smu-spidermaam",
+      "assetSha256": "1a68bccfb5d6498490938c32d6f740731bd92af741ad2fb338e0d0a73b74383d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 344.23724365234375,
+          "meanForwardClosed": 177.99996948242188,
+          "distalVertices": 72
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 329.5026550292969,
+          "meanForwardClosed": 183.58746337890625,
+          "distalVertices": 64
+        }
+      ]
+    },
+    {
+      "suit": "smu-spiderman",
+      "assetSha256": "dbba261441277944b5fbbbabccfec004951f576199647b1caf067511d09c9ac5",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-spiderman-2020",
+      "assetSha256": "1ba76da5aea4a925466c5a8b7fc03aee651244566390d61a04a85502adc84b77",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 339.4635009765625,
+          "meanForwardClosed": 185.63279724121094,
+          "distalVertices": 46
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 335.6404724121094,
+          "meanForwardClosed": 180.34754943847656,
+          "distalVertices": 46
+        }
+      ]
+    },
+    {
+      "suit": "smu-spiderman-newdesign",
+      "assetSha256": "4a207d58850d3367eaf245910cfd6d1a2afb90f5f37b245fb7b228540d7926bd",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 344.84466552734375,
+          "meanForwardClosed": 184.76348876953125,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 350.18939208984375,
+          "meanForwardClosed": 190.1695556640625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-spiderman-surveillancesuit",
+      "assetSha256": "26359bdfef24173c177dfcd93685eacd14a1cd6df6848bc0f0d705b3492ee69f",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 378.020263671875,
+          "meanForwardClosed": 125.90599822998047,
+          "distalVertices": 32
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 386.7547607421875,
+          "meanForwardClosed": 133.70774841308594,
+          "distalVertices": 32
+        }
+      ]
+    },
+    {
+      "suit": "smu-spidermanhomecoming",
+      "assetSha256": "7fca5686430cc2c22c0647a714a12bf666ae5a10721aca14531d51fcb08e7ad5",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.7461242675781,
+          "meanForwardClosed": 183.26979064941406,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3478088378906,
+          "meanForwardClosed": 178.46315002441406,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-spidermj",
+      "assetSha256": "ccba47b5cc5339893fa2c4522b74fd5f1a3d3fe78161c8bbdd082e07b8182e5b",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 339.3206481933594,
+          "meanForwardClosed": 184.39578247070312,
+          "distalVertices": 84
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 348.18267822265625,
+          "meanForwardClosed": 192.01461791992188,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-spidersman",
+      "assetSha256": "470bb8b711a5ac6bc86caecbd659168f2d012311eb181a2419fdbea6c2fc4194",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 356.83367919921875,
+          "meanForwardClosed": 167.62155151367188,
+          "distalVertices": 51
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 351.3974609375,
+          "meanForwardClosed": 166.90377807617188,
+          "distalVertices": 56
+        }
+      ]
+    },
+    {
+      "suit": "smu-spidervenom",
+      "assetSha256": "f9489ac821dd3210b5ad7a3a6ffce9510b958975030d23acf2256ea737fe4c3f",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 392.14251708984375,
+          "meanForwardClosed": 136.82077026367188,
+          "distalVertices": 82
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 391.2562255859375,
+          "meanForwardClosed": 137.25241088867188,
+          "distalVertices": 82
+        }
+      ]
+    },
+    {
+      "suit": "smu-spiderx",
+      "assetSha256": "7c514ed762b9562df2cc632406e7a3db6591f2cd0d0c10ab6d8c8f73e4f7ad1a",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 354.79473876953125,
+          "meanForwardClosed": 168.9203338623047,
+          "distalVertices": 81
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 351.06463623046875,
+          "meanForwardClosed": 164.025146484375,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-steampunk",
+      "assetSha256": "8f80f18c5118dab64d2b00b4af57d66717557e664fc37dff1f0d5c8ac7f79f0b",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 340.00494384765625,
+          "meanForwardClosed": 184.1104278564453,
+          "distalVertices": 112
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 340.36236572265625,
+          "meanForwardClosed": 183.37112426757812,
+          "distalVertices": 112
+        }
+      ]
+    },
+    {
+      "suit": "smu-steel",
+      "assetSha256": "c9656e52833bd05d7ce91176b717d4d0e6f0925dc678e7b9f6980db87fdc7c2c",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 344.75030517578125,
+          "meanForwardClosed": 184.91709899902344,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 339.5521240234375,
+          "meanForwardClosed": 184.43663024902344,
+          "distalVertices": 46
+        }
+      ]
+    },
+    {
+      "suit": "smu-superior",
+      "assetSha256": "1dee81e71048f303175f66af6e70d8b4a3bd1811f18bd50fd24e399f3d4aca5c",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 342.5098876953125,
+          "meanForwardClosed": 183.716552734375,
+          "distalVertices": 45
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 342.046630859375,
+          "meanForwardClosed": 180.93560791015625,
+          "distalVertices": 44
+        }
+      ]
+    },
+    {
+      "suit": "smu-superior-carnage",
+      "assetSha256": "a2c39c21ac9368b40c18d01a7747ab23502f952644e8064260722c5c627e23f6",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 334.73638916015625,
+          "meanForwardClosed": 189.1048583984375,
+          "distalVertices": 66
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 333.67388916015625,
+          "meanForwardClosed": 182.94635009765625,
+          "distalVertices": 78
+        }
+      ]
+    },
+    {
+      "suit": "smu-superiorb",
+      "assetSha256": "c6ca58e044ba3fd789becfd03562b413cdc7a1f44bafb63695ce18b2e8dc3bf2",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-supvenom",
+      "assetSha256": "114289760515f9d2f3a969e30169986430275e418f6b3361d929c772537dfec6",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 364.0110778808594,
+          "meanForwardClosed": 161.31475830078125,
+          "distalVertices": 90
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 362.76605224609375,
+          "meanForwardClosed": 161.90000915527344,
+          "distalVertices": 91
+        }
+      ]
+    },
+    {
+      "suit": "smu-swift",
+      "assetSha256": "a8215563c47d30206c15a64e9b7e114ea0543011ad24ca72deb8c26c8bdc937a",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 382.7678527832031,
+          "meanForwardClosed": 229.87037658691406,
+          "distalVertices": 52
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 346.0315246582031,
+          "meanForwardClosed": 185.53189086914062,
+          "distalVertices": 59
+        }
+      ]
+    },
+    {
+      "suit": "smu-symbiote",
+      "assetSha256": "2f3edec128c3d9ea7d806d77b3b923838425997c3c00fb329311cab8839419b9",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.74456787109375,
+          "meanForwardClosed": 183.26856994628906,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.3481750488281,
+          "meanForwardClosed": 178.46392822265625,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-symbiote-2018",
+      "assetSha256": "96b678077156d2a18e5ab6a9229810b57442927a0b1e856203e0dab73b1ff631",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 347.07403564453125,
+          "meanForwardClosed": 184.02908325195312,
+          "distalVertices": 41
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.3229064941406,
+          "meanForwardClosed": 180.1282958984375,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-symbiote-kraven",
+      "assetSha256": "a916044be0a69f102114caee4024d631f0d66616ff29ea48bd944748744ac7c9",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 389.7650451660156,
+          "meanForwardClosed": 137.26620483398438,
+          "distalVertices": 25
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 382.279052734375,
+          "meanForwardClosed": 141.12347412109375,
+          "distalVertices": 25
+        }
+      ]
+    },
+    {
+      "suit": "smu-tarantula",
+      "assetSha256": "b272d9c8d2b8060c1cf650b2248df1055c11b4a031f28c140e6d764c8e009316",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 358.2554016113281,
+          "meanForwardClosed": 163.43414306640625,
+          "distalVertices": 120
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 352.5522155761719,
+          "meanForwardClosed": 158.94898986816406,
+          "distalVertices": 120
+        }
+      ]
+    },
+    {
+      "suit": "smu-the-amazing-octo-spidey",
+      "assetSha256": "accd4c494986f673195a46f89230a15528d1712f36bc0d96dc502fa75214c4b8",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 351.1986389160156,
+          "meanForwardClosed": 183.7186737060547,
+          "distalVertices": 79
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.44183349609375,
+          "meanForwardClosed": 191.6383056640625,
+          "distalVertices": 92
+        }
+      ]
+    },
+    {
+      "suit": "smu-the-spider-peter-parker",
+      "assetSha256": "ffdb3fd945b298efa51132ec45821483d88c476d68b1430f08d3e3829f622ca6",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.48193359375,
+          "meanForwardClosed": 192.71229553222656,
+          "distalVertices": 105
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 343.58013916015625,
+          "meanForwardClosed": 193.29006958007812,
+          "distalVertices": 111
+        }
+      ]
+    },
+    {
+      "suit": "smu-timesleep",
+      "assetSha256": "280984b5a67410c8aa536c5dafc79609c1f8418b492dddde4a08a30f9d2b4850",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 350.7958679199219,
+          "meanForwardClosed": 180.65086364746094,
+          "distalVertices": 37
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 344.5482177734375,
+          "meanForwardClosed": 185.7211456298828,
+          "distalVertices": 43
+        }
+      ]
+    },
+    {
+      "suit": "smu-toxin",
+      "assetSha256": "cf81e0edad078217234b271720bf7cc90705ce5ae02841152828968e207a44ea",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 356.9393615722656,
+          "meanForwardClosed": 159.73291015625,
+          "distalVertices": 74
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 349.764892578125,
+          "meanForwardClosed": 156.4832305908203,
+          "distalVertices": 77
+        }
+      ]
+    },
+    {
+      "suit": "smu-uk",
+      "assetSha256": "29edb890dedef6e6df94276a7be4771f828e63da82f54c213efaef1815c9daea",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 345.7451477050781,
+          "meanForwardClosed": 183.26864624023438,
+          "distalVertices": 43
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 345.348388671875,
+          "meanForwardClosed": 178.4643096923828,
+          "distalVertices": 42
+        }
+      ]
+    },
+    {
+      "suit": "smu-ultimate-spiderham",
+      "assetSha256": "6c4118929efbd15cf7ec55e48f191c80675c9dcdbc57db0118ff9578305714c2",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 358.8117370605469,
+          "meanForwardClosed": 137.6419677734375,
+          "distalVertices": 59
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 358.84307861328125,
+          "meanForwardClosed": 137.6226043701172,
+          "distalVertices": 59
+        }
+      ]
+    },
+    {
+      "suit": "smu-ultimatedrew",
+      "assetSha256": "2c5c6f1c7e9b6ffccfbdba6a31357b6d356663b36c7c7ca3c20880cdf8d0f237",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.452880859375,
+          "meanForwardClosed": 183.5941619873047,
+          "distalVertices": 82
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 343.0416564941406,
+          "meanForwardClosed": 182.14463806152344,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-uncleb",
+      "assetSha256": "576a9fe44c4b83bdf05f35ebc09a909917cdb563c4a76871dc2e43927d8bbb7b",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 350.0848693847656,
+          "meanForwardClosed": 177.48208618164062,
+          "distalVertices": 89
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 352.1933898925781,
+          "meanForwardClosed": 173.7842559814453,
+          "distalVertices": 87
+        }
+      ]
+    },
+    {
+      "suit": "smu-venom",
+      "assetSha256": "7b24805504beb82687b03742e3c879d1aa2223d85bb8593ede677422de7e2215",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 378.2749938964844,
+          "meanForwardClosed": 203.26194763183594,
+          "distalVertices": 80
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 376.754638671875,
+          "meanForwardClosed": 202.25611877441406,
+          "distalVertices": 78
+        }
+      ]
+    },
+    {
+      "suit": "smu-venom-2099",
+      "assetSha256": "25e813dc1bab12baffb1081b48bbcff4771421ce6651bc5a09aef19a2e4d9e6c",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 354.77642822265625,
+          "meanForwardClosed": 182.09555053710938,
+          "distalVertices": 80
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 354.77667236328125,
+          "meanForwardClosed": 182.09756469726562,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-venom-verse-carnage",
+      "assetSha256": "41a9b92d9bf443e321c891a83e74b67a7aaae89fccd5a1412aa18a28d1870590",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 378.0198974609375,
+          "meanForwardClosed": 163.1969451904297,
+          "distalVertices": 105
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 371.27862548828125,
+          "meanForwardClosed": 179.46080017089844,
+          "distalVertices": 122
+        }
+      ]
+    },
+    {
+      "suit": "smu-venomx",
+      "assetSha256": "5914d5113261fa81ecc9194541de74f5320ca726d2b188f66aae24a2f3814342",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 376.07318115234375,
+          "meanForwardClosed": 158.3563232421875,
+          "distalVertices": 116
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 382.7951354980469,
+          "meanForwardClosed": 169.0435333251953,
+          "distalVertices": 112
+        }
+      ]
+    },
+    {
+      "suit": "smu-venomzombie",
+      "assetSha256": "e1aef106f479be8dcf4ddf770aa86992fdb50d7a362bc3406614e5e81cd18507",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 352.18359375,
+          "meanForwardClosed": 222.61264038085938,
+          "distalVertices": 56
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 365.10968017578125,
+          "meanForwardClosed": 218.00479125976562,
+          "distalVertices": 40
+        }
+      ]
+    },
+    {
+      "suit": "smu-wallace-jackson",
+      "assetSha256": "739cc60ddaf12621d5661e7d090766558bde6a37f1be17725bb00d4f2c6c038f",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 359.75628662109375,
+          "meanForwardClosed": 159.1457977294922,
+          "distalVertices": 25
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 340.60504150390625,
+          "meanForwardClosed": 183.74952697753906,
+          "distalVertices": 35
+        }
+      ]
+    },
+    {
+      "suit": "smu-weblisher",
+      "assetSha256": "96fe8c35f680b64dd3565f3590bb585f92fc0329d270baacc27de0519f4657ab",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 305.55670166015625,
+          "meanForwardClosed": 154.32875061035156,
+          "distalVertices": 32
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 394.4654846191406,
+          "meanForwardClosed": 191.7417449951172,
+          "distalVertices": 16
+        }
+      ]
+    },
+    {
+      "suit": "smu-werewolf",
+      "assetSha256": "dd68be7308d79e62f84361f761d12038ddc15b12f390dbdb5b2b25ce11485187",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 408.50384521484375,
+          "meanForwardClosed": 204.98715209960938,
+          "distalVertices": 166
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 407.5902099609375,
+          "meanForwardClosed": 205.0328369140625,
+          "distalVertices": 168
+        }
+      ]
+    },
+    {
+      "suit": "smu-who",
+      "assetSha256": "7ce8e4a771a79e065a5f4de18fa71d4faf5f827512dfabf335ddbaed906ca43e",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 339.62945556640625,
+          "meanForwardClosed": 188.51373291015625,
+          "distalVertices": 54
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 332.26336669921875,
+          "meanForwardClosed": 183.18479919433594,
+          "distalVertices": 62
+        }
+      ]
+    },
+    {
+      "suit": "smu-woman",
+      "assetSha256": "3f9cbe6ce186726c5a8de3a417ea738337ff54d56c6d2bc202b9ff9a518661c6",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.6350402832031,
+          "meanForwardClosed": 183.2406768798828,
+          "distalVertices": 82
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 343.22357177734375,
+          "meanForwardClosed": 181.7886962890625,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-womannew",
+      "assetSha256": "bb79e2711240fcd1d57efdce0a6c6f8f1ce735ca2af5b04ae94e0d9794189975",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 341.6741638183594,
+          "meanForwardClosed": 183.16912841796875,
+          "distalVertices": 82
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 342.0161437988281,
+          "meanForwardClosed": 183.62452697753906,
+          "distalVertices": 80
+        }
+      ]
+    },
+    {
+      "suit": "smu-wraith",
+      "assetSha256": "ef6c88f8cd76e830c85d3b02ee886f523906c3fe1470b2c4b7fa60c8d2d0b27d",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 340.90423583984375,
+          "meanForwardClosed": 185.36376953125,
+          "distalVertices": 81
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 347.0662841796875,
+          "meanForwardClosed": 183.00247192382812,
+          "distalVertices": 79
+        }
+      ]
+    }
+  ]
+}

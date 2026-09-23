@@ -1,0 +1,49 @@
+{
+  "scope": "Offline compiled-core geometry check of fist-policy curl; not visual hand closure or contact validation.",
+  "status": "PASS",
+  "count": 2,
+  "results": [
+    {
+      "suit": "smu-gwenom",
+      "assetSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 343.31817626953125,
+          "meanForwardClosed": 174.32131958007812,
+          "distalVertices": 77
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 343.8471984863281,
+          "meanForwardClosed": 173.38983154296875,
+          "distalVertices": 77
+        }
+      ]
+    },
+    {
+      "suit": "smu-venom",
+      "assetSha256": "e519899ce1a15c0a104b33797ccd8ef2b81ef80bd968be4c296de6bf86155342",
+      "passed": true,
+      "hands": [
+        {
+          "side": "L",
+          "passed": true,
+          "meanForwardOpen": 378.2749938964844,
+          "meanForwardClosed": 203.26194763183594,
+          "distalVertices": 80
+        },
+        {
+          "side": "R",
+          "passed": true,
+          "meanForwardOpen": 376.754638671875,
+          "meanForwardClosed": 202.25611877441406,
+          "distalVertices": 78
+        }
+      ]
+    }
+  ]
+}

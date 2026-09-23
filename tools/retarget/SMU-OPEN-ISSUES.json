@@ -2,6 +2,13 @@
   "finalAcceptance": false,
   "issues": [
     {
+      "id": "repeated-texture-loader-dimensions",
+      "status": "open",
+      "suits": ["smu-devilspider"],
+      "finding": "The full installed-catalogue managed loader rejects Devil Spider's preserved repeat atlas, 1024 by 6144 pixels, because SuitManifest limits each PNG dimension to 4096. This suit passes offline conversion checks but is not yet loadable through its manifest. Batch representative gameplay does not cover this failure.",
+      "next": "Support the authored repeat texture through the actual host texture path with bounded memory and GPU-size validation, preserve source RGB/alpha, and prove this suit loads and renders in game."
+    },
+    {
       "id": "initial-material-slot-fidelity",
       "status": "open",
       "suits": ["smu-gwenom", "smu-venom"],
@@ -29,7 +36,8 @@
     {
       "id": "visual-fist-closure",
       "status": "open",
-      "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist.",
+      "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. The installed-231 audit passes 229 suits; Black Suit Swiney Girl and Devil Spider have no vertices predominantly weighted to the selected distal joints, so this metric cannot establish their closure. Those are coverage gaps, not proof that their preserved weights are damaged.",
+      "evidence": "verification/finger-policy/installed-231.json",
       "next": "Inspect and correct finger curl/orientation using representative hand geometry and native close views."
     },
     {
