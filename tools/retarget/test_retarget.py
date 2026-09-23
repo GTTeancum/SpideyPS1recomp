@@ -18,6 +18,19 @@ from native_asset import parse,U,H
 from materials import bindings
 
 def digest(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+
+def expected_fallback_rgba(image,alpha_bound):
+    """Source-derived RGB5/STP expectation, including invisible alpha texels."""
+    resized=image.resize((128,128),Image.Resampling.LANCZOS)
+    quantized=resized.convert('RGB').quantize(colors=255 if alpha_bound else 256,method=Image.Quantize.MEDIANCUT)
+    rgb5=np.array(quantized.convert('RGB'),dtype=np.uint8)>>3
+    expected=np.empty((128,128,4),np.uint8)
+    expected[:,:,:3]=(rgb5<<3)|(rgb5>>2)
+    expected[:,:,3]=255
+    reserved=np.all(rgb5==[0,0,0],axis=2)|np.all(rgb5==[31,0,31],axis=2)
+    expected[reserved,3]=128
+    if alpha_bound:expected[np.array(resized.getchannel('A'))<128]=0
+    return expected
 def chunks(data):
     p=U(data,4);out={};ranges={}
     while U(data,p)!=0xffffffff:
@@ -115,9 +128,13 @@ def main():
                 indices=controls[packets[i][np.array(face['indices'])[[0,2,1]]]]
                 observed_materials.append((tuple(indices.tolist()),face['slot']))
         c.check(pre+'every triangle retains its authored material slot',collections.Counter(observed_materials)==expected_materials)
-        small=np.array(images[0].convert('RGB').resize((128,128),Image.Resampling.LANCZOS),float);native=parsed['textures'][0][:,:,:3].astype(float)
-        err=float(abs(small-native).mean());flipped=float(abs(small-native[::-1]).mean())
-        c.check(pre+'native fallback atlas has correct vertical orientation',err<15 and err<flipped,meanRGBError=err,flippedMeanRGBError=flipped)
+        fallback_errors=[]
+        for slot,(image,record) in enumerate(zip(images,material_records)):
+            expected=expected_fallback_rgba(image,record['alphaBound'])
+            actual=parsed['textures'][slot]
+            fallback_errors.append(dict(slot=slot,mismatchedPixels=int(np.any(actual!=expected,axis=2).sum())))
+        c.check(pre+'every native fallback matches source-derived RGB5/alpha and row order',
+                all(row['mismatchedPixels']==0 for row in fallback_errors),materials=fallback_errors)
         manifest=json.loads((folder/'suit.json').read_text());c.check(pre+'native costume manifest matches loader fields',manifest.get('version')==1 and manifest.get('id')==suit and manifest.get('model')=='spiderman' and manifest.get('modelFile')=='actor.psx' and manifest.get('abilities')=={'profile':'spiderman'} and 1<=len(manifest['name'])<=19)
         # Exhaust every original frame through the exact runtime shared library.
         parents=np.array(s.parents);anchor=rig.h[6];indices=np.array([i for i,x in enumerate(parents) if x>=0 and i!=anchor]);par=parents[indices]

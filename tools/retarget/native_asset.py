@@ -4,6 +4,11 @@ import numpy as np
 def H(b,p):return struct.unpack_from('<H',b,p)[0]
 def U(b,p):return struct.unpack_from('<I',b,p)[0]
 def sha(b):return hashlib.sha256(b).hexdigest()
+
+def expand_texel(v):
+    # Match TextureTile.Expand: only zero is transparent; bit 15 is STP.
+    rgb=[(v>>shift)&31 for shift in (0,5,10)]
+    return [(x<<3)|(x>>2) for x in rgb]+[0 if v==0 else 128 if v&0x8000 else 255]
 def parse(b):
     if (H(b,0),H(b,2))!=(4,2):raise ValueError('v4 PSX required')
     count=U(b,8);origins=np.array([struct.unpack_from('<iii',b,16+36*i) for i in range(count)],dtype=float)/256
@@ -18,9 +23,7 @@ def parse(b):
         n=U(b,p);p+=4
         for i in range(n):
             key=U(b,p);p+=4;vals=struct.unpack_from('<'+'H'*size,b,p);p+=size*2
-            # Display opaque body pages; zero/magenta texels remain transparent.
-            palettes[key]=np.array([[(v&31)*255/31,((v>>5)&31)*255/31,((v>>10)&31)*255/31,
-                                      0 if (v&0x7fff) in (0,0x7c1f) else 255] for v in vals],dtype=np.uint8)
+            palettes[key]=np.array([expand_texel(v) for v in vals],dtype=np.uint8)
     nt=U(b,p);p+=4
     if nt==0xffffffff:
         for _ in range(2):n=U(b,p);p+=4+36*n
@@ -61,4 +64,3 @@ def parse(b):
         meshes.append({'positions':verts,'owners':owners,'source_vertices':source_vertices,'faces':faces})
     parents=list(struct.unpack('<'+'H'*count,tags[0x52454948]))
     return {'origins':origins,'meshes':meshes,'triangles':tris,'textures':textures,'parents':parents,'sha256':sha(b),'names':names}
-

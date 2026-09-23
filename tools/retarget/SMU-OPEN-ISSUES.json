@@ -2,6 +2,14 @@
   "finalAcceptance": false,
   "issues": [
     {
+      "id": "initial-material-slot-fidelity",
+      "status": "open",
+      "suits": ["smu-gwenom", "smu-venom"],
+      "finding": "The exact fallback audit passes 208 of 210 installed suits. Imported Gwenom and Venom each have one native slot instead of two authored slots. The second slot uses the same diffuse image and is assigned to 3 and 280 source triangles respectively. This is an authored material assignment loss, not evidence of missing geometry or a different missing texture image.",
+      "evidence": "verification/fallback-textures/installed-210.json",
+      "next": "Reconvert these two early assets with the current per-material pipeline, retain backups, and run full structural, animation, web, managed loading and native gameplay regressions before replacing them."
+    },
+    {
       "id": "symbiote-tongue-pose",
       "status": "open",
       "suit": "smu-poison",

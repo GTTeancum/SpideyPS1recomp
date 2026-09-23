@@ -1,12 +1,12 @@
 {
   "catalogueCount": 233,
-  "convertedInstalled": 177,
-  "batchVerified": 177,
-  "remainingUnconverted": 56,
+  "convertedInstalled": 210,
+  "batchVerified": 210,
+  "remainingUnconverted": 23,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 4536,
-  "animationFrames": 742692,
-  "offlineSwingFrames": 20355,
+  "offlineChecks": 5382,
+  "animationFrames": 881160,
+  "offlineSwingFrames": 24150,
   "structuralBlockers": [
     {
       "key": "damon_ryder",
@@ -195,6 +195,46 @@
       "slowRunWarnings": 0
     },
     {
+      "batch": 19,
+      "representative": "smu-steampunk",
+      "images": {
+        "frame_01581.png": "2b616806842ce70211d2c527a353692f17f406d9319cc6172fd711d13491c17e",
+        "frame_01886.png": "c987c03e428e10d6dc3b5787ecb4d30f220c5932391f15a51b8318a4f3ceea9c"
+      },
+      "notes": "Reviewed Steampunk native swing and grounded images individually. Full costume, brass back apparatus, colored torso, trousers and boots are present. The web reaches the raised glove region. Back apparatus remains preserved with the source rig; these views do not establish independent mechanical appendage animation. Free-hand silhouette alone does not establish finger contact or closed-fist quality.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 20,
+      "representative": "smu-toxin",
+      "images": {
+        "frame_01557.png": "c008a12ee0fba37d7493811f73b1fba53826ceaa21d2e6e2528b77a917437895",
+        "frame_01862.png": "8ac4dee1e13d8322ac55b22755e3af6e18bea9b9c24889fc1560e94cd493fa5d"
+      },
+      "notes": "Inspected both Toxin native frames. Red upper-body and blue lower-body materials, long pointed feet and full limb geometry remain visible in swing and low grounded poses. The web meets the raised wrist region. Rear views do not prove mouth/tongue detail or fully closed fingers; those are separate visual checks. All ten assets have full offline rig and endpoint regressions.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 21,
+      "representative": "smu-wraith",
+      "images": {
+        "frame_01583.png": "3336cb83d5e7300f6bac64037bc3e257a1309c2f3a77f4dbb02611759b1924e9",
+        "frame_01888.png": "06e77217b8eda840f9c85b92e99bbb2490ff7d09661bdf321007e9916d876511"
+      },
+      "notes": "Inspected both Wraith native images. Purple suit, gold trim, arm tassels, footwear and full body are present in swing and grounded poses. The web reaches the raised hand/wrist region. Authored hanging details remain intact; these frames do not establish secondary cloth animation or complete fist closure. Offline checks cover all three assets.",
+      "slowRunWarnings": 0
+    },
+    {
+      "batch": 22,
+      "representative": "smu-adriana-soria",
+      "images": {
+        "frame_01558.png": "302e71d7a19f5b090f8fe156be8bcc1b6db79cd4c8f978e27be16dc88bae5ce8",
+        "frame_01863.png": "08648a7821cf43f4d7dee83fc09b9bfc73ee6079b1a6bb86e48c6265234717bb"
+      },
+      "notes": "Individually reviewed both native framebuffer images. Adriana Soria is visible in a swing and deep grounded crouch, with purple cape, dark limbs and yellow boots. Swing web meets the raised hand. Free hand remains visibly open; no closed-fist acceptance. Cape silhouette is present but secondary cloth motion is not established by these two frames. No front facial or symbiote tongue acceptance from these rear views.",
+      "slowRunWarnings": 0
+    },
+    {
       "batch": 26,
       "representative": "smu-poison-hunter",
       "images": {
@@ -214,6 +254,17 @@
   ],
   "finalAcceptance": false,
   "openIssues": [
+    {
+      "id": "initial-material-slot-fidelity",
+      "status": "open",
+      "suits": [
+        "smu-gwenom",
+        "smu-venom"
+      ],
+      "finding": "The exact fallback audit passes 208 of 210 installed suits. Imported Gwenom and Venom each have one native slot instead of two authored slots. The second slot uses the same diffuse image and is assigned to 3 and 280 source triangles respectively. This is an authored material assignment loss, not evidence of missing geometry or a different missing texture image.",
+      "evidence": "verification/fallback-textures/installed-210.json",
+      "next": "Reconvert these two early assets with the current per-material pipeline, retain backups, and run full structural, animation, web, managed loading and native gameplay regressions before replacing them."
+    },
     {
       "id": "symbiote-tongue-pose",
       "status": "open",
