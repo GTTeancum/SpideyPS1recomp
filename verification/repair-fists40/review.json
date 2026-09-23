@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-hobartbrown",
+      "previousActorSha256": "54ef06aeacf9ef60e1ab0c5e4952f069828281de67a6985cd85ff7a9072b4134",
+      "actorSha256": "b1e7ab479ec0adfcd5e2bd917a46f74e8d76df5c8bad7953090e898ceb08bcdd",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-hobie.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-hobie",
+      "previousActorSha256": "d285121fb8a5e3ac5d32a9ad68db8ca7f4fedc23ee4101eb332f3f352e73cdc5",
+      "actorSha256": "19b57947eef63a9883bc0c1db6c724fd99076732c1c9b6b1e287c0a1e8552dd4",
+      "visualReview": "Reviewed the two native game images sequentially. Hobie retains the green body, red coat panels, pale cuffs, white belt, pale eye lenses, and compact hands without dropped geometry. No web line is visible in this running capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01606.png": "6ea2f524a69a4dc5f86271f47064662e9673c5c57def2c94c26c8d17f90d4a78",
+        "frame_01606_closeup.png": "dbe184b8bd35169eb01ee163340a3b2eb1cd66231d2001375eabcef7033821ff"
+      }
+    },
+    {
+      "suit": "smu-hornet",
+      "previousActorSha256": "b7a7609304b923ced21c9d892616e30632e21b41de0e27b9dcb007e0be7a0854",
+      "actorSha256": "4b205348dda532d49a202c7439b390cea413ecda5bb8ae56a0e7a394a9c4a7a8",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-hobie.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-hobie"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-hobartbrown\\actor.psx",
+    "smu-hobartbrown\\conversion-report.json",
+    "smu-hobie\\actor.psx",
+    "smu-hobie\\conversion-report.json",
+    "smu-hornet\\actor.psx",
+    "smu-hornet\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-hobie/frame_01606.png and frame_01606_closeup.png"
+  }
+}

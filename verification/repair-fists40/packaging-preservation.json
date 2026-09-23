@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-hobartbrown",
+    "beforeActorSha256": "54ef06aeacf9ef60e1ab0c5e4952f069828281de67a6985cd85ff7a9072b4134",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-hobie",
+    "beforeActorSha256": "d285121fb8a5e3ac5d32a9ad68db8ca7f4fedc23ee4101eb332f3f352e73cdc5",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-hornet",
+    "beforeActorSha256": "b7a7609304b923ced21c9d892616e30632e21b41de0e27b9dcb007e0be7a0854",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

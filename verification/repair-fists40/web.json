@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "hobartbrown",
+      "id": "smu-hobartbrown",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.826904296875,
+        8.228759765625
+      ],
+      "assetSha256": "b1e7ab479ec0adfcd5e2bd917a46f74e8d76df5c8bad7953090e898ceb08bcdd",
+      "captureSha256": "197a426e967e25174c710470d3ca0886c4bfd88cfca4af0473ef32d15487f5fb"
+    },
+    {
+      "key": "hobie",
+      "id": "smu-hobie",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.246337890625,
+        10.6484375
+      ],
+      "assetSha256": "19b57947eef63a9883bc0c1db6c724fd99076732c1c9b6b1e287c0a1e8552dd4",
+      "captureSha256": "22dee8a241af2240bb9a556018b45972eaa43f197bdcc051c87429333e329b83"
+    },
+    {
+      "key": "hornet",
+      "id": "smu-hornet",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.61328125,
+        11.015380859375
+      ],
+      "assetSha256": "4b205348dda532d49a202c7439b390cea413ecda5bb8ae56a0e7a394a9c4a7a8",
+      "captureSha256": "93463f7d4f0c9e76efc7103baad32b01ca2aa5b0f70a1622f989b0edff5f9a4a"
+    }
+  ]
+}
