@@ -2376,8 +2376,10 @@
       "batty_brant": "source-relative-digit-closure-v1",
       "blackcatvenom": "source-relative-digit-closure-v1"
     },
-    "updatedInstalled": 158,
-    "remaining": 75,
+    "eligibleTotal": 90,
+    "updatedInstalled": 39,
+    "remaining": 51,
+    "legacyRawUpdatedInstalled": 158,
     "suits": [
       "smu-1602",
       "smu-2099",
@@ -2502,6 +2504,6 @@
       "smu-other",
       "smu-spiderham"
     ],
-    "scope": "Source-preserving user-approved palm-width finger closure with per-batch regressions and representative native visual review. Female, Venom, symbiote, inkling and playable-villain skins are excluded from future rollout. Not exhaustive per-suit contact testing."
+    "scope": "Source-preserving user-approved palm-width finger closure with per-batch regressions and representative native visual review. The policy denominator is the 90 keys in SMU-APPROVAL-GATE.json; female, Venom, symbiote, inkling and playable-villain skins are excluded. legacyRawUpdatedInstalled is historical only and must not be used as progress. Not exhaustive per-suit contact testing."
   }
 }
