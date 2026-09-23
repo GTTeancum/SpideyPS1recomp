@@ -1,0 +1,26 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-cosmic-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-earthx-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-futurefoundation-isolation",
+    "exitCode": 0
+  }
+]

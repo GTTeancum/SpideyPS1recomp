@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "cosmic",
+      "id": "smu-cosmic",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "af3269e092afadc487e3dd962a4e07d11fca7638933106679879082409edf348",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    },
+    {
+      "key": "earthx",
+      "id": "smu-earthx",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.130126953125,
+        9.5322265625
+      ],
+      "assetSha256": "e8fe9021a1ad5b2d9faadbe60a3071d4721f4765d82f9f358a073b7712922093",
+      "captureSha256": "7786da30e16abf0eef17b57854f1d0226d3619fcf848b1a5264a65e0db0f6a5d"
+    },
+    {
+      "key": "futurefoundation",
+      "id": "smu-futurefoundation",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "312ad4ba86c7b6d21db0d6c32536b2346cc444e133a7440681655cd7f3022ac0",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    }
+  ]
+}

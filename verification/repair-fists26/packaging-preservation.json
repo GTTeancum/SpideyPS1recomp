@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-cosmic",
+    "beforeActorSha256": "162a711563eb41a2a4aa2421feabcf8be0bd9f24e6a2d846efb4f7e5c2a5185d",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-earthx",
+    "beforeActorSha256": "1ad88869e7a9de888ca5b37be8e4e30296c8640713c7f73d14178fd03f8d81d4",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-futurefoundation",
+    "beforeActorSha256": "8d923efd5ffa769cf8f53ba28559bf2814b10d295d10cede2255d4081748aefb",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]
