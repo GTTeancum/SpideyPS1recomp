@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-buzz",
+      "previousActorSha256": "764cd41232c37ef72036ae120e702e0973d64d240acc6199a1f608ae7912661f",
+      "actorSha256": "aefea8ce83a3e338b9fabbefecfd16a32b15e7290b982e3ebce609927405f907",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-cyborg.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-captain",
+      "previousActorSha256": "08aa4783b7417ab7aeba23c67c2bceceed2f1bc009f783b78a5e226081be19b2",
+      "actorSha256": "1adbd2b736a8383a46a2462b583c832521fda3fa1ae08db9230326075d3dfd2a",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-cyborg.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-cyborg",
+      "previousActorSha256": "cd8e8f85e7d6c1bb3dc3bff3865c8c3e3d775a015d4a9eae288053ef89b03bf7",
+      "actorSha256": "15ac6fec19aa5a67b532cf9f016c11599d14830703c5db20fff81f9a04e44907",
+      "visualReview": "Reviewed the two native game images sequentially. Cyborg Spider-Man retains the red-and-blue body, mechanical face hardware, plated mechanical arm and shoulder, gold belt, and compact organic and mechanical hands without dropped geometry. No web line is visible in this running capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01606.png": "304dc07c6961f373f11632879b005d2b8bd5a08f059b69151c0a0793513aa046",
+        "frame_01606_closeup.png": "da58d22ede40f94a9758de6f8a42673e1f53067c3186f9e0777c9215d4b8f5f6"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-cyborg"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-buzz\\actor.psx",
+    "smu-buzz\\conversion-report.json",
+    "smu-captain\\actor.psx",
+    "smu-captain\\conversion-report.json",
+    "smu-cyborg\\actor.psx",
+    "smu-cyborg\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-cyborg/frame_01606.png and frame_01606_closeup.png"
+  }
+}

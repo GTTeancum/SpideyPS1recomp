@@ -2377,9 +2377,9 @@
       "blackcatvenom": "source-relative-digit-closure-v1"
     },
     "eligibleTotal": 90,
-    "updatedInstalled": 45,
-    "remaining": 45,
-    "legacyRawUpdatedInstalled": 164,
+    "updatedInstalled": 48,
+    "remaining": 42,
+    "legacyRawUpdatedInstalled": 167,
     "suits": [
       "smu-1602",
       "smu-2099",

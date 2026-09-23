@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "buzz",
+      "id": "smu-buzz",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.205810546875,
+        9.607666015625
+      ],
+      "assetSha256": "aefea8ce83a3e338b9fabbefecfd16a32b15e7290b982e3ebce609927405f907",
+      "captureSha256": "dd2de4999707da07deaf21a30198b4faae353c521f6ac05f2fdd7f8f328bf878"
+    },
+    {
+      "key": "captain",
+      "id": "smu-captain",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -4.299560546875,
+        0.1025390625
+      ],
+      "assetSha256": "1adbd2b736a8383a46a2462b583c832521fda3fa1ae08db9230326075d3dfd2a",
+      "captureSha256": "405f3fef1f7864e554b6ae81afaa388b54e2f0c1b87c8639ca9aa81bdec0cb60"
+    },
+    {
+      "key": "cyborg",
+      "id": "smu-cyborg",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927978515625,
+        9.32958984375
+      ],
+      "assetSha256": "15ac6fec19aa5a67b532cf9f016c11599d14830703c5db20fff81f9a04e44907",
+      "captureSha256": "94ecd5a79235ece466ae47ae2c3d7c6b090feeba584924a80cf9fc710de551bc"
+    }
+  ]
+}

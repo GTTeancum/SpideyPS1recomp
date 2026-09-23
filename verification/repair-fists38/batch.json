@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch38",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "buzz",
+    "captain",
+    "cyborg"
+  ],
+  "results": [
+    {
+      "key": "buzz",
+      "id": "smu-buzz",
+      "fbx": "costumes/buzz/buzz.fbx",
+      "fbxSha256": "793b8f2a7eed6d1ef77f594c5dfadb769cfc7f860b2163bc3f500335d181a741",
+      "textureFiles": [
+        "textures-png\\Buzz_D.png"
+      ],
+      "textureSha256": [
+        "27aebec1c27291ff0c5cba03104ba3612371ddade8891251e56e6a8e79366558"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2078,
+      "sourceTriangles": 3330,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Buzz_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Buzz",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Buzz_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 835564,
+      "outputs": {
+        "actor.psx": "aefea8ce83a3e338b9fabbefecfd16a32b15e7290b982e3ebce609927405f907",
+        "conversion-report.json": "9cac27108be52630a2c4aa41d5064b116d29c4d2980de5d63663249091022cf9",
+        "suit.json": "e926fb9fa5b83da15b48ff87809559e4b7f88040a54d072c4ebc161f3846029e",
+        "textures\\diffuse.png": "7fece7fd1aec18085793da9dd22abc2441c68d1712cf042e98106d0d37093a14"
+      }
+    },
+    {
+      "key": "captain",
+      "id": "smu-captain",
+      "fbx": "costumes/captain/captain.fbx",
+      "fbxSha256": "81fc4b9dec024df81c3339c89d5892ee453febe432020be5a2db0c301057287a",
+      "textureFiles": [
+        "textures-png\\Spiderman_Captain_D.png"
+      ],
+      "textureSha256": [
+        "4fe438cf288c72c6fa246f9852ddc4a2b26533b889617a3b572165751f43b63c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1809,
+      "sourceTriangles": 3112,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman_Captain_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Captain",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman_Captain_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "ault",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman_Captain_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 791020,
+      "outputs": {
+        "actor.psx": "1adbd2b736a8383a46a2462b583c832521fda3fa1ae08db9230326075d3dfd2a",
+        "conversion-report.json": "e9a5802b0b7c2fc8e4f42a3962955ce2ee2af7faf251f18f68e55f143da2a28b",
+        "suit.json": "428bdd2c684c81e0492834a5a6856b019a9848d1328c315c6bd530115c4a240b",
+        "textures\\diffuse-1.png": "2e81fee4ec1fdb95eabbbfaa6f45210a9073de167958ec8c3e1feea06a119c16",
+        "textures\\diffuse.png": "2e81fee4ec1fdb95eabbbfaa6f45210a9073de167958ec8c3e1feea06a119c16"
+      }
+    },
+    {
+      "key": "cyborg",
+      "id": "smu-cyborg",
+      "fbx": "costumes/cyborg/cyborg.fbx",
+      "fbxSha256": "da17eebe5fe44755fd46733ad6e21ae9873b5c9b2b134f9e6f30267cfa275e7d",
+      "textureFiles": [
+        "textures-png\\Spiderman_Cyborg_D.png"
+      ],
+      "textureSha256": [
+        "8e6aa14bfe5769051c2555b548b2a2efba28d9e42ae5ea9057031dd6e119ad3f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2340,
+      "sourceTriangles": 3716,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Spiderman_Cyborg_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Cyborg",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman_Cyborg_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 851968,
+      "outputs": {
+        "actor.psx": "15ac6fec19aa5a67b532cf9f016c11599d14830703c5db20fff81f9a04e44907",
+        "conversion-report.json": "3de1352841823fc0ee922f8a325b07afbc6bdda26a372e35cf4067c513ab5702",
+        "suit.json": "127f83018b1ec337c2d2849e3d074fd0d14b9d8df175aec8361871138eb055e5",
+        "textures\\diffuse.png": "d77f0ff640f5eae111c5c3cc41e256695a148ff2cb935ce751cd046ca495c555"
+      }
+    }
+  ]
+}
