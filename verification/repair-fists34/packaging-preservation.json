@@ -1,0 +1,31 @@
+[
+  {
+    "suit": "smu-new-year-spiderman",
+    "beforeActorSha256": "0e52803ecb94fce0bfc034ae553bb5ecfe455e213a64dce08d5c0010be002726",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-newarmor",
+    "beforeActorSha256": "585c3f040c0ee931f97f190e54fdcc1fc90ef004c8520c764e38a2598ee4eba3",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-noir",
+    "beforeActorSha256": "850f703ff7e3953c4ec21f4437813545c2340c9b8203cb6250b854b2b0f18caf",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": [
+      {
+        "file": "suit.json",
+        "generatedSha256": "30e02150373397780fa1e1a2c3f6739b651ea915b6cb5309f3156d008f0f416a",
+        "retainedSha256": "28409d42db94c64a6cb576e9337cf8b8c3835c2cf111ffe63cf8943f84781124"
+      },
+      {
+        "file": "textures/diffuse.png",
+        "generatedSha256": "8a269ce60e08d2273efc05f232ee1a1654d32e163c4dc08b6ec1c3684121684e",
+        "retainedSha256": "cdb1ff4b6644446bb1f984197edf11a7aa3e4f1bfdd73d754cf1484f36d1b70a"
+      }
+    ]
+  }
+]

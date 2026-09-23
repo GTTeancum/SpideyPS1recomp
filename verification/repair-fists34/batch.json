@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch34",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "new_year_spiderman",
+    "newarmor",
+    "noir"
+  ],
+  "results": [
+    {
+      "key": "new_year_spiderman",
+      "id": "smu-new-year-spiderman",
+      "fbx": "costumes/new_year_spiderman/new_year_spiderman.fbx",
+      "fbxSha256": "7fa727fdd9946110842ed1acf7709c4dd2bf30aa6f528cb27ef2b65d56382be1",
+      "textureFiles": [
+        "textures-png\\New_Year_Spiderman_D.png"
+      ],
+      "textureSha256": [
+        "4b9e941268c3a32931b53c526cc8cede05bf5cd90f56c2ab6053a579eaa1207f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2406,
+      "sourceTriangles": 3966,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "New_Year_Spiderman_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Ultimate",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\New_Year_Spiderman_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 899764,
+      "outputs": {
+        "actor.psx": "363e817b10760c299480c5666b497570c611308ecedb101eb062df148893749e",
+        "conversion-report.json": "67e8ee1bfc39b6363da47eab8ea64deec9c50fb419adfa1b74aa7a55eb4ff231",
+        "suit.json": "2040817077e4b90fdc398ad8d35bd22814be2b0d42568099d2a7a9deb0cd830e",
+        "textures\\diffuse.png": "eb15acff919a36f5f42ef3a8cf37f5d3382d49f6997fd9d780e3e93db2088da5"
+      }
+    },
+    {
+      "key": "newarmor",
+      "id": "smu-newarmor",
+      "fbx": "costumes/newarmor/newarmor.fbx",
+      "fbxSha256": "77761d56f2ea3f89e8634040f791e74c7f05b922c50dd1f344720942800d7148",
+      "textureFiles": [
+        "textures-png\\SpidermanNewArmor_D.png"
+      ],
+      "textureSha256": [
+        "c2dcecc6fba26f48f3be57dac95652f0a5585a38c28bac3dd63fa70e1084be34"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2151,
+      "sourceTriangles": 3740,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanNewArmor_D.TGA"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "NewArmor",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanNewArmor_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 811772,
+      "outputs": {
+        "actor.psx": "415f11eb49db201e7d4367b9b00b1420f76886e1fd7322e0e60d561879f37f5b",
+        "conversion-report.json": "1a6a1485d1cab031107a97a1a63192e2343df134aca55576bc141fc07c8e19b7",
+        "suit.json": "b52671de39783a4d3dfd510227f66df75f580ac2a3cd4edae24512f1f58d9689",
+        "textures\\diffuse.png": "69d415ea8d2d59501d14d6ec0f38efc190f695eb4d22d32490e695c38fd6fc99"
+      }
+    },
+    {
+      "key": "noir",
+      "id": "smu-noir",
+      "fbx": "costumes/noir/noir.fbx",
+      "fbxSha256": "2adecc144cd1b68389abfa1384768afa186d04750b1d0c2eb528fd5044ea611b",
+      "textureFiles": [
+        "textures-png\\SpidermanNoir_D.png"
+      ],
+      "textureSha256": [
+        "222d36d41cdf29fa264738ce2342916e01481a266564c936fe519ec00f0e275f"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1792,
+      "sourceTriangles": 3565,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanNoir_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Noir",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanNoir_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 838004,
+      "outputs": {
+        "actor.psx": "b6fc2230fde290cd071b5f68c435a194502349421b2b067715c5c359e4cc1d2e",
+        "conversion-report.json": "590bb333497ed16b66ac100d7fd6b721a936658913274b7fc444eed52f25675b",
+        "suit.json": "28409d42db94c64a6cb576e9337cf8b8c3835c2cf111ffe63cf8943f84781124",
+        "textures\\diffuse.png": "cdb1ff4b6644446bb1f984197edf11a7aa3e4f1bfdd73d754cf1484f36d1b70a"
+      }
+    }
+  ]
+}

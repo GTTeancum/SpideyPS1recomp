@@ -1,0 +1,46 @@
+{
+  "suit": "smu-new-year-spiderman",
+  "level": "l5a3",
+  "executableSha256": "ba4fa17ad1a581e9b56a89cae4011e24bc578bff7e082bf7f286ad28d5cf63ea",
+  "actorSha256": "363e817b10760c299480c5666b497570c611308ecedb101eb062df148893749e",
+  "capture": "Game framebuffer; process-local input only; no desktop capture or OS input",
+  "environment": {
+    "RECOMP_CAPTURE_HIDDEN": "1",
+    "RECOMP_RENDER_SCALE": "6",
+    "SPIDEY_WIDE": "1",
+    "SPIDEY_SCRIPT_EXCLUSIVE": "1",
+    "SPIDEY_SCRIPT": "title.bmr+120:start:12;title.bmr+420:cross:12;title.bmr+720:cross:12;l5a3_t.trg+240:cross:12;l5a3_t.trg+500:down:24",
+    "SPIDEY_LEVEL": "l5a3",
+    "SPIDEY_BOOT_SKIP_UNTIL": "title.bmr",
+    "SPIDEY_SUIT_MOD_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch34\\smu-new-year-spiderman\\suits",
+    "SPIDEY_RETARGET_TRACE": "1",
+    "SPIDEY_MOD_TRACE": "1",
+    "SPIDEY_SHOT_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch34\\smu-new-year-spiderman",
+    "SPIDEY_SHOTS": "l5a3_t.trg+520",
+    "SPIDEY_CAPTURE_PRESENTED": "1",
+    "SPIDEY_EXIT": "1800",
+    "SPIDEY_LOG_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch34\\smu-new-year-spiderman",
+    "SPIDEY_STALL": "20",
+    "SPIDEY_SHOT_CROP": "1000,500,650,700"
+  },
+  "requestedView": {
+    "width": 2560,
+    "height": 1440,
+    "renderScale": 6,
+    "nativeCrop": [
+      1000,
+      500,
+      650,
+      700
+    ]
+  },
+  "exitCode": 0,
+  "slowRunWarnings": 0,
+  "seconds": 52.86000000004424,
+  "images": [
+    "frame_01606.png",
+    "frame_01606_closeup.png"
+  ],
+  "acceptance": "Capture pending visual and gameplay review",
+  "captureComplete": true
+}

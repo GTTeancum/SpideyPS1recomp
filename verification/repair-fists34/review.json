@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-new-year-spiderman",
+      "previousActorSha256": "0e52803ecb94fce0bfc034ae553bb5ecfe455e213a64dce08d5c0010be002726",
+      "actorSha256": "363e817b10760c299480c5666b497570c611308ecedb101eb062df148893749e",
+      "visualReview": "Reviewed the two native game images sequentially. New Year Spider-Man retains its patterned red-and-blue body, knit cap, scarf, boot cuff, eye lenses, and compact fists, with no detached geometry visible. No web line is visible in this running capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01606.png": "cdb0e41b9af31311859d1d1f68a29ea6db92e6eed886d9d194cb20180f7cd603",
+        "frame_01606_closeup.png": "262601ab277d81ddc0b310f091e7de9dc1e00a7929604d6d140c34b27817cd67"
+      }
+    },
+    {
+      "suit": "smu-newarmor",
+      "previousActorSha256": "585c3f040c0ee931f97f190e54fdcc1fc90ef004c8520c764e38a2598ee4eba3",
+      "actorSha256": "415f11eb49db201e7d4367b9b00b1420f76886e1fd7322e0e60d561879f37f5b",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-new-year-spiderman.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-noir",
+      "previousActorSha256": "850f703ff7e3953c4ec21f4437813545c2340c9b8203cb6250b854b2b0f18caf",
+      "actorSha256": "b6fc2230fde290cd071b5f68c435a194502349421b2b067715c5c359e4cc1d2e",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-new-year-spiderman.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-new-year-spiderman"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-new-year-spiderman\\actor.psx",
+    "smu-new-year-spiderman\\conversion-report.json",
+    "smu-newarmor\\actor.psx",
+    "smu-newarmor\\conversion-report.json",
+    "smu-noir\\actor.psx",
+    "smu-noir\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-new-year-spiderman/frame_01606.png and frame_01606_closeup.png"
+  }
+}

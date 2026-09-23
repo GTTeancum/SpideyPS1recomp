@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "new_year_spiderman",
+      "id": "smu-new-year-spiderman",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.796875,
+        6.198974609375
+      ],
+      "assetSha256": "363e817b10760c299480c5666b497570c611308ecedb101eb062df148893749e",
+      "captureSha256": "8ee10591855a957713bd249d27ad20a785a9eb9171b4f150a1b092c69ccac526"
+    },
+    {
+      "key": "newarmor",
+      "id": "smu-newarmor",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.779296875,
+        11.181396484375
+      ],
+      "assetSha256": "415f11eb49db201e7d4367b9b00b1420f76886e1fd7322e0e60d561879f37f5b",
+      "captureSha256": "1536b078acb7540868842d654b3e0288e5bb2e7506f86db90629a265457767c2"
+    },
+    {
+      "key": "noir",
+      "id": "smu-noir",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.67529296875,
+        10.0771484375
+      ],
+      "assetSha256": "b6fc2230fde290cd071b5f68c435a194502349421b2b067715c5c359e4cc1d2e",
+      "captureSha256": "a7c3557e7d8f2b2792f4f8ff68700fe420f89d02433346306bf839a6fe296353"
+    }
+  ]
+}
