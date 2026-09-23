@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-homemade",
+      "previousActorSha256": "3c3c779fd09a01c407d82c05deef9c1c47925de91afd809e93dca6960f1fa73b",
+      "actorSha256": "b3ad76a61b6990bb8c6d0c1b5e4b489fa758eede3003e5858f3fc6417b300c0c",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-india.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-houseofm",
+      "previousActorSha256": "c096a38ae0f0155844855992b9de878e72172885d8d704dc407cb8107bc146e2",
+      "actorSha256": "973a6ea819d5edcf36d9fff409398ea7e36c569a10879c05f552f44989677df1",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-india.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-india",
+      "previousActorSha256": "d4e80ed2ae03728586046e678c3a76d1a2c4a9eab672874a6ce0fcc1e2f80a67",
+      "actorSha256": "b079a408655b81641c34a41bc889061239638a00b66631e03d93dc38caf0b0ea",
+      "visualReview": "Reviewed the two native game images sequentially. India retains its layered cloth silhouette, materials and complete geometry; both visible fists are compact within the palm silhouette. Representative native silhouette evidence only; no web strand is visible, while the offline endpoint regression passes.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01606.png": "07d2e28b586b5f5df29280ec90268045e85cca483a44637549a00d96c6ba9662",
+        "frame_01606_closeup.png": "88cc0970bc1880bcf1e6fccd97784a5aaae6dac3a4e72277da95a2676f2b461a"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-india"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-homemade\\actor.psx",
+    "smu-homemade\\conversion-report.json",
+    "smu-houseofm\\actor.psx",
+    "smu-houseofm\\conversion-report.json",
+    "smu-india\\actor.psx",
+    "smu-india\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-india/frame_01606.png plus its exact close-up crop"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "homemade",
+      "id": "smu-homemade",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        0.13427734375,
+        4.536376953125
+      ],
+      "assetSha256": "b3ad76a61b6990bb8c6d0c1b5e4b489fa758eede3003e5858f3fc6417b300c0c",
+      "captureSha256": "c0939bb2c01f93b526d23802096ebc7c0e2e1d6d48a9fb1386b00c9b8c9c273c"
+    },
+    {
+      "key": "houseofm",
+      "id": "smu-houseofm",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "973a6ea819d5edcf36d9fff409398ea7e36c569a10879c05f552f44989677df1",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    },
+    {
+      "key": "india",
+      "id": "smu-india",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -1.958984375,
+        2.443115234375
+      ],
+      "assetSha256": "b079a408655b81641c34a41bc889061239638a00b66631e03d93dc38caf0b0ea",
+      "captureSha256": "d59ba9bc303440ef0a2c0c88a917a1a7ef9c9f1a640ed490264d1b888f352c30"
+    }
+  ]
+}

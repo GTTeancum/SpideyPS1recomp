@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-homemade",
+    "beforeActorSha256": "3c3c779fd09a01c407d82c05deef9c1c47925de91afd809e93dca6960f1fa73b",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-houseofm",
+    "beforeActorSha256": "c096a38ae0f0155844855992b9de878e72172885d8d704dc407cb8107bc146e2",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-india",
+    "beforeActorSha256": "d4e80ed2ae03728586046e678c3a76d1a2c4a9eab672874a6ce0fcc1e2f80a67",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]
