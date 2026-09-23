@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "spider_ninja",
+      "id": "smu-spider-ninja",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.8720703125,
+        10.274169921875
+      ],
+      "assetSha256": "9ffc784df5a93285fd429121b9eda44e39d4ced1ab8a13e00612a58b964ab165",
+      "captureSha256": "9c95fdc8ace09ef5bdbb17c473de4b8405fabcddcc62ccc6294179e87c0a49ab"
+    },
+    {
+      "key": "spider_spiner",
+      "id": "smu-spider-spiner",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.391357421875,
+        11.838134765625
+      ],
+      "assetSha256": "a37450480f97c3499530b85c1086a0d36a48be8ff60eff22941e0b35358732dd",
+      "captureSha256": "a122e7b1b2d1daaaf1efa30957b3356661e18716fb47b908af0f73c5d4c1a410"
+    },
+    {
+      "key": "spiderham_2099",
+      "id": "smu-spiderham-2099",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        134.265625,
+        145.87109375
+      ],
+      "assetSha256": "c7a4005e64bb1a96774441332054d0c2511ca82dfe8a3c4ab7e40a31c7a84f33",
+      "captureSha256": "fe5096c92620887151684a671b7a8e9e6435b54d3ea3bee1b47497899d286330"
+    }
+  ]
+}

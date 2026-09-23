@@ -1,0 +1,26 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-spider-ninja-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-spider-spiner-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-spiderham-2099-isolation",
+    "exitCode": 0
+  }
+]
