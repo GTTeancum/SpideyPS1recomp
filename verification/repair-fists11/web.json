@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "electroproof",
+      "id": "smu-electroproof",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.932861328125,
+        9.3349609375
+      ],
+      "assetSha256": "00db8217defea2d174d6d98668de191d3ee000908ba83e5204a8bc7297812dca",
+      "captureSha256": "4617f195c0d6e561faa6f8319a9513a9c105b75bfef763aaff00f71ddcfd14c3"
+    },
+    {
+      "key": "endofearth",
+      "id": "smu-endofearth",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.05859375,
+        10.460693359375
+      ],
+      "assetSha256": "0c9ea7a2573fb00a2a48d5643bbd7954fc11e85270063f38a0fb582f3053b957",
+      "captureSha256": "83fbf8b9f4d42d503beb78b28c338b0b739b219008628bd60e901b8721046720"
+    },
+    {
+      "key": "enrage_toxin",
+      "id": "smu-enrage-toxin",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.662841796875,
+        7.064697265625
+      ],
+      "assetSha256": "c445ab3ef85f7a3d464453e49e8289cd5e96f77a1d80f9bb86d9fba6c1d923c2",
+      "captureSha256": "45aa12f5103908d55c8015441c5ff22f22f2aeccbbb4cc4f6288160c04c1ef99"
+    },
+    {
+      "key": "ezekiel",
+      "id": "smu-ezekiel",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -2.319580078125,
+        2.39208984375
+      ],
+      "assetSha256": "a24ef9f27eada284972299d09a99a4196a11fd2160d39dd66ba68cb95d9536d5",
+      "captureSha256": "d01284ea6917a1e384992a446bccca338107caa191bbd7982f786924a58df16f"
+    },
+    {
+      "key": "fatherspider",
+      "id": "smu-fatherspider",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.0712890625,
+        9.4736328125
+      ],
+      "assetSha256": "c17ab5987e991c16a2d07e1abf95e21def6c1a1867834f5972c259ae7d33d9d6",
+      "captureSha256": "83b01214dc69c199b39b1962d3fc6d6b1b06ec54672e8c54a76914307c7fdb16"
+    },
+    {
+      "key": "fearitself",
+      "id": "smu-fearitself",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.72021484375,
+        6.122314453125
+      ],
+      "assetSha256": "1d66f4dfc8606118b8e048776e31454ef5352b66eaac57ef8095ade9751abc36",
+      "captureSha256": "b8b481d4c5d6cbc805f5324913393a4d14aac3b9f569ba09b3066b1144e21ce1"
+    },
+    {
+      "key": "felicityhardy",
+      "id": "smu-felicityhardy",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.751953125,
+        11.154052734375
+      ],
+      "assetSha256": "c8970846b9555f67b5d999b1d1906cafcc8c7dbcb98669666155d4ae07da5332",
+      "captureSha256": "40d2e872b3910a64e7c2f141097986a3ca2dcb0ab468397fb30bb7cdf828385e"
+    },
+    {
+      "key": "flashthompson_unmasked",
+      "id": "smu-flashthompson-unmasked",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.092529296875,
+        7.49462890625
+      ],
+      "assetSha256": "4022f066462d513ddc67a202f9e19ab25d6ad2a52bc3ec04fcf9721e743493b8",
+      "captureSha256": "71772d86bd26f4af0213228bed38a52fe85ec302e32662703347f8e07d6ed616"
+    },
+    {
+      "key": "flipside",
+      "id": "smu-flipside",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.849609375,
+        6.251708984375
+      ],
+      "assetSha256": "0efd193532011e160edf5acebf12f55ed99f88f8a2425a5705d923eb31542eab",
+      "captureSha256": "ebeac7de92df667db43fcdb7a0d115b8f0db9667635082fe673de5786786cbdf"
+    },
+    {
+      "key": "futurefoundation",
+      "id": "smu-futurefoundation",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "8d923efd5ffa769cf8f53ba28559bf2814b10d295d10cede2255d4081748aefb",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    }
+  ]
+}

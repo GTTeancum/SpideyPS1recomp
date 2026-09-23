@@ -1,0 +1,54 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-electroproof-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-endofearth-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-enrage-toxin-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-ezekiel-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-fatherspider-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-fearitself-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-felicityhardy-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-flashthompson-unmasked-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-flipside-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-futurefoundation-isolation",
+    "exitCode": 0
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "suit": "smu-electroproof",
+    "beforeActorSha256": "e3cde982573718baaab50ad3e756e70f084cb09f167bab51566749445ec874a7",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-endofearth",
+    "beforeActorSha256": "1857e91da3e7c8a063f8cacf5fc7f90b9ce729579f329b68d431abfa0af70fc6",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-enrage-toxin",
+    "beforeActorSha256": "64e36887a0cfb3391457fbe162e745b191d8acfd941794bca7d560ce4dc0d3d0",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-ezekiel",
+    "beforeActorSha256": "2b0cd8257d70efda3dc41b22529c577aadfaaef4f60f636c9de10f58d04528d7",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-fatherspider",
+    "beforeActorSha256": "fd1251d0f4db50b17ab0429863e9703948c855d9c4796ab230d81958c36e8891",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-fearitself",
+    "beforeActorSha256": "69466554d6be1822d791c00fdc0e8b8994155aba4670dbe14bd4b6a9ca24b394",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-felicityhardy",
+    "beforeActorSha256": "f8b5b1ed9076a5d45984c3f212630eaf163408760e2a070e82a1e7fa072212bb",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-flashthompson-unmasked",
+    "beforeActorSha256": "6f2d6cfa7750eb3175b49ba0ade96a1853e737739544aba23472387704826765",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-flipside",
+    "beforeActorSha256": "d4f445241837efacaf083bc7cf58f07d4471f17ea81b703ae358235081e0a884",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-futurefoundation",
+    "beforeActorSha256": "d10dfa7bffacf463d8305c165d54b91275acddb81f6e800293c117b69858454c",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]
