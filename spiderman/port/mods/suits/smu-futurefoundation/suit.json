@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-futurefoundation",
+  "name": "FUTUREFOUNDATION",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "17F8D52A": "textures/diffuse.png"
+  }
+}

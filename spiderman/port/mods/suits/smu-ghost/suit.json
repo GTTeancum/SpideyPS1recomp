@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-ghost",
+  "name": "SMU GHOST",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "27A7FC06": "textures/diffuse.png"
+  }
+}

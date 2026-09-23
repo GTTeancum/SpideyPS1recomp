@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "smu-gabrielgant",
+  "name": "SMU GABRIELGANT",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "87112632": "textures/diffuse.png",
+    "0AD39A21": "textures/diffuse-1.png"
+  }
+}

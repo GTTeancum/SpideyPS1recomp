@@ -1,0 +1,26 @@
+{
+  "batch": 8,
+  "keys": [
+    "futurefoundation",
+    "gabrielgant",
+    "ghost",
+    "girl",
+    "goblinspider",
+    "god",
+    "guardian",
+    "gwenstacy_unmasked",
+    "hammerhead",
+    "hobartbrown"
+  ],
+  "representative": "smu-gabrielgant",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed exactly two retry images: Gabriel Gant swings at 1534 and stands after landing at 1839. Cape, shoulder equipment and limbs remain visible. Swing view has native ceiling/camera clipping and the raised wrist is partly obscured; precise endpoint acceptance relies on the live hook plus offline oracle, not this image alone. Retry exits normally with one slow-run warning. Original attempt was terminated by the low-FPS watchdog and is not a successful run.",
+  "liveSwingImages": [
+    "frame_01534.png"
+  ],
+  "images": {
+    "frame_01534.png": "98f1d6925e6cda9304e42d11a46a58e83bae66bcfae199cf325292058bdbe8fd",
+    "frame_01839.png": "66913433c5961c203fac30df2e4656cff1a024e0afb1cb598fe8e51458f38067"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}

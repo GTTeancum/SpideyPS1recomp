@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "futurefoundation",
+      "id": "smu-futurefoundation",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "d10dfa7bffacf463d8305c165d54b91275acddb81f6e800293c117b69858454c",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    },
+    {
+      "key": "gabrielgant",
+      "id": "smu-gabrielgant",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.724365234375,
+        11.12646484375
+      ],
+      "assetSha256": "648c7098959c72dd7c2f1d7a7a74de44ea7e950953582f9ec9845be4ba5af518",
+      "captureSha256": "cefd3438b53499ea3d4fa99fa875f4dddc643eb7f7d8937c6b3c087df1cbb121"
+    },
+    {
+      "key": "ghost",
+      "id": "smu-ghost",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927734375,
+        9.32958984375
+      ],
+      "assetSha256": "a46761041b64bcf85ea5a58d1f49374f34f26e8e2fdc49c9be21eb857331689a",
+      "captureSha256": "16fc9e81b7522b8017e12afb9b6fca34ad6ef663c11a0b9afe7ba20aa83be098"
+    },
+    {
+      "key": "girl",
+      "id": "smu-girl",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.03271484375,
+        9.4345703125
+      ],
+      "assetSha256": "2a8984717137565d573cff70a7eb3b371d73f7e36ec1e6a59cff32ab0ea44dda",
+      "captureSha256": "4ad17a7678e49317ef4b1985af770c7414405d68ea2beac85b9b151d73fc160d"
+    },
+    {
+      "key": "goblinspider",
+      "id": "smu-goblinspider",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.682373046875,
+        8.084228515625
+      ],
+      "assetSha256": "2459d8b6cda68265b279aa279766cb2d8985b0db35e7d91aa3fd70a2a0104b37",
+      "captureSha256": "a8e0b09d112e230905f5011715fae8047c533018cd2ec91e24ed1e3bdb8f535c"
+    },
+    {
+      "key": "god",
+      "id": "smu-god",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -2.66845703125,
+        1.733642578125
+      ],
+      "assetSha256": "da7bc78ecda33cf0875bb547242ddf8b4e95dd0ec5c466c0ed2e98c0bd70590b",
+      "captureSha256": "cb931c8e5dd646e6d68199fcc2a4ae84d68c3694b110822f635e99f71e33dc7c"
+    },
+    {
+      "key": "guardian",
+      "id": "smu-guardian",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.817626953125,
+        16.9931640625
+      ],
+      "assetSha256": "46daac2330c9de5f9efdd47eaca39d4ddbf23b2797355894882f95984eafae68",
+      "captureSha256": "cdf11b761dbea0cf222014fec49271bf68cccbaea20824a4800fd57dde1e1dd6"
+    },
+    {
+      "key": "gwenstacy_unmasked",
+      "id": "smu-gwenstacy-unmasked",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.419189453125,
+        11.821044921875
+      ],
+      "assetSha256": "a5c5fe67705a023a55588de1b1b36f48721fb245aa06c9a16a8461a4351158dd",
+      "captureSha256": "0d7a6f824848075524c6f544467b89543e9890f43d19d0e1333bc2b45edf418f"
+    },
+    {
+      "key": "hammerhead",
+      "id": "smu-hammerhead",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.39794921875,
+        20.359130859375
+      ],
+      "assetSha256": "6cdd4b7afa57a4262e201e045b886f86af01048680afa42e21222e38856966e7",
+      "captureSha256": "49837f37e9335803ff458f1efcd62b444630a52a624b02aa67fb76a42ca603fd"
+    },
+    {
+      "key": "hobartbrown",
+      "id": "smu-hobartbrown",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.826904296875,
+        8.228759765625
+      ],
+      "assetSha256": "bde2623a201248573ddd55648a81e89dd27c29e892fb517d0d4079d34f7e25f2",
+      "captureSha256": "197a426e967e25174c710470d3ca0886c4bfd88cfca4af0473ef32d15487f5fb"
+    }
+  ]
+}

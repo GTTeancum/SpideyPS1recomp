@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-girl",
+  "name": "SMU GIRL",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "D971D7FD": "textures/diffuse.png"
+  }
+}

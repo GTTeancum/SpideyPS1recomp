@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-hammerhead",
+  "name": "SMU HAMMERHEAD",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "6663140B": "textures/diffuse.png"
+  }
+}

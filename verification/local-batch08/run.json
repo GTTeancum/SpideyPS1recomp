@@ -1,0 +1,33 @@
+{
+  "suit": "smu-gabrielgant",
+  "level": "l5a3",
+  "executableSha256": "25d09d4427bb2117e6055b1d541807d21c406378821d08b5686452c1e9c20f66",
+  "actorSha256": "648c7098959c72dd7c2f1d7a7a74de44ea7e950953582f9ec9845be4ba5af518",
+  "capture": "Game framebuffer; process-local input only; no desktop capture or OS input",
+  "environment": {
+    "RECOMP_CAPTURE_HIDDEN": "1",
+    "RECOMP_RENDER_SCALE": "3",
+    "SPIDEY_WIDE": "1",
+    "SPIDEY_SCRIPT_EXCLUSIVE": "1",
+    "SPIDEY_SCRIPT": "title.bmr+120:start:12;title.bmr+420:cross:12;title.bmr+720:cross:12;l5a3_t.trg+240:cross:12;l5a3_t.trg+450:cross:12;l5a3_t.trg+485:r2:120",
+    "SPIDEY_LEVEL": "l5a3",
+    "SPIDEY_BOOT_SKIP_UNTIL": "title.bmr",
+    "SPIDEY_SUIT_MOD_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\remaining-compatible\\batch-08\\live-retry\\suits",
+    "SPIDEY_RETARGET_TRACE": "1",
+    "SPIDEY_MOD_TRACE": "1",
+    "SPIDEY_SHOT_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\remaining-compatible\\batch-08\\live-retry",
+    "SPIDEY_SHOTS": "l5a3_t.trg+495,l5a3_t.trg+800",
+    "SPIDEY_CAPTURE_PRESENTED": "1",
+    "SPIDEY_EXIT": "2000",
+    "SPIDEY_LOG_DIR": "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\remaining-compatible\\batch-08\\live-retry",
+    "SPIDEY_STALL": "20"
+  },
+  "exitCode": 0,
+  "slowRunWarnings": 1,
+  "seconds": 109.29599999997299,
+  "images": [
+    "frame_01534.png",
+    "frame_01839.png"
+  ],
+  "acceptance": "Capture pending visual and gameplay review"
+}

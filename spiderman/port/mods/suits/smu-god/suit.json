@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-god",
+  "name": "SMU GOD",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "0A694374": "textures/diffuse.png"
+  }
+}
