@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch25",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "baghead",
+    "bulletpoints",
+    "civilwarpeterparker"
+  ],
+  "results": [
+    {
+      "key": "baghead",
+      "id": "smu-baghead",
+      "fbx": "costumes/baghead/baghead.fbx",
+      "fbxSha256": "5559a47482a7932120c3c5211f71e1d830cd08f1afec978ae5469a04152c2c25",
+      "textureFiles": [
+        "textures-png\\SpidermanBagHead_D.png"
+      ],
+      "textureSha256": [
+        "3d59de7ded1612d9138d33c24606c1bd4311ce5bb1d5f3cfc7a3049cc5a1021a"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1391,
+      "sourceTriangles": 2336,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanBagHead_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "BagHead",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanBagHead_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 680572,
+      "outputs": {
+        "actor.psx": "d238415bc26a0ab759f7c3897aa637a35987d22e2b55221c593a2e08c728f26a",
+        "conversion-report.json": "1982840a6dde0f78069eba7bb77a8b96348840e525094d46e5cf8cf44b1a421f",
+        "suit.json": "49f240da9b2949598f6c4b4d38bb603f5b1c6c826d581d929d9940ad81c02ab6",
+        "textures\\diffuse.png": "697374bfb55be1ba4cc84266ee8fe479ab7b197b58fbae4eac5771ee0f4191f9"
+      }
+    },
+    {
+      "key": "bulletpoints",
+      "id": "smu-bulletpoints",
+      "fbx": "costumes/bulletpoints/bulletpoints.fbx",
+      "fbxSha256": "213d8b906ac81f9a507866465363bd987ee3c7e23c3ced5b0d354068833802bc",
+      "textureFiles": [
+        "textures-png\\SpidermanBulletPoints_D.png"
+      ],
+      "textureSha256": [
+        "45fca8a696cdcb9f4703b7f02ee467c18f24d4162c7339f9c91af8d037118024"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1729,
+      "sourceTriangles": 2910,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanBulletPoints_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "BulletPoints",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanBulletPoints_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 710548,
+      "outputs": {
+        "actor.psx": "684778f4a21482d90d1bba0c375b52d0cbae4d5ac3bdecd97f8d9c84967e2bf3",
+        "conversion-report.json": "3d234f968fbbb827b3d7313c3e077832c33c4659d9150d20ce6cc0f96b2e26c1",
+        "suit.json": "437203fda3af043a2787a7ef182192304c184a786dc6da061c579981f1aa5ed3",
+        "textures\\diffuse.png": "5dbdf8a0bb474cce6f5d6ee9b5a12eccac8b185a80574cc5e9a80bf9e730405b"
+      }
+    },
+    {
+      "key": "civilwarpeterparker",
+      "id": "smu-civilwarpeterparker",
+      "fbx": "costumes/civilwarpeterparker/civilwarpeterparker.fbx",
+      "fbxSha256": "98120b9447cf698703ddf5ead294a653075b19283ccb791a9871e8c1a53a8801",
+      "textureFiles": [
+        "textures-png\\CivilWarPeterParker_D.png"
+      ],
+      "textureSha256": [
+        "6f09d80781724b39b08ae23ad66aab6bf2ce9306ac72b3b6d888753bf9656c5e"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2882,
+      "sourceTriangles": 4256,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "CivilWarPeterParker_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "CivilWarPeterParker",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\CivilWarPeterParker_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 994296,
+      "outputs": {
+        "actor.psx": "158164a70f18a30de32e99ff4ad171f8a6b53ba6cd266abc2667ef71a7c2e279",
+        "conversion-report.json": "149b1b5780a114cf873be62ef243887a8e46bdef53e2f362d6ed4b0e93b15a41",
+        "suit.json": "3b0d197c1acc47d7f50c46cf335b3f2d435d262e345e36ecaa5fd4c35dc893a3",
+        "textures\\diffuse.png": "b03c7ecb1a522d68e5eee461a4be0ad56a059708da6ebf147194b82b5a402279"
+      }
+    }
+  ]
+}

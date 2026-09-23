@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-baghead",
+    "beforeActorSha256": "cfe403e4a9fe1c706d449135abd012c50d985da4b5909db25b065113bfd43630",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-bulletpoints",
+    "beforeActorSha256": "16fe0ca3c457728adc778ceb640c62e81a27443d39c6aa8bdf1e1b51465b0b73",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-civilwarpeterparker",
+    "beforeActorSha256": "58c7b247afe752db4da84874d8ff93a5a55e87e141289c3506b9368cba9a27ae",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

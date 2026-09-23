@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "baghead",
+      "id": "smu-baghead",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.54638671875,
+        8.9482421875
+      ],
+      "assetSha256": "d238415bc26a0ab759f7c3897aa637a35987d22e2b55221c593a2e08c728f26a",
+      "captureSha256": "ba45dd0e3ab81ee4ad2a806563b4b7c3da0d3f24743a60a262c37942ac5dc6c2"
+    },
+    {
+      "key": "bulletpoints",
+      "id": "smu-bulletpoints",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.9326171875,
+        9.334716796875
+      ],
+      "assetSha256": "684778f4a21482d90d1bba0c375b52d0cbae4d5ac3bdecd97f8d9c84967e2bf3",
+      "captureSha256": "a1ff827d0ee19417d44ec310484f06db9920e82b35ec12e8c0973fc29fd54306"
+    },
+    {
+      "key": "civilwarpeterparker",
+      "id": "smu-civilwarpeterparker",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.55419921875,
+        6.034423828125
+      ],
+      "assetSha256": "158164a70f18a30de32e99ff4ad171f8a6b53ba6cd266abc2667ef71a7c2e279",
+      "captureSha256": "3881d6dbb9b40f588f1d478e35f6900c3ece8c65684f12b475ca2525c77556db"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-baghead",
+      "previousActorSha256": "cfe403e4a9fe1c706d449135abd012c50d985da4b5909db25b065113bfd43630",
+      "actorSha256": "d238415bc26a0ab759f7c3897aa637a35987d22e2b55221c593a2e08c728f26a",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-civilwarpeterparker.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-bulletpoints",
+      "previousActorSha256": "16fe0ca3c457728adc778ceb640c62e81a27443d39c6aa8bdf1e1b51465b0b73",
+      "actorSha256": "684778f4a21482d90d1bba0c375b52d0cbae4d5ac3bdecd97f8d9c84967e2bf3",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-civilwarpeterparker.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-civilwarpeterparker",
+      "previousActorSha256": "58c7b247afe752db4da84874d8ff93a5a55e87e141289c3506b9368cba9a27ae",
+      "actorSha256": "158164a70f18a30de32e99ff4ad171f8a6b53ba6cd266abc2667ef71a7c2e279",
+      "visualReview": "Reviewed the two native game images sequentially: frame_01609.png and its exact native close-up crop. Civil War Peter Parker retains the multi-material harness, pouches, armor, face and body geometry. The visible fingers are compact within the hand outline without lateral spread; the far hand is partly occluded, so this is representative silhouette evidence rather than exhaustive bilateral contact proof. The pose has no visible web strand; live web appearance is not claimed, while the separate 115-frame offline endpoint regression passes.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01609.png": "78a6d632b5be4bd3b6dc2ce97f9a39bf07a5c5135498c12989ab8148bc9adc53",
+        "frame_01609_closeup.png": "0bd7ff20d5bea24fb1ce366a69fd07137a3914f5029968d0d28062db061bbd12"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-civilwarpeterparker"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-baghead\\actor.psx",
+    "smu-baghead\\conversion-report.json",
+    "smu-bulletpoints\\actor.psx",
+    "smu-bulletpoints\\conversion-report.json",
+    "smu-civilwarpeterparker\\actor.psx",
+    "smu-civilwarpeterparker\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-civilwarpeterparker/frame_01609.png plus its exact close-up crop"
+  }
+}
