@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-mac-gargan",
+  "name": "SMU MAC GARGAN",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "67B67ED6": "textures/diffuse.png"
+  }
+}

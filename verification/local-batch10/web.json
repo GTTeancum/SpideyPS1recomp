@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "julia_carpenter",
+      "id": "smu-julia-carpenter",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.581298828125,
+        11.9833984375
+      ],
+      "assetSha256": "fb8884482879fdf3418e156758e764586c2fa879b7979c4cad4c0cba372e0d82",
+      "captureSha256": "bd078c069c97ffb25c615c96a5e7bf86706fac15fa17b99e3f5f40ec8b6d33c0"
+    },
+    {
+      "key": "knull",
+      "id": "smu-knull",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -1.71435546875,
+        6.47802734375
+      ],
+      "assetSha256": "eeefdb96ac77475150e7e36b9ba173713970f875354fbf1159601459244aaf74",
+      "captureSha256": "07b39ecd3f02fd8c423d4d3022de0aae2eeadfcbdf3a04b309c7d2394a346b58"
+    },
+    {
+      "key": "kung_fu",
+      "id": "smu-kung-fu",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.656494140625,
+        10.05859375
+      ],
+      "assetSha256": "7dc0254b53849d23cf5fd1f4103939e628cb823ba2b1aa2a6ac3ce65fde91dc0",
+      "captureSha256": "3dd1abd068976762c1695d3385bbbfff889a119090cdeea316a5f11e3b9ef7c5"
+    },
+    {
+      "key": "lana_baumgartner",
+      "id": "smu-lana-baumgartner",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.5703125,
+        10.865478515625
+      ],
+      "assetSha256": "c93903a1df4b92bb9511804e051a8a431d3a253e41b95166eb78811a2bc8504a",
+      "captureSha256": "2368a96ad89194f10b207572665c56631f00789792ad9b6c157f21d2cb474101"
+    },
+    {
+      "key": "lasher",
+      "id": "smu-lasher",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.056396484375,
+        10.200927734375
+      ],
+      "assetSha256": "92a9d31bdc383f6552ac9b24c4735aacf570e17c6e039a25d77a1bb72039ddb8",
+      "captureSha256": "a80ea2be7839488def131acd575db9cc1d099f4920b203ad2299d6141e14eefa"
+    },
+    {
+      "key": "lasher_cell",
+      "id": "smu-lasher-cell",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.430908203125,
+        10.903564453125
+      ],
+      "assetSha256": "26836dcad207c86f2630535aa47bf11b885a11e60d66f4874409fa8f8056ed30",
+      "captureSha256": "1a1638c7267a303d262e1e9606a2ed3c1bb55e41d2ebe89ed7b7fa5a50938b8a"
+    },
+    {
+      "key": "lily_hollister",
+      "id": "smu-lily-hollister",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.97607421875,
+        5.940673828125
+      ],
+      "assetSha256": "424a0358f349c088f3b05947f6189cec1c60b0084f46084bc12a2476bb8ded78",
+      "captureSha256": "7727489b625406a936879dbfac10befaa01410eb84ba479837f18c0b949aaf59"
+    },
+    {
+      "key": "lizard",
+      "id": "smu-lizard",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.244873046875,
+        9.48974609375
+      ],
+      "assetSha256": "b51e0b2ef156045ab68a56be845fd4e5ba44c5824523ba9185c53df4c4d63b06",
+      "captureSha256": "24f1eb67d56a9bad62406283fa3e310dfc1b07d68efc825eab3fc24e6423e3d7"
+    },
+    {
+      "key": "mac_gargan",
+      "id": "smu-mac-gargan",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.533203125,
+        6.935302734375
+      ],
+      "assetSha256": "1f2258690dba8b1cef19ef9b950659f82f553902e46a208b2a6d40e004e1e16d",
+      "captureSha256": "4df62058f34fd44cfbe5842e96315b81fd8e2efd7f2e0ab14de366cf61409cee"
+    },
+    {
+      "key": "mace",
+      "id": "smu-mace",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.715576171875,
+        7.117431640625
+      ],
+      "assetSha256": "fac6ff13134777cb63126d4b9080861d73495b648041fcf00a2e1adcb319dff6",
+      "captureSha256": "e354f4df3815d956de48b9250ecf94f7271e9b0415400be658c36a8367e50335"
+    }
+  ]
+}

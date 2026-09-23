@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-julia-carpenter",
+  "name": "SMU JULIA CARPENTER",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "514D904D": "textures/diffuse.png"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-lizard",
+  "name": "SMU LIZARD",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "0801E643": "textures/diffuse.png"
+  }
+}

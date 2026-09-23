@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-lily-hollister",
+  "name": "SMU LILY HOLLISTER",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "226D5CFA": "textures/diffuse.png"
+  }
+}

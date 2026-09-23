@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-lasher",
+  "name": "SMU LASHER",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "BBFFE840": "textures/diffuse.png"
+  }
+}

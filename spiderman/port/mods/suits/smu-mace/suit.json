@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-mace",
+  "name": "SMU MACE",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "92DAFD95": "textures/diffuse.png"
+  }
+}

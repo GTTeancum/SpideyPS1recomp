@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "smu-lana-baumgartner",
+  "name": "LANA BAUMGARTNER",
+  "comments": "RIG PRESERVED",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "F7620D15": "textures/diffuse.png"
+  }
+}

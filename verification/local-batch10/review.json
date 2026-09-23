@@ -1,0 +1,26 @@
+{
+  "batch": 10,
+  "keys": [
+    "julia_carpenter",
+    "knull",
+    "kung_fu",
+    "lana_baumgartner",
+    "lasher",
+    "lasher_cell",
+    "lily_hollister",
+    "lizard",
+    "mac_gargan",
+    "mace"
+  ],
+  "representative": "smu-knull",
+  "scope": "Rig/web checks and native capture completed; images still require individual visual review",
+  "visualReview": "Reviewed two captures: Knull swinging at 1534 and standing after landing at 1839. Hair, armor, skirt panels and limbs remain present. Wrist attachment is partly obscured by the head; precise endpoint correctness is from live hook and oracle. Individual finger closure is not resolved at this capture scale. Run exits normally with four low-frame-rate warnings under concurrent host load; smooth performance is not accepted.",
+  "liveSwingImages": [
+    "frame_01534.png"
+  ],
+  "images": {
+    "frame_01534.png": "b5dad655d65df2e0dcc9760cd683c1cc18f3ac4733857e0bf8f47caaf3d2a1c4",
+    "frame_01839.png": "cad2089c8f8fc85a8c6897c2dd7aca806e7d0678a7550e72d6c8e45f27f3478c"
+  },
+  "limitations": "Muted test run; audio and full campaign behavior not accepted by this fixture."
+}
