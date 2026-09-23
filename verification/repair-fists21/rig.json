@@ -1,0 +1,174 @@
+{
+  "status": "PASS",
+  "scope": "Native assets + compiled C++ runtime core + original animation decoding oracle; C# integration checks are static only. Full .NET build/game execution NOT run.",
+  "passed": 30,
+  "failed": 0,
+  "metrics": {
+    "smu-spiderham": {
+      "bones": 63,
+      "sourceControlPoints": 1278,
+      "sourceInfluences": 2149,
+      "runtimeVertices": 1280,
+      "runtimeInfluences": 2155,
+      "triangles": 2044,
+      "nativeBytes": 619652,
+      "sha256": "16a7a4e089b8fce841913194d4ee077e1584fb0ac78035277149bc6c6bbb3088",
+      "rootScale": 0.36628320813179016,
+      "unitScale": 19.161587330459145,
+      "maxLinkRelativeError": 0.0007820971077308059,
+      "maxRoundedComponentError": 0.85205078125,
+      "frames": 4196,
+      "clips": 300,
+      "testSeconds": 4.8584987000213005
+    }
+  },
+  "results": [
+    {
+      "name": "300 native clips / 4196 source frames",
+      "passed": true
+    },
+    {
+      "name": "original decoder produces nonsingular Q12 driver rotations",
+      "passed": true,
+      "minDet": 0.9987022876739502,
+      "maxDet": 1.0010902881622314
+    },
+    {
+      "name": "smu-spiderham: entire native object table including flags/XYZ preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: native animation/HIER bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: source skeleton names, parents and complete bind matrices preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: original cluster matrices and exact unnormalized weights preserved",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: every skin influence survives without template reassignment",
+      "passed": true,
+      "maxFloat32WeightError": 2.954806954669209e-08
+    },
+    {
+      "name": "smu-spiderham: every original triangle survives exactly once",
+      "passed": true,
+      "triangles": 2044
+    },
+    {
+      "name": "smu-spiderham: native packet capacity and face references valid",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: both alternate-hand packets and wrist origins identical",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: weighted source-bind reconstruction through real core",
+      "passed": true,
+      "maxNativeUnitError": 0.000244140625
+    },
+    {
+      "name": "smu-spiderham: identity native pose reproduces calibrated target rest, not donor proportions",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: finger/thumb fist pose articulated independently of wrists/body",
+      "passed": true,
+      "fingerBones": 16
+    },
+    {
+      "name": "smu-spiderham: thumb opposition retained on all authored thumb joints",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: donor arm/shoulder translations cannot produce shoulder shrug",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: animation-local root delta explicitly uses target leg ratio",
+      "passed": true,
+      "maxNativeUnitError": 0.000301361083984375,
+      "scale": 0.36628320813179016
+    },
+    {
+      "name": "smu-spiderham: A-B-A evaluation has no accumulated drift",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: host rig strip / texture relocation yields ordinary native guest asset",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: all full-resolution material textures preserve authored RGB/alpha and repeat tiles",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: every triangle retains its authored material slot",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: every native fallback matches source-derived RGB5/alpha and row order",
+      "passed": true,
+      "materials": [
+        {
+          "slot": 0,
+          "mismatchedPixels": 0
+        }
+      ]
+    },
+    {
+      "name": "smu-spiderham: native costume manifest matches loader fields",
+      "passed": true
+    },
+    {
+      "name": "smu-spiderham: all 4196 original frames pass weighted skinning and s16 packet bounds",
+      "passed": true,
+      "maxAbsLocal": 3387.11572265625,
+      "worst": null
+    },
+    {
+      "name": "smu-spiderham: all source link lengths preserved across original animations",
+      "passed": true,
+      "maxRelativeError": 0.0007820971077308059
+    },
+    {
+      "name": "smu-spiderham: native transform applied once, not double-skinned",
+      "passed": true,
+      "maxFloatError": 0.0008544921875,
+      "maxRoundedComponentError": 0.85205078125
+    },
+    {
+      "name": "smu-spiderham: truncated/corrupt rigs rejected before guest write",
+      "passed": true,
+      "malformedCases": 27
+    },
+    {
+      "name": "smu-spiderham: all conversion inputs remain hash-identical",
+      "passed": true
+    },
+    {
+      "name": "source integration: exactly one pose-ready hook and regeneration config",
+      "passed": true
+    },
+    {
+      "name": "source integration: resident validation / fists / culling update present",
+      "passed": true
+    },
+    {
+      "name": "Windows deployed native DLL is the tested-source build artifact",
+      "passed": true
+    }
+  ],
+  "inputHashes": {
+    "C:\\Programming\\SMU-Costumes\\costumes\\spiderham\\spiderham.fbx": "dd3ed0f1fa0cfc791b59e78d09729caa98b26a6239209fcda32f825d4de4cc9a",
+    "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderHam_D.png": "7da4f2e2eb7452ef3c3cddb82f2e85f4ba51856cf1d093c128bc417405165e82",
+    "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+    "C:\\Users\\smmel\\Documents\\Codex\\2026-09-22\\referenced-chatgpt-conversation-this-is-an-5\\work\\fist-repair-batch21\\suits\\smu-spiderham\\actor.psx": "16a7a4e089b8fce841913194d4ee077e1584fb0ac78035277149bc6c6bbb3088"
+  },
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb"
+}

@@ -1,0 +1,33 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-spiderham",
+      "previousActorSha256": "faef63a50e2fe22b17a36bda3ac99759bc3cbcf8c6dcd9de5cfa26bde4fec30d",
+      "actorSha256": "16a7a4e089b8fce841913194d4ee077e1584fb0ac78035277149bc6c6bbb3088",
+      "visualReview": "Reviewed the two native game images sequentially: frame_01533.png and its exact native close-up crop. Spider-Ham retains the intended short body proportions, costume materials, complete geometry and compact visible hand. The movement pose overlaps one arm with the torso, so this is short-body silhouette evidence rather than exhaustive bilateral hand-contact proof. The pose has no visible web strand; live web appearance is not claimed, while the separate 115-frame offline endpoint regression passes.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01533.png": "73be62feb0315661fa6e305c2096015362ee0ba1c083e69ec93c5b1059175905",
+        "frame_01533_closeup.png": "bbd765d9ddc1b41823b844f196376b15baa765fa06721109a2948a2e60ee5286"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-spiderham"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 962,
+  "changedFiles": [
+    "smu-spiderham\\actor.psx",
+    "smu-spiderham\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 4,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-spiderham/frame_01533.png plus its exact close-up crop"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch21",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "spiderham"
+  ],
+  "results": [
+    {
+      "key": "spiderham",
+      "id": "smu-spiderham",
+      "fbx": "costumes/spiderham/spiderham.fbx",
+      "fbxSha256": "dd3ed0f1fa0cfc791b59e78d09729caa98b26a6239209fcda32f825d4de4cc9a",
+      "textureFiles": [
+        "textures-png\\SpiderHam_D.png"
+      ],
+      "textureSha256": [
+        "7da4f2e2eb7452ef3c3cddb82f2e85f4ba51856cf1d093c128bc417405165e82"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1278,
+      "sourceTriangles": 2044,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "SpiderHam_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "spiderHam",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderHam_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 63,
+      "nativeBytes": 619652,
+      "outputs": {
+        "actor.psx": "16a7a4e089b8fce841913194d4ee077e1584fb0ac78035277149bc6c6bbb3088",
+        "conversion-report.json": "a22f38924e53c0a9a328c9b0afdefb91afb26db9912dcdd4f66bf347a3692f26",
+        "suit.json": "6467bcdb1817181024d1da575f4fedc008d5abcdd3f977798ee49666461b4b7f",
+        "textures\\diffuse.png": "112e5082692bb0439a6f57046f74fa0d7b4f71e7c20cbb7cbbd443b451ebf43b"
+      }
+    }
+  ]
+}

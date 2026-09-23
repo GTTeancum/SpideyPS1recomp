@@ -1,0 +1,19 @@
+[
+  {
+    "suit": "smu-spiderham",
+    "beforeActorSha256": "faef63a50e2fe22b17a36bda3ac99759bc3cbcf8c6dcd9de5cfa26bde4fec30d",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": [
+      {
+        "file": "suit.json",
+        "generatedSha256": "ef972c9baa75418e8878c4ee411178a3a7c015dd37c5bd10bfeed8bbbd44f26e",
+        "retainedSha256": "6467bcdb1817181024d1da575f4fedc008d5abcdd3f977798ee49666461b4b7f"
+      },
+      {
+        "file": "textures/diffuse.png",
+        "generatedSha256": "64ea2657bf8587310eecc3cac76fafff20577fd15ddeb4dc589779896401da79",
+        "retainedSha256": "112e5082692bb0439a6f57046f74fa0d7b4f71e7c20cbb7cbbd443b451ebf43b"
+      }
+    ]
+  }
+]
