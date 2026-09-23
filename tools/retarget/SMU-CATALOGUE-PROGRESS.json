@@ -285,12 +285,6 @@
   "finalAcceptance": false,
   "openIssues": [
     {
-      "id": "upstream-mesh-coverage",
-      "status": "open",
-      "finding": "Devil Spider exposed a source importer that could skip unsupported body descriptors and assign a helper mesh the body name. Its body is repaired, but structural equality to supplied FBXs alone does not prove every other original BDAE body was exported.",
-      "next": "Audit source mesh references and descriptor coverage across the remaining catalogue; investigate any missing non-helper body mesh before final acceptance."
-    },
-    {
       "id": "symbiote-tongue-pose",
       "status": "open",
       "suit": "smu-poison",

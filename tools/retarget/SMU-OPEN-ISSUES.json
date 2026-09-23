@@ -11,9 +11,10 @@
     },
     {
       "id": "upstream-mesh-coverage",
-      "status": "open",
-      "finding": "Devil Spider exposed a source importer that could skip unsupported body descriptors and assign a helper mesh the body name. Its body is repaired, but structural equality to supplied FBXs alone does not prove every other original BDAE body was exported.",
-      "next": "Audit source mesh references and descriptor coverage across the remaining catalogue; investigate any missing non-helper body mesh before final acceptance."
+      "status": "resolved",
+      "finding": "Audited graph mesh references and non-helper body counts for all 233 suits across 219 original BDAE files. No additional omitted body descriptors or body-count mismatches were found. The stock importer's known Devil Spider errors remain explicit and are accepted only with hash-checked registered repair evidence.",
+      "evidence": "verification/source-coverage/catalogue.json",
+      "resolution": "Source descriptor and body-count coverage passes. This does not replace raw skin fidelity checks or native visual acceptance."
     },
     {
       "id": "initial-material-slot-fidelity",
