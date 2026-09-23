@@ -1,0 +1,12 @@
+{
+  "suit": "smu-maniac",
+  "visualReview": "Individually inspected native frames 01574 and 01584. Side/front movement retains the long black coat, pale trim and chest motif, tan clothing, belt, black boots, gray hair and symbiote face/teeth. Both hands remain cupped with a visible opening and lifted finger tips, especially clear from the front. Hold for source-preserving closure correction. No tongue projects from the mouth in these views, and the 66-node source rig has no named tongue chain. Neither frame contains a web; no native web or tongue-pose acceptance is claimed.",
+  "tests": "All ten staged suits pass 255 structural checks, all 4196 animation frames each, 115 web frames each, managed loading and before/after isolation. All 3902 Maniac triangles and original textures survive. Numerical success does not override this visual hold.",
+  "status": "held-for-visual-correction",
+  "installed": false,
+  "actorSha256": "b253dde65c1c34035a1228690f8a8448682312d4df22ae4e46cc207678ceed99",
+  "images": {
+    "frame_01574.png": "37491987c7ae40e26f503b3d02a75c2753b3325779917c8850eb21118838d334",
+    "frame_01584.png": "1d2bb128cd4f0960646c508f27b07195bcaeea1bc2d9de90675f812d23b384ca"
+  }
+}

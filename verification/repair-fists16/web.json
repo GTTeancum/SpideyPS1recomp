@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "maniac",
+      "id": "smu-maniac",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -2.116943359375,
+        2.285400390625
+      ],
+      "assetSha256": "b253dde65c1c34035a1228690f8a8448682312d4df22ae4e46cc207678ceed99",
+      "captureSha256": "12457dc08d2968dc52a36dfb84febe5f76662aefb4addf80032ad23f8979492c"
+    },
+    {
+      "key": "maniacal_mayhem",
+      "id": "smu-maniacal-mayhem",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        2.7421875,
+        7.144287109375
+      ],
+      "assetSha256": "7f7cc13c348f81d03c5ba272b10e095bbc0496841a302281cc4f75aa90645410",
+      "captureSha256": "91cf90fbe222680afe32fb7a6ce60442e08a473c6efc42f73755c5389fd45675"
+    },
+    {
+      "key": "maskedmarvel",
+      "id": "smu-maskedmarvel",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.274169921875,
+        9.67626953125
+      ],
+      "assetSha256": "f358ff0c7319fda952348cbddd1002bc8657a7badf7434190393b7d6129caf58",
+      "captureSha256": "8c33539d9138a87a7e1fbadcce41da213e9e55f3d4fff017bb94a04d83c4d10a"
+    },
+    {
+      "key": "mattie_franklin_5",
+      "id": "smu-mattie-franklin-5",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.3896484375,
+        9.79150390625
+      ],
+      "assetSha256": "ba96da9a88c88959ac90e599c9ce8ff0617458e7c1b2af41e7c8d59b9a8d0da7",
+      "captureSha256": "d23b6168cdb8d3372567aaa574dc060d72d5136f1ff8ca2c6759c699311069e5"
+    },
+    {
+      "key": "mattie_franklin_body_suit",
+      "id": "smu-mattie-franklin-body-suit",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.59326171875,
+        11.79296875
+      ],
+      "assetSha256": "031301d16b15f3e36ecd991595ed0d2cfc4ce2e640cd68c8929d743a60493c5c",
+      "captureSha256": "f731a06bcdfd631478d70f754dd2bbf5696d9f7614030feaf192e3bd7bb344b4"
+    },
+    {
+      "key": "mattiefranklin",
+      "id": "smu-mattiefranklin",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.6416015625,
+        9.0439453125
+      ],
+      "assetSha256": "4033a4b395e5926101926873573a06665a781d2988f135212a1d8452c4d0bf39",
+      "captureSha256": "2d7e6c6314fdf6394c0fa1e144814ce4fe5e1feb78d2888990f939e70ef4cc20"
+    },
+    {
+      "key": "mayday",
+      "id": "smu-mayday",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        1.749267578125,
+        6.1513671875
+      ],
+      "assetSha256": "6d23eb107aa64835fc60ffa9f70a688b1e24c0f53be9906c8238f4826534620e",
+      "captureSha256": "eae7c60d58aba0b83661ae2e073e62c7aa78bc85a6a494074f7238bed18575bb"
+    },
+    {
+      "key": "mayhem",
+      "id": "smu-mayhem",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.837646484375,
+        8.239501953125
+      ],
+      "assetSha256": "d9ae2d84c00f5eb9e8c0f76a5bd5c24dcfd0b288e10dcca0a221cbec6ec1ddd5",
+      "captureSha256": "0bb704455698ef3215ff68739e86abb87a65183a5fa4256639abe0bd5fab7e98"
+    },
+    {
+      "key": "mayparker_unmasked",
+      "id": "smu-mayparker-unmasked",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.097412109375,
+        7.49951171875
+      ],
+      "assetSha256": "6f419765c25d50f0612a40b13b0a7be1dc5b786b1b5da3acb799d0429fa35559",
+      "captureSha256": "68d608b2f831fa3c47c5d2eaf1f318fc88dc42198e27d38b15c0ca3192857d1c"
+    },
+    {
+      "key": "mech",
+      "id": "smu-mech",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.5068359375,
+        10.908935546875
+      ],
+      "assetSha256": "53959f855caa7e0638394ab722cf774ecb751db7cf5db7315c4e5c00c01d9132",
+      "captureSha256": "2137b8f3c508b31f8c1cb353ca8c06a173dccfee973b7790f7ea516c8346b4bd"
+    }
+  ]
+}

@@ -1,0 +1,489 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch16",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "maniacal_mayhem",
+    "maskedmarvel",
+    "mattie_franklin_5",
+    "mattie_franklin_body_suit",
+    "mattiefranklin",
+    "mayday",
+    "mayhem",
+    "mayparker_unmasked",
+    "mech"
+  ],
+  "results": [
+    {
+      "key": "maniacal_mayhem",
+      "id": "smu-maniacal-mayhem",
+      "fbx": "costumes/maniacal_mayhem/maniacal_mayhem.fbx",
+      "fbxSha256": "7a252b13ee992e59ce33f0877f236e5cf05cb3dd3e2b2ea4f13b4a9aa0b3cf5b",
+      "textureFiles": [
+        "textures-png\\Maniacal_Mayhem_D.png"
+      ],
+      "textureSha256": [
+        "4fdeb76d7a11d5e74b5887ab7d6df03c77d44a50021fe8110fdef2b66f174e60"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2273,
+      "sourceTriangles": 3612,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Maniacal_Mayhem_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "_1_-_Default",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Maniacal_Mayhem_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 854688,
+      "outputs": {
+        "actor.psx": "7f7cc13c348f81d03c5ba272b10e095bbc0496841a302281cc4f75aa90645410",
+        "conversion-report.json": "8c03085013723a040561d571e695ab38d8f4ef84fa4993f54ca3c6b6f1be7767",
+        "suit.json": "392e89d0396b1d2f81808fdc7d9d0ec2386c924d3e1a77be3bd4a49fb2f8a7c5",
+        "textures\\diffuse.png": "67212d0be4b62eb5382c1389ee6caa6589c496c6cd45ea72b52bce0c4da424e0"
+      }
+    },
+    {
+      "key": "maskedmarvel",
+      "id": "smu-maskedmarvel",
+      "fbx": "costumes/maskedmarvel/maskedmarvel.fbx",
+      "fbxSha256": "946cab503334c8482b49ce0ad40de172a906ce24645ce041252746cb08034901",
+      "textureFiles": [
+        "textures-png\\SpidermanMmarvel_D.png"
+      ],
+      "textureSha256": [
+        "8ab89eca24f04270368d49cc69a9c5e3fc0a83e7b900884981ec6f420729ad48"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1570,
+      "sourceTriangles": 2634,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMmarvel_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "MaskedMarvel",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanMmarvel_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 678728,
+      "outputs": {
+        "actor.psx": "f358ff0c7319fda952348cbddd1002bc8657a7badf7434190393b7d6129caf58",
+        "conversion-report.json": "5465ed163fc3b9cd07f4adbd3f9a277afcde02b3f382758a136e5abab8a1b7b2",
+        "suit.json": "4de5288cbe3ecd708990551c11a0dd49a8485c0c9475fa02f000258376cff2a4",
+        "textures\\diffuse.png": "d3d5cfac6b7ef84c063738154300affe18f68d8d461f1cd3fc0bd97cf0e7c1ae"
+      }
+    },
+    {
+      "key": "mattie_franklin_5",
+      "id": "smu-mattie-franklin-5",
+      "fbx": "costumes/mattie_franklin_5/mattie_franklin_5.fbx",
+      "fbxSha256": "3845ca83c61374b7348a0cbd58820555a6ee344f79382269ca12e82947fe2ada",
+      "textureFiles": [
+        "textures-png\\Mattie_Franklin_5_D.png"
+      ],
+      "textureSha256": [
+        "cd41000d859725c4839bd207a008d82abfac334624ac591783da975132458a4c"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3121,
+      "sourceTriangles": 4602,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mattie_Franklin_5_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Material__88",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Mattie_Franklin_5_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1046236,
+      "outputs": {
+        "actor.psx": "ba96da9a88c88959ac90e599c9ce8ff0617458e7c1b2af41e7c8d59b9a8d0da7",
+        "conversion-report.json": "efabc3fbd21b81cee6062b12dd99fb036c2b8826bc05d8558f88430eef03b3b8",
+        "suit.json": "a37f4ab604b73093059de049d3914c61d7ba1d0511bda7a87900911f9947a791",
+        "textures\\diffuse.png": "fe0399ff25424a5365302eed317b5d6d9ee2b116bff12bdb2a3ca05481b55d2c"
+      }
+    },
+    {
+      "key": "mattie_franklin_body_suit",
+      "id": "smu-mattie-franklin-body-suit",
+      "fbx": "costumes/mattie_franklin_body_suit/mattie_franklin_body_suit.fbx",
+      "fbxSha256": "3cf6bf6550c86f2fcaa67985443595657698848201760f4a284c45139de3a96b",
+      "textureFiles": [
+        "textures-png\\Mattie_Franklin_Body_Suit_D.png"
+      ],
+      "textureSha256": [
+        "1b19dad6c37b663365e8e52bf8e2cea9fd735478e1555b14ed034db1bafaf306"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2269,
+      "sourceTriangles": 3956,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mattie_Franklin_Body_Suit_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Material__0",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Mattie_Franklin_Body_Suit_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 904776,
+      "outputs": {
+        "actor.psx": "031301d16b15f3e36ecd991595ed0d2cfc4ce2e640cd68c8929d743a60493c5c",
+        "conversion-report.json": "32aac7efb033fcd5eb3034a689afc990d772545d459add5163a14f8b91ab1a16",
+        "suit.json": "84d1628ca95940e34ce2e2115030ecf8062ce90b8d1caefc86b98f5f8545adb8",
+        "textures\\diffuse.png": "0e20e0c7e91dea50cb40ae57b3f78a2a0115102cc8047a35170d884ce99c07b1"
+      }
+    },
+    {
+      "key": "mattiefranklin",
+      "id": "smu-mattiefranklin",
+      "fbx": "costumes/mattiefranklin/mattiefranklin.fbx",
+      "fbxSha256": "47c6553fb8696e9c32ec84e3b60aac5819da647bd7b2ba26b7cea1e59854212b",
+      "textureFiles": [
+        "textures-png\\MattieFranklinWings_D.png",
+        "textures-png\\MattieFranklin_D.png"
+      ],
+      "textureSha256": [
+        "390cceec42d211dc1410be80db386f19ce3a221ace800be4517ffc4fe4be0ff7",
+        "709d012f5a64d39c7996eecf6fbff2bc8a2b3f68e9272f8e85340df0a0dea760"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2727,
+      "sourceTriangles": 4368,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MattieFranklinWings_D.tga",
+        "MattieFranklin_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "_7_-_Default123",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MattieFranklin_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          },
+          {
+            "name": "_3_-_Default654",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MattieFranklinWings_D.png",
+            "alphaBound": true,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 1
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 956700,
+      "outputs": {
+        "actor.psx": "4033a4b395e5926101926873573a06665a781d2988f135212a1d8452c4d0bf39",
+        "conversion-report.json": "fa0d8d5f565d960354ebc746b27e867f05d111c02d42c153f9272e1f47fb6ad8",
+        "suit.json": "a7515b6779d01e348ece09b96c1bf39dd3d3bcbbfdb1fa8cc2473bfb362e61ff",
+        "textures\\diffuse-1.png": "390cceec42d211dc1410be80db386f19ce3a221ace800be4517ffc4fe4be0ff7",
+        "textures\\diffuse.png": "e509c2ebf37b9f51859c552b1cf3659c3d9056d4bd0a9d7673951643361cf99d"
+      }
+    },
+    {
+      "key": "mayday",
+      "id": "smu-mayday",
+      "fbx": "costumes/mayday/mayday.fbx",
+      "fbxSha256": "864e00a22c329df1484d89320ca36daaad11ee710aba9b39120cc305e88ee5a1",
+      "textureFiles": [
+        "textures-png\\Mayday_D.png"
+      ],
+      "textureSha256": [
+        "ab9eca21c07bc04410a0212b2e787c53407a5f2af83c0683c00afe5b424929c6"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2105,
+      "sourceTriangles": 3454,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mayday_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Mayday",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Mayday_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 862968,
+      "outputs": {
+        "actor.psx": "6d23eb107aa64835fc60ffa9f70a688b1e24c0f53be9906c8238f4826534620e",
+        "conversion-report.json": "5184811e55b2623bcafd549bc32b27abccba32bc0bdbd9d2564ed06a05a88a8c",
+        "suit.json": "dbcc4b690706db9fda0b67267100a4d7e275296fa603a00dfbb006dace0cf89a",
+        "textures\\diffuse.png": "732e74dcb62bf1ea92385d845f15ce58575962adf9f96083a312bbd7a390b940"
+      }
+    },
+    {
+      "key": "mayhem",
+      "id": "smu-mayhem",
+      "fbx": "costumes/mayhem/mayhem.fbx",
+      "fbxSha256": "7d39b34848392f3bf00fa28e92d01c8565b3a99504690454dfe9547f909418de",
+      "textureFiles": [
+        "textures-png\\Mayhem_D.png"
+      ],
+      "textureSha256": [
+        "54fd41a562f97b348b8c62f09950a5e00d175b7223a829b504b826146c5c1f53"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2005,
+      "sourceTriangles": 3454,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Mayhem_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Mayhem",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Mayhem_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 866744,
+      "outputs": {
+        "actor.psx": "d9ae2d84c00f5eb9e8c0f76a5bd5c24dcfd0b288e10dcca0a221cbec6ec1ddd5",
+        "conversion-report.json": "f8fd07433f9a0fb6038a4fc97eb98731a24560cf1091c1f6e75c4f37200d3231",
+        "suit.json": "09458ea78e3be6d193e04e2d931a0648b214183f93a00dd9da4c859fbb2f6771",
+        "textures\\diffuse.png": "b26fbc52f6bf73731b20c3a14b615f69ca7ec13393e30edf6ad60ecd8d215d6e"
+      }
+    },
+    {
+      "key": "mayparker_unmasked",
+      "id": "smu-mayparker-unmasked",
+      "fbx": "costumes/mayparker_unmasked/mayparker_unmasked.fbx",
+      "fbxSha256": "02e7c62047ddcab4ff9db03b164a181d2a8026df9e4ad24e9ee392219ba4e120",
+      "textureFiles": [
+        "textures-png\\MayParker_unmasked_D.png"
+      ],
+      "textureSha256": [
+        "f2d9be757d156c455ea1cdc3fb3b4cd86c634c82428a1209b71a6f8bd0fd7cf9"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2375,
+      "sourceTriangles": 4035,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "MayParker_unmasked_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "MayParker",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\MayParker_unmasked_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 914408,
+      "outputs": {
+        "actor.psx": "6f419765c25d50f0612a40b13b0a7be1dc5b786b1b5da3acb799d0429fa35559",
+        "conversion-report.json": "d14ddeee33886dffb060c6464472ad667337762b6e2acf7ad6a48fd9fa97b62b",
+        "suit.json": "2d1141b3194fba80f96bc65bc811d7ffad57832356ee242ab351dabfff9222fc",
+        "textures\\diffuse.png": "6cddfd9aacd782e936025841d661a3c424bb6118dc114d3ed020253c8af9b59d"
+      }
+    },
+    {
+      "key": "mech",
+      "id": "smu-mech",
+      "fbx": "costumes/mech/mech.fbx",
+      "fbxSha256": "bbb6424a8e9ece55086d9339aa1919b85c037b4214a785574a942c49b073b765",
+      "textureFiles": [
+        "textures-png\\SpidermanMech_D.png"
+      ],
+      "textureSha256": [
+        "ffc50d7965768afed363610d0c4bb575da8f675641b6c68537f71c4e8339d896"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2197,
+      "sourceTriangles": 3654,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanMech_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Mech",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanMech_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 861940,
+      "outputs": {
+        "actor.psx": "53959f855caa7e0638394ab722cf774ecb751db7cf5db7315c4e5c00c01d9132",
+        "conversion-report.json": "f0fd123aa94c4b1f30db4ac68b73f28d7b160f7e654ef6180c5743f8f84fc172",
+        "suit.json": "03b5a70940d0b912f807b5152804fe81d2c896d3db081cf19e9025e35f25c79e",
+        "textures\\diffuse.png": "c56cff6adebd130f252cfe26546d8b6715c347495434595f5fb1744d9eff618f"
+      }
+    }
+  ],
+  "selection": {
+    "originalRequested": [
+      "maniac",
+      "maniacal_mayhem",
+      "maskedmarvel",
+      "mattie_franklin_5",
+      "mattie_franklin_body_suit",
+      "mattiefranklin",
+      "mayday",
+      "mayhem",
+      "mayparker_unmasked",
+      "mech"
+    ],
+    "excluded": [
+      "smu-maniac"
+    ],
+    "reason": "Native hand closure concern; held candidate not installed."
+  }
+}

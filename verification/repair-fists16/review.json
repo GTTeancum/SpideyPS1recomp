@@ -1,0 +1,118 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-maniacal-mayhem",
+      "previousActorSha256": "54e4cdd412cb7170c347afbd956d0d451ea5ee7d62a46001a942715dad9a87a4",
+      "actorSha256": "7f7cc13c348f81d03c5ba272b10e095bbc0496841a302281cc4f75aa90645410",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mattie-franklin-5, smu-mech.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-maskedmarvel",
+      "previousActorSha256": "8f1a7af3b0f7d1cc059e8903b5089c08c00556767a5c0e38405e5c0dce27cbf4",
+      "actorSha256": "f358ff0c7319fda952348cbddd1002bc8657a7badf7434190393b7d6129caf58",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mattie-franklin-5, smu-mech.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-mattie-franklin-5",
+      "previousActorSha256": "6c3dfb999a5aa511118bcf82cf4c79ed1b594660bc5a136e3cb8317218cf6c1d",
+      "actorSha256": "ba96da9a88c88959ac90e599c9ce8ff0617458e7c1b2af41e7c8d59b9a8d0da7",
+      "visualReview": "Individually inspected native frames 01583 and 01903. Rear swing and side movement retain short brown hair, magenta costume/gloves, pointed heeled boots and slender body proportions. Non-thumb fingers form a folded glove silhouette; the separate projecting thumb and opening remain visible, so this is not a tight thumb-contact claim. The swing web meets the raised glove. Bright skin lighting limits surface-detail inspection; the second view is side-facing rather than frontal. All 4602 triangles and original texture bytes are separately preserved. The run completed with one slow-run warning, not a smooth-performance acceptance.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01583.png": "c1cff402e743c1d2bfa2b3ffbd17938eda0b3562b45721135b1dce2f27cd6394",
+        "frame_01903.png": "9522a2c75088f193e257552762e843c7ad48368987d8f483f741be426825326b"
+      }
+    },
+    {
+      "suit": "smu-mattie-franklin-body-suit",
+      "previousActorSha256": "134990c727377bbff4ec5191d24998b433cb46c9e2398274cf4ec22a365a312c",
+      "actorSha256": "031301d16b15f3e36ecd991595ed0d2cfc4ce2e640cd68c8929d743a60493c5c",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mattie-franklin-5, smu-mech.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-mattiefranklin",
+      "previousActorSha256": "668c14dca7919e1ae9bcd9e72698a2f367f662f6a2c0a4b955215d6c330ace96",
+      "actorSha256": "4033a4b395e5926101926873573a06665a781d2988f135212a1d8452c4d0bf39",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mattie-franklin-5, smu-mech.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-mayday",
+      "previousActorSha256": "7cb05249f59edc7f8bd381acd868f8ec8a01c8deaeece2bce07e2e9b259eab87",
+      "actorSha256": "6d23eb107aa64835fc60ffa9f70a688b1e24c0f53be9906c8238f4826534620e",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mattie-franklin-5, smu-mech.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-mayhem",
+      "previousActorSha256": "ed1f008d62c7422965179aafce8b75de1d4530f294237ef59d60b87cbbc0316c",
+      "actorSha256": "d9ae2d84c00f5eb9e8c0f76a5bd5c24dcfd0b288e10dcca0a221cbec6ec1ddd5",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mattie-franklin-5, smu-mech.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-mayparker-unmasked",
+      "previousActorSha256": "003a23dfe136a05d804911c4b953bdf2648f482f45f5334a5e03c6eed64cf34f",
+      "actorSha256": "6f419765c25d50f0612a40b13b0a7be1dc5b786b1b5da3acb799d0429fa35559",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-mattie-franklin-5, smu-mech.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-mech",
+      "previousActorSha256": "b4c049d0bd3bc0784fb3ed0e38fe8da8ac6475b6301d26b6f0ebd71e23bef1fa",
+      "actorSha256": "53959f855caa7e0638394ab722cf774ecb751db7cf5db7315c4e5c00c01d9132",
+      "visualReview": "Individually inspected native frames 01534 and 01854. Rear swing and side movement retain the broad silver shoulder/arm armor, yellow joint details, segmented boots and red/blue body. Segmented fingers are folded with a thumb opening; reflective armor and the side view limit fine palm-contact inspection. The swing web meets the raised glove/wrist region. All 3654 triangles and original texture bytes are separately preserved by full regressions. No exhaustive contact or source-shader equivalence is claimed.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01534.png": "e77222a91d94ebeb33591e629c78d56d1de91b9bc2d4f9e3fe62823e8254cfa1",
+        "frame_01854.png": "439e838c3232a42f6b4221de583e77f0acec8c85be308d960c796493b63ec754"
+      }
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-mattie-franklin-5",
+    "smu-mech"
+  ],
+  "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast, Batty Brant and Black Cat Venom sources instead use measured per-digit source-relative closure with narrow per-hand overrides. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 946,
+  "changedFiles": [
+    "smu-maniacal-mayhem\\actor.psx",
+    "smu-maniacal-mayhem\\conversion-report.json",
+    "smu-maskedmarvel\\actor.psx",
+    "smu-maskedmarvel\\conversion-report.json",
+    "smu-mattie-franklin-5\\actor.psx",
+    "smu-mattie-franklin-5\\conversion-report.json",
+    "smu-mattie-franklin-body-suit\\actor.psx",
+    "smu-mattie-franklin-body-suit\\conversion-report.json",
+    "smu-mattiefranklin\\actor.psx",
+    "smu-mattiefranklin\\conversion-report.json",
+    "smu-mayday\\actor.psx",
+    "smu-mayday\\conversion-report.json",
+    "smu-mayhem\\actor.psx",
+    "smu-mayhem\\conversion-report.json",
+    "smu-mayparker-unmasked\\actor.psx",
+    "smu-mayparker-unmasked\\conversion-report.json",
+    "smu-mech\\actor.psx",
+    "smu-mech\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore",
+    "exitCode": 0,
+    "warnings": 9,
+    "errors": 0,
+    "scope": "Observed Windows game build for batch16, 34.40 seconds. Existing nullable-reference, unused-field and stackalloc analyzer warnings were reported; no source code was changed in this batch. Native captures use this build. Linux game execution not performed."
+  }
+}

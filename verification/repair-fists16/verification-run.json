@@ -1,0 +1,54 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-maniac-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-maniacal-mayhem-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-maskedmarvel-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mattie-franklin-5-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mattie-franklin-body-suit-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mattiefranklin-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mayday-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mayhem-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mayparker-unmasked-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-mech-isolation",
+    "exitCode": 0
+  }
+]

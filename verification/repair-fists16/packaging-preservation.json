@@ -1,0 +1,62 @@
+[
+  {
+    "suit": "smu-maniac",
+    "beforeActorSha256": "495429a11d0d45487dd4eec1701d4ea2d76744e548383c199c047fbe8c19eb5e",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-maniacal-mayhem",
+    "beforeActorSha256": "54e4cdd412cb7170c347afbd956d0d451ea5ee7d62a46001a942715dad9a87a4",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-maskedmarvel",
+    "beforeActorSha256": "8f1a7af3b0f7d1cc059e8903b5089c08c00556767a5c0e38405e5c0dce27cbf4",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mattie-franklin-5",
+    "beforeActorSha256": "6c3dfb999a5aa511118bcf82cf4c79ed1b594660bc5a136e3cb8317218cf6c1d",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mattie-franklin-body-suit",
+    "beforeActorSha256": "134990c727377bbff4ec5191d24998b433cb46c9e2398274cf4ec22a365a312c",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mattiefranklin",
+    "beforeActorSha256": "668c14dca7919e1ae9bcd9e72698a2f367f662f6a2c0a4b955215d6c330ace96",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mayday",
+    "beforeActorSha256": "7cb05249f59edc7f8bd381acd868f8ec8a01c8deaeece2bce07e2e9b259eab87",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mayhem",
+    "beforeActorSha256": "ed1f008d62c7422965179aafce8b75de1d4530f294237ef59d60b87cbbc0316c",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mayparker-unmasked",
+    "beforeActorSha256": "003a23dfe136a05d804911c4b953bdf2648f482f45f5334a5e03c6eed64cf34f",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-mech",
+    "beforeActorSha256": "b4c049d0bd3bc0784fb3ed0e38fe8da8ac6475b6301d26b6f0ebd71e23bef1fa",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]
