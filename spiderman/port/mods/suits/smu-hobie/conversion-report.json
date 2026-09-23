@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Hobie_D.png": "98ab719b9d7e5b6747c898648efe6848240b34e59d96e157b3c5b68611ec373e"
   },
-  "outputSha256": "a2239c6624b7cc9fe5b355d39507e49c1f1488e636b1ab15e90b546199373589",
+  "outputSha256": "d285121fb8a5e3ac5d32a9ad68db8ca7f4fedc23ee4101eb332f3f352e73cdc5",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -170,7 +170,7 @@
     },
     {
       "bone": "Clown001LArmDigit21",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         0.3330572932390747,
         -0.308851106112444,
@@ -188,7 +188,7 @@
     },
     {
       "bone": "Clown001LArmDigit31",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         -0.026700910134212618,
         -0.031938817633473345,
@@ -206,7 +206,7 @@
     },
     {
       "bone": "Clown001LArmDigit51",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         -0.07912180848104801,
         0.10782083475409679,
@@ -266,7 +266,7 @@
     },
     {
       "bone": "Clown001RArmDigit21",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         -0.33305653330632196,
         0.30884307635485436,
@@ -284,7 +284,7 @@
     },
     {
       "bone": "Clown001RArmDigit31",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         0.02670390003288331,
         0.03193049612230797,
@@ -302,7 +302,7 @@
     },
     {
       "bone": "Clown001RArmDigit51",
-      "angleDegrees": 60,
+      "angleDegrees": 90,
       "axisLocal": [
         0.07912589926879277,
         -0.10782961258418258,

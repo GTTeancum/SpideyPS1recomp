@@ -1,0 +1,62 @@
+[
+  {
+    "suit": "smu-hobartbrown",
+    "beforeActorSha256": "bde2623a201248573ddd55648a81e89dd27c29e892fb517d0d4079d34f7e25f2",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-hobie",
+    "beforeActorSha256": "a2239c6624b7cc9fe5b355d39507e49c1f1488e636b1ab15e90b546199373589",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-homemade",
+    "beforeActorSha256": "feba808d52c9b726d6628c72a4e06a49f89cf241058f6d5ed66386a0f4fc792e",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-hornet",
+    "beforeActorSha256": "825a5a9a202cb87e53e23130d0ab017e35788ea62522bb11c4f12d1ee261eafe",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-houseofm",
+    "beforeActorSha256": "2c33a04f3217734b2b1752317c37aeb1fb8e6f95b46ca959089ddbadb8aa5e35",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-hunter-arana",
+    "beforeActorSha256": "4e03f2559e0f774da74430ec7a2c2b745623df7874648360fac7f653451a7b1e",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-ichor",
+    "beforeActorSha256": "c015c5b2b02cf3cdbd544c5d7c4d7cab00291e4f330886664327f289706f130b",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-iguana",
+    "beforeActorSha256": "35452c646e093cf6d93c49df7418aef4fa2274b06121f2e9e986525e94aae2ab",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-india",
+    "beforeActorSha256": "f70cb7b1e81a8a16f44cb5b3fa202ae2f44446901ed77fe6aab8997685295f83",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-ironspider",
+    "beforeActorSha256": "d819e9111c5d002552f8ce165ef6a280da78fbf9bdafe85d1746a811d6357dd6",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

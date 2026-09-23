@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 10,
+  "requested": 10,
+  "results": [
+    {
+      "key": "hobartbrown",
+      "id": "smu-hobartbrown",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.826904296875,
+        8.228759765625
+      ],
+      "assetSha256": "54ef06aeacf9ef60e1ab0c5e4952f069828281de67a6985cd85ff7a9072b4134",
+      "captureSha256": "197a426e967e25174c710470d3ca0886c4bfd88cfca4af0473ef32d15487f5fb"
+    },
+    {
+      "key": "hobie",
+      "id": "smu-hobie",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.246337890625,
+        10.6484375
+      ],
+      "assetSha256": "d285121fb8a5e3ac5d32a9ad68db8ca7f4fedc23ee4101eb332f3f352e73cdc5",
+      "captureSha256": "22dee8a241af2240bb9a556018b45972eaa43f197bdcc051c87429333e329b83"
+    },
+    {
+      "key": "homemade",
+      "id": "smu-homemade",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        0.13427734375,
+        4.536376953125
+      ],
+      "assetSha256": "3c3c779fd09a01c407d82c05deef9c1c47925de91afd809e93dca6960f1fa73b",
+      "captureSha256": "c0939bb2c01f93b526d23802096ebc7c0e2e1d6d48a9fb1386b00c9b8c9c273c"
+    },
+    {
+      "key": "hornet",
+      "id": "smu-hornet",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.61328125,
+        11.015380859375
+      ],
+      "assetSha256": "b7a7609304b923ced21c9d892616e30632e21b41de0e27b9dcb007e0be7a0854",
+      "captureSha256": "93463f7d4f0c9e76efc7103baad32b01ca2aa5b0f70a1622f989b0edff5f9a4a"
+    },
+    {
+      "key": "houseofm",
+      "id": "smu-houseofm",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "c096a38ae0f0155844855992b9de878e72172885d8d704dc407cb8107bc146e2",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    },
+    {
+      "key": "hunter_arana",
+      "id": "smu-hunter-arana",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.27490234375,
+        7.59619140625
+      ],
+      "assetSha256": "e7e48f314965d8c6d19df668eca9ece2cba4e6801a9393de22db412fc0c4f402",
+      "captureSha256": "059585d95aaf23b5235a7229e118578033592e46d00b4430408f0cddac4e11ec"
+    },
+    {
+      "key": "ichor",
+      "id": "smu-ichor",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.170654296875,
+        9.61767578125
+      ],
+      "assetSha256": "0c0cec04412edc4875b7142d27c4edbda9b2d7d3eebc20f4932bc7a665ecc0a3",
+      "captureSha256": "1a291584b91158a54f6dc03ec5c1695385d1dc4704e1dcd30089f1fdcf266e93"
+    },
+    {
+      "key": "iguana",
+      "id": "smu-iguana",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        8.595703125,
+        12.99755859375
+      ],
+      "assetSha256": "9bd48530f861c53da8f28bbd330e0d5c1401b86485a3dc6aa11852de725f140d",
+      "captureSha256": "eea51a45af916140be91535fc1d8f92292f909fd60c8311fd4aa8e691d176c95"
+    },
+    {
+      "key": "india",
+      "id": "smu-india",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -1.958984375,
+        2.443115234375
+      ],
+      "assetSha256": "d4e80ed2ae03728586046e678c3a76d1a2c4a9eab672874a6ce0fcc1e2f80a67",
+      "captureSha256": "d59ba9bc303440ef0a2c0c88a917a1a7ef9c9f1a640ed490264d1b888f352c30"
+    },
+    {
+      "key": "ironspider",
+      "id": "smu-ironspider",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.927001953125,
+        9.3291015625
+      ],
+      "assetSha256": "b09b8dfe64d17adcda27f6972f9c2932b398cc0501d001cf7125d6aa321a3c9a",
+      "captureSha256": "974ebb05e4b28073b8b62722627f2af53a579a91bfc6d3d5ca2ee26685ecd1cb"
+    }
+  ]
+}
