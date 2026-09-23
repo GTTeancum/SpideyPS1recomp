@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "1602",
+      "id": "smu-1602",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.144775390625,
+        9.546630859375
+      ],
+      "assetSha256": "ceb8d5398eb7287429ec4bd8c464adf3720e923c4420b4cf100aa7863ba98b24",
+      "captureSha256": "ce07e480ffb7b44c11660d95dfda54ebffdbab94053aba0ef31e81ccce4f8cad"
+    },
+    {
+      "key": "2099",
+      "id": "smu-2099",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        4.932861328125,
+        9.3349609375
+      ],
+      "assetSha256": "fd73ac930f4a50e2d1582674e0bfe6571b7bcc16a3300863c48b78feace3748c",
+      "captureSha256": "570adf93c3ecac5f2d3f2e574669b3e36bb13883cc66897388a1e7cc24942c15"
+    },
+    {
+      "key": "2099_new",
+      "id": "smu-2099-new",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.95654296875,
+        8.3583984375
+      ],
+      "assetSha256": "cf79382838178814d69392fa3201e44355fb1aa53ad0386ecb32d021414f0204",
+      "captureSha256": "f0f76a596e63c8a13c8ad941f0a07f34e67e40eb827fa5e8c893d98a4206f17a"
+    }
+  ]
+}

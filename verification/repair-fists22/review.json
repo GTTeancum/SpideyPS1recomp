@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-1602",
+      "previousActorSha256": "eb93848a65cbc4bfe2a6c105e432d07d37a4658d75ed524ada95195e414a979a",
+      "actorSha256": "ceb8d5398eb7287429ec4bd8c464adf3720e923c4420b4cf100aa7863ba98b24",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2099.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-2099",
+      "previousActorSha256": "2ab58329af29c7309e31fedf0c0d0a81eacb008ff76ef67dcd358feaf612c724",
+      "actorSha256": "fd73ac930f4a50e2d1582674e0bfe6571b7bcc16a3300863c48b78feace3748c",
+      "visualReview": "Reviewed the two native game images sequentially: frame_01606.png and its exact native close-up crop. The 2099 body, materials and authored long forearm claws remain intact. Both visible hands are compact under the palm-width closure; its documented 65-degree third-phalanx clearance policy does not create lateral finger spread. This is representative native silhouette evidence, not exhaustive contact proof. The pose has no visible web strand; live web appearance is not claimed, while the separate 115-frame offline endpoint regression passes.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01606.png": "b84a220df190d6076c2a0c69745051f015edd4d6d164ebd7fb284fe1f930af0b",
+        "frame_01606_closeup.png": "9e86597e23983630a1db5dcc836c501d3a86a8887d07dbad513465306afda2a9"
+      }
+    },
+    {
+      "suit": "smu-2099-new",
+      "previousActorSha256": "26895db6b783e93c6e2e09039dd114d1b7241948e21f7d215affda09b48a5122",
+      "actorSha256": "cf79382838178814d69392fa3201e44355fb1aa53ad0386ecb32d021414f0204",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-2099.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-2099"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-1602\\actor.psx",
+    "smu-1602\\conversion-report.json",
+    "smu-2099-new\\actor.psx",
+    "smu-2099-new\\conversion-report.json",
+    "smu-2099\\actor.psx",
+    "smu-2099\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-2099/frame_01606.png plus its exact close-up crop"
+  }
+}

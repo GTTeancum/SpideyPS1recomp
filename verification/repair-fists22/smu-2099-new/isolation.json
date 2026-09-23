@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "Offline before/after pose isolation; not visual fist or clipping acceptance. Candidate not installed.",
+  "beforeSha256": "26895db6b783e93c6e2e09039dd114d1b7241948e21f7d215affda09b48a5122",
+  "afterSha256": "cf79382838178814d69392fa3201e44355fb1aa53ad0386ecb32d021414f0204",
+  "animationBankSha256": "6152b201afddd9dc9c6d277f7b8c744fe639a6912c70a9f508d6737adf2c2bdb",
+  "frames": 4196,
+  "changedBones": [
+    "Clown001LArmDigit21",
+    "Clown001LArmDigit22",
+    "Clown001LArmDigit31",
+    "Clown001LArmDigit32",
+    "Clown001LArmDigit51",
+    "Clown001LArmDigit52",
+    "Clown001RArmDigit21",
+    "Clown001RArmDigit22",
+    "Clown001RArmDigit31",
+    "Clown001RArmDigit32",
+    "Clown001RArmDigit51",
+    "Clown001RArmDigit52"
+  ],
+  "unaffectedBones": 54,
+  "unaffectedVertices": 1572,
+  "maxUnaffectedBoneError": 0.0,
+  "maxUnaffectedVertexError": 0.0,
+  "maxChangedVertexComponent": 194.00726318359375,
+  "sourceBindWeightsGeometryPacketsAndNonFistProvenanceUnchanged": true,
+  "maxDerivedMatrixSerializationError": 0.0,
+  "derivedMatricesBitExact": true
+}
