@@ -1,0 +1,62 @@
+[
+  {
+    "suit": "smu-ironspider-unmasked",
+    "beforeActorSha256": "bb04bb74d99aa2e24c7ffbc5cec695bcc453636f42f827faab2395c9e9b35d07",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-ironspidernew",
+    "beforeActorSha256": "9f6f7f120d255bb97100c92665a79d474b769b48ac6914c4069eadcc644189b0",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-ironspidernewwithtentackles",
+    "beforeActorSha256": "c94dc3efb4884f26149cda3fce8844c07b11bf415d70f480322d7aaef51ed255",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-izumi",
+    "beforeActorSha256": "9fcd785fb95ec4c193dbe889c62c8c856127048b3e4ffcb30f43e0ee47306260",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-jessica-drew",
+    "beforeActorSha256": "75bd02ccc1fe5ad5f40a217817aee477dc73a0b993f2aaec8a58fa56dbeea044",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-julia-carpenter",
+    "beforeActorSha256": "fb8884482879fdf3418e156758e764586c2fa879b7979c4cad4c0cba372e0d82",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-knull",
+    "beforeActorSha256": "eeefdb96ac77475150e7e36b9ba173713970f875354fbf1159601459244aaf74",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-kung-fu",
+    "beforeActorSha256": "7dc0254b53849d23cf5fd1f4103939e628cb823ba2b1aa2a6ac3ce65fde91dc0",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-lana-baumgartner",
+    "beforeActorSha256": "c93903a1df4b92bb9511804e051a8a431d3a253e41b95166eb78811a2bc8504a",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-lasher",
+    "beforeActorSha256": "92a9d31bdc383f6552ac9b24c4735aacf570e17c6e039a25d77a1bb72039ddb8",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

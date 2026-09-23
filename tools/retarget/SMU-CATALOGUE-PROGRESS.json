@@ -4,7 +4,7 @@
   "batchVerified": 233,
   "remainingUnconverted": 0,
   "awaitingBatchAcceptance": [],
-  "offlineChecks": 8535,
+  "offlineChecks": 8790,
   "animationFrames": 977668,
   "offlineSwingFrames": 26795,
   "structuralBlockers": [],
@@ -305,7 +305,7 @@
       "id": "visual-fist-closure",
       "status": "open",
       "finding": "Weighted finger reach contracts under the fist policy, but several native captures show claw-like or incompletely closed free hands. Numeric contraction is not proof of a visually closed fist. Devil Spider's measurement now passes after recovering its actual body. Black Suit Swiney Girl still has no vertices predominantly weighted to the selected distal joints, leaving a metric coverage gap, not proof that preserved weights are damaged.",
-      "evidence": "verification/repair-fists13/review.json",
+      "evidence": "verification/repair-fists14/review.json",
       "nativeReviewedRepairs": [
         "smu-amazing-spider",
         "smu-spiderham",
@@ -331,8 +331,12 @@
         "smu-god",
         "smu-gabrielgant",
         "smu-iguana",
-        "smu-hornet"
+        "smu-hornet",
+        "smu-ironspidernewwithtentackles",
+        "smu-lasher",
+        "smu-izumi"
       ],
+      "batch14AppendageReview": "Iron Spider's mechanical-arm variant retains all four back arms and all 4830 triangles. Its preserved 66-node source rig has no independent mechanical-arm chains; this update does not invent articulation. Izumi retains all 5356 triangles and the long back appendages, with bright lighting limiting fine finger review. Lasher's front/side frames show folded fingers with authored claws. See verification/repair-fists14/review.json for per-view limits.",
       "batch13OccludedHandReview": "Ichor's native rear/side views verify the retained armor and large appendage silhouette but obscure most hand surfaces. Its completed finger-policy update has full structural, animation, web and pose-isolation evidence, not clear native fist-contact proof. Iguana and Hornet provide visible folded-hand representatives for this batch. See verification/repair-fists13/review.json.",
       "batch10SourceLimitation": "Doppleganger retains all six visible arms and 4286 triangles, but its preserved 62-node rig has only two arm/palm chains and no independent extra-arm finger chains. Native swing and rear movement show folded primary fingers and open extra-hand claws. Independent extra-arm animation/closure is not accepted or fabricated by this finger-only repair.",
       "additionalHeldBatches": [
@@ -390,7 +394,7 @@
         "diagnosis": "Source-weighted digit tracing identifies the sideways tips as the index and little fingers. Their source spread survives shared-axis flexion. A source-relative aiming experiment reduces that spread without changing bind/weights/lengths, but completed native closeups still show a gap rather than a closed fist. Both candidates remain uninstalled despite passing all 55 structural checks, 4196-frame animation/isolation checks, 115-frame web checks and managed loading. Completed captures show jumping rather than swinging, so they are not live web-endpoint proof. Next: refine distal closure toward the palm and check for penetration before installation.",
         "finding": "The original rejected staging and first aiming experiment remain historical and uninstalled. Arana Gymnast was repaired separately in repair-fists04. The other nine suits were regenerated, fully reverified and installed in repair-fists05, with source-hash-guarded per-digit Batty Brant closure and individually reviewed native swing/crop pairs for Batty Brant and Baghead. No suits remain held from this batch. These representative views are not exhaustive contact/collision acceptance."
       },
-      "progress": "Ninety-one production actors now have verified finger-policy updates after full animation, web, loading and isolation checks. Batch13 adds ten updates with individually reviewed native Ichor, Iguana and Hornet frames. Iguana retains its full tail and crest; Hornet and Ichor retain their large equipment/armor pieces. Ichor's hand surfaces remain occluded in these views. Earlier paged, recovered-body, material and tongue repairs remain intact. Ordinary Carnage and Swiney Girl remain held. Black Cat Venom retains separate hand settings; Arana Gymnast and Batty Brant retain targeted right-hand corrections. The original 2099 meshes retain eased distal flexion; other updated suits use tighter base curl. Authored claws, thumb opposition, names and texture bytes remain intact. The other 142 suits await the follow-up finger pass. Policy rollout counts are not final per-suit visual/contact acceptance.",
+      "progress": "101 production actors now have verified finger-policy updates after full animation, web, loading and isolation checks. Batch14 adds ten updates with individually reviewed native Iron Spider mechanical-arm, Lasher and Izumi frames. Earlier paged, recovered-body, material and tongue repairs remain intact. Ordinary Carnage and Swiney Girl remain held. Black Cat Venom retains separate hand settings; Arana Gymnast and Batty Brant retain targeted right-hand corrections. The original 2099 meshes retain eased distal flexion; other updated suits use tighter base curl. Authored claws, thumb opposition, names and texture bytes remain intact. The other 132 suits await the follow-up finger pass. Policy rollout counts are not final per-suit visual/contact acceptance.",
       "next": "Roll the verified base-curl repair through the remaining catalogue in small tested batches. Preserve earlier material, tongue and source-body repairs. Use complete anatomical geometry, not packet-5-only close-ups, and retain at most two native images per representative."
     },
     {
@@ -1736,6 +1740,138 @@
     {
       "repairs": [
         {
+          "suit": "smu-ironspider-unmasked",
+          "previousActorSha256": "bb04bb74d99aa2e24c7ffbc5cec695bcc453636f42f827faab2395c9e9b35d07",
+          "actorSha256": "e59e5e925e151b279ac876c5b14a33b1f963239da2419fd9169d3b1ac0bca839",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-izumi, smu-lasher, smu-ironspidernewwithtentackles.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-ironspidernew",
+          "previousActorSha256": "9f6f7f120d255bb97100c92665a79d474b769b48ac6914c4069eadcc644189b0",
+          "actorSha256": "ee6f17ab861fb0b8d824f494712bccedbf5bf33d7e7744d9b33c54a748a2d463",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-izumi, smu-lasher, smu-ironspidernewwithtentackles.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-ironspidernewwithtentackles",
+          "previousActorSha256": "c94dc3efb4884f26149cda3fce8844c07b11bf415d70f480322d7aaef51ed255",
+          "actorSha256": "b9d22da25120b661cb13fe98f517e5cdc0c44902fec1e0277e766176c516a96a",
+          "visualReview": "Individually inspected native frames 01558 and 01878. Rear swing and side-facing movement retain the full red/blue/gold body and all four mechanical back arms with their gold tips. The free glove in the swing and opposite glove in the side view have folded fingers with thumb openings. The web meets the raised-hand region, partly overlapped by a mechanical arm. The preserved 66-node rig has standard body/primary arm chains and web controls, but no independent mechanical-arm chains; no new articulation is invented. All 4830 triangles, source weights and original textures remain intact. A brown overhead scene surface fills part of the top edge in the swing without hiding the suit; whole-scene correctness and exhaustive appendage/body contact are not claimed.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01558.png": "e3aa17fd413de22ecb5ac4764852e37621e00ead14e99973e1c18f5b8258e350",
+            "frame_01878.png": "4370b182fe16fa9ee0d6b85ba1158f8b7b077e58d3ae3a9faf4596624e7ed926"
+          }
+        },
+        {
+          "suit": "smu-izumi",
+          "previousActorSha256": "9fcd785fb95ec4c193dbe889c62c8c856127048b3e4ffcb30f43e0ee47306260",
+          "actorSha256": "e3bab0dc649b648fc2281b1d513358c05b5bd87e3628b5ccf9dab6560567d75c",
+          "visualReview": "Individually inspected native frames 01582 and 01902. Rear swing and side-facing movement retain the long gray hair, web-patterned body, torn dark trousers, bare feet and long pointed back appendages. The rear view exposes the four appendages; some overlap in the side view. Free and side-view hands have folded silhouettes with exposed thumbs, but bright skin lighting limits fine finger-surface inspection. The web reaches the raised-hand region with appendage overlap limiting endpoint precision. All 5356 triangles and original texture bytes are preserved; full-animation isolation leaves 3264 unaffected vertices exactly unchanged. These two frames do not establish exhaustive palm contact, independent back-appendage articulation or all-pose intersections.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01582.png": "8f2b18a2e8dcd55bb6465744367e536d7f6370cb6d2b62ae268b166172dd8fba",
+            "frame_01902.png": "74a1df900985fbe9d857f9987c5d6c76be227a2ddc48f8a59209c223a6e6347c"
+          }
+        },
+        {
+          "suit": "smu-jessica-drew",
+          "previousActorSha256": "75bd02ccc1fe5ad5f40a217817aee477dc73a0b993f2aaec8a58fa56dbeea044",
+          "actorSha256": "101223ffc965b435b49a015088e1e2b743c6110c39d4ae1576eef60d6e4d793d",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-izumi, smu-lasher, smu-ironspidernewwithtentackles.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-julia-carpenter",
+          "previousActorSha256": "fb8884482879fdf3418e156758e764586c2fa879b7979c4cad4c0cba372e0d82",
+          "actorSha256": "f9eb28e5a70abab68fd4fff642497084725c0b5db9c31f6758dd719434dbe1ea",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-izumi, smu-lasher, smu-ironspidernewwithtentackles.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-knull",
+          "previousActorSha256": "eeefdb96ac77475150e7e36b9ba173713970f875354fbf1159601459244aaf74",
+          "actorSha256": "0aec00d8a2d1a18eb620d1c2357144d7dd68dffd80f59b7e4f427211d6d47037",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-izumi, smu-lasher, smu-ironspidernewwithtentackles.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-kung-fu",
+          "previousActorSha256": "7dc0254b53849d23cf5fd1f4103939e628cb823ba2b1aa2a6ac3ce65fde91dc0",
+          "actorSha256": "293285aa9e945dd2cd866f919ba6c2d5a42e64009d129ea3d7b059a4606bb2de",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-izumi, smu-lasher, smu-ironspidernewwithtentackles.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-lana-baumgartner",
+          "previousActorSha256": "c93903a1df4b92bb9511804e051a8a431d3a253e41b95166eb78811a2bc8504a",
+          "actorSha256": "83a31a0ccb07a9f3ec1307a15ef9eca63b0cc31fe829a34f8f6c976a5ece9f45",
+          "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-izumi, smu-lasher, smu-ironspidernewwithtentackles.",
+          "individuallyCaptured": false,
+          "images": {}
+        },
+        {
+          "suit": "smu-lasher",
+          "previousActorSha256": "92a9d31bdc383f6552ac9b24c4735aacf570e17c6e039a25d77a1bb72039ddb8",
+          "actorSha256": "1211f0b45647ea773660c72da2a5306c6515dcea712957a3c1791003db83db35",
+          "visualReview": "Individually inspected native frames 01596 and 01606. Side and front movement retain the green body, pale upper markings, black facial pattern and dark finger/toe claws. Both hands visibly have folded fingers while retaining pointed claws and thumb openings. Neither frame contains a web, so these are not live endpoint proof. No tongue is exposed in these views, and the preserved source rig has no named tongue chain; no tongue-placement acceptance is claimed. All 3452 triangles, source weights and original texture bytes are retained by the regression gates. These two views do not establish exhaustive palm contact or claw/body intersections.",
+          "individuallyCaptured": true,
+          "images": {
+            "frame_01596.png": "8415c2c97851c0c19cd11a09b2f63ac7bc316b835d754425aef671858c19c784",
+            "frame_01606.png": "f8dd0bce7a5b4a09d41fe37a7d2f0cff2567256fb88012e4871e2fad8c4c140c"
+          }
+        }
+      ],
+      "managedLoaderExitCode": 0,
+      "representatives": [
+        "smu-izumi",
+        "smu-lasher",
+        "smu-ironspidernewwithtentackles"
+      ],
+      "scope": "Pose-only finger repair: ordinary base curl from 60 to 90 degrees; the hash-guarded Arana Gymnast, Batty Brant and Black Cat Venom sources instead use measured per-digit source-relative closure with narrow per-hand overrides. Thumb opposition unchanged; the two original 2099 claw meshes use eased 65-degree distal flexion, others retain 85. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+      "previousFilesUnchanged": 944,
+      "changedFiles": [
+        "smu-ironspider-unmasked\\actor.psx",
+        "smu-ironspider-unmasked\\conversion-report.json",
+        "smu-ironspidernew\\actor.psx",
+        "smu-ironspidernew\\conversion-report.json",
+        "smu-ironspidernewwithtentackles\\actor.psx",
+        "smu-ironspidernewwithtentackles\\conversion-report.json",
+        "smu-izumi\\actor.psx",
+        "smu-izumi\\conversion-report.json",
+        "smu-jessica-drew\\actor.psx",
+        "smu-jessica-drew\\conversion-report.json",
+        "smu-julia-carpenter\\actor.psx",
+        "smu-julia-carpenter\\conversion-report.json",
+        "smu-knull\\actor.psx",
+        "smu-knull\\conversion-report.json",
+        "smu-kung-fu\\actor.psx",
+        "smu-kung-fu\\conversion-report.json",
+        "smu-lana-baumgartner\\actor.psx",
+        "smu-lana-baumgartner\\conversion-report.json",
+        "smu-lasher\\actor.psx",
+        "smu-lasher\\conversion-report.json"
+      ],
+      "originalManifestAndTextureBytesPreserved": true,
+      "build": {
+        "status": "PASS",
+        "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet -p:EnableSourceControlManagerQueries=false -p:IncludeSourceRevisionInInformationalVersion=false",
+        "exitCode": 0,
+        "warnings": 0,
+        "errors": 0,
+        "scope": "Observed Windows game build for batch14, 1.77 seconds. Native captures use the matching game DLL. Linux game execution not performed."
+      }
+    },
+    {
+      "repairs": [
+        {
           "suit": "smu-gwenom",
           "previousActorSha256": "6cce60683532b5e9c7ceaf44fa9f1862f2cf303635fafa2e4fbdb6a1082071f6",
           "actorSha256": "426859aa761bcc4684b5314688f469ba009cc9cef30a33b83fe7830f8a3861a8",
@@ -1847,8 +1983,8 @@
       "batty_brant": "source-relative-digit-closure-v1",
       "blackcatvenom": "source-relative-digit-closure-v1"
     },
-    "updatedInstalled": 91,
-    "remaining": 142,
+    "updatedInstalled": 101,
+    "remaining": 132,
     "suits": [
       "smu-1602",
       "smu-2099",
@@ -1939,6 +2075,16 @@
       "smu-iguana",
       "smu-india",
       "smu-ironspider",
+      "smu-ironspider-unmasked",
+      "smu-ironspidernew",
+      "smu-ironspidernewwithtentackles",
+      "smu-izumi",
+      "smu-jessica-drew",
+      "smu-julia-carpenter",
+      "smu-knull",
+      "smu-kung-fu",
+      "smu-lana-baumgartner",
+      "smu-lasher",
       "smu-other",
       "smu-spiderham"
     ],
