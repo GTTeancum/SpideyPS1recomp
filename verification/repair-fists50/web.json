@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "ultimate_spiderham",
+      "id": "smu-ultimate-spiderham",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        134.111572265625,
+        145.716796875
+      ],
+      "assetSha256": "1c6edaeb8bf1a0f3ad2f7988d5297b4d9d8041af9f90edac449c2289ee07cf99",
+      "captureSha256": "fcf1a82484a713d094909e3fbd466bd9498fde08e9b6fdb7f798ba9db84c560e"
+    },
+    {
+      "key": "uncleb",
+      "id": "smu-uncleb",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        7.73291015625,
+        12.135009765625
+      ],
+      "assetSha256": "a50a73dcbc2579e22e0245847e438c93cc6be307b668097266558494cce17537",
+      "captureSha256": "d99fb5cd190224cea5c32a64aabdf3628db03a3708350d6f5316c0373bbabb3e"
+    },
+    {
+      "key": "wallace_jackson",
+      "id": "smu-wallace-jackson",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        5.772216796875,
+        10.218994140625
+      ],
+      "assetSha256": "de9460718f45523dd0fe4b6eeda3da216c5a86b6c3d953775dfe9bf3e76d1fa2",
+      "captureSha256": "0ddbf4f2805deafefdcc9d8301e9e46aef39b3776360538a139609798a99347f"
+    }
+  ]
+}
