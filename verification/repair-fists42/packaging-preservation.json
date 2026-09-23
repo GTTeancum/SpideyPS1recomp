@@ -1,0 +1,20 @@
+[
+  {
+    "suit": "smu-native-american",
+    "beforeActorSha256": "5e49afb2c41d7b7831de94f154614cff9cad7870d5448204e1bc00de1b01b43a",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-nickfury",
+    "beforeActorSha256": "68ab67b033ed1e45960ef3d04f205d784bb12170dd0a1e9dc14f67ff028d027c",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  },
+  {
+    "suit": "smu-peter-porker-unmasked",
+    "beforeActorSha256": "ede0d6805348f30fb9b6613a940ab8e57096aa4ce453827ab121b8478181bb05",
+    "manifestSemanticsAndDecodedPixelsIdentical": true,
+    "retainedFiles": []
+  }
+]

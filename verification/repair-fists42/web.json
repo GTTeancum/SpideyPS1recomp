@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 3,
+  "requested": 3,
+  "results": [
+    {
+      "key": "native_american",
+      "id": "smu-native-american",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        3.70947265625,
+        8.111572265625
+      ],
+      "assetSha256": "9fad3a631fd7dcf0f94e620bf36189d0ca469683e34a9c0376ffc599b6c4cda0",
+      "captureSha256": "f27303a5288af8bce70269aa073c06ab94917dc2798d3bc1a63eaf93efe019f3"
+    },
+    {
+      "key": "nickfury",
+      "id": "smu-nickfury",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        -0.982177734375,
+        3.419677734375
+      ],
+      "assetSha256": "20eb69a2785c684a7becf547fdfce1b9ce69ef48ce7cec8217ffb718049db90c",
+      "captureSha256": "6354d936a06203f541284c9eda3707dc4a350e16794d14d999cac30b12bf34e9"
+    },
+    {
+      "key": "peter_porker_unmasked",
+      "id": "smu-peter-porker-unmasked",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        133.303955078125,
+        144.9091796875
+      ],
+      "assetSha256": "7bd606edb6ffe7abd18f390504439a8fdfc5b98b99af9fb5823210dd78a7e99e",
+      "captureSha256": "ec79f01dd74f6a325cbd6f9a5364dea16a8f0c4d24e9d336075265cc666151af"
+    }
+  ]
+}

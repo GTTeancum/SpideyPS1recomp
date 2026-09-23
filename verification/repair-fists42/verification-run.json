@@ -1,0 +1,26 @@
+[
+  {
+    "check": "rig",
+    "exitCode": 0
+  },
+  {
+    "check": "web",
+    "exitCode": 0
+  },
+  {
+    "check": "managed",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-native-american-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-nickfury-isolation",
+    "exitCode": 0
+  },
+  {
+    "check": "smu-peter-porker-unmasked-isolation",
+    "exitCode": 0
+  }
+]

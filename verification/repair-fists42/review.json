@@ -1,0 +1,53 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-native-american",
+      "previousActorSha256": "5e49afb2c41d7b7831de94f154614cff9cad7870d5448204e1bc00de1b01b43a",
+      "actorSha256": "9fad3a631fd7dcf0f94e620bf36189d0ca469683e34a9c0376ffc599b6c4cda0",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-nickfury.",
+      "individuallyCaptured": false,
+      "images": {}
+    },
+    {
+      "suit": "smu-nickfury",
+      "previousActorSha256": "68ab67b033ed1e45960ef3d04f205d784bb12170dd0a1e9dc14f67ff028d027c",
+      "actorSha256": "20eb69a2785c684a7becf547fdfce1b9ce69ef48ce7cec8217ffb718049db90c",
+      "visualReview": "Reviewed the two native game images sequentially. Nick Fury retains his dark tactical suit, pale chest emblem and armor pieces, holster, straps, boots, face details, and compact hands without dropped geometry. No web line is visible in this running capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01609.png": "fedc673fa43c93b52f8c7b409eeecb48d08d229525e7482fa171e20166a7aef6",
+        "frame_01609_closeup.png": "3ae436e26b79ec0de94efa42ab53456f93bfff5d990d0385410d18151156fce6"
+      }
+    },
+    {
+      "suit": "smu-peter-porker-unmasked",
+      "previousActorSha256": "ede0d6805348f30fb9b6613a940ab8e57096aa4ce453827ab121b8478181bb05",
+      "actorSha256": "7bd606edb6ffe7abd18f390504439a8fdfc5b98b99af9fb5823210dd78a7e99e",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-nickfury.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-nickfury"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 958,
+  "changedFiles": [
+    "smu-native-american\\actor.psx",
+    "smu-native-american\\conversion-report.json",
+    "smu-nickfury\\actor.psx",
+    "smu-nickfury\\conversion-report.json",
+    "smu-peter-porker-unmasked\\actor.psx",
+    "smu-peter-porker-unmasked\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 9,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-nickfury/frame_01609.png and frame_01609_closeup.png; Peter Porker capture retained as short-body-only evidence"
+  }
+}

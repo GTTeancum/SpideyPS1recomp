@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch42",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "native_american",
+    "nickfury",
+    "peter_porker_unmasked"
+  ],
+  "results": [
+    {
+      "key": "native_american",
+      "id": "smu-native-american",
+      "fbx": "costumes/native_american/native_american.fbx",
+      "fbxSha256": "5712111367f14783bafdf7abcd05c349b6a14e774db82b0db74ebeaddff59123",
+      "textureFiles": [
+        "textures-png\\Native_american_D.png"
+      ],
+      "textureSha256": [
+        "72b03f84e383a6d63584d64dece2ed8db92cc425bc3dbd5b357f0da00f6a4c30"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 3117,
+      "sourceTriangles": 4358,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Native_american_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Silk2",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Native_american_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 1067720,
+      "outputs": {
+        "actor.psx": "9fad3a631fd7dcf0f94e620bf36189d0ca469683e34a9c0376ffc599b6c4cda0",
+        "conversion-report.json": "1847c7063a08329747c1ff5d1e990617e2d1c1e2a379c6aff08bd343ac07c23d",
+        "suit.json": "fbc295c40136e0465d9cbf224fa04e974264495ce19011c35218d4da03193e96",
+        "textures\\diffuse.png": "2345399211f93c8ed3e9cafe02b0a2ff724bf8ef1a0a36e57689c5e362f020a2"
+      }
+    },
+    {
+      "key": "nickfury",
+      "id": "smu-nickfury",
+      "fbx": "costumes/nickfury/nickfury.fbx",
+      "fbxSha256": "9ce45091980b020d6f19aa265e3393bf5f2a17aac5b82369f1a28d3e434670e3",
+      "textureFiles": [
+        "textures-png\\NickFury_D.png"
+      ],
+      "textureSha256": [
+        "0d4a95bb13bf59b4fe6ad1bfac82f90650040d9f59324e81913f7945e8e586c6"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 2251,
+      "sourceTriangles": 3734,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "NickFury_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "Nick",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\NickFury_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 872964,
+      "outputs": {
+        "actor.psx": "20eb69a2785c684a7becf547fdfce1b9ce69ef48ce7cec8217ffb718049db90c",
+        "conversion-report.json": "475bfdc89ab68724201188dfa8f51a0435375029d0b46ebe9816c65ddcaff04c",
+        "suit.json": "ab87954761e880c0cc7a3bdbf99c32a34150b17dce3047776d43c52c3068bf71",
+        "textures\\diffuse.png": "f5d7b1d5b11aa73e8f36c6f376d2b4efba4a6db01c96bfdeb3f454e51130ee42"
+      }
+    },
+    {
+      "key": "peter_porker_unmasked",
+      "id": "smu-peter-porker-unmasked",
+      "fbx": "costumes/peter_porker_unmasked/peter_porker_unmasked.fbx",
+      "fbxSha256": "fe729ad20c7fbd66416d00d7aac6023baa9ebdea9d9c9f4d974f620cd24b55c7",
+      "textureFiles": [
+        "textures-png\\Peter_Porker_unmasked_D.png"
+      ],
+      "textureSha256": [
+        "c929cf1f6efec620e9a37a3b92764e73fdf2b3a07b08e3c4270a5625f44cb7db"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1577,
+      "sourceTriangles": 2360,
+      "sourceBoneCount": 62,
+      "authoredDiffuseNames": [
+        "Peter_Porker_unmasked_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "spiderHam",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Peter_Porker_unmasked_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 63,
+      "nativeBytes": 703748,
+      "outputs": {
+        "actor.psx": "7bd606edb6ffe7abd18f390504439a8fdfc5b98b99af9fb5823210dd78a7e99e",
+        "conversion-report.json": "f17256757be7b4a259b7dfb25d0cac50eb1cebd8ac2f10e92794063d61cfc8e6",
+        "suit.json": "925b672401901be898696fcac6eefa4b09c11787ebc35a4fb7aceef2b881cc37",
+        "textures\\diffuse.png": "3ab941b168800a74a093f20585b872a92e5d2fce98fbbc80893eac7fba7b0660"
+      }
+    }
+  ]
+}
