@@ -1,0 +1,43 @@
+{
+  "repairs": [
+    {
+      "suit": "smu-spiderarmor",
+      "previousActorSha256": "45458b8a3c6cd9f9f1599af87552641c2ab6b196c98cc862607a751bab7e9866",
+      "actorSha256": "2b205bca0409514629253052b6e98844bd8ddf46ae4050fcc4f911789553e710",
+      "visualReview": "Reviewed the two native game images sequentially. Spider-Armor retains the plated white head, chest, shoulder, arm and lower-leg coverage, dark chest emblem, brown under-suit and pale eye lenses. Both primary fists are compact and remain inside the palm silhouette. No web line is visible in this running capture; the offline endpoint regression is the web evidence.",
+      "individuallyCaptured": true,
+      "images": {
+        "frame_01608.png": "535374e9e07931667e62b29d90aab9b4d06a46b2320e078c84bca9eba85015cb",
+        "frame_01608_closeup.png": "e990487058ef57f43dec0b46e3d801de40d84613a07f0497579185b15e2375fa"
+      }
+    },
+    {
+      "suit": "smu-spiderknight",
+      "previousActorSha256": "1cf7a590314d09f605a59d99995e0834a1e4eac6ae73dbeb11d0239480aef12d",
+      "actorSha256": "dae1fe8efafce684a0be8135599e660a00cafac4b4cb64530da5c68d3bb3da7d",
+      "visualReview": "Not individually captured in this repair batch. Full rig, animation, web, loading and before/after isolation checks pass; native visual review is represented by smu-spiderarmor.",
+      "individuallyCaptured": false,
+      "images": {}
+    }
+  ],
+  "managedLoaderExitCode": 0,
+  "representatives": [
+    "smu-spiderarmor"
+  ],
+  "scope": "Pose-only finger repair using the user-approved source-relative palm-width closure on all ordinary two-bone fingers. The closure converges each finger toward its authored palm plane; thumb opposition and any authored third phalanx retain their dedicated paths. The two original 2099 claw meshes retain eased 65-degree distal flexion. Source hierarchy, bind, weights, proportions and materials retained. All suits have full offline regressions; native visual review is representative, not every suit. Native evidence is capped at two images per representative; a crop pair shows one pose, while runs without a crop show the two requested gameplay frames. No exhaustive finger/palm contact or all-catalogue acceptance is claimed.",
+  "previousFilesUnchanged": 960,
+  "changedFiles": [
+    "smu-spiderarmor\\actor.psx",
+    "smu-spiderarmor\\conversion-report.json",
+    "smu-spiderknight\\actor.psx",
+    "smu-spiderknight\\conversion-report.json"
+  ],
+  "originalManifestAndTextureBytesPreserved": true,
+  "build": {
+    "status": "PASS",
+    "command": "dotnet build spiderman/port/SpiderMan.csproj --no-restore -v quiet",
+    "warnings": 0,
+    "errors": 0,
+    "nativeRuntimeCapture": "smu-spiderarmor/frame_01608.png and frame_01608_closeup.png"
+  }
+}

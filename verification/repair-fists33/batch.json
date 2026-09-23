@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "batch": "fist-repair-batch33",
+  "scope": "SM1 native assets/core; .NET game not built/tested",
+  "reference": "costumes/2099/2099.fbx",
+  "referenceSha256": "d3c8135467985a120e981bbdd6d4b59ae9315f1a8aa9734bf09e30fe9df43f19",
+  "donorSha256": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
+  "requested": [
+    "spiderarmor",
+    "spiderknight"
+  ],
+  "results": [
+    {
+      "key": "spiderarmor",
+      "id": "smu-spiderarmor",
+      "fbx": "costumes/spiderarmor/spiderarmor.fbx",
+      "fbxSha256": "1be26fb80e71fc0a5f99ecb73fec9239708588c317aa77f0dfadac6ece3ccfbd",
+      "textureFiles": [
+        "textures-png\\SpidermanArmored_D.png"
+      ],
+      "textureSha256": [
+        "f987710109cb13847247a9a76d44322a6b96e9a1827accacdc32f56f6b2a69ea"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1818,
+      "sourceTriangles": 3134,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "SpidermanArmored_D.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "SpiderArmor",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanArmored_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 737008,
+      "outputs": {
+        "actor.psx": "2b205bca0409514629253052b6e98844bd8ddf46ae4050fcc4f911789553e710",
+        "conversion-report.json": "e96d6f337978c82ba7e914373540abe84ac6e1da1225c268eb0834ed1d3c1d37",
+        "suit.json": "d0242a0e34973188a0171180b973b586f8407c98dd4301ea4e0014f2a90d3cf1",
+        "textures\\diffuse.png": "c17aa88fde079b859539e9a2ccaa0352c5389b9e73b9cff9d88bccfeaeab44c4"
+      }
+    },
+    {
+      "key": "spiderknight",
+      "id": "smu-spiderknight",
+      "fbx": "costumes/spiderknight/spiderknight.fbx",
+      "fbxSha256": "9c5ca607612bf0fb13093a6f81fcfe6265245035fb2a6eca295b5b89babac2e0",
+      "textureFiles": [
+        "textures-png\\Knight_D.png"
+      ],
+      "textureSha256": [
+        "23161a445e11433b5052133bc024d7acebd75ec5d3546e9c8dceee74858f8a26"
+      ],
+      "sourceMeshCount": 1,
+      "sourceVertices": 1881,
+      "sourceTriangles": 2976,
+      "sourceBoneCount": 65,
+      "authoredDiffuseNames": [
+        "Knight_d.tga"
+      ],
+      "status": "converted",
+      "materialPolicy": {
+        "mode": "Authored per-face diffuse bindings; source alpha only where connected; explicit repeat tiles",
+        "materials": [
+          {
+            "name": "SpiderKnight",
+            "source": "C:\\Programming\\SMU-Costumes\\textures-png\\Knight_D.png",
+            "alphaBound": false,
+            "tileOrigin": [
+              0,
+              0
+            ],
+            "tileCount": [
+              1,
+              1
+            ],
+            "slot": 0
+          }
+        ],
+        "sourceFileUnchanged": true
+      },
+      "sourceRigNodes": 66,
+      "nativeBytes": 806920,
+      "outputs": {
+        "actor.psx": "dae1fe8efafce684a0be8135599e660a00cafac4b4cb64530da5c68d3bb3da7d",
+        "conversion-report.json": "2c78efdc9a705cdb175c0bf24b30d22b211d23133ae3bf856297170f0e3fb99d",
+        "suit.json": "23e6fb2168ddadfccbbb279b604940489895fdb7ee54aac7b52aa55600dcdb3e",
+        "textures\\diffuse.png": "776d514b16ba27daa6059fdc3ff6a584647c9575aaedec2de7a5cfaae2ea564c"
+      }
+    }
+  ]
+}

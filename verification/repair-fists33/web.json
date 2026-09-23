@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "scope": "Original native socket/line + retarget core; controlled offline actor/anchor fixture, NOT gameplay",
+  "complete": 2,
+  "requested": 2,
+  "results": [
+    {
+      "key": "spiderarmor",
+      "id": "smu-spiderarmor",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.24853515625,
+        10.650390625
+      ],
+      "assetSha256": "2b205bca0409514629253052b6e98844bd8ddf46ae4050fcc4f911789553e710",
+      "captureSha256": "4a062f1679d6e028c9c18aaaf63e5a5ea95099af25803d1c755074f6eaf4feee"
+    },
+    {
+      "key": "spiderknight",
+      "id": "smu-spiderknight",
+      "status": "PASS",
+      "swingFrames": 115,
+      "nativeSegments": 1840,
+      "maxEndpointErrorQ12": 0,
+      "beforeVerticalGapWorldUnits": [
+        6.588134765625,
+        10.989990234375
+      ],
+      "assetSha256": "dae1fe8efafce684a0be8135599e660a00cafac4b4cb64530da5c68d3bb3da7d",
+      "captureSha256": "8bc21886668debf92ecc5c4ee5895470ae2a36fda99064ed7cbcb1874e0bc396"
+    }
+  ]
+}
