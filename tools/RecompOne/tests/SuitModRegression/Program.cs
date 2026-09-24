@@ -298,17 +298,26 @@ Check(Costume.ReadSelected(memory) == 252 && SuitMods.At(252).Id == savedId, "la
 Costume.WriteSelected(memory, 0);
 Console.WriteLine($"PASS: {tests} assertions including full 253-slot capacity");
 
-// The shipped SMU directory retains excluded assets on disk, but only the approved
-// policy list may consume selector rows.
+// The shipped SMU directory contains only approved assets. Excluded sources remain
+// preserved outside the package under mods/inactive-suits.
 SuitMods.Catalogue.Clear();
 string smuRoot = Path.Combine(root, "spiderman", "port", "mods", "suits");
+string inactiveSmus = Path.Combine(root, "spiderman", "port", "mods", "inactive-suits");
 Environment.SetEnvironmentVariable("SPIDEY_SUIT_MOD_DIR", smuRoot);
 using var eligibility = JsonDocument.Parse(File.ReadAllText(Path.Combine(smuRoot, "smu-eligibility.json")));
 var expectedSmus = eligibility.RootElement.GetProperty("eligibleIds").EnumerateArray()
     .Select(id => id.GetString()!).ToHashSet(StringComparer.Ordinal);
+var shippedSmus = Directory.EnumerateDirectories(smuRoot).Select(Path.GetFileName)
+    .Where(id => id.StartsWith("smu-", StringComparison.Ordinal)).ToHashSet(StringComparer.Ordinal);
+var inactiveIds = Directory.EnumerateDirectories(inactiveSmus).Select(Path.GetFileName)
+    .Where(id => id.StartsWith("smu-", StringComparison.Ordinal)).ToHashSet(StringComparer.Ordinal);
+Check(shippedSmus.Count == 90 && shippedSmus.SetEquals(expectedSmus),
+    "physical SMU package contains exactly the approved 90 suits");
+Check(inactiveIds.Count == 143 && !inactiveIds.Overlaps(expectedSmus),
+    "all 143 excluded SMU suits remain preserved outside the package");
 SuitMods.Install();
 Check(SuitMods.Catalogue.Select(mod => mod.Id).ToHashSet(StringComparer.Ordinal).SetEquals(expectedSmus),
     "real SMU selector registers exactly the approved eligibility manifest");
-Check(SuitMods.Catalogue.Count == 90, "real SMU selector omits all 143 excluded manifests");
+Check(SuitMods.Catalogue.Count == 90, "real SMU selector contains only approved manifests");
 Costume.WriteSelected(memory, 0);
 Console.WriteLine($"PASS: {tests} assertions including SMU eligibility filtering");
