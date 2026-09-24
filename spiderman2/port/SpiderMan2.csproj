@@ -94,4 +94,12 @@
     </ItemGroup>
 
     <Import Project="../../tools/RecompOne/native/Runtime.props" />
+
+    <ItemGroup>
+        <!-- Both games consume the same user-editable converted suit payload. -->
+        <None Include="..\..\spiderman\port\mods\suits\**\*"
+              Link="mods\suits\%(RecursiveDir)%(Filename)%(Extension)"
+              CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
+              ExcludeFromSingleFile="true" />
+    </ItemGroup>
 </Project>

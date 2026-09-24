@@ -386,6 +386,18 @@
       "function": "ResetGraph",
       "mode": "pre",
       "target": "Recompiled.GpuPatches.ResetGraph"
+    },
+    {
+      "overlay": "main",
+      "address": "80083A44",
+      "mode": "instruction",
+      "target": "Recompiled.SuitRetargeting.ApplyPose"
+    },
+    {
+      "overlay": "main",
+      "address": "80032E7C",
+      "mode": "instruction",
+      "target": "Recompiled.SuitWebAttachment.ProjectSwingSegment"
     }
   ],
   "callRing": true

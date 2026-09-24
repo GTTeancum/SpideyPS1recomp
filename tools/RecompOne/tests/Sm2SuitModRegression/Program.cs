@@ -20,6 +20,16 @@ void Check(bool condition, string label)
     tests++;
     Console.WriteLine("PASS: " + label);
 }
+using (var config = JsonDocument.Parse(File.ReadAllText(Path.Combine(root, "spiderman2/config/spiderman2.json"))))
+{
+    var patches = config.RootElement.GetProperty("patches").EnumerateArray().ToArray();
+    Check(patches.Any(p => p.TryGetProperty("address", out var address) && address.GetString() == "80083A44" &&
+        p.GetProperty("target").GetString() == "Recompiled.SuitRetargeting.ApplyPose"),
+        "SM2 preserved-rig hook remains at the live player pose-ready boundary");
+    Check(patches.Any(p => p.TryGetProperty("address", out var address) && address.GetString() == "80032E7C" &&
+        p.GetProperty("target").GetString() == "Recompiled.SuitWebAttachment.ProjectSwingSegment"),
+        "SM2 web correction remains at the projection-only line boundary");
+}
 Check(fixture.Textures.Count == 14 && fixture.Decode().Values.Any(t => t.Width == 2048), "fourteen external materials, real 2048 decode");
 File.Copy(fixture.Textures.First().Value, Path.Combine(dir, "small.png"));
 var json = JsonNode.Parse(File.ReadAllText(sample), documentOptions: new JsonDocumentOptions { CommentHandling = JsonCommentHandling.Skip })!;
@@ -145,6 +155,20 @@ if (args.Length > 1)
         }
     }
     Check(loads==6 && frees==6, "all six custom actor loads released");
+
+    Costume.WriteSelected(memory, 0);
+    SuitMods.Catalogue.Clear();
+    Environment.SetEnvironmentVariable("SPIDEY_SUIT_MOD_DIR", args[1]);
+    SuitMods.Install();
+    using var eligibility = JsonDocument.Parse(File.ReadAllText(Path.Combine(args[1], "smu-eligibility.json")));
+    var expected = eligibility.RootElement.GetProperty("eligibleIds").EnumerateArray()
+        .Select(id => id.GetString()!).ToHashSet(StringComparer.Ordinal);
+    var actual = SuitMods.Catalogue.Select(s => s.Id).ToHashSet(StringComparer.Ordinal);
+    Check(expected.Count == 90 && actual.SetEquals(expected) && SuitMods.Catalogue.Count == 90,
+        "staged SM2 catalogue is the exact approved 90-suit set");
+    Check(SuitMods.Catalogue.All(s => s.CustomModel?.RetargetRig is { Packets.Length: 18 }),
+        "all staged SM2 suits retain preserved RTG2 rigs with the native 18-part layout");
+    SuitMods.Catalogue.Clear();
 }
 // The denser actor path needs larger native command pools, with the original
 // ordering-table allocations and the retail safety reserve left intact.

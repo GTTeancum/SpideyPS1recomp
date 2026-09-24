@@ -53,7 +53,18 @@ def main():
             'funcMap': f'funcmaps/{name}.json',
         })
 
-    patches = []
+    # Keep the already-verified timing and startup-video replacements in the
+    # generated config; these predate the suit work and are part of the port.
+    patches = [
+        {'overlay': 'main', 'function': 'func_80069124', 'mode': 'replace',
+         'target': 'Recompiled.Timing.WaitVBlanks'},
+        {'overlay': 'shell', 'function': 'func_80243854', 'mode': 'pre',
+         'target': 'Recompiled.VideoSetup.Options'},
+        {'overlay': 'shell', 'function': 'func_80246118', 'mode': 'replace',
+         'target': 'Recompiled.VideoSetup.Run'},
+        {'overlay': 'main', 'function': 'func_80018D70', 'mode': 'pre',
+         'target': 'RecompOne.Runtime.Host.Window.NativeVideoSetup.Input'},
+    ]
     skipped = []
 
     # Overlay loading: give every overlay a fixed base. See patches/OverlayPatches.cs.
@@ -134,6 +145,15 @@ def main():
         else:
             skipped.append(fn)
 
+    # Preserved-rig skinning runs after the native pose evaluator has produced its
+    # 18 matrices. The web hook changes only the projection scratch coordinates.
+    patches.extend([
+        {'overlay': 'main', 'address': '80083A44', 'mode': 'instruction',
+         'target': 'Recompiled.SuitRetargeting.ApplyPose'},
+        {'overlay': 'main', 'address': '80032E7C', 'mode': 'instruction',
+         'target': 'Recompiled.SuitWebAttachment.ProjectSwingSegment'},
+    ])
+
     cfg = {
         'game': {'id': 'SLUS-01378', 'name': 'SpiderMan2', 'output': '../generated'},
         'cue': '../extracted',
@@ -145,6 +165,7 @@ def main():
     dst = os.path.join(ROOT, 'config', 'spiderman2.json')
     with open(dst, 'w') as fh:
         json.dump(cfg, fh, indent=2)
+        fh.write('\n')
     print(f'wrote {dst}: {len(overlays)} overlays, {len(patches)} patches')
     if skipped:
         print('no symbol recovered for: ' + ', '.join(skipped))
