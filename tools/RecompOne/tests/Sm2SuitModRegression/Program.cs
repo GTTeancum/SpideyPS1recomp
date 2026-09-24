@@ -167,8 +167,18 @@ if (args.Length > 1)
         .Select(s => s.Id).ToHashSet(StringComparer.Ordinal);
     Check(expected.Count == 90 && actualSmus.SetEquals(expected),
         "staged SM2 catalogue contains the exact approved 90-suit SMU set");
-    Check(SuitMods.Catalogue.Count == 125,
-        "staged SM2 catalogue also restores all 35 legacy non-SMU suits");
+    var expectedLegacy = new HashSet<string>(new[] {
+        "amazing-tasm", "ben-reilly-street", "bigtimegreen", "bigtimered",
+        "friendly-neighbor", "ironspider", "kaine", "mcu-far-from-home",
+        "quick-change-red", "raimi-red-blue", "raimi-symbiote", "spiderman-sm1",
+        "steve-ditko", "superior", "the-human-spider"
+    }, StringComparer.Ordinal);
+    var actualLegacy = SuitMods.Catalogue.Where(s => !s.Id.StartsWith("smu-", StringComparison.Ordinal))
+        .Select(s => s.Id).ToHashSet(StringComparer.Ordinal);
+    Check(actualLegacy.SetEquals(expectedLegacy),
+        "staged SM2 catalogue contains the exact non-SMU 1.0 roster");
+    Check(SuitMods.Catalogue.Count == 105,
+        "staged SM2 catalogue restores only the 15 non-SMU suits from 1.0");
     Check(SuitMods.Catalogue.Where(s => s.Id.StartsWith("smu-", StringComparison.Ordinal))
         .All(s => s.CustomModel?.RetargetRig is { Packets.Length: 18 }),
         "all staged SM2 SMU suits retain preserved RTG2 rigs with the native 18-part layout");
