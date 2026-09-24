@@ -1,0 +1,9 @@
+{
+  "source": "dreamcast\\extracted\\SPPARK.PSX",
+  "originalDreamcastRigVerified": true,
+  "changedVertices": [],
+  "surfaceAdjustments": [],
+  "removedBuriedFaces": [],
+  "sourceObjectTableAndVertexStreamsUnchanged": true,
+  "originalDreamcastAnimationBank": true
+}

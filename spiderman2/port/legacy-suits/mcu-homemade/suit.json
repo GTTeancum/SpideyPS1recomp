@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "mcu-homemade",
+  "name": "MCU Homemade",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "5A8A45E4": "textures/diffuse.png"
+  }
+}

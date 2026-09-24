@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "ghost-spider",
+  "name": "Ghost Spider",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "63BD7B13": "textures/diffuse.png"
+  }
+}

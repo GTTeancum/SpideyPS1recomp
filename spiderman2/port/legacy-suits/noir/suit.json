@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "noir",
+  "name": "Spider-Noir",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "7FA750C8": "textures/diffuse.png"
+  }
+}

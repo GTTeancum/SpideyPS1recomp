@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "last-stand-spiderman",
+  "name": "Last Stand",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "4C40614A": "textures/diffuse.png"
+  }
+}

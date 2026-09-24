@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "the-amazing-spider",
+  "name": "The Amazing Spider",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "C8E413B0": "textures/diffuse.png"
+  }
+}

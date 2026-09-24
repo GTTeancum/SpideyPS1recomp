@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "prodigy",
+  "name": "Prodigy",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "A40CBAE8": "textures/diffuse.png"
+  }
+}

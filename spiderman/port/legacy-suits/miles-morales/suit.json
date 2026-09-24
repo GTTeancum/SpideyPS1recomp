@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "miles-morales",
+  "name": "Miles Morales",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "06C75DE5": "textures/diffuse.png"
+  }
+}

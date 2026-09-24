@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "ends-of-the-earth",
+  "name": "Ends of the Earth",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "3CA0CD19": "textures/diffuse.png"
+  }
+}

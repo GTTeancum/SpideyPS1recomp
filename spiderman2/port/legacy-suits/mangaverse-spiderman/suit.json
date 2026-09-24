@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "mangaverse-spiderman",
+  "name": "Mangaverse",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "AB76B463": "textures/diffuse.png"
+  }
+}

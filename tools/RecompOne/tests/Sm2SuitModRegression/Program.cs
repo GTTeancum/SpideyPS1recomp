@@ -163,11 +163,15 @@ if (args.Length > 1)
     using var eligibility = JsonDocument.Parse(File.ReadAllText(Path.Combine(args[1], "smu-eligibility.json")));
     var expected = eligibility.RootElement.GetProperty("eligibleIds").EnumerateArray()
         .Select(id => id.GetString()!).ToHashSet(StringComparer.Ordinal);
-    var actual = SuitMods.Catalogue.Select(s => s.Id).ToHashSet(StringComparer.Ordinal);
-    Check(expected.Count == 90 && actual.SetEquals(expected) && SuitMods.Catalogue.Count == 90,
-        "staged SM2 catalogue is the exact approved 90-suit set");
-    Check(SuitMods.Catalogue.All(s => s.CustomModel?.RetargetRig is { Packets.Length: 18 }),
-        "all staged SM2 suits retain preserved RTG2 rigs with the native 18-part layout");
+    var actualSmus = SuitMods.Catalogue.Where(s => s.Id.StartsWith("smu-", StringComparison.Ordinal))
+        .Select(s => s.Id).ToHashSet(StringComparer.Ordinal);
+    Check(expected.Count == 90 && actualSmus.SetEquals(expected),
+        "staged SM2 catalogue contains the exact approved 90-suit SMU set");
+    Check(SuitMods.Catalogue.Count == 125,
+        "staged SM2 catalogue also restores all 35 legacy non-SMU suits");
+    Check(SuitMods.Catalogue.Where(s => s.Id.StartsWith("smu-", StringComparison.Ordinal))
+        .All(s => s.CustomModel?.RetargetRig is { Packets.Length: 18 }),
+        "all staged SM2 SMU suits retain preserved RTG2 rigs with the native 18-part layout");
     SuitMods.Catalogue.Clear();
 }
 // The denser actor path needs larger native command pools, with the original

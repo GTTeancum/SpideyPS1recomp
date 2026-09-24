@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "superior",
+  "name": "Superior",
+  "comments": "By Hollywood-SN",
+  "model": "spiderman",
+  "abilities": {
+    "profile": "2099"
+  },
+  "textures": {
+    "9D39C02B": "textures/9D39C02B.png",
+    "D8425644": "textures/D8425644.png",
+    "29AF154F": "textures/29AF154F.png",
+    "FBC5A5A0": "textures/FBC5A5A0.png",
+    "154B7D71": "textures/154B7D71.png",
+    "F82D1471": "textures/F82D1471.png",
+    "42991273": "textures/42991273.png",
+    "D7669388": "textures/D7669388.png"
+  }
+}

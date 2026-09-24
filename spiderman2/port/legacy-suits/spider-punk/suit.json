@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "spider-punk",
+  "name": "Spider-Punk",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "28764ECF": "textures/diffuse.png"
+  }
+}

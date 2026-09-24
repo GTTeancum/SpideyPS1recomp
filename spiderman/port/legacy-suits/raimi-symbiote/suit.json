@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "raimi-symbiote",
+  "name": "Raimi (symbiote)",
+  "comments": "By Dat Mental Gamer",
+  "model": "symbiote",
+  "abilities": {
+    "profile": "symbiote"
+  },
+  "textures": {
+    "B673BFC9": "textures/B673BFC9.png",
+    "F4D27622": "textures/F4D27622.png",
+    "05D5A779": "textures/05D5A779.png",
+    "773F88DF": "textures/773F88DF.png",
+    "8F41CBF0": "textures/8F41CBF0.png",
+    "9CDEB9B5": "textures/9CDEB9B5.png",
+    "71BEC0C6": "textures/71BEC0C6.png",
+    "1CDD4E95": "textures/1CDD4E95.png"
+  },
+  "modelFile": "actor.psx"
+}

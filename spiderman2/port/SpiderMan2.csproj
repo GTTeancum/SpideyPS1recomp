@@ -101,5 +101,12 @@
               Link="mods\suits\%(RecursiveDir)%(Filename)%(Extension)"
               CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
               ExcludeFromSingleFile="true" />
+        <!-- Restore SM2's game-specific non-SMU catalogue from the 1.0 release. -->
+        <None Remove="legacy-suits\**\*" />
+        <None Include="legacy-suits\**\*"
+              Link="mods\suits\%(RecursiveDir)%(Filename)%(Extension)"
+              TargetPath="mods\suits\%(RecursiveDir)%(Filename)%(Extension)"
+              CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
+              ExcludeFromSingleFile="true" />
     </ItemGroup>
 </Project>

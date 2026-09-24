@@ -98,5 +98,12 @@
     <None Update="mods/suits/**/*"
           CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
           ExcludeFromSingleFile="true" />
+    <!-- Preserve the complete non-SMU suit catalogue shipped in the 1.0 release. -->
+    <None Remove="legacy-suits/**/*" />
+    <None Include="legacy-suits/**/*"
+          Link="mods/suits/%(RecursiveDir)%(Filename)%(Extension)"
+          TargetPath="mods/suits/%(RecursiveDir)%(Filename)%(Extension)"
+          CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
+          ExcludeFromSingleFile="true" />
   </ItemGroup>
 </Project>

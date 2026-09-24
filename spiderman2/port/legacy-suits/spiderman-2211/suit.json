@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "spiderman-2211",
+  "name": "2211",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "2A314DCD": "textures/diffuse.png"
+  }
+}

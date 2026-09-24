@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "ben-reilly-street",
+  "name": "Ben Reilly (Street)",
+  "comments": "By DarthJak90",
+  "model": "peter-parker",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "69D50075": "textures/69D50075.png",
+    "5ED98A8F": "textures/5ED98A8F.png",
+    "99D83224": "textures/99D83224.png",
+    "CAD400D7": "textures/CAD400D7.png",
+    "AA7AB050": "textures/AA7AB050.png",
+    "BC7032AA": "textures/BC7032AA.png",
+    "B5ABA1F5": "textures/B5ABA1F5.png",
+    "00AB3AFD": "textures/00AB3AFD.png",
+    "38EDDC02": "textures/38EDDC02.png",
+    "CC2C8B5B": "textures/CC2C8B5B.png",
+    "578DF3D3": "textures/578DF3D3.png",
+    "0F9094E3": "textures/0F9094E3.png"
+  }
+}

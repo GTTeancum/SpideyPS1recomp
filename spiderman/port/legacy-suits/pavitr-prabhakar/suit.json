@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "pavitr-prabhakar",
+  "name": "Pavitr Prabhakar",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "985E4E96": "textures/diffuse.png"
+  }
+}

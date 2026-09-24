@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "all-new",
+  "name": "All-New",
+  "comments": "By Gameloft",
+  "model": "spiderman",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "2D047A1E": "textures/diffuse.png"
+  }
+}

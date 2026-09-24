@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "quick-change-red",
+  "name": "Quick Change (red)",
+  "comments": "By Dat Mental Gamer",
+  "model": "quick-change",
+  "modelFile": "actor.psx",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "69D50075": "textures/69D50075.png",
+    "86DC7A99": "textures/86DC7A99.png",
+    "5EDAA6D9": "textures/5EDAA6D9.png",
+    "8F403460": "textures/8F403460.png",
+    "AA7AD3C0": "textures/AA7AD3C0.png",
+    "BC7032AA": "textures/BC7032AA.png",
+    "1CDDE71B": "textures/1CDDE71B.png",
+    "578DEAB3": "textures/578DEAB3.png",
+    "0F90CC4B": "textures/0F90CC4B.png"
+  }
+}
