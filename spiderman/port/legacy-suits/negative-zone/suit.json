@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "negative-zone",
+  "name": "Negative Zone",
+  "comments": "By Dat Mental Gamer",
+  "model": "spiderman",
+  "abilities": {
+    "profile": "spiderman"
+  },
+  "textures": {
+    "9D39C02B": "textures/9D39C02B.png",
+    "29AF154F": "textures/29AF154F.png",
+    "154B7D71": "textures/154B7D71.png",
+    "42991273": "textures/42991273.png",
+    "D7669388": "textures/D7669388.png",
+    "D8425644": "textures/D8425644.png",
+    "F82D1471": "textures/F82D1471.png",
+    "FBC5A5A0": "textures/FBC5A5A0.png"
+  }
+}

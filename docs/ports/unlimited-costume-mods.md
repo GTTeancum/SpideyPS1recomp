@@ -216,6 +216,24 @@ materials, and verifies pixel-identical PNG conversion. It excludes the extra
 `New folder` alternate texture. The selector displays **Steve Ditko**, credits
 **Dat Mental Gamer**, and uses standard Spider-Man powers.
 
+## Additional classic texture suits (SM1 and SM2)
+
+Three Dat Mental Gamer texture mods use the wingless SM1 body and standard
+Spider-Man powers in both games: **Negative Zone**, the masked variant of
+**America's Spider**, and **1967 TV Series**. Build each from its original
+GameBanana archive:
+
+```powershell
+python dreamcast/tools/build_classic_texture_suit.py --suit negative-zone --archive negative_zone.zip --output <fresh-folder>/negative-zone
+python dreamcast/tools/build_classic_texture_suit.py --suit americas-spider --archive captain_america_over_spider_man.zip --output <fresh-folder>/americas-spider
+python dreamcast/tools/build_classic_texture_suit.py --suit 1967-tv-series --archive 1967spideyv1.zip --output <fresh-folder>/1967-tv-series
+```
+
+The builder verifies GameBanana files 530830, 587158 and 685802 against their
+published MD5 hashes. `americas-spider` deliberately reads only the archive's
+`With Spider-Man Mask` folder. All eight BMPs are converted pixel-for-pixel to
+PNG without resizing or recoloring.
+
 ## Quick Change (red), SM1 and SM2
 
 [Improved Quick Change Costume](https://gamebanana.com/mods/249032) by Dat Mental

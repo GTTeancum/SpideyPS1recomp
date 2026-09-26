@@ -318,16 +318,16 @@ Check(inactiveIds.Count == 155 && !inactiveIds.Overlaps(expectedSmus),
 string legacyRoot = Path.Combine(root, "spiderman", "port", "legacy-suits");
 string inactiveLegacyRoot = Path.Combine(root, "spiderman", "port", "legacy-inactive-suits");
 var expectedLegacy = new HashSet<string>(new[] {
-    "amazing-tasm", "ben-reilly-street", "friendly-neighbor", "kaine", "mcu-far-from-home",
-    "quick-change-red", "raimi-red-blue", "raimi-symbiote", "steve-ditko",
-    "superior", "the-human-spider"
+    "1967-tv-series", "amazing-tasm", "americas-spider", "ben-reilly-street",
+    "friendly-neighbor", "kaine", "mcu-far-from-home", "negative-zone", "quick-change-red",
+    "raimi-red-blue", "raimi-symbiote", "steve-ditko", "superior", "the-human-spider"
 }, StringComparer.Ordinal);
 var activeLegacy = Directory.EnumerateDirectories(legacyRoot).Select(Path.GetFileName)
     .ToHashSet(StringComparer.Ordinal);
 var inactiveLegacy = Directory.EnumerateDirectories(inactiveLegacyRoot).Select(Path.GetFileName)
     .ToHashSet(StringComparer.Ordinal);
 Check(activeLegacy.SetEquals(expectedLegacy),
-    "SM1 legacy package contains exactly the 11 non-duplicate 1.0 suits");
+    "SM1 legacy package contains exactly the 14 approved non-SMU suits");
 Check(inactiveLegacy.Count == 23 && !inactiveLegacy.Overlaps(expectedLegacy),
     "all 23 excluded legacy suits remain preserved outside the package");
 SuitMods.Install();

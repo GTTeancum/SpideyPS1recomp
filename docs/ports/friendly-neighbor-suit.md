@@ -1,6 +1,6 @@
-# Friendly Neighbor
+# John Romita Sr.
 
-`friendly-neighbor`, displayed as **Friendly Neighbor**, uses the default
+`friendly-neighbor`, displayed as **John Romita Sr.**, uses the default
 Classic variant of WizByte's Spider-Man (John Romita Sr.) pack:
 https://gamebanana.com/mods/665138. Author:
 https://gamebanana.com/members/5278375. Credit is included in the manifest and
