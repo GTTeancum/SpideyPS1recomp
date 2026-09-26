@@ -93,8 +93,13 @@ def main():
     if crop:
         env['SPIDEY_SHOT_CROP'] = ','.join(map(str, crop))
     executable = runtime / 'SpiderMan.exe'
-    record = dict(suit=args.id, level=args.level, executableSha256=hashlib.sha256((runtime / 'SpiderMan.dll').read_bytes()).hexdigest(),
-        actorSha256=hashlib.sha256((fixture / args.id / 'actor.psx').read_bytes()).hexdigest(),
+    executable_payload = runtime / 'SpiderMan.dll'
+    if not executable_payload.exists():
+        executable_payload = runtime / 'SpiderMan.exe'
+    actor = fixture / args.id / 'actor.psx'
+    record = dict(suit=args.id, level=args.level, executableSha256=hashlib.sha256(executable_payload.read_bytes()).hexdigest(),
+        actorSha256=hashlib.sha256(actor.read_bytes()).hexdigest() if actor.exists() else None,
+        model=manifest.get('model'),
         capture='Game framebuffer; process-local input only; no desktop capture or OS input', environment=env,
         requestedView=dict(width=args.width, height=args.height, renderScale=args.render_scale, nativeCrop=crop))
     # Record only this harness's variables, never the user's inherited environment.
