@@ -311,15 +311,14 @@ var shippedSmus = Directory.EnumerateDirectories(smuRoot).Select(Path.GetFileNam
     .Where(id => id.StartsWith("smu-", StringComparison.Ordinal)).ToHashSet(StringComparer.Ordinal);
 var inactiveIds = Directory.EnumerateDirectories(inactiveSmus).Select(Path.GetFileName)
     .Where(id => id.StartsWith("smu-", StringComparison.Ordinal)).ToHashSet(StringComparer.Ordinal);
-Check(shippedSmus.Count == 90 && shippedSmus.SetEquals(expectedSmus),
-    "physical SMU package contains exactly the approved 90 suits");
-Check(inactiveIds.Count == 143 && !inactiveIds.Overlaps(expectedSmus),
-    "all 143 excluded SMU suits remain preserved outside the package");
+Check(shippedSmus.Count == 78 && shippedSmus.SetEquals(expectedSmus),
+    "physical SMU package contains exactly the 78 non-duplicate approved suits");
+Check(inactiveIds.Count == 155 && !inactiveIds.Overlaps(expectedSmus),
+    "all 155 excluded SMU suits remain preserved outside the package");
 string legacyRoot = Path.Combine(root, "spiderman", "port", "legacy-suits");
 string inactiveLegacyRoot = Path.Combine(root, "spiderman", "port", "legacy-inactive-suits");
 var expectedLegacy = new HashSet<string>(new[] {
-    "amazing-tasm", "ben-reilly-street", "bigtimegreen", "bigtimered",
-    "friendly-neighbor", "ironspider", "kaine", "mcu-far-from-home",
+    "amazing-tasm", "ben-reilly-street", "friendly-neighbor", "kaine", "mcu-far-from-home",
     "quick-change-red", "raimi-red-blue", "raimi-symbiote", "steve-ditko",
     "superior", "the-human-spider"
 }, StringComparer.Ordinal);
@@ -328,12 +327,12 @@ var activeLegacy = Directory.EnumerateDirectories(legacyRoot).Select(Path.GetFil
 var inactiveLegacy = Directory.EnumerateDirectories(inactiveLegacyRoot).Select(Path.GetFileName)
     .ToHashSet(StringComparer.Ordinal);
 Check(activeLegacy.SetEquals(expectedLegacy),
-    "SM1 legacy package contains exactly the 14 non-SMU 1.0 suits");
-Check(inactiveLegacy.Count == 20 && !inactiveLegacy.Overlaps(expectedLegacy),
-    "all 20 legacy SMU suits remain preserved outside the package");
+    "SM1 legacy package contains exactly the 11 non-duplicate 1.0 suits");
+Check(inactiveLegacy.Count == 23 && !inactiveLegacy.Overlaps(expectedLegacy),
+    "all 23 excluded legacy suits remain preserved outside the package");
 SuitMods.Install();
 Check(SuitMods.Catalogue.Select(mod => mod.Id).ToHashSet(StringComparer.Ordinal).SetEquals(expectedSmus),
     "real SMU selector registers exactly the approved eligibility manifest");
-Check(SuitMods.Catalogue.Count == 90, "real SMU selector contains only approved manifests");
+Check(SuitMods.Catalogue.Count == 78, "real SMU selector contains only approved non-duplicates");
 Costume.WriteSelected(memory, 0);
 Console.WriteLine($"PASS: {tests} assertions including SMU eligibility filtering");

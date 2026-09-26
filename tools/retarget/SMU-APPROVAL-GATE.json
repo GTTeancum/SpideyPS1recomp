@@ -10,9 +10,9 @@
   "practiceInstallationAuthorization": "User requested this exact version in-game and then approved it for eligible-catalogue rollout.",
   "practiceEvidence": "verification/fist-approval-amazing01/installation.json",
   "excludedFutureCategories": ["female", "Venom", "symbiote", "inkling", "playable villain"],
-  "policyEligibleTotal": 90,
+  "policyEligibleTotal": 78,
   "policyEligibleSourceKeys": [
-    "1602", "2099", "2099_new", "2211", "agent_nine", "aikman", "amazing_spider", "arachnido", "arachnoman", "baghead", "battledamaged", "ben_reilly_unmasked", "benreilly", "bigtime", "bigtime_red", "bulletpoints", "buzz", "captain", "civilwarpeterparker", "cosmic", "cyborg", "dusk", "earth62412", "earthx", "electroproof", "endofearth", "ezekiel", "fearitself", "futurefoundation", "god", "hobartbrown", "hobie", "homemade", "hornet", "houseofm", "india", "ironspider", "ironspider_unmasked", "ironspidernew", "ironspidernewwithtentackles", "kung_fu", "mangaverse", "maskedmarvel", "mech", "milesmorales", "milesmorales_uk_mesh", "milesmoralesdemasked", "modernscarlet", "native_american", "new_year_spiderman", "newarmor", "nickfury", "noir", "noirnew", "peter_porker_unmasked", "peter_urich", "peterparker", "prodigy", "punk", "quickchange", "scarlet", "scarlet_spider", "scarlet_spiderham", "scarlet_spiderham_benreilly", "secretwar", "sixarmed_spiderman", "spacesuit", "spider_cowboy", "spider_herc", "spider_ninja", "spider_spiner", "spiderarmor", "spiderham", "spiderham_2099", "spiderjameson", "spiderknight", "spiderman", "spiderman_2020", "spiderman_newdesign", "spiderman_surveillancesuit", "spidermanhomecoming", "steel", "swift", "the_spider_peter_parker", "timesleep", "uk", "ultimate_spiderham", "uncleb", "wallace_jackson", "who"
+    "1602", "2099_new", "2211", "agent_nine", "aikman", "amazing_spider", "arachnido", "arachnoman", "ben_reilly_unmasked", "bigtime", "bigtime_red", "bulletpoints", "buzz", "captain", "civilwarpeterparker", "cyborg", "earth62412", "earthx", "endofearth", "ezekiel", "fearitself", "futurefoundation", "god", "hobartbrown", "hobie", "homemade", "hornet", "houseofm", "india", "ironspider", "ironspider_unmasked", "ironspidernew", "ironspidernewwithtentackles", "kung_fu", "mangaverse", "maskedmarvel", "mech", "milesmorales", "milesmorales_uk_mesh", "milesmoralesdemasked", "modernscarlet", "native_american", "new_year_spiderman", "newarmor", "nickfury", "noir", "noirnew", "peter_porker_unmasked", "peter_urich", "punk", "scarlet_spider", "scarlet_spiderham", "scarlet_spiderham_benreilly", "secretwar", "sixarmed_spiderman", "spacesuit", "spider_cowboy", "spider_herc", "spider_ninja", "spider_spiner", "spiderarmor", "spiderham", "spiderham_2099", "spiderjameson", "spiderknight", "spiderman_2020", "spiderman_newdesign", "spiderman_surveillancesuit", "spidermanhomecoming", "steel", "swift", "the_spider_peter_parker", "timesleep", "uk", "ultimate_spiderham", "uncleb", "wallace_jackson", "who"
   ],
   "excludedSourceKeys": {
     "mercenary": "playable villain",
@@ -22,7 +22,19 @@
     "other": "ambiguous hostile / bestial alternate manifestation; conservatively excluded as playable-villain-adjacent",
     "mj_regent_power_suit": "female",
     "mj_sexy": "female",
-    "mjiron": "female"
+    "mjiron": "female",
+    "2099": "duplicate of base-game Spider-Man 2099",
+    "baghead": "duplicate of base-game Amazing Bag Man",
+    "battledamaged": "duplicate of base-game Battle Damaged",
+    "benreilly": "duplicate of base-game Ben Reilly",
+    "cosmic": "duplicate of base-game Captain Universe",
+    "dusk": "duplicate of base-game Dusk",
+    "electroproof": "duplicate of base-game Insulated Suit",
+    "peterparker": "duplicate of base-game Peter Parker",
+    "prodigy": "duplicate of base-game Prodigy",
+    "quickchange": "duplicate of base-game Quick Change Spidey",
+    "scarlet": "duplicate of base-game Scarlet Spidey",
+    "spiderman": "duplicate of base-game Spider-Man"
   },
   "requirements": [
     "Apply the approved palm-width closure only to suits outside the excluded categories. Add every reviewed exclusion to excludedSourceKeys before staging its surrounding batch.",
