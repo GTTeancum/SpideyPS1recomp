@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "smu-mech",
-  "name": "SMU MECH",
+  "name": "MECH",
   "comments": "RIG PRESERVED",
   "model": "spiderman",
   "modelFile": "actor.psx",

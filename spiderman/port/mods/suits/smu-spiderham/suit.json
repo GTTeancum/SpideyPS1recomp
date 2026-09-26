@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "smu-spiderham",
-  "name": "Spider-Ham SMU",
+  "name": "Spider-Ham",
   "comments": "RIG PRESERVED",
   "model": "spiderman",
   "modelFile": "actor.psx",

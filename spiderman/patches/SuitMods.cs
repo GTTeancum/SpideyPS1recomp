@@ -40,8 +40,8 @@ public static class SuitMods
             if (id.ValueKind != JsonValueKind.String || !eligible.Add(id.GetString()!))
                 throw new InvalidDataException("SMU eligibility ids must be unique strings");
         }
-        if (eligible.Count != 90)
-            throw new InvalidDataException($"expected 90 approved SMU suits, found {eligible.Count}");
+        if (eligible.Count != 78)
+            throw new InvalidDataException($"expected 78 approved non-duplicate SMU suits, found {eligible.Count}");
         return eligible;
     }
     public static SuitManifest At(int index) => Catalogue[index - StockCount];

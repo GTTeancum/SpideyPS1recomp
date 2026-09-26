@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "smu-spacesuit",
-  "name": "SMU SPACESUIT",
+  "name": "SPACESUIT",
   "comments": "RIG PRESERVED",
   "model": "spiderman",
   "modelFile": "actor.psx",

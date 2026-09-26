@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "smu-bigtime",
-  "name": "SMU BIG TIME",
+  "name": "BIG TIME",
   "comments": "RIG PRESERVED",
   "model": "spiderman",
   "modelFile": "actor.psx",
