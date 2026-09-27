@@ -354,6 +354,7 @@ internal static class GlShaders
         flat out ivec2 clutBase;
         flat out ivec2 pageBase;
         flat out int   texMode;
+        flat out int   nativeTexMode;
         flat out int   vRepClut;
 
         uniform vec2 uVertexOffset;
@@ -371,6 +372,9 @@ internal static class GlShaders
             vColor = (vec4(inColorF, 0.0) / 255.0) * perspectiveW;
             vAffineW = perspectiveW;
             vRepClut = (inTexpage >> 12) & 1;
+            nativeTexMode = (inTexpage >> 7) & 3;
+            pageBase = ivec2((inTexpage & 0xf) * 64, ((inTexpage >> 4) & 1) * 256);
+            clutBase = ivec2((inClut & 0x3f) * 16, (inClut >> 6) & 0x1ff);
 
             if ((inTexpage & 0x8000) != 0) {
                 texMode = 4;
@@ -383,8 +387,6 @@ internal static class GlShaders
             } else {
                 texMode = (inTexpage >> 7) & 3;
                 vUV = inUV;
-                pageBase = ivec2((inTexpage & 0xf) * 64, ((inTexpage >> 4) & 1) * 256);
-                clutBase = ivec2((inClut & 0x3f) * 16, (inClut >> 6) & 0x1ff);
             }
         }
         """;
@@ -397,6 +399,7 @@ internal static class GlShaders
         flat in ivec2 clutBase;
         flat in ivec2 pageBase;
         flat in int   texMode;
+        flat in int   nativeTexMode;
         flat in int   vRepClut;
 
         layout(location = 0, index = 0) out vec4 FragColor;
@@ -424,6 +427,25 @@ internal static class GlShaders
             return u5(p.r) | (u5(p.g) << 5) | (u5(p.b) << 10) | (int(ceil(p.a)) << 15);
         }
         vec3 fullColor(ivec3 c8) { return vec3(clamp(c8, 0, 255)) / 255.0; }
+
+        float nativeStp(ivec2 uv) {
+            vec4 texel;
+            if (nativeTexMode == 0) {
+                int s = fetch16(ivec2(pageBase.x + (uv.x >> 2), pageBase.y + uv.y));
+                int idx = (s >> ((uv.x & 3) << 2)) & 0xf;
+                texel = fetch(ivec2(clutBase.x + idx, clutBase.y));
+            } else if (nativeTexMode == 1) {
+                int s = fetch16(ivec2(pageBase.x + (uv.x >> 1), pageBase.y + uv.y));
+                int idx = (s >> ((uv.x & 1) << 3)) & 0xff;
+                texel = fetch(ivec2(clutBase.x + idx, clutBase.y));
+            } else {
+                texel = fetch(pageBase + uv);
+            }
+            // HD detail can cover holes in the low-resolution atlas. Those holes
+            // have no opaque material to preserve and must not leave black detail
+            // behind when the primitive's additive fade reaches zero.
+            return texel.rgb == vec3(0.0) ? 1.0 : texel.a;
+        }
 
         void main() {
             vec4 affineColor = vColor / max(vAffineW, 0.000001);
@@ -457,7 +479,9 @@ internal static class GlShaders
                 if (img.a < 0.5) discard;
                 vec3 straightRgb = img.rgb / max(img.a, 0.000001);
                 ivec3 e8 = (ivec3(straightRgb * 255.0 + 0.5) * ivec3(affineColor.rgb * 255.0 + 0.5)) >> 7;
-                float stp = img.a < 0.95 ? 1.0 : 0.0;
+                // Replacement cutouts still use their own alpha, but cannot erase
+                // the native material's blend eligibility during authored fades.
+                float stp = max(nativeStp(uv), img.a < 0.95 ? 1.0 : 0.0);
                 // Replacement art is host-GPU data, not PS1 VRAM data. Keep
                 // the full 8-bit result instead of applying console-era
                 // framebuffer quantization to the upgraded texture.

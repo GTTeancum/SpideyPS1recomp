@@ -189,3 +189,69 @@ are CPU VRAM-shadow values, not GPU readbacks.
 RenderingRegression was rerun successfully with the diagnostic runtime changes.
 Meter/rectangle fixes remain passing. Menu cycle source repair, Venom material
 repair, both-game native validation and final staging remain open.
+
+## Native material and menu-tail repairs
+
+The write watch locates the bad link in SM1 func_8006A21C. After scanning OT[0],
+its last-polygon fallback and terminal packet alias when the list contains only
+a DR_AREA packet. The native relink connects OT[0] to that packet and the packet
+back to OT[0]. SM2 func_80075438 has the same code and reproduces the same defect.
+Narrow instruction-branch hooks at 8006A31C/80075538 handle only the exact
+terminal two-word E3/E4 packet alias, keeping clip state, backdrop insertion and
+the foreground anchor in order. All other lists follow the native implementation.
+No traversal truncation or packet-capacity reduction is used. Config recipes and
+generated configs both register the hooks; generated sources were regenerated.
+
+Both RenderingRegression projects now call the real native menu routines with
+single metadata, two metadata and polygon-containing lists. The single metadata
+case failed before the hook in each game. All nine cases per game now pass,
+including exact packet order, clip words, ramp increments and saturation.
+
+The modern replacement-texture shader now retains original depth/page/CLUT
+coordinates and samples native STP eligibility. Replacement alpha still controls
+cutouts; native STP or replacement partial alpha enables the authored blend.
+Native zero-color holes also permit blending for HD detail that covers them.
+The first candidate without the hole rule left mouth specks; the second removed
+those specks. External suit textures and replacement-CLUT branches are unchanged.
+GL33/GL45 share this shader. The compile-gated GL21 reference shader is unchanged
+and is not included in these production builds or verification claims.
+
+Evidence (all native hidden captures; no desktop input or Chase follower):
+
+- `p1-fade-native-stp`: inspected2020,2050,2060,2080,2100,2120,2140 in order.
+  Translucent HD body improved, but mouth specks remained. Superseded candidate.
+- `p1-fade-native-stp-02`: inspected2050,2100,2120,2140,2160,2180 in order.
+  Fade reaches disappearance without opaque black patches or mouth residue.
+  Scenery remains visible, followed by Retry. These are sampled states.
+- `p1-menu-tail-fixed`: inspected1596,1666,2086,2096,2256,2436 in order.
+  Pause retains the frozen sewer, legible text and translucent SELECT trail;
+  Cross returns to gameplay. RAM2088 now traverses2843 nodes toFFFFFF, where
+  the prior build looped over203 nodes. No packet was dropped to break the cycle.
+- `p1-retry-menu-fixed`: inspected2050,2100,2140,2180,2300,2380,2600,3100.
+  Fixed fade, Retry highlighted, Down selects Quit, Up reselects Retry, Cross
+  reaches Enter Venom loading art and the opening movie. This does not yet
+  establish the subsequent return to controllable gameplay.
+- `p1-menu-tail-fixed-sm2`: inspected4388,4758,5008,5358,5698,5858.
+  Gameplay, Continue, Restart selection, resumed gameplay, second Restart
+  selection and activation into a movie are visible. Pale question-mark shading
+  while paused remains visible, with blue restored during play; its exact
+  authored appearance has not been independently established.
+- `p1-pause-gl33-native-final`: log confirms Gl33, 4:3. Inspected every frame
+  from2076 through2087 sequentially, then2240. Text, frozen scenery, panel and
+  trail stay stable across this bounded consecutive interval.2240 is resumed
+  gameplay. This is not an entire-run or all-menu temporal acceptance claim.
+- `p1-pause-consecutive-sm2`: log confirms Gl45. Inspected every frame4758
+  through4765 sequentially. Frozen city, menu panel, foreground text, selection
+  and translucent trail remain stable throughout this bounded interval. The
+  pale paused question mark remains; no new appearance-correctness claim for it.
+
+Both self-contained candidate publishes succeeded with existing warnings:
+
+- `work/render-p1-menu-tail/sm1/SpiderMan.exe`, SHA256
+  `11b4ab6cfb4006c3faf56395f6aa08d6783cf00e9e67c12719af419bedd2091e`.
+- `work/render-p1-menu-tail/sm2/SpiderMan2.exe`, SHA256
+  `a06da479f64b4be2db5f29b166d6549873a3f767e5e09415a93230b1b9068626`.
+
+Still open: SM2 Retry-specific native verification, full Retry reload transition,
+remaining menu appearance acceptance and final promotion to both user stages.
+No new performance, audio or retargeting acceptance is claimed.

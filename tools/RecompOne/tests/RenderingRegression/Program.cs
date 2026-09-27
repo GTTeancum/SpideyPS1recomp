@@ -513,6 +513,62 @@ foreach (bool world in new[] { false, true })
 RecompOne.Runtime.Config.ConfigManager.Game.Widescreen = oldWide;
 GpuHle.FovNum = GpuHle.FovDen = 1;
 #endif
+#if SM2
+const uint menuFrame = 0x800C247C, menuCursor = 0x800C2484, menuLimit = 0x800C2034,
+    menuTable = 0x800A184C, menuPoly = 0x80075510, menuOther = 0x80075514,
+    menuGp = 0x800C0000, menuRamp = menuGp + 0x1010;
+#else
+const uint menuFrame = 0x800B54A8, menuCursor = 0x800B54B0, menuLimit = 0x800B4FE8,
+    menuTable = 0x80095194, menuPoly = 0x8006A2F4, menuOther = 0x8006A2F8,
+    menuGp = 0x800B47F4, menuRamp = menuGp + 0xEC8;
+#endif
+foreach (var (polygon, singleMetadata) in new[] { (false, true), (false, false), (true, false) })
+foreach (uint initialRamp in new uint[] { 0, 0x2E0, 0x300 })
+{
+    const uint frame = 0x80098000, ot = 0x80099000, head = 0x00300000,
+        drawable = head + 0x40;
+    uint tail = singleMetadata ? head : head + 0x80;
+    memory.WriteU32(menuFrame, frame);
+    memory.WriteU32(frame + 0x70, ot);
+    memory.WriteU32(ot, head);
+    memory.WriteU32(ot + 4, ot & 0xFFFFFF);
+    memory.WriteU32(head, 0x02000000 | (polygon ? drawable : tail));
+    memory.WriteU32(head + 4, 0xE3000000);
+    memory.WriteU32(head + 8, 0xE403BDFF);
+    memory.WriteU32(drawable, 0x09000000 | tail);
+    memory.WriteU32(drawable + 4, 0x2C808080);
+    memory.WriteU32(tail, 0x02FFFFFF);
+    memory.WriteU32(tail + 4, 0xE3000000);
+    memory.WriteU32(tail + 8, 0xE403BDFF);
+    for (uint i = 0; i < 29; i++)
+        memory.WriteU32(menuTable + i * 4, i % 4 == 0 ? menuPoly : menuOther);
+    memory.WriteU32(menuCursor, head + 0x100);
+    memory.WriteU32(menuLimit, 0); // Exercise relinking without generating backdrop art.
+    memory.WriteU32(menuRamp, initialRamp);
+    cpu = new CpuContext { GP = menuGp, SP = 0x807E0000, RA = 0x80010000 };
+#if SM2
+    Recompiled.SpiderMan2.func_80075438(cpu, memory);
+#else
+    Recompiled.SpiderMan.func_8006A21C(cpu, memory);
+#endif
+    var visited = new HashSet<uint>();
+    var order = new List<uint>();
+    uint node = (ot + 4) & 0xFFFFFF;
+    while (node != 0xFFFFFF && visited.Count < 32 && visited.Add(node))
+    {
+        order.Add(node);
+        node = memory.ReadU32(node) & 0xFFFFFF;
+    }
+    uint[] expectedOrder = singleMetadata ? [(ot + 4) & 0xFFFFFF, head, ot & 0xFFFFFF] :
+        polygon ? [(ot + 4) & 0xFFFFFF, head, drawable, ot & 0xFFFFFF, tail] :
+        [(ot + 4) & 0xFFFFFF, head, ot & 0xFFFFFF, tail];
+    bool pass = node == 0xFFFFFF && visited.Contains(head) && visited.Contains(tail) &&
+        order.SequenceEqual(expectedOrder) && memory.ReadU32(head + 4) == 0xE3000000 &&
+        memory.ReadU32(tail + 8) == 0xE403BDFF &&
+        memory.ReadU32(menuRamp) == Math.Min(initialRamp + 0x60, 0x300u);
+    Console.WriteLine($"Native Pause OT polygon={polygon} singleMetadata={singleMetadata} ramp={initialRamp:X}: terminates={node == 0xFFFFFF} nodes={visited.Count} {(pass ? "PASS" : "FAIL")}");
+    if (!pass) failures++;
+}
 return failures == 0 ? 0 : 1;
 
 sealed class NumericBackend : IGpuBackend

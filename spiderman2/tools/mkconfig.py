@@ -148,6 +148,8 @@ def main():
     # Preserved-rig skinning runs after the native pose evaluator has produced its
     # 18 matrices. The web hook changes only the projection scratch coordinates.
     patches.extend([
+        {'overlay': 'main', 'address': '80075538', 'mode': 'instruction_branch',
+         'resumeAddress': '80075588', 'target': 'Recompiled.MenuPacketOrder.SingleMetadataTail'},
         {'overlay': 'main', 'address': '80083A44', 'mode': 'instruction',
          'target': 'Recompiled.SuitRetargeting.ApplyPose'},
         {'overlay': 'main', 'address': '80032E7C', 'mode': 'instruction',

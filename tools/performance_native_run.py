@@ -17,6 +17,8 @@ p.add_argument('--level', help='Select a normal level without the Chase follower
 p.add_argument('--keep-boot', action='store_true', help='Let boot movies/sequences play instead of automatically pressing through them')
 p.add_argument('--extra-script', default='', help='Append process-local button steps; never sends host input')
 p.add_argument('--geometry', default='')
+p.add_argument('--guard', type=lambda s: int(s, 16), help='Read-only native write watch at a guest RAM address (hex)')
+p.add_argument('--guard-after', type=int, default=0, help='Start the bounded write watch after this presentation tick')
 p.add_argument('--snapshots', default='', help='At most eight comma-separated native RAM snapshot ticks; route diagnostics, not timing acceptance')
 p.add_argument('--snapshot-offsets', default='', help='SM1 only: positive checkpoint offsets after the explicit --level trigger archive loads')
 p.add_argument('--gpu', action='store_true')
@@ -111,6 +113,9 @@ if a.game == 'sm1' and env['SPIDEY_LEVEL'] == 'l5a1':
     env['SPIDEY_SCRIPT'] += ';title.bmr+1100:cross:12'
 if a.extra_script: env['SPIDEY_SCRIPT'] += ';'+a.extra_script
 if a.native_script: env['SPIDEY_NATIVE_SCRIPT'] = a.native_script
+if a.guard is not None:
+    env.update({'SPIDEY_GUARD':format(a.guard, 'x'), 'SPIDEY_GUARD_ALL':'1',
+                'SPIDEY_GUARD_AFTER_FRAME':str(a.guard_after)})
 if a.gpu: env['RECOMP_PERF_GPU']='1'
 if a.pad_trace: env['SPIDEY_TRACE_PAD']='1'
 if a.present_phases: env['RECOMP_PERF_PHASES']='1'

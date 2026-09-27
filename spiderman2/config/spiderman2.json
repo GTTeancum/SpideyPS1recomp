@@ -389,6 +389,13 @@
     },
     {
       "overlay": "main",
+      "address": "80075538",
+      "mode": "instruction_branch",
+      "resumeAddress": "80075588",
+      "target": "Recompiled.MenuPacketOrder.SingleMetadataTail"
+    },
+    {
+      "overlay": "main",
       "address": "80083A44",
       "mode": "instruction",
       "target": "Recompiled.SuitRetargeting.ApplyPose"

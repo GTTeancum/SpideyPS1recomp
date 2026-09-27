@@ -22,4 +22,9 @@ Goal progress: the chase meter now uses a shared transform for its rail, caps
 and markers, verified in native widescreen captures with a 4:3 comparison.
 The earlier 320-pixel/large-panel hypothesis above is superseded by the measured
 512-pixel segmented-rail diagnosis in [P1 rendering evidence](docs/rendering-p1-2026-09-27.md).
-Venom's fade and menu defects remain open; candidate builds are not final staging.
+Venom's replacement-material fade now reaches disappearance without opaque black
+patches in native captures. A single-metadata packet cycle in both games' Pause
+list builders is repaired, with failing-before/passing-after native regressions.
+Pause selection/resume and SM1 Retry activation have native visual evidence.
+SM2 Retry-specific verification, remaining menu appearance checks and final staging
+are still open; candidate builds are not final staging.

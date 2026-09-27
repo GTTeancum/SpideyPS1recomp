@@ -183,6 +183,8 @@ def main():
             skipped.append(fn)
 
     patches.extend([
+        {'overlay': 'main', 'address': '8006A31C', 'mode': 'instruction_branch',
+         'resumeAddress': '8006A36C', 'target': 'Recompiled.MenuPacketOrder.SingleMetadataTail'},
         {'overlay': 'main', 'address': '80077418', 'mode': 'instruction',
          'target': 'Recompiled.SuitRetargeting.ApplyPose'},
         {'overlay': 'main', 'address': '80010678', 'mode': 'instruction',
