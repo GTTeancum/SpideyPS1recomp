@@ -90,9 +90,11 @@ public sealed partial class Gpu
     {
         var be = GpuHle.Backend!;
         be.SetDrawEnv(CurEnv());
-        be.DrawRect(new HleRect { X = x, Y = y, W = w, H = h, U = (short)u, V = (short)v, R = (byte)r, G = (byte)g, B = (byte)b },
-            PrimOf(tex, semi, raw, clut, world: world, hud: hud,
-                background: background, ignoreCoverage: ignoreCoverage));
+        var rect = new HleRect { X = x, Y = y, W = w, H = h, U = (short)u, V = (short)v, R = (byte)r, G = (byte)g, B = (byte)b };
+        var flags = PrimOf(tex, semi, raw, clut, world: world, hud: hud,
+            background: background, ignoreCoverage: ignoreCoverage);
+        GeometryTrace.Rectangle(rect, CurEnv(), flags);
+        be.DrawRect(rect, flags);
     }
 
     void HleLine(int x0, int y0, int r0, int g0, int b0, int x1, int y1, int r1, int g1, int b1, bool semi, bool gouraud)

@@ -28,12 +28,29 @@ public static class GeometryTrace
         if (string.IsNullOrWhiteSpace(Path) || _frame < Start || _frame > End) return;
         _writer ??= new StreamWriter(Path) { AutoFlush = true };
         object Vertex(HleVertex v, (int X, int Y) native) => new {
-            v.X, v.Y, v.Z, v.U, v.V, v.HasGteZ, NativeX = native.X, NativeY = native.Y };
+            v.X, v.Y, v.Z, v.U, v.V, v.R, v.G, v.B, v.HasGteZ, NativeX = native.X, NativeY = native.Y };
         _writer.WriteLine(JsonSerializer.Serialize(new
         {
             frame = _frame, vertices = new[] { Vertex(a, nativeA), Vertex(b, nativeB), Vertex(c, nativeC) },
             env.ClipX0, env.ClipY0, env.ClipX1, env.ClipY1,
+            env.TwMaskX, env.TwMaskY, env.TwOffX, env.TwOffY, env.SetMask, env.CheckMask,
             flags.World, flags.Textured, flags.TPage, flags.Clut, flags.SemiTrans,
+            flags.BlendMode, flags.RawTexture, flags.Gouraud, flags.Hud,
+            flags.Background, flags.IgnoreCoverage,
         }));
+    }
+
+    public static void Rectangle(HleRect rect, HleDrawEnv env, PrimFlags flags)
+    {
+        if (string.IsNullOrWhiteSpace(Path) || _frame < Start || _frame > End) return;
+        HleVertex Corner(int x, int y) => new() {
+            X = rect.X + x, Y = rect.Y + y,
+            U = (short)(rect.U + x), V = (short)(rect.V + y), R = rect.R, G = rect.G, B = rect.B,
+        };
+        var a = Corner(0, 0); var b = Corner(rect.W, 0);
+        var c = Corner(0, rect.H); var d = Corner(rect.W, rect.H);
+        // Match the backend's rectangle triangulation without changing submission.
+        Triangle(a, b, c, env, flags, ((int)a.X, (int)a.Y), ((int)b.X, (int)b.Y), ((int)c.X, (int)c.Y));
+        Triangle(b, d, c, env, flags, ((int)b.X, (int)b.Y), ((int)d.X, (int)d.Y), ((int)c.X, (int)c.Y));
     }
 }
