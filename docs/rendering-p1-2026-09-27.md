@@ -1,10 +1,11 @@
 # P1 rendering investigation
 
-Goal remains open. No final release-stage promotion is claimed here.
+Goal completed for the targeted P1 defects; both local user-test stages are ready.
 Performance/stalls and retargeting/shoulders remain closed by user direction.
 
-Update: the meter repair below is now implemented and visually checked in a
-candidate build. The fade, menus and final release-stage promotion remain open.
+Current status: meter, fade and menu-tail repairs are implemented, regression
+tested and checked with native captures. The chronological investigation below
+includes superseded candidates; the final section records staging and limits.
 
 ## Baseline builds
 
@@ -255,3 +256,59 @@ Both self-contained candidate publishes succeeded with existing warnings:
 Still open: SM2 Retry-specific native verification, full Retry reload transition,
 remaining menu appearance acceptance and final promotion to both user stages.
 No new performance, audio or retargeting acceptance is claimed.
+
+## Final native verification and local staging
+
+The fixes from 375d3e7 are staged at
+`proof_render/p1-user-test-2026-09-27/Spider-Man/SpiderMan.exe` and
+`proof_render/p1-user-test-2026-09-27/Spider-Man 2/SpiderMan2.exe`.
+EXE hashes are the menu-tail publish hashes recorded above. Both stages include
+the full published mods payload and manifest-listed local disc data under
+`game`, with relative CdPath. No loose runtime DLLs or external bin/cue selection
+are needed. No earlier stage or unrelated suit work was replaced.
+
+`tools/stage_rendering_candidate.py` creates a new stage and hashes its inputs.
+`tools/verify_rendering_stage.py` runs the actual staged EXEs in place using
+hidden native captures and process-local input. It restores both settings.json
+and interface.ini after the test. All 1064 staged input hashes were checked.
+The first SM1 verifier invocation reported an interface.ini hash mismatch after
+the game exited 0: the game had saved window layout. The original INI was
+restored, all hashes rechecked, and the verifier now preserves that file too.
+
+Inspected native evidence:
+
+- `p1-staged-verification/sm1`: all seven captures, in order:1736 continuous
+  meter and rooftop/HUD;2050 translucent Venom;2140 disappeared Venom with
+  scenery retained;2380 legible Retry over tinted scene;2600 loading art;
+  3500 reloaded chase gameplay/HUD/meter;4200 subsequent Game Over. Exit0.
+- `p1-retry-controlled-sm2`:5500 Retry visibly selected; process-local Cross
+  at15894 reloads E1M0 resources.16794 catches a partially entered Pause during
+  reload after Start;17478 is the early resumed sequence,18294 Beast dialogue,
+  and19788 returns to rooftop gameplay with compass and blue question mark.
+  Exit0 at20000. This build differs from the staged render build only by an
+  opt-in process-local command-file capture harness, now available in SM2.
+  No host input or desktop capture was used. This establishes Retry reload,
+  not a claim that every transition frame was reviewed.
+- `p1-staged-sm2/sm2`: all three captures, in order:4500 normal rooftop/HUD;
+  4800 Pause with frozen buildings, readable selection, panel and SELECT trail;
+  5100 resumed gameplay and restored blue marker/HUD. Exit0, all hashes intact.
+
+Earlier timed SM2 Retry attempts selected Quit to Main or Quit to Training, or
+did not reach death; they are not Retry-activation evidence. The controlled
+run above selected Retry only after inspecting its highlight.
+
+The pale paused question mark is consistent with native scene desaturation:
+SM2 func_8007590C, called by its modal render path, rewrites primitive RGB to
+equal channels before invoking the native backdrop builder. A focused regression
+executes that native routine: blue 20FF0000 stays unchanged when inactive and
+becomes20545454 when active. Both cases pass, alongside all nine native menu
+packet-list cases. This is source/behavior evidence, not a pixel-perfect console
+reference comparison. The native desaturation has not been removed.
+
+Limits: native evidence covers the specified flows and the bounded consecutive
+Pause intervals listed above, not every menu/frame/level or hardware family.
+SM2 fall-death Retry has a black background; retained-scene Pause and SM1 Retry
+were inspected separately. No console-reference equivalence claim is made for
+the death backdrop. Audio was muted during these visual checks; no new audio,
+performance, retargeting or Chase-completion acceptance is claimed. Local stages
+remain audible by default. No push or GitHub issue-state change was performed.

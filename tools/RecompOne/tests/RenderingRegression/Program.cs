@@ -569,6 +569,31 @@ foreach (uint initialRamp in new uint[] { 0, 0x2E0, 0x300 })
     Console.WriteLine($"Native Pause OT polygon={polygon} singleMetadata={singleMetadata} ramp={initialRamp:X}: terminates={node == 0xFFFFFF} nodes={visited.Count} {(pass ? "PASS" : "FAIL")}");
     if (!pass) failures++;
 }
+#if SM2
+// Native Pause deliberately desaturates untextured scene primitives.
+foreach (bool paused in new[] { false, true })
+{
+    const uint frame = 0x80098000, ot = 0x80099000, primitive = 0x00300000;
+    memory.WriteU32(menuFrame, frame);
+    memory.WriteU32(frame + 0x70, ot);
+    memory.WriteU32(ot + 0x3FFC, primitive);
+    memory.WriteU32(ot, primitive + 0x100);
+    memory.WriteU32(ot + 4, ot & 0xFFFFFF);
+    memory.WriteU32(primitive + 0x100, 0x02FFFFFF);
+    memory.WriteU32(primitive + 0x104, 0xE3000000);
+    memory.WriteU32(primitive + 0x108, 0xE403BDFF);
+    memory.WriteU32(primitive, 0x04FFFFFF);
+    memory.WriteU32(primitive + 4, 0x20FF0000);
+    memory.WriteU32(0x800A18C4, 0x80075978);
+    memory.WriteU32(menuGp + 0x1004, paused ? 1u : 0u);
+    cpu = new CpuContext { GP = menuGp, SP = 0x807E0000, RA = 0x80010000 };
+    Recompiled.SpiderMan2.func_8007590C(cpu, memory);
+    uint color = memory.ReadU32(primitive + 4);
+    bool pass = color == (paused ? 0x20545454u : 0x20FF0000u);
+    Console.WriteLine($"Native Pause grayscale paused={paused}: color={color:X8} {(pass ? "PASS" : "FAIL")}");
+    if (!pass) failures++;
+}
+#endif
 return failures == 0 ? 0 : 1;
 
 sealed class NumericBackend : IGpuBackend

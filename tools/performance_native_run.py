@@ -16,6 +16,7 @@ p.add_argument('--chase', action='store_true')
 p.add_argument('--level', help='Select a normal level without the Chase follower or trigger pulses')
 p.add_argument('--keep-boot', action='store_true', help='Let boot movies/sequences play instead of automatically pressing through them')
 p.add_argument('--extra-script', default='', help='Append process-local button steps; never sends host input')
+p.add_argument('--control-file', type=pathlib.Path, help='Opt-in process-local command file; no desktop input')
 p.add_argument('--geometry', default='')
 p.add_argument('--guard', type=lambda s: int(s, 16), help='Read-only native write watch at a guest RAM address (hex)')
 p.add_argument('--guard-after', type=int, default=0, help='Start the bounded write watch after this presentation tick')
@@ -112,6 +113,7 @@ if a.chase:
 if a.game == 'sm1' and env['SPIDEY_LEVEL'] == 'l5a1':
     env['SPIDEY_SCRIPT'] += ';title.bmr+1100:cross:12'
 if a.extra_script: env['SPIDEY_SCRIPT'] += ';'+a.extra_script
+if a.control_file: env['SPIDEY_CONTROL_FILE'] = str(a.control_file.resolve(strict=True))
 if a.native_script: env['SPIDEY_NATIVE_SCRIPT'] = a.native_script
 if a.guard is not None:
     env.update({'SPIDEY_GUARD':format(a.guard, 'x'), 'SPIDEY_GUARD_ALL':'1',

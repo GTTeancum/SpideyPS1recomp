@@ -78,6 +78,8 @@ public static class Capture
     static bool _fxaaPair;
     static string _bootSkipAnchor;
     static bool _bootSkipActive;
+    static string _controlFile;
+    static int _controlLines;
 
     static readonly Dictionary<string, ushort> Buttons = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -101,6 +103,8 @@ public static class Capture
 
     public static void Install()
     {
+        _controlFile = Environment.GetEnvironmentVariable("SPIDEY_CONTROL_FILE");
+        if (!string.IsNullOrWhiteSpace(_controlFile)) _active = true;
         var runToken = Environment.GetEnvironmentVariable("SPIDEY_RUN_TOKEN");
         if (!string.IsNullOrWhiteSpace(runToken))
             Console.WriteLine($"[capture] run-token {runToken}");
@@ -211,6 +215,7 @@ public static class Capture
     static void OnFrame(VSyncEvent e)
     {
         System.Threading.Interlocked.Exchange(ref Diag.Frame, e.Frame);
+        ReadControlCommands(e.Frame);
 
         if (_markEvery > 0 && e.Frame % _markEvery == 0)
             Console.WriteLine($"[frame {e.Frame}]");
@@ -327,6 +332,35 @@ public static class Capture
         }
         return new Press { Frame = -1, Mask = mask, Hold = hold, Anchor = anchor,
                            Offset = offset, Occurrence = occurrence };
+    }
+
+    // Opt-in test input stays in this game's controller state, never the host OS.
+    static void ReadControlCommands(long frame)
+    {
+        if (string.IsNullOrWhiteSpace(_controlFile) || frame % 6 != 0) return;
+        string[] lines;
+        try { lines = File.ReadAllLines(_controlFile); }
+        catch (IOException) { return; }
+        for (; _controlLines < lines.Length; _controlLines++)
+        {
+            string command = lines[_controlLines].Trim();
+            if (command == "shot") _shots.Add(new Shot { Frame = frame });
+            else if (command == "exit") _exit = frame;
+            else
+            {
+                var parts = command.Split(':');
+                if (parts.Length != 2 || !int.TryParse(parts[1], out int hold) || hold < 1 || hold > 6000) continue;
+                ushort mask = 0;
+                foreach (string name in parts[0].Split('+'))
+                    if (Buttons.TryGetValue(name.Trim(), out var button)) mask |= button;
+                if (mask != 0)
+                {
+                    _script.Add(new Press { Frame = frame, Mask = mask, Hold = hold });
+                    _shots.Add(new Shot { Frame = frame + hold + 2 });
+                }
+            }
+            Console.WriteLine($"[capture] process-local command at frame {frame}: {command}");
+        }
     }
 
     static Shot MakeShot(string raw)
