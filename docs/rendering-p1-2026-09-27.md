@@ -143,3 +143,49 @@ Native evidence:
 
 No disappearance fade repair is claimed. Retry/Pause transitions and temporal
 flicker acceptance still require further diagnosis and native validation.
+
+## Texture A/B and cyclic Pause ordering table
+
+All following runs exited0 without timeouts. Diagnostic builds were published
+under work/render-p1-textures, render-p1-orders, render-p1-dma and render-p1-stack;
+none were promoted to user staging. The native-textures switch disables host
+texture replacement only, not replacement actor geometry. Texture trace palettes
+are CPU VRAM-shadow values, not GPU readbacks.
+
+- p1-menu-native-textures and p1-menu-replacement-textures: inspected2086
+  individually. The SELECT trail corruption is unchanged without replacements.
+  TPage40/CLUT160 trail and CLUT36 icon both resolve to native atlas pixels.
+  Their CPU palettes are grayscale with STP bits, blend mode1/additive.
+- p1-menu-order-trace: inspected2089, same corruption. Geometry contains
+  11015/11010/11010 triangles in2086/2087/2088. Submission-boundary counters
+  produced no records; this is NOT proof of an alternative rendering path.
+- p1-menu-submission-stack: first-triangle stacks in each traced frame identify
+  LibGpu.DrawOTag -> func_80061308 -> func_8002C174. SDK/DMA counters enabled
+  only at submission entry missed this interval and were removed.
+- The2088 RAM snapshot in p1-menu-submission-stack has a concrete OT cycle.
+  GP is800B47F4 (not800B0000). Read active environment at800B54A8 ->8009A6E4;
+  env+70 ->800C65EC; begin traversal at OT+3FFC, mask addresses007FFFFC.
+  Node2640 is00300000 (header02316CEC, commandE3000000). Node2842 at00316CF4
+  has header0C300000, command3C21197F, returning to node2640: a203-node cycle.
+  The SDK loop otherwise permits1048576 visits. This explains repeated menu
+  submissions, but the writer that introduced the bad link remains to be found.
+  FramePackets allocates its first expanded pool at80300000; preserve expanded
+  capacity while diagnosing the menu packet link/cursor ownership. Do not simply
+  truncate the list and declare the source bug fixed.
+- p1-fade-loss-bracket: inspected1940,1980,2020,2060,2100 in order. Actual
+  LostVenom disappearance begins after2020: mixed opaque/cyan patches, then black.
+- p1-fade-native-atlas and p1-fade-replacement-atlas: inspected every captured
+  image,2050..2120 at10-frame intervals, sequentially in each run. Native atlas
+  gives translucent cyan disappearance without black patches; replacements retain
+  opaque body regions and then black silhouettes. These are sampled intervals,
+  not an every-frame temporal acceptance pass. No chase completion test was used.
+  Trace2058..2060 identifies semi-transparent replacement hits on TPage169/172/173,
+  CLUT1248, RGBA32x32/16x16 tiles enlarged4x, no replacement CLUT. The256-entry
+  CPU palette has90 STP entries. PrimFs replacement mode6 currently derives STP
+  only from replacement image alpha; original texture mode derives it from native
+  texel alpha. Investigate preserving authored native blend eligibility without
+  disabling HD art globally or breaking custom suit alpha.
+
+RenderingRegression was rerun successfully with the diagnostic runtime changes.
+Meter/rectangle fixes remain passing. Menu cycle source repair, Venom material
+repair, both-game native validation and final staging remain open.

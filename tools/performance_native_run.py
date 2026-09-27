@@ -31,6 +31,7 @@ p.add_argument('--game-priority', choices=['inherit', 'normal'], default='inheri
 p.add_argument('--executable', type=pathlib.Path, help='Use an explicit candidate EXE without replacing the canonical build')
 p.add_argument('--native-script', default='', help='SM1 Chase-only native update:buttons:duration steps')
 p.add_argument('--model', action='store_true')
+p.add_argument('--native-textures', action='store_true', help='Diagnostic comparison without host texture replacements')
 p.add_argument('--solid', default='')
 p.add_argument('--ids', action='store_true')
 p.add_argument('--suit', action='store_true', help='Use the bundled Magenta Man sample for this game')
@@ -125,6 +126,7 @@ if a.suit:
     (fixture / 'selected-suit.txt').write_text('magenta-man')
     env['SPIDEY_SUIT_MOD_DIR'] = str(fixture)
 if a.model: env['RECOMP_MODEL_DUMP']=str(run/'model.jsonl')
+if a.native_textures: env['RECOMP_NATIVE_TEXTURES']='1'
 if a.geometry:
     first,last=a.geometry.split(':')
     env.update({'RECOMP_GEOMETRY_DUMP':str(run/'geometry.jsonl'),'RECOMP_GEOMETRY_START':first,'RECOMP_GEOMETRY_END':last,

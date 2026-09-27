@@ -11,6 +11,9 @@ public static class GeometryTrace
     static readonly long End = long.TryParse(Environment.GetEnvironmentVariable("RECOMP_GEOMETRY_END"), out var end) ? end : Start;
     static long _frame;
     static StreamWriter? _writer;
+    static StreamWriter? _textureWriter;
+    static readonly HashSet<string> TextureSignatures = [];
+    static long _stackFrame = -1;
 
     static GeometryTrace()
     {
@@ -18,8 +21,37 @@ public static class GeometryTrace
         Event.AddListener<VSyncEvent>(e =>
         {
             _frame = e.Frame;
-            if (_frame > End) { _writer?.Dispose(); _writer = null; }
+            if (_frame > End)
+            {
+                _writer?.Dispose(); _writer = null;
+                _textureWriter?.Dispose(); _textureWriter = null;
+            }
         });
+    }
+
+    public static void TextureResolution(PrimFlags flags, int u0, int v0, int u1, int v1,
+        bool hit, Assets.Textures.ResolvedTexture resolved)
+    {
+        if (string.IsNullOrWhiteSpace(Path) || _frame < Start || _frame > End ||
+            TextureSignatures.Count >= 256) return;
+        string key = $"{flags.TPage}:{flags.Clut}:{u0}:{v0}:{u1}:{v1}:{hit}";
+        if (!TextureSignatures.Add(key)) return;
+        var rect = Assets.Textures.TextureTile.Describe(flags.TPage, flags.Clut,
+            u0, v0, u1 - u0 + 1, v1 - v0 + 1);
+        var palette = new ushort[rect.ClutCount];
+        if (Runtime.Gpu is { } gpu)
+            for (int i = 0; i < palette.Length; i++)
+                palette[i] = gpu.Vram[rect.ClutY * 1024 + ((rect.ClutX + i) & 1023)];
+        _textureWriter ??= new StreamWriter(Path + ".textures.jsonl") { AutoFlush = true };
+        _textureWriter.WriteLine(JsonSerializer.Serialize(new {
+            frame = _frame, flags.TPage, flags.Clut, u0, v0, u1, v1, hit,
+            flags.BlendMode, flags.SemiTrans, flags.World, palette,
+            replacement = resolved.Texture == null ? null : new {
+                resolved.Texture.Width, resolved.Texture.Height, mode = resolved.Texture.Mode.ToString(),
+                resolved.Rect.U0, resolved.Rect.V0, resolved.Rect.W, resolved.Rect.H,
+            },
+            replacementClut = resolved.Clut != null,
+        }));
     }
 
     public static void Triangle(HleVertex a, HleVertex b, HleVertex c, HleDrawEnv env, PrimFlags flags,
@@ -27,6 +59,11 @@ public static class GeometryTrace
     {
         if (string.IsNullOrWhiteSpace(Path) || _frame < Start || _frame > End) return;
         _writer ??= new StreamWriter(Path) { AutoFlush = true };
+        if (_stackFrame != _frame)
+        {
+            _stackFrame = _frame;
+            File.AppendAllText(Path + ".stacks.txt", $"frame={_frame}\n{Environment.StackTrace}\n");
+        }
         object Vertex(HleVertex v, (int X, int Y) native) => new {
             v.X, v.Y, v.Z, v.U, v.V, v.R, v.G, v.B, v.HasGteZ, NativeX = native.X, NativeY = native.Y };
         _writer.WriteLine(JsonSerializer.Serialize(new

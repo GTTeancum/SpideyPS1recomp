@@ -473,9 +473,10 @@ public sealed class GlCore : IGpuBackend
         int twAndX = ~(_env.TwMaskX * 8) & 0xFF, twAndY = ~(_env.TwMaskY * 8) & 0xFF;
         int twOrX = (_env.TwOffX & _env.TwMaskX) * 8, twOrY = (_env.TwOffY & _env.TwMaskY) * 8;
 
-        if (!Assets.Textures.TextureResolver.Resolve(f.TPage, f.Clut, uMin, vMin, uMax, vMax,
-                twAndX, twAndY, twOrX, twOrY, out var res))
-            return;
+        bool hit = Assets.Textures.TextureResolver.Resolve(f.TPage, f.Clut, uMin, vMin, uMax, vMax,
+            twAndX, twAndY, twOrX, twOrY, out var res);
+        GeometryTrace.TextureResolution(f, uMin, vMin, uMax, vMax, hit, res);
+        if (!hit) return;
 
         if (res.Texture is { Mode: Assets.TextureMode.Rgba } tex)
         {

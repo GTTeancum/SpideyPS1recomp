@@ -248,7 +248,8 @@ public static class TextureResolver
 
     static int _statCalls, _statNoTexture, _statRejectSize, _statRejectDirty, _statHashed, _statMemo;
 
-    public static bool Enabled { get; set; } = true;
+    public static bool Enabled { get; set; } =
+        Environment.GetEnvironmentVariable("RECOMP_NATIVE_TEXTURES") != "1";
 
     public static void ResetStats()
     {
