@@ -17,3 +17,9 @@ Historical implementation evidence and verification limits: [Timing and audio re
 Active goal (September 27): fix Chase Venom's fade and splitting meter, and
 Retry/Pause menu rendering. Verify native visual output and menu transitions;
 preserve accepted timing/audio and suit work. Commit completed fixes without pushing.
+
+Goal progress: the chase meter now uses a shared transform for its rail, caps
+and markers, verified in native widescreen captures with a 4:3 comparison.
+The earlier 320-pixel/large-panel hypothesis above is superseded by the measured
+512-pixel segmented-rail diagnosis in [P1 rendering evidence](docs/rendering-p1-2026-09-27.md).
+Venom's fade and menu defects remain open; candidate builds are not final staging.

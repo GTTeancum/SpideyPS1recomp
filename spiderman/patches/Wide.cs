@@ -184,6 +184,14 @@ public static class Wide
             return;
         }
         if (!transform) return;
+        if (aligned && IsChaseMeter(e, rtop, rbot, h))
+        {
+            // The rail spans the corner classifier's boundary. Its caps, repeated
+            // middle tiles and moving heads must share one coordinate transform.
+            e.Hud = true;
+            Squeeze(e, 1);
+            return;
+        }
         bool panel = aligned && InHudCorner(rlo, rhi, rtop, rbot, w, h);
         int host = panel ? -1 : CarryHost(rlo, rhi, rtop, rbot);
         bool rightOverlay = aligned && rlo >= w / 2 &&
@@ -237,6 +245,29 @@ public static class Wide
     {
         for (int i = 0; i < e.Count; i++)
             if (!e.HasDepth[i]) return false;
+        return true;
+    }
+
+    static bool IsChaseMeter(RenderPrimEvent e, int top, int bottom, int height)
+    {
+        if (_gameplaySwap != Sm1GameplaySwap || !e.Textured || e.Count != 4 ||
+            top < 0 || bottom > height / 4) return false;
+
+        // Native Chase Venom HUD atlas identities, measured in both draw buffers.
+        // Keep this separate from generic top-row text and scene overlays.
+        var region = (e.TexPage & ~0x60, e.Clut) switch
+        {
+            (8, 418) => (108, 248, 111, 255), // left cap
+            (12, 418) => (52, 168, 55, 175), // right cap
+            (8, 419) => (240, 248, 251, 255), // repeated rail
+            (136, 3552) => (126, 152, 143, 177), // Spider-Man marker
+            (138, 3616) => (32, 208, 61, 237), // Venom marker
+            _ => (-1, -1, -1, -1),
+        };
+        if (region.Item1 < 0) return false;
+        for (int i = 0; i < e.Count; i++)
+            if (e.U[i] < region.Item1 || e.U[i] > region.Item3 ||
+                e.V[i] < region.Item2 || e.V[i] > region.Item4) return false;
         return true;
     }
 

@@ -450,15 +450,79 @@ memory.TryGetGteVertex(wholePacket,25u|30u<<16,out var roundTripDepth);
 bool depthOnlyPass=cpu.GetGteVertexTag(12).Depth==700 && !cpu.GetGteVertexTag(12).HasSubpixel && roundTripDepth.Depth==700 && !roundTripDepth.HasSubpixel;
 Console.WriteLine($"Depth-only screen provenance stays non-fractional {(depthOnlyPass?"PASS":"FAIL")}");
 if(!depthOnlyPass)failures++;
+
+// A sprite never has GTE provenance, even immediately after a world polygon.
+gpu.WriteGp0(0x24808080);
+foreach (var (x, y) in new[] { (50, 50), (60, 50), (50, 60) })
+{
+    gpu.WriteGp0((uint)x | (uint)y << 16, new GteScreen.VertexTag(1000, x, y, true));
+    gpu.WriteGp0(0);
+}
+gpu.WriteGp0(0x64808080);
+gpu.WriteGp0(20u | 20u << 16);
+gpu.WriteGp0(12u | 34u << 8);
+gpu.WriteGp0(8u | 8u << 16);
+bool spritePass = sink.Rectangles.Count > 0 && !sink.Rectangles[^1].Flags.World;
+Console.WriteLine($"Rectangle after world polygon stays screen-space: {(spritePass ? "PASS" : "FAIL")}");
+if (!spritePass) failures++;
+
+#if !SM2
+var oldWide = RecompOne.Runtime.Config.ConfigManager.Game.Widescreen;
+RecompOne.Runtime.Config.ConfigManager.Game.Widescreen = true;
+RecompOne.Runtime.Sdk.LibGpu.LastDispGrandparent = 0x8002C2AC;
+RecompOne.Runtime.Events.Event.Dispatch(new RecompOne.Runtime.Events.VSyncEvent { Frame = 1 });
+foreach (int drawY in new[] { 0, 256 })
+foreach (int x in new[] { 138, 174, 192, 246, 264, 462 })
+{
+    var e = new RecompOne.Runtime.Events.RenderPrimEvent {
+        Count = 4, Textured = true, TexPage = 8, Clut = 419,
+        DrawRight = 511, DrawTop = drawY, DrawBottom = drawY + 239,
+    };
+    for (int i = 0; i < 4; i++)
+    {
+        e.X[i] = x + (i % 2) * 18; e.Y[i] = drawY + 28 + (i / 2) * 7;
+        e.U[i] = 240 + (i % 2) * 11; e.V[i] = 248 + (i / 2) * 7;
+    }
+    RecompOne.Runtime.Events.Event.Dispatch(e);
+    bool pass = e.Hud && !e.World && e.X[0] == 511 + (x - 511) * 1000 / 1333 &&
+        e.X[1] == 511 + (x + 18 - 511) * 1000 / 1333;
+    Console.WriteLine($"Chase rail common anchor x={x} drawY={drawY}: {(pass ? "PASS" : "FAIL")}");
+    if (!pass) failures++;
+}
+foreach (var (page, clut, u, v, uw, vh) in new[] {
+    (8, 418, 108, 248, 3, 7), (12, 418, 52, 168, 3, 7),
+    (136, 3552, 126, 152, 17, 25), (138, 3616, 32, 208, 29, 29) })
+foreach (bool world in new[] { false, true })
+{
+    var e = new RecompOne.Runtime.Events.RenderPrimEvent {
+        Count = 4, Textured = true, TexPage = page, Clut = clut,
+        DrawRight = 511, DrawBottom = 239,
+    };
+    for (int i = 0; i < 4; i++)
+    {
+        e.X[i] = 240 + (i % 2) * 30; e.Y[i] = 16 + (i / 2) * vh;
+        e.U[i] = u + (i % 2) * uw; e.V[i] = v + (i / 2) * vh;
+        e.HasDepth[i] = world; e.Depth[i] = world ? 1000 : 0;
+    }
+    RecompOne.Runtime.Events.Event.Dispatch(e);
+    bool pass = e.World == world && e.Hud == !world &&
+        e.X[0] == (world ? 240 : 511 + (240 - 511) * 1000 / 1333);
+    Console.WriteLine($"Chase cap/marker page={page} clut={clut} world={world}: {(pass ? "PASS" : "FAIL")}");
+    if (!pass) failures++;
+}
+RecompOne.Runtime.Config.ConfigManager.Game.Widescreen = oldWide;
+GpuHle.FovNum = GpuHle.FovDen = 1;
+#endif
 return failures == 0 ? 0 : 1;
 
 sealed class NumericBackend : IGpuBackend
 {
     public readonly List<(HleVertex A, HleVertex B, HleVertex C, bool World)> Triangles = [];
+    public readonly List<(HleRect Rect, PrimFlags Flags)> Rectangles = [];
     public bool Ready => true;
     public void SetDrawEnv(in HleDrawEnv env) { }
     public void DrawTri(in HleVertex a, in HleVertex b, in HleVertex c, in PrimFlags f) => Triangles.Add((a,b,c,f.World));
-    public void DrawRect(in HleRect r, in PrimFlags f) { }
+    public void DrawRect(in HleRect r, in PrimFlags f) => Rectangles.Add((r, f));
     public void DrawLine(in HleVertex a, in HleVertex b, in PrimFlags f) { }
     public void FillRect(int x, int y, int w, int h, ushort color15) { }
     public void CopyVram(int sx, int sy, int dx, int dy, int w, int h) { }

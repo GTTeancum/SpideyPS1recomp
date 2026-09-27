@@ -333,6 +333,10 @@ public sealed partial class Gpu
             e.Context = Runtime.Cpu!; e.Memory = Runtime.Mem!;
             e.Count = 2;
             e.X[0] = x; e.X[1] = x + w; e.Y[0] = y; e.Y[1] = y + h;
+            e.U[0] = u0; e.U[1] = u0 + w; e.V[0] = v0; e.V[1] = v0 + h;
+            // The event instance is reused after polygons, but sprites have no GTE depth.
+            e.Depth[0] = e.Depth[1] = 0;
+            e.HasDepth[0] = e.HasDepth[1] = false;
             e.DrawLeft = _drawAreaLeft; e.DrawRight = _drawAreaRight; e.DrawTop = _drawAreaTop; e.DrawBottom = _drawAreaBottom;
             e.DrawOffsetX = _drawOffsetX; e.DrawOffsetY = _drawOffsetY;
             e.Textured = tex; e.SemiTransparent = semi; e.Gouraud = false; e.Raw = raw;

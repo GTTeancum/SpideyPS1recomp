@@ -1,7 +1,10 @@
 # P1 rendering investigation
 
-Goal remains open. No rendering fix or release-stage promotion is claimed here.
+Goal remains open. No final release-stage promotion is claimed here.
 Performance/stalls and retargeting/shoulders remain closed by user direction.
+
+Update: the meter repair below is now implemented and visually checked in a
+candidate build. The fade, menus and final release-stage promotion remain open.
 
 ## Baseline builds
 
@@ -78,3 +81,65 @@ coverage. Publish a fresh diagnostic candidate for the next packet captures.
    menus, both buffer phases, selection changes, resume and Retry transitions.
 4. Verify fixes visually in fresh native builds, stage both games, update TODO,
    commit completed repairs without pushing. Preserve scenery/timing/audio/suits.
+
+## Meter repair and rectangle state
+
+`p1-meter-packets-wide` and `p1-meter-packets-native` both exited0 and captured
+1736 with enriched traces1734..1736. Both images were inspected individually.
+The native4:3 rail is continuous; the wide rail has a gap. The actual draw area
+is512x240, not320x240. Contrary to the earlier width-limit hypothesis, the rail
+is made of small quads: the native segments cross the top-left corner boundary
+and receive different transforms. At x174..192 the wide quad becomes130..144,
+while its neighbor remains192..210. The right-overlay flag alone does not
+transform the remaining pieces.
+
+The SM1 patch now identifies the rail, both caps and both head markers by their
+native atlas page/CLUT/UV regions within the top HUD. All share the right-edge
+transform, regardless of their position along the rail. GTE-derived geometry
+is excluded first, and SM2's independently selected gameplay address excludes
+this SM1-specific rule. It does not broadly reclassify top-row menu text.
+
+Separately, the reused RenderPrimEvent retained HasDepth/Depth/U/V fields from
+the preceding polygon when decoding a rectangle. Clear its depth and initialize
+its UVs. This makes sprite classification independent of prior world draws.
+The GP0 regression reproduces the old failure and passes after the change.
+
+Tests: RenderingRegression fails before the fixes (rectangle case and12 rail
+positions/buffer combinations), then passes. Added cap/marker checks also verify
+that world-provenance packets remain untouched. Both SM1 and SM2 regression
+executables pass; the SM2 suite includes the shared rectangle regression.
+
+Fresh candidate publishes (not canonical release promotion):
+
+- `work/render-p1-meter/sm1/SpiderMan.exe`, SHA256
+  `5fdd81aa6c219a02066da39e9a6f51c635af55c62b68919e4c03df5552e82d57`.
+- `work/render-p1-meter/sm2/SpiderMan2.exe`, SHA256
+  `ca2218be04c92dc39a59252ade3c8a933e387eaa2316780cd2763555d006ae5a`.
+
+Native evidence:
+
+- `p1-meter-fixed-wide`, exit0: individually inspected1680,1736,1790.
+  1680 is still the introductory motion without HUD;1736 and1790 show a
+  continuous rail, both heads, and changing Spider-Man marker position.
+  Filtered frame1734 packets by the five meter texture identities before
+  comparison:46 triangles/138 vertices match the native packet order, UVs and
+  shared transform with zero mismatches. Do not compare whole trace row indices
+  between aspect modes: world culling changes the number of scene triangles.
+- `p1-meter-fixed-native`, exit0: individually inspected1736 and1790.
+  Native4:3 remains continuous with its original placement; marker motion is
+  visible. This is a stationary HUD test, not chase completion.
+- `p1-menu-rectstate-sm1`, exit0: individually inspected1669 and2089.
+  Pause's SELECT corruption remains. Thus stale rectangle provenance was a real
+  independently reproduced bug, but does NOT fix this menu defect. Trace2086
+  identifies the trail as a textured additive quad, TPage40/CLUT160,
+  UV120..127/208..254, screenX512..244/Y157..180, RGB64,64,123 fading to0.
+  The button icon is TPage40/CLUT36, UV0..20/225..237, RGB64. Next identify
+  whether these use replacements and inspect their source palette/STP state.
+- `p1-menu-rectstate-sm2`, exit0: individually inspected4758,5008,5358.
+  Continue and Restart selection states are visible; Up then Cross returns to
+  gameplay by5358. The pale question-mark artifact persists while paused and
+  returns to its blue appearance after resuming. This verifies the bounded
+  selection/resume flow, not the unresolved overlay rendering or Retry flow.
+
+No disappearance fade repair is claimed. Retry/Pause transitions and temporal
+flicker acceptance still require further diagnosis and native validation.
