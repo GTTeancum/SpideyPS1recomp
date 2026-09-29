@@ -1,6 +1,8 @@
 # P1 rendering investigation
 
-Goal completed for the targeted P1 defects; both local user-test stages are ready.
+September 29 correction: the prior completion claim did not establish the meter
+extension in part 2 of the same chase level. That specific check is reopened.
+Both local user-test stages contain the earlier fixes, not a verified part-2 fix.
 Performance/stalls and retargeting/shoulders remain closed by user direction.
 
 Current status: meter, fade and menu-tail repairs are implemented, regression
@@ -312,3 +314,29 @@ were inspected separately. No console-reference equivalence claim is made for
 the death backdrop. Audio was muted during these visual checks; no new audio,
 performance, retargeting or Chase-completion acceptance is claimed. Local stages
 remain audible by default. No push or GitHub issue-state change was performed.
+
+## September 29: part-2 check, extension still unverified
+
+`p1-meter-part2-capture-2026-09-29` ran the exact staged SM1 executable
+(SHA256 11b4ab6c...edd2091e), l5a1, widescreen, 8000 ticks, exit0 in139.25s.
+This uses the explicitly enabled process-local diagnostic follower and five
+native region pulses to reach the building scene; the follower releases at4185.
+It is not ordinary traversal or chase-completion evidence. After release the
+player stays on the building and ultimately loses Venom. No HUD bytes, geometry
+or renderer settings were patched during this run.
+
+All nine captures were individually inspected in order:1736 early meter;
+5385/5685 letterboxed building sequence;5985/6135/6285 post-building gameplay
+with continuous rail, intact caps and changing player-marker position;
+6435 loss sequence;6585 translucent Venom;6735 Retry. At6100 and6102 the
+captured repeated-rail geometry contains38 triangles spanning X232..488,
+identical to the prior early1734/1736 trace. These are submitted coordinates,
+not pre-transform source coordinates. Thus no split was observed in these
+post-building states, but a lengthening event was NOT demonstrated. The specific
+reported condition remains open; do not present this as full part-2 acceptance.
+
+The preceding `p1-meter-part2-locate-2026-09-29` run was stopped deliberately
+after reaching the building scene: its shot anchor lacked the required `model.`
+prefix and produced no images. It is not visual evidence. Both processes ended;
+no desktop input or host capture was used. No production code or staged EXE was
+changed during this check.
