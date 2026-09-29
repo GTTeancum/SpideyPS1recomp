@@ -13,6 +13,7 @@ p.add_argument('--backend', choices=['auto', 'gl33', 'gl45'], default='auto',
                help='Production renderer selection; legacy reference rendering requires a separate instrumented build')
 p.add_argument('--shots', default='-1')
 p.add_argument('--chase', action='store_true')
+p.add_argument('--chase-full-audit', action='store_true', help='Diagnostic follower resumes after the building script; not ordinary traversal')
 p.add_argument('--level', help='Select a normal level without the Chase follower or trigger pulses')
 p.add_argument('--keep-boot', action='store_true', help='Let boot movies/sequences play instead of automatically pressing through them')
 p.add_argument('--extra-script', default='', help='Append process-local button steps; never sends host input')
@@ -46,6 +47,8 @@ p.add_argument('--trace-duration', type=int, default=30)
 p.add_argument('--frames', type=int, default=6000)
 p.add_argument('--wide', default='1')
 a = p.parse_args()
+if a.chase_full_audit and (not a.chase or a.game != 'sm1' or a.geometry):
+    p.error('--chase-full-audit requires sm1 --chase, without --geometry')
 if a.native_script and (a.game != 'sm1' or a.level != 'l5a1'):
     p.error('--native-script requires sm1 --level l5a1')
 if a.jit_trace and not a.stall_trace:
@@ -110,6 +113,10 @@ if a.keep_boot:
     env.pop('SPIDEY_BOOT_SKIP_UNTIL', None)
 if a.chase:
     env.update({'SPIDEY_LEVEL':'l5a1','SPIDEY_CHASE_FOLLOW':'1','SPIDEY_CHASE_REGION_PULSES':'1','SPIDEY_TRACE_TIMING':'1'})
+if a.chase_full_audit:
+    env.update(SPIDEY_CHASE_FULL_AUDIT='1', SPIDEY_SHOT_EVERY='300')
+    env.update(RECOMP_GEOMETRY_DUMP=str(run/'hud.jsonl'), RECOMP_GEOMETRY_START='1500',
+               RECOMP_GEOMETRY_END=str(a.frames), RECOMP_GEOMETRY_HUD_ONLY='1')
 if a.game == 'sm1' and env['SPIDEY_LEVEL'] == 'l5a1':
     env['SPIDEY_SCRIPT'] += ';title.bmr+1100:cross:12'
 if a.extra_script: env['SPIDEY_SCRIPT'] += ';'+a.extra_script

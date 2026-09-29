@@ -10,6 +10,7 @@ public static class GeometryTrace
     static readonly long Start = long.TryParse(Environment.GetEnvironmentVariable("RECOMP_GEOMETRY_START"), out var start) ? start : 0;
     static readonly long End = long.TryParse(Environment.GetEnvironmentVariable("RECOMP_GEOMETRY_END"), out var end) ? end : Start;
     static long _frame;
+    static readonly bool HudOnly = Environment.GetEnvironmentVariable("RECOMP_GEOMETRY_HUD_ONLY") == "1";
     static StreamWriter? _writer;
     static StreamWriter? _textureWriter;
     static readonly HashSet<string> TextureSignatures = [];
@@ -58,6 +59,8 @@ public static class GeometryTrace
         (int X, int Y) nativeA, (int X, int Y) nativeB, (int X, int Y) nativeC)
     {
         if (string.IsNullOrWhiteSpace(Path) || _frame < Start || _frame > End) return;
+        if (HudOnly && (flags.World || !flags.Textured ||
+            Math.Min(a.Y, Math.Min(b.Y, c.Y)) - env.ClipY0 > 60)) return;
         _writer ??= new StreamWriter(Path) { AutoFlush = true };
         if (_stackFrame != _frame)
         {

@@ -340,3 +340,78 @@ after reaching the building scene: its shot anchor lacked the required `model.`
 prefix and produced no images. It is not visual evidence. Both processes ended;
 no desktop input or host capture was used. No production code or staged EXE was
 changed during this check.
+
+## September 29: extended-route audit confirms a remaining split
+
+The new opt-in `--chase-full-audit` runner resumes the process-local follower
+after the original building script finishes. The02/03 versions invoke original
+late wait signals237 and242 because teleport-following bypasses swept collision planes.
+This is diagnostic traversal, not an ordinary-input playthrough. No HUD bytes,
+production render transforms, completion flags, or native script bytes change.
+
+`p1-meter-full-level-02` exits normally at 14000 ticks in246.344s. It reaches
+Venom's final waypoint sequence, then falls into the native death region at8147;
+the inspected8100 image shows the final fall, and8400 shows Game Over. It does
+NOT establish successful level exit. The preceding01 run was deliberately
+stopped at a later native wait before the two additional signals were included.
+
+`tools/chase_meter_audit.py` streams the actual submitted rail triangles and
+unions their horizontal spans on every recorded matching frame. Run02 contains
+2335 matching frames from1558 through8115. In46 frames the rail spans X103..480
+(width377), with a48-pixel gap from144..192. Settled frames span232..488 (width256).
+Failures occur at1558..1640 and4034..4040, every second console tick. These are
+submitted-coordinate measurements, not dimensions of the upscaled PNG.
+
+Native images `p1-meter-full-level-02/frame_01600.png` and `frame_04038.png`
+were individually inspected and visibly confirm the elongated, split rail.
+The web HUD is also visibly separated while it moves. `Wide.IsChaseMeter`
+rejects bottom>height/4: the moving rail reaches y58..65 on a240-high draw
+area, exceeding60. It then receives mixed generic transforms. The production
+renderer and both user-test executables remain unchanged; this is a confirmed
+remaining defect, NOT a fixed-build acceptance report.
+
+Continuous tracing is limited to non-world textured triangles whose top is at
+most60 relative to the clip origin; it does not establish coverage of every
+possible lower HUD position. Visual review covers interval captures, not every
+rendered frame. The01 sequence was reviewed from1500 through6600 in300-tick
+steps;02 additionally covers6900,7200,7500,7800,8100 and8400 plus the exact
+failure captures above. No new audio or ordinary-control acceptance is claimed.
+
+Run03 adds native player script243 and releases the follower at7742. Captures
+6000..7800 every300, then7900,8000,8100,8200,8400 were individually inspected:
+later rooftops, final letterboxed player approach, Venom taunt, player departure,
+then Game Over. Death trigger fires8277. Exit0 at11500 ticks in204.656s.
+The2149 matching meter frames through7743 contain the same46 split frames.
+This still does not prove successful exit. Original actor272 has four links
+(243,245,342,334), not only243;04 reenacts that group and releases the follower
+at the final wait, allowing the native region chain to signal242 itself.
+
+### Run04: chase exit established
+
+`p1-meter-full-level-04` exits0 at10500 ticks in187.391s. Native group272 links
+are dispatched at7733; the follower performs no further position writes. The
+native region signals242 at7768. The original ending trigger800E4024 executes
+at8224, followed by `LoadTriggers("L5A2_T")` and `LevelIntro(52)` at8345.
+The following alley scene runs after its intro returns. No level-completion
+flag, level-load command, HUD value or render primitive was injected.
+
+Individually inspected ending captures in order:7800 approach;7900/8000 rooftop
+taunt;8100 departure with broken structure/debris;8200 the scripted fall past
+the broken structure;8400 the next-level Venom movie;9000 movie wipe;9300 the
+next level's alley with Spider-Man and Venom. These establish actual visible
+endpoint content, not just log activity. Earlier-route visual coverage and
+its interval-sampling limits are listed above; this is not an every-frame review.
+
+Run04 contains2146 matching rail frames from1555 through7734. The same46 frames
+have the377-wide rail and48-pixel gap (first1555,last4037; the boot timing shifts
+by3 ticks). The meter disappears for the final authored scene, as visible in
+the ending captures. The full chase route through its exit is now covered by
+the diagnostic fixture; no additional later split was measured in its captured
+rail geometry. This does not validate ordinary traversal, all off-route states,
+or the next level, and does not repair the confirmed moving-HUD defect.
+
+Verification: SM1 diagnostic publish succeeded; Python compilation passed for
+the runner and meter audit; invalid SM2/full-audit arguments are rejected before
+creating a run folder. The staged SM1 SHA256 remains11b4ab6c...edd2091e.
+All four native diagnostic processes have ended. No desktop input, host capture,
+production renderer change, user-test restaging, or push was performed.

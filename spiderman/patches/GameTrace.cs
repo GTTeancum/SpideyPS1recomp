@@ -49,9 +49,16 @@ public static class GameTrace
     static readonly bool _chaseRegionPulses = Environment.GetEnvironmentVariable("SPIDEY_CHASE_REGION_PULSES") == "1";
     static int _chaseRegionIndex;
     static long _chaseWaitStart;
-    static readonly uint[] ChaseRegions = { 290, 291, 34, 39, 44 };
-    static readonly ushort[] ChaseNextPoints = { 16, 24, 35, 41, 50 };
+    static readonly uint[] ChaseRegions = Environment.GetEnvironmentVariable("SPIDEY_CHASE_FULL_AUDIT") == "1"
+        ? new uint[] { 290, 291, 34, 39, 44, 237, 242 }
+        : new uint[] { 290, 291, 34, 39, 44 };
+    static readonly ushort[] ChaseNextPoints = Environment.GetEnvironmentVariable("SPIDEY_CHASE_FULL_AUDIT") == "1"
+        ? new ushort[] { 16, 24, 35, 41, 50, 227, 11 }
+        : new ushort[] { 16, 24, 35, 41, 50 };
     static bool _chaseLevel, _chaseReleased;
+    static readonly bool _chaseFullAudit = Environment.GetEnvironmentVariable("SPIDEY_CHASE_FULL_AUDIT") == "1";
+    static bool _chaseSawScript;
+    static bool _chaseFinalReleased;
     static readonly System.Collections.Generic.Queue<(uint X, uint Y, uint Z)> _chasePositions = new();
 
     public static void Install()
@@ -63,14 +70,21 @@ public static class GameTrace
     }
 
     // Proof-only traversal of the original Venom route. All writes stay inside
-    // this game's emulated RAM. Release permanently when the authored building
-    // cutscene takes over; no cutscene timing, actor scripts, or triggers change.
+    // this game's emulated RAM. Normally release at the building sequence;
+    // the full audit resumes afterward and releases again for the final sequence.
     static void OnChaseFollowFrame(VSyncEvent e)
     {
-        if (!_chaseLevel || _chaseReleased) return;
+        if (!_chaseLevel || _chaseFinalReleased || (_chaseReleased && !_chaseFullAudit)) return;
         var m = e.Memory;
         uint player = m.ReadU32(0x800B5268u), actor = m.ReadU32(0x800B5234u);
         if (player < 0x80000000u || player >= 0x80200000u) return;
+        if (_chaseReleased)
+        {
+            if (m.ReadU32(player + 0x1A8u) != 0) { _chaseSawScript = true; return; }
+            if (!_chaseSawScript) return;
+            _chaseReleased = false;
+            Console.WriteLine($"[chase-follow] audit resumed after native player script frame={e.Frame}");
+        }
         for (int i = 0; actor != 0 && i < 1024; i++)
         {
             if (actor < 0x80000000u || actor >= 0x80200000u) return;
@@ -78,7 +92,8 @@ public static class GameTrace
             {
                 // Teleporting the follower skips swept collision with the retail
                 // region planes. Optional fixture setup pulses those original
-                // command points at the five pre-cutscene taunt stops. No actor
+                // command points at taunt stops (including two later stops in
+                // full-audit mode). No actor
                 // completion flag or cutscene script is patched.
                 if (_chaseRegionPulses && _proofGp != 0 && _chaseRegionIndex < ChaseRegions.Length)
                 {
@@ -92,6 +107,18 @@ public static class GameTrace
                     else if (e.Frame - _chaseWaitStart >= 60)
                     {
                         uint region = ChaseRegions[_chaseRegionIndex++];
+                        if (_chaseFullAudit && region == 242)
+                        {
+                            // Original actor record272 links: player sequence,
+                            // camera setup and native region chains. Let
+                            // that region chain issue242 instead of skipping it.
+                            _chaseFinalReleased = true;
+                            _chasePositions.Clear();
+                            foreach (uint link in new uint[] { 243, 245, 342, 334 })
+                                SpiderMan.func_8005BA58(new CpuContext { GP = _proofGp, SP = 0x807F0000u, A0 = link }, m);
+                            Console.WriteLine($"[chase-follow] final native group272 links; follower released frame={e.Frame}");
+                            return;
+                        }
                         var context = new CpuContext { GP = _proofGp, SP = 0x807F0000u, A0 = region };
                         SpiderMan.func_8005BA58(context, m);
                         Console.WriteLine($"[chase-follow] fixture region pulse={region} frame={e.Frame}");
@@ -105,7 +132,15 @@ public static class GameTrace
                 m.WriteU32(player + 8, position.Y);
                 m.WriteU32(player + 12, unchecked(position.Z + (uint)(_chaseOffsetZ * 4096)));
                 if (e.Frame % 120 == 0)
+                {
                     Console.WriteLine($"[chase-follow] frame={e.Frame} player=0x{player:X8} venom=0x{actor:X8} xyz={(int)position.X},{(int)position.Y},{(int)position.Z}");
+                    if (_chaseFullAudit)
+                    {
+                        uint script = m.ReadU32(actor + 0x31Cu), task = m.ReadU32(actor + 0x320u);
+                        if (script >= 0x80000000u && script < 0x80200000u && task >= 0x80000000u && task < 0x80200000u)
+                            Console.WriteLine($"[chase-audit] frame={e.Frame} script={script:X8} words={m.ReadU16(script)},{m.ReadU16(script+2)},{m.ReadU16(script+4)} task={m.ReadU32(task)}");
+                    }
+                }
                 return;
             }
             actor = m.ReadU32(actor + 0x1Cu);
