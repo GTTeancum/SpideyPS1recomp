@@ -472,6 +472,7 @@ RecompOne.Runtime.Config.ConfigManager.Game.Widescreen = true;
 RecompOne.Runtime.Sdk.LibGpu.LastDispGrandparent = 0x8002C2AC;
 RecompOne.Runtime.Events.Event.Dispatch(new RecompOne.Runtime.Events.VSyncEvent { Frame = 1 });
 foreach (int drawY in new[] { 0, 256 })
+foreach (int meterY in new[] { -16, 0, 28, 53, 54, 58, 90, 120, 230 })
 foreach (int x in new[] { 138, 174, 192, 246, 264, 462 })
 {
     var e = new RecompOne.Runtime.Events.RenderPrimEvent {
@@ -480,27 +481,29 @@ foreach (int x in new[] { 138, 174, 192, 246, 264, 462 })
     };
     for (int i = 0; i < 4; i++)
     {
-        e.X[i] = x + (i % 2) * 18; e.Y[i] = drawY + 28 + (i / 2) * 7;
+        e.X[i] = x + (i % 2) * 18; e.Y[i] = drawY + meterY + (i / 2) * 7;
         e.U[i] = 240 + (i % 2) * 11; e.V[i] = 248 + (i / 2) * 7;
     }
     RecompOne.Runtime.Events.Event.Dispatch(e);
     bool pass = e.Hud && !e.World && e.X[0] == 511 + (x - 511) * 1000 / 1333 &&
         e.X[1] == 511 + (x + 18 - 511) * 1000 / 1333;
-    Console.WriteLine($"Chase rail common anchor x={x} drawY={drawY}: {(pass ? "PASS" : "FAIL")}");
+    Console.WriteLine($"Chase rail common anchor x={x} drawY={drawY} meterY={meterY}: {(pass ? "PASS" : "FAIL")}");
     if (!pass) failures++;
 }
 foreach (var (page, clut, u, v, uw, vh) in new[] {
     (8, 418, 108, 248, 3, 7), (12, 418, 52, 168, 3, 7),
     (136, 3552, 126, 152, 17, 25), (138, 3616, 32, 208, 29, 29) })
 foreach (bool world in new[] { false, true })
+foreach (int drawY in new[] { 0, 256 })
+foreach (int meterY in new[] { -16, 16, 46, 58, 90, 120, 230 })
 {
     var e = new RecompOne.Runtime.Events.RenderPrimEvent {
         Count = 4, Textured = true, TexPage = page, Clut = clut,
-        DrawRight = 511, DrawBottom = 239,
+        DrawRight = 511, DrawTop = drawY, DrawBottom = drawY + 239,
     };
     for (int i = 0; i < 4; i++)
     {
-        e.X[i] = 240 + (i % 2) * 30; e.Y[i] = 16 + (i / 2) * vh;
+        e.X[i] = 240 + (i % 2) * 30; e.Y[i] = drawY + meterY + (i / 2) * vh;
         e.U[i] = u + (i % 2) * uw; e.V[i] = v + (i / 2) * vh;
         e.HasDepth[i] = world; e.Depth[i] = world ? 1000 : 0;
     }

@@ -59,8 +59,7 @@ public static class GeometryTrace
         (int X, int Y) nativeA, (int X, int Y) nativeB, (int X, int Y) nativeC)
     {
         if (string.IsNullOrWhiteSpace(Path) || _frame < Start || _frame > End) return;
-        if (HudOnly && (flags.World || !flags.Textured ||
-            Math.Min(a.Y, Math.Min(b.Y, c.Y)) - env.ClipY0 > 60)) return;
+        if (HudOnly && (flags.World || !flags.Textured)) return;
         _writer ??= new StreamWriter(Path) { AutoFlush = true };
         if (_stackFrame != _frame)
         {

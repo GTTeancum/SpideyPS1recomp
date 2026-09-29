@@ -415,3 +415,30 @@ the runner and meter audit; invalid SM2/full-audit arguments are rejected before
 creating a run folder. The staged SM1 SHA256 remains11b4ab6c...edd2091e.
 All four native diagnostic processes have ended. No desktop input, host capture,
 production renderer change, user-test restaging, or push was performed.
+
+## September 29: meter transition fix staged
+
+`Wide.IsChaseMeter` now uses the measured atlas identities without a vertical
+position cutoff. Screen alignment, SM1 identity and the earlier GTE/world
+exclusion remain intact. Rails, caps and both markers retain one right-anchored
+transform while the HUD moves. Regressions now sweep both draw buffers through
+negative, settled, cutoff-crossing and lower-screen positions, including matching
+world polygons that must remain untouched. SM1 and SM2 rendering suites pass.
+
+`p1-meter-transition-fixed` runs the published candidate through the full native
+diagnostic chase to L5A2: exit0 at9500 in179.391s. The trace no longer filters
+out lower-screen HUD geometry. All2146 matching meter frames (1557..7736) span
+X232..488, width256, with zero gaps and zero unclassified frames. The old build
+had46 split frames and widths256/377. Individually inspected1600,4034,4036,4038,
+4040 confirm the repaired transitions;6000,6900,7500 confirm later rail states;
+8200 confirms the authored departure and9300 the next-level alley. This is not
+an every-frame visual review or ordinary-input traversal proof. The separate
+left-side web HUD transition artifact remains visible and is outside this
+meter-specific fix; no blanket claim that all HUD rendering is repaired.
+
+Staged only the verified SM1 executable, preserving existing assets, suits,
+settings and saves at `proof_render/p1-user-test-2026-09-27/Spider-Man/SpiderMan.exe`.
+SHA256: `eb3ed7a9594c3f78f38163d655f5c7a2aa5f8385b07d72f9cebe1e8f6a0cd4c2`.
+Previous EXE retained at `work/meter-transition-fixed/SpiderMan-before-fix.exe`
+(SHA25611b4ab6c...edd2091e). SM2's stage is unchanged: the production change is
+SM1-only. All test processes ended. Nothing pushed.

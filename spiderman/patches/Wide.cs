@@ -184,7 +184,7 @@ public static class Wide
             return;
         }
         if (!transform) return;
-        if (aligned && IsChaseMeter(e, rtop, rbot, h))
+        if (aligned && IsChaseMeter(e))
         {
             // The rail spans the corner classifier's boundary. Its caps, repeated
             // middle tiles and moving heads must share one coordinate transform.
@@ -248,13 +248,13 @@ public static class Wide
         return true;
     }
 
-    static bool IsChaseMeter(RenderPrimEvent e, int top, int bottom, int height)
+    static bool IsChaseMeter(RenderPrimEvent e)
     {
-        if (_gameplaySwap != Sm1GameplaySwap || !e.Textured || e.Count != 4 ||
-            top < 0 || bottom > height / 4) return false;
+        if (_gameplaySwap != Sm1GameplaySwap || !e.Textured || e.Count != 4) return false;
 
         // Native Chase Venom HUD atlas identities, measured in both draw buffers.
-        // Keep this separate from generic top-row text and scene overlays.
+        // HUD transitions move these outside the top quarter, so classify by
+        // atlas identity, not position. The caller already excludes GTE geometry.
         var region = (e.TexPage & ~0x60, e.Clut) switch
         {
             (8, 418) => (108, 248, 111, 255), // left cap
