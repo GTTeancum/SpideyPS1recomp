@@ -3,18 +3,22 @@
 From a clean source checkout, install .NET 10 and Python 3, then run:
 
 ```sh
+python -m pip install Pillow
 python tools/run_regressions.py
 ```
 
 The runner builds the shared runtime and recompiler, then runs the synthetic
-console regression projects below. It exits nonzero if a build or suite fails,
+console regression projects and converter fixtures below. It exits nonzero if a build or suite fails,
 continues through independent suite failures, and retains each process log plus
 `results.json` under `artifacts/regressions/`. A shared build failure marks the
-suites as skipped, never passed. GitHub Actions runs the same command on Windows
+.NET suites as skipped, never passed; independent Python fixtures still run.
+GitHub Actions runs the same command on Windows
 and Linux and retains the logs as workflow artifacts.
 
 Use `--dotnet /path/to/dotnet` for a local SDK, or repeat `--suite NAME` to select
 individual suites. Every invocation still builds the shared tools.
+CI sets `SPIDEY_GUARD_AFTER_FRAME=2000` so corruption-watch checks exercise a
+positive configured start frame as well as the exact boundary.
 
 | Suite | Evidence supplied |
 |---|---|
@@ -22,8 +26,10 @@ individual suites. Every invocation still builds the shared tools.
 | `CustomSuitModelRegression` | Synthetic actor parsing, hierarchy and face bounds, contiguous native texture records, padded 4-bit/8-bit rows, and rejected malformed data |
 | `DiscInstallRegression` | Synthetic disc identity validation and sector layout reading; no retail disc supplied |
 | `InteriorHookRegression` | Generated C# execution of a synthetic MIPS local-call fixture with and without an interior hook |
-| `MemoryDiagnosticsRegression` | Lazy diagnostic allocations, heatmap disable/re-enable, guest read/write aliases, partial freezes, bulk writes, and preserved projection-depth invalidation |
+| `MemoryDiagnosticsRegression` | Lazy diagnostic allocations, heatmap disable/re-enable, guest read/write aliases, partial freezes, bulk writes, preserved projection-depth invalidation, and frame-gated corruption watches |
+| `Sm1AnimationRegression` | Actual post-loader hook exercised with synthetic native actor and animation-bank layouts, including the legacy extra-terminal-mesh overflow case |
 | `VideoSetupRegression` | Video option bounds, cycling, Apply, cancel, and persisted state conversion |
+| `Sm1ActorAnimationLayoutConverterRegression` | Synthetic actor headers exercise the converter's native body-part count invariant before an incompatible model can be emitted |
 
 These checks do not open a window, load a retail executable, or complete a level.
 Passing on Linux demonstrates that the shared tools and these tests work there;

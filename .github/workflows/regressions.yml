@@ -6,11 +6,21 @@ on:
     paths:
       - 'tools/RecompOne/**'
       - 'tools/run_regressions.py'
+      - 'spiderman/tools/port_dc_character.py'
+      - 'spiderman/tools/mkconfig.py'
+      - 'spiderman/config/spiderman.json'
+      - 'spiderman/patches/Sm1AnimationBounds.cs'
+      - 'dreamcast/tools/test_sm1_actor_animation_layout.py'
       - '.github/workflows/regressions.yml'
   pull_request:
     paths:
       - 'tools/RecompOne/**'
       - 'tools/run_regressions.py'
+      - 'spiderman/tools/port_dc_character.py'
+      - 'spiderman/tools/mkconfig.py'
+      - 'spiderman/config/spiderman.json'
+      - 'spiderman/patches/Sm1AnimationBounds.cs'
+      - 'dreamcast/tools/test_sm1_actor_animation_layout.py'
       - '.github/workflows/regressions.yml'
   workflow_dispatch:
 
@@ -29,6 +39,7 @@ jobs:
     env:
       DOTNET_CLI_TELEMETRY_OPTOUT: '1'
       DOTNET_NOLOGO: '1'
+      SPIDEY_GUARD_AFTER_FRAME: '2000'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -37,6 +48,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+      - name: Install converter test dependency
+        run: python -m pip install Pillow
       - name: Build shared tools and run synthetic regressions
         run: python tools/run_regressions.py
       - name: Retain verification results

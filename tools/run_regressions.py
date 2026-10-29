@@ -13,14 +13,19 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 TESTS = ROOT / "tools" / "RecompOne" / "tests"
-SUITES = (
+DOTNET_SUITES = (
     "BundledAssetsRegression",
     "CustomSuitModelRegression",
     "DiscInstallRegression",
     "InteriorHookRegression",
     "MemoryDiagnosticsRegression",
+    "Sm1AnimationRegression",
     "VideoSetupRegression",
 )
+PYTHON_SUITES = {
+    "Sm1ActorAnimationLayoutConverterRegression": "dreamcast/tools/test_sm1_actor_animation_layout.py",
+}
+SUITES = (*DOTNET_SUITES, *PYTHON_SUITES)
 
 
 def run_step(name: str, command: list[str], output: Path) -> dict:
@@ -76,17 +81,19 @@ def main() -> int:
         args.dotnet, "build", "tools/RecompOne/RecompOne.sln",
         "--configuration", args.configuration, "--verbosity", "minimal",
     ], output)]
-    if results[0]["exit_code"] == 0:
-        for suite in selected:
+    shared_build_passed = results[0]["exit_code"] == 0
+    for suite in selected:
+        if suite in PYTHON_SUITES:
+            results.append(run_step(suite, [sys.executable, PYTHON_SUITES[suite]], output))
+        elif shared_build_passed:
             project = (TESTS / suite / f"{suite}.csproj").relative_to(ROOT)
             results.append(run_step(suite, [
                 args.dotnet, "run", "--project", str(project),
                 "--configuration", args.configuration, "--no-launch-profile",
                 "--verbosity", "minimal",
             ], output))
-    else:
-        results.extend({"name": suite, "status": "skipped", "reason": "shared build failed"}
-                       for suite in selected)
+        else:
+            results.append({"name": suite, "status": "skipped", "reason": "shared build failed"})
 
     passed = all(result["status"] == "passed" for result in results)
     report = {

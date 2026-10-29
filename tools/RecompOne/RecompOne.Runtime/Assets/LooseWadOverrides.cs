@@ -102,6 +102,18 @@ public static class LooseWadOverrides
     /// </summary>
     public static bool OwnsAllocation(uint address) => _arenaUsed.ContainsKey(address);
 
+    /// <summary>Get the bounds of an exact live override/scratch allocation.</summary>
+    public static bool TryGetAllocationSize(uint address, out uint size)
+    {
+        if (_arenaUsed.TryGetValue(address, out var allocation))
+        {
+            size = allocation.Size;
+            return true;
+        }
+        size = 0;
+        return false;
+    }
+
     static Dictionary<string, string> Index(string directory, bool required)
     {
         if (!Directory.Exists(directory))

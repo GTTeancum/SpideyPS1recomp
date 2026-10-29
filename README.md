@@ -204,6 +204,12 @@ installation layout and recovery details.
 
 ## Build from source
 
+For the shared runtime/recompiler and tests that require no retail disc, use
+`python tools/run_regressions.py` after installing .NET 10, Python 3, and Pillow.
+[Verification coverage](tools/RecompOne/tests/README.md) explains what the
+Windows/Linux CI gate checks. [The project checkpoint](CHECKPOINT.md) records
+current fixes, actual results, and the next gameplay blocker.
+
 Development builds require .NET 10, Python 3 with NumPy and Pillow, and the
 appropriate retail disc data. Start in the directory of the game being built:
 

@@ -455,6 +455,12 @@
     },
     {
       "overlay": "main",
+      "function": "func_80068BB0",
+      "mode": "post",
+      "target": "Recompiled.Sm1AnimationBounds.AfterModelLoad"
+    },
+    {
+      "overlay": "main",
       "function": "func_80074C98",
       "mode": "pre",
       "target": "Recompiled.ModelDiagnostics.ParseEnter"

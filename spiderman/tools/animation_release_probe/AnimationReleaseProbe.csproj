@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../../tools/RecompOne/RecompOne.Runtime/RecompOne.Runtime.csproj" />
+    <Compile Include="../../patches/Sm1AnimationBounds.cs" Link="Sm1AnimationBounds.cs" />
+    <Reference Include="SpiderMan">
+      <HintPath>$(ReleasedSpiderManAssembly)</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Target Name="RequireReleasedAssembly" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="!Exists('$(ReleasedSpiderManAssembly)')"
+      Text="Set -p:ReleasedSpiderManAssembly=/absolute/path/to/the/v1.1/SpiderMan.dll extracted from the public release. See docs/issues/issue-5-sewer-crash.md." />
+  </Target>
+</Project>

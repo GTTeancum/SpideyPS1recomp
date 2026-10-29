@@ -2158,6 +2158,18 @@ def build_character(
     for index, mesh_offset in enumerate(mesh_offsets):
         struct.pack_into("<I", output, model.mesh_pointer_table_offset + index * 4, mesh_offset)
 
+    # Native ParsePSX derives the animation stride by counting terminal LOD
+    # meshes, not by reading the object count. Duplicating a terminal reduced
+    # tier therefore adds phantom bones, even when no LOD link reaches it.
+    # The old 56-mesh/19-object lizman layout counted 37 bones and made sampled
+    # animation decoding overrun its 30-matrix buffer into collision globals.
+    animation_parts = sum(u16(output, pointer + 26) == 0xFFFF for pointer in mesh_offsets)
+    if animation_parts != model.object_count:
+        raise ValueError(
+            f"emitted {len(mesh_offsets)} meshes with {animation_parts} terminal LOD links "
+            f"for {model.object_count} animation parts; expected one terminal mesh per part"
+        )
+
     while len(output) % 4:
         output.append(0)
     struct.pack_into("<I", output, 4, len(output))

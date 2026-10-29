@@ -116,12 +116,11 @@ after that the route replays.
   reports confident nonsense. Only the nine names in `funcmaps/manual.json` plus
   `MovieNextFrame` have been read and confirmed.
 
-## 5. Carried over: the harness bug is still in the Spider-Man port
+## 5. Historical harness note — resolved in current source
 
-The unresolved-anchor bug described in README.md — a step waiting on an archive sits at
-frame `-1`, and `frame >= -1 && frame < -1 + hold` is true on frames 0..hold-2, so every
-anchored script also presses its button at boot — is fixed in `spiderman2/patches/
-Capture.cs` and **still present in `spiderman/patches/Capture.cs`**, which is where this
-copy came from. It was left alone deliberately: the two games' patch directories are
-siloed, and changing Spider-Man's input harness would invalidate its recorded routes and
-its verification runs. It should be fixed there, with a re-verification pass.
+The unresolved-anchor bug described in README.md made a step waiting at frame `-1`
+press its button during boot. Current `Capture.cs` in both games skips unresolved
+steps (`p.Frame < 0`); the earlier statement that SM1 still lacked this guard is
+obsolete. This source check does not revalidate historical recorded routes.
+
+For current changes and remaining blockers, see [the project checkpoint](../CHECKPOINT.md).
