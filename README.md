@@ -1,4 +1,4 @@
-# OpenSpideyPS1
+# SpideyPS1Recomp
 
 Native recompilations of **Spider-Man** and **Spider-Man 2: Enter Electro** for
 Windows, built with [RecompOne](https://github.com/BlackLabelHQ/RecompOne).
