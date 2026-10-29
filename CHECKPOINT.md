@@ -1,6 +1,6 @@
 # SpideyPS1 Recomp checkpoint
 
-Updated: 2026-10-28 (Eastern Time). Resume this file when asked to continue
+Updated: 2026-10-29 (Eastern Time). Resume this file when asked to continue
 SpideyPS1 Recomp, then inspect the current branch and working tree.
 
 ## Objective and authorization
@@ -35,6 +35,26 @@ backups must not enter public commits.
   Bundled replacement actors, synthetic fixtures, and the public SM1 v1.1 release
   supported the checks below. The release was used for isolated routine execution,
   not a booted game or a level run.
+
+## Community issue intake — 2026-10-29
+
+Reviewed the indexed v1.1 release discussion and compared it with all nine current
+GitHub issues and the existing checkpoint/TODOs. The new
+[community report tracker](docs/issues/community-reports-2026-10-29.md) records ten
+separate reproduction targets with source links, proposed priorities, and closure
+criteria. R05 maps to open #8; R10 adds a distinct failure alongside #6. Other
+symptom similarities remain comparison leads, not confirmed duplicate causes.
+
+All intake entries are reported and unverified on the current build. This pass
+reviewed source, issue history, and documentation; it did not build or play a game.
+The prior CI and isolated-routine evidence below remain historical results for
+their exact commits. Workspace maintenance removed the prior local checkout and
+tool cache; recover source from GitHub and restore the SDK before the next local
+build. No private retail inputs had been supplied.
+
+Next: keep the L5A3 acceptance run first, then prioritize R01 and R02 once the
+supported private gameplay assets are available. The expanded queue remains part
+of campaign and costume verification; no report is closed by this intake.
 
 ## Completed changes
 
@@ -167,9 +187,10 @@ game regeneration/build still requires the supported private retail input.
    Track objectives, transitions, bosses, death/retry, save/load, and completion
    separately from boot screenshots or level entry. Historical 20/24 SM2
    level-entry checks are not current full gameplay coverage.
-4. **Resume priority:** inspect the latest branch, checkpoint, and issue evidence.
+4. **Resume priority:** inspect the latest branch, checkpoint, issue evidence, and
+   [community report queue](docs/issues/community-reports-2026-10-29.md).
    With supported retail input available, follow the README's extraction and
-   `python tools/build.py` steps, then prioritize the normal L5A3 route above.
+   `python tools/build.py` steps, then prioritize the normal L5A3 route above and crash cases R01/R02.
    Until then, the complete gameplay acceptance remains blocked; do not substitute
    another synthetic pass or a public-release routine probe for a level run.
 
