@@ -1,0 +1,49 @@
+name: Asset-free regressions
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'tools/RecompOne/**'
+      - 'tools/run_regressions.py'
+      - '.github/workflows/regressions.yml'
+  pull_request:
+    paths:
+      - 'tools/RecompOne/**'
+      - 'tools/run_regressions.py'
+      - '.github/workflows/regressions.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regressions:
+    name: Shared tools and synthetic tests (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+      DOTNET_NOLOGO: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Build shared tools and run synthetic regressions
+        run: python tools/run_regressions.py
+      - name: Retain verification results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-free-regressions-${{ matrix.os }}
+          path: artifacts/regressions/
+          if-no-files-found: warn
+          retention-days: 14

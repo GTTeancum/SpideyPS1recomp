@@ -21,8 +21,8 @@ public sealed class PSMemory : IMemory
     public ReadOnlySpan<byte> Ram => _ram;
     internal byte[] RamBuffer => _ram;
     
-    //memory can be frozen for debuging reasons
-    private readonly bool[] _frozen;
+    // Memory freezes are a debugger feature; ordinary play needs no freeze mask.
+    private bool[]? _frozen;
     private int _frozenCount;
 
     public PSMemory(uint ramSize = 0)
@@ -34,7 +34,6 @@ public sealed class PSMemory : IMemory
         if ((size & (size - 1)) != 0) throw new ArgumentException("ram size must be a power of two", nameof(ramSize));
 
         _ram = new byte[size];
-        _frozen = new bool[size];
         Runtime.RamSize = size;
 
         _dma = new Dma(this, _gpu, _spu, _mdec, () => Runtime.DispatchIrq(3));
@@ -73,7 +72,7 @@ public sealed class PSMemory : IMemory
         if (phys < MemoryMap.RamWindow)
         {
             uint off = phys % (uint)_ram.Length;
-            Runtime.RamLog.RecordWrite(phys % (uint)_ram.Length, size);
+            if (Runtime.RamLog.Enabled) Runtime.RamLog.RecordWrite(off, size);
             Dispatcher.NotifyWrite(off);
         }
 
@@ -91,7 +90,7 @@ public sealed class PSMemory : IMemory
 
     private void TrackRead(uint phys, int size)
     {
-        if (RamLogger.TrackReads && phys < MemoryMap.RamWindow)
+        if (Runtime.RamLog.Enabled && phys < MemoryMap.RamWindow)
             Runtime.RamLog.RecordRead(phys % (uint)_ram.Length, size);
 
         if (++_readsSinceWrite >= IdleReadThreshold)
@@ -194,7 +193,7 @@ public sealed class PSMemory : IMemory
         TrackWrite(phys, 1);
         if (_cd != null && IsCd(phys)) { _cd.Write(phys, value); return; }
 
-        if (_frozenCount > 0 && phys < MemoryMap.RamWindow && _frozen[phys % (uint)_ram.Length]) return;
+        if (_frozen is { } frozen && phys < MemoryMap.RamWindow && frozen[phys % (uint)_ram.Length]) return;
         Resolve(address, 1)[0] = value;
         TrackWritten(phys, 1);
         InvalidateGteDepth(phys);
@@ -209,11 +208,11 @@ public sealed class PSMemory : IMemory
         if (_timers.TryWrite(phys, value)) return;
         var s = Resolve(address, 2);
 
-        if (_frozenCount > 0 && phys < MemoryMap.RamWindow)
+        if (_frozen is { } frozen && phys < MemoryMap.RamWindow)
         {
             uint b = phys % (uint)_ram.Length;
-            if(!_frozen[b])   s[0] = (byte)value;
-            if(!_frozen[b+1]) s[1] = (byte)(value >> 8);
+            if(!frozen[b])   s[0] = (byte)value;
+            if(!frozen[b+1]) s[1] = (byte)(value >> 8);
             TrackWritten(phys, 2);
             InvalidateGteDepth(phys);
             InvalidateGteDepth(phys + 1u);
@@ -245,13 +244,13 @@ public sealed class PSMemory : IMemory
         if (IsSpu(phys)) { _spu.WriteReg16(phys, (ushort)value); _spu.WriteReg16(phys + 2, (ushort)(value >> 16)); return; }
         if (_timers.TryWrite(phys, value)) return;
         var s = Resolve(address, 4);
-        if (_frozenCount > 0 && phys < MemoryMap.RamWindow)
+        if (_frozen is { } frozen && phys < MemoryMap.RamWindow)
         {
             uint b = phys % (uint)_ram.Length;
-            if(!_frozen[b])   s[0] = (byte)value;
-            if(!_frozen[b+1]) s[1] = (byte)(value >> 8);
-            if(!_frozen[b+2]) s[2] = (byte)(value >> 16);
-            if(!_frozen[b+3]) s[3] = (byte)(value >> 24);
+            if(!frozen[b])   s[0] = (byte)value;
+            if(!frozen[b+1]) s[1] = (byte)(value >> 8);
+            if(!frozen[b+2]) s[2] = (byte)(value >> 16);
+            if(!frozen[b+3]) s[3] = (byte)(value >> 24);
             TrackWritten(phys, 4, value);
             InvalidateGteDepth(phys);
             return;
@@ -343,37 +342,41 @@ public sealed class PSMemory : IMemory
             WriteU8(address + i, 0);
     }
 
-    public bool IsFrozen(uint off) => _frozenCount > 0 && _frozen[off % (uint)_frozen.Length];
+    public bool IsFrozen(uint off) => _frozen is { } frozen && frozen[off % (uint)frozen.Length];
 
     public void Freeze(uint off, int len)
     {
+        if (len <= 0) return;
+        var frozen = _frozen ??= new bool[_ram.Length];
         for (int i = 0; i < len; i++)
         {
-            uint o = (off + (uint)i) % (uint)_frozen.Length;
-            if (!_frozen[o])
+            uint o = (off + (uint)i) % (uint)frozen.Length;
+            if (!frozen[o])
             {
-                _frozen[o] = true;
+                frozen[o] = true;
                 _frozenCount++;
             }
         }
     }
     public void Unfreeze(uint off, int len)
     {
+        var frozen = _frozen;
+        if (frozen == null || len <= 0) return;
         for (int i = 0; i < len; i++)
         {
-            uint o = (off + (uint)i) % (uint)_frozen.Length;
-            if (_frozen[o])
+            uint o = (off + (uint)i) % (uint)frozen.Length;
+            if (frozen[o])
             {
-                _frozen[o] = false;
+                frozen[o] = false;
                 _frozenCount--;
             }
         }
+        if (_frozenCount == 0) _frozen = null;
     }
 
     public void ClearFreezes()
     {
-        if (_frozenCount == 0) return;
-        System.Array.Clear(_frozen, 0, _frozen.Length);
+        _frozen = null;
         _frozenCount = 0;
     }
 

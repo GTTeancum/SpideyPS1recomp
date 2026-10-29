@@ -8,11 +8,30 @@ public sealed class RamLogger
     public const int Width = 2048;
     public const int Height = 1024; 
 
-    readonly uint[] _writeTimestamps = new uint[Width * Height];
-    readonly uint[] _readTimestamps = new uint[Width * Height];
-    uint _cycle;
+    uint[]? _writeTimestamps;
+    uint[]? _readTimestamps;
+    // Zero is the "never accessed" sentinel, including before the first host frame.
+    uint _cycle = 1;
 
-    public static bool TrackReads;
+    /// <summary>Allocate access history only while a memory diagnostic is visible.</summary>
+    public bool Enabled
+    {
+        get => _writeTimestamps != null;
+        set
+        {
+            if (value == Enabled) return;
+            if (value)
+            {
+                _readTimestamps = new uint[Width * Height];
+                _writeTimestamps = new uint[Width * Height];
+            }
+            else
+            {
+                _writeTimestamps = null;
+                _readTimestamps = null;
+            }
+        }
+    }
 
     public float DecayFrames = 90f;
     public Vector4 BackdropColor = new(0.25f, 0.15f, 0.15f, 1f);
@@ -23,11 +42,12 @@ public sealed class RamLogger
     public uint Cycle => _cycle;
     public void Tick() => _cycle++;
 
-    public uint GetWriteStamp(int byteIdx) => (uint)byteIdx < (uint)_writeTimestamps.Length ? _writeTimestamps[byteIdx] : 0u;
+    public uint GetWriteStamp(int byteIdx) =>
+        _writeTimestamps is { } stamps && (uint)byteIdx < (uint)stamps.Length ? stamps[byteIdx] : 0u;
 
     
     public uint GetReadStamp(int byteIdx) =>
-        (uint)byteIdx < (uint)_readTimestamps.Length ? _readTimestamps[byteIdx] : 0u;
+        _readTimestamps is { } stamps && (uint)byteIdx < (uint)stamps.Length ? stamps[byteIdx] : 0u;
 
     float HeatOf(uint ts)
     {
@@ -44,20 +64,24 @@ public sealed class RamLogger
 
     public void RecordWrite(uint physAddr, int bytes)
     {
+        var stamps = _writeTimestamps;
+        if (stamps == null) return;
         for (int i = 0; i < bytes; i++)
         {
             int idx = (int)((physAddr + (uint)i) & 0x1FFFFF);
-            if (idx < _writeTimestamps.Length) _writeTimestamps[idx] = _cycle;
+            stamps[idx] = _cycle;
         }
     }
 
     //rd for show
     public void RecordRead(uint physAddr, int bytes)
     {
+        var stamps = _readTimestamps;
+        if (stamps == null) return;
         for (int i = 0; i < bytes; i++)
         {
             int idx = (int)((physAddr + (uint)i) & 0x1FFFFF);
-            if (idx < _readTimestamps.Length) _readTimestamps[idx] = _cycle;
+            stamps[idx] = _cycle;
         }
     }
 
@@ -72,6 +96,10 @@ public sealed class RamLogger
         float k = -0.6931472f / half;
         float cutoff = half * 16f;
         uint cycle = _cycle;
+        // A queued conversion may finish after its panel closes. Retain local
+        // references for that conversion even if the main thread disables logging.
+        var readTimestamps = _readTimestamps;
+        var writeTimestamps = _writeTimestamps;
 
         for (int i = 0; i < total; i++)
         {
@@ -81,13 +109,13 @@ public sealed class RamLogger
             float r = br * shade, g = bg * shade, bl = bb * shade;
 
             float rHeat = 0f, wHeat = 0f;
-            uint rts = _readTimestamps[i];
+            uint rts = readTimestamps?[i] ?? 0u;
             if (rts != 0)
             {
                 uint age = cycle - rts;
                 if (age <= cutoff) rHeat = MathF.Exp(age * k);
             }
-            uint wts = _writeTimestamps[i];
+            uint wts = writeTimestamps?[i] ?? 0u;
             if (wts != 0)
             {
                 uint age = cycle - wts;

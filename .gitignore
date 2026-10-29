@@ -51,3 +51,6 @@ run*.txt
 # Python bytecode
 __pycache__/
 *.pyc
+
+# Local/CI regression logs and machine-readable results.
+/artifacts/regressions/

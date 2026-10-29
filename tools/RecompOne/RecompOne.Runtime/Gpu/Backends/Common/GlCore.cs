@@ -508,7 +508,8 @@ public sealed class GlCore : IGpuBackend
         byte[] upload = PremultiplyAlpha(tex.Rgba);
         _gl.TexImage2D<byte>(TextureTarget.Texture2D, 0, InternalFormat.Rgba8, (uint)tex.Width, (uint)tex.Height, 0,
             PixelFormat.Rgba, PixelType.UnsignedByte, upload);
-        _gl.GenerateMipmap(TextureTarget.Texture2D);
+        // Linear minification samples level zero only. Do not allocate an unused
+        // mip chain; residency accounting below deliberately covers that one level.
         _gl.ActiveTexture(TextureUnit.Texture0);
 
         _repTextures[tex] = handle;
@@ -524,7 +525,7 @@ public sealed class GlCore : IGpuBackend
     /// an actor silhouette. Dreamcast pages retain magenta-key RGB under alpha zero;
     /// filtering that straight-alpha data produces a colored fringe around Spider-Man
     /// at 4x. Upload premultiplied RGB and undo it after sampling in the primitive
-    /// shader so both base-level filtering and generated mipmaps have clean edges.
+    /// shader so linear filtering has clean edges.
     /// </summary>
     static byte[] PremultiplyAlpha(byte[] source)
     {

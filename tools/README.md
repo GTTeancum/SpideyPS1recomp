@@ -17,6 +17,16 @@ Rebuild with:
 dotnet build -c Release tools/RecompOne/RecompOne.sln
 ```
 
+To build the shared tools and run the synthetic regressions without retail game
+data, use the same command as the Windows/Linux GitHub Actions gate:
+
+```bash
+python tools/run_regressions.py
+```
+
+See [regression coverage and gameplay limits](RecompOne/tests/README.md).
+Results and per-process logs go to the ignored `artifacts/regressions/` folder.
+
 ## enginematch.py
 
 Carries hand-identified function names from one game to another built on the same engine.

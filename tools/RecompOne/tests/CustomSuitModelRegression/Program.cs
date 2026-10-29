@@ -23,11 +23,15 @@ byte[] Fixture(int flags = 0x1f, int faceLength = 36)
 byte[] bytes = Fixture();
 var model = SuitModel.Parse(bytes);
 if (!model.Materials.SetEquals(new[] { 0xDEADBEEFu })) throw new Exception("material IDs not read from model");
-void Reject(Action<byte[]> mutate, string name)
+void RejectMalformed(byte[] data, string name)
 {
-    byte[] b = (byte[])bytes.Clone(); mutate(b);
-    try { SuitModel.Parse(b); } catch (Exception e) when (e is InvalidDataException or OverflowException) { Console.WriteLine("PASS: " + name); return; }
+    try { SuitModel.Parse(data); } catch (Exception e) when (e is InvalidDataException or OverflowException) { Console.WriteLine("PASS: " + name); return; }
     throw new Exception("accepted " + name);
+}
+void Reject(Action<byte[]> mutate, string name, byte[]? fixture = null)
+{
+    byte[] b = (byte[])(fixture ?? bytes).Clone(); mutate(b);
+    RejectMalformed(b, name);
 }
 Reject(b => b[0] = 3, "wrong container version");
 Reject(b => BinaryPrimitives.WriteUInt32LittleEndian(b.AsSpan(4),uint.MaxValue),"metadata pointer overflow");
@@ -47,6 +51,64 @@ Reject(b => { b[firstFace]=0x0f; b[firstFace+7]=3; }, "quad fourth index out of 
 Reject(b => b[firstFace]=0x3f, "extended triangle with short record");
 Reject(b => b[firstFace]=0x5f, "unsupported transparent face");
 Reject(b => { b[firstFace]=0x3f; b[firstFace+2]=40; }, "extended triangle crosses mesh boundary");
+
+// Exercise the bytes the native texture loader walks, not only mesh geometry.
+// Semantic material indices may differ from record order; physical records may not.
+(byte[] Data, int Table) TextureFixture(int finalPaletteSize)
+{
+    byte[] geometry = Fixture();
+    int metadata = BinaryPrimitives.ReadInt32LittleEndian(geometry.AsSpan(4));
+    using var s = new MemoryStream(); using var w = new BinaryWriter(s);
+    w.Write(geometry.AsSpan(0, metadata));
+    w.Write(uint.MaxValue); w.Write(new byte[18 * 4]);
+    w.Write(2); w.Write(0xDEADBEEFu); w.Write(0x12345678u);
+    w.Write(1); w.Write(0x11111111u); w.Write(new byte[16 * 2]);
+    w.Write(1); w.Write(0x22222222u); w.Write(new byte[256 * 2]);
+    w.Write(2);
+    int table = (int)s.Position;
+    w.Write(new byte[2 * 4]);
+    int[] pointers = new int[2];
+    for (int i = 0; i < 2; i++)
+    {
+        int paletteSize = i == 1 ? finalPaletteSize : finalPaletteSize == 16 ? 256 : 16;
+        pointers[i] = (int)s.Position;
+        w.Write(0u); w.Write(paletteSize);
+        w.Write(paletteSize == 16 ? 0x11111111u : 0x22222222u);
+        w.Write(1 - i); w.Write((ushort)3); w.Write((ushort)3);
+        // Independently specified native sizes for odd-width 3x3 pages:
+        // four-bit rows use 2 bytes (6 rounded to 8); eight-bit rows use 4 (12).
+        w.Write(new byte[paletteSize == 16 ? 8 : 12]);
+    }
+    byte[] data = s.ToArray();
+    for (int i = 0; i < 2; i++)
+        BinaryPrimitives.WriteInt32LittleEndian(data.AsSpan(table + i * 4), pointers[i]);
+    return (data, table);
+}
+foreach (int paletteSize in new[] { 16, 256 })
+{
+    var textureFixture = TextureFixture(paletteSize);
+    SuitModel.Parse(textureFixture.Data);
+    Console.WriteLine($"PASS: contiguous {paletteSize}-color odd-width texture rows and reversed material indices");
+    // Leave exactly width * height worth of packed pixels, without native padding.
+    RejectMalformed(textureFixture.Data[..^3], $"truncated {paletteSize}-color row and record padding");
+}
+var textured = TextureFixture(256);
+int firstTexture = BinaryPrimitives.ReadInt32LittleEndian(textured.Data.AsSpan(textured.Table));
+int secondTexture = BinaryPrimitives.ReadInt32LittleEndian(textured.Data.AsSpan(textured.Table + 4));
+Reject(b => BinaryPrimitives.WriteInt32LittleEndian(b.AsSpan(textured.Table), secondTexture),
+    "first texture pointer skips a valid native record", textured.Data);
+Reject(b => BinaryPrimitives.WriteInt32LittleEndian(b.AsSpan(textured.Table + 4), firstTexture),
+    "duplicate texture pointer", textured.Data);
+Reject(b => {
+    BinaryPrimitives.WriteInt32LittleEndian(b.AsSpan(textured.Table), secondTexture);
+    BinaryPrimitives.WriteInt32LittleEndian(b.AsSpan(textured.Table + 4), firstTexture);
+}, "reordered native texture records", textured.Data);
+Reject(b => BinaryPrimitives.WriteUInt32LittleEndian(b.AsSpan(firstTexture + 4), 17),
+    "unsupported native palette size", textured.Data);
+RejectMalformed([.. textured.Data, 0, 0, 0, 0], "trailing native texture data");
+byte[] gap = [.. textured.Data.AsSpan(0, secondTexture), 0, 0, 0, 0, .. textured.Data.AsSpan(secondTexture)];
+BinaryPrimitives.WriteInt32LittleEndian(gap.AsSpan(textured.Table + 4), secondTexture + 4);
+RejectMalformed(gap, "gap before otherwise valid second texture record");
 bytes[0]=0;
 if (model.Bytes.Span[0]!=4) throw new Exception("model aliases caller memory");
 if (args.Length != 0)
