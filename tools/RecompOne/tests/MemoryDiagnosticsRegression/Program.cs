@@ -1,5 +1,6 @@
 using System.Reflection;
 using RecompOne.Runtime;
+using RecompOne.Runtime.Diagnostics;
 using RecompOne.Runtime.Host;
 using RecompOne.Runtime.Memory;
 
@@ -122,6 +123,43 @@ foreach (string name in new[] { "_ramFront", "_ramBack" })
     var buffer = (byte[])hostType.GetField(name, BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
     Check(buffer.Length == 0, $"host {name} does not reserve an unused 8 MiB image");
 }
+
+// A watched corrupt value can legitimately occur during model loading. The
+// configured start frame must leave the report budget intact for later writes.
+const uint watched = 0x0D6F0201;
+const uint guardAddress = 0x20000;
+long savedPresents = Runtime.Presents;
+MemGuard.Address = 0;
+MemGuard.Value = watched;
+MemGuard.WatchValue = true;
+MemGuard.Limit = 1;
+MemGuard.Reported = 0;
+Runtime.Presents = MemGuard.AfterFrame - 1;
+memory.WriteU32(guardAddress, watched);
+Check(MemGuard.Reported == 0, "value guard ignores matching writes before its configured start");
+Runtime.Presents = MemGuard.AfterFrame;
+memory.WriteU32(guardAddress, 0x12345678);
+Check(MemGuard.Reported == 0, "value guard ignores nonmatching writes at the start");
+memory.WriteU32(guardAddress, watched);
+Check(MemGuard.Reported == 1, "value guard reports a matching write at the start");
+memory.WriteU32(guardAddress, watched);
+Check(MemGuard.Reported == 1, "value guard respects its report limit");
+
+MemGuard.WatchValue = false;
+MemGuard.Address = guardAddress;
+MemGuard.BadValuesOnly = false;
+MemGuard.Reported = 0;
+Runtime.Presents = MemGuard.AfterFrame - 1;
+memory.WriteU32(guardAddress, watched);
+Check(MemGuard.Reported == 0, "address guard ignores writes before the same configured start");
+Runtime.Presents = MemGuard.AfterFrame;
+memory.WriteU32(guardAddress, watched);
+Check(MemGuard.Reported == 1, "address guard reports at its configured start");
+MemGuard.Address = 0;
+MemGuard.Reported = 0;
+MemGuard.Limit = 40;
+Runtime.Presents = savedPresents;
+
 Console.WriteLine($"Memory diagnostics: {failures} failure(s). " +
     "Ordinary 8 MiB guest configuration avoids 40 MiB of diagnostic array payload.");
 return failures == 0 ? 0 : 1;

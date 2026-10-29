@@ -26,6 +26,8 @@ public static class MemGuard
     public static bool WatchValue;
     public static int Reported;
     public static int Limit = 40;
+    // Host presents, matching Runtime.Presents; a game may log multiple vblanks
+    // per host frame. Apply the same gate to both address and value watches.
     public static readonly long AfterFrame = ReadAfterFrame();
 
     static long ReadAfterFrame()
@@ -40,7 +42,7 @@ public static class MemGuard
     /// <summary>Called for every 32-bit write when WatchValue is on.</summary>
     public static void HitValue(uint phys, uint written)
     {
-        if (Reported >= Limit || written != Value) return;
+        if (Reported >= Limit || Runtime.Presents < AfterFrame || written != Value) return;
         Reported++;
         Console.WriteLine($"[guard] value 0x{written:X8} written to 0x{phys | 0x80000000u:X8}");
         var tail = CallRing.Tail(10);

@@ -47,12 +47,17 @@ version-4 layout. `spiderman/tools/port_dc_character.py` performs these changes:
    page/CLUT key and samples this full-color host image directly, bypassing PS1
    5-bit framebuffer quantization and dithering. The same host path accepts
    arbitrary replacement dimensions for future HD packs.
-8. Match retail SM1's enemy mesh-table length when a same-object-count layout
-   donor has a third distance tier. Dreamcast henchmen, lizard men, and thugs
-   contain two tiers, but SM1's distant-actor renderer addresses the third tier
-   without checking the converted container's shorter table. The converter
-   repeats the Dreamcast reduced tier for exactly the missing retail slots so
-   those reads remain valid instead of interpreting metadata as exploded geometry.
+8. Preserve valid LOD chains with exactly one terminal mesh per object. When a
+   matching SM1 layout donor identifies incompatible stitched reduced tiers,
+   retain the complete first-tier geometry and emit one terminal mesh per part.
+   Never pad the mesh table with duplicate terminal meshes: native `ParsePSX`
+   counts every terminal as an animation part, including unlinked duplicates.
+   The converter rejects a mismatched count before writing the output. Older
+   bundled `lizman` and `lizman2` assets have 19 objects but 37 terminals; their
+   sampled animation decoder would write 888 bytes into a 720-byte matrix
+   buffer and overwrite collision data. The runtime compatibility hook
+   corrects this cached count only when the complete raw animation bank agrees
+   with the object count, preserving the existing geometry and LOD data.
 9. Emit a v4 container whose compatibility texture section is self-contained.
 
 The output remains one loose `.psx` file per WAD entry. For Spider-Man, a matching
@@ -69,7 +74,7 @@ python spiderman/tools/port_dc_character.py `
   --output-model dreamcast/converted/blackcat/blackcat.psx
 ```
 
-For an enemy whose retail SM1 container defines additional distance tiers, add
+For an enemy that needs the SM1 stitched-LOD compatibility check, add
 `--sm1-layout-donor spiderman/extracted/wad/<actor>.psx`. The all-character batch
 detects and applies this compatibility layout automatically.
 

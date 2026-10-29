@@ -109,6 +109,9 @@ def main():
             # depth-offset channel behind the outer paper shell.
             ('DrawPrimSet', 'pre', 'Recompiled.DcModelCompatibility.ApplyBagmanNestedShellDepth'),
             ('DrawPrimSet', 'post', 'Recompiled.DcModelCompatibility.RestoreBagmanNestedShellDepth'),
+            # Older bundled multi-LOD actors overcount animation parts. Correct
+            # the loaded cache only when the complete raw bank proves its size.
+            ('func_80068BB0', 'post', 'Recompiled.Sm1AnimationBounds.AfterModelLoad'),
             # Opt-in segmented-character diagnostics. These hooks are inert unless
             # RECOMP_TRACE_MODEL_STITCHES is set; keeping them in generated output
             # makes the Dreamcast compatibility audit reproducible.
