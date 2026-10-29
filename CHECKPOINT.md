@@ -13,7 +13,78 @@ Do not launch Codex tasks/services or use the user's Dot or PC. Keep chat update
 within one screen. Private discs, extracted retail data, saves, credentials, and
 backups must not enter public commits.
 
-## Repository and execution state
+## Current batch: native Linux preparation and launch
+
+The asset prerequisite is complete. Both user-supplied archives were downloaded,
+passed `7z t`, and were retained privately. Independently retrieved copies matched
+the originals' exact sizes and SHA-256 hashes. The private asset checkpoint holds
+their identities and recovery locations; do not publish those links or the data.
+
+- SM1 is supported USA `SLUS-00875`; extraction produced 28 disc files and 616 WAD
+  records. Regeneration produced 3,314 functions, 79 patches, and 24
+  reimplementations, with 17 existing residual targets.
+- SM2 is supported USA Rev 1 `SLUS-01378`; extraction produced 45 disc files and
+  634 WAD records / 633 unique files. The duplicate `daazeve.psx` records have
+  identical payloads. Regeneration produced 3,262 functions, 34 patches, and 32
+  reimplementations, with nine existing residual targets.
+- The actual retail-generated games both built on Ubuntu 24.04 x64 with .NET SDK
+  10.0.403. SM1 had five warnings / zero errors; SM2 had three warnings / zero
+  errors. Serial MSBuild avoided the earlier parallel child-process failure.
+- Source checkout is on `master`, based on `1d1a9bc`. Preserve the unrelated
+  untracked temporary ZIP in `spiderman/port/bundled/`. Extracted assets, generated
+  C#, build output, and captures remain outside public commits.
+
+### Changes in this batch
+
+1. **Portable publishing.** Both game projects import shared `GamePort.props`.
+   Publishing defaults to the SDK host RID, honors an explicit `-r`, and uses
+   separate `port/dist/<RID>/` directories. An explicit output directory still
+   wins. Ordinary build paths remain unchanged. VC++ DLLs are included only for
+   `win-x64`; the three Windows validation scripts now use that RID directory.
+2. **Ubuntu native-library discovery.** The old Silk resolver used
+   `ubuntu.24.04-x64`, then missed the packaged `runtimes/linux-x64/native`
+   directory. Native GLFW and Mesa worked, but the managed window platform was
+   unavailable. `BundledNativeRuntime.Initialize` now adds a portable RID
+   fallback, preserving the existing resolvers, their order, environment
+   variables, and the Windows CRT loading behavior.
+3. **SM2 generator parity.** Regenerating the old configuration silently dropped
+   three established Video Setup/input hooks. The generator now retains all
+   three and emits a configuration byte-identical to the checked-in 34-hook
+   configuration. The actual regenerated game contains the three calls.
+4. **Regression coverage.** Added actual MSBuild evaluation of 22 game project
+   configurations and a no-display native GLFW load test. The runner now has ten
+   suites; the Linux-specific native-load test reports a skip on other systems.
+
+### Current verification
+
+- The complete local shared-tools build and ten-suite gate passed. Logs and
+  `results.json` are under ignored `artifacts/regressions/linux-portability/`.
+- Publish configuration before/after: 18 failing scenarios before the fix; all
+  22 pass afterward. Simulated host RIDs verify settings, not another OS's
+  execution.
+- Native loader before/after: old code passes four checks and fails two, including
+  an actual `Glfw.GetApi()` load. Repaired code passes all six and queries GLFW
+  3.4.0 with no display. The caller's explicit legacy RID remains unchanged.
+- Actual default-RID SM1 publish: succeeds and emits an ELF executable under
+  `port/dist/linux-x64/`. It boots under Xvfb with Mesa llvmpipe OpenGL 4.5,
+  captures two visually verified title frames, and exits normally at the planned
+  frame. No runtime-ID environment workaround was used for the published app.
+- Normal SM1 START input visibly transitions from the title to the main menu.
+  The first longer route was stopped by the optional watchdog at 11.74 vblanks/s,
+  below its fixed threshold of 12. Frames were still advancing; this is not
+  evidence of a game crash. Subsequent software-render runs must leave
+  `SPIDEY_STALL_EXIT` unset, retain diagnostic logging, and use an outer timeout.
+- The first development launch before the native resolver repair reached title
+  loading without a usable window and produced no screenshots. That run is
+  explicitly excluded from rendered-game acceptance.
+
+Audio is routed to an OpenAL null device, so audible audio is unverified. Software
+rendering is a functional test, not a hardware performance benchmark. Current
+native Linux checks do not establish SteamOS/Wine/Proton compatibility or full
+campaign completion. Both development games are being rebuilt with the resolver
+fix for the next normal-menu launch checks; remote CI has not run for this batch.
+
+## Historical published baseline
 
 - This session started from clean `master` at
   `b100572675d4caba3cf3162529b300e88be033f4`.
@@ -31,7 +102,7 @@ backups must not enter public commits.
   The restricted shell's first MSBuild attempt failed without a useful diagnostic;
   authorized cloud execution with network/subprocess access passed. No source
   workaround was committed.
-- Retail input and regenerated game C# are absent from the clean repository.
+- Retail input and regenerated game C# remain absent from the clean repository.
   Bundled replacement actors, synthetic fixtures, and the public SM1 v1.1 release
   supported the checks below. The release was used for isolated routine execution,
   not a booted game or a level run.
@@ -45,15 +116,14 @@ separate reproduction targets with source links, proposed priorities, and closur
 criteria. R05 maps to open #8; R10 adds a distinct failure alongside #6. Other
 symptom similarities remain comparison leads, not confirmed duplicate causes.
 
-All intake entries are reported and unverified on the current build. This pass
+All intake entries are reported and unverified on the current build. The intake
 reviewed source, issue history, and documentation; it did not build or play a game.
 The prior CI and isolated-routine evidence below remain historical results for
-their exact commits. Workspace maintenance removed the prior local checkout and
-tool cache; recover source from GitHub and restore the SDK before the next local
-build. No private retail inputs had been supplied.
+their exact commits. The source checkout, SDK, and private retail inputs have
+since been restored; the current Linux batch above supersedes the former asset
+blocker.
 
-Next: keep the L5A3 acceptance run first, then prioritize R01 and R02 once the
-supported private gameplay assets are available. The expanded queue remains part
+Next: keep the L5A3 acceptance run first, then prioritize R01 and R02. The queue remains part
 of campaign and costume verification; no report is closed by this intake.
 
 ## Completed changes
@@ -135,7 +205,7 @@ are in [the issue #5 evidence note](docs/issues/issue-5-sewer-crash.md).
   and remaining gameplay verification. The historical SM2 claim that SM1 still
   lacks the unresolved-anchor guard was corrected after checking both sources.
 
-## Actual verification
+## Historical verification of the earlier source batches
 
 The first published six-suite gate passed locally and on both GitHub platforms
 ([run 40806344318](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40806344318)).
@@ -166,14 +236,14 @@ no pending source edits or test runs from this batch.
 | Independent runtime source review | Pass; bounded metadata/clip checks, correct header and hook, preserved registers |
 | Config/runner and diff checks | Pass; hook registered once in both configs, valid JSON, clean whitespace |
 
-These checks do not boot either game, render gameplay, or establish campaign
-completion. The new patch is compiled through the regression project, but a full
-game regeneration/build still requires the supported private retail input.
+Those historical checks did not boot either game, render gameplay, or establish
+campaign completion. Full game regeneration/builds are now available as recorded
+in the current batch; the isolated repair still requires gameplay acceptance.
 
 ## Remaining blockers and next action
 
-1. **Verify the sewer fix in gameplay.** Supply the supported private SM1 input
-   (USA SLUS-00875), regenerate/rebuild, confirm the model-load correction is
+1. **Verify the sewer fix in gameplay.** Use the prepared supported SM1 input
+   (USA SLUS-00875) and rebuilt game, confirm the model-load correction is
    logged, then play `L5A3` through the two spawns, progression, and level exit.
    Check animation and near/distant geometry as well as crash absence. Do not
    mark issue #5 closed solely from the isolated decoder proof.
@@ -189,10 +259,11 @@ game regeneration/build still requires the supported private retail input.
    level-entry checks are not current full gameplay coverage.
 4. **Resume priority:** inspect the latest branch, checkpoint, issue evidence, and
    [community report queue](docs/issues/community-reports-2026-10-29.md).
-   With supported retail input available, follow the README's extraction and
-   `python tools/build.py` steps, then prioritize the normal L5A3 route above and crash cases R01/R02.
-   Until then, the complete gameplay acceptance remains blocked; do not substitute
-   another synthetic pass or a public-release routine probe for a level run.
+   Assets and full Linux builds are available. Finish the current native launch
+   checks, then prioritize L5A3 acceptance and crash cases R01/R02. No tracked
+   replay currently proves the L5A3 completion route. Direct level entry may help
+   isolate actor loads, but must be labeled separately from normal progression;
+   do not substitute another synthetic pass for a level run.
 
 ## File map
 

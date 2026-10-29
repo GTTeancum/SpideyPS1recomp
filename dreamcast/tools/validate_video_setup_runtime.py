@@ -24,7 +24,7 @@ def main():
     parser.add_argument('--output', type=Path, default=ROOT / 'proof_render/video-setup-final')
     args = parser.parse_args()
     project, name = ('spiderman', 'SpiderMan') if args.game == 'sm1' else ('spiderman2', 'SpiderMan2')
-    exe = (args.exe or ROOT / project / 'port/dist' / f'{name}.exe').resolve()
+    exe = (args.exe or ROOT / project / 'port/dist' / 'win-x64' / f'{name}.exe').resolve()
     home = exe.parent
     state = args.output.resolve() / args.game
     output = state / args.scenario

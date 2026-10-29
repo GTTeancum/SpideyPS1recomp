@@ -8,10 +8,10 @@ python tools/run_regressions.py
 ```
 
 The runner builds the shared runtime and recompiler, then runs the synthetic
-console regression projects and converter fixtures below. It exits nonzero if a build or suite fails,
+console projects, build configuration checks, and converter fixtures below. It exits nonzero if a build or suite fails,
 continues through independent suite failures, and retains each process log plus
 `results.json` under `artifacts/regressions/`. A shared build failure marks the
-.NET suites as skipped, never passed; independent Python fixtures still run.
+.NET suites as skipped, never passed; independent configuration checks and Python fixtures still run.
 GitHub Actions runs the same command on Windows
 and Linux and retains the logs as workflow artifacts.
 
@@ -27,9 +27,17 @@ positive configured start frame as well as the exact boundary.
 | `DiscInstallRegression` | Synthetic disc identity validation and sector layout reading; no retail disc supplied |
 | `InteriorHookRegression` | Generated C# execution of a synthetic MIPS local-call fixture with and without an interior hook |
 | `MemoryDiagnosticsRegression` | Lazy diagnostic allocations, heatmap disable/re-enable, guest read/write aliases, partial freezes, bulk writes, preserved projection-depth invalidation, and frame-gated corruption watches |
+| `NativeLibraryRegression` | On Linux, initialize the actual native-library resolver and load packaged GLFW to query its version without opening a display; Linux-specific behavior is skipped on other operating systems |
 | `Sm1AnimationRegression` | Actual post-loader hook exercised with synthetic native actor and animation-bank layouts, including the legacy extra-terminal-mesh overflow case |
 | `VideoSetupRegression` | Video option bounds, cycling, Apply, cancel, and persisted state conversion |
+| `GamePortConfigurationRegression` | MSBuild evaluation of both actual game projects: host defaults, explicit cross-target RIDs, Windows-only native payload selection, separate publish directories, and an explicit output override; no restore or compilation |
 | `Sm1ActorAnimationLayoutConverterRegression` | Synthetic actor headers exercise the converter's native body-part count invariant before an incompatible model can be emitted |
+
+Run just the configuration checks without a shared build using
+`python tools/RecompOne/tests/test_game_port_configuration.py` (optional
+`--dotnet /path/to/dotnet`). They exercise the actual SDK host and simulated
+Linux/Windows SDK RIDs. Simulation checks project settings, not execution of a
+different operating system.
 
 These checks do not open a window, load a retail executable, or complete a level.
 Passing on Linux demonstrates that the shared tools and these tests work there;

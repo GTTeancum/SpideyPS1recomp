@@ -60,7 +60,10 @@ port all read `extracted/` afterward; BIN/CUE is not a runtime dependency and ca
 removed or archived after this first import. At runtime, CD.WAD lookups are served from
 the individual files under `extracted/wad/` as well.
 
-`dotnet publish port/SpiderMan2.csproj -c Release` produces one windowed executable.
+`dotnet publish port/SpiderMan2.csproj -c Release` produces one self-contained
+executable for the SDK host under `port/dist/<RID>/`. Use `-r linux-x64` or
+`-r win-x64` to choose a target explicitly. The Linux apphost is `SpiderMan2`; the
+Windows apphost is `SpiderMan2.exe`. Each target's output stays in its own directory.
 On its first launch it requests **Spider-Man 2: Enter Electro (USA) (Rev 1),
 SLUS-01378**, validates that exact revision, and performs the loose extraction with
 elapsed time and a progress bar inside the game window. The Dreamcast player upgrade
@@ -72,8 +75,10 @@ targets**, which are jump-table analysis running off the end of a real table int
 data after it — unreachable by any real path.
 
 ```bash
-./port/bin/Release/net10.0/SpiderMan2.exe
+./port/bin/Release/net10.0/SpiderMan2
 ```
+
+On Windows, launch `SpiderMan2.exe` from the same directory.
 
 ## Modern rendering
 

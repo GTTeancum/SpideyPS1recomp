@@ -1,5 +1,9 @@
 <Project>
-  <ItemGroup>
+  <PropertyGroup>
+    <_GamePortNativeRuntimeIdentifier>$(RuntimeIdentifier)</_GamePortNativeRuntimeIdentifier>
+    <_GamePortNativeRuntimeIdentifier Condition="'$(_GamePortNativeRuntimeIdentifier)' == ''">$(NETCoreSdkRuntimeIdentifier)</_GamePortNativeRuntimeIdentifier>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(_GamePortNativeRuntimeIdentifier)' == 'win-x64'">
     <Content Include="$(MSBuildThisFileDirectory)*.dll" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

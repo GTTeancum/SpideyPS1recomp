@@ -233,9 +233,24 @@ dotnet publish spiderman/port/SpiderMan.csproj -c Release
 dotnet publish spiderman2/port/SpiderMan2.csproj -c Release
 ```
 
-Outputs are `spiderman/port/dist/SpiderMan.exe` and
-`spiderman2/port/dist/SpiderMan2.exe`. Ordinary builds instead use each project's
-`port/bin/Release/net10.0/` directory. Published builds embed each game's
+Publishing defaults to the .NET SDK host runtime identifier (RID), such as
+`linux-x64` on 64-bit Linux or `win-x64` on 64-bit Windows. Select a different target
+explicitly with `-r linux-x64` or `-r win-x64`; the explicit RID takes precedence
+over the host. Each target has a separate `port/dist/<RID>/` directory:
+
+| Target | SM1 executable | SM2 executable |
+|---|---|---|
+| Linux x64 | `spiderman/port/dist/linux-x64/SpiderMan` | `spiderman2/port/dist/linux-x64/SpiderMan2` |
+| Windows x64 | `spiderman/port/dist/win-x64/SpiderMan.exe` | `spiderman2/port/dist/win-x64/SpiderMan2.exe` |
+
+An explicit `--output` directory still overrides that layout. The bundled Windows
+VC++ DLLs are included only for the Windows x64 target. Linux builds still require
+the operating system's graphics, windowing, and audio libraries; native gameplay
+verification is tracked in [the checkpoint](CHECKPOINT.md).
+
+Ordinary builds instead use each project's `port/bin/Release/net10.0/` directory;
+launch its `SpiderMan` or `SpiderMan2` apphost on Linux, or the corresponding `.exe`
+on Windows. Published builds embed each game's
 `port/bundled/runtime-assets.zip`; asset maintainers rebuild those payloads using
 `python dreamcast/tools/build_bundled_runtime_assets.py` after approved changes.
 

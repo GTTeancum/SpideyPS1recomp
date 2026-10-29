@@ -1,0 +1,21 @@
+<Project>
+  <!-- Keep ordinary builds in bin/<Configuration>/<TargetFramework>/. -->
+  <PropertyGroup Condition="'$(_IsPublishing)' == 'true'">
+    <DefineConstants>$(DefineConstants);STANDALONE_DISTRIBUTION</DefineConstants>
+    <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <!--
+      Silk.NET searches AppContext.BaseDirectory for native libraries. Extracting
+      all bundle content keeps that directory aligned with the extracted natives.
+    -->
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <PublishTrimmed>false</PublishTrimmed>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <DebugType>none</DebugType>
+    <PublishDir Condition="'$(PublishDir)' == ''">$(MSBuildProjectDirectory)/dist/$(RuntimeIdentifier)/</PublishDir>
+  </PropertyGroup>
+
+  <Import Project="native/win-x64/Runtime.props" />
+</Project>

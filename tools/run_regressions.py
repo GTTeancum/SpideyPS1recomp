@@ -19,13 +19,17 @@ DOTNET_SUITES = (
     "DiscInstallRegression",
     "InteriorHookRegression",
     "MemoryDiagnosticsRegression",
+    "NativeLibraryRegression",
     "Sm1AnimationRegression",
     "VideoSetupRegression",
 )
+MSBUILD_SUITES = {
+    "GamePortConfigurationRegression": "tools/RecompOne/tests/test_game_port_configuration.py",
+}
 PYTHON_SUITES = {
     "Sm1ActorAnimationLayoutConverterRegression": "dreamcast/tools/test_sm1_actor_animation_layout.py",
 }
-SUITES = (*DOTNET_SUITES, *PYTHON_SUITES)
+SUITES = (*DOTNET_SUITES, *MSBUILD_SUITES, *PYTHON_SUITES)
 
 
 def run_step(name: str, command: list[str], output: Path) -> dict:
@@ -83,7 +87,11 @@ def main() -> int:
     ], output)]
     shared_build_passed = results[0]["exit_code"] == 0
     for suite in selected:
-        if suite in PYTHON_SUITES:
+        if suite in MSBUILD_SUITES:
+            results.append(run_step(suite, [
+                sys.executable, MSBUILD_SUITES[suite], "--dotnet", args.dotnet,
+            ], output))
+        elif suite in PYTHON_SUITES:
             results.append(run_step(suite, [sys.executable, PYTHON_SUITES[suite]], output))
         elif shared_build_passed:
             project = (TESTS / suite / f"{suite}.csproj").relative_to(ROOT)

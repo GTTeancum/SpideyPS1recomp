@@ -67,10 +67,15 @@ table into the data after it — unreachable by any real path.
 Run the development build:
 
 ```bash
-./port/bin/Release/net10.0/SpiderMan.exe
+./port/bin/Release/net10.0/SpiderMan
 ```
 
-`dotnet publish port/SpiderMan.csproj -c Release` produces one windowed executable.
+On Windows, launch `SpiderMan.exe` from the same directory.
+
+`dotnet publish port/SpiderMan.csproj -c Release` produces one self-contained
+executable for the SDK host under `port/dist/<RID>/`. Use `-r linux-x64` or
+`-r win-x64` to choose a target explicitly. The Linux apphost is `SpiderMan`; the
+Windows apphost is `SpiderMan.exe`. Each target's output stays in its own directory.
 On its first launch it requests **Spider-Man (USA), SLUS-00875**, validates the exact
 revision, and extracts loose runtime data with elapsed time and a progress bar inside
 the game window. See [`../docs/first-run-installation.md`](../docs/first-run-installation.md).

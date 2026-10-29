@@ -53,7 +53,17 @@ def main():
             'funcMap': f'funcmaps/{name}.json',
         })
 
-    patches = []
+    # Keep the native Options/Video Setup entry points and their input hook when
+    # regenerating the config; these established hooks must not disappear merely
+    # because the remaining patch list is rebuilt from recovered SDK names.
+    patches = [
+        {'overlay': 'shell', 'function': 'func_80243854', 'mode': 'pre',
+         'target': 'Recompiled.VideoSetup.Options'},
+        {'overlay': 'shell', 'function': 'func_80246118', 'mode': 'replace',
+         'target': 'Recompiled.VideoSetup.Run'},
+        {'overlay': 'main', 'function': 'func_80018D70', 'mode': 'pre',
+         'target': 'RecompOne.Runtime.Host.Window.NativeVideoSetup.Input'},
+    ]
     skipped = []
 
     # Overlay loading: give every overlay a fixed base. See patches/OverlayPatches.cs.
@@ -145,6 +155,7 @@ def main():
     dst = os.path.join(ROOT, 'config', 'spiderman2.json')
     with open(dst, 'w') as fh:
         json.dump(cfg, fh, indent=2)
+        fh.write('\n')
     print(f'wrote {dst}: {len(overlays)} overlays, {len(patches)} patches')
     if skipped:
         print('no symbol recovered for: ' + ', '.join(skipped))

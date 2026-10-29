@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[2]
 for game,project,exe,other in [('sm1','spiderman','SpiderMan.exe','Spider-Man 2'),('sm2','spiderman2','SpiderMan2.exe','Spider-Man')]:
     proof=ROOT/'proof_render/standalone-release'/game/'first-launch';home=proof/'blank';home.mkdir(parents=True,exist_ok=True)
     target=home/exe
-    if not target.exists(): os.link(ROOT/project/'port/dist'/exe,target)
+    if not target.exists(): os.link(ROOT/project/'port/dist'/'win-x64'/exe,target)
     assert not (home/'game').exists()
     env={k:v for k,v in os.environ.items() if not k.startswith(('SPIDEY_','RECOMP_','DOTNET_BUNDLE_'))}
     env.update(RECOMP_HOST_PROOF=str(proof/'choose-disc.png'),RECOMP_HOST_PROOF_DELAY_MS='500')

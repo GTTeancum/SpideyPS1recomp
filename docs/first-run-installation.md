@@ -68,8 +68,8 @@ Rebuild both embedded asset payloads after an approved conversion changes:
 ```powershell
 python dreamcast/tools/build_bundled_runtime_assets.py
 python dreamcast/tools/build_sm2_mod_actor.py
-dotnet publish spiderman/port/SpiderMan.csproj -c Release
-dotnet publish spiderman2/port/SpiderMan2.csproj -c Release
+dotnet publish spiderman/port/SpiderMan.csproj -c Release -r win-x64
+dotnet publish spiderman2/port/SpiderMan2.csproj -c Release -r win-x64
 ```
 
 Regression checks for upgrades, recovery, ownership and real embedded payloads:

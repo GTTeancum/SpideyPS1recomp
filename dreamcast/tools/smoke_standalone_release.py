@@ -10,7 +10,7 @@ proof=ROOT/'proof_render/standalone-release'/args.game; package=proof/'package';
 ready=ROOT/'proof_render/user-facing-stage/ready'/name
 if not args.restart:
     if (package/'game').exists(): raise SystemExit('Fresh test refuses an existing game directory')
-    shutil.copy2(ROOT/('spiderman' if sm1 else 'spiderman2')/'port/dist'/exe,package/exe)
+    shutil.copy2(ROOT/('spiderman' if sm1 else 'spiderman2')/'port/dist'/'win-x64'/exe,package/exe)
     for folder in sorted((ready/'mods/suits').iterdir()):
         if folder.is_dir() and (folder/'suit.json').exists(): shutil.copytree(folder,package/'mods/suits'/folder.name,dirs_exist_ok=True)
     for item in (ready/'mods').glob('*.md'): shutil.copy2(item,package/'mods'/item.name)
