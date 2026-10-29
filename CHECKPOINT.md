@@ -66,6 +66,28 @@ residency rescue; normal campaign entry remains a separate acceptance gate.
 Keep issue #5 open. SM2 live control, both campaigns, audible audio, save/load,
 and the community reproduction queue remain incomplete.
 
+### GitHub tracking completed in this batch
+
+The user requested proper GitHub tracking for the outstanding findings. All
+ten community intake targets now have issue coverage: **R01–R04 are #10–#13,
+R05 remains #8, and R06–R10 are #14–#18**. The observed native Linux log cessation
+has its own [issue #19](https://github.com/GTTeancum/SpideyPS1recomp/issues/19).
+The [community tracker](docs/issues/community-reports-2026-10-29.md) maps each
+report to its canonical issue and preserves the reproduction/closure criteria.
+
+Existing issues received evidence updates rather than duplicates:
+[sewer #5](https://github.com/GTTeancum/SpideyPS1recomp/issues/5#issuecomment-6501565567),
+[suit textures #8](https://github.com/GTTeancum/SpideyPS1recomp/issues/8#issuecomment-6501565969),
+and [Linux support #6](https://github.com/GTTeancum/SpideyPS1recomp/issues/6#issuecomment-6501566564).
+All ten new issue bodies, open states, and bug labels, plus the three comments,
+were read back and matched the intended content. No issue was closed.
+Community symptoms remain reported/unreproduced; #19 is an observed-once
+diagnostic failure with an unknown cause. The private controller workaround is
+not a game-logging fix. After L5A3 completion work, prioritize ordinary armor
+pickup reproduction [#10](https://github.com/GTTeancum/SpideyPS1recomp/issues/10)
+and the SM2 pre-Shocker report
+[#11](https://github.com/GTTeancum/SpideyPS1recomp/issues/11).
+
 ## Previous batch: native Linux preparation and launch
 
 The asset prerequisite is complete. Both user-supplied archives were downloaded,
@@ -191,8 +213,8 @@ control and is not a sufficient gameplay anchor.
 
 ## Community issue intake — 2026-10-29
 
-Reviewed the indexed v1.1 release discussion and compared it with all nine current
-GitHub issues and the existing checkpoint/TODOs. The new
+Reviewed the indexed v1.1 release discussion and compared it with the nine GitHub
+issues present at intake time and the existing checkpoint/TODOs. The
 [community report tracker](docs/issues/community-reports-2026-10-29.md) records ten
 separate reproduction targets with source links, proposed priorities, and closure
 criteria. R05 maps to open #8; R10 adds a distinct failure alongside #6. Other
@@ -205,7 +227,8 @@ their exact commits. The source checkout, SDK, and private retail inputs have
 since been restored; the current Linux batch above supersedes the former asset
 blocker.
 
-Next: keep the L5A3 acceptance run first, then prioritize R01 and R02. The queue remains part
+The later tracking batch above created the missing GitHub issues. Keep the L5A3
+acceptance run first, then prioritize R01/#10 and R02/#11. The queue remains part
 of campaign and costume verification; no report is closed by this intake.
 
 ## Completed changes

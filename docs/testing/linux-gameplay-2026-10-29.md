@@ -121,6 +121,9 @@ reader reached 19432 from saved artifacts.
 The repair did not update the already loaded wrapper and has not yet controlled
 a fresh gameplay run. The cause of log cessation remains unestablished. No game
 source or X11 event timestamp was changed for this repair.
+The observed logging failure and remaining investigation are tracked in
+[issue #19](https://github.com/GTTeancum/SpideyPS1recomp/issues/19); the private
+controller fallback is a mitigation, not a resolution of that issue.
 
 ## Retained evidence and next action
 

@@ -11,26 +11,27 @@ covers the available text, not verified comment IDs, screenshot contents, or a
 complete live thread. Reports occur in the v1.1 discussion dated September 29
 through October 2. Individual executable hashes and installation states are unknown.
 
-**All entries below are reported and awaiting reproduction on the current build.**
-The IDs are tracking keys in this document, not GitHub issue numbers. Priorities
+**All community entries (R01–R10) remain reported and awaiting reproduction on the current build.**
+GitHub is now the canonical place for status and follow-up. The R IDs are
+cross-references for this historical intake, not additional issues. Priorities
 are proposed engineering order: P1 for core crashes, P2 for functional/visual
 regressions and compatibility investigation. No cause or fix is inferred from
 similar symptoms alone.
 
 ## Reproduction queue
 
-| ID | Priority | Game | Reported symptom | Existing coverage / disposition |
+| ID | Priority | Game | Reported symptom | GitHub tracking / disposition |
 |---|---|---|---|---|
-| R01 | P1 | Unspecified in two-game context | Spider-Armor pickup crashes with custom models. | New case; separate from the L5A3 overflow in [#5](https://github.com/GTTeancum/SpideyPS1recomp/issues/5). |
-| R02 | P1 | SM2 | Crash before Shocker encounter. | New case. Identify archive and transition before associating it with historical model-initialization failures. |
-| R03 | P2 | Both | Health-icon/model graphical corruption. | New case. Establish which on-screen object is affected. |
-| R04 | P2 | Both-game context | Enemy texture corruption. | New case; compare with R05 without assuming shared ownership or cause. |
-| R05 | P2 | Both-game context | Suit texture corruption. | Existing [#8](https://github.com/GTTeancum/SpideyPS1recomp/issues/8); retain this source as added evidence, not another issue. |
-| R06 | P2 | SM1 | Scorpion introduction skipped. | New case; [#4](https://github.com/GTTeancum/SpideyPS1recomp/issues/4) concerns optional Dreamcast FMVs. |
-| R07 | P2 | SM2 | Stan Lee narration repeats during costume selection. | New case; closed [#2](https://github.com/GTTeancum/SpideyPS1recomp/issues/2) concerns different audio symptoms. |
-| R08 | P2 | SM2 | White line obscures half-screen in level-two four-thug encounter. | New case. Closed [#3](https://github.com/GTTeancum/SpideyPS1recomp/issues/3) describes an SM1 web-line symptom, not this encounter. |
-| R09 | P2 | Confirm game | Stock symbiote lacks infinite webbing. | New gameplay case; keep stock behavior distinct from mod inheritance. |
-| R10 | P2 | Confirm game | SteamOS/Wine/Proton startup crash after ROM import. | Related to [#6](https://github.com/GTTeancum/SpideyPS1recomp/issues/6), which reports successful launch with choppy menus; preserve this different failure stage. |
+| R01 | P1 | Unspecified in two-game context | Spider-Armor pickup crashes with custom models. | [#10](https://github.com/GTTeancum/SpideyPS1recomp/issues/10); separate from the L5A3 overflow in [#5](https://github.com/GTTeancum/SpideyPS1recomp/issues/5). |
+| R02 | P1 | SM2 | Crash before Shocker encounter. | [#11](https://github.com/GTTeancum/SpideyPS1recomp/issues/11). Identify archive and transition before associating it with historical model-initialization failures. |
+| R03 | P2 | Both | Health-icon/model graphical corruption. | [#12](https://github.com/GTTeancum/SpideyPS1recomp/issues/12). Establish which on-screen object is affected. |
+| R04 | P2 | Both-game context | Enemy texture corruption. | [#13](https://github.com/GTTeancum/SpideyPS1recomp/issues/13); compare with R05 without assuming shared ownership or cause. |
+| R05 | P2 | Both-game context | Suit texture corruption. | Existing [#8](https://github.com/GTTeancum/SpideyPS1recomp/issues/8), with [this source added as evidence](https://github.com/GTTeancum/SpideyPS1recomp/issues/8#issuecomment-6501565969); no duplicate issue. |
+| R06 | P2 | SM1 | Scorpion introduction skipped. | [#14](https://github.com/GTTeancum/SpideyPS1recomp/issues/14); [#4](https://github.com/GTTeancum/SpideyPS1recomp/issues/4) concerns optional Dreamcast FMVs. |
+| R07 | P2 | SM2 | Stan Lee narration repeats during costume selection. | [#15](https://github.com/GTTeancum/SpideyPS1recomp/issues/15); closed [#2](https://github.com/GTTeancum/SpideyPS1recomp/issues/2) concerns different audio symptoms. |
+| R08 | P2 | SM2 | White line obscures half-screen in level-two four-thug encounter. | [#16](https://github.com/GTTeancum/SpideyPS1recomp/issues/16). Closed [#3](https://github.com/GTTeancum/SpideyPS1recomp/issues/3) describes an SM1 web-line symptom, not this encounter. |
+| R09 | P2 | Confirm game | Stock symbiote lacks infinite webbing. | [#17](https://github.com/GTTeancum/SpideyPS1recomp/issues/17); keep stock behavior distinct from mod inheritance. |
+| R10 | P2 | Confirm game | SteamOS/Wine/Proton startup crash after ROM import. | [#18](https://github.com/GTTeancum/SpideyPS1recomp/issues/18), related to [#6](https://github.com/GTTeancum/SpideyPS1recomp/issues/6), which reports successful launch with choppy menus; preserve this different failure stage. |
 
 ## Proposed checks and closure evidence
 
@@ -70,8 +71,19 @@ only appropriately redacted findings belong in public tracking.
 
 ## Related work and boundaries
 
-- [Current checkpoint](../../CHECKPOINT.md): #5 has an isolated native reproduction
-  and bounded repair, but still needs gameplay acceptance. #8 remains unattributed.
+- [Issue #5 gameplay update](https://github.com/GTTeancum/SpideyPS1recomp/issues/5#issuecomment-6501565567):
+  native Linux testing reached the Lizard-man spawns, visible combat, incoming
+  and outgoing damage, death, and ordinary Retry. This adds live evidence to the
+  isolated native reproduction and bounded repair; no enemy defeat, level exit,
+  or normal campaign entry is verified. Issue #5 remains open. See the
+  [gameplay report](../testing/linux-gameplay-2026-10-29.md) and
+  [current checkpoint](../../CHECKPOINT.md). The cause of #8 remains unattributed.
+- [Issue #19](https://github.com/GTTeancum/SpideyPS1recomp/issues/19) separately
+  tracks native Linux log cessation observed once during L5A3 Retry, while
+  captures and saved snapshots continued. The private controller mitigation
+  addresses its stale progress source, has not yet been live-tested, and is
+  not a game or logging repair. This observation is separate from the community
+  reports above.
 - [Texture parser and allocation changes](https://github.com/GTTeancum/SpideyPS1recomp/commit/b7e02a1af4ed2670c3aa54a08e850e7accad944b)
   are relevant to investigation, not proof that R01/R03/R04/R05 are resolved.
 - [SM2 open-work notes](../../spiderman2/TO_DO.md) list historical pre-render failures
@@ -85,8 +97,9 @@ only appropriately redacted findings belong in public tracking.
 ## Next action
 
 Supported private retail input and full Linux builds are now available. Current
-native launch observations and CI results are recorded in
+native Linux gameplay observations and CI results are recorded in
 [the checkpoint](../../CHECKPOINT.md); they do not reproduce or close these
-reports. Test the previously repaired L5A3 route plus R01 and R02 first, and keep
-the remaining targets visible through campaign, costume, audio, renderer, and
-compatibility testing. The original intake was documentation-only.
+community reports. Continue the remaining L5A3 gameplay acceptance and prioritize
+R01 and R02, keeping the other targets visible through campaign, costume, audio,
+renderer, and compatibility testing. Record results in the linked GitHub issues.
+The original intake was documentation-only.
