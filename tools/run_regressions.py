@@ -21,6 +21,7 @@ DOTNET_SUITES = (
     "MemoryDiagnosticsRegression",
     "NativeLibraryRegression",
     "Sm1AnimationRegression",
+    "Sm2LevelSwitchRegression",
     "VideoSetupRegression",
 )
 MSBUILD_SUITES = {
