@@ -75,6 +75,9 @@ def main():
             ('HeapAlloc', 'pre',  'Recompiled.OverlayPatches.HeapAlloc'),
             ('HeapFree',  'pre',  'Recompiled.OverlayPatches.HeapFree'),
             ('func_800706E8', 'pre', 'Recompiled.OverlayPatches.HeapShrink'),
+            # The native stage loader selects flags from the current trigger name.
+            # Direct campaign entry must select its descriptor before asset loading.
+            ('func_8001A700', 'pre', 'Recompiled.LevelSwitch.SelectDescriptor'),
             # Verified at 0x8004E4BC: its second argument is one-based and indexes
             # the nineteen-entry sp_tex00..18 filename table at 0x800B30E4.
             ('func_8004E4BC', 'pre', 'Recompiled.Costume.SelectTextureLibrary'),

@@ -239,6 +239,12 @@
     },
     {
       "overlay": "main",
+      "function": "func_8001A700",
+      "mode": "pre",
+      "target": "Recompiled.LevelSwitch.SelectDescriptor"
+    },
+    {
+      "overlay": "main",
       "function": "func_8004E4BC",
       "mode": "pre",
       "target": "Recompiled.Costume.SelectTextureLibrary"

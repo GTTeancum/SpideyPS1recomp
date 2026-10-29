@@ -20,6 +20,7 @@ DOTNET_SUITES = (
     "InteriorHookRegression",
     "MemoryDiagnosticsRegression",
     "Sm1AnimationRegression",
+    "Sm2LevelSwitchRegression",
     "VideoSetupRegression",
 )
 PYTHON_SUITES = {
