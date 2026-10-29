@@ -13,6 +13,50 @@ Do not launch Codex tasks/services or use the user's Dot or PC. Keep chat update
 within one screen. Private discs, extracted retail data, saves, credentials, and
 backups must not enter public commits.
 
+## Current batch: issue #10 and issue #11 reproduction
+
+The user explicitly selected **#10 (armor pickup)** and **#11 (before Shocker)**.
+Both remain open. This batch restored the private inputs and Linux tools,
+investigated the actual native paths, and ran bounded gameplay screens. It did
+not reproduce either reported crash or change game behavior.
+
+- **#10:** The retail armor texture swap has a concrete compatibility hazard:
+  converted player texture hashes are absent from its fixed retail map, and
+  a failed lookup can leave destination pointers unwritten. This is a static
+  source/data finding, not an executed reproduction of the reported crash.
+  Five ordinary-input attempts in L8A3/L8A1 did not establish an armor pickup.
+  The closest L8A3 sample was about 256 units from the pickup with armor inactive.
+  The final player-only L8A1 test exited normally at 12000 vblanks with armor
+  inactive. No armor fix was implemented or verified. See the
+  [issue #10 record](docs/issues/issue-10-armor-crash.md).
+- **#11:** Supported trigger data maps the route to **E1M3 → E1M4 (Shocker)**.
+  Direct E1M4 entry loaded the boss, rendered the encounter, accepted movement,
+  and reached Game Over before the configured exit at 6000 vblanks (155.15 s,
+  exit 0). Direct E1M3 entry loaded the preceding stage and accepted movement,
+  jump, and pause; the operator stopped it at 4440 vblanks (108.07 s, SIGTERM
+  `-15`). Neither screen reproduced a crash. The actual inter-stage transition
+  remains untested. See the [issue #11 record](docs/issues/issue-11-shocker-crash.md).
+- **Environment:** Both retained archive SHA-256 values matched the originals.
+  Extraction restored 28 SM1 and 45 SM2 disc files and their WAD entries. Both
+  retail-generated Linux builds of `892df80` succeeded with zero errors (SM1:
+  five warnings; SM2: three). .NET 10.0.403 and cloud Xvfb/Mesa are available.
+  All game processes from this batch have stopped. No new release was published.
+- **Observation limit:** Live input-journal observations appeared stale while
+  captures continued. Completed run metadata retained later successful input
+  releases and timely stop handling, so the persistent-stall hypothesis was
+  withdrawn. No blocked XSync or failed safety loop is established.
+  Prefer original captures, completed snapshots, and final run metadata over a
+  stale journal alone. No controller replacement was made.
+
+**Next action:** establish a reliable, short ordinary-input armor-pickup replay
+before applying the proposed cosmetic compatibility fallback. Retained L8A3
+input/capture evidence reaches near the pickup but is not a completed replay;
+avoid another extended exploratory navigation batch. For #11, target E1M3's
+ordinary exit/cutscene into E1M4, using a verified route or nearby supported save,
+then Retry. Repeating the two already-passing cold entries does not test that
+missing boundary. Keep the candidate fix, observed results, and unverified
+reporter configuration distinct.
+
 ## Current focus: short reproductions with visible evidence
 
 The user changed the immediate priority after reviewing the sewer test: focus on
@@ -42,8 +86,9 @@ patched game reached combat, damage, death, and Retry. There has been no paired
 unpatched gameplay crash followed by the same successful patched route, and no
 level completion. The saved captures demonstrate patched gameplay only.
 
-The earlier long routes for #10/#11 and the observed-once log cessation in #19
-also remain tracked; their severity does not establish reproduction ease. #17
+The user has now selected #10/#11 for the current batch above; their severity
+does not establish reproduction ease. The observed-once log cessation in #19
+also remains tracked. #17
 is only a possible short ability check once the game and native stock slot are
 confirmed. A clean SM1 profile does not unlock stock symbiote slot 2, and
 `SPIDEY_CHEATS=all` would invalidate an infinite-webbing check by enabling that
@@ -52,10 +97,10 @@ cheat. Do not claim it is immediately reproducible from a clean boot.
 The original evidence archive and four selected frames were recovered after
 workspace maintenance and matched their previously saved SHA-256 values. This
 priority/evidence update did not run either game, rebuild code, or claim a new
-reproduction. The private checkpoint records which local prerequisites need
-restoring before the next executable test.
+reproduction. The current batch above subsequently restored the local test
+prerequisites; the private checkpoint records their paths and retained inputs.
 
-### Latest tracking update: issue #5 closed for the next release
+### Previous tracking update: issue #5 closed for the next release
 
 The issue body now records **resolved for the next release**, and GitHub was
 read back as `closed` with state reason `completed`. The resolution comment

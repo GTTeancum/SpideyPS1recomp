@@ -11,7 +11,9 @@ covers the available text, not verified comment IDs, screenshot contents, or a
 complete live thread. Reports occur in the v1.1 discussion dated September 29
 through October 2. Individual executable hashes and installation states are unknown.
 
-**All community entries (R01–R10) remain reported and awaiting reproduction on the current build.**
+**All community entries (R01–R10) remain reported; none has a confirmed current-build reproduction of the reported defect.**
+R01 and R02 now have bounded Linux investigation results below. Those checks did
+not establish either reported crash or a fix.
 GitHub is now the canonical place for status and follow-up. The R IDs are
 cross-references for this historical intake, not additional issues. Priorities
 are proposed engineering order: P1 for core crashes, P2 for functional/visual
@@ -22,8 +24,8 @@ similar symptoms alone.
 
 | ID | Priority | Game | Reported symptom | GitHub tracking / disposition |
 |---|---|---|---|---|
-| R01 | P1 | Unspecified in two-game context | Spider-Armor pickup crashes with custom models. | [#10](https://github.com/GTTeancum/SpideyPS1recomp/issues/10); separate from the L5A3 overflow in [#5](https://github.com/GTTeancum/SpideyPS1recomp/issues/5). |
-| R02 | P1 | SM2 | Crash before Shocker encounter. | [#11](https://github.com/GTTeancum/SpideyPS1recomp/issues/11). Identify archive and transition before associating it with historical model-initialization failures. |
+| R01 | P1 | Unspecified in two-game context | Spider-Armor pickup crashes with custom models. | [#10](https://github.com/GTTeancum/SpideyPS1recomp/issues/10); [SM1 source hazard and attempted routes](issue-10-armor-crash.md). Ordinary pickup/crash remains unverified. Separate from the L5A3 overflow in [#5](https://github.com/GTTeancum/SpideyPS1recomp/issues/5). |
+| R02 | P1 | SM2 | Crash before Shocker encounter. | [#11](https://github.com/GTTeancum/SpideyPS1recomp/issues/11); [E1M3/E1M4 entry results](issue-11-shocker-crash.md). Both stages load independently; their normal transition remains untested. |
 | R03 | P2 | Both | Health-icon/model graphical corruption. | [#12](https://github.com/GTTeancum/SpideyPS1recomp/issues/12). Establish which on-screen object is affected. |
 | R04 | P2 | Both-game context | Enemy texture corruption. | [#13](https://github.com/GTTeancum/SpideyPS1recomp/issues/13); compare with R05 without assuming shared ownership or cause. |
 | R05 | P2 | Both-game context | Suit texture corruption. | Existing [#8](https://github.com/GTTeancum/SpideyPS1recomp/issues/8), with [this source added as evidence](https://github.com/GTTeancum/SpideyPS1recomp/issues/8#issuecomment-6501565969); no duplicate issue. |
@@ -101,7 +103,10 @@ only appropriately redacted findings belong in public tracking.
 Supported private retail input and full Linux builds are now available. Current
 native Linux gameplay observations and CI results are recorded in
 [the checkpoint](../../CHECKPOINT.md); they do not reproduce or close these
-community reports. The user's updated priority is short, easily repeated cases
+community reports. The user selected #10 and #11; use their issue-specific
+records to resume at the remaining pickup/transition boundaries. Do not repeat
+already-passing stage-entry screens as though they verified those boundaries.
+The user's updated priority is short, easily repeated cases
 with evidence shown directly in chat. Severity priorities in the table do not
 establish reproduction ease. Screen a candidate with exact steps and a bounded
 attempt before changing behavior; if no failure is observed, record that result
