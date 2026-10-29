@@ -1,6 +1,11 @@
 # To-do
 
 ## GitHub issues
+Current work, actual verification results, and the next blocker are recorded in
+[CHECKPOINT.md](CHECKPOINT.md). The completed items below describe earlier batches;
+they do not establish full campaign verification or resolution of newer reports.
+
+- [x] Add native **Video Setup** under **OPTIONS** in both SM1 and SM2, with **4:3 and 16:9 windowed output resolutions** starting at **640×480**, plus **Fullscreen On/Off**. Preserves each game's menu look and controls. Verified Apply, cancel, restart persistence, fullscreen transitions, exact windowed output areas, and temporary menu allocation cleanup. [Implementation and tests](docs/native-video-setup.md).
 
 Local task status, updated September 29. GitHub issue state is unchanged.
 

@@ -127,16 +127,31 @@ public sealed class SuitModel
         }
         int textures = Count(p, 128); p += 4;
         Need(p, textures * 4);
+        int textureEnd = p + textures * 4;
         for (int i = 0; i < textures; i++)
         {
             int t = checked((int)U(p + i * 4)); Need(t, 20);
-            if (t < p + textures * 4 || H(t + 16) == 0 || H(t + 18) == 0 || H(t + 16) > 256 || H(t + 18) > 256 || U(t + 12) >= hashes)
+            // The native loader walks records from the end of the pointer table,
+            // using adjacent pointer differences as strides. An individually valid
+            // pointer must not hide a gap, overlap, duplicate, or reordered record.
+            if (t != textureEnd)
+                throw new InvalidDataException("custom actor texture records must be contiguous and ordered");
+            if (H(t + 16) == 0 || H(t + 18) == 0 || H(t + 16) > 256 || H(t + 18) > 256 || U(t + 12) >= hashes)
                 throw new InvalidDataException("invalid custom actor texture record");
-            int bytes = checked(H(t + 16) * H(t + 18));
-            // Native flags 0x100 select 8-bit indices; otherwise the donor uses 4-bit.
-            if ((U(t + 4) & 0x100) == 0) bytes = (bytes + 1) / 2;
+            uint paletteSize = U(t + 4);
+            if (paletteSize != 16 && paletteSize != 256)
+                throw new InvalidDataException("custom actor textures must use 16- or 256-color palettes");
+            // Indexed rows occupy whole 16-bit VRAM words, and native records are
+            // padded to four bytes. Width * height alone undercounts odd-width rows.
+            int rowBytes = paletteSize == 16
+                ? ((H(t + 16) + 3) & ~3) / 2
+                : (H(t + 16) + 1) & ~1;
+            int bytes = (rowBytes * H(t + 18) + 3) & ~3;
             Need(t + 20, bytes);
+            textureEnd = t + 20 + bytes;
         }
+        if (textureEnd != b.Length)
+            throw new InvalidDataException("unexpected custom actor trailing texture data");
         if (rigStart >= 0)
         {
             // Keep the complete rig host-side; give the original guest loader a

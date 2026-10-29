@@ -1,0 +1,51 @@
+# Regression checks
+
+From a clean source checkout, install .NET 10 and Python 3, then run:
+
+```sh
+python tools/run_regressions.py
+```
+
+The runner builds the shared runtime and recompiler, then runs the synthetic
+console regression projects below. It exits nonzero if a build or suite fails,
+continues through independent suite failures, and retains each process log plus
+`results.json` under `artifacts/regressions/`. A shared build failure marks the
+suites as skipped, never passed. GitHub Actions runs the same command on Windows
+and Linux and retains the logs as workflow artifacts.
+
+Use `--dotnet /path/to/dotnet` for a local SDK, or repeat `--suite NAME` to select
+individual suites. Every invocation still builds the shared tools.
+
+| Suite | Evidence supplied |
+|---|---|
+| `BundledAssetsRegression` | Synthetic bundle upgrade, corruption repair, interrupted extraction, ownership preservation, traversal and case collision rejection |
+| `CustomSuitModelRegression` | Synthetic actor parsing, hierarchy and face bounds, contiguous native texture records, padded 4-bit/8-bit rows, and rejected malformed data |
+| `DiscInstallRegression` | Synthetic disc identity validation and sector layout reading; no retail disc supplied |
+| `InteriorHookRegression` | Generated C# execution of a synthetic MIPS local-call fixture with and without an interior hook |
+| `MemoryDiagnosticsRegression` | Lazy diagnostic allocations, heatmap disable/re-enable, guest read/write aliases, partial freezes, bulk writes, and preserved projection-depth invalidation |
+| `VideoSetupRegression` | Video option bounds, cycling, Apply, cancel, and persisted state conversion |
+
+These checks do not open a window, load a retail executable, or complete a level.
+Passing on Linux demonstrates that the shared tools and these tests work there;
+it does not verify a native Linux game port.
+
+## Checks requiring private inputs
+
+`RenderingRegression`, `Sm2RenderingRegression`, `Sm1FramePacketRegression`,
+`SuitModRegression`, and `Sm2SuitModRegression` reference a complete game project.
+The game projects require the generated C# under each game's `generated/`
+directory, which is deliberately excluded from Git. The suit regressions also
+read extracted retail menu/character data. These checks cannot run from source
+alone and are intentionally absent from the asset-free gate.
+
+Follow the repository's build-from-source instructions with your own supported
+USA disc to regenerate the game, then run the appropriate project. Retail discs,
+extracted files, save files, and diagnostic RAM snapshots remain private.
+
+## Gameplay verification
+
+Full gameplay remains a separate gate: build and launch each actual game,
+capture level entry and progression, then verify objectives, level transitions,
+bosses, death/retry, save/load, and completion. Existing screenshot scripts and
+historical level-boot reports are useful evidence for their stated routes only.
+They do not prove a campaign playthrough or current release stability.

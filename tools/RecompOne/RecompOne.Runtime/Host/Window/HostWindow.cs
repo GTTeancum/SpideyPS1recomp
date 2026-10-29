@@ -126,8 +126,8 @@ public static partial class HostWindow
 
     static byte[] _rgbDisplay = [];
     static byte[] _rgbVram = [];
-    static byte[] _ramFront = new byte[Memory.RamLogger.Width * Memory.RamLogger.Height * 4];
-    static byte[] _ramBack = new byte[Memory.RamLogger.Width * Memory.RamLogger.Height * 4];
+    static byte[] _ramFront = [];
+    static byte[] _ramBack = [];
     static Task? _ramTask;
     static volatile bool _ramReady;
     static int _ramFrame;
@@ -511,7 +511,6 @@ public static partial class HostWindow
         _window.FramebufferResize += size => _gl?.Viewport(0, 0, (uint)size.X, (uint)size.Y);
         _displayTex = CreateTexture(_gl);
         _vramTex= CreateTexture(_gl);
-        _ramTex = CreateTexture(_gl);
 
         int renderScale = ConfigManager.View.RenderScale;
         var renderScaleOverride = Environment.GetEnvironmentVariable("RECOMP_RENDER_SCALE");
@@ -613,11 +612,10 @@ public static partial class HostWindow
         gl.ClearColor(clear.X, clear.Y, clear.Z, 1f);
         gl.Clear(ClearBufferMask.ColorBufferBit);
 
-        Runtime.RamLog.Tick();
-        Memory.RamLogger.TrackReads =
-            PanelManager.Get<RamMapPanel>()?.IsOpen == true ||
+        bool ramMapOpen = PanelManager.Get<RamMapPanel>()?.IsOpen == true;
+        Runtime.RamLog.Enabled = ramMapOpen ||
             PanelManager.Get<MemoryEditorPanel>()?.IsOpen == true;
-        Memory.RamLogger.TrackWrites = Memory.RamLogger.TrackReads;
+        if (Runtime.RamLog.Enabled) Runtime.RamLog.Tick();
 
         var gpu = _gpu;
         if (MovieFrameActive)
@@ -654,11 +652,12 @@ public static partial class HostWindow
                 UploadVramTexture(gl, gpu);
         }
 
-        if (PanelManager.Get<RamMapPanel>()?.IsOpen == true)
+        if (ramMapOpen)
         {
             QueueRamConvert();
             if (_ramReady) FlushRamTexture(gl);
         }
+        else ReleaseRamBuffers(gl);
 
         if (!ConfigManager.View.HideTopBar)
             MainMenuBar.Draw();
@@ -754,6 +753,7 @@ public static partial class HostWindow
         _gl?.DeleteTexture(_movieTex);
         _gl?.DeleteTexture(_vramTex);
         _gl?.DeleteTexture(_ramTex);
+        Runtime.RamLog.Enabled = false;
         Diagnostics.NativeAllocationProbe.Flush(force: true);
     }
 
@@ -834,11 +834,18 @@ public static partial class HostWindow
 
     static void QueueRamConvert()
     {
-        if (_ramTask is { IsCompleted: false }) return;
+        // Consume the previous result before allowing the worker to swap again.
+        if (_ramReady || _ramTask is { IsCompleted: false }) return;
         if (++_ramFrame < 6) return;
         _ramFrame = 0;
         var psMem = Runtime.Mem as Memory.PSMemory;
         if (psMem == null) return;
+        if (_ramFront.Length == 0)
+        {
+            const int bytes = Memory.RamLogger.Width * Memory.RamLogger.Height * 4;
+            _ramFront = new byte[bytes];
+            _ramBack = new byte[bytes];
+        }
         var ram = psMem.RamBuffer;
         var back = _ramBack;
         _ramTask = Task.Run(() => Runtime.RamLog.BuildTexture(ram, back))
@@ -852,11 +859,27 @@ public static partial class HostWindow
     static void FlushRamTexture(GL gl)
     {
         _ramReady = false;
+        if (_ramTex == 0) _ramTex = CreateTexture(gl);
         gl.BindTexture(TextureTarget.Texture2D, _ramTex);
         gl.TexImage2D<byte>(TextureTarget.Texture2D, 0, InternalFormat.Rgba,
             Memory.RamLogger.Width, Memory.RamLogger.Height, 0,
             PixelFormat.Rgba, PixelType.UnsignedByte, _ramFront);
         RamMapPanel.SetTexture(_ramTex);
+    }
+
+    static void ReleaseRamBuffers(GL gl)
+    {
+        // The continuation owns both buffers until its swap has completed.
+        if (_ramTask is { IsCompleted: false }) return;
+        _ramTask = null;
+        _ramFront = [];
+        _ramBack = [];
+        _ramReady = false;
+        _ramFrame = 0;
+        if (_ramTex == 0) return;
+        gl.DeleteTexture(_ramTex);
+        _ramTex = 0;
+        RamMapPanel.SetTexture(0);
     }
 
     static void ConvertDisplay(Gpu gpu, int w, int h)
