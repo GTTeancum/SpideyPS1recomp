@@ -21,6 +21,12 @@ backups must not enter public commits.
   [`b7e02a1`](https://github.com/GTTeancum/SpideyPS1recomp/commit/b7e02a1af4ed2670c3aa54a08e850e7accad944b).
   Its new [Windows and Ubuntu workflow](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40806344318)
   completed successfully on both platforms.
+- The sewer repair, converter safeguard, diagnostic frame gate, and expanded
+  regression coverage are published as
+  [`307562e`](https://github.com/GTTeancum/SpideyPS1recomp/commit/307562ee3f20c6ff6f8b1d96e6825763ef5d308c).
+  [Run 40807894298](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40807894298)
+  passed on Windows and Ubuntu. This documentation follow-up records those
+  completed results; it does not change the verified source.
 - The shared tools target .NET 10. Local verification uses Linux and SDK 10.0.403.
   The restricted shell's first MSBuild attempt failed without a useful diagnostic;
   authorized cloud execution with network/subprocess access passed. No source
@@ -53,7 +59,7 @@ backups must not enter public commits.
 - Replacement textures no longer generate mipmaps that their existing Linear
   minification setting never sampled. Level-zero filtering remains the same.
 
-### Sewer collision corruption — bounded repair
+### Sewer collision corruption — published in 307562e
 
 The [issue #5 log](https://github.com/GTTeancum/SpideyPS1recomp/issues/5#issuecomment-5682904515)
 reports SM1 `L5A3`, frame 4284, shortly after two Lizard-man spawns. Collision
@@ -113,8 +119,13 @@ are in [the issue #5 evidence note](docs/issues/issue-5-sewer-crash.md).
 
 The first published six-suite gate passed locally and on both GitHub platforms
 ([run 40806344318](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40806344318)).
-The expanded eight-suite gate also passed locally with `SPIDEY_GUARD_AFTER_FRAME=2000`.
-Remote execution for the expanded gate remains pending its source commit.
+The expanded eight-suite gate passed locally and on **both Windows and Ubuntu**
+at source commit `307562e`, with `SPIDEY_GUARD_AFTER_FRAME=2000`. Both final job
+logs confirm the suite counts below and 6 build warnings / 0 errors:
+[Windows job 123231090415](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40807894298/job/123231090415)
+and [Ubuntu job 123231089956](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40807894298/job/123231089956).
+Per-suite logs and JSON results were uploaded as workflow artifacts. There are
+no pending source edits or test runs from this batch.
 
 | Check | Actual result |
 |---|---|
@@ -156,8 +167,11 @@ game regeneration/build still requires the supported private retail input.
    Track objectives, transitions, bosses, death/retry, save/load, and completion
    separately from boot screenshots or level entry. Historical 20/24 SM2
    level-entry checks are not current full gameplay coverage.
-4. **Immediate next step in this batch:** publish the bounded repair, inspect both
-   CI jobs, then update this checkpoint with the exact commit and results.
+4. **Resume priority:** inspect the latest branch, checkpoint, and issue evidence.
+   With supported retail input available, follow the README's extraction and
+   `python tools/build.py` steps, then prioritize the normal L5A3 route above.
+   Until then, the complete gameplay acceptance remains blocked; do not substitute
+   another synthetic pass or a public-release routine probe for a level run.
 
 ## File map
 
