@@ -13,7 +13,58 @@ Do not launch Codex tasks/services or use the user's Dot or PC. Keep chat update
 within one screen. Private discs, extracted retail data, saves, credentials, and
 backups must not enter public commits.
 
-## Current batch: issue #10 and issue #11 reproduction
+## Current batch: SM2 targeted-entry repair; #10 and #11 remain open
+
+Published game-source fix:
+[`b0d2f90`](https://github.com/GTTeancum/SpideyPS1recomp/commit/b0d2f90d75d3864886aba9db13dbfc4d51793252).
+The SM2 level override previously loaded E1M3/E1M4 resources while retaining
+E1M0's tutorial descriptor and flags. Both original 4200 snapshots demonstrated
+that mismatch. The fix selects the supported native campaign descriptor at the
+initial stage-loader lookup, bounds the name write, and leaves subsequent native
+transitions and non-campaign fallback intact. It does not establish the cause
+or resolution of the community's reported Shocker crash.
+
+Actual verification:
+
+- Full retail-generated SM2 Linux build: **three warnings, zero errors**.
+- Focused actual-hook regression: **28 checks passed**, using synthetic bounded
+  storage, not gameplay. Generator/config output matched and independent native
+  source review passed.
+- [Windows and Ubuntu asset-free CI](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40946682539)
+  passed for the published source. Windows gameplay was not performed.
+- Corrected E1M3: all 12 snapshots showed `e1m3_t` / flags `0x000E0001`.
+  Three ordinary Square taps damaged thug record 61: **50 -> 42 -> 34 -> 26 HP**.
+  No defeat was established. Game Over appeared by 4800; configured `SPIDEY_EXIT=5000` returned
+  **0 after 155.13 s**, with 41 retained captures.
+- Corrected E1M4: all 32 snapshots showed `e1m4_t` / flags `0x000E0009`.
+  The boss encounter rendered and Right input was delivered at 3600–3720.
+  A native failure newspaper was visible at 9840; configured `SPIDEY_EXIT=12000` returned
+  **0 after 274.60 s**, with 100 retained captures. Retry was not selected.
+- Neither corrected run showed an observed crash or fired watchdog. The
+  ordinary E1M3 completion/cutscene -> E1M4 transition remains untested. See the
+  [corrected #11 record](docs/issues/issue-11-shocker-crash.md).
+
+For #10, the armor actor was present and enabled in all 120 retained L8A3
+snapshots. The closest sample's native contact metric was **287**, while
+collection requires **<128**; it was still outside pickup range. Two further
+ordinary-input attempts also failed to reach armor: a compressed route fell and
+retried (126.48 s), and a replay preserving recorded button timing diverged
+during climbing/damage (241.57 s, final sampled HP 10). Both were deliberately
+stopped, not crashed. There are now seven unsuccessful pickup attempts, no
+executed armor-crash reproduction, and no armor fix. See the
+[#10 follow-up](docs/issues/issue-10-armor-crash.md).
+
+**Next action:** advance the observed native E1M4 failure screen to Retry using
+ordinary inputs, then target the actual E1M3-to-E1M4 completion boundary with a
+supported nearby save or verified combat route. Source tracing identifies
+14 initial thug defeats followed by one final thug selected from four possible
+positions; the latest run established damage, not any defeat or completion.
+For #10, obtain a verified pickup route or supported nearby save before another
+attempt; the retained L8A3 recordings are not deterministic pickup replays.
+All game processes from this batch have stopped. Keep #5 closed for the next
+release; keep #10 and #11 open. No new release was published.
+
+## Previous batch: initial issue #10 and issue #11 screens
 
 The user explicitly selected **#10 (armor pickup)** and **#11 (before Shocker)**.
 Both remain open. This batch restored the private inputs and Linux tools,
@@ -35,7 +86,9 @@ not reproduce either reported crash or change game behavior.
   exit 0). Direct E1M3 entry loaded the preceding stage and accepted movement,
   jump, and pause; the operator stopped it at 4440 vblanks (108.07 s, SIGTERM
   `-15`). Neither screen reproduced a crash. The actual inter-stage transition
-  remains untested. See the [issue #11 record](docs/issues/issue-11-shocker-crash.md).
+  remains untested. Later analysis established that these initial screens used
+  E1M0 tutorial metadata with the target assets; their acceptance scope is
+  corrected in the [issue #11 record](docs/issues/issue-11-shocker-crash.md).
 - **Environment:** Both retained archive SHA-256 values matched the originals.
   Extraction restored 28 SM1 and 45 SM2 disc files and their WAD entries. Both
   retail-generated Linux builds of `892df80` succeeded with zero errors (SM1:
@@ -47,15 +100,6 @@ not reproduce either reported crash or change game behavior.
   withdrawn. No blocked XSync or failed safety loop is established.
   Prefer original captures, completed snapshots, and final run metadata over a
   stale journal alone. No controller replacement was made.
-
-**Next action:** establish a reliable, short ordinary-input armor-pickup replay
-before applying the proposed cosmetic compatibility fallback. Retained L8A3
-input/capture evidence reaches near the pickup but is not a completed replay;
-avoid another extended exploratory navigation batch. For #11, target E1M3's
-ordinary exit/cutscene into E1M4, using a verified route or nearby supported save,
-then Retry. Repeating the two already-passing cold entries does not test that
-missing boundary. Keep the candidate fix, observed results, and unverified
-reporter configuration distinct.
 
 ## Current focus: short reproductions with visible evidence
 

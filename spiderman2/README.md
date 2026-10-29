@@ -252,7 +252,8 @@ emulated console drew, not what the desktop showed.
 
 ```
 SPIDEY_HZ=30               presentation/GPU budget (default); comparisons accept 10..60
-SPIDEY_LEVEL=e3m1          redirect the initial level load (44 prefixes)
+SPIDEY_LEVEL=e3m1          select the initial retail campaign descriptor;
+                           archive fallback for other supported prefixes
 SPIDEY_CHEATS=all          the game's own cheats: everything, levels, costumes,
                            gallery, training, debug, bigfeet, bighead, whatif
 SPIDEY_SHOTS=1050,title.bmr+450

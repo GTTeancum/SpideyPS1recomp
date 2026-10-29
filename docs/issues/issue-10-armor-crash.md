@@ -1,7 +1,7 @@
 # Issue #10: Spider-Armor pickup crash with custom models
 
-**Status: open; reported crash not reproduced on 2026-10-29.** Five bounded
-Linux attempts did not establish an ordinary armor pickup. Static SM1 analysis
+**Status: open; reported crash not reproduced on 2026-10-29.** Seven bounded
+Linux attempts across two batches did not establish an ordinary armor pickup. Static SM1 analysis
 identified an unsafe texture-remapping assumption, but it has not been connected
 to the reported failure by an observed crash. No game-code correction was made.
 
@@ -12,7 +12,7 @@ cause or a regression boundary.
 
 ## Actual test setup
 
-All five attempts used source commit
+The first five attempts used source commit
 [`892df80`](https://github.com/GTTeancum/SpideyPS1recomp/commit/892df80c0be87e4a17e99d8bbbcc8536bc373225)
 and identical SM1 assemblies. The
 `SpiderMan.dll` SHA-256 was
@@ -63,6 +63,37 @@ is retracted:** journal staleness/truncation did not establish a blocked input
 helper. Four-vblank Start taps did not reliably produce a visible pause
 response; future navigation should use longer taps and visibly confirm pause
 state.
+
+## Follow-up: pickup contact and recorded-route attempts
+
+Read-only inspection of all 120 retained L8A3 snapshots from 1600 through 15880
+found the armor actor linked and enabled: type 13, trigger record 59, radius 128,
+and no pickup-disable flag. Its actual position was `(2,-3219.5938,-432)`.
+The initial trigger chain is `0 -> 53 -> 59`.
+
+The native pickup loop compares the player's position with the pickup using
+`max(|delta|) + middle(|delta|)/2 + min(|delta|)/4`, truncated to level units.
+Collection requires a result **strictly below 128**. At the previous closest
+sample, 13720, that metric was **287**. None of the 120 samples satisfied it.
+Armor has no additional collection-button requirement or wall-cling exclusion
+in this acceptance block. At the same Y/Z, the player needed about 160 more
+units along positive X to enter the contact volume. Apparent model proximity
+therefore did not imply a failed pickup.
+
+Two further ordinary-input attempts used
+[`3cec7fe`](https://github.com/GTTeancum/SpideyPS1recomp/commit/3cec7fe5c22bed55e432ce3d356da5d643f66b80).
+Their SM1 apphost, game DLL, and runtime hashes matched the earlier attempts;
+no armor correction or game-source change was applied.
+
+| Run suffix | Actual result |
+| --- | --- |
+| `l8a3-route-03` | A compressed input sequence changed the early jump trajectory. Frame 2040 showed a fall, frame 2400 showed Game Over, and a later scripted Cross caused Retry and a level reload at 2484. The later introduction was a restarted level, not a blocked initial introduction. Requested stop at 4948: 126.48 s, wrapper exit `-15`; 82 captures and 51 valid player samples, all with armor inactive. |
+| `l8a3-route-04` | Configured a 6020-callback schedule preserving the old route's pause/idle timing; stopped before completing it. Early positions matched, but later climbing and damage diverged. Last sampled position at 7840 was `(-645.1687,-376.7280,-98.2161)`, HP 10, armor inactive. Requested early stop at 8032: 241.57 s, wrapper exit `-15`; 66 captures and 27 valid player samples. |
+
+The input schedule matched the recorded button words; game-state equivalence
+did not. The game uses wall-clock pacing, camera changes, and native collision
+responses. These traces are not established pickup replays. Neither follow-up
+reached the pickup, and neither wrapper stop was an observed crash.
 
 ## Static finding: retail armor mapping versus converted textures
 
@@ -117,9 +148,10 @@ the matching bypassed disable per memory session even after a model change.
 Retail actors should retain the native path. This proposal is **unimplemented
 and unverified**; silver armor appearance would remain separate work.
 
-Keep #10 open. Next obtain a short ordinary L8A1 pickup route or supported save,
+Keep #10 open. Next obtain a verified short ordinary pickup route or supported save,
 capture actual collection, and compare converted-player and retail-player
 controls. Only after a failing transition is established should a bounded fix
 be paired with before/after pickup, damage, depletion, restart, and transition
 checks. This batch verified neither pickup nor armor mechanics, and supplies
-no basis for closure or a release-fix claim.
+no basis for closure or a release-fix claim. Do not repeat the unsuccessful
+L8A3 recordings as though they were deterministic pickup routes.

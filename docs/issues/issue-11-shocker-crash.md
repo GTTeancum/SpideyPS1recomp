@@ -1,9 +1,14 @@
 # Issue #11: SM2 crash before Shocker
 
-**Status: open — not reproduced in two bounded Linux checks on 2026-10-29.**
-The Shocker arena and its preceding stage both loaded and accepted ordinary
-controller input. The normal transition between those stages remains untested.
-No game-code fix was made for this issue.
+**Status: open; the reported crash remains unverified on 2026-10-29.** A separate,
+reproducible targeted-entry defect was repaired in
+[`b0d2f90`](https://github.com/GTTeancum/SpideyPS1recomp/commit/b0d2f90d75d3864886aba9db13dbfc4d51793252).
+Both corrected stage entries passed bounded Linux checks, including observed
+enemy damage in E1M3. Their ordinary inter-stage transition remains untested.
+
+**Correction to the initial screens:** the first E1M3/E1M4 runs loaded their
+assets while retaining E1M0's tutorial descriptor and flags. Their screenshots
+remain real observations, but those runs are not clean target-stage acceptance.
 
 Tracking: [issue #11](https://github.com/GTTeancum/SpideyPS1recomp/issues/11),
 [first arena-screen result](https://github.com/GTTeancum/SpideyPS1recomp/issues/11#issuecomment-6504247947),
@@ -11,6 +16,60 @@ and [community intake R02](community-reports-2026-10-29.md).
 The intake does not identify the reporter's executable hash, selected actor,
 last loaded archive, exception, or exact transition. Successful targeted entry
 therefore does not establish that the reported failure is fixed.
+
+## Repaired targeted-entry defect
+
+The old [level override](../../spiderman2/patches/LevelSwitch.cs) rewrote archive
+names without selecting the matching native campaign descriptor. Both original
+4200 snapshots contained `e1m0_t` at `0x800B3184` and flags `0x000E0003` at
+`0x800B31FC`, despite the E1M3 or E1M4 resources being loaded.
+
+Native stage loader `func_8001A85C` calls descriptor lookup `func_8001A700`, then
+applies descriptor flags before loading resources. The current campaign name
+also participates in later stage/cutscene decisions. Rewriting filenames alone
+therefore produced a mixture of target assets and tutorial metadata.
+
+The fix selects a known campaign name at that initial native lookup. It is
+restricted to the actual loader caller (`RA=0x8001A92C`) and current-name buffer,
+requires membership in the 24-entry retail table, bounds the nine-byte name
+storage, and leaves the native loader to apply its flags. After selection it
+disables archive fallback so later transitions remain native. Unconfigured boot
+and non-campaign fallback behavior are preserved.
+
+| Actual saved state | Current name | Flags |
+| --- | --- | --- |
+| Original E1M3 and E1M4 entry checks | `e1m0_t` | `0x000E0003` |
+| Corrected E1M3, all 12 snapshots | `e1m3_t` | `0x000E0001` |
+| Corrected E1M4, all 32 snapshots | `e1m4_t` | `0x000E0009` |
+
+The focused suite passed **28 checks** against the actual hook with synthetic,
+bounded name/table storage. It covers caller guards, known/missing descriptors,
+write bounds, guest register/tag preservation, one-shot behavior, subsequent
+transition/Retry names, and fallback. It does not execute gameplay. The full
+retail-generated SM2 Linux build passed with three warnings and zero errors;
+the [Windows and Ubuntu asset-free CI gate](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40946682539)
+also passed for the published source.
+
+## Corrected runtime checks
+
+Both follow-up runs used the six-file source change committed as `b0d2f90`, the
+same supported private input, bundled player, Xvfb/Mesa setup, and null audio.
+The build was made from those candidate files before advancing `master`; the
+published blobs were compared with the local source. Game DLL SHA-256:
+`e66144b93a62c0abf46b44acb380a17d1a1b804c930c6e73df3f58b4e6613632`;
+runtime DLL: `f15d5ddce518844ee498b4ac8647a5802b541d2a347ca303495676f0579b7ed1`.
+
+| Run | Actual result and limit |
+| --- | --- |
+| `issue11-e1m3-descriptor-after-01` | Correct E1M3 descriptor/flags and warehouse/thug resources. Three ordinary Square taps at 3600–3608, 3660–3668, and 3720–3728 reduced thug record 61 from **50 → 42 → 34 → 26 HP**. Native damage code establishes the signed-16-bit health field at actor `+0xC6`; no hit is inferred solely from button delivery. Frame 3840 shows combat. Game Over was visible by 4800; configured exit at 5000 returned **0 after 155.13 s**. No defeat or Retry was established. |
+| `issue11-e1m4-descriptor-after-01` | Correct E1M4 descriptor/flags through the retained snapshots. Frame 2880 shows the player, Shocker encounter, HUD, and boss bar. Right input was delivered at 3600–3720 without release failure; later captures show the continuing encounter. Frame 9840 shows the native failure newspaper. Configured exit at 12000 returned **0 after 274.60 s**. Retry was not selected. |
+
+The two runs retained 41 and 100 original captures respectively. Neither showed
+an observed crash, exception, unmapped-dispatch failure, or fired watchdog.
+The E1M3 combat capture `frame_03840.png` has SHA-256
+`77c1d06298e8258b1af2bb16b9eeffa6fcab09e8f0c66a62d069e3fa0db7add3`.
+Enemy damage and correct entry metadata are verified; enemy defeat, stage
+completion, native Retry, and the ordinary E1M3-to-E1M4 boundary are not.
 
 ## Exact stage mapping
 
@@ -24,18 +83,22 @@ following targets. Record numbers below are zero-based TRG record indices.
 | E1M4 restart | `e1m4_t.trg` record 246 names `E1M4_T`. |
 | Following stage | `e1m4_t.trg` exit-script record 48 names `E2M1_T`. |
 
-E1M3 contains 18 thug spawn records: 14 linked from the initial wave record and
-four later records linked to a completion node. Its script text includes
-"Just one more left.." and "Good Job! Cut Scene Time". This supports a combat
-route to the exit, but the complete native gate conditions have not been
-decoded or exercised. It does not prove that exactly 18 kills are mandatory.
+E1M3 contains 18 thug spawn records, but four are alternative positions for one
+final thug. Native trigger analysis identifies 14 initial death-event branches
+feeding records `35 -> ... -> 48 -> 64`, followed by `65 -> 198`. Record 198's
+native opcode selects a single linked position farthest from the player. That
+final thug's death advances `69 -> 185 -> 88 -> 113`, with three native 156-unit
+delays before requesting E1M4. No door-position gate occurs in this traced chain.
+This establishes a source-derived **14 initial defeats plus one final defeat**
+route; it is not a completed ordinary-input replay. No supported near-exit save
+was found in the available test inputs.
 
 The historical pre-render failures listed in
 [SM2 open-work notes](../../spiderman2/TO_DO.md) concern `e3m1`, `e3m2`, `e4m1`,
 and `e5m2`. Those prefixes are distinct from the mapped Shocker route; no shared
 cause has been established.
 
-## Shared test setup
+## Initial checks before the setup correction
 
 Both actual runs used the Linux build of
 [`892df80`](https://github.com/GTTeancum/SpideyPS1recomp/commit/892df80c0be87e4a17e99d8bbbcc8536bc373225)
@@ -66,7 +129,7 @@ below. The runtime files were independently hashed and matched the run metadata:
 | `SpiderMan2.dll` | `807cdd3c94368545aafb3e83273f5b0e5caf9efb3eaddcb3827a0c594fece686` |
 | `RecompOne.Runtime.dll` | `b33bbace50b2e31effa113bf0fc3426374b81a090665b64bc7a72880db18d409` |
 
-## Run A: direct E1M4 entry
+## Initial run A: E1M4 assets with tutorial metadata
 
 Run ID: `issue11-e1m4-before-02`. Started at 1:21:07 p.m. EDT (17:21:07 UTC) and
 finished after 155.15 seconds. This was a current-build baseline, not an
@@ -90,7 +153,7 @@ The earlier attempt `issue11-e1m4-before-01` could not access Xvfb and failed
 before gameplay frames. It was an environment setup failure, not a reproduced
 game crash, and is excluded from the two actual gameplay checks.
 
-## Run B: direct E1M3 entry and input check
+## Initial run B: E1M3 assets with tutorial metadata
 
 Run ID: `issue11-e1m3-before-01`. Started at 1:52:46 p.m. EDT (17:52:46 UTC) and
 finished after 108.07 seconds at the operator's requested stopping point.
@@ -129,8 +192,8 @@ RAM snapshots are not included.
 
 ## Remaining blocker and next action
 
-**Keep #11 open.** Neither run reproduced the reported crash, and no causal
-fix or paired before/after test exists. The untested boundary is ordinary
+**Keep #11 open.** No run reproduced the reported crash. The paired setup
+correction above does not establish its cause or resolution. The untested boundary is ordinary
 E1M3 completion through its exit/cutscene into E1M4, including any state carried
 across that transition. E1M4 Retry, boss defeat, level completion, alternate
 actors, the reporter's installation, and Windows behavior are also unverified.

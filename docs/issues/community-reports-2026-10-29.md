@@ -25,7 +25,7 @@ similar symptoms alone.
 | ID | Priority | Game | Reported symptom | GitHub tracking / disposition |
 |---|---|---|---|---|
 | R01 | P1 | Unspecified in two-game context | Spider-Armor pickup crashes with custom models. | [#10](https://github.com/GTTeancum/SpideyPS1recomp/issues/10); [SM1 source hazard and attempted routes](issue-10-armor-crash.md). Ordinary pickup/crash remains unverified. Separate from the L5A3 overflow in [#5](https://github.com/GTTeancum/SpideyPS1recomp/issues/5). |
-| R02 | P1 | SM2 | Crash before Shocker encounter. | [#11](https://github.com/GTTeancum/SpideyPS1recomp/issues/11); [E1M3/E1M4 entry results](issue-11-shocker-crash.md). Both stages load independently; their normal transition remains untested. |
+| R02 | P1 | SM2 | Crash before Shocker encounter. | [#11](https://github.com/GTTeancum/SpideyPS1recomp/issues/11); [E1M3/E1M4 entry results](issue-11-shocker-crash.md). Targeted-entry descriptor mismatch repaired in `b0d2f90`; corrected entries and E1M3 enemy damage verified. The ordinary stage transition and reported crash remain unverified. |
 | R03 | P2 | Both | Health-icon/model graphical corruption. | [#12](https://github.com/GTTeancum/SpideyPS1recomp/issues/12). Establish which on-screen object is affected. |
 | R04 | P2 | Both-game context | Enemy texture corruption. | [#13](https://github.com/GTTeancum/SpideyPS1recomp/issues/13); compare with R05 without assuming shared ownership or cause. |
 | R05 | P2 | Both-game context | Suit texture corruption. | Existing [#8](https://github.com/GTTeancum/SpideyPS1recomp/issues/8), with [this source added as evidence](https://github.com/GTTeancum/SpideyPS1recomp/issues/8#issuecomment-6501565969); no duplicate issue. |
