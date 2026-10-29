@@ -84,7 +84,9 @@ only appropriately redacted findings belong in public tracking.
 
 ## Next action
 
-Obtain the supported private retail input, rebuild, and test the previously
-repaired L5A3 route plus R01 and R02 first. Keep the remaining targets visible
-through campaign, costume, audio, renderer, and compatibility testing. This intake
-changes documentation only; no game execution or new fix is claimed.
+Supported private retail input and full Linux builds are now available. Current
+native launch observations and CI results are recorded in
+[the checkpoint](../../CHECKPOINT.md); they do not reproduce or close these
+reports. Test the previously repaired L5A3 route plus R01 and R02 first, and keep
+the remaining targets visible through campaign, costume, audio, renderer, and
+compatibility testing. The original intake was documentation-only.

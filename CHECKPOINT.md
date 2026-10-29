@@ -30,7 +30,9 @@ their identities and recovery locations; do not publish those links or the data.
 - The actual retail-generated games both built on Ubuntu 24.04 x64 with .NET SDK
   10.0.403. SM1 had five warnings / zero errors; SM2 had three warnings / zero
   errors. Serial MSBuild avoided the earlier parallel child-process failure.
-- Source checkout is on `master`, based on `1d1a9bc`. Preserve the unrelated
+- The source batch is published on `master` as
+  [`774b3c4`](https://github.com/GTTeancum/SpideyPS1recomp/commit/774b3c4eceee1b30d5579387bec14c3facd41ec5).
+  Preserve the unrelated
   untracked temporary ZIP in `spiderman/port/bundled/`. Extracted assets, generated
   C#, build output, and captures remain outside public commits.
 
@@ -59,6 +61,12 @@ their identities and recovery locations; do not publish those links or the data.
 
 - The complete local shared-tools build and ten-suite gate passed. Logs and
   `results.json` are under ignored `artifacts/regressions/linux-portability/`.
+- [Run 40886198566](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40886198566)
+  passed on Windows and Ubuntu for `774b3c4`. Both shared builds had six existing
+  warnings / zero errors. Both evaluated all 22 publish configurations. Linux
+  passed the six native-loader checks; Windows explicitly skipped that
+  Linux-specific behavior. All remaining suites passed on both systems and
+  their logs were retained as workflow artifacts.
 - Publish configuration before/after: 18 failing scenarios before the fix; all
   22 pass afterward. Simulated host RIDs verify settings, not another OS's
   execution.
@@ -77,12 +85,33 @@ their identities and recovery locations; do not publish those links or the data.
 - The first development launch before the native resolver repair reached title
   loading without a usable window and produced no screenshots. That run is
   explicitly excluded from rendered-game acceptance.
+- Both full development games were rebuilt with the resolver fix (zero errors)
+  and opened OpenGL 4.5 without a runtime-ID override.
+
+| Actual game run | Observed result | Limit |
+|---|---|---|
+| SM1 published title | Two correct title captures; planned exit 0 at frame 992 | Boot/title only |
+| SM1 development normal new game | Title, main menu, cinematic, and L1A1 rooftop with player, world and HUD; five captures | External 360-second timeout (124) before the planned final capture/exit; no level completion |
+| SM2 development normal new game | Title, main menu, E1M0 city introduction and Spider-Man/Beast scene; four captures; planned exit 0 at frame 2944 | Captured scenes are introductory cinematics; player control/HUD acceptance remains open |
+| SM1 targeted L5A3 entry | Actual loader corrected `lizman2.psx` slot 8 from 37 to 19; Venom introduction and a sewer frame with player/HUD rendered; three captures; planned exit 0 at frame 1846 | Descriptor override, not campaign entry; Lizard-man spawns, player control, and level completion remain unverified |
+
+These runs use the actual supplied disc revisions and bundled default actors.
+The normal new-game runs use controller input only, with no level redirect,
+cheat, replay, or artificial trigger. File-load anchors identify the scheduling
+boundary; visual inspection determines what each capture actually shows.
+The separate L5A3 run uses `SPIDEY_LEVEL=l5a3`, which also permits the existing
+model-residency rescue path. It proves the repair hook runs against the real
+loaded actor. It does not prove that either Lizard-man spawned or that animation,
+collision, and level exit are correct during normal play.
+The short directional-input pulse occurred during the introduction, so the later
+player/HUD capture is not accepted as a movement or collision test.
 
 Audio is routed to an OpenAL null device, so audible audio is unverified. Software
 rendering is a functional test, not a hardware performance benchmark. Current
 native Linux checks do not establish SteamOS/Wine/Proton compatibility or full
-campaign completion. Both development games are being rebuilt with the resolver
-fix for the next normal-menu launch checks; remote CI has not run for this batch.
+campaign completion. The next SM2 run must schedule captures after the remaining
+introductory dialogue is dismissed; its first geometry load occurs before player
+control and is not a sufficient gameplay anchor.
 
 ## Historical published baseline
 
@@ -243,8 +272,8 @@ in the current batch; the isolated repair still requires gameplay acceptance.
 ## Remaining blockers and next action
 
 1. **Verify the sewer fix in gameplay.** Use the prepared supported SM1 input
-   (USA SLUS-00875) and rebuilt game, confirm the model-load correction is
-   logged, then play `L5A3` through the two spawns, progression, and level exit.
+   (USA SLUS-00875) and rebuilt game. The targeted entry now logs the real model
+   correction; next play `L5A3` through the two spawns, progression, and level exit.
    Check animation and near/distant geometry as well as crash absence. Do not
    mark issue #5 closed solely from the isolated decoder proof.
 2. **Reproduce costume report #8.** The parser defect is demonstrated, but no
@@ -254,13 +283,16 @@ in the current batch; the isolated repair still requires gameplay acceptance.
    has not been established. Obtain the exact pack and sequence, then compare
    texture ownership/retirement around costume and level changes.
 3. **Complete both campaigns.** Supported private SM2 input is USA SLUS-01378.
+   First extend the E1M0 menu route past the introductory dialogue and verify
+   live HUD and ordinary movement. The current geometry-anchored captures occur
+   too early for that acceptance.
    Track objectives, transitions, bosses, death/retry, save/load, and completion
    separately from boot screenshots or level entry. Historical 20/24 SM2
    level-entry checks are not current full gameplay coverage.
 4. **Resume priority:** inspect the latest branch, checkpoint, issue evidence, and
    [community report queue](docs/issues/community-reports-2026-10-29.md).
-   Assets and full Linux builds are available. Finish the current native launch
-   checks, then prioritize L5A3 acceptance and crash cases R01/R02. No tracked
+   Assets, full Linux builds, native rendered launch checks, and the two-platform
+   CI gate are available. Prioritize L5A3 acceptance and crash cases R01/R02. No tracked
    replay currently proves the L5A3 completion route. Direct level entry may help
    isolate actor loads, but must be labeled separately from normal progression;
    do not substitute another synthetic pass for a level run.
