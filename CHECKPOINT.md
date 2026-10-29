@@ -13,7 +13,47 @@ Do not launch Codex tasks/services or use the user's Dot or PC. Keep chat update
 within one screen. Private discs, extracted retail data, saves, credentials, and
 backups must not enter public commits.
 
-## Current batch: targeted L5A3 gameplay and test control
+## Current focus: short reproductions with visible evidence
+
+The user changed the immediate priority after reviewing the sewer test: focus on
+things that can be reproduced easily and make the evidence visible in chat.
+This supersedes the earlier instruction to finish L5A3 before other work.
+
+- Choose a short command or a small number of ordinary menu/gameplay steps with
+  a clear expected result. Confirm the failing behavior before changing it.
+- Prefer a bounded reproduction in startup, asset loading, conversion, texture
+  parsing, or accessible menus over lengthy level navigation. An unverified
+  community report is a screening candidate, not an established easy bug.
+- For each repaired behavior, retain the exact build/setup/steps and a failing
+  before result plus the corresponding after result. Label isolated tests,
+  source findings, and full-game observations separately.
+- Show relevant original screenshots or a short capture directly in chat for
+  visual/gameplay claims. Include concise command/output evidence for faults
+  that are not visual. Repeated green regressions are not new bug progress.
+- Keep unsuccessful screening bounded. Record what was attempted and move to
+  another concrete case if no failure is reproduced; do not spend the next
+  batch extending a navigation harness just to reach a difficult report.
+
+**Issue #5 remains open and is deferred as the default next task.** Its exact
+buffer overwrite was reproduced in an isolated released-code probe. The later
+patched game reached combat, damage, death, and Retry. There has been no paired
+unpatched gameplay crash followed by the same successful patched route, and no
+level completion. The saved captures demonstrate patched gameplay only.
+
+The earlier long routes for #10/#11 and the observed-once log cessation in #19
+also remain tracked; their severity does not establish reproduction ease. #17
+is only a possible short ability check once the game and native stock slot are
+confirmed. A clean SM1 profile does not unlock stock symbiote slot 2, and
+`SPIDEY_CHEATS=all` would invalidate an infinite-webbing check by enabling that
+cheat. Do not claim it is immediately reproducible from a clean boot.
+
+The original evidence archive and four selected frames were recovered after
+workspace maintenance and matched their previously saved SHA-256 values. This
+priority/evidence update did not run either game, rebuild code, or claim a new
+reproduction. The private checkpoint records which local prerequisites need
+restoring before the next executable test.
+
+## Most recent gameplay batch: targeted L5A3 gameplay and test control
 
 The two bounded Linux runs now extend verification into **actual sewer gameplay**.
 The tested game/runtime source remains
@@ -58,7 +98,7 @@ See [the gameplay record](docs/testing/linux-gameplay-2026-10-29.md) and
 input journals, snapshot summaries, exact helper versions, and audit results
 are retained privately. Retail assets and raw snapshots are not public evidence.
 
-**Next:** start a fresh bounded run with the repaired controller, handle the
+**Deferred L5A3 acceptance route:** start a fresh bounded run with the repaired controller, handle the
 first pair, cross the pipe section using normal jump/swing input, and verify the
 far encounter and `L5A4_T` transition. The mapped route is guidance, not a
 completed replay. Targeted `SPIDEY_LEVEL=l5a3` also permits the existing model
@@ -83,10 +123,11 @@ All ten new issue bodies, open states, and bug labels, plus the three comments,
 were read back and matched the intended content. No issue was closed.
 Community symptoms remain reported/unreproduced; #19 is an observed-once
 diagnostic failure with an unknown cause. The private controller workaround is
-not a game-logging fix. After L5A3 completion work, prioritize ordinary armor
+not a game-logging fix. The former queue prioritized ordinary armor
 pickup reproduction [#10](https://github.com/GTTeancum/SpideyPS1recomp/issues/10)
 and the SM2 pre-Shocker report
-[#11](https://github.com/GTTeancum/SpideyPS1recomp/issues/11).
+[#11](https://github.com/GTTeancum/SpideyPS1recomp/issues/11); use the current
+reproduction-first focus above when choosing the next bounded task.
 
 ## Previous batch: native Linux preparation and launch
 
@@ -227,8 +268,9 @@ their exact commits. The source checkout, SDK, and private retail inputs have
 since been restored; the current Linux batch above supersedes the former asset
 blocker.
 
-The later tracking batch above created the missing GitHub issues. Keep the L5A3
-acceptance run first, then prioritize R01/#10 and R02/#11. The queue remains part
+The later tracking batch above created the missing GitHub issues. The current
+focus now favors short reproductions rather than automatically putting L5A3,
+R01/#10, or R02/#11 first. The queue remains part
 of campaign and costume verification; no report is closed by this intake.
 
 ## Completed changes
@@ -347,7 +389,10 @@ in the previous Linux preparation batch. The current targeted run adds actual
 spawn/combat/death/retry evidence; level completion and normal campaign entry
 still require gameplay acceptance.
 
-## Remaining blockers and next action
+## Remaining acceptance backlog
+
+The numbering below identifies unfinished areas, not their execution order.
+Apply the current short-reproduction focus above before choosing work.
 
 1. **Complete sewer gameplay acceptance.** Use the prepared supported SM1 input
    (USA SLUS-00875), unchanged rebuilt game, and repaired private controller in a
@@ -371,8 +416,9 @@ still require gameplay acceptance.
    level-entry checks are not current full gameplay coverage.
 4. **Resume priority:** inspect the latest branch, checkpoint, issue evidence, and
    [community report queue](docs/issues/community-reports-2026-10-29.md).
-   Assets, full Linux builds, targeted sewer combat evidence, and the two-platform
-   CI gate are available. Prioritize L5A3 completion and crash cases R01/R02. No tracked
+   Private inputs and targeted sewer evidence are retained; earlier full Linux
+   builds and the two-platform CI gate are recorded above. Restore only the
+   local prerequisites required for the selected short reproduction. No tracked
    replay currently proves the L5A3 completion route. Direct level entry may help
    isolate actor loads, but must be labeled separately from normal progression;
    do not substitute another synthetic pass for a level run.

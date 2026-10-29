@@ -163,6 +163,11 @@ live-tested in this run, changes no game code, and does not fix log cessation.
 
 ## Remaining verification boundary
 
+**No paired end-to-end gameplay reproduction has been performed:** the original
+crash was not triggered in an unpatched game and then replayed successfully on
+the patched game under the same conditions. The retained screenshots are from
+the patched run and establish only the gameplay states described above.
+
 The isolated native reproduction still establishes the count-driven overwrite
 and its exact correspondence to the original issue log; the synthetic suite
 checks the hook's safety and selection rules. The Linux run now adds a complete
@@ -170,7 +175,9 @@ live model load, enemy construction, visible interaction, damage, death, and
 Retry through the former crash window. It does not establish an enemy defeat,
 L5A3 completion, normal campaign entry, or full gameplay and animation quality.
 
-Keep issue #5 open. Next, use a fresh bounded run with the repaired controller
+Keep issue #5 open. The user's current priority is shorter, directly reviewable
+reproductions; this longer acceptance route is deferred as the default task.
+When resuming it, use a fresh bounded run with the repaired controller
 to defeat the nearby pair and continue to the level exit while checking
 animation and collision behavior, then verify entry through normal campaign
 progression. Restore reliable observation of the later run before treating an

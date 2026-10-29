@@ -99,7 +99,11 @@ only appropriately redacted findings belong in public tracking.
 Supported private retail input and full Linux builds are now available. Current
 native Linux gameplay observations and CI results are recorded in
 [the checkpoint](../../CHECKPOINT.md); they do not reproduce or close these
-community reports. Continue the remaining L5A3 gameplay acceptance and prioritize
-R01 and R02, keeping the other targets visible through campaign, costume, audio,
-renderer, and compatibility testing. Record results in the linked GitHub issues.
+community reports. The user's updated priority is short, easily repeated cases
+with evidence shown directly in chat. Severity priorities in the table do not
+establish reproduction ease. Screen a candidate with exact steps and a bounded
+attempt before changing behavior; if no failure is observed, record that result
+and move on rather than extending a long navigation run. L5A3 completion and
+R01/R02 remain open, but no longer automatically lead the execution queue.
+Record actual before/after evidence in the linked GitHub issues.
 The original intake was documentation-only.
