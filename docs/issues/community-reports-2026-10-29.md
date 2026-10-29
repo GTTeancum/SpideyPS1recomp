@@ -75,7 +75,9 @@ only appropriately redacted findings belong in public tracking.
   native Linux testing reached the Lizard-man spawns, visible combat, incoming
   and outgoing damage, death, and ordinary Retry. This adds live evidence to the
   isolated native reproduction and bounded repair; no enemy defeat, level exit,
-  or normal campaign entry is verified. Issue #5 remains open. See the
+  or normal campaign entry is verified. Issue #5 is now
+  [closed as resolved for the next release](https://github.com/GTTeancum/SpideyPS1recomp/issues/5#issuecomment-6503366323).
+  See the
   [gameplay report](../testing/linux-gameplay-2026-10-29.md) and
   [current checkpoint](../../CHECKPOINT.md). The cause of #8 remains unattributed.
 - [Issue #19](https://github.com/GTTeancum/SpideyPS1recomp/issues/19) separately
@@ -103,7 +105,8 @@ community reports. The user's updated priority is short, easily repeated cases
 with evidence shown directly in chat. Severity priorities in the table do not
 establish reproduction ease. Screen a candidate with exact steps and a bounded
 attempt before changing behavior; if no failure is observed, record that result
-and move on rather than extending a long navigation run. L5A3 completion and
-R01/R02 remain open, but no longer automatically lead the execution queue.
+and move on rather than extending a long navigation run. Broader L5A3 gameplay
+acceptance remains incomplete; R01/R02 remain open. These longer routes no longer
+automatically lead the execution queue, and issue #5 is closed for the next release.
 Record actual before/after evidence in the linked GitHub issues.
 The original intake was documentation-only.

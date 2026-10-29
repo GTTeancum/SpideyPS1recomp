@@ -1,5 +1,12 @@
 # Issue #5: sewer-entry animation buffer corruption
 
+**Status: closed — resolved for the next release (2026-10-29), per maintainer
+decision.** See the [resolution comment](https://github.com/GTTeancum/SpideyPS1recomp/issues/5#issuecomment-6503366323).
+The fix is committed in
+[`307562e`](https://github.com/GTTeancum/SpideyPS1recomp/commit/307562ee3f20c6ff6f8b1d96e6825763ef5d308c)
+and is on `master`. Closing this issue does not expand the verification recorded
+below or mean that the next release has been published.
+
 ## Evidence and cause
 
 The [issue #5 crash log](https://github.com/GTTeancum/SpideyPS1recomp/issues/5#issuecomment-5682904515)
@@ -175,8 +182,9 @@ live model load, enemy construction, visible interaction, damage, death, and
 Retry through the former crash window. It does not establish an enemy defeat,
 L5A3 completion, normal campaign entry, or full gameplay and animation quality.
 
-Keep issue #5 open. The user's current priority is shorter, directly reviewable
-reproductions; this longer acceptance route is deferred as the default task.
+Issue #5 is closed as resolved for the next release. The user's current priority
+is shorter, directly reviewable reproductions; the remaining broader gameplay
+acceptance below is deferred as the default task and does not keep this issue open.
 When resuming it, use a fresh bounded run with the repaired controller
 to defeat the nearby pair and continue to the level exit while checking
 animation and collision behavior, then verify entry through normal campaign

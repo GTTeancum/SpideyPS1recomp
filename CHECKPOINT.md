@@ -34,7 +34,9 @@ This supersedes the earlier instruction to finish L5A3 before other work.
   another concrete case if no failure is reproduced; do not spend the next
   batch extending a navigation harness just to reach a difficult report.
 
-**Issue #5 remains open and is deferred as the default next task.** Its exact
+**Issue #5 is closed as resolved for the next release, per the user's decision.**
+The [resolution comment](https://github.com/GTTeancum/SpideyPS1recomp/issues/5#issuecomment-6503366323)
+records the committed repair and the unchanged verification limits. Its exact
 buffer overwrite was reproduced in an isolated released-code probe. The later
 patched game reached combat, damage, death, and Retry. There has been no paired
 unpatched gameplay crash followed by the same successful patched route, and no
@@ -52,6 +54,22 @@ workspace maintenance and matched their previously saved SHA-256 values. This
 priority/evidence update did not run either game, rebuild code, or claim a new
 reproduction. The private checkpoint records which local prerequisites need
 restoring before the next executable test.
+
+### Latest tracking update: issue #5 closed for the next release
+
+The issue body now records **resolved for the next release**, and GitHub was
+read back as `closed` with state reason `completed`. The resolution comment
+and body matched the intended content. This update did not run gameplay,
+rebuild code, or publish a release. The repair is already on `master`; no
+upcoming version number was assigned.
+
+The live GitHub inventory after closure contains **14 open issues**:
+**#4, #6, and #8–#19**, with **no open pull requests**. Community reports remain
+awaiting reproduction; #19 remains an observed-once diagnostic failure. Broader
+L5A3 acceptance is unfinished but is no longer a condition keeping #5 open.
+Continue with the short-reproduction focus above; restore only the prerequisites
+needed for the selected case. `git diff --check` passed for this documentation
+update. No new runtime checks were performed.
 
 ## Most recent gameplay batch: targeted L5A3 gameplay and test control
 
@@ -103,7 +121,8 @@ first pair, cross the pipe section using normal jump/swing input, and verify the
 far encounter and `L5A4_T` transition. The mapped route is guidance, not a
 completed replay. Targeted `SPIDEY_LEVEL=l5a3` also permits the existing model
 residency rescue; normal campaign entry remains a separate acceptance gate.
-Keep issue #5 open. SM2 live control, both campaigns, audible audio, save/load,
+Issue #5 is now closed for the next release; this route remains broader gameplay
+acceptance. SM2 live control, both campaigns, audible audio, save/load,
 and the community reproduction queue remain incomplete.
 
 ### GitHub tracking completed in this batch
@@ -120,7 +139,8 @@ Existing issues received evidence updates rather than duplicates:
 [suit textures #8](https://github.com/GTTeancum/SpideyPS1recomp/issues/8#issuecomment-6501565969),
 and [Linux support #6](https://github.com/GTTeancum/SpideyPS1recomp/issues/6#issuecomment-6501566564).
 All ten new issue bodies, open states, and bug labels, plus the three comments,
-were read back and matched the intended content. No issue was closed.
+were read back and matched the intended content. No issue was closed in that
+tracking batch; #5 was subsequently closed as recorded above.
 Community symptoms remain reported/unreproduced; #19 is an observed-once
 diagnostic failure with an unknown cause. The private controller workaround is
 not a game-logging fix. The former queue prioritized ordinary armor
@@ -399,8 +419,8 @@ Apply the current short-reproduction focus above before choosing work.
    fresh bounded run. Load correction, first-pair spawning, live combat/damage,
    death, and Retry are now observed. Enemy defeat, the pipe traversal, the far
    encounter, level exit, and normal campaign entry remain open. Check animation
-   and near/distant geometry as well as crash absence. Keep issue #5 open until
-   the remaining gameplay result is recorded.
+   and near/distant geometry as well as crash absence. This is broader gameplay
+   acceptance; issue #5 is closed as resolved for the next release.
 2. **Reproduce costume report #8.** The parser defect is demonstrated, but no
    supplied failing pack or selection sequence ties it to the
    [reported texture corruption](https://github.com/GTTeancum/SpideyPS1recomp/issues/8).
