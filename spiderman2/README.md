@@ -251,22 +251,34 @@ for the player", which was the whole answer.
 emulated console drew, not what the desktop showed.
 
 ```
-SPIDEY_HZ=60               developer comparison override; player default 60 Hz
-SPIDEY_LEVEL=e3m1          boot straight into a level (44 prefixes)
+SPIDEY_HZ=30               presentation/GPU budget (default); comparisons accept 10..60
+SPIDEY_LEVEL=e3m1          redirect the initial level load (44 prefixes)
 SPIDEY_CHEATS=all          the game's own cheats: everything, levels, costumes,
                            gallery, training, debug, bigfeet, bighead, whatif
 SPIDEY_SHOTS=1050,title.bmr+450
-                           write a PNG on an absolute frame or after an archive load
-SPIDEY_SHOT_EVERY=200      ...or every N frames
+                           write a PNG at an absolute or archive-anchored vblank count
+SPIDEY_SHOT_EVERY=200      ...or every N vblanks
 SPIDEY_SHOT_DIR=shots      where they go
-SPIDEY_EXIT=13000          quit after frame N
+SPIDEY_EXIT=13000          quit at or after vblank N
 SPIDEY_SCRIPT=title.bmr+80:start:10
-                           press a button N frames after an archive file loads
+                           start offsets are vblanks; holds count delivered VSync callbacks
 SPIDEY_BOOT_SKIP_UNTIL=title.bmr
                            pulse START in-process until this archive loads, then release
 SPIDEY_RUN_TOKEN=<32 hex>  bind a validator report to one fresh process invocation
 SPIDEY_ANALOG=0            present a digital pad instead of a DualShock
 ```
+
+**Timing units.** The default 30 Hz presentation budget uses two console vblanks
+per presented frame, targeting a 60 Hz vblank clock when the host keeps pace.
+Presentation, vblanks, and gameplay updates are separate counts. Capture/exit
+targets and script start offsets use the vblank counter; a script's final field
+counts delivered VSync callbacks. For example, `title.bmr+80:start:10` starts on
+the first callback at or after 80 vblanks from that load, then holds START for
+10 callbacks (normally 20 vblanks at the default step). FMV playback can advance
+the counter in larger jumps. These are event counts, not wall-clock durations;
+host speed affects elapsed time, and matching inputs do not guarantee identical
+game state. See [Program.cs](port/Program.cs) and [Capture.cs](patches/Capture.cs)
+for the implemented timing and input rules.
 
 `SpiderMan.exe` and `SpiderMan2.exe` also share the
 `Local\OpenSpideyPS1.GameRuntime` named mutex. A second OpenSpidey game process exits
@@ -290,14 +302,14 @@ see TO_DO.md, because that cost real time to establish.
 ### Anchor a step to an archive load, not to a frame
 
 The game paces off the wall clock, so the frame a screen appears on moves by hundreds
-between runs. `title.bmr+80` means "80 frames after the title screen's archive loads",
-which means the same thing every run. Two probe runs put `title.bmr` at frames 1810 and
-1812; four put it at 1804–1856.
+between runs. `title.bmr+80` anchors the start to 80 vblanks after the title screen's
+archive loads, even when that load's absolute count changes. Two probe runs put
+`title.bmr` at vblank counts 1810 and 1812; four put it at 1804–1856.
 
 `name#2+400` anchors to the *second* load of a file. Some archives are read more than
 once — the attract loop reloads `shell.bin` and `title.bmr` every cycle — so a step that
 must mean the later one can say so. The same `name#N+offset` syntax works for
-`SPIDEY_SHOTS`, so proof captures and scripted inputs share one deterministic clock.
+`SPIDEY_SHOTS`, so proof captures and scripted input starts share the same vblank counter.
 
 ### Two harness traps found here
 

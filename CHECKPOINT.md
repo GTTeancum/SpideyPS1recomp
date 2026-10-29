@@ -13,7 +13,60 @@ Do not launch Codex tasks/services or use the user's Dot or PC. Keep chat update
 within one screen. Private discs, extracted retail data, saves, credentials, and
 backups must not enter public commits.
 
-## Current batch: native Linux preparation and launch
+## Current batch: targeted L5A3 gameplay and test control
+
+The two bounded Linux runs now extend verification into **actual sewer gameplay**.
+The tested game/runtime source remains
+[`774b3c4`](https://github.com/GTTeancum/SpideyPS1recomp/commit/774b3c4eceee1b30d5579387bec14c3facd41ec5);
+this batch changes documentation and private test helpers, not the game binary.
+The intervening root README rename in `e92dfb3` was preserved.
+
+- Ordinary movement, jumping, wall climbing, pause, and Restart Level were
+  exercised in the first run. The second reached the first Lizard-man pair and
+  visibly exercised enemy movement, attack/grab animation, and combat.
+- The real loader corrected slot 8 from **37 to 19** animation parts at vblank
+  1234. The nearby pair spawned at 4608; two further spawns at 4616 are distinct
+  distant pipe guards, not a duplicate-spawn finding.
+- Saved snapshots identify four live linked Lizard-men. During combat, one
+  nearby actor's health fell **120 to 100** and the player's **100 to 12**.
+  The cached animation count remained 19 and all eight sampled collision-grid
+  words remained unchanged; the historical corrupt pair was absent.
+- Captures show a Lizard-man at 5184, a grab at 6240, Game Over at 6720, and live
+  play again at 8640 after ordinary Retry. No enemy kill or level exit was
+  verified. Health is signed 16-bit actor offset `+0xDE`; `+0x21A` is a geometric
+  offset and must not be used as health evidence.
+- Run 1 ended by requested test stop after 1,091.32 seconds; run 2 reached its
+  1,800-second outer timeout. Both child exit codes were `-15` from the wrapper's
+  SIGTERM, not a demonstrated game crash or normal game exit. Both original
+  save/settings hash comparisons passed. All game processes are stopped.
+- A private controller defect blocked further input on the retry: the log-based
+  progress reader stopped advancing while captures and snapshots continued.
+  Completed saved-artifact fallback, log truncation/rotation recovery, and
+  monotonic observations passed **15 focused checks**, including the real
+  stopped-log case. The running wrapper did not receive that repair; a fresh
+  run is required to verify its live control behavior. The cause of log silence
+  remains unestablished.
+
+Both game READMEs now distinguish the default **30 Hz presentation / 60 Hz
+vblank clock**, script start offsets, VSync-callback hold counts, and actual
+visual gameplay acceptance. `menu.spidey` labels alone are not gameplay proof.
+No rebuild or shared CI rerun was needed for this documentation batch; the
+earlier source-specific ten-suite Windows/Ubuntu gate remains historical evidence.
+
+See [the gameplay record](docs/testing/linux-gameplay-2026-10-29.md) and
+[updated issue #5 evidence](docs/issues/issue-5-sewer-crash.md). Logs, 414 captures,
+input journals, snapshot summaries, exact helper versions, and audit results
+are retained privately. Retail assets and raw snapshots are not public evidence.
+
+**Next:** start a fresh bounded run with the repaired controller, handle the
+first pair, cross the pipe section using normal jump/swing input, and verify the
+far encounter and `L5A4_T` transition. The mapped route is guidance, not a
+completed replay. Targeted `SPIDEY_LEVEL=l5a3` also permits the existing model
+residency rescue; normal campaign entry remains a separate acceptance gate.
+Keep issue #5 open. SM2 live control, both campaigns, audible audio, save/load,
+and the community reproduction queue remain incomplete.
+
+## Previous batch: native Linux preparation and launch
 
 The asset prerequisite is complete. Both user-supplied archives were downloaded,
 passed `7z t`, and were retained privately. Independently retrieved copies matched
@@ -267,15 +320,19 @@ no pending source edits or test runs from this batch.
 
 Those historical checks did not boot either game, render gameplay, or establish
 campaign completion. Full game regeneration/builds are now available as recorded
-in the current batch; the isolated repair still requires gameplay acceptance.
+in the previous Linux preparation batch. The current targeted run adds actual
+spawn/combat/death/retry evidence; level completion and normal campaign entry
+still require gameplay acceptance.
 
 ## Remaining blockers and next action
 
-1. **Verify the sewer fix in gameplay.** Use the prepared supported SM1 input
-   (USA SLUS-00875) and rebuilt game. The targeted entry now logs the real model
-   correction; next play `L5A3` through the two spawns, progression, and level exit.
-   Check animation and near/distant geometry as well as crash absence. Do not
-   mark issue #5 closed solely from the isolated decoder proof.
+1. **Complete sewer gameplay acceptance.** Use the prepared supported SM1 input
+   (USA SLUS-00875), unchanged rebuilt game, and repaired private controller in a
+   fresh bounded run. Load correction, first-pair spawning, live combat/damage,
+   death, and Retry are now observed. Enemy defeat, the pipe traversal, the far
+   encounter, level exit, and normal campaign entry remain open. Check animation
+   and near/distant geometry as well as crash absence. Keep issue #5 open until
+   the remaining gameplay result is recorded.
 2. **Reproduce costume report #8.** The parser defect is demonstrated, but no
    supplied failing pack or selection sequence ties it to the
    [reported texture corruption](https://github.com/GTTeancum/SpideyPS1recomp/issues/8).
@@ -291,8 +348,8 @@ in the current batch; the isolated repair still requires gameplay acceptance.
    level-entry checks are not current full gameplay coverage.
 4. **Resume priority:** inspect the latest branch, checkpoint, issue evidence, and
    [community report queue](docs/issues/community-reports-2026-10-29.md).
-   Assets, full Linux builds, native rendered launch checks, and the two-platform
-   CI gate are available. Prioritize L5A3 acceptance and crash cases R01/R02. No tracked
+   Assets, full Linux builds, targeted sewer combat evidence, and the two-platform
+   CI gate are available. Prioritize L5A3 completion and crash cases R01/R02. No tracked
    replay currently proves the L5A3 completion route. Direct level entry may help
    isolate actor loads, but must be labeled separately from normal progression;
    do not substitute another synthetic pass for a level run.
@@ -313,3 +370,4 @@ in the current batch; the isolated repair still requires gameplay acceptance.
 - Isolated release probe and evidence: `spiderman/tools/animation_release_probe/`,
   `docs/issues/issue-5-sewer-crash.md` (no release binaries or game code committed).
 - Continuity: this file, root `TODO.md`, and each game's `TO_DO.md`.
+- Current gameplay scope and run evidence: `docs/testing/linux-gameplay-2026-10-29.md`.

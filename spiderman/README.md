@@ -259,8 +259,8 @@ Dreamcast/SM2 disc. The conversion and audit workflow remains documented in
 emulated console drew, not what the desktop showed.
 
 ```
-SPIDEY_HZ=60               developer comparison override; player default 60 Hz
-SPIDEY_LEVEL=l5a3          boot straight into a level (retail descriptor first;
+SPIDEY_HZ=30               presentation/GPU budget (default); comparisons accept 10..60
+SPIDEY_LEVEL=l5a3          select the initial level (retail descriptor first;
                            archive fallback for alternate prefixes)
 SPIDEY_CHEATS=all          the game's own cheats: everything, levelselect, invuln,
                            webbing, debug, bighead, viewers
@@ -270,13 +270,14 @@ SPIDEY_COSTUME=symbiote    spiderman 2099 symbiote captain unlimited bagman
                            alexrosswhite venomearthx negativezone battledamaged
                            spidermanwinged
 SPIDEY_ASSET_DIR=path      override extracted CD.WAD entries by filename
-SPIDEY_SNAP=crash          dump the game's RAM on the crash, or on named frames
+SPIDEY_SNAP=crash          dump RAM on a crash, or at named vblank counts
 SPIDEY_SHOTS=1050,menu.spidey+300
-                           write a PNG on an absolute frame or after a named event
-SPIDEY_SHOT_EVERY=150      ...or every N frames
+                           write a PNG at an absolute or event-anchored vblank count
+SPIDEY_SHOT_EVERY=150      ...or every N vblanks
 SPIDEY_SHOT_DIR=shots      where they go
-SPIDEY_EXIT=2200           quit after frame N
+SPIDEY_EXIT=2200           quit at or after vblank N
 SPIDEY_SCRIPT=title.bmr+120:start:12;title.bmr+420:cross:12
+                           start offsets are vblanks; holds count delivered VSync callbacks
 SPIDEY_REC=paths/rooftop.rec   record a play session's controller input
 SPIDEY_PLAY=paths/rooftop.rec  ...and fly it again, as often as needed
 SPIDEY_PLAY_EXIT=1             quit when the recording runs out
@@ -285,8 +286,20 @@ SPIDEY_PLAY_AT=title.bmr+900   override where the replay starts
 SPIDEY_ANALOG=0                present a digital pad instead of a DualShock
 ```
 
-**Recording a route.** A fault that only appears while moving cannot be reached by a
-button script, so the route gets flown once by a person and replayed after that:
+**Timing units.** The default 30 Hz presentation budget uses two console vblanks
+per presented frame, targeting a 60 Hz vblank clock when the host keeps pace.
+Presentation, vblanks, and gameplay updates are separate counts. Capture/exit
+targets and script start offsets use the vblank counter; a script's final field
+counts delivered VSync callbacks. For example, `title.bmr+120:start:12` starts on
+the first callback at or after 120 vblanks from that load, then holds START for
+12 callbacks (normally 24 vblanks at the default step). FMV playback can advance
+the counter in larger jumps. These are event counts, not wall-clock durations;
+host speed affects elapsed time, and matching inputs do not guarantee identical
+game state. See [Program.cs](port/Program.cs) and [Capture.cs](patches/Capture.cs)
+for the implemented timing and input rules.
+
+**Recording a route.** Record a controller-driven session to revisit faults that
+appear while moving:
 
 ```bash
 SPIDEY_REC=paths/rooftop.rec ./SpiderMan.exe
@@ -296,11 +309,11 @@ Recording starts at the first button actually pressed, not at frame zero -- sitt
 through the logos is not part of the route, and it is the part whose length changes
 between runs. What is written down instead is which archive had most recently loaded at
 that first press and how long after, so a replay waits for the same load and counts the
-same interval. From a cold boot that anchor is `title.bmr`, which is why a recording made
-from boot lands back in the same place. It is also why `SPIDEY_LEVEL` and `SPIDEY_REC`
-go badly together: booting straight into a level skips the shell, so the newest archive
-at the first press is `sfx.vab` from frame 4 and the anchor degrades to an absolute
-frame. Record from a normal boot.
+same interval. The recorded `# anchor` line identifies the actual archive and offset;
+check it against the load log before reuse. `SPIDEY_LEVEL` redirects level selection
+and archive loads; it does not itself skip the title shell. Startup presses, including
+automatic boot-skips, can anchor a recording to an earlier asset. Preserve the startup
+mode when replaying, or set `SPIDEY_PLAY_AT` after verifying the intended load and offset.
 
 Replaying pairs with the capture switches, which is the point of it:
 
@@ -318,17 +331,16 @@ file. Prefer the second: the game paces itself off the wall clock, so the frame 
 appears on moves by hundreds between runs and an absolute schedule stops lining up. This
 reaches level 1:
 
-Scripted presses fire on the first delivered VSync at or after their target and remain
-held for the requested number of VSyncs. This matters during FMV playback, where the
-emulated frame counter can advance in jumps and skip an exact numeric target. Menu proof
-screenshots can use the stronger `menu.spidey+N` event, which resolves only after the
-title shell has loaded `title.bmr` and then its live Spider-Man model; boot preloads and
-24-bit movie frames do not satisfy that gate.
-
 ```
 title.bmr+120:start:12;title.bmr+420:cross:12;title.bmr+720:cross:12;
 title.bmr+1100:cross:12;title.bmr+1500:cross:12;title.bmr+1900:cross:12
 ```
+
+Menu proof screenshots can use the stronger `menu.spidey+N` event, which resolves only
+after the title shell has loaded `title.bmr` and then its live Spider-Man model; boot
+preloads and 24-bit movie frames do not satisfy that gate. This is a scheduling anchor;
+visually inspect each capture to establish which menu or gameplay state was reached.
+Capture labels alone do not establish player control or level progression.
 
 Reaching the title screen and the difficulty menu:
 

@@ -124,18 +124,57 @@ SHA-256 values of the inspected inputs:
 | bundled `lizman.psx` | `dbdbefa4a50790cb0a30e0dfffd49cfdc5e730f67909581ac29e4396be573f0b` |
 | bundled `lizman2.psx` | `85f05f3d1121d84252d66270a75306c6b4d0ba69a22f23aa008e963398268b76` |
 
-## Verification boundary and next gameplay check
+## Actual Linux gameplay check — 2026-10-29
 
-The isolated native reproduction establishes the count-driven overwrite and its
-exact correspondence to the issue log. The synthetic suite checks the runtime
-hook's safety and selection rules. Neither proves a complete `LoadPsx` session,
-L5A3 completion, visual animation quality, or full gameplay compatibility.
-Those require a rebuilt game with user-supplied retail inputs and real gameplay.
+A Linux build of source
+[`774b3c4`](https://github.com/GTTeancum/SpideyPS1recomp/commit/774b3c4eceee1b30d5579387bec14c3facd41ec5)
+with user-supplied retail inputs reached the L5A3 encounter, exchanged damage,
+and returned to gameplay after death and Retry. The run used
+`SPIDEY_LEVEL=l5a3`; this targeted entry retains the existing `ModelGuard`
+residency recovery and does not verify normal campaign entry. Navigation,
+combat, and Retry used standard controller inputs. The controller helper did
+not write guest state or apply cheats; the independent audits read saved RAM
+snapshots. See the [Linux gameplay report](../testing/linux-gameplay-2026-10-29.md)
+for the run method and wider verification limits. All frame numbers below are
+vblank counts.
 
-The next check is to enter L5A3 normally, verify a single load-time
-`[dc-model] corrected animation parts ... 37 -> 19` report for `lizman2`, then play
-through the two-lizard spawn and continue through the sewer level. Keep issue #5
-open until that gameplay result is recorded.
+| Observation | Recorded evidence |
+| --- | --- |
+| Live model loading | At `f1234`, the post-loader hook corrected slot 8 from 37 to 19 animation parts. Retry loaded the model again and produced the same correction at `f7430`. |
+| Encounter construction | Two nearby `lizman` actors spawned at `f4608`; two distant pipe guards spawned at `f4616`. Saved snapshots contained four distinct linked actors with the expected native type and vtable, with changing positions. The distant guards are not evidence of duplicate encounter spawns. |
+| Visible enemies and combat | `frame_05184.png`, `frame_05760.png`, and `frame_06240.png` show live Lizmen near or interacting with Spider-Man. These observations come from inspecting the images, rather than relying on capture labels. |
+| Damage and memory checks | Between snapshots at `f4696` and `f6040`, one nearby Lizman's HP fell from 120 to 100 and the player's HP fell from 100 to 12. All four Lizmen remained linked. Slot 8 retained count 19, and all eight sampled collision-grid words were unchanged; the historical corrupt pair was absent. |
+| Death and Retry | Player HP subsequently reached 0, with Game Over visible in `frame_06720.png`. A normal Cross-button Retry at `f7340` reloaded the level; player HP returned to 100 and `frame_08640.png` shows the live gameplay HUD and player back in the sewer. |
+
+The health comparison uses the signed 16-bit field at actor offset `+0xDE`,
+confirmed against the native damage routines. The field at `+0x21A` is a
+geometry height/offset, not health. The snapshots establish 20 total outgoing
+damage to one enemy; they do not establish that every delivered punch hit or
+that any enemy was defeated.
+
+The wrapper ended the run at its 1,800-second limit with `SIGTERM` (exit `-15`),
+and the original settings and memory-card state were unchanged. Game logs
+stopped at `f10760`, although saved RAM snapshots continued through `f19888`.
+The available logs and audited snapshots did not reproduce the historical
+corruption during the observed encounter, but log cessation limits later fault
+visibility. It is not evidence that every subsequent frame was fault-free.
+The separate private controller fallback passed 15/15 checks, but was not
+live-tested in this run, changes no game code, and does not fix log cessation.
+
+## Remaining verification boundary
+
+The isolated native reproduction still establishes the count-driven overwrite
+and its exact correspondence to the original issue log; the synthetic suite
+checks the hook's safety and selection rules. The Linux run now adds a complete
+live model load, enemy construction, visible interaction, damage, death, and
+Retry through the former crash window. It does not establish an enemy defeat,
+L5A3 completion, normal campaign entry, or full gameplay and animation quality.
+
+Keep issue #5 open. Next, use a fresh bounded run with the repaired controller
+to defeat the nearby pair and continue to the level exit while checking
+animation and collision behavior, then verify entry through normal campaign
+progression. Restore reliable observation of the later run before treating an
+extended session as verified.
 
 For additional tracing, `SPIDEY_GUARD_AFTER_FRAME` is measured in host presents,
 whereas the log's `f` field counts vblanks. At the default two vblanks per present,
