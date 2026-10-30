@@ -45,8 +45,17 @@ build games with `-p:OutDir=bin/Release/net10.0-b/` and run the gate with
 - **v1.1 pack data defects (not runtime):** `smu-ironspidernew` maps its two
   textures to the wrong materials (white body) and its 256x256 eye/lens PNG has
   no alpha (opaque cards over the face). Swapping the mapping fixes the body.
-  Six other two-texture custom-model suits (captain, homemade, spacesuit,
-  spiderman-newdesign, spiderman-surveillancesuit, steel) are unchecked.
+  The six other two-texture custom-model suits were checked in the SM2 viewer:
+  five ship the same atlas twice (a swap cannot matter); spacesuit has two
+  distinct images and shows breakage, but from geometry, not a swap.
+- **Torn geometry across the v1.1 pack (likely #8's visible corruption):**
+  loose fragments track the conversion report's `packetSpilloverTriangles`:
+  surveillancesuit 5,142 (badly broken), spacesuit 925 (broken helmet),
+  homemade 536 / steel 446 (some fragments), captain 102 (slight),
+  newdesign 40 / ironspider 16 (clean). 49 of 78 custom-model suits have >=100.
+  The runtime has no packet-specific handling (native 256-vertex parts); this is
+  the external SMU-Costumes "rig preserved" conversion, which also marks every
+  material `alphaBound: false` (opaque eyes). Fix belongs in that pipeline.
 - Scripted runs must set `SPIDEY_SCRIPT_EXCLUSIVE=1`: a controller attached to
   this PC moved menus during hidden runs (this explains erratic SM1 menu runs).
 - Runs: `.exe` files and `dotnet Game.dll` both fail here (server lock; memory
