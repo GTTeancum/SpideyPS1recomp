@@ -20,6 +20,26 @@ records below say "Lizard-man"). Work may run locally on the user's Windows PC
 at their request (checkout on a network share: use `git -c safe.directory=*`;
 never stage the retail `.7z` archives in the root).
 
+### Issue batch 2026-10-30 (no level traversal)
+
+Local setup: discs at the repo root (ignored), private work under `private/`
+(excluded via `.git/info/exclude`), launcher `private/run-hidden.sh` (hidden
+window, OpenAL null device). The file server locks `.exe` files after they run:
+build games with `-p:OutDir=bin/Release/net10.0-b/` and run the gate with
+`UseAppHost=false`.
+
+- **#15 fixed** (`4f9f3c7`): SM2 Costume Viewer narration. ReadS XA without a
+  movie stream was ignored, `CdLastCom` (0x80094180) was unmapped, and seeks
+  did not end XA reads. Now one clip per selection, stopped by the game.
+- **#8 not reproduced in the viewer:** 30 consecutive v1.1 suits rendered
+  correctly. Found instead: the v1.1 SM2 pack has 94 suits but the selector
+  holds 41 mods, so ~52 are rejected at startup ("suit selector is full"); one
+  more is rejected for model size. In-level suit check not yet done.
+- **#17 SM2:** stock Symbiote sets ability ID 3 and switch 0x800C2218 in play
+  (snapshots at 9900/10500/11500). Web-firing input in E1M0 was inconclusive.
+  SM1 (the likelier report target) not yet tested.
+- **#12, #14:** not started.
+
 **Build and test locally only** (`python tools/run_regressions.py` on the
 user's PC). Do not use or wait on GitHub Actions as verification; this
 supersedes the cloud-tool and CI instructions in the sections below. The
