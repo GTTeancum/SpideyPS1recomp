@@ -13,7 +13,58 @@ Do not launch Codex tasks/services or use the user's Dot or PC. Keep chat update
 within one screen. Private discs, extracted retail data, saves, credentials, and
 backups must not enter public commits.
 
-## Current batch: SM2 targeted-entry repair; #10 and #11 remain open
+## Current batch: shared infrastructure repairs
+
+The user changed the immediate priority to **blanket infrastructure fixes**
+rather than individual encounters. Continue with short, demonstrated failures
+in the common renderer, input, configuration, loading and diagnostics paths.
+This supersedes the encounter-focused next actions in the historical sections.
+
+Published repair:
+[`f579d39`](https://github.com/GTTeancum/SpideyPS1recomp/commit/f579d39318d5079d072a30f728ebc99432cbfe48).
+
+- **Renderer:** split wrapped GP0 VRAM uploads/readbacks before issuing GL
+  transfers; retain original row stride, the in-bounds fast path and display
+  synchronization. Real GL checks went from **20/76 to 76/76 passing** across
+  both backend classes at 1x/4x. An actual GL3.3 context additionally passed
+  **38/38** checks. This does not establish the cause of the rainbow report.
+- **Input:** reset idle analog axes before sampling devices, retaining keyboard
+  and replay precedence. Native SDL virtual-controller removal and related
+  checks went from **14/19 to 19/19 passing**. The default 13-check subset also
+  passed; no physical controller was tested.
+- **Settings:** normalize null input members and preserve correct defaults for
+  partial player-two profiles. Actual loader/input checks went from **2/10 to
+  10/10 passing**, including three formerly crashing valid JSON examples.
+  Custom mappings, intentional unbindings and existing file bytes are preserved.
+- **Verification infrastructure:** the default gate includes both new input
+  suites. Linux CI additionally runs real GL/SDL checks and a strict GL3.3
+  context. The local shared build and all **15 suites** passed (16 steps total).
+  [Windows and Ubuntu CI](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40977096625)
+  passed for the published source; Ubuntu also passed both native suites and
+  the strict GL3.3 context.
+
+[Issue #20](https://github.com/GTTeancum/SpideyPS1recomp/issues/20) now tracks the
+maintainer's recalled rainbow horizontal bands on world textures while a custom
+Spider-Man rendered correctly. It is **unconfirmed; screenshot pending**. Do not
+close it or assign a cause based on these independent infrastructure repairs.
+
+[Detailed verification and limits](docs/testing/shared-infrastructure-2026-10-29.md)
+and [retained before/after result lines](docs/testing/shared-infrastructure-2026-10-29-results.json)
+are public, contain no retail data, and can be used to resume this batch. The
+workspace was restored from GitHub after maintenance; the .NET SDK and native
+cloud test tools were restored/verified for these asset-free checks. Previous
+private game assets and gameplay evidence remain recoverable through their
+saved checkpoint; they were not required or re-downloaded for this batch.
+
+**Next action:** reproduce the shared installer retry lifecycle: a previous
+extraction error appears to remain in `Session.Error` after later success.
+This is a source finding, not yet an executed failure or fix. Then audit remaining
+VRAM fill/copy wrapping with equivalent bounded evidence. Await the confirmed
+screenshot/details for #20. Keep #10 and #11 open and #5 closed for the next
+release. No retail gameplay or Windows GPU test was performed in this batch;
+no release package was published. All completed test processes have exited.
+
+## Previous batch: SM2 targeted-entry repair; #10 and #11 remain open
 
 Published game-source fix:
 [`b0d2f90`](https://github.com/GTTeancum/SpideyPS1recomp/commit/b0d2f90d75d3864886aba9db13dbfc4d51793252).
