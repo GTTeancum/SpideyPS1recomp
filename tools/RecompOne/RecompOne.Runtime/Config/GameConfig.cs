@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 
 namespace RecompOne.Runtime.Config;
 
@@ -73,11 +74,73 @@ public class GameConfig
     /// default while keeping older settings files compatible.
     /// </summary>
     public bool? Widescreen { get; set; }
+    // Populate each player's initialized profile so omitted P2 bindings stay
+    // unbound. Replacing a partial object would use the P1 constructor defaults.
+    [JsonObjectCreationHandling(JsonObjectCreationHandling.Populate)]
     public KeyBindings Keys { get; set; } = new();
+    [JsonObjectCreationHandling(JsonObjectCreationHandling.Populate)]
     public KeyBindings Keys2 { get; set; } = KeyBindings.Empty();
+    [JsonObjectCreationHandling(JsonObjectCreationHandling.Populate)]
     public GamepadBindings Pad { get; set; } = new();
+    [JsonObjectCreationHandling(JsonObjectCreationHandling.Populate)]
     public GamepadBindings Pad2 { get; set; } = GamepadBindings.Empty();
     public string PadDevice { get; set; } = "";
     public string PadDevice2 { get; set; } = "";
     public List<string> ActiveMods { get; set; } = [];
+
+    internal void NormalizeInput()
+    {
+        // JSON can explicitly assign null despite the non-nullable annotations.
+        // Only repair nulls; empty strings/arrays intentionally disable controls.
+        Keys ??= new();
+        Keys2 ??= KeyBindings.Empty();
+        Pad ??= new();
+        Pad2 ??= GamepadBindings.Empty();
+        RestoreNullBindings(Keys, new());
+        RestoreNullBindings(Keys2, KeyBindings.Empty());
+        RestoreNullBindings(Pad, new());
+        RestoreNullBindings(Pad2, GamepadBindings.Empty());
+        PadDevice ??= "";
+        PadDevice2 ??= "";
+    }
+
+    static void RestoreNullBindings(KeyBindings bindings, KeyBindings defaults)
+    {
+        bindings.Cross ??= defaults.Cross;
+        bindings.Circle ??= defaults.Circle;
+        bindings.Square ??= defaults.Square;
+        bindings.Triangle ??= defaults.Triangle;
+        bindings.L1 ??= defaults.L1;
+        bindings.R1 ??= defaults.R1;
+        bindings.L2 ??= defaults.L2;
+        bindings.R2 ??= defaults.R2;
+        bindings.L3 ??= defaults.L3;
+        bindings.R3 ??= defaults.R3;
+        bindings.Start ??= defaults.Start;
+        bindings.Select ??= defaults.Select;
+        bindings.Up ??= defaults.Up;
+        bindings.Down ??= defaults.Down;
+        bindings.Left ??= defaults.Left;
+        bindings.Right ??= defaults.Right;
+    }
+
+    static void RestoreNullBindings(GamepadBindings bindings, GamepadBindings defaults)
+    {
+        bindings.Cross ??= defaults.Cross;
+        bindings.Circle ??= defaults.Circle;
+        bindings.Square ??= defaults.Square;
+        bindings.Triangle ??= defaults.Triangle;
+        bindings.L1 ??= defaults.L1;
+        bindings.R1 ??= defaults.R1;
+        bindings.L2 ??= defaults.L2;
+        bindings.R2 ??= defaults.R2;
+        bindings.L3 ??= defaults.L3;
+        bindings.R3 ??= defaults.R3;
+        bindings.Start ??= defaults.Start;
+        bindings.Select ??= defaults.Select;
+        bindings.Up ??= defaults.Up;
+        bindings.Down ??= defaults.Down;
+        bindings.Left ??= defaults.Left;
+        bindings.Right ??= defaults.Right;
+    }
 }

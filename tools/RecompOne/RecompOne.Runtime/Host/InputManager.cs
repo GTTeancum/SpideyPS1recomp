@@ -279,6 +279,11 @@ internal static unsafe class InputManager
 
     static void PollGamepads()
     {
+        // Each poll starts without analog input. A disconnected controller (or an
+        // ended replay) must not leave its last stick positions active. Live pads
+        // replace these defaults below; replay/script overrides still run last.
+        Controller.LeftX = Controller.LeftY = Controller.RightX = Controller.RightY = 0x80;
+        Controller.LeftX2 = Controller.LeftY2 = Controller.RightX2 = Controller.RightY2 = 0x80;
         if (_sdl == null) return;
 
         if (_pad0 != null)
@@ -297,10 +302,6 @@ internal static unsafe class InputManager
             Controller.LeftY2 = AxisToByte(_sdl.GameControllerGetAxis(_pad1, GameControllerAxis.Lefty));
             Controller.RightX2 = AxisToByte(_sdl.GameControllerGetAxis(_pad1, GameControllerAxis.Rightx));
             Controller.RightY2 = AxisToByte(_sdl.GameControllerGetAxis(_pad1, GameControllerAxis.Righty));
-        }
-        else
-        {
-            Controller.LeftX2 = Controller.LeftY2 = Controller.RightX2 = Controller.RightY2 = 0x80;
         }
     }
 

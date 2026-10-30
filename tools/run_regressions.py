@@ -17,6 +17,8 @@ DOTNET_SUITES = (
     "BundledAssetsRegression",
     "CustomSuitModelRegression",
     "DiscInstallRegression",
+    "InputConfigRegression",
+    "InputManagerRegression",
     "InteriorHookRegression",
     "MemoryDiagnosticsRegression",
     "NativeLibraryRegression",
@@ -31,6 +33,10 @@ PYTHON_SUITES = {
     "Sm1ActorAnimationLayoutConverterRegression": "dreamcast/tools/test_sm1_actor_animation_layout.py",
 }
 SUITES = (*DOTNET_SUITES, *MSBUILD_SUITES, *PYTHON_SUITES)
+NATIVE_SUITES = {
+    "GpuTransferRegression": ("GpuTransferRegression", []),
+    "InputManagerSdlRegression": ("InputManagerRegression", ["--sdl-virtual"]),
+}
 
 
 def run_step(name: str, command: list[str], output: Path) -> dict:
@@ -75,12 +81,15 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dotnet", default="dotnet", help=".NET 10 SDK executable")
     parser.add_argument("--configuration", choices=("Debug", "Release"), default="Release")
-    parser.add_argument("--suite", choices=SUITES, action="append", help="Run only these suites (repeatable)")
+    parser.add_argument("--suite", choices=(*SUITES, *NATIVE_SUITES), action="append", help="Run only these suites (repeatable)")
+    parser.add_argument("--include-native", action="store_true", help="Also run real OpenGL and SDL checks (requires a display, OpenGL 4.5 and SDL2)")
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts" / "regressions")
     args = parser.parse_args()
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     selected = list(dict.fromkeys(args.suite or SUITES))
+    if args.include_native:
+        selected = list(dict.fromkeys((*selected, *NATIVE_SUITES)))
 
     results = [run_step("shared-build", [
         args.dotnet, "build", "tools/RecompOne/RecompOne.sln",
@@ -95,18 +104,20 @@ def main() -> int:
         elif suite in PYTHON_SUITES:
             results.append(run_step(suite, [sys.executable, PYTHON_SUITES[suite]], output))
         elif shared_build_passed:
-            project = (TESTS / suite / f"{suite}.csproj").relative_to(ROOT)
+            project_name, arguments = NATIVE_SUITES.get(suite, (suite, []))
+            project = (TESTS / project_name / f"{project_name}.csproj").relative_to(ROOT)
             results.append(run_step(suite, [
                 args.dotnet, "run", "--project", str(project),
                 "--configuration", args.configuration, "--no-launch-profile",
                 "--verbosity", "minimal",
+                *(["--", *arguments] if arguments else []),
             ], output))
         else:
             results.append({"name": suite, "status": "skipped", "reason": "shared build failed"})
 
     passed = all(result["status"] == "passed" for result in results)
     report = {
-        "scope": "Shared runtime/recompiler build and synthetic regressions; no gameplay verification",
+        "scope": "Shared runtime/recompiler build and asset-free regressions; no gameplay verification",
         "configuration": args.configuration,
         "status": "passed" if passed else "failed",
         "steps": results,
