@@ -37,6 +37,18 @@ build games with `-p:OutDir=bin/Release/net10.0-b/` and run the gate with
   60-row selectors, so ~50 suits per game were rejected at startup. Both games
   now allow 128 rows; SM2 registers 91 and SM1 90 of the release suits (two
   models exceed the separate 1 MiB limit). Last suit verified in both viewers.
+- **Oversized suit models stay rejected.** `smu-ironspidernewwithtentackles`
+  (1.00 MiB) and `smu-native-american` (1.02 MiB) were let through with a 1.5 MiB
+  cap as a test: both render broken (scattered parts). Their conversion reports
+  show 1,444 / 1,055 packet-spillover triangles versus 16-86 for working suits.
+  The 1 MiB cap was restored; these need re-conversion with fewer triangles.
+- **v1.1 pack data defects (not runtime):** `smu-ironspidernew` maps its two
+  textures to the wrong materials (white body) and its 256x256 eye/lens PNG has
+  no alpha (opaque cards over the face). Swapping the mapping fixes the body.
+  Six other two-texture custom-model suits (captain, homemade, spacesuit,
+  spiderman-newdesign, spiderman-surveillancesuit, steel) are unchecked.
+- Scripted runs must set `SPIDEY_SCRIPT_EXCLUSIVE=1`: a controller attached to
+  this PC moved menus during hidden runs (this explains erratic SM1 menu runs).
 - Runs: `.exe` files and `dotnet Game.dll` both fail here (server lock; memory
   cards beside the launcher). Build with `UseAppHost=false` into
   `bin/Release/net10.0-c/`; `private/run-hidden.sh` copies a fresh apphost per run.
