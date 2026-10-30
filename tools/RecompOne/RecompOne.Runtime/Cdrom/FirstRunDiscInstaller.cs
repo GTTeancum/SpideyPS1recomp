@@ -273,6 +273,7 @@ public static class FirstRunDiscInstaller
             }
 
             _error = "";
+            Error = null;
             _elapsed.Restart();
             var progress = new InlineProgress<LooseDiscImporter.Progress>(value =>
             {

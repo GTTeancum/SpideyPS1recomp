@@ -677,11 +677,38 @@ public sealed class GlCore : IGpuBackend
     public void FillRect(int x, int y, int w, int h, ushort color15)
     {
         Flush();
-        _vram.Fill(x, y, w, h, color15);
+        if (w <= 0 || h <= 0) return;
+        x &= VramShadow.Width - 1;
+        y &= VramShadow.Height - 1;
+        // Repeating a constant fill beyond one complete VRAM axis has no further
+        // effect. At most four in-bounds rectangles cover the wrapped operation.
+        w = Math.Min(w, VramShadow.Width);
+        h = Math.Min(h, VramShadow.Height);
+        Span<(int X, int Y, int W, int H)> regions = stackalloc (int, int, int, int)[4];
+        int count = 0;
+        for (int row = 0; row < h;)
+        {
+            int yy = (y + row) & (VramShadow.Height - 1);
+            int rows = Math.Min(h - row, VramShadow.Height - yy);
+            for (int col = 0; col < w;)
+            {
+                int xx = (x + col) & (VramShadow.Width - 1);
+                int cols = Math.Min(w - col, VramShadow.Width - xx);
+                regions[count++] = (xx, yy, cols, rows);
+                _vram.Fill(xx, yy, cols, rows, color15);
+                col += cols;
+            }
+            row += rows;
+        }
+        regions = regions[..count];
         foreach (var rt in _rts)
         {
-            if (rt == null || !rt.Intersects(x, y, w, h)) continue;
-            if (rt.Covers(x, y, x + w - 1, y + h - 1))
+            if (rt == null) continue;
+            // A target may be covered by the union of two wrapped pieces. Keep the
+            // full-clear path so widescreen margins and model depth reset as well.
+            bool coversX = w == VramShadow.Width || ((rt.X - x) & (VramShadow.Width - 1)) + rt.W <= w;
+            bool coversY = h == VramShadow.Height || ((rt.Y - y) & (VramShadow.Height - 1)) + rt.H <= h;
+            if (coversX && coversY)
             {
                 FillRtFull(rt, color15);
                 rt.Dirty = false;
@@ -692,9 +719,13 @@ public sealed class GlCore : IGpuBackend
             }
             else
             {
-                if (Log.GpuOn && (_frame % 120) == 0)
-                    Log.Gpu($"  fill PARTIAL ({x},{y}) {w}x{h} -> resync from vram, margin={rt.Margin}");
-                SyncRtFromVram(rt, x, y, w, h);
+                foreach (var region in regions)
+                {
+                    if (!rt.Intersects(region.X, region.Y, region.W, region.H)) continue;
+                    if (Log.GpuOn && (_frame % 120) == 0)
+                        Log.Gpu($"  fill PARTIAL ({region.X},{region.Y}) {region.W}x{region.H} -> resync from vram, margin={rt.Margin}");
+                    SyncRtFromVram(rt, region.X, region.Y, region.W, region.H);
+                }
             }
         }
     }

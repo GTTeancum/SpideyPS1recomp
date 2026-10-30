@@ -25,7 +25,7 @@ positive configured start frame as well as the exact boundary.
 |---|---|
 | `BundledAssetsRegression` | Synthetic bundle upgrade, corruption repair, interrupted extraction, ownership preservation, traversal and case collision rejection |
 | `CustomSuitModelRegression` | Synthetic actor parsing, hierarchy and face bounds, contiguous native texture records, padded 4-bit/8-bit rows, and rejected malformed data |
-| `DiscInstallRegression` | Synthetic disc identity validation and sector layout reading; no retail disc supplied |
+| `DiscInstallRegression` | Synthetic disc identity and sector layout checks, plus the actual installer worker recovering from disc-output and bundled-output failures for both games; retry availability, installed bytes, cleared errors and corrected invalid selections are checked without opening the installer window |
 | `InputConfigRegression` | Actual settings loading and input consumers: null recovery, correct defaults for partial player-two profiles, preserved custom/unbound controls, unchanged file contents on load, and save/reload |
 | `InputManagerRegression` | Actual host polling with unavailable devices and a keyboard-state double: stale analog release, digital input preservation, script merging and replay precedence/end |
 | `InteriorHookRegression` | Generated C# execution of a synthetic MIPS local-call fixture with and without an interior hook |
@@ -58,7 +58,7 @@ LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe xvfb-run -a python tools/run_reg
 
 | Suite | Evidence supplied |
 |---|---|
-| `GpuTransferRegression` | Actual GP0 commands and GL3.3/GL4.5 backend classes at 1x/4x scale: upload/readback compared with CPU VRAM, odd-size/exact-edge controls, one-axis/two-axis wrapping, full extents and dirty display synchronization |
+| `GpuTransferRegression` | Actual GP0 commands and GL3.3/GL4.5 backend classes at 1x/4x scale: upload/readback and fills compared with CPU VRAM, alignment/empty-size controls, one-axis/two-axis wrapping, full extents, dirty display synchronization and full display clears including widescreen margins |
 | `InputManagerSdlRegression` | Runs `InputManagerRegression --sdl-virtual`: the 13 ordinary input checks plus six checks that attach an SDL virtual controller, supply real axis/button state, process removal and verify release |
 
 Select either with `--suite NAME`. The graphics suite creates hidden windows;
