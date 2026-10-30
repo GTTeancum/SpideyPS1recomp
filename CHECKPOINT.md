@@ -20,6 +20,13 @@ records below say "Lizard-man"). Work may run locally on the user's Windows PC
 at their request (checkout on a network share: use `git -c safe.directory=*`;
 never stage the retail `.7z` archives in the root).
 
+**Build and test locally only** (`python tools/run_regressions.py` on the
+user's PC). Do not use or wait on GitHub Actions as verification; this
+supersedes the cloud-tool and CI instructions in the sections below. The
+"Asset-free regressions" workflow is disabled in GitHub's settings (the file is
+unchanged); re-enable only if the user asks:
+`gh workflow enable "Asset-free regressions" -R GTTeancum/SpideyPS1recomp`.
+
 ## Objective and authorization
 
 Optimize and standardize both games, fix demonstrated bugs, and work toward full
