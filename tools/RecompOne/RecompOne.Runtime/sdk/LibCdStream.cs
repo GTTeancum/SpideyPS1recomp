@@ -13,6 +13,9 @@ public static class LibCdStream
 
     public static bool InUse { get; private set; }
 
+    /// <summary>A movie stream is set up (StSetStream) and not yet released (StUnSetRing).</summary>
+    internal static bool StreamActive => _active;
+
     /// <summary>
     /// What the ring has actually done, for diagnosing a game that has stopped getting
     /// frames. A movie player waits on StGetNext, so "the picture froze" can mean the

@@ -17,6 +17,12 @@
    "size": 100
   },
   {
+   "address": "0x80094180",
+   "name": "CdLastCom",
+   "size": 16,
+   "_note": "libcd CdLastCom: returns the byte at 0x800C09E1, which only CD_cw writes (and CD_init clears). The runtime replaces CD_cw, so the recompiled copy always read a stale value; the costume-viewer narration loop at 0x80068F88 then never accepted a GetlocP result and played on indefinitely."
+  },
+  {
    "address": "0x8006FC9C",
    "name": "CdWadFind",
    "size": 492

@@ -428,8 +428,17 @@ public static class LibCd
                     return DiskError;
                 }
                 _xaActive = true;
-                _readActive = false;
                 _status = (byte)(StatMotor | StatRead);
+                // With no movie stream active, ReadS of XA sectors is plain audio playback
+                // (SM2's costume-viewer narration). The stream path ignores it, so the
+                // position never moved and the game polled GetlocP forever in silence.
+                if (!LibCdStream.StreamActive && (_mode & 0x40) != 0)
+                {
+                    _readActive = true;
+                    EnsureXaThread();
+                    break;
+                }
+                _readActive = false;
                 LibCdStream.OnReadStream(CurrentLba);
                 break;
             case Play:
@@ -521,10 +530,13 @@ public static class LibCd
                     if (result != 0) WriteResult(m, result);
                     return 0;
                 }
+                StopXaOnSeek();
+                break;
+            case SeekP:
+                StopXaOnSeek();
                 break;
             case Nop: case Mute: case Demute:
             case Forward: case Backward: case Standby:
-            case SeekP:
                 break;
             default:
                 break;
@@ -534,6 +546,16 @@ public static class LibCd
         for (int i = 1; i < _lastResult.Length; i++) _lastResult[i] = 0;
         if (result != 0) WriteResult(m, result);
         return 0;
+    }
+
+    // A seek ends any read in progress; the drive then waits at the target. XA audio
+    // was left streaming from the seek target instead, so SM2's costume narration
+    // kept playing after the game had muted it and parked the head.
+    static void StopXaOnSeek()
+    {
+        if ((_mode & 0x40) == 0) return;
+        _readActive = false;
+        _xaActive = false;
     }
 
     static int ResolveTrack(int abs, out int rel)
