@@ -44,9 +44,12 @@ public static class Costume
     // unrelated shell data. The generated-viewer transform points the costume
     // viewer at this port-only arena instead, where all twenty entries fit.
     public const uint ViewerTable = 0x807C0000;
-    const uint ViewerStrings = ViewerTable + 0x800;
-    const uint ViewerDescriptions = ViewerTable + 0x1000;
     const uint ViewerModelName = ViewerTable + 0x5000;
+    // Sized for MaxCount rows: 19-character names and 72-character comments need at
+    // most ~2.2 KiB of names and ~26 KiB of descriptions.
+    const uint ViewerStrings = ViewerTable + 0x8000;
+    const uint ViewerDescriptions = ViewerTable + 0x9000;
+    const uint ViewerTextEnd = ViewerTable + 0x11000;
     const uint RetailViewerTable = 0x802693A8;
     const uint ModelCache = 0x800A0904;
 
@@ -291,7 +294,7 @@ public static class Costume
             memory.WriteU32(entry + 8, 0x004C0008); // retail default Spider-Man style
             text += (uint)Encoding.ASCII.GetByteCount(name) + 1;
             description = SuitMods.IsMod(i) ? WriteModDescription(memory, description, i) : WriteImportedDescription(memory, description, i);
-            if (text >= ViewerDescriptions || description >= ViewerModelName)
+            if (text >= ViewerDescriptions || description >= ViewerTextEnd)
                 throw new InvalidOperationException("costume viewer text arena exhausted");
         }
     }

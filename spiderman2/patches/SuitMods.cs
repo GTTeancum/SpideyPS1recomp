@@ -13,7 +13,9 @@ namespace Recompiled;
 public static class SuitMods
 {
     public const int StockCount = 19;
-    public const int MaxCount = 60; // Total stock + mod rows in the expanded selector.
+    // Total stock + mod rows in the expanded selector. The v1.1 suit pack alone has 93;
+    // 128 leaves room for it plus local suits within the viewer text arena.
+    public const int MaxCount = 128;
     public static readonly List<SuitManifest> Catalogue = new();
     public static int Active { get; private set; } = -1;
     static Dictionary<uint, ReplacementTexture> _textures = new();

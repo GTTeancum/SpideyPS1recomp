@@ -59,7 +59,7 @@ def patch_list_helpers():
         f = source[start:end]
         # Capture before the color helper advances A0 through the row array.
         brace = f.index("{") + 1
-        f = f[:brace] + "\n        int listRows = System.Math.Max(40, System.Math.Min(60, (int)m.ReadU8(c.A0 + 0x14)));" + f[brace:]
+        f = f[:brace] + "\n        int listRows = System.Math.Max(40, System.Math.Min(Recompiled.SuitMods.MaxCount, (int)m.ReadU8(c.A0 + 0x14)));" + f[brace:]
         if f.count("< 40 ?") != 1:
             raise RuntimeError("list helper shape changed: " + address)
         f = f.replace("< 40 ?", "< listRows ?")

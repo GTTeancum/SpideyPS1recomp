@@ -46,7 +46,9 @@ public static partial class Costume
         ApplyModPowers(m);
         for (uint i = 0; i < SuitMods.StockCount * 12; i += 4)
             m.WriteU32(ViewerTable + i, m.ReadU32(0x80251560 + i));
-        uint name = ViewerTable + 0x800, description = ViewerTable + 0x1000;
+        // Sized for MaxCount rows: 19-character names and 72-character comments need
+        // at most ~2.2 KiB of names and ~26 KiB of descriptions.
+        uint name = ViewerTable + 0x800, description = ViewerTable + 0x1800;
         for (int i = SuitMods.StockCount; i < ViewerCount; i++)
         {
             var mod = SuitMods.At(i);
@@ -68,7 +70,7 @@ public static partial class Costume
             description = Color(m, description, false);
             foreach (string line in SuitManifest.WrapComments(mod.Comments)) description = Line(m, description, line);
             m.WriteU8(description++, 255);
-            if (name >= ViewerTable + 0x1000 || description >= ViewerTable + 0x5000)
+            if (name >= ViewerTable + 0x1800 || description >= ViewerTable + 0x9800)
                 throw new InvalidOperationException("costume text arena exhausted");
         }
     }
