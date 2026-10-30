@@ -1,6 +1,6 @@
 # SpideyPS1 Recomp checkpoint
 
-Updated: 2026-10-29 (Eastern Time). Resume this file when asked to continue
+Updated: 2026-10-30 (Eastern Time). Resume this file when asked to continue
 SpideyPS1 Recomp, then inspect the current branch and working tree.
 
 ## Objective and authorization
@@ -13,11 +13,38 @@ Do not launch Codex tasks/services or use the user's Dot or PC. Keep chat update
 within one screen. Private discs, extracted retail data, saves, credentials, and
 backups must not enter public commits.
 
-## Current batch: installer retries and wrapped VRAM fills
+## Current batch: wrapped VRAM writes and texture-cache invalidation
 
 The immediate priority remains **shared infrastructure fixes for both games**.
 Use short, demonstrated failures before implementing a bounded repair. This
 section supersedes the next actions in the historical batches below.
+
+At the user's direct request, this batch ran on their Windows 11 PC (the local
+checkout on a network share; git needs `-c safe.directory=*` there). The retail archives sit untracked
+in the checkout root and must never be staged.
+
+- **Tracker:** `VramTracker` clamped wrapped fill/copy/upload rectangles to the
+  VRAM edge, so the wrapped-to blocks kept stale generations and GPU-dirty flags
+  that `TextureResolver` uses for its caches. It now splits each axis into at
+  most two block spans; in-bounds rectangles behave exactly as before; upload
+  records keep clamped bounds.
+- **Verification:** new CPU-only `VramTrackerRegression` drives actual GP0
+  commands. The identical compiled test went **48/64 -> 64/64** (first build
+  46/60 -> 60/60); every failure was a wrapped destination. Full local gate:
+  shared build plus all **16 suites** passed. `GpuTransferRegression` passed
+  **128/128** on a real Windows GPU (AMD Radeon 780M, GL 3.3 and 4.5), the first
+  Windows GPU run. No game was booted.
+
+[Detailed verification and limits](docs/testing/vram-tracker-wrap-2026-10-30.md).
+
+**Next action:** the SDL virtual-controller suite fails on Windows before its
+checks because `vcruntime140.dll` is not beside the test assembly; decide whether
+the test should copy it or skip the CRT preload. Then the deferred findings:
+VRAM copy overlap/mask semantics, invalid existing-manifest repair in the
+installer, and a possible worker-task assignment race. #20 still awaits its
+screenshot; keep #20/#10/#11 open and #5 closed.
+
+## Previous batch: installer retries and wrapped VRAM fills
 
 Published code:
 [`dcd7ce0`](https://github.com/GTTeancum/SpideyPS1recomp/commit/dcd7ce01d4f9cfbc1c7617ce31862a1a01d8b7bb).

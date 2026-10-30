@@ -25,6 +25,7 @@ DOTNET_SUITES = (
     "Sm1AnimationRegression",
     "Sm2LevelSwitchRegression",
     "VideoSetupRegression",
+    "VramTrackerRegression",
 )
 MSBUILD_SUITES = {
     "GamePortConfigurationRegression": "tools/RecompOne/tests/test_game_port_configuration.py",

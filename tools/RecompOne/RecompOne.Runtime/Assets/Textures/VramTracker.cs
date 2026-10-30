@@ -93,48 +93,75 @@ public static class VramTracker
         r1 = Math.Clamp((y + Math.Max(0, h - 1)) / BlockH, 0, Rows - 1);
     }
 
-    public static void MarkCpuWrite(int x, int y, int w, int h)
+    // VRAM addresses wrap at 1024x512: a fill, copy or image load that runs off the
+    // right or bottom edge continues at the left or top. Bounds clamps instead, which
+    // suits upload records (TryFindUpload never matches a wrapped rectangle) but would
+    // leave the wrapped blocks with a stale generation and GPU-dirty flag. Each axis
+    // becomes at most two inclusive block spans that never visit a block twice.
+    static int Spans(int start, int length, int size, int block, Span<int> spans)
     {
-        int stamp = ++_clock;
-        Bounds(x, y, w, h, out int c0, out int r0, out int c1, out int r1);
-        for (int r = r0; r <= r1; r++)
-            for (int c = c0; c <= c1; c++)
-            {
-                int i = r * Cols + c;
-                _gen[i] = stamp;
-                _gpuDirty[i] = false;
-            }
+        if (length < 0) { start += length; length = -length; }
+        start &= size - 1;
+        length = Math.Clamp(length, 1, size);
+        int first = start / block, last = (start + length - 1) / block, blocks = size / block;
+        if (last < blocks)
+        {
+            spans[0] = first; spans[1] = last;
+            return 1;
+        }
+        int wrapped = last - blocks;
+        if (wrapped >= first)
+        {
+            spans[0] = 0; spans[1] = blocks - 1;
+            return 1;
+        }
+        spans[0] = first; spans[1] = blocks - 1;
+        spans[2] = 0; spans[3] = wrapped;
+        return 2;
     }
 
-    public static void MarkGpuWrite(int x, int y, int w, int h)
+    static void Mark(int x, int y, int w, int h, bool gpuDirty)
     {
         int stamp = ++_clock;
-        Bounds(x, y, w, h, out int c0, out int r0, out int c1, out int r1);
-        for (int r = r0; r <= r1; r++)
-            for (int c = c0; c <= c1; c++)
-            {
-                int i = r * Cols + c;
-                _gen[i] = stamp;
-                _gpuDirty[i] = true;
-            }
+        Span<int> cols = stackalloc int[4], rows = stackalloc int[4];
+        int nc = Spans(x, w, 1024, BlockW, cols), nr = Spans(y, h, 512, BlockH, rows);
+        for (int rs = 0; rs < nr * 2; rs += 2)
+            for (int r = rows[rs]; r <= rows[rs + 1]; r++)
+                for (int cs = 0; cs < nc * 2; cs += 2)
+                    for (int c = cols[cs]; c <= cols[cs + 1]; c++)
+                    {
+                        int i = r * Cols + c;
+                        _gen[i] = stamp;
+                        _gpuDirty[i] = gpuDirty;
+                    }
     }
+
+    public static void MarkCpuWrite(int x, int y, int w, int h) => Mark(x, y, w, h, gpuDirty: false);
+
+    public static void MarkGpuWrite(int x, int y, int w, int h) => Mark(x, y, w, h, gpuDirty: true);
 
     public static int Generation(int x, int y, int w, int h)
     {
-        Bounds(x, y, w, h, out int c0, out int r0, out int c1, out int r1);
+        Span<int> cols = stackalloc int[4], rows = stackalloc int[4];
+        int nc = Spans(x, w, 1024, BlockW, cols), nr = Spans(y, h, 512, BlockH, rows);
         int acc = 0;
-        for (int r = r0; r <= r1; r++)
-            for (int c = c0; c <= c1; c++)
-                acc = acc * 31 + _gen[r * Cols + c];
+        for (int rs = 0; rs < nr * 2; rs += 2)
+            for (int r = rows[rs]; r <= rows[rs + 1]; r++)
+                for (int cs = 0; cs < nc * 2; cs += 2)
+                    for (int c = cols[cs]; c <= cols[cs + 1]; c++)
+                        acc = acc * 31 + _gen[r * Cols + c];
         return acc;
     }
 
     public static bool IsGpuDirty(int x, int y, int w, int h)
     {
-        Bounds(x, y, w, h, out int c0, out int r0, out int c1, out int r1);
-        for (int r = r0; r <= r1; r++)
-            for (int c = c0; c <= c1; c++)
-                if (_gpuDirty[r * Cols + c]) return true;
+        Span<int> cols = stackalloc int[4], rows = stackalloc int[4];
+        int nc = Spans(x, w, 1024, BlockW, cols), nr = Spans(y, h, 512, BlockH, rows);
+        for (int rs = 0; rs < nr * 2; rs += 2)
+            for (int r = rows[rs]; r <= rows[rs + 1]; r++)
+                for (int cs = 0; cs < nc * 2; cs += 2)
+                    for (int c = cols[cs]; c <= cols[cs + 1]; c++)
+                        if (_gpuDirty[r * Cols + c]) return true;
         return false;
     }
 }

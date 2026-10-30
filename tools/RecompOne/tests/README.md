@@ -34,6 +34,7 @@ positive configured start frame as well as the exact boundary.
 | `Sm1AnimationRegression` | Actual post-loader hook exercised with synthetic native actor and animation-bank layouts, including the legacy extra-terminal-mesh overflow case |
 | `Sm2LevelSwitchRegression` | Actual target-level descriptor hook with synthetic bounded storage: stage-loader caller guards, native name selection, register preservation, subsequent transitions, Retry, and archive fallback |
 | `VideoSetupRegression` | Video option bounds, cycling, Apply, cancel, and persisted state conversion |
+| `VramTrackerRegression` | Actual GP0 fill, VRAM copy and image-load commands with no renderer: the texture-cache generation and GPU-dirty state follow right, bottom and corner wrapping, an exact-edge fill does not wrap, a full-width copy at nonzero X covers every column, and unrelated blocks keep their generation |
 | `GamePortConfigurationRegression` | MSBuild evaluation of both actual game projects: host defaults, explicit cross-target RIDs, Windows-only native payload selection, separate publish directories, and an explicit output override; no restore or compilation |
 | `Sm1ActorAnimationLayoutConverterRegression` | Synthetic actor headers exercise the converter's native body-part count invariant before an incompatible model can be emitted |
 
