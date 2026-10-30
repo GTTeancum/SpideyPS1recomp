@@ -13,7 +13,52 @@ Do not launch Codex tasks/services or use the user's Dot or PC. Keep chat update
 within one screen. Private discs, extracted retail data, saves, credentials, and
 backups must not enter public commits.
 
-## Current batch: shared infrastructure repairs
+## Current batch: installer retries and wrapped VRAM fills
+
+The immediate priority remains **shared infrastructure fixes for both games**.
+Use short, demonstrated failures before implementing a bounded repair. This
+section supersedes the next actions in the historical batches below.
+
+Published code:
+[`dcd7ce0`](https://github.com/GTTeancum/SpideyPS1recomp/commit/dcd7ce01d4f9cfbc1c7617ce31862a1a01d8b7bb).
+
+- **Installer:** a failed worker left `Session.Error` set after a successful
+  retry. Clear it when a validated retry begins. Actual worker/import/extraction
+  checks for both game profiles went **47/51 -> 51/51**. All four previously
+  failing retries installed correct bytes but retained the old error; now they
+  clear it. Tiny synthetic ISO/ZIP inputs were used, without the installer UI.
+- **Renderer:** split wrapped fills into at most four in-bounds regions and
+  synchronize cached displays, preserving dirty neighbors and full widescreen
+  clears. Real GL checks went **100/128 -> 128/128**; the 52 new fill checks went
+  **24/52 -> 52/52**. Both backend classes ran at 1x/4x. A separately retained,
+  complete actual GL3.3-context run passed **64/64**, overlapping the main suite.
+- **Verification:** each targeted pair used an identical compiled test program
+  and unchanged test sources; only the runtime DLL changed. The shared build
+  and all **15 local suites** passed (16 steps). Independent review passed.
+  [Windows and Ubuntu CI](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40988010704)
+  passed on `dcd7ce0`; Ubuntu also passed native GL/SDL and strict GL3.3 steps.
+  Windows GPU and gameplay were not tested.
+
+[Detailed verification and limits](docs/testing/shared-installer-vram-fill-2026-10-29.md)
+and [retained assertion lines/hashes/CI receipt](docs/testing/shared-installer-vram-fill-2026-10-29-results.json)
+are durable public evidence. A partial first strict-context log was excluded;
+the final result uses a separately completed and verified repeat. No retail
+assets were required or downloaded, and no release package was published.
+
+**Next action:** reproduce wrapped texture-cache invalidation with a short
+CPU-only GP0 fill/upload/copy test. `VramTracker.Bounds` clamps the original
+rectangle, potentially missing wrapped-origin generations/dirty state used by
+`TextureResolver`. This remains a source finding; prove it before changing it.
+Separate deferred findings include invalid existing-manifest repair in the
+installer, a possible worker-task assignment race, and VRAM copy overlap/mask
+semantics. Keep the next batch bounded and preserve unrelated work.
+
+**Remaining blocker:** #20 still needs its confirmed screenshot and reproduction
+details; these independent repairs do not establish its cause. This does not
+block other infrastructure work. Keep #20/#10/#11 open and #5 closed. All local
+test processes have exited; no unattended background work is promised.
+
+## Previous batch: shared infrastructure repairs
 
 The user changed the immediate priority to **blanket infrastructure fixes**
 rather than individual encounters. Continue with short, demonstrated failures
