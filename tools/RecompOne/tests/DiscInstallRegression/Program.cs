@@ -4,13 +4,8 @@ using RecompOne.Runtime.Cdrom;
 
 var sm1 = new DiscInstallProfile("Spider-Man", "Spider-Man (USA)", "SLUS-00875", "SLUS_008.75", "unused");
 var sm2 = new DiscInstallProfile("Spider-Man 2", "Spider-Man 2 (USA)", "SLUS-01378", "SLUS_013.78", "unused");
-int checks = 0, failures = 0;
-void Check(bool condition, string name)
-{
-    checks++;
-    if (!condition) failures++;
-    Console.WriteLine($"{(condition ? "PASS" : "FAIL")} {name}");
-}
+int checks = 0;
+void Check(bool condition, string name) { if (!condition) throw new Exception(name); checks++; Console.WriteLine("PASS " + name); }
 string root = Path.Combine(Path.GetTempPath(), "OpenSpidey-DiscInstallRegression-" + Guid.NewGuid().ToString("N"));
 Directory.CreateDirectory(root);
 // Small, retained fixtures only; never touch retail media or existing installations.
@@ -45,7 +40,5 @@ foreach (string path in args)
     var profile = Path.GetFileName(path).Contains("2") ? sm2 : sm1;
     Check(DiscRevisionValidator.Validate(path, profile) == null, "real disc " + Path.GetFileName(path));
 }
-InstallerRetryChecks.Run(root, [sm1, sm2], Check);
-Console.WriteLine($"{checks - failures}/{checks} disc install checks passed; {failures} failed. Tiny fixtures: {root}");
-return failures == 0 ? 0 : 1;
+Console.WriteLine($"{checks} checks passed. Tiny fixtures: {root}");
 

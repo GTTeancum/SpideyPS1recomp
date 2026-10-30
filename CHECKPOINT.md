@@ -3,6 +3,23 @@
 Updated: 2026-10-30 (Eastern Time). Resume this file when asked to continue
 SpideyPS1 Recomp, then inspect the current branch and working tree.
 
+## Rollback 2026-10-30: shared infrastructure batches reverted
+
+At the user's direction, the three "shared infrastructure" batches were reverted
+in one commit: `f579d39`, `32887fb`, `dcd7ce0`, `30ccdab` and `6067315` (VRAM
+upload/readback/fill wrapping, input stick reset, settings null repair,
+installer retry error reset, VRAM tracker wrapping, their tests, CI steps and
+records). The source tree is identical to `8ce5bf7`; the default local gate
+(shared build plus 11 suites) passed on Windows. The commits stay in history.
+
+**Priority now:** fix reported bugs from the
+[GitHub issue list](https://github.com/GTTeancum/SpideyPS1recomp/issues). Do not
+harden or rewrite shared code that no issue points at. Reproduce first, keep each
+fix minimal and tied to its issue. The SM1 sewer villain is **the Lizard** (older
+records below say "Lizard-man"). Work may run locally on the user's Windows PC
+at their request (checkout on a network share: use `git -c safe.directory=*`;
+never stage the retail `.7z` archives in the root).
+
 ## Objective and authorization
 
 Optimize and standardize both games, fix demonstrated bugs, and work toward full
@@ -13,130 +30,7 @@ Do not launch Codex tasks/services or use the user's Dot or PC. Keep chat update
 within one screen. Private discs, extracted retail data, saves, credentials, and
 backups must not enter public commits.
 
-## Current batch: wrapped VRAM writes and texture-cache invalidation
-
-The immediate priority remains **shared infrastructure fixes for both games**.
-Use short, demonstrated failures before implementing a bounded repair. This
-section supersedes the next actions in the historical batches below.
-
-At the user's direct request, this batch ran on their Windows 11 PC (the local
-checkout on a network share; git needs `-c safe.directory=*` there). The retail archives sit untracked
-in the checkout root and must never be staged.
-
-- **Tracker:** `VramTracker` clamped wrapped fill/copy/upload rectangles to the
-  VRAM edge, so the wrapped-to blocks kept stale generations and GPU-dirty flags
-  that `TextureResolver` uses for its caches. It now splits each axis into at
-  most two block spans; in-bounds rectangles behave exactly as before; upload
-  records keep clamped bounds.
-- **Verification:** new CPU-only `VramTrackerRegression` drives actual GP0
-  commands. The identical compiled test went **48/64 -> 64/64** (first build
-  46/60 -> 60/60); every failure was a wrapped destination. Full local gate:
-  shared build plus all **16 suites** passed. `GpuTransferRegression` passed
-  **128/128** on a real Windows GPU (AMD Radeon 780M, GL 3.3 and 4.5), the first
-  Windows GPU run. No game was booted.
-
-[Detailed verification and limits](docs/testing/vram-tracker-wrap-2026-10-30.md).
-
-**Next action:** the SDL virtual-controller suite fails on Windows before its
-checks because `vcruntime140.dll` is not beside the test assembly; decide whether
-the test should copy it or skip the CRT preload. Then the deferred findings:
-VRAM copy overlap/mask semantics, invalid existing-manifest repair in the
-installer, and a possible worker-task assignment race. #20 still awaits its
-screenshot; keep #20/#10/#11 open and #5 closed.
-
-## Previous batch: installer retries and wrapped VRAM fills
-
-Published code:
-[`dcd7ce0`](https://github.com/GTTeancum/SpideyPS1recomp/commit/dcd7ce01d4f9cfbc1c7617ce31862a1a01d8b7bb).
-
-- **Installer:** a failed worker left `Session.Error` set after a successful
-  retry. Clear it when a validated retry begins. Actual worker/import/extraction
-  checks for both game profiles went **47/51 -> 51/51**. All four previously
-  failing retries installed correct bytes but retained the old error; now they
-  clear it. Tiny synthetic ISO/ZIP inputs were used, without the installer UI.
-- **Renderer:** split wrapped fills into at most four in-bounds regions and
-  synchronize cached displays, preserving dirty neighbors and full widescreen
-  clears. Real GL checks went **100/128 -> 128/128**; the 52 new fill checks went
-  **24/52 -> 52/52**. Both backend classes ran at 1x/4x. A separately retained,
-  complete actual GL3.3-context run passed **64/64**, overlapping the main suite.
-- **Verification:** each targeted pair used an identical compiled test program
-  and unchanged test sources; only the runtime DLL changed. The shared build
-  and all **15 local suites** passed (16 steps). Independent review passed.
-  [Windows and Ubuntu CI](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40988010704)
-  passed on `dcd7ce0`; Ubuntu also passed native GL/SDL and strict GL3.3 steps.
-  Windows GPU and gameplay were not tested.
-
-[Detailed verification and limits](docs/testing/shared-installer-vram-fill-2026-10-29.md)
-and [retained assertion lines/hashes/CI receipt](docs/testing/shared-installer-vram-fill-2026-10-29-results.json)
-are durable public evidence. A partial first strict-context log was excluded;
-the final result uses a separately completed and verified repeat. No retail
-assets were required or downloaded, and no release package was published.
-
-**Next action:** reproduce wrapped texture-cache invalidation with a short
-CPU-only GP0 fill/upload/copy test. `VramTracker.Bounds` clamps the original
-rectangle, potentially missing wrapped-origin generations/dirty state used by
-`TextureResolver`. This remains a source finding; prove it before changing it.
-Separate deferred findings include invalid existing-manifest repair in the
-installer, a possible worker-task assignment race, and VRAM copy overlap/mask
-semantics. Keep the next batch bounded and preserve unrelated work.
-
-**Remaining blocker:** #20 still needs its confirmed screenshot and reproduction
-details; these independent repairs do not establish its cause. This does not
-block other infrastructure work. Keep #20/#10/#11 open and #5 closed. All local
-test processes have exited; no unattended background work is promised.
-
-## Previous batch: shared infrastructure repairs
-
-The user changed the immediate priority to **blanket infrastructure fixes**
-rather than individual encounters. Continue with short, demonstrated failures
-in the common renderer, input, configuration, loading and diagnostics paths.
-This supersedes the encounter-focused next actions in the historical sections.
-
-Published repair:
-[`f579d39`](https://github.com/GTTeancum/SpideyPS1recomp/commit/f579d39318d5079d072a30f728ebc99432cbfe48).
-
-- **Renderer:** split wrapped GP0 VRAM uploads/readbacks before issuing GL
-  transfers; retain original row stride, the in-bounds fast path and display
-  synchronization. Real GL checks went from **20/76 to 76/76 passing** across
-  both backend classes at 1x/4x. An actual GL3.3 context additionally passed
-  **38/38** checks. This does not establish the cause of the rainbow report.
-- **Input:** reset idle analog axes before sampling devices, retaining keyboard
-  and replay precedence. Native SDL virtual-controller removal and related
-  checks went from **14/19 to 19/19 passing**. The default 13-check subset also
-  passed; no physical controller was tested.
-- **Settings:** normalize null input members and preserve correct defaults for
-  partial player-two profiles. Actual loader/input checks went from **2/10 to
-  10/10 passing**, including three formerly crashing valid JSON examples.
-  Custom mappings, intentional unbindings and existing file bytes are preserved.
-- **Verification infrastructure:** the default gate includes both new input
-  suites. Linux CI additionally runs real GL/SDL checks and a strict GL3.3
-  context. The local shared build and all **15 suites** passed (16 steps total).
-  [Windows and Ubuntu CI](https://github.com/GTTeancum/SpideyPS1recomp/actions/runs/40977096625)
-  passed for the published source; Ubuntu also passed both native suites and
-  the strict GL3.3 context.
-
-[Issue #20](https://github.com/GTTeancum/SpideyPS1recomp/issues/20) now tracks the
-maintainer's recalled rainbow horizontal bands on world textures while a custom
-Spider-Man rendered correctly. It is **unconfirmed; screenshot pending**. Do not
-close it or assign a cause based on these independent infrastructure repairs.
-
-[Detailed verification and limits](docs/testing/shared-infrastructure-2026-10-29.md)
-and [retained before/after result lines](docs/testing/shared-infrastructure-2026-10-29-results.json)
-are public, contain no retail data, and can be used to resume this batch. The
-workspace was restored from GitHub after maintenance; the .NET SDK and native
-cloud test tools were restored/verified for these asset-free checks. Previous
-private game assets and gameplay evidence remain recoverable through their
-saved checkpoint; they were not required or re-downloaded for this batch.
-
-**Next action:** reproduce the shared installer retry lifecycle: a previous
-extraction error appears to remain in `Session.Error` after later success.
-This is a source finding, not yet an executed failure or fix. Then audit remaining
-VRAM fill/copy wrapping with equivalent bounded evidence. Await the confirmed
-screenshot/details for #20. Keep #10 and #11 open and #5 closed for the next
-release. No retail gameplay or Windows GPU test was performed in this batch;
-no release package was published. All completed test processes have exited.
-
-## Previous batch: SM2 targeted-entry repair; #10 and #11 remain open
+## Current batch: SM2 targeted-entry repair; #10 and #11 remain open
 
 Published game-source fix:
 [`b0d2f90`](https://github.com/GTTeancum/SpideyPS1recomp/commit/b0d2f90d75d3864886aba9db13dbfc4d51793252).

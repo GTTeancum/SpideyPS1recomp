@@ -1,4 +1,3 @@
-using System.Buffers;
 using System.Runtime.InteropServices;
 using Silk.NET.OpenGL;
 
@@ -677,38 +676,11 @@ public sealed class GlCore : IGpuBackend
     public void FillRect(int x, int y, int w, int h, ushort color15)
     {
         Flush();
-        if (w <= 0 || h <= 0) return;
-        x &= VramShadow.Width - 1;
-        y &= VramShadow.Height - 1;
-        // Repeating a constant fill beyond one complete VRAM axis has no further
-        // effect. At most four in-bounds rectangles cover the wrapped operation.
-        w = Math.Min(w, VramShadow.Width);
-        h = Math.Min(h, VramShadow.Height);
-        Span<(int X, int Y, int W, int H)> regions = stackalloc (int, int, int, int)[4];
-        int count = 0;
-        for (int row = 0; row < h;)
-        {
-            int yy = (y + row) & (VramShadow.Height - 1);
-            int rows = Math.Min(h - row, VramShadow.Height - yy);
-            for (int col = 0; col < w;)
-            {
-                int xx = (x + col) & (VramShadow.Width - 1);
-                int cols = Math.Min(w - col, VramShadow.Width - xx);
-                regions[count++] = (xx, yy, cols, rows);
-                _vram.Fill(xx, yy, cols, rows, color15);
-                col += cols;
-            }
-            row += rows;
-        }
-        regions = regions[..count];
+        _vram.Fill(x, y, w, h, color15);
         foreach (var rt in _rts)
         {
-            if (rt == null) continue;
-            // A target may be covered by the union of two wrapped pieces. Keep the
-            // full-clear path so widescreen margins and model depth reset as well.
-            bool coversX = w == VramShadow.Width || ((rt.X - x) & (VramShadow.Width - 1)) + rt.W <= w;
-            bool coversY = h == VramShadow.Height || ((rt.Y - y) & (VramShadow.Height - 1)) + rt.H <= h;
-            if (coversX && coversY)
+            if (rt == null || !rt.Intersects(x, y, w, h)) continue;
+            if (rt.Covers(x, y, x + w - 1, y + h - 1))
             {
                 FillRtFull(rt, color15);
                 rt.Dirty = false;
@@ -719,13 +691,9 @@ public sealed class GlCore : IGpuBackend
             }
             else
             {
-                foreach (var region in regions)
-                {
-                    if (!rt.Intersects(region.X, region.Y, region.W, region.H)) continue;
-                    if (Log.GpuOn && (_frame % 120) == 0)
-                        Log.Gpu($"  fill PARTIAL ({region.X},{region.Y}) {region.W}x{region.H} -> resync from vram, margin={rt.Margin}");
-                    SyncRtFromVram(rt, region.X, region.Y, region.W, region.H);
-                }
+                if (Log.GpuOn && (_frame % 120) == 0)
+                    Log.Gpu($"  fill PARTIAL ({x},{y}) {w}x{h} -> resync from vram, margin={rt.Margin}");
+                SyncRtFromVram(rt, x, y, w, h);
             }
         }
     }
@@ -761,109 +729,16 @@ public sealed class GlCore : IGpuBackend
 
     public void WriteVram(int x, int y, int w, int h, ReadOnlySpan<ushort> px)
     {
-        ArgumentOutOfRangeException.ThrowIfNegative(w);
-        ArgumentOutOfRangeException.ThrowIfNegative(h);
-        px = px[..checked(w * h)];
         Flush();
-        if (w == 0 || h == 0) return;
-        x &= VramShadow.Width - 1;
-        y &= VramShadow.Height - 1;
-        if (w <= VramShadow.Width - x && h <= VramShadow.Height - y)
-        {
-            _vram.WriteRect(x, y, w, h, px);
-            SyncRtsFromVram(x, y, w, h);
-            return;
-        }
-
-        // GP0 wraps at the native VRAM edges; GL texture updates cannot. Preserve
-        // the original row stride when a wrapped image becomes narrower rectangles.
-        // A vertical-only wrap already consists of contiguous rows and needs no copy.
-        ushort[]? scratch = w > VramShadow.Width - x
-            ? ArrayPool<ushort>.Shared.Rent(Math.Min(w, VramShadow.Width) * Math.Min(h, VramShadow.Height))
-            : null;
-        try
-        {
-            for (int row = 0; row < h;)
-            {
-                int yy = (y + row) & (VramShadow.Height - 1);
-                int rows = Math.Min(h - row, VramShadow.Height - yy);
-                for (int col = 0; col < w;)
-                {
-                    int xx = (x + col) & (VramShadow.Width - 1);
-                    int cols = Math.Min(w - col, VramShadow.Width - xx);
-                    if (cols == w)
-                    {
-                        _vram.WriteRect(xx, yy, cols, rows, px.Slice(row * w, cols * rows));
-                    }
-                    else
-                    {
-                        var packed = scratch.AsSpan(0, cols * rows);
-                        for (int r = 0; r < rows; r++)
-                            px.Slice((row + r) * w + col, cols).CopyTo(packed.Slice(r * cols, cols));
-                        _vram.WriteRect(xx, yy, cols, rows, packed);
-                    }
-                    SyncRtsFromVram(xx, yy, cols, rows);
-                    col += cols;
-                }
-                row += rows;
-            }
-        }
-        finally
-        {
-            if (scratch != null) ArrayPool<ushort>.Shared.Return(scratch);
-        }
+        _vram.WriteRect(x, y, w, h, px);
+        SyncRtsFromVram(x, y, w, h);
     }
 
     public void ReadVram(int x, int y, int w, int h, Span<ushort> px)
     {
-        ArgumentOutOfRangeException.ThrowIfNegative(w);
-        ArgumentOutOfRangeException.ThrowIfNegative(h);
-        px = px[..checked(w * h)];
         Flush();
-        if (w == 0 || h == 0) return;
-        x &= VramShadow.Width - 1;
-        y &= VramShadow.Height - 1;
-        if (w <= VramShadow.Width - x && h <= VramShadow.Height - y)
-        {
-            WritebackDirtyIntersecting(x, y, w, h);
-            _vram.ReadRect(x, y, w, h, px);
-            return;
-        }
-
-        ushort[]? scratch = w > VramShadow.Width - x
-            ? ArrayPool<ushort>.Shared.Rent(Math.Min(w, VramShadow.Width) * Math.Min(h, VramShadow.Height))
-            : null;
-        try
-        {
-            for (int row = 0; row < h;)
-            {
-                int yy = (y + row) & (VramShadow.Height - 1);
-                int rows = Math.Min(h - row, VramShadow.Height - yy);
-                for (int col = 0; col < w;)
-                {
-                    int xx = (x + col) & (VramShadow.Width - 1);
-                    int cols = Math.Min(w - col, VramShadow.Width - xx);
-                    WritebackDirtyIntersecting(xx, yy, cols, rows);
-                    if (cols == w)
-                    {
-                        _vram.ReadRect(xx, yy, cols, rows, px.Slice(row * w, cols * rows));
-                    }
-                    else
-                    {
-                        var packed = scratch.AsSpan(0, cols * rows);
-                        _vram.ReadRect(xx, yy, cols, rows, packed);
-                        for (int r = 0; r < rows; r++)
-                            packed.Slice(r * cols, cols).CopyTo(px.Slice((row + r) * w + col, cols));
-                    }
-                    col += cols;
-                }
-                row += rows;
-            }
-        }
-        finally
-        {
-            if (scratch != null) ArrayPool<ushort>.Shared.Return(scratch);
-        }
+        WritebackDirtyIntersecting(x, y, w, h);
+        _vram.ReadRect(x, y, w, h, px);
     }
 
     public unsafe byte[]? ReadScaled(int x, int y, int w, int h, out int outW, out int outH)

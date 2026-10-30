@@ -115,16 +115,3 @@ acceptance remains incomplete; R01/R02 remain open. These longer routes no longe
 automatically lead the execution queue, and issue #5 is closed for the next release.
 Record actual before/after evidence in the linked GitHub issues.
 The original intake was documentation-only.
-
-## Additional maintainer report: world-texture rainbow bands
-
-[#20](https://github.com/GTTeancum/SpideyPS1recomp/issues/20) tracks a recalled,
-now-deleted report that world textures became rainbow horizontal lines while
-a custom Spider-Man rendered correctly. This report is separate from the Reddit
-intake above: no original attachment, exact game/build/model or GPU/driver is
-available, and the maintainer is seeking a confirmed screenshot. Status remains
-**unconfirmed; screenshot pending**.
-
-The [shared infrastructure repairs](../testing/shared-infrastructure-2026-10-29.md)
-include a separately reproduced VRAM edge-transfer defect. No connection to
-#20 has been established, so it remains open.

@@ -39,8 +39,6 @@ public static class ConfigManager
             SaveGame();
         }
 
-        Game.NormalizeInput();
-
         if (File.Exists(InterfaceFile))
         {
             var (view, imguiIni) = ParseInterfaceFile(File.ReadAllText(InterfaceFile));

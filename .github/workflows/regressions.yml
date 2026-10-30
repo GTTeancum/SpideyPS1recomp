@@ -14,7 +14,6 @@ on:
       - 'spiderman/config/spiderman.json'
       - 'spiderman2/config/spiderman2.json'
       - 'spiderman/patches/Sm1AnimationBounds.cs'
-      - 'spiderman2/patches/LevelSwitch.cs'
       - 'dreamcast/tools/test_sm1_actor_animation_layout.py'
       - '.github/workflows/regressions.yml'
   pull_request:
@@ -29,7 +28,6 @@ on:
       - 'spiderman/config/spiderman.json'
       - 'spiderman2/config/spiderman2.json'
       - 'spiderman/patches/Sm1AnimationBounds.cs'
-      - 'spiderman2/patches/LevelSwitch.cs'
       - 'dreamcast/tools/test_sm1_actor_animation_layout.py'
       - '.github/workflows/regressions.yml'
   workflow_dispatch:
@@ -39,7 +37,7 @@ permissions:
 
 jobs:
   regressions:
-    name: Shared tools and asset-free tests (${{ matrix.os }})
+    name: Shared tools and synthetic tests (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
@@ -60,30 +58,8 @@ jobs:
           python-version: '3.x'
       - name: Install converter test dependency
         run: python -m pip install Pillow
-      - name: Install Linux native test dependencies
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get update
-          sudo apt-get install --no-install-recommends -y xvfb xauth libgl1-mesa-dri libglx-mesa0 libglfw3 libsdl2-2.0-0
-      - name: Build shared tools and run synthetic regressions (Windows)
-        if: runner.os == 'Windows'
+      - name: Build shared tools and run synthetic regressions
         run: python tools/run_regressions.py
-      - name: Build shared tools and run synthetic, OpenGL and SDL regressions (Linux)
-        if: runner.os == 'Linux'
-        env:
-          LIBGL_ALWAYS_SOFTWARE: '1'
-          GALLIUM_DRIVER: llvmpipe
-        run: xvfb-run -a python tools/run_regressions.py --include-native
-      - name: Verify the OpenGL 3.3 fallback context (Linux)
-        if: runner.os == 'Linux'
-        shell: bash
-        env:
-          LIBGL_ALWAYS_SOFTWARE: '1'
-          GALLIUM_DRIVER: llvmpipe
-          MESA_GL_VERSION_OVERRIDE: '3.3'
-          MESA_GLSL_VERSION_OVERRIDE: '330'
-        run: |
-          xvfb-run -a dotnet tools/RecompOne/tests/GpuTransferRegression/bin/Release/net10.0/GpuTransferRegression.dll gl33 | tee artifacts/regressions/GpuTransferGl33Context.log
       - name: Retain verification results
         if: always()
         uses: actions/upload-artifact@v4
