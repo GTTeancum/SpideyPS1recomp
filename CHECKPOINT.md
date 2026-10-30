@@ -32,9 +32,14 @@ build games with `-p:OutDir=bin/Release/net10.0-b/` and run the gate with
   movie stream was ignored, `CdLastCom` (0x80094180) was unmapped, and seeks
   did not end XA reads. Now one clip per selection, stopped by the game.
 - **#8 not reproduced in the viewer:** 30 consecutive v1.1 suits rendered
-  correctly. Found instead: the v1.1 SM2 pack has 94 suits but the selector
-  holds 41 mods, so ~52 are rejected at startup ("suit selector is full"); one
-  more is rejected for model size. In-level suit check not yet done.
+  correctly. In-level suit check not yet done.
+- **Suit limit fixed** (`be32fb2`): the v1.1 packs (93 suits) overflowed the
+  60-row selectors, so ~50 suits per game were rejected at startup. Both games
+  now allow 128 rows; SM2 registers 91 and SM1 90 of the release suits (two
+  models exceed the separate 1 MiB limit). Last suit verified in both viewers.
+- Runs: `.exe` files and `dotnet Game.dll` both fail here (server lock; memory
+  cards beside the launcher). Build with `UseAppHost=false` into
+  `bin/Release/net10.0-c/`; `private/run-hidden.sh` copies a fresh apphost per run.
 - **#17 SM2:** stock Symbiote sets ability ID 3 and switch 0x800C2218 in play
   (snapshots at 9900/10500/11500). Web-firing input in E1M0 was inconclusive.
   SM1 (the likelier report target) not yet tested.
