@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
+        <ApplicationIcon>SpiderMan2.ico</ApplicationIcon>
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
