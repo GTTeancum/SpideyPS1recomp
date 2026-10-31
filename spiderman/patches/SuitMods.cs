@@ -40,8 +40,7 @@ public static class SuitMods
             if (id.ValueKind != JsonValueKind.String || !eligible.Add(id.GetString()!))
                 throw new InvalidDataException("SMU eligibility ids must be unique strings");
         }
-        if (eligible.Count != 78)
-            throw new InvalidDataException($"expected 78 approved non-duplicate SMU suits, found {eligible.Count}");
+        // Any subset of the approved suits may be installed; removing a suit folder removes the suit.
         return eligible;
     }
     public static SuitManifest At(int index) => Catalogue[index - StockCount];
@@ -55,7 +54,6 @@ public static class SuitMods
         if ((File.GetAttributes(_root) & FileAttributes.ReparsePoint) != 0)
             throw new InvalidDataException("suit mod root cannot be a link");
         var smuEligible = LoadSmEligibility(_root);
-        var registeredSmus = new HashSet<string>(StringComparer.Ordinal);
         foreach (string dir in Directory.EnumerateDirectories(_root).Order(StringComparer.Ordinal))
         {
             string file = Path.Combine(dir, "suit.json");
@@ -72,13 +70,10 @@ public static class SuitMods
                 if (Catalogue.Any(m => m.Id == mod.Id)) throw new InvalidDataException("duplicate suit id");
                 if (Catalogue.Count >= MaxCount - StockCount) throw new InvalidDataException($"suit selector is full ({MaxCount - StockCount} mod entries)");
                 Catalogue.Add(mod);
-                if (mod.Id.StartsWith("smu-", StringComparison.Ordinal)) registeredSmus.Add(mod.Id);
                 Console.WriteLine($"[suit-mod] registered {mod.Id}: {mod.Name}; model {mod.Model}; SM1 profile {SuitManifest.Profiles[mod.AbilityProfile]}; {mod.Textures.Count} external PNGs; always unlocked");
             }
             catch (Exception e) { Console.Error.WriteLine($"[suit-mod] rejected {file}: {e.Message}"); }
         }
-        if (smuEligible is not null && !smuEligible.SetEquals(registeredSmus))
-            throw new InvalidDataException("approved SMU eligibility manifest and registered suits differ");
         string state = Path.Combine(_root, "selected-suit.txt");
         try
         {
