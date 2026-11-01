@@ -165,11 +165,11 @@ if (args.Length > 1)
         .Select(id => id.GetString()!).ToHashSet(StringComparer.Ordinal);
     var actualSmus = SuitMods.Catalogue.Where(s => s.Id.StartsWith("smu-", StringComparison.Ordinal))
         .Select(s => s.Id).ToHashSet(StringComparer.Ordinal);
-    Check(expected.Count == 78 && actualSmus.SetEquals(expected),
-        "staged SM2 catalogue contains the exact approved 78-suit SMU set");
+    Check(expected.Count == 70 && actualSmus.SetEquals(expected),
+        "staged SM2 catalogue contains the exact approved 70-suit SMU set");
     var expectedLegacy = new HashSet<string>(new[] {
         "1967-tv-series", "amazing-tasm", "americas-spider", "ben-reilly-street",
-        "friendly-neighbor", "kaine", "mcu-far-from-home", "negative-zone", "quick-change-red",
+        "friendly-neighbor", "kaine", "mcu-far-from-home", "quick-change-red",
         "raimi-red-blue", "raimi-symbiote", "spiderman-sm1", "steve-ditko", "superior",
         "the-human-spider"
     }, StringComparer.Ordinal);
@@ -177,8 +177,8 @@ if (args.Length > 1)
         .Select(s => s.Id).ToHashSet(StringComparer.Ordinal);
     Check(actualLegacy.SetEquals(expectedLegacy),
         "staged SM2 catalogue contains the exact non-SMU 1.0 roster");
-    Check(SuitMods.Catalogue.Count == 93,
-        "staged SM2 catalogue contains 78 SMU and 15 approved non-SMU suits");
+    Check(SuitMods.Catalogue.Count == 84,
+        "staged SM2 catalogue contains 70 SMU and 14 approved non-SMU suits");
     Check(SuitMods.Catalogue.Where(s => s.Id.StartsWith("smu-", StringComparison.Ordinal))
         .All(s => s.CustomModel?.RetargetRig is { Packets.Length: 18 }),
         "all staged SM2 SMU suits retain preserved RTG2 rigs with the native 18-part layout");

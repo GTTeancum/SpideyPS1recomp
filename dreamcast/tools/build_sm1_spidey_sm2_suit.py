@@ -31,7 +31,7 @@ def main():
         shutil.copy2(source, output / relative)
         assert hashlib.sha256(source.read_bytes()).digest() == hashlib.sha256((output / relative).read_bytes()).digest()
         textures[f"{hashes[entry['textureIndex']]:08X}"] = relative
-    manifest = dict(version=1, id='spiderman-sm1', name='Spider-Man (SM1)',
+    manifest = dict(version=1, id='spiderman-sm1', name='Spider-Man - SM1',
                     comments='Neversoft / Treyarch', model='spiderman',
                     abilities=dict(profile='spiderman'), textures=textures)
     (output / 'suit.json').write_text(json.dumps(manifest, indent=2) + '\n')
