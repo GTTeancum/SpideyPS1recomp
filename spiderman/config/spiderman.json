@@ -419,6 +419,19 @@
     },
     {
       "overlay": "main",
+      "function": "func_8006B514",
+      "mode": "post",
+      "target": "Recompiled.ArmorTest.AfterPadRead"
+    },
+    {
+      "overlay": "main",
+      "address": "80046FD4",
+      "mode": "instruction_branch",
+      "resumeAddress": "800471B0",
+      "target": "Recompiled.ArmorTextures.SkipUnmapped"
+    },
+    {
+      "overlay": "main",
       "function": "RunFrame",
       "mode": "post",
       "target": "Recompiled.GameTrace.RunFrameExit"

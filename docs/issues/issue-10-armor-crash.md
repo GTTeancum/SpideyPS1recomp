@@ -1,5 +1,29 @@
 # Issue #10: Spider-Armor pickup crash with custom models
 
+## Reproduced and fixed (2026-11-01, SM1)
+
+`SPIDEY_TEST_ARMOR=<on frame>[,<off frame>]` ([ArmorTest.cs](../../spiderman/patches/ArmorTest.cs))
+calls the pickup's own activation routine, `func_800489D4(player, on)`, from the
+per-frame pad read, so no pickup route is needed. In `l1a1` with the default
+(converted) Spider-Man and with the `1967-tv-series` suit, the game crashed the
+frame after armor went on: `unmapped call: 0x00000000` in the player draw
+(`func_80076480` → `func_80077EC8`). The `smu-captain` suit happened to survive.
+
+Cause: the static finding below. Each registered player texture without a retail
+armor mapping left the swap's destination pointers unset, and the routine copied
+the saved page through them. Pages larger than the 8192-byte save buffer would
+overflow it as well.
+
+Fix ([ArmorTextures.cs](../../spiderman/patches/ArmorTextures.cs)): an instruction
+hook at the top of the per-texture loop (`0x80046FD4`, resuming at `0x800471B0`)
+skips textures with no mapping or too large for the buffers. Mapped retail textures
+swap as before. After the fix all three suits ran armor on at frame 4800 and off at
+5400 with no crash; the HUD showed the armor gauge and the player kept its suit.
+Converted and custom suits do not turn silver under armor (they never had armor
+textures); that would be separate work.
+
+## Earlier investigation
+
 **Status: open; reported crash not reproduced on 2026-10-29.** Seven bounded
 Linux attempts across two batches did not establish an ordinary armor pickup. Static SM1 analysis
 identified an unsafe texture-remapping assumption, but it has not been connected

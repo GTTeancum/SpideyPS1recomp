@@ -421,6 +421,7 @@ public static class Costume
         if ((uint)selected >= AbilityConfig.Length) selected = 0;
         uint player = c.V0;
         if ((player & 0xFF000000u) != 0x80000000u) return;
+        ArmorTest.Player = player;
         memory.WriteU32(player + 0x584, AbilityConfig[selected]);
         Console.WriteLine($"[costume] ability config {Names[selected]} " +
             $"<- {Names[AbilityDonors[selected]]}: 0x{AbilityConfig[selected]:X8}");
