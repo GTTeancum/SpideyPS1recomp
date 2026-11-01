@@ -7,9 +7,6 @@ Local status notes describe this repository only.
 
 ### Bugs
 
-- [ ] [#11: SM2: reported crash before the Shocker encounter](https://github.com/GTTeancum/SpideyPS1recomp/issues/11) — notes: [issue-11-shocker-crash](docs/issues/issue-11-shocker-crash.md).
-- [ ] [#15: SM2: Stan Lee narration reportedly repeats during costume selection](https://github.com/GTTeancum/SpideyPS1recomp/issues/15) — fixed locally (narration plays once per selection); not yet confirmed by the reporter or closed.
-- [ ] [#16: SM2: reported white line obscures half the screen in level-two four-thug encounter](https://github.com/GTTeancum/SpideyPS1recomp/issues/16)
 - [ ] [#18: SteamOS/Wine/Proton: reported startup crash after ROM import](https://github.com/GTTeancum/SpideyPS1recomp/issues/18)
 - [ ] [#19: SM1 on Linux: diagnostic logs stop while captures and snapshots continue](https://github.com/GTTeancum/SpideyPS1recomp/issues/19)
 - [ ] [#20: Reported rainbow horizontal bands on world textures while custom player renders correctly](https://github.com/GTTeancum/SpideyPS1recomp/issues/20)

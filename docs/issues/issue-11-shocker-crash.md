@@ -208,3 +208,20 @@ and a short visible capture before proposing a bounded fix. If it succeeds,
 check E1M4 Retry and compare with the reporter's exact build and configuration
 when available. Avoid treating a longer unrelated navigation session as a
 substitute for the missing transition reproduction.
+
+## Reproduced and fixed (2026-11-01)
+
+The crash needs a retargeted suit mod (reproduced with `smu-aikman`; the earlier
+runs used the stock player). E1M4 crashed the moment the Shocker fight began,
+after the intro movie, both by direct entry and through the ordinary E1M3 exit:
+`active SM2 retarget rig does not match resident native mesh` in
+`SuitRetargeting.ApplyPose`. The pose hook ran for every 18-part actor; Shocker
+(resource entry `shocker`) is one, and its meshes failed the player-mesh check.
+The hook now accepts only the `spidey` and `spcuNN` entries, as SM1 accepts
+`spidey` (`229b8ea`).
+
+The ordinary hand-off is tested with `SPIDEY_TEST_TRIGGER=5600:113`, which runs
+E1M3's exit-script record through the native interpreter (the record the last
+thug defeat starts). After the fix, with `smu-aikman`: E1M3 exit → `E1M4_T` load
+→ full E1M4 intro movie → Shocker fight; and direct E1M4 → fight → Game Over →
+Retry → fight again. No crash in either.
