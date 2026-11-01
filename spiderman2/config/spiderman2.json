@@ -395,6 +395,12 @@
     },
     {
       "overlay": "main",
+      "function": "func_80072B88",
+      "mode": "pre",
+      "target": "Recompiled.ArmorTest.HudDraw"
+    },
+    {
+      "overlay": "main",
       "address": "80075538",
       "mode": "instruction_branch",
       "resumeAddress": "80075588",
@@ -411,6 +417,13 @@
       "address": "80032E7C",
       "mode": "instruction",
       "target": "Recompiled.SuitWebAttachment.ProjectSwingSegment"
+    },
+    {
+      "overlay": "main",
+      "address": "8004E930",
+      "mode": "instruction_branch",
+      "resumeAddress": "8004EB0C",
+      "target": "Recompiled.ArmorTextures.SkipUnmapped"
     }
   ],
   "callRing": true
