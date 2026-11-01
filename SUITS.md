@@ -51,7 +51,7 @@ Unticked: needs attention; assess these one at a time.
 - [x] HOUSEOFM (`smu-houseofm`)
 - [x] INDIA (`smu-india`)
 - [x] IRONSPIDER (`smu-ironspider`)
-- [ ] IRONSPIDERNEWW #094 (`smu-ironspidernewwithtentackles`) --eye cards should be transparent
+- [x] IRONSPIDERNEWW #094 (`smu-ironspidernewwithtentackles`)
 - [x] KUNG FU (`smu-kung-fu`)
 - [x] MANGAVERSE (`smu-mangaverse`)
 - [x] MASKEDMARVEL (`smu-maskedmarvel`)
