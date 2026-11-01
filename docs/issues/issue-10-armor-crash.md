@@ -22,6 +22,29 @@ swap as before. After the fix all three suits ran armor on at frame 4800 and off
 Converted and custom suits do not turn silver under armor (they never had armor
 textures); that would be separate work.
 
+## SM2, and textures that keep retail hashes (2026-11-01)
+
+SM2 only loads `sparmour.psx` at the start of a level with an armor pickup or
+carried-over armor (`func_80064C2C` → `func_8004E268`): E3M0, E5M5 and E5M6. In
+E3M0 the first guard was not enough: armor-on crashed for the stock converted
+Spider-Man and for `smu-aikman` (`unmapped address` in `func_8004E2FC`). Their
+textures keep retail hashes but are twice the retail page size. The swap writes
+the player's page back into its armor record so armor-off can restore it; a larger
+page overran into the next record and the next lookup read garbage.
+
+The guard ([SM1](../../spiderman/patches/ArmorTextures.cs),
+[SM2](../../spiderman2/patches/ArmorTextures.cs)) now walks the armor records the
+way the lookup does and swaps a texture only when its record has the same colour
+depth and page size. After the change, E3M0 armor on at 5400 and off at 5900 ran
+cleanly for both suits; the armor gauge showed and the suit was restored on
+armor-off. SM1 L1A1 with `spiderman`, `1967-tv-series` and `smu-captain` also ran
+cleanly. Suits whose pages do match retail sizes still take the retail armor art
+for those pages while armor is on (Captain Spider's cape and head), and return to
+normal on armor-off.
+
+The SM2 test switch now loads the armor bank itself when the level has not, so it
+can be used outside E3M0/E5M5/E5M6.
+
 ## Earlier investigation
 
 **Status: open; reported crash not reproduced on 2026-10-29.** Seven bounded
