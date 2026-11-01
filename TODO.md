@@ -7,15 +7,15 @@ Local status notes describe this repository only; GitHub issue states were not c
 
 ### Bugs
 
-- [ ] [#8: Check overflow state on costumes](https://github.com/GTTeancum/SpideyPS1recomp/issues/8) — texture issues reported with the costume pack.
-- [ ] [#10: Spider-Armor pickup reportedly crashes with custom models](https://github.com/GTTeancum/SpideyPS1recomp/issues/10) — notes: [issue-10-armor-crash](docs/issues/issue-10-armor-crash.md).
+- [ ] [#8: Check overflow state on costumes](https://github.com/GTTeancum/SpideyPS1recomp/issues/8) — texture issues reported with the costume pack. Not reproduced on the current build or the 1.1 release (2026-11-01): [reproduction notes](docs/issues/reproduction-2026-11-01.md).
+- [ ] [#10: Spider-Armor pickup reportedly crashes with custom models](https://github.com/GTTeancum/SpideyPS1recomp/issues/10) — crash reproduced and fixed locally in SM1 (converted and custom suits); same guard added to SM2. Notes: [issue-10-armor-crash](docs/issues/issue-10-armor-crash.md).
 - [ ] [#11: SM2: reported crash before the Shocker encounter](https://github.com/GTTeancum/SpideyPS1recomp/issues/11) — notes: [issue-11-shocker-crash](docs/issues/issue-11-shocker-crash.md).
-- [ ] [#12: Investigate reported health-icon/model graphical corruption](https://github.com/GTTeancum/SpideyPS1recomp/issues/12)
-- [ ] [#13: Investigate reported enemy texture corruption](https://github.com/GTTeancum/SpideyPS1recomp/issues/13)
-- [ ] [#14: SM1: Scorpion introduction reportedly skipped](https://github.com/GTTeancum/SpideyPS1recomp/issues/14)
+- [ ] [#12: Investigate reported health-icon/model graphical corruption](https://github.com/GTTeancum/SpideyPS1recomp/issues/12) — not reproduced (2026-11-01): [reproduction notes](docs/issues/reproduction-2026-11-01.md).
+- [ ] [#13: Investigate reported enemy texture corruption](https://github.com/GTTeancum/SpideyPS1recomp/issues/13) — not reproduced (2026-11-01): [reproduction notes](docs/issues/reproduction-2026-11-01.md).
+- [ ] [#14: SM1: Scorpion introduction reportedly skipped](https://github.com/GTTeancum/SpideyPS1recomp/issues/14) — not reproduced; the intro plays in full on the current build and 1.1 (2026-11-01): [reproduction notes](docs/issues/reproduction-2026-11-01.md).
 - [ ] [#15: SM2: Stan Lee narration reportedly repeats during costume selection](https://github.com/GTTeancum/SpideyPS1recomp/issues/15) — fixed locally (narration plays once per selection); not yet confirmed by the reporter or closed.
 - [ ] [#16: SM2: reported white line obscures half the screen in level-two four-thug encounter](https://github.com/GTTeancum/SpideyPS1recomp/issues/16)
-- [ ] [#17: Stock symbiote costume reportedly lacks infinite webbing](https://github.com/GTTeancum/SpideyPS1recomp/issues/17)
+- [ ] [#17: Stock symbiote costume reportedly lacks infinite webbing](https://github.com/GTTeancum/SpideyPS1recomp/issues/17) — fixed locally in SM1 (stock costume powers were never applied); verified on screen.
 - [ ] [#18: SteamOS/Wine/Proton: reported startup crash after ROM import](https://github.com/GTTeancum/SpideyPS1recomp/issues/18)
 - [ ] [#19: SM1 on Linux: diagnostic logs stop while captures and snapshots continue](https://github.com/GTTeancum/SpideyPS1recomp/issues/19)
 - [ ] [#20: Reported rainbow horizontal bands on world textures while custom player renders correctly](https://github.com/GTTeancum/SpideyPS1recomp/issues/20)
