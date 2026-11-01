@@ -21,8 +21,6 @@ Unticked: needs attention; assess these one at a time.
 
 ## Spider-Man Unlimited
 
-FOR SUITS WITH VERY LONG FEET. THIS NEEDS RESOLVED ON A CASE-BY-CASE BASIS
-
 - [x] 1602 (`smu-1602`)
 - [x] 2099 NEW (`smu-2099-new`)
 - [x] 2211 (`smu-2211`)
