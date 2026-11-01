@@ -27,6 +27,12 @@ public static class SuitRetargeting
     static int I32(IMemory m, uint p) => unchecked((int)m.ReadU32(p));
     static void Vector(IMemory m, uint p, int[] v) { for (uint i = 0; i < 3; i++) v[i] = I32(m, p + i * 4); }
 
+    // Resource entry names: "spidey" for the shared player record, "spcuNN" for a
+    // dedicated custom suit actor.
+    static bool IsPlayerEntry(IMemory m, uint entry) =>
+        (m.ReadU32(entry) == 0x64697073 && m.ReadU16(entry + 4) == 0x7965 && m.ReadU8(entry + 6) == 0) ||
+        (m.ReadU32(entry) == 0x75637073 && m.ReadU8(entry + 6) == 0);
+
     static void Normal(IMemory m, uint p, Vector3 n)
     {
         n = n.LengthSquared() > 1e-12f ? Vector3.Normalize(n) : new Vector3(0, -1, 0);
@@ -48,8 +54,10 @@ public static class SuitRetargeting
         if (slot >= 40) return;
         uint entry = ModelTable + slot * 64;
         // A custom SM2 actor retains its private spcuNN resource index even after
-        // Costume rebinds the shared player record. Validate the resident table and
-        // every mesh below instead of requiring the entry name to be "spidey".
+        // Costume rebinds the shared player record, so accept either name. Other
+        // 18-part actors (Shocker in E1M4) also pose here; without the name check their
+        // meshes failed the validation below and stopped the game (#11).
+        if (!IsPlayerEntry(m, entry)) return;
         uint table = m.ReadU32(entry + 0x10);
         if (!Ram(table - 4, 4 + 18 * 4) || m.ReadU32(table - 4) != 18) return;
 

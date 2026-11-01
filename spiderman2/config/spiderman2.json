@@ -401,6 +401,12 @@
     },
     {
       "overlay": "main",
+      "function": "func_80019848",
+      "mode": "pre",
+      "target": "Recompiled.TriggerTest.ScriptRunner"
+    },
+    {
+      "overlay": "main",
       "address": "80075538",
       "mode": "instruction_branch",
       "resumeAddress": "80075588",
