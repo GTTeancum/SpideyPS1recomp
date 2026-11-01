@@ -39,7 +39,7 @@ depth and page size. After the change, E3M0 armor on at 5400 and off at 5900 ran
 cleanly for both suits; the armor gauge showed and the suit was restored on
 armor-off. SM1 L1A1 with `spiderman`, `1967-tv-series` and `smu-captain` also ran
 cleanly. Suits whose pages do match retail sizes still take the retail armor art
-for those pages while armor is on (Captain Spider's cape and head), and return to
+for those pages while armor is on, and return to
 normal on armor-off.
 
 The SM2 test switch now loads the armor bank itself when the level has not, so it
@@ -202,3 +202,8 @@ be paired with before/after pickup, damage, depletion, restart, and transition
 checks. This batch verified neither pickup nor armor mechanics, and supplies
 no basis for closure or a release-fix claim. Do not repeat the unsuccessful
 L8A3 recordings as though they were deterministic pickup routes.
+
+Suit mods now skip the armor art entirely and keep their own look under armor
+(protection still applies). Verified with `smu-captain` in SM1 L1A1 and
+`smu-aikman` in SM2 E3M0. Captain Spider's white cape and orange head are that
+suit's own design, visible before armor too, not an armor swap.

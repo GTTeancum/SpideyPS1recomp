@@ -20,6 +20,11 @@ namespace Recompiled;
 ///   - a texture that keeps a retail hash but is larger, or of another colour depth,
 ///     overruns its armor record into the next one, and the next lookup reads garbage.
 ///
+/// Suit mods never take the armor art: their pages are drawn from the mod's own images,
+/// so a retail armor page swapped underneath would only show on whatever pieces happen to
+/// match retail sizes (Captain Spider's cape and head). Every texture is skipped while a
+/// suit mod is active; armor protection still applies.
+///
 /// Instruction hook at the top of the per-texture loop (0x80046FD4): a texture is only
 /// swapped when its armor record exists and has the same depth and page size. Anything
 /// else is skipped and keeps its own look. Retail textures match exactly and swap as
@@ -47,7 +52,8 @@ public static class ArmorTextures
         int bytes = words * 2 * (short)m.ReadU16(c.S4);
 
         string reason;
-        if (armorHash == 0) reason = "no armor version";
+        if (SuitMods.Active >= 0) reason = "suit mod keeps its own look";
+        else if (armorHash == 0) reason = "no armor version";
         else if (!FindRecord(c, m, armorHash, out bool armorFourBit, out int armorBytes)) reason = "armor record missing";
         else if (armorFourBit != fourBit || armorBytes != bytes) reason = $"{bytes} bytes, armor page {armorBytes}";
         else return false;
