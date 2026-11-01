@@ -162,6 +162,8 @@ def main():
     else:
         skipped.append('func_80046B40(pre)')
     if 'func_80047DF8' in names:
+        patches.append({'overlay': 'main', 'function': 'func_80047DF8', 'mode': 'pre',
+                        'target': 'Recompiled.Costume.SetRetailCostume'})
         patches.append({'overlay': 'main', 'function': 'func_80047DF8', 'mode': 'post',
                         'target': 'Recompiled.Costume.ApplyAbilityProfile'})
     else:

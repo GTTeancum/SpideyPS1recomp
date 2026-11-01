@@ -392,6 +392,28 @@ public static class Costume
     }
 
     /// <summary>Post-hook for main:func_80047DF8 (Spider-Man construction).</summary>
+    /// <summary>
+    /// Pre-hook on func_80047DF8 (player costume setup). Retail keeps "selected costume
+    /// + 1" at gp+0xA8C, written by the shell's texture-overlay call (func_80046B40),
+    /// which this port replaces. Gameplay reads it for costume powers: 3 Symbiote and
+    /// 4 Captain Universe fire webs without fluid, 5 Spidey Unlimited sets the stealth
+    /// flag, 6/9/10 start with limited webbing. Imported costumes and mods use the
+    /// retail costume whose powers they take.
+    /// </summary>
+    public static void SetRetailCostume(CpuContext c, IMemory memory)
+    {
+        int powers = RetailPowers(ReadSelected(memory));
+        memory.WriteU32(c.GP + 0xA8Cu, (uint)powers + 1);
+        Console.WriteLine($"[costume] retail costume powers {Names[powers]} (gp+0xA8C = {powers + 1})");
+    }
+
+    static int RetailPowers(int selected)
+    {
+        if (SuitMods.IsMod(selected)) selected = SuitMods.At(selected).AbilityProfile;
+        if ((uint)selected >= AbilityDonors.Length) return 0;
+        return selected < OriginalCostumeCount ? selected : AbilityDonors[selected];
+    }
+
     public static void ApplyAbilityProfile(CpuContext c, IMemory memory)
     {
         int selected = ReadSelected(memory);
