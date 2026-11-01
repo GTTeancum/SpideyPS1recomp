@@ -69,7 +69,7 @@ public sealed class GlCore : IGpuBackend
 
     GlDisplayRt? _kTarget;
     bool _kTransparent;
-    bool _kModelDepth, _pendingModelSurface;
+    bool _kModelDepth, _pendingModelSurface, _kShadow;
     int _kImage = -1;
     int _kBlend, _kSetMask, _kCheckMask, _kBackground, _kIgnoreCoverage;
     byte _kClearR, _kClearG, _kClearB, _kDrawClearR, _kDrawClearG, _kDrawClearB;
@@ -415,7 +415,7 @@ public sealed class GlCore : IGpuBackend
         int blend = f.BlendMode;
         int image = f.UseImage ? f.Image : -1;
         var target = Classify();
-        if (_count > 0 && (target != _kTarget || _kModelDepth != modelDepth ||
+        if (_count > 0 && (target != _kTarget || _kModelDepth != modelDepth || _kShadow != f.Shadow ||
             !DesiredMatches(transparent, blend, image, f.Background,
                 f.IgnoreCoverage))) Flush();
         if (_count + vertsNeeded > MaxVerts) Flush();
@@ -423,6 +423,7 @@ public sealed class GlCore : IGpuBackend
 
         _kTarget = target;
         _kModelDepth = modelDepth;
+        _kShadow = f.Shadow;
         _kImage = image;
         _kBackground = f.Background ? 1 : 0;
         if (f.Background)
@@ -945,6 +946,15 @@ public sealed class GlCore : IGpuBackend
             _gl.DepthFunc(DepthFunction.Lequal);
             _gl.DepthMask(true);
         }
+        if (_kShadow && rt != null)
+        {
+            // The first shadow triangle over a pixel marks it; later ones skip it.
+            rt.EnsureModelDepth(_gl, _frame);
+            _gl.Enable(EnableCap.StencilTest);
+            _gl.StencilMask(0xFF);
+            _gl.StencilFunc(StencilFunction.Equal, 0, 0xFF);
+            _gl.StencilOp(StencilOp.Keep, StencilOp.Keep, StencilOp.Incr);
+        }
         if (_legacy)
         {
             _gl.Disable(EnableCap.Blend);
@@ -988,6 +998,7 @@ public sealed class GlCore : IGpuBackend
         }
 
         _gl.Disable(EnableCap.DepthTest);
+        _gl.Disable(EnableCap.StencilTest);
         if (rt is { CoverageFbo: not 0 } &&
             GpuHle.SourceAspect > GpuHle.BaseAspect + 0.001f)
         {

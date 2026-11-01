@@ -138,6 +138,7 @@ public static class Program
         // Native bounds and subdivision hooks supply the widened geometry.
         // Copying old boundary pixels can conceal holes and stretch textures.
         Wide.Install(0x80031EA0u, defaultEnabled: true);
+        PlayerShadow.Install();
         Harness.Install();
 
         AppDomain.CurrentDomain.UnhandledException += (_, e) => Diag.Fatal(e.ExceptionObject as Exception);

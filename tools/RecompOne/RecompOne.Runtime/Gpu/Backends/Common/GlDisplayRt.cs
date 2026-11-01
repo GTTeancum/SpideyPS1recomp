@@ -9,6 +9,7 @@ public sealed class GlDisplayRt
     public uint Tex, Fbo;
     // PS1 ordering-table buckets cannot resolve intersecting clothing surfaces.
     // Allocate depth only when a suit with exact vertex depth is actually drawn.
+    // Its stencil half marks pixels a host ground shadow has already darkened.
     public uint ModelDepth;
     public long ModelDepthFrame = long.MinValue;
 
@@ -18,9 +19,9 @@ public sealed class GlDisplayRt
         {
             ModelDepth = gl.GenRenderbuffer();
             gl.BindRenderbuffer(RenderbufferTarget.Renderbuffer, ModelDepth);
-            gl.RenderbufferStorage(RenderbufferTarget.Renderbuffer, InternalFormat.DepthComponent24,
+            gl.RenderbufferStorage(RenderbufferTarget.Renderbuffer, InternalFormat.Depth24Stencil8,
                 (uint)TexW, (uint)TexH);
-            gl.FramebufferRenderbuffer(FramebufferTarget.Framebuffer, FramebufferAttachment.DepthAttachment,
+            gl.FramebufferRenderbuffer(FramebufferTarget.Framebuffer, FramebufferAttachment.DepthStencilAttachment,
                 RenderbufferTarget.Renderbuffer, ModelDepth);
         }
         if (ModelDepthFrame != frame)
@@ -28,7 +29,9 @@ public sealed class GlDisplayRt
             gl.Disable(EnableCap.ScissorTest);
             gl.DepthMask(true);
             gl.ClearDepth(1.0);
-            gl.Clear(ClearBufferMask.DepthBufferBit);
+            gl.StencilMask(0xFF);
+            gl.ClearStencil(0);
+            gl.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.StencilBufferBit);
             gl.Enable(EnableCap.ScissorTest);
             ModelDepthFrame = frame;
         }

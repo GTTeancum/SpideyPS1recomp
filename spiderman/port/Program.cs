@@ -143,6 +143,7 @@ public static class Program
         // Precise projected geometry supplies the wide view. Repeating pixels
         // from the old 4:3 boundary invents stretched surfaces in uncovered areas.
         Wide.Install();
+        PlayerShadow.Install();
         Replay.Install();
         Harness.Install();
 

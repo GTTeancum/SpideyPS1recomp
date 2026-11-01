@@ -407,6 +407,18 @@
     },
     {
       "overlay": "main",
+      "function": "func_80084234",
+      "mode": "pre",
+      "target": "Recompiled.PlayerShadow.MeshDraw"
+    },
+    {
+      "overlay": "main",
+      "function": "func_800842F0",
+      "mode": "pre",
+      "target": "Recompiled.PlayerShadow.MeshDraw"
+    },
+    {
+      "overlay": "main",
       "address": "80075538",
       "mode": "instruction_branch",
       "resumeAddress": "80075588",

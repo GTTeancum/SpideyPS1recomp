@@ -18,6 +18,11 @@ public struct PrimFlags
     public int OtIndex;
     public bool UseImage;
     public int Image;
+    /// <summary>
+    /// Host-drawn ground shadow: darkens each pixel at most once per frame, however many
+    /// of its triangles overlap, through the display target's stencil.
+    /// </summary>
+    public bool Shadow;
 
     public readonly int BlendMode => (TPage >> 5) & 3;
 }
