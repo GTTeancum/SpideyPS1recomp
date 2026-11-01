@@ -51,7 +51,7 @@ public sealed partial class Gpu
         // Complete validated projections already bypass the wrapped integer XY.
         if (!(a.HasSubpixel && b.HasSubpixel && c.HasSubpixel) &&
             RejectCoordinateWrap(a, b, c, spanX, spanY)) return;
-        if (RejectSpan(spanX, spanY)) return;
+        if (RejectSpan(spanX, spanY, semi)) return;
 
         if (tex && world)
             GpuHle.NoteWorldGeometry(a.Z, b.Z, c.Z,

@@ -44,6 +44,20 @@ public sealed partial class Gpu
         return false;
     }
 
+    // The widened span allowance exists so solid world geometry keeps covering the
+    // widescreen margins. Semi-transparent effects get the retail limit: a smoke or dust
+    // sprite next to the camera projects 2000 pixels wide, the retail GPU drops it, and
+    // drawing a stack of them additively whites out half the screen (SM2 E1M1 fight).
+    static bool RejectSpan(int spanX, int spanY, bool semi)
+    {
+        if (semi && (spanX > 1023 || spanY > 511))
+        {
+            if (spanX > 1023) SpanXRejected++; else SpanYRejected++;
+            return true;
+        }
+        return RejectSpan(spanX, spanY);
+    }
+
     static bool RejectSpan(int spanX, int spanY)
     {
         if (spanY > Hle.GpuHle.MaxSpanY)
@@ -226,7 +240,7 @@ public sealed partial class Gpu
     {
         int spanX = Math.Max(a.X, Math.Max(b.X, c.X)) - Math.Min(a.X, Math.Min(b.X, c.X));
         int spanY = Math.Max(a.Y, Math.Max(b.Y, c.Y)) - Math.Min(a.Y, Math.Min(b.Y, c.Y));
-        if (RejectCoordinateWrap(a, b, c, spanX, spanY) || RejectSpan(spanX, spanY)) return;
+        if (RejectCoordinateWrap(a, b, c, spanX, spanY) || RejectSpan(spanX, spanY, semi)) return;
 
         long area = (long)(b.X - a.X) * (c.Y - a.Y) - (long)(b.Y - a.Y) * (c.X - a.X);
         if (area == 0) return;
