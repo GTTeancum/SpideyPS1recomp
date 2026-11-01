@@ -40,7 +40,7 @@ def main():
                 if converted.size != original.size or converted.tobytes() != original.tobytes():
                     raise ValueError(f'Pixel mismatch: {offset}')
             textures[material] = relative
-    manifest = dict(version=1, id='amazing-tasm', name='Amazing (TASM)',
+    manifest = dict(version=1, id='amazing-tasm', name='Amazing - TASM',
                     comments='By Dat Mental Gamer', model='spiderman',
                     abilities={'profile': 'spiderman'}, textures=textures)
     (args.output / 'suit.json').write_text(json.dumps(manifest, indent=2) + '\n')

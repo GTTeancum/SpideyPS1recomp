@@ -32,11 +32,9 @@ internal static unsafe class InputManager
     const int RightStickRight = 107;
     const int RightStickUp = 108;
     const int RightStickDown = 109;
-    static bool _topBarToggle;
     static bool _fullscreenToggle;
 
     
-    public static bool ConsumeTopBarToggle() { var v = _topBarToggle; _topBarToggle = false; return v; }
     public static bool ConsumeFullscreenToggle(){ var v = _fullscreenToggle; _fullscreenToggle = false; return v; }
 
     public static void Initialize(IInputContext input)
@@ -368,7 +366,6 @@ internal static unsafe class InputManager
 
     static void OnKeyDown(IKeyboard kb, Key key, int _)
     {
-        if (key == Key.F1)  _topBarToggle = true;
         if (key == Key.F11) _fullscreenToggle = true;
 
         if (EventBus.HasAnyListeners<KeyboardEvent>())

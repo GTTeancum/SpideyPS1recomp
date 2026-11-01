@@ -11,9 +11,9 @@ from pack_sm2_costume_to_dc import container_layout
 
 ROOT = Path(__file__).resolve().parents[2]
 SUITS = (
-    ('raimi-red-blue', 'Raimi (red & blue)', 'SPIDEY', 'spiderman', 'spiderman',
+    ('raimi-red-blue', 'Raimi Red and Blue', 'SPIDEY', 'spiderman', 'spiderman',
      'Spider-Man 3 Default Costume/spidey'),
-    ('raimi-symbiote', 'Raimi (symbiote)', 'SPSYMBI', 'symbiote', 'symbiote',
+    ('raimi-symbiote', 'Raimi Symbiote', 'SPSYMBI', 'symbiote', 'symbiote',
      'Spider-Man 3 Black Suit/spsymbi'),
 )
 

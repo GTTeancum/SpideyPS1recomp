@@ -410,11 +410,6 @@ public static partial class HostWindow
         long inputStart = Diagnostics.PresentationProfile.Stamp();
         InputManager.Poll();
         Diagnostics.PresentationProfile.InputPollMs += Diagnostics.PresentationProfile.Elapsed(inputStart);
-        if (InputManager.ConsumeTopBarToggle())
-        {
-            ConfigManager.View.HideTopBar = !ConfigManager.View.HideTopBar;
-            ConfigManager.SaveView(PanelManager.Panels);
-        }
         if (InputManager.ConsumeFullscreenToggle())
         {
             ConfigManager.View.Fullscreen = !ConfigManager.View.Fullscreen;
@@ -552,7 +547,6 @@ public static partial class HostWindow
         PopupManager.Register(new StartupNoticePopup());
         PopupManager.Register(new DiscPickerPopup());
 
-        MainMenuBar.RegisterBuiltins();
 
         SettingsRegistry.Register(new InterfaceSettingsSection());
         SettingsRegistry.Register(new InputSettingsSection());
@@ -658,9 +652,6 @@ public static partial class HostWindow
             if (_ramReady) FlushRamTexture(gl);
         }
         else ReleaseRamBuffers(gl);
-
-        if (!ConfigManager.View.HideTopBar)
-            MainMenuBar.Draw();
 
         DrawDockspace();
         PanelManager.DrawPanels();

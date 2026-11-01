@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "smu-maskedmarvel",
-  "name": "MASKEDMARVEL",
-  "comments": "RIG PRESERVED",
+  "name": "Masked Marvel",
+  "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",
   "abilities": {

@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "smu-fearitself",
-  "name": "FEARITSELF",
-  "comments": "RIG PRESERVED",
+  "name": "Fear Itself",
+  "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",
   "abilities": {

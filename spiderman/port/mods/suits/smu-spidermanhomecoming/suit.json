@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "smu-spidermanhomecoming",
-  "name": "SPIDERMANHOMECOMING",
-  "comments": "RIG PRESERVED",
+  "name": "Spidey Homecoming",
+  "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",
   "abilities": {

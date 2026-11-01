@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "smu-scarlet-spiderham",
-  "name": "SCARLET HAM",
-  "comments": "RIG PRESERVED",
+  "name": "Scarlet Spider-Ham",
+  "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",
   "abilities": {

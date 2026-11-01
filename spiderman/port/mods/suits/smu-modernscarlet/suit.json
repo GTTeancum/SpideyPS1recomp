@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "smu-modernscarlet",
-  "name": "MODERNSCARLET",
-  "comments": "RIG PRESERVED",
+  "name": "Modern Scarlet",
+  "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",
   "abilities": {

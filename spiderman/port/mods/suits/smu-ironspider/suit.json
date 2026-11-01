@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "smu-ironspider",
-  "name": "IRONSPIDER",
-  "comments": "RIG PRESERVED",
+  "name": "Iron Spider",
+  "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",
   "abilities": {

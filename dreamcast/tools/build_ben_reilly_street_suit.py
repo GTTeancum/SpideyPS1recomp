@@ -59,7 +59,7 @@ def main():
                         '--output', work, '--donor', 'sppark.psx'], check=True)
         shutil.copy2(Path(work) / 'actor.psx', args.output / 'actor.psx')
         shutil.copy2(Path(work) / 'rig-report.json', args.output / 'rig-report.json')
-    suit = dict(version=1, id='ben-reilly-street', name='Ben Reilly (Street)',
+    suit = dict(version=1, id='ben-reilly-street', name='Ben Reilly - Street',
                 comments='By DarthJak90', model='peter-parker',
                 modelFile='actor.psx', abilities={'profile': 'spiderman'}, textures=textures)
     (args.output / 'suit.json').write_text(json.dumps(suit, indent=2) + '\n')

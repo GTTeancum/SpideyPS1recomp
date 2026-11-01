@@ -120,7 +120,7 @@ def convert(fbx,reference,donor,texture,out,suit_id,name):
     for slot,im in enumerate(images):
         filename='diffuse.png' if slot==0 else f'diffuse-{slot}.png'
         im.save(out/'textures'/filename);texture_map[f'{materials[slot]:08X}']='textures/'+filename
-    manifest={'version':1,'id':suit_id,'name':name,'comments':'RIG PRESERVED','model':'spiderman','modelFile':'actor.psx','abilities':{'profile':'spiderman'},'textures':texture_map}
+    manifest={'version':1,'id':suit_id,'name':name,'comments':'By Gameloft','model':'spiderman','modelFile':'actor.psx','abilities':{'profile':'spiderman'},'textures':texture_map}
     (out/'suit.json').write_text(json.dumps(manifest,indent=2)+'\n')
     # The external texture is a direct source RGB conversion, NOT an invented upscale.
     report={'schema':2,'status':'converted and core-evaluated; game execution is a separate acceptance gate','sourceRigBones':len(s.names),

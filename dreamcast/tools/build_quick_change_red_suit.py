@@ -56,7 +56,7 @@ def main():
                         '--output', work], check=True)
         shutil.copy2(Path(work) / 'actor.psx', args.output / 'actor.psx')
         shutil.copy2(Path(work) / 'rig-report.json', args.output / 'rig-report.json')
-    suit = dict(version=1, id='quick-change-red', name='Quick Change (red)',
+    suit = dict(version=1, id='quick-change-red', name='Quick Change - Red',
                 comments='By Dat Mental Gamer', model='quick-change',
                 modelFile='actor.psx', abilities={'profile': 'spiderman'}, textures=textures)
     (args.output / 'suit.json').write_text(json.dumps(suit, indent=2) + '\n')

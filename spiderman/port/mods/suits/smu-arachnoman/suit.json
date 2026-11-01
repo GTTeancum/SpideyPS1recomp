@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "smu-arachnoman",
-  "name": "ARACHNOMAN",
-  "comments": "RIG PRESERVED",
+  "name": "Arachno-Man",
+  "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",
   "abilities": {

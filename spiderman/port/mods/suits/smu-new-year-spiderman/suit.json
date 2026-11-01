@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "smu-new-year-spiderman",
-  "name": "NEW YEAR SPIDERMAN",
-  "comments": "RIG PRESERVED",
+  "name": "New Year Spider-Man",
+  "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",
   "abilities": {

@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "smu-spacesuit",
-  "name": "SPACESUIT",
-  "comments": "RIG PRESERVED",
+  "name": "Space Suit",
+  "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",
   "abilities": {

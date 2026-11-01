@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "smu-the-spider-peter-parker",
-  "name": "THE SPIDER PET #215",
-  "comments": "RIG PRESERVED",
+  "name": "The Spider",
+  "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",
   "abilities": {

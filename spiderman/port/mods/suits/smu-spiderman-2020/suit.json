@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "smu-spiderman-2020",
-  "name": "SPIDERMAN 2020",
-  "comments": "RIG PRESERVED",
+  "name": "Spider-Man 2020",
+  "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",
   "abilities": {

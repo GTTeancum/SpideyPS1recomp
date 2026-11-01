@@ -74,6 +74,10 @@ public static class SuitMods
             }
             catch (Exception e) { Console.Error.WriteLine($"[suit-mod] rejected {file}: {e.Message}"); }
         }
+        // List add-on suits by the name the viewer shows, not by folder. Selection is
+        // saved and restored by id, so this order is free to change.
+        Catalogue.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase) is var c && c != 0
+            ? c : string.CompareOrdinal(a.Id, b.Id));
         string state = Path.Combine(_root, "selected-suit.txt");
         try
         {

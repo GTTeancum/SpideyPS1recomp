@@ -1,8 +1,8 @@
 {
   "version": 1,
   "id": "smu-endofearth",
-  "name": "ENDOFEARTH",
-  "comments": "RIG PRESERVED",
+  "name": "Ends of the Earth",
+  "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",
   "abilities": {

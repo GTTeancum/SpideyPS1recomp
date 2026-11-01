@@ -81,6 +81,10 @@ public static class SuitMods
         }
         if (smuEligible is not null && !smuEligible.SetEquals(registeredSmus))
             throw new InvalidDataException("approved SMU eligibility manifest and registered suits differ");
+        // List add-on suits by the name the viewer shows, not by folder. Selection is
+        // saved and restored by id, so this order is free to change.
+        Catalogue.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase) is var c && c != 0
+            ? c : string.CompareOrdinal(a.Id, b.Id));
         string state = Path.Combine(_root, "selected-suit.txt");
         try
         {
