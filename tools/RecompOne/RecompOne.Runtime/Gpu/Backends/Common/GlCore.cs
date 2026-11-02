@@ -1293,6 +1293,44 @@ public sealed class GlCore : IGpuBackend
         return (outTex, fbW, fbH, aspect);
     }
 
+    uint _heldTex, _heldFbo;
+    int _heldW, _heldH;
+
+    /// <summary>
+    /// Copy the frame PresentDisplay just produced, so it can be shown on a later console
+    /// tick after other frames have been presented (frame interpolation).
+    /// </summary>
+    public unsafe (uint tex, int w, int h) HoldPresented()
+    {
+        if (_finalFbo == 0 || _finalW <= 0 || _finalH <= 0) return (0, 0, 0);
+        if (_heldTex == 0)
+        {
+            _heldTex = _gl.GenTexture();
+            _heldFbo = _gl.GenFramebuffer();
+        }
+        if (_heldW != _finalW || _heldH != _finalH)
+        {
+            _gl.BindTexture(TextureTarget.Texture2D, _heldTex);
+            _gl.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)GLEnum.Linear);
+            _gl.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)GLEnum.Linear);
+            _gl.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)GLEnum.ClampToEdge);
+            _gl.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)GLEnum.ClampToEdge);
+            _gl.TexImage2D(TextureTarget.Texture2D, 0, InternalFormat.Rgba8, (uint)_finalW, (uint)_finalH, 0,
+                PixelFormat.Rgba, PixelType.UnsignedByte, null);
+            _gl.BindFramebuffer(FramebufferTarget.Framebuffer, _heldFbo);
+            _gl.FramebufferTexture2D(FramebufferTarget.Framebuffer, FramebufferAttachment.ColorAttachment0,
+                TextureTarget.Texture2D, _heldTex, 0);
+            _heldW = _finalW; _heldH = _finalH;
+        }
+        _gl.Disable(EnableCap.ScissorTest);
+        _gl.BindFramebuffer(FramebufferTarget.ReadFramebuffer, _finalFbo);
+        _gl.BindFramebuffer(FramebufferTarget.DrawFramebuffer, _heldFbo);
+        _gl.BlitFramebuffer(0, 0, _finalW, _finalH, 0, 0, _finalW, _finalH,
+            ClearBufferMask.ColorBufferBit, BlitFramebufferFilter.Nearest);
+        _gl.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
+        return (_heldTex, _heldW, _heldH);
+    }
+
     unsafe uint ApplyWideBackground(uint srcTex, GlDisplayRt? src, int w, int h, float aspect)
     {
         if (!GpuHle.WideBackgroundCompletion || _wideCompleteProg == 0 ||

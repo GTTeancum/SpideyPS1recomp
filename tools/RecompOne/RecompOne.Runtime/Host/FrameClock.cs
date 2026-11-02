@@ -97,12 +97,6 @@ internal static class FrameClock
         _lastStart = started;
     }
 
-    public static double NowMs => _clock.Elapsed.TotalMilliseconds;
-    public static double HalfFrameMs => FrameMs / 2;
-
-    /// <summary>Wait until a moment on this clock (NowMs).</summary>
-    public static void WaitUntilMs(double deadline) => WaitUntil(deadline);
-
     public static void Resync() => _lastStart = _clock.Elapsed.TotalMilliseconds;
     public static void Close() => _timer?.Dispose();
 }

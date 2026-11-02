@@ -193,13 +193,35 @@ public static class Runtime
             Diagnostics.FrameProfile.Note(__t0, __t1, __t2);
             Diagnostics.PresentationProfile.EndPresentation();
         }
-        else HostWindow.ServiceEvents();
+        else if (!HostWindow.PresentHeld(Gpu)) HostWindow.ServiceEvents();
         Sdk.LibCd.Tick();
         if (Mem != null) { Bios.BiosB.RefreshPad(Mem); Sdk.LibPad.Refresh(Mem); } //is this correct?
         if (Cpu != null && Mem != null) Bios.BiosB.PumpCard(Cpu, Mem, _pumping);
         // One IRQ per console tick, including the ticks with no host presentation.
         // Sequential waits must observe separate 60 Hz edges, not a pair at 30 Hz.
         DispatchIrq(0);
+        if (ClockTrace) NoteTick();
+    }
+
+    // RECOMP_CLOCK_TRACE=1: console ticks and game frames per real second, and the
+    // spacing between ticks, to check presentation changes leave the game clock alone.
+    static readonly bool ClockTrace = Environment.GetEnvironmentVariable("RECOMP_CLOCK_TRACE") == "1";
+    static readonly System.Diagnostics.Stopwatch _clockWall = System.Diagnostics.Stopwatch.StartNew();
+    static long _ticks, _windowTicks, _windowSwaps;
+    static double _windowStart, _lastTick, _gapMin = double.MaxValue, _gapMax;
+
+    static void NoteTick()
+    {
+        double now = _clockWall.Elapsed.TotalMilliseconds;
+        if (_ticks++ > 0) { double gap = now - _lastTick; _gapMin = Math.Min(_gapMin, gap); _gapMax = Math.Max(_gapMax, gap); }
+        _lastTick = now;
+        if (++_windowTicks < 600) return;
+        double seconds = (now - _windowStart) / 1000.0;
+        long swaps = Hardware.GteScreen.Swaps - _windowSwaps;
+        Console.WriteLine($"[clock] tick {_ticks}: {_windowTicks / seconds:F3} ticks/s, {swaps / seconds:F3} game frames/s, " +
+                          $"tick gap {_gapMin:F1}-{_gapMax:F1} ms");
+        _windowStart = now; _windowTicks = 0; _windowSwaps = Hardware.GteScreen.Swaps;
+        _gapMin = double.MaxValue; _gapMax = 0;
     }
 
     static bool _pumping;

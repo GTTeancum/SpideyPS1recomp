@@ -316,8 +316,12 @@ public static class GteScreen
     /// <summary>
     /// Called once per actual display-buffer swap.
     /// </summary>
+    /// <summary>Display-buffer swaps: one per game frame.</summary>
+    public static long Swaps;
+
     public static void Roll()
     {
+        Swaps++;
         _cur = (_cur + 1) % Generations;
         _sets[_cur].Clear();
         _depths[_cur].Clear();

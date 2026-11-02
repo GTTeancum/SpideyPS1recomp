@@ -389,29 +389,31 @@ public static partial class HostWindow
     }
 
     /// <summary>
-    /// Present one game frame. With interpolation on, an in-between frame is presented
-    /// first and the real one half a game frame later.
+    /// Present one game frame. With interpolation on, the in-between frame is shown now
+    /// and the real one is kept for the game's next console tick (PresentHeld), half a
+    /// game frame later. Nothing here waits: the console ticks, and with them the game's
+    /// clock, keep exactly the timing they have without interpolation.
     /// </summary>
     public static void PresentGameFrame(Gpu? gpu)
     {
+        _heldPending = false;
         if (_interpolator is { } ip && Hle.GpuHle.Backend == ip && !MovieFrameActive &&
-            gpu is { DisplayEnabled: true } && ip.EndFrame())
+            _glBackend is { Ready: true } gl && gpu is { DisplayEnabled: true } && ip.EndFrame())
         {
             long start = System.Diagnostics.Stopwatch.GetTimestamp();
+            if (InterpolateOverride != "mid")
+            {
+                var wf = _window!.FramebufferSize;
+                var (_, _, _, aspect) = gl.PresentDisplay(gpu.DisplayX, gpu.DisplayY,
+                    gpu.DisplayWidth, gpu.DisplayHeight, gpu.Display24Bit, outW: wf.X, outH: wf.Y);
+                (_heldTex, _heldW, _heldH) = gl.HoldPresented();
+                _heldAspect = aspect;
+                _heldPending = _heldTex != 0;
+            }
             ip.Replay(0.5f);
             Present(gpu);
-            double shown = FrameClock.NowMs;
-            NoteSwap(start);
-            if (InterpolateOverride == "mid") return;
-            // Redraw the real frame now; presentation already copied the in-between
-            // one out. Only the swap itself waits for the half-frame mark, so the
-            // redraw does not eat into the time the game has for its next frame.
+            // Put the real frame back where the game and VRAM readers expect it.
             ip.Replay(1f);
-            FrameClock.WaitUntilMs(shown + FrameClock.HalfFrameMs - _presentMs);
-            start = System.Diagnostics.Stopwatch.GetTimestamp();
-            double presentStart = FrameClock.NowMs;
-            Present(gpu);
-            _presentMs = Math.Clamp(_presentMs * 0.9 + (FrameClock.NowMs - presentStart) * 0.1, 0, 8);
             NoteSwap(start);
             return;
         }
@@ -420,8 +422,28 @@ public static partial class HostWindow
         NoteSwap(plain);
     }
 
+    static bool _heldPending, _showHeld;
+    static uint _heldTex;
+    static int _heldW, _heldH;
+    static float _heldAspect;
+
+    /// <summary>
+    /// On a console tick without a game frame: show the real frame kept by
+    /// PresentGameFrame. Returns false when there is nothing to show.
+    /// </summary>
+    public static bool PresentHeld(Gpu? gpu)
+    {
+        if (!_heldPending) return false;
+        _heldPending = false;
+        long start = System.Diagnostics.Stopwatch.GetTimestamp();
+        _showHeld = true;
+        try { Present(gpu); }
+        finally { _showHeld = false; }
+        NoteSwap(start);
+        return true;
+    }
+
     // RECOMP_INTERP_TRACE=1: spacing of presented frames and the cost of drawing them.
-    static double _presentMs = 1;
     static readonly bool PacingTrace = Environment.GetEnvironmentVariable("RECOMP_INTERP_TRACE") == "1";
     static long _lastSwap, _swaps;
     static double _gapSum, _gapMax, _drawSum, _drawMax;
@@ -692,7 +714,11 @@ public static partial class HostWindow
         else if (gpu != null)
         {
 
-            if (Hle.GpuHle.Active && _glBackend is { Ready: true } && gpu.DisplayEnabled)
+            if (_showHeld && _heldTex != 0)
+            {
+                OutputPanel.SetTexture(_heldTex, _heldW, _heldH, _heldAspect);
+            }
+            else if (Hle.GpuHle.Active && _glBackend is { Ready: true } && gpu.DisplayEnabled)
             {
                 var wf = _window!.FramebufferSize;
                 var (tex, tw, th, aspect) = _glBackend.PresentDisplay(

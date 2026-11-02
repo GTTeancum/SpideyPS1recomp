@@ -25,8 +25,12 @@ in-between frame, without changing the game clock or what the game draws.
 - Ground subdivision points (`WorldSubpixel`) are named from their corners and weights.
 - Characters and other moving objects use name matching; a point shared by several
   triangles takes one movement. The silhouette shadow names its own vertices.
-- The real frame is redrawn before the half-frame wait, so only the swap is timed and
-  the game keeps nearly the whole other half frame for its own work.
+- Nothing waits. On the console tick that presents a game frame, the real frame's final
+  image is copied aside, the in-between frame is drawn and presented, and the real frame
+  is redrawn into place. On the following tick, which the game takes anyway, the copied
+  real frame is presented. Tick delivery, and therefore the game clock, is untouched.
+  (A first version waited half a frame inside the presenting tick; that left the game
+  too little time in heavy scenes and its clock fell to about 56 ticks per second.)
 
 ## Verification (2026-11-01)
 
@@ -34,7 +38,11 @@ in-between frame, without changing the game clock or what the game draws.
   seams after the blended-camera change (earlier versions showed background slivers).
 - SM2 e1m0 rooftop, running, custom suit: same.
 - SM1 boot, menus, level-start cutscene and gameplay sweep: no artefacts.
-- Presentation spacing (hidden window): 16.72 ms average, 23 ms worst, against 16.67.
+- Presentation spacing (hidden window): about 16.8 ms average against 16.67.
+- Game clock (`RECOMP_CLOCK_TRACE=1`, ticks and game frames per real second over 600-tick
+  windows): every window, off and on, advances exactly one game frame per two ticks.
+  SM1 gameplay averaged 59.5 ticks/s off and 59.2 on, with 0.2 between the two off runs;
+  SM2 from cutscene to gameplay matched within 0.5 ticks/s in every window.
 - Regression suite passed.
 
 The setting is under Display, "60 FPS (interpolated)", on by default.

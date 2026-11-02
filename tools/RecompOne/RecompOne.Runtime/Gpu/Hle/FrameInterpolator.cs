@@ -5,9 +5,11 @@ namespace RecompOne.Runtime.Hle;
 ///
 /// Every backend call the game makes is passed straight through, so the frame it draws
 /// is exactly what it always was, and is also recorded. When the frame is presented the
-/// host first replays that recording with each projected vertex moved halfway back
-/// towards where the same vertex was in the previous frame, presents that, and half a
-/// frame later replays it unchanged and presents the real frame.
+/// host keeps a copy of the real frame's image, replays the recording with each
+/// projected vertex moved halfway back towards where the same vertex was in the previous
+/// frame, presents that, and replays it unchanged to put the real frame back. The copy
+/// is shown on the game's next console tick (HostWindow.PresentHeld); nothing waits, so
+/// the ticks that drive the game clock are delivered exactly as without interpolation.
 ///
 /// Scenery (every corner named by its world position, GteIds.CameraPosition) is redrawn
 /// from a camera between the previous frame's and this one's, so finely and coarsely
