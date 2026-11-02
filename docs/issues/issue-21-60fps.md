@@ -46,3 +46,26 @@ in-between frame, without changing the game clock or what the game draws.
 - Regression suite passed.
 
 The setting is under Display, "60 FPS (interpolated)", on by default.
+
+## Chase Venom check (November 2, 2026)
+
+Deployed SM1 build, `SPIDEY_LEVEL=l5a1` with the diagnostic Venom-route follower and
+region pulses (`SPIDEY_CHASE_FOLLOW=1`, `SPIDEY_CHASE_REGION_PULSES=1`), three runs:
+interpolation off twice, on once. Codex's ordinary-input route scripts were never
+committed, so the follower stands in for player input; it is identical in every run.
+
+- The building-script cadence (three IRQs per update) is selected and restored in all
+  three runs. Game frames run at 19.8-19.9/s through it in every run, 29.6-29.9/s
+  either side, with 59.2-59.8 ticks/s throughout.
+- Every region pulse and the building-cutscene release fall at the same tick offsets
+  relative to the `l5a1_t.trg` load in all three runs.
+- 25 RAM snapshots anchored to `l5a1_t.trg+400..+5200`: player position, state,
+  script flag and contact, Venom position, script and task contents and the native
+  game counter match between off and on at every checkpoint whose counter matches.
+  The only differing field is the address of Venom's current task record, which also
+  differs between the two off runs.
+- Building-scene captures (raster source) at three points are identical off and on.
+
+Not covered: the end of the chase (no committed ordinary-input route reaches it) and
+the look of interpolated frames during the 20 Hz section. #21 remains open for a live
+playthrough.
