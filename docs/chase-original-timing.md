@@ -1,8 +1,9 @@
 # Chase Venom: update rate on the original disc
 
 Measured November 2, 2026. Question: does the retail game run Chase Venom (`l5a1`) at
-30 updates/s with only the through-building sequence at 20, as the port's
-`Timing.cs` cadence switch assumes?
+30 updates/s with only the through-building sequence at 20, as the port's earlier
+`Timing.cs` cadence switch assumed? It does not; the port now follows the disc's pace
+in 5 FPS steps (see "Port pacing").
 
 ## How the retail game paces itself
 
@@ -15,53 +16,87 @@ that increments it, so every update advances the simulation by a fixed amount an
 overrun slows the game down rather than skipping time. There is no authored 20 Hz
 mode: the rate is whatever the console's load allows.
 
-The port runs updates in far less than a vblank, so it always gets two, except where
-`Timing.WaitVBlanks` adds a third during the authored building script.
+The port runs updates in far less than a vblank, so without help it always gets two.
 
 ## Measurement
 
-PCSX-Redux nightly 30168.20261102.2 (interpreter, OpenBIOS), original
-`Spider-Man (USA).bin`, run with `tools/redux/run.sh chase_timing.lua` (no window;
-output in `private/work/redux/chase`). The script:
+PCSX-Redux nightly 30168.20261102.2 (interpreter, OpenBIOS, `-debugger` for
+breakpoints), original `Spider-Man (USA).bin`, run with
+`tools/redux/run.sh chase_timing.lua` (no window; output in
+`private/work/redux/chase-full`). The script:
 
 - presses Start and Cross through the menus at the port's usual offsets;
 - swaps the level descriptor `l1a1_t` to `l5a1_t` at `80018800`, as `SPIDEY_LEVEL`
   does;
-- reproduces `SPIDEY_CHASE_FOLLOW`/`SPIDEY_CHASE_REGION_PULSES`: the player is moved to
-  Venom's position from 20 vblanks earlier, and the five region commands are issued
-  by calling `8005BA58` from the main loop when Venom waits at a taunt stop;
-- logs the vblank count of every update (one row per change of the counter at
-  `800B4F38`).
+- reproduces `SPIDEY_CHASE_FOLLOW`, `SPIDEY_CHASE_REGION_PULSES` and
+  `SPIDEY_CHASE_FULL_AUDIT`: the player is moved to Venom's position from 20 vblanks
+  earlier, the region commands are issued by calling `8005BA58` from the main loop
+  when Venom waits at a stop, the follower lets go while the authored player script
+  runs, and at the last stop region group 272's links are run;
+- logs every update (one row per change of the counter at `800B4F38`): its vblank
+  time, player and Venom positions, Venom's next route point and the player-script
+  flag.
 
-Screenshots confirm the run is the real chase: "Chase Venom to his hideout", the taunt
-stops, the building sequence, then "You lost Venom" once the follower is released.
+Screenshots confirm the run is the real chase: "Chase Venom to his hideout", the
+stops, the building sequence, the route on to the hideout and the ending script, after
+which the next level loads.
 
 ## Result
 
-Updates by the number of vblanks they took (1,852 updates). Stretches are in vblanks
-from level start; the building sequence starts when the authored player script does
-(+2606) and ends where the screenshots show the HUD back with Spider-Man outside.
+| Stretch | Updates | Disc updates/s |
+| --- | --- | --- |
+| Intro script | 22 | 18.9 |
+| Start to Venom's first stop | 221 | 20.0 |
+| First to second stop | 163 | 20.1 |
+| Second to third stop | 275 | 21.0 |
+| Third to fourth stop | 92 | 15.1 |
+| Fourth to fifth stop, building entry | 60 | 15.3 |
+| Building script | 760 | 21.5 |
+| On to the sixth stop | 372 | 20.7 |
+| Sixth stop to the hideout | 311 | 24.8 |
+| Ending script | 156 | 18.9 |
 
-| Stretch | 2 (30/s) | 3 (20/s) | 4 (15/s) | 5+ |
-| --- | --- | --- | --- | --- |
-| 0-1799, opening rooftops | 134 | 441 | 49 | 2 |
-| 1800-2605, last stops before the building | 0 | 24 | 177 | 5 |
-| 2606-4649, building sequence | 216 | 480 | 26 | 13 |
-| 4650-5454, outside afterwards until "You lost Venom" | 52 | 223 | 7 | 1 |
+The rate also moves inside a stretch; within the building script, for example, a run
+of about 180 updates holds two vblanks while most of the rest take three.
 
-Inside the building sequence the rate is not constant either: 3100-3499 is mostly two
-vblanks (151 of 184 updates), while 3500-4649 is almost all three.
+Stops fall at level +733, +1219, +2006, +2371, +2590 and +5800 vblanks; the building
+script runs from +2606 to +4724 and the ending script starts at +6552.
 
-Region pulses land at level +733, +1219, +2006, +2371 and +2590 vblanks. The port's
-fixture puts the same pulses 478, 778, 362 and 214 vblanks apart; the disc puts them
-486, 787, 365 and 219 apart.
+## Port pacing
 
-The retail chase runs at about 20 updates/s for most of its length and about 15/s
-over the last stops before the building. The port runs all of it at 30/s except the
-building script, where it holds a steady 20/s. Outside that sequence the port's chase
-plays up to twice as fast in real time; inside it, the disc briefly returns to 30/s
-where the port does not. 60 FPS interpolation (#21) does not change update timing
-either way.
+`spiderman/patches/Timing.cs` holds the chase to these rates, rounded to 5 FPS steps,
+by lengthening the main loop's second wait:
+
+| Stretch | Port |
+| --- | --- |
+| Intro script, start to the third stop | 20 |
+| Third stop to the building, building script | 15 |
+| On to the sixth stop | 20 |
+| Sixth stop to the hideout | 25 (two and three vblanks alternating) |
+| Ending script | 20 |
+
+The stretch is found from the player-script flag (the first start is the intro, the
+second the building, the third the ending) and Venom's next route point (third stop
+35, building entry 54, sixth stop 227, last point before the hideout 241). Other
+levels keep 30 updates/s. This replaces the earlier switch that held only the
+building script at 20.
+
+The building script is the exception to rounding. Its disc rate is 21.5, but at a
+steady three vblanks per update Spider-Man's scripted run misses the cutscene region
+(script `800E2B28`, fired from `8005A890`): the script ends about 590 vblanks in and
+the sequence stalls. A steady two or four vblanks both reach it about 360 vblanks in,
+as the disc's own mix does; four is the nearer step. 25 (two and three alternating)
+fails like 20. With 60 FPS interpolation off the result is the same.
+
+Full chase on the port with this pacing, same fixture (vblanks after the first stop;
+disc in brackets): second stop +486 (+486), third +1275 (+1273), fourth +1635
+(+1638), fifth +1851 (+1857), building script +1871 (+1873), route resumes +3967
+(+3991), sixth stop +5194 (+5067), hideout +5952 (+5819). The level ends and l5a2
+loads as on the disc.
+
+With the disc's exact per-update cadence replayed (`SPIDEY_CADENCE_FILE`), the port
+matches the disc to within a few vblanks over the whole chase, and player positions
+match at every update through the building script.
 
 ## Limits
 
@@ -69,5 +104,5 @@ either way.
   drawing time closely; it generally runs games no slower than hardware. Not checked
   against Mednafen or a console.
 - The follower teleports the player along Venom's route instead of ordinary
-  traversal, the same compromise as the port's fixture.
-- The port has not been changed.
+  traversal, the same compromise as the port's fixture. Normal play has not been
+  checked.

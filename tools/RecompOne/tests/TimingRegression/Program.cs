@@ -100,18 +100,13 @@ for (int frame = 0; frame < 20; frame++)
 double overloadedInterval = overloadedClock.Elapsed.TotalMilliseconds / 20;
 Check(overloadedInterval < 46, $"40 ms frame work does not incur an extra IRQ wait ({overloadedInterval:F2} ms average)");
 
-const uint player = 0x80100000, script = 0x80110000, levelName = 0x80120000;
+const uint player = 0x80100000, venom = 0x80110000, venomScript = 0x80111000, levelName = 0x80120000;
 void LoadTimingLevel(string name)
 {
     for (int i = 0; i <= name.Length; i++)
         memory.WriteU8(levelName + (uint)i, i == name.Length ? (byte)0 : (byte)name[i]);
     cpu.A0 = levelName;
     Recompiled.Timing.LoadTriggers(cpu, memory);
-}
-void StartTimingScript()
-{
-    cpu.A0 = player; cpu.A1 = script;
-    Recompiled.Timing.StartPlayerScript(cpu, memory);
 }
 uint WaitGame(uint returnAddress = 0x8002C294)
 {
@@ -120,27 +115,44 @@ uint WaitGame(uint returnAddress = 0x8002C294)
     Recompiled.Timing.WaitVBlanks(cpu, memory);
     return memory.ReadU32(0x80013000) - previous;
 }
-// Exact bytes at A1=800E2B3E in the native Chase initializer trace.
-ushort[] chasePrefix = [0, 17, 30, 3, 10, 60, 520, 1, 54, 20, 3, 16, 2];
-for (int i = 0; i < chasePrefix.Length; i++) memory.WriteU16(script + (uint)i * 2, chasePrefix[i]);
+void PlayerScript(bool running) => memory.WriteU32(player + 0x1A8, running ? 1u : 0u);
+void VenomHeadingFor(ushort point) => memory.WriteU16(venomScript + 4, point);
+// Venom is the only actor: type 0x139, next route point in his script's third half-word.
+memory.WriteU32(0x800B5234, venom);
+memory.WriteU16(venom + 0x34, 0x139);
+memory.WriteU32(venom + 0x1C, 0);
+memory.WriteU32(venom + 0x31C, venomScript);
 memory.WriteU32(0x800B5268, player);
-memory.WriteU32(player + 0x1A8, 1);
-LoadTimingLevel("l5a3_t"); StartTimingScript();
-Check(WaitGame() == 1, "other levels retain normal gameplay cadence");
-LoadTimingLevel("l5a1_t"); StartTimingScript();
-Check(WaitGame(0x8002C274) == 1 && WaitGame() == 2,
-    "Chase building script advances three IRQs through the two native waits");
-memory.WriteU32(player + 0x1A8, 0);
-Check(WaitGame() == 1, "completed or skipped cutscene restores normal cadence");
-memory.WriteU32(player + 0x1A8, 1);
-Check(WaitGame() == 1, "later scripts do not inherit completed cutscene cadence");
-StartTimingScript(); LoadTimingLevel("l5a1_t");
-Check(WaitGame() == 1, "level retry clears cutscene cadence");
-StartTimingScript(); memory.WriteU16(script + 16, 55); StartTimingScript();
-Check(WaitGame() == 1, "different player script clears cutscene cadence");
-memory.WriteU16(script + 16, 54); StartTimingScript();
-memory.WriteU32(0x800B5268, player + 0x1000);
-Check(WaitGame() == 1, "replacement player cannot inherit cutscene cadence");
+
+LoadTimingLevel("l5a3_t"); PlayerScript(false); VenomHeadingFor(40);
+Check(WaitGame() == 1, "other levels keep the full rate");
+LoadTimingLevel("l5a1_t"); PlayerScript(true);
+Check(WaitGame(0x8002C274) == 1 && WaitGame() == 2, "chase intro script: 20 updates/s, first wait untouched");
+PlayerScript(false); VenomHeadingFor(16);
+Check(WaitGame() == 2, "route before Venom's third stop: 20 updates/s");
+VenomHeadingFor(282);
+Check(WaitGame() == 2, "a point off the route does not move the stretch on");
+VenomHeadingFor(35);
+Check(WaitGame() == 3, "from the third stop: 15 updates/s");
+VenomHeadingFor(0);
+Check(WaitGame() == 3, "a missing route point keeps the stretch");
+PlayerScript(true);
+Check(WaitGame() == 3, "building script: 15 updates/s");
+PlayerScript(false); VenomHeadingFor(214);
+Check(WaitGame() == 2, "route after the building: 20 updates/s");
+VenomHeadingFor(16640);
+Check(WaitGame() == 2, "other scripts' data is not a route point");
+VenomHeadingFor(227);
+uint fiveUpdates = 0;
+for (int i = 0; i < 5; i++) fiveUpdates += WaitGame();
+Check(fiveUpdates == 7, $"from the sixth stop: 25 updates/s ({fiveUpdates + 5} vblanks over five updates)");
+PlayerScript(true);
+Check(WaitGame() == 2, "ending script: 20 updates/s");
+LoadTimingLevel("l5a1_t"); PlayerScript(false); VenomHeadingFor(16);
+Check(WaitGame() == 2, "a retry starts the chase over");
+memory.WriteU32(0x800B5268, 0);
+Check(WaitGame() == 1, "no player yet: full rate");
+memory.WriteU32(0x800B5268, player);
 
 // ReadS must select the XA reader when no active movie ring exists, even after
 // a previous movie initialized the ring. No disc or audio device is needed.

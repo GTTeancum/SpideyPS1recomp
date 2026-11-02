@@ -78,6 +78,18 @@ public static class GameTrace
         var m = e.Memory;
         uint player = m.ReadU32(0x800B5268u), actor = m.ReadU32(0x800B5234u);
         if (player < 0x80000000u || player >= 0x80200000u) return;
+        // Once every taunt stop has been pulsed, the authored player script starting
+        // is the building sequence taking over; holding the player on Venom's route
+        // past that point pins him there. (The disc-side fixture, tools/redux, uses
+        // the same rule.)
+        if (!_chaseReleased && !_chaseSawScript && _chaseRegionPulses &&
+            _chaseRegionIndex == 5 && m.ReadU32(player + 0x1A8u) != 0)
+        {
+            _chaseReleased = true;
+            _chasePositions.Clear();
+            Console.WriteLine($"[chase-follow] RELEASED at player script start frame={e.Frame}");
+            return;
+        }
         if (_chaseReleased)
         {
             if (m.ReadU32(player + 0x1A8u) != 0) { _chaseSawScript = true; return; }
