@@ -13,7 +13,6 @@ Local status notes describe this repository only.
 
 ### Enhancements
 
-- [ ] [#4: Add SFD Dreamcast FMV support](https://github.com/GTTeancum/SpideyPS1recomp/issues/4) — use optional Dreamcast SFD videos when present, keeping PS1 videos as the fallback.
 - [ ] [#6: Linux port](https://github.com/GTTeancum/SpideyPS1recomp/issues/6)
 - [ ] [#21: 60 FPS interpolated presentation on Windows and Linux](https://github.com/GTTeancum/SpideyPS1recomp/issues/21) — implemented and pushed; stays open until a live Chase Venom playthrough confirms Venom can still be followed. Notes: [issue-21-60fps](docs/issues/issue-21-60fps.md).
 - [ ] [#22: Original Xbox port (NXDK)](https://github.com/GTTeancum/SpideyPS1recomp/issues/22) — both games as one compilation; RecompOne emits C, no 60 FPS, 480i/480p/720p, QoL and extra suits kept. Only after all other issues are resolved. Rough budget: 50–60 working hours for both games.

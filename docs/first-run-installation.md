@@ -51,8 +51,8 @@ settings.json
 After the manifest exists, the game opens only `game/`; the original disc image can be
 archived. Bundled Dreamcast models, imported suits, and their host-resolution texture
 packs come from a deterministic ZIP resource inside the executable and are repaired or
-updated automatically under `assets/builtin`. Neither executable asks for a Dreamcast
-disc or for the other Spider-Man game.
+updated automatically under `assets/builtin`. SM2 never asks for a Dreamcast disc or
+for the other Spider-Man game.
 
 Bundle updates retire obsolete files only when their hashes still match the previous
 bundle's ownership manifest. Retired bytes are kept under `assets/builtin/.retired/`,
@@ -60,6 +60,16 @@ outside the active pack folders, for recovery; modified obsolete files and unown
 files are preserved. Files still owned by the current bundle are repaired as needed.
 The previous manifest is kept until retirement finishes, so interrupted updates can
 resume safely. Repeated startup also verifies content hashes, not just file lengths.
+
+## Optional Dreamcast movies (SM1)
+
+The SM1 setup screen has a second, optional box for the Spider-Man (USA) Dreamcast
+disc [T13008N], opened through its CUE or GDI. When it is filled in, setup copies the
+23 original movies (`.SFD`) off the disc, unconverted, into
+`mods/movies/dreamcast/` beside the executable once the PS1 install has finished. The
+screen shows that folder; the movie files can also be placed there by hand at any
+time. Each movie plays its Dreamcast version when its `.SFD` is present and the PS1
+version otherwise, and the game log names the folder and how many it found.
 
 ## Release maintenance
 

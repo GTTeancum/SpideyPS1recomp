@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression: retired cache tools refuse work; no new disc installer is added."""
+"""Regression: retired cache tools refuse work and write nothing."""
 import subprocess,sys,tempfile,unittest
 from pathlib import Path
 HERE=Path(__file__).resolve().parent

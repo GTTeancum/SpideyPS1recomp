@@ -9,14 +9,24 @@ public static class MovieResolver
         "L5M1","L5M2","L5M3","L5M4","L6M1","L7M1","L7M2","L7M3",
         "L8M1","L8M2","L8M3","L8M4","L8M5"
     };
-    public static string? Resolve(string ps1Name,string directory)
+    public static bool IsMapped(string stem)=>Allowed.Contains(stem);
+    public static int MappedCount=>Allowed.Count;
+
+    /// <summary>The Dreamcast movie name for a native STR path, or null when it has none.</summary>
+    public static string? MappedStem(string ps1Name)
     {
         // Native paths are Windows/ISO9660 strings even on Linux. Do not use the
         // host Path.GetFileName before normalizing them. No guessed LOGO alias.
         string name=ps1Name.Replace('\\','/').Split('/')[^1];
         int version=name.IndexOf(';'); if(version>=0) name=name[..version];
         if(!name.EndsWith(".STR",StringComparison.OrdinalIgnoreCase)) return null;
-        string stem=name[..^4]; if(!Allowed.Contains(stem)) return null;
+        string stem=name[..^4];
+        return Allowed.Contains(stem) ? stem : null;
+    }
+
+    public static string? Resolve(string ps1Name,string directory)
+    {
+        string? stem=MappedStem(ps1Name); if(stem==null) return null;
         if(!Directory.Exists(directory)) return null;
         string wanted=stem+".SFD";
         string[] matches=Directory.EnumerateFiles(directory,"*",SearchOption.TopDirectoryOnly)

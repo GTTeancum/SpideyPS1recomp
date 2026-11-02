@@ -11,7 +11,7 @@ The full .NET games and managed integration tests have not been compiled or run
 in this environment. Native decoder, audio-queue and graphics fixtures do not
 establish a successful in-game movie transition. SM2 has no Dreamcast movie hook.
 
-## Runtime files and deferred installer work
+## Runtime files and first-run import
 
 After rebuilding the matching game, original movie names are resolved under:
 
@@ -25,9 +25,15 @@ case variants are rejected. The source handle remains open for both streams;
 there is no audio/video time-of-check/reopen-by-path race. Files are never opened
 for writing. `.osmv` files are ignored.
 
-**Optional Dreamcast-disc detection/extraction in the installer is deferred to
-Codex, as requested.** This update does not add a media-installation workflow or
-repackage the movies. The pre-existing disc extraction utility is unchanged.
+SM1's first-run setup has an optional box for the Spider-Man (USA) Dreamcast disc
+(T13008N, Redump CUE or GDI). After the PS1 install, `DreamcastMovieImporter` copies
+the 23 mapped `.SFD` files byte for byte into that folder; the four unmapped extras
+are left on the disc. A wrong or unreadable disc is refused before setup starts; a
+copy failure after the PS1 install is logged and setup carries on with PS1 movies.
+`RECOMP_INSTALL_DREAMCAST` supplies the disc when setup runs without its window.
+The setup screen shows the folder, and every start logs it with the number of
+movies found. Each movie that falls back logs why: no `.SFD` for it in the folder,
+or no Dreamcast version at all (`LOGO.STR`). Movies can be added by hand later.
 The old `INSTALL-DREAMCAST-MOVIES` cache wrappers and cache authoring/installation
 Python commands now stop with a retirement notice instead of creating/installing
 the wrong format. They do not delete any existing user files or movie caches.

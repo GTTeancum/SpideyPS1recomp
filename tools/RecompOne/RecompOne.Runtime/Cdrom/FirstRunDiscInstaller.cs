@@ -14,7 +14,8 @@ public sealed record DiscInstallProfile(
     string CommonName,
     string DiscId,
     string BootFile,
-    string BundledAssetResource);
+    string BundledAssetResource,
+    bool DreamcastMovies = false);
 
 /// <summary>Identifies the game's USA boot ID, independently of dump names or revision hashes.</summary>
 public static class DiscRevisionValidator
@@ -78,6 +79,7 @@ public static class FirstRunDiscInstaller
             if (error != null) throw new InvalidDataException(error);
             string imported = LooseDiscImporter.Import(requestedImage, output, profile.DiscId);
             InstallBundledAssets(payloadAssembly, profile, Path.GetDirectoryName(output)!);
+            ImportDreamcastMovies(profile, DreamcastImage(), null);
             return imported;
         }
 
@@ -93,6 +95,7 @@ public static class FirstRunDiscInstaller
             if (error != null) throw new InvalidDataException(error);
             string imported = LooseDiscImporter.Import(requestedImage, output, profile.DiscId);
             InstallBundledAssets(payloadAssembly, profile, Path.GetDirectoryName(output)!);
+            ImportDreamcastMovies(profile, DreamcastImage(), null);
             return imported;
         }
 
@@ -107,6 +110,36 @@ public static class FirstRunDiscInstaller
         finally
         {
             lock (Gate) _session = null;
+        }
+    }
+
+    // A Dreamcast disc for the optional movie copy when setup runs without its window.
+    static string? DreamcastImage() => Environment.GetEnvironmentVariable("RECOMP_INSTALL_DREAMCAST");
+
+    /// <summary>
+    /// Copies the original Dreamcast movies when a disc was given. The PS1 install is
+    /// already complete, so a failure here is reported and setup carries on: every
+    /// movie without an .SFD simply plays its PS1 version.
+    /// </summary>
+    static void ImportDreamcastMovies(DiscInstallProfile profile, string? image,
+        IProgress<LooseDiscImporter.Progress>? progress)
+    {
+        if (!profile.DreamcastMovies) return;
+        string folder = Media.DreamcastMovies.Folder;
+        if (string.IsNullOrWhiteSpace(image))
+        {
+            Console.WriteLine($"[install] no Dreamcast disc given; original .SFD movies can be placed in {folder} later");
+            return;
+        }
+        try
+        {
+            DreamcastMovieImporter.Import(image.Trim(), folder, progress, CancellationToken.None);
+            Console.WriteLine($"[install] Dreamcast movies copied to {folder}");
+        }
+        catch (Exception e)
+        {
+            Console.Error.WriteLine($"[install] Dreamcast movies not copied: {e.Message}; PS1 movies will play. " +
+                $"Original .SFD movies can be placed in {folder} later.");
         }
     }
 
@@ -141,6 +174,7 @@ public static class FirstRunDiscInstaller
         readonly Stopwatch _elapsed = Stopwatch.StartNew();
         readonly object _stateGate = new();
         string _path;
+        string _dreamcastPath;
         string _stage = "Waiting for disc image";
         string _currentFile = "";
         string _error = "";
@@ -160,6 +194,7 @@ public static class FirstRunDiscInstaller
             _output = output;
             _assembly = assembly;
             _path = requestedImage ?? "";
+            _dreamcastPath = DreamcastImage() ?? "";
             if (_path.Length > 0) Start();
         }
 
@@ -200,8 +235,23 @@ public static class FirstRunDiscInstaller
                 ImGui.SetNextItemWidth(width - browseWidth - spacing);
                 ImGui.InputText("##install-cue-path", ref _path, 2048);
                 ImGui.SameLine();
-                if (ImGui.Button("Browse...", new Vector2(browseWidth, 0f))) Browse();
+                if (ImGui.Button("Browse...", new Vector2(browseWidth, 0f))) Browse(ref _path, "PlayStation disc image", "cue,bin,iso");
                 ImGui.Spacing();
+                if (_profile.DreamcastMovies)
+                {
+                    ImGui.Spacing();
+                    ImGui.TextUnformatted("Optional: Spider-Man (USA) Dreamcast disc, for the original Dreamcast movies");
+                    ImGui.SetNextItemWidth(width - browseWidth - spacing);
+                    ImGui.InputText("##install-dreamcast-path", ref _dreamcastPath, 2048);
+                    ImGui.SameLine();
+                    if (ImGui.Button("Browse...##dreamcast", new Vector2(browseWidth, 0f)))
+                        Browse(ref _dreamcastPath, "Dreamcast disc image", "cue,gdi");
+                    ImGui.PushTextWrapPos(ImGui.GetCursorPosX() + width);
+                    ImGui.TextWrapped($"Dreamcast movies go to {Media.DreamcastMovies.Folder}. " +
+                        "Original .SFD files can also be copied there by hand at any time; any movie without one plays the PS1 version.");
+                    ImGui.PopTextWrapPos();
+                    ImGui.Spacing();
+                }
                 if (_error.Length > 0)
                 {
                     ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.38f, 0.38f, 1f));
@@ -243,15 +293,15 @@ public static class FirstRunDiscInstaller
             ImGui.End();
         }
 
-        void Browse()
+        void Browse(ref string path, string kind, string extensions)
         {
             try
             {
-                string? directory = File.Exists(_path) ? Path.GetDirectoryName(Path.GetFullPath(_path)) : null;
-                using var dialog = new NativeFileDialog().SelectFile().AddFilter("PlayStation disc image", "cue,bin,iso");
+                string? directory = File.Exists(path) ? Path.GetDirectoryName(Path.GetFullPath(path)) : null;
+                using var dialog = new NativeFileDialog().SelectFile().AddFilter(kind, extensions);
                 if (dialog.Open(out string? picked, directory) == DialogResult.Okay && !string.IsNullOrWhiteSpace(picked))
                 {
-                    _path = picked;
+                    path = picked;
                     _error = "";
                 }
             }
@@ -266,6 +316,13 @@ public static class FirstRunDiscInstaller
             string image = _path.Trim();
             string? problem = DiscRevisionValidator.Validate(image, _profile);
             if (problem != null)
+            {
+                _error = problem;
+                _task = null;
+                return;
+            }
+            string dreamcast = _profile.DreamcastMovies ? _dreamcastPath.Trim() : "";
+            if (dreamcast.Length > 0 && (problem = DreamcastMovieImporter.Validate(dreamcast)) != null)
             {
                 _error = problem;
                 _task = null;
@@ -303,6 +360,7 @@ public static class FirstRunDiscInstaller
                         throw new InvalidOperationException(
                             $"embedded bundled-content payload is missing: {_profile.BundledAssetResource}");
                     BundledAssets.Extract(payload, Path.Combine(Path.GetDirectoryName(_output)!, "assets", "builtin"), null, CancellationToken.None);
+                    ImportDreamcastMovies(_profile, dreamcast, progress);
                     Result = result;
                     Volatile.Write(ref _finished, 1);
                 }

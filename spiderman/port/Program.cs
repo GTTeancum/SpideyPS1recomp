@@ -16,7 +16,8 @@ public static class Program
         "Spider-Man (USA)",
         "SLUS-00875",
         BootFile,
-        "OpenSpidey.BundledAssets.zip");
+        "OpenSpidey.BundledAssets.zip",
+        DreamcastMovies: true);
 
     /// <summary>
     /// 8 MB rather than the retail 2 MB. The extra space is not for the game -- its own
@@ -62,6 +63,7 @@ public static class Program
             return 2;
         }
         SeedSettings(gameData);
+        RecompOne.Runtime.Media.DreamcastMovies.ReportFolder();
         RecompOne.Runtime.Config.ConfigManager.Game.CdPath = gameData;
         if (string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("SPIDEY_ASSET_DIR")))
             Environment.SetEnvironmentVariable(
