@@ -7,6 +7,10 @@ public struct HleVertex
     public byte R, G, B;
     public float U, V;
     public bool HasGteZ;
+    /// <summary>Stable name of the projected point across frames (GteIds); 0 if none.</summary>
+    public uint Id;
+    /// <summary>Second name when the first depends on a guess about the geometry (GteIds.Note).</summary>
+    public uint AltId;
 }
 
 public struct PrimFlags

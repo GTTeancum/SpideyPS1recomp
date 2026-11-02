@@ -13,6 +13,7 @@ public sealed partial class Gpu
         public bool HasGteZ;
         public float RenderX, RenderY;
         public bool HasSubpixel;
+        public uint Id, AltId;
     }
 
     static readonly RenderPrimEvent _primEvent = new();
@@ -129,6 +130,8 @@ public sealed partial class Gpu
                     v[i].RenderX = _drawOffsetX + packetVertex.ScreenX;
                     v[i].RenderY = _drawOffsetY + packetVertex.ScreenY;
                     v[i].HasSubpixel = true;
+                    if (Hardware.GteIds.Enabled)
+                        v[i].Id = Hardware.GteIds.Find(packetVertex.ScreenX, packetVertex.ScreenY, packetDepth, out v[i].AltId);
                 }
             }
             else directDepth = false;

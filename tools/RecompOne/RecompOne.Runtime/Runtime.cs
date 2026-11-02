@@ -182,7 +182,7 @@ public static class Runtime
             FrameClock.Throttle();
             long __t1 = System.Diagnostics.Stopwatch.GetTimestamp();
             Diagnostics.PresentationProfile.BeginPresentation();
-            HostWindow.Present(Gpu);
+            HostWindow.PresentGameFrame(Gpu);
             long titleStart = Diagnostics.PresentationProfile.Stamp();
             HostWindow.NoteGameFrame();
             Diagnostics.PresentationProfile.TitleMs = Diagnostics.PresentationProfile.Elapsed(titleStart);

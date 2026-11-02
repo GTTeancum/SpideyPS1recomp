@@ -123,6 +123,10 @@ public static partial class HostWindow
     static uint _vramTex;
     static uint _ramTex;
     static Hle.GlCore? _glBackend;
+    static Hle.FrameInterpolator? _interpolator;
+    // RECOMP_INTERPOLATE=0/1 overrides the setting; =mid presents only the in-between
+    // frames, so a capture shows exactly what interpolation drew.
+    static readonly string? InterpolateOverride = Environment.GetEnvironmentVariable("RECOMP_INTERPOLATE");
 
     static byte[] _rgbDisplay = [];
     static byte[] _rgbVram = [];
@@ -384,6 +388,74 @@ public static partial class HostWindow
         return best;
     }
 
+    /// <summary>
+    /// Present one game frame. With interpolation on, an in-between frame is presented
+    /// first and the real one half a game frame later.
+    /// </summary>
+    public static void PresentGameFrame(Gpu? gpu)
+    {
+        if (_interpolator is { } ip && Hle.GpuHle.Backend == ip && !MovieFrameActive &&
+            gpu is { DisplayEnabled: true } && ip.EndFrame())
+        {
+            long start = System.Diagnostics.Stopwatch.GetTimestamp();
+            ip.Replay(0.5f);
+            Present(gpu);
+            double shown = FrameClock.NowMs;
+            NoteSwap(start);
+            if (InterpolateOverride == "mid") return;
+            // Redraw the real frame now; presentation already copied the in-between
+            // one out. Only the swap itself waits for the half-frame mark, so the
+            // redraw does not eat into the time the game has for its next frame.
+            ip.Replay(1f);
+            FrameClock.WaitUntilMs(shown + FrameClock.HalfFrameMs - _presentMs);
+            start = System.Diagnostics.Stopwatch.GetTimestamp();
+            double presentStart = FrameClock.NowMs;
+            Present(gpu);
+            _presentMs = Math.Clamp(_presentMs * 0.9 + (FrameClock.NowMs - presentStart) * 0.1, 0, 8);
+            NoteSwap(start);
+            return;
+        }
+        long plain = System.Diagnostics.Stopwatch.GetTimestamp();
+        Present(gpu);
+        NoteSwap(plain);
+    }
+
+    // RECOMP_INTERP_TRACE=1: spacing of presented frames and the cost of drawing them.
+    static double _presentMs = 1;
+    static readonly bool PacingTrace = Environment.GetEnvironmentVariable("RECOMP_INTERP_TRACE") == "1";
+    static long _lastSwap, _swaps;
+    static double _gapSum, _gapMax, _drawSum, _drawMax;
+
+    static void NoteSwap(long start)
+    {
+        if (!PacingTrace) return;
+        long now = System.Diagnostics.Stopwatch.GetTimestamp();
+        double draw = (now - start) * 1000.0 / System.Diagnostics.Stopwatch.Frequency;
+        if (_lastSwap != 0)
+        {
+            double gap = (now - _lastSwap) * 1000.0 / System.Diagnostics.Stopwatch.Frequency;
+            _gapSum += gap; _gapMax = Math.Max(_gapMax, gap);
+        }
+        _drawSum += draw; _drawMax = Math.Max(_drawMax, draw);
+        _lastSwap = now;
+        if (++_swaps % 600 == 0)
+        {
+            Console.WriteLine($"[pacing] {_swaps} presents: gap avg {_gapSum / 600:F2} ms max {_gapMax:F2}; " +
+                              $"draw+present avg {_drawSum / 600:F2} ms max {_drawMax:F2}");
+            _gapSum = _gapMax = _drawSum = _drawMax = 0;
+        }
+    }
+
+    public static void SetInterpolation(bool on)
+    {
+        if (_glBackend is not { Ready: true }) return;
+        on = InterpolateOverride is "1" or "mid" || (InterpolateOverride != "0" && on);
+        _interpolator ??= new Hle.FrameInterpolator(_glBackend);
+        Hle.GpuHle.Backend = on ? _interpolator : _glBackend;
+        Hardware.GteIds.Enabled = on;
+        Console.WriteLine($"[Gpu] 60 FPS interpolation {(on ? "on" : "off")}");
+    }
+
     public static void Present(Gpu? gpu)
     {
         _gpu = gpu;
@@ -526,6 +598,7 @@ public static partial class HostWindow
         _glBackend.InitGl();
         Hle.GpuHle.Active = _glBackend.Ready;
         Hle.GpuHle.Backend = _glBackend;
+        SetInterpolation(ConfigManager.View.Interpolate60);
 
         _imgui = new ImGuiController(_gl, _window, input, null, ConfigureImGui);
 

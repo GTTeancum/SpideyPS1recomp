@@ -186,7 +186,10 @@ public static class PlayerShadow
                 if (!debug) p += Vector3.Dot(floor - p, down) / along * light;
                 if (p.Z <= 16) { ok = false; break; }
                 var s = Project(p);
-                tri[j] = new HleVertex { X = s.X + e.DrawOffsetX, Y = s.Y + e.DrawOffsetY, Z = 1, R = tint, B = tint };
+                // Named for frame interpolation: the triangle list has the same order
+                // every frame, so the shadow moves with the body it was cast from.
+                tri[j] = new HleVertex { X = s.X + e.DrawOffsetX, Y = s.Y + e.DrawOffsetY, Z = 1, R = tint, B = tint,
+                    Id = 0x5AD00001u + (uint)(t + j) * 2 };
             }
             if (ok) backend.DrawTri(tri[0], tri[1], tri[2], flags);
         }

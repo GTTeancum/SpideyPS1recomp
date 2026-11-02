@@ -139,6 +139,10 @@ public static class Program
         // Copying old boundary pixels can conceal holes and stretch textures.
         Wide.Install(0x80031EA0u, defaultEnabled: true);
         PlayerShadow.Install();
+        // World vertices reach the GTE camera-relative; the camera lets frame
+        // interpolation recognise scenery and move it with the camera.
+        RecompOne.Runtime.Hardware.GteIds.CameraPosition = 0x800B3254u;
+        RecompOne.Runtime.Hardware.GteIds.CameraRotation = 0x800B32C4u;
         Harness.Install();
 
         AppDomain.CurrentDomain.UnhandledException += (_, e) => Diag.Fatal(e.ExceptionObject as Exception);

@@ -57,6 +57,12 @@ public interface IGpuBackend
     //add other stuff
     int RegisterImage(ReadOnlySpan<byte> rgba, int width, int height);
 
+    /// <summary>
+    /// A recorded frame is about to be drawn again over its own result (frame
+    /// interpolation). Per-frame scratch state such as suit depth must start fresh.
+    /// </summary>
+    void BeginReplay() { }
+
     // these touch gl
     void Flush();
     void Present(in HleDispEnv disp);

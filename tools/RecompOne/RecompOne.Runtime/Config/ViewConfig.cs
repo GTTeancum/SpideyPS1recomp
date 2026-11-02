@@ -66,6 +66,13 @@ public class ViewConfig
         set => SetBool("VSync", value);
     }
 
+    /// <summary>Present 60 FPS by drawing an in-between frame (FrameInterpolator).</summary>
+    public bool Interpolate60
+    {
+        get => GetBool("Interpolate60", true);
+        set => SetBool("Interpolate60", value);
+    }
+
     public bool Fxaa
     {
         get => GetBool("Fxaa", true);

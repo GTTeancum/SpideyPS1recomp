@@ -491,6 +491,20 @@
             "ja-jp": "モニターのリフレッシュレートと同期します",
             "cn-zh": "使游戏刷新率与显示器的刷新率同步"
         },
+        "settings.display.interpolate60": {
+            "en": "60 FPS (interpolated)",
+            "pt-BR": "60 FPS (interpolado)",
+            "es-419": "60 FPS (interpolado)",
+            "ja-jp": "60 FPS（補間）",
+            "cn-zh": "60 FPS（插帧）"
+        },
+        "settings.display.interpolate60_hint": {
+            "en": "Draws an in-between frame for smoother motion. Game speed is unchanged.",
+            "pt-BR": "Desenha um quadro intermediário para um movimento mais suave. A velocidade do jogo não muda.",
+            "es-419": "Dibuja un cuadro intermedio para un movimiento más fluido. La velocidad del juego no cambia.",
+            "ja-jp": "中間フレームを描画して動きを滑らかにします。ゲーム速度は変わりません。",
+            "cn-zh": "绘制中间帧使画面更流畅，游戏速度不变。"
+        },
         "settings.display.fxaa": {
             "en": "FXAA",
             "pt-BR": "FXAA",

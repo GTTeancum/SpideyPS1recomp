@@ -58,6 +58,15 @@ internal sealed class DisplaySettingsSection : ISettingsSection
         }
         if (ImGui.IsItemHovered()) ImGui.SetTooltip(Localization.T("settings.display.vsync_hint"));
 
+        bool smooth = ConfigManager.View.Interpolate60;
+        if (ImGui.Checkbox(Localization.T("settings.display.interpolate60"), ref smooth))
+        {
+            ConfigManager.View.Interpolate60 = smooth;
+            HostWindow.SetInterpolation(smooth);
+            ConfigManager.SaveView(PanelManager.Panels);
+        }
+        if (ImGui.IsItemHovered()) ImGui.SetTooltip(Localization.T("settings.display.interpolate60_hint"));
+
         bool fxaa = ConfigManager.View.Fxaa;
         if (ImGui.Checkbox(Localization.T("settings.display.fxaa"), ref fxaa))
         {

@@ -15,7 +15,6 @@ Local status notes describe this repository only.
 
 - [ ] [#4: Add SFD Dreamcast FMV support](https://github.com/GTTeancum/SpideyPS1recomp/issues/4) — use optional Dreamcast SFD videos when present, keeping PS1 videos as the fallback.
 - [ ] [#6: Linux port](https://github.com/GTTeancum/SpideyPS1recomp/issues/6)
-- [ ] [#21: 60 FPS interpolated](https://github.com/GTTeancum/SpideyPS1recomp/issues/21) — Windows and Linux only; interpolate drawing without changing the game clock.
 
 Community report details: [community-reports-2026-10-29](docs/issues/community-reports-2026-10-29.md).
 

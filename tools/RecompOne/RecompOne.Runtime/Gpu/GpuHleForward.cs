@@ -29,7 +29,7 @@ public sealed partial class Gpu
         X = v.HasSubpixel ? v.RenderX : v.X,
         Y = v.HasSubpixel ? v.RenderY : v.Y,
         R = (byte)v.R, G = (byte)v.G, B = (byte)v.B, U = (short)v.U, V = (short)v.V,
-        Z = v.Z, HasGteZ = v.HasGteZ,
+        Z = v.Z, HasGteZ = v.HasGteZ, Id = v.Id, AltId = v.AltId,
     };
 
     PrimFlags PrimOf(bool tex, bool semi, bool raw, int clut, bool gouraud = false,

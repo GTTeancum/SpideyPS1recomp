@@ -3,6 +3,8 @@ namespace RecompOne.Runtime;
 public static class Gte
 {
     static readonly short[] V = new short[9];
+    // RAM address each input vector's XY word was loaded from (LWC2), 0 after MTC2.
+    static readonly uint[] VSource = new uint[3];
     static byte RGBC_R, RGBC_G, RGBC_B, RGBC_CODE;
     static ushort OTZ;
     static int IR0, IR1, IR2, IR3;
@@ -169,7 +171,7 @@ public static class Gte
         return res > 0x1FFFF ? 0x1FFFFu : (uint)res;
     }
 
-    static void Rtp(int vx, int vy, int vz, int sf, bool lm, bool last)
+    static void Rtp(int vx, int vy, int vz, int sf, bool lm, bool last, int slot)
     {
         long m1 = ((long)TR[0] << 12) + (long)RT[0] * vx + (long)RT[1] * vy + (long)RT[2] * vz;
         long m2 = ((long)TR[1] << 12) + (long)RT[3] * vx + (long)RT[4] * vy + (long)RT[5] * vz;
@@ -226,6 +228,9 @@ public static class Gte
             ScreenX[2] = (float)((double)H * m1 / m3 * Hle.GpuHle.FovNum / Hle.GpuHle.FovDen + OFX / 65536.0);
             ScreenY[2] = (float)((double)H * m2 / m3 + OFY / 65536.0);
             ScreenNative[2] = 0x80000000u | ((uint)(ushort)(short)nx & 0x7FFu) | (((uint)(ushort)(short)ny & 0x7FFu) << 16);
+            if (Hardware.GteIds.Enabled)
+                Hardware.GteIds.Note(VSource[slot], vx, vy, vz, ScreenX[2], ScreenY[2], ScreenZ[2],
+                    TR[0] != 0 || TR[1] != 0 || TR[2] != 0);
         }
 
         // What the world looks like on screen, recorded so a widescreen hack can tell
@@ -251,11 +256,11 @@ public static class Gte
 
         switch (cmd & 0x3F)
         {
-            case 0x01: Rtp(V[0], V[1], V[2], sf, lm, true); break;
+            case 0x01: Rtp(V[0], V[1], V[2], sf, lm, true, 0); break;
             case 0x30:
-                Rtp(V[0], V[1], V[2], sf, lm, false);
-                Rtp(V[3], V[4], V[5], sf, lm, false);
-                Rtp(V[6], V[7], V[8], sf, lm, true);
+                Rtp(V[0], V[1], V[2], sf, lm, false, 0);
+                Rtp(V[3], V[4], V[5], sf, lm, false, 1);
+                Rtp(V[6], V[7], V[8], sf, lm, true, 2);
                 break;
             case 0x06:
                 MAC0 = (int)CheckMac0((long)SX[0] * (SY[1] - SY[2]) + (long)SX[1] * (SY[2] - SY[0]) + (long)SX[2] * (SY[0] - SY[1]));
@@ -463,11 +468,11 @@ public static class Gte
         }
         switch (reg)
         {
-            case 0: V[0] = (short)val; V[1] = (short)(val >> 16); break;
+            case 0: V[0] = (short)val; V[1] = (short)(val >> 16); VSource[0] = 0; break;
             case 1: V[2] = (short)val; break;
-            case 2: V[3] = (short)val; V[4] = (short)(val >> 16); break;
+            case 2: V[3] = (short)val; V[4] = (short)(val >> 16); VSource[1] = 0; break;
             case 3: V[5] = (short)val; break;
-            case 4: V[6] = (short)val; V[7] = (short)(val >> 16); break;
+            case 4: V[6] = (short)val; V[7] = (short)(val >> 16); VSource[2] = 0; break;
             case 5: V[8] = (short)val; break;
             case 6: RGBC_R = (byte)val; RGBC_G = (byte)(val >> 8); RGBC_B = (byte)(val >> 16); RGBC_CODE = (byte)(val >> 24); break;
             case 7: OTZ = (ushort)val; break;
@@ -612,6 +617,7 @@ public static class Gte
             ps.TryGetGteVertex(address, value, out var found) ? found : default;
 
         WriteProjected(reg, value, tag);
+        if (reg is 0 or 2 or 4) VSource[reg / 2] = address;
     }
 
     static void WriteProjected(int reg, uint value, Hardware.GteScreen.VertexTag tag)

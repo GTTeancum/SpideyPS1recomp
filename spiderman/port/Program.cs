@@ -144,6 +144,10 @@ public static class Program
         // from the old 4:3 boundary invents stretched surfaces in uncovered areas.
         Wide.Install();
         PlayerShadow.Install();
+        // World vertices reach the GTE camera-relative; the camera position lets frame
+        // interpolation recognise the same scenery point from one frame to the next.
+        RecompOne.Runtime.Hardware.GteIds.CameraPosition = 0x800A575Cu;
+        RecompOne.Runtime.Hardware.GteIds.CameraRotation = 0x800A57CCu;
         Replay.Install();
         Harness.Install();
 

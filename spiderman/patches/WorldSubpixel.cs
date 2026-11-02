@@ -15,6 +15,7 @@ public static class WorldSubpixel
     public static long PreservedEdges;
     public static long CertifiedClamps;
     static readonly GteScreen.VertexTag[] _corners = new GteScreen.VertexTag[3];
+    static readonly uint[] _cornerIds = new uint[3];
     static int _validCorners;
 
     // The native routine builds a temporary GTE matrix from three rounded camera
@@ -28,11 +29,13 @@ public static class WorldSubpixel
         {
             uint address = i == 0 ? c.T1 : i == 1 ? c.T2 : c.T3;
             _corners[i] = default;
+            _cornerIds[i] = 0;
             if (ps.TryGetGteVertex(address, m.ReadU32(address), out var tag) &&
                 tag.HasSubpixel && tag.Depth > 0)
             {
                 _corners[i] = tag;
                 _validCorners |= 1 << i;
+                if (GteIds.Enabled) _cornerIds[i] = GteIds.Find(tag.ScreenX, tag.ScreenY, tag.Depth);
             }
         }
     }
@@ -81,6 +84,13 @@ public static class WorldSubpixel
                 tag = new GteScreen.VertexTag((float)(z / 4096),
                     (float)((za * _corners[0].ScreenX + zb * _corners[1].ScreenX + zd * _corners[2].ScreenX) / z),
                     (float)((za * _corners[0].ScreenY + zb * _corners[1].ScreenY + zd * _corners[2].ScreenY) / z), true);
+                // Frame interpolation names the point after its corners and weights; the
+                // weights' own RTPS name depends on how many faces were split before it.
+                // A point on a corner is that corner and keeps its name, which later
+                // faces sharing the corner look up.
+                if (GteIds.Enabled && a != 4096 && b != 4096 && d != 4096 && (a == 0 || _cornerIds[0] != 0) && (b == 0 || _cornerIds[1] != 0) && (d == 0 || _cornerIds[2] != 0))
+                    GteIds.Name(GteIds.Combine(_cornerIds[0], _cornerIds[1], _cornerIds[2], a, b, d), tag.ScreenX, tag.ScreenY, tag.Depth);
+                else if (GteIds.Enabled) GteIds.NameMisses++;
                 return tag with { NativeScreen = 0x80000000u | (word & 0x07FF07FFu) };
             }
         }

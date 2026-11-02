@@ -321,5 +321,6 @@ public static class GteScreen
         _cur = (_cur + 1) % Generations;
         _sets[_cur].Clear();
         _depths[_cur].Clear();
+        if (GteIds.Enabled) GteIds.Roll();
     }
 }

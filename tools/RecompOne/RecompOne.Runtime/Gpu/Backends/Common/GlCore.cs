@@ -1150,6 +1150,12 @@ public sealed class GlCore : IGpuBackend
         }
     }
 
+    public void BeginReplay()
+    {
+        foreach (var rt in _rts)
+            if (rt != null) rt.ModelDepthFrame = long.MinValue;
+    }
+
     public void Present(in HleDispEnv disp) => PresentDisplay(disp.X, disp.Y, disp.W, disp.H, disp.Rgb24);
 
     public unsafe (uint tex, int w, int h, float aspect) PresentDisplay(int dispX, int dispY, int w, int h, bool rgb24 = false, int outW = 0, int outH = 0)
