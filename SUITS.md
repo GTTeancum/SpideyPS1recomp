@@ -85,7 +85,7 @@ Unticked: needs attention; assess these one at a time.
 - [x] SPIDERMAN NEWDESIGN (`smu-spiderman-newdesign`)
 - [x] SPIDERMAN SURV #197 (`smu-spiderman-surveillancesuit`) 
 - [x] SPIDERMANHOMECOMING (`smu-spidermanhomecoming`) --long feet
-- [ ] STEEL (`smu-steel`) --don't recall the exact issue
+- [x] STEEL (`smu-steel`)
 - [x] THE SPIDER PET #215 (`smu-the-spider-peter-parker`)
 - [x] TIMESLEEP (`smu-timesleep`) 
 - [x] UK (`smu-uk`)
