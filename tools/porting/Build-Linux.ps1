@@ -4,9 +4,22 @@ $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $log = $null
 $createdOutput = $false
+# Recorded hashes come from a Linux checkout. A Windows checkout may store text
+# sources with CRLF line endings, so compare those with LF line endings.
+function Get-BuildHash([string]$Path) {
+    $bytes = [IO.File]::ReadAllBytes($Path)
+    if ([IO.Path]::GetExtension($Path) -in '.c','.cc','.cpp','.h','.hpp','.txt','.md','.json','.py','.sh','.cmake') {
+        $bytes = [Text.Encoding]::UTF8.GetBytes([Text.Encoding]::UTF8.GetString($bytes).Replace("`r`n", "`n"))
+    }
+    $sha = [Security.Cryptography.SHA256]::Create()
+    try { return ([BitConverter]::ToString($sha.ComputeHash($bytes)) -replace '-','').ToLowerInvariant() } finally { $sha.Dispose() }
+}
 function Run-Dotnet([string[]]$Arguments) {
     Write-Host ('dotnet ' + ($Arguments -join ' '))
-    & dotnet @Arguments 2>&1 | Tee-Object -FilePath $script:log -Append | ForEach-Object { Write-Host $_ }
+    # Windows PowerShell 5.1 turns a native command's stderr lines into errors; with
+    # Stop that aborts on a test's expected warning. The exit code decides instead.
+    $ErrorActionPreference = 'Continue'
+    & dotnet @Arguments 2>&1 | ForEach-Object { "$_" } | Tee-Object -FilePath $script:log -Append | ForEach-Object { Write-Host $_ }
     if ($LASTEXITCODE -ne 0) { throw "dotnet failed with exit $LASTEXITCODE" }
 }
 try {
@@ -26,7 +39,7 @@ try {
         $provenance = Get-Content -Raw -LiteralPath (Join-Path $root 'tools/retarget/native/bin/build-provenance.json') | ConvertFrom-Json
         foreach ($item in $provenance.files) {
             $path = Join-Path $root $item.path
-            if ((Get-FileHash -Algorithm SHA256 -LiteralPath $path).Hash.ToLowerInvariant() -ne $item.sha256) {
+            if ((Get-BuildHash $path) -ne $item.sha256) {
                 throw "Native core/source mismatch: $($item.path). Rebuild the Linux core on Linux; do not mix versions."
             }
         }
@@ -35,7 +48,7 @@ try {
         $sfdManifest = Get-Content -Raw -LiteralPath (Join-Path $root 'tools/movies/native/bin/build-provenance.json') | ConvertFrom-Json
         if ($sfdManifest.abi -ne '0x00010000' -or @($sfdManifest.targets.'linux-x64'.files).Count -lt 5 -or @($sfdManifest.targets.'win-x64'.files).Count -lt 6) { throw 'Missing/incompatible SFD build provenance.' }
         foreach ($item in @($sfdManifest.targets.'linux-x64'.files) + @($sfdManifest.targets.'win-x64'.files)) {
-            if ((Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $root $item.path)).Hash.ToLowerInvariant() -ne $item.sha256) {
+            if ((Get-BuildHash (Join-Path $root $item.path)) -ne $item.sha256) {
                 throw "SFD source/native binary mismatch: $($item.path). Rebuild matching SFD component."
             }
         }
