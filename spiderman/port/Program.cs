@@ -43,6 +43,7 @@ public static class Program
         }
         RecompOne.Runtime.Host.BundledNativeRuntime.Initialize();
         if (!AcquireRuntimeLease()) return 4;
+        Diag.OpenLog();
 
         string installRoot = ExeDirectory() ?? AppContext.BaseDirectory;
         string installOutput = InstallOutput(installRoot);

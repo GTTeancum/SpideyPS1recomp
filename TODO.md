@@ -8,7 +8,6 @@ Local status notes describe this repository only.
 ### Bugs
 
 - [ ] [#18: SteamOS/Wine/Proton: reported startup crash after ROM import](https://github.com/GTTeancum/SpideyPS1recomp/issues/18)
-- [ ] [#19: SM1 on Linux: diagnostic logs stop while captures and snapshots continue](https://github.com/GTTeancum/SpideyPS1recomp/issues/19)
 - [ ] [#20: Reported rainbow horizontal bands on world textures while custom player renders correctly](https://github.com/GTTeancum/SpideyPS1recomp/issues/20)
 
 ### Enhancements

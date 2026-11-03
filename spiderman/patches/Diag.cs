@@ -31,14 +31,34 @@ public static class Diag
 
     public static void Install()
     {
-        // Beside the executable, under a stable name, so there is exactly one place to
-        // look after a lock-up. SPIDEY_LOG_DIR still redirects it, and SPIDEY_LOG_STAMP
-        // keeps per-run copies when comparing two runs matters.
-        string dir = Environment.GetEnvironmentVariable("SPIDEY_LOG_DIR") ?? ".";
+        OpenLog();
         if (double.TryParse(Environment.GetEnvironmentVariable("SPIDEY_STALL"),
                             NumberStyles.Float, CultureInfo.InvariantCulture, out var sv))
             _stallSeconds = sv;
         _exitOnStall = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SPIDEY_STALL_EXIT"));
+
+        LoadSymbols();
+        InstallPrimDump();
+
+        if (_stallSeconds > 0)
+        {
+            new Thread(Watch) { IsBackground = true, Name = "watchdog" }.Start();
+            Console.WriteLine($"[diag] watchdog armed ({_stallSeconds:F0}s window)");
+        }
+    }
+
+    /// <summary>
+    /// Opens the log and routes console output through it. Called as early as
+    /// startup allows (once this process owns the game), so nothing is ever written
+    /// straight to a console that might not be read (issue #19).
+    /// </summary>
+    public static void OpenLog()
+    {
+        if (_log != null) return;
+        // Beside the executable, under a stable name, so there is exactly one place to
+        // look after a lock-up. SPIDEY_LOG_DIR still redirects it, and SPIDEY_LOG_STAMP
+        // keeps per-run copies when comparing two runs matters.
+        string dir = Environment.GetEnvironmentVariable("SPIDEY_LOG_DIR") ?? ".";
 
         try
         {
@@ -64,15 +84,6 @@ public static class Diag
         catch (Exception e)
         {
             Console.Error.WriteLine($"[diag] could not open log file: {e.Message}");
-        }
-
-        LoadSymbols();
-        InstallPrimDump();
-
-        if (_stallSeconds > 0)
-        {
-            new Thread(Watch) { IsBackground = true, Name = "watchdog" }.Start();
-            Console.WriteLine($"[diag] watchdog armed ({_stallSeconds:F0}s window)");
         }
     }
 

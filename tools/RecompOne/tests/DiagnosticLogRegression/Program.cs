@@ -40,6 +40,21 @@ console.Release.Set();
 Check(consoleLog.Complete(3000), "console drain completes after release");
 Check(file.ToString().Contains("E echo"), "file received mirrored text");
 
+// The file keeps logging while nobody reads the console (issue #19).
+var unreadFile = new LockedWriter();
+var unread = new GateWriter();
+var unreadLog = new AsyncDiagnosticLog(unreadFile, 16);
+for (int i = 0; i < 200; i++)
+{
+    unreadLog.Write($"line-{i}", "", unread);
+    for (int wait = 0; wait < 300 && !unreadFile.Text.Contains($"line-{i}\n"); wait++) Thread.Sleep(1);
+}
+Check(unreadFile.Text.Contains("line-199\n"), "file log continues while console sink is blocked");
+Check(unreadLog.Dropped == 0 && unreadLog.EchoDropped > 0, "only console lines are dropped");
+Check(unreadFile.Text.Split("console output is not being read").Length == 2, "console loss is noted once in the file");
+unread.Release.Set();
+Check(unreadLog.Complete(3000) && unreadFile.Text.Contains("consoleDropped="), "console loss is counted at shutdown");
+
 var boundedText = new StringWriter();
 var large = new AsyncDiagnosticLog(boundedText);
 large.Write(new string('x', 1000000), "");
@@ -68,6 +83,14 @@ idle.Write("idle-fatal", "", critical: true);
 Check(idle.Complete(3000) && idleFile.ToString().Contains("idle-fatal"), "fatal-only submission wakes idle reader");
 Console.WriteLine($"PASS: {assertions} diagnostic logging assertions");
 
+sealed class LockedWriter : TextWriter
+{
+    readonly StringBuilder _text = new();
+    public string Text { get { lock (_text) return _text.ToString(); } }
+    public override Encoding Encoding => Encoding.UTF8;
+    public override void Write(char value) { lock (_text) _text.Append(value); }
+    public override void WriteLine(string? value) { lock (_text) _text.Append(value).Append('\n'); }
+}
 sealed class GateWriter : TextWriter
 {
     public readonly ManualResetEventSlim Entered = new(false), Release = new(false);

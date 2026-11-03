@@ -2,17 +2,23 @@ using System.Threading.Channels;
 
 namespace RecompOne.Runtime.Diagnostics;
 
-/// <summary>Bounded general logging. File and console I/O belong only to the worker.</summary>
+/// <summary>
+/// Bounded general logging. The file and the console each have their own queue and
+/// worker, so a console nobody reads (a full stdout pipe) only drops console lines
+/// and never stops the file log.
+/// </summary>
 public sealed class AsyncDiagnosticLog
 {
     public const int MaxTextLength = 16384;
     sealed record Entry(string Text, string Prefix, TextWriter? Echo);
     readonly Channel<Entry> _queue;
+    readonly Channel<(string Text, TextWriter Echo)> _echoQueue;
     readonly TextWriter _file;
-    readonly Thread _worker;
+    readonly Thread _worker, _echoWorker;
     Entry? _critical;
-    long _dropped, _truncated, _sinkErrors;
+    long _dropped, _echoDropped, _truncated, _sinkErrors;
     public long Dropped => Interlocked.Read(ref _dropped);
+    public long EchoDropped => Interlocked.Read(ref _echoDropped);
     public long Truncated => Interlocked.Read(ref _truncated);
     public long SinkErrors => Interlocked.Read(ref _sinkErrors);
 
@@ -21,8 +27,12 @@ public sealed class AsyncDiagnosticLog
         _file = file;
         _queue = Channel.CreateBounded<Entry>(new BoundedChannelOptions(capacity)
         { SingleReader = true, SingleWriter = false, FullMode = BoundedChannelFullMode.Wait });
+        _echoQueue = Channel.CreateBounded<(string, TextWriter)>(new BoundedChannelOptions(capacity)
+        { SingleReader = true, SingleWriter = true, FullMode = BoundedChannelFullMode.Wait });
         _worker = new Thread(Run) { IsBackground = true, Name = "DiagnosticLog" };
+        _echoWorker = new Thread(RunEcho) { IsBackground = true, Name = "DiagnosticConsole" };
         _worker.Start();
+        _echoWorker.Start();
     }
 
     public void Write(string text, string prefix, TextWriter? echo = null, bool critical = false)
@@ -48,7 +58,9 @@ public sealed class AsyncDiagnosticLog
     public bool Complete(int milliseconds = 2000)
     {
         _queue.Writer.TryComplete();
-        return _worker.Join(milliseconds);
+        var deadline = Environment.TickCount64 + milliseconds;
+        bool file = _worker.Join(milliseconds);
+        return _echoWorker.Join((int)Math.Max(0, deadline - Environment.TickCount64)) && file;
     }
 
     void Emit(Entry entry)
@@ -61,11 +73,19 @@ public sealed class AsyncDiagnosticLog
             _file.Flush();
         }
         catch { Interlocked.Increment(ref _sinkErrors); }
-        if (entry.Echo != null)
-        {
-            try { entry.Echo.WriteLine(entry.Text); entry.Echo.Flush(); }
-            catch { Interlocked.Increment(ref _sinkErrors); }
-        }
+        if (entry.Echo != null && !_echoQueue.Writer.TryWrite((entry.Text, entry.Echo)) &&
+            Interlocked.Increment(ref _echoDropped) == 1)
+            Emit(new Entry("[diag-log] console output is not being read; dropping console lines, this file continues", entry.Prefix, null));
+    }
+
+    void RunEcho()
+    {
+        while (_echoQueue.Reader.WaitToReadAsync().AsTask().GetAwaiter().GetResult())
+            while (_echoQueue.Reader.TryRead(out var line))
+            {
+                try { line.Echo.WriteLine(line.Text); line.Echo.Flush(); }
+                catch { Interlocked.Increment(ref _sinkErrors); }
+            }
     }
 
     void Run()
@@ -83,9 +103,13 @@ public sealed class AsyncDiagnosticLog
             }
             var finalFatal = Interlocked.Exchange(ref _critical, null);
             if (finalFatal != null) Emit(finalFatal);
-            if (Dropped != 0 || Truncated != 0 || SinkErrors != 0)
-                Emit(new Entry($"[diag-log] dropped={Dropped} truncated={Truncated} sinkErrors={SinkErrors}", "", null));
+            if (Dropped != 0 || EchoDropped != 0 || Truncated != 0 || SinkErrors != 0)
+                Emit(new Entry($"[diag-log] dropped={Dropped} consoleDropped={EchoDropped} truncated={Truncated} sinkErrors={SinkErrors}", "", null));
         }
-        finally { try { _file.Dispose(); } catch { } }
+        finally
+        {
+            _echoQueue.Writer.TryComplete();
+            try { _file.Dispose(); } catch { }
+        }
     }
 }
