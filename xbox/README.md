@@ -51,10 +51,11 @@ python -I xbox/tools/run_xemu.py --shots 10,15
 Uses `private/work/xemu/xemu.exe` (a copy of the local XEMU) and reads the boot
 ROM, BIOS, EEPROM and HDD image from `C:\Games\Emulators\Xemu` without changing
 them: the EEPROM is copied and HDD writes are discarded (`-snapshot`). XEMU runs
-with its window hidden and audio written to a file. The run folder defaults to
-`C:\Programming\SpideyPS1Recomp-xemu\run` because XEMU rejects disc and scratch
-images on a network share (`bdrv_open_driver: request_alignment` assertion).
-Captures land in `run/captures`.
+with its window hidden and audio written to a file. The disc image is written to
+`C:\Games\Emulators\Xemu\OpenSpidey.iso` and replaced on every run (one image
+only): XEMU rejects disc images on a network share (`bdrv_open_driver:
+request_alignment` assertion). Settings, the EEPROM copy, logs and captures go to
+`private/work/xbox-run`.
 
 ## Plan
 

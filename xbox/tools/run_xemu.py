@@ -3,8 +3,10 @@
 
     python -I xbox/tools/run_xemu.py --shots 5,10
 
-The run folder must be on a local drive: XEMU's block layer rejects disc and
-scratch images on a network share (an assertion on the request alignment).
+The disc image goes to C:/Games/Emulators/Xemu/OpenSpidey.iso, replacing the
+previous one: XEMU rejects disc images on a network share (an assertion on the
+request alignment), and that folder holds exactly one OpenSpidey image. Settings,
+the EEPROM copy, captures and logs stay in the run folder.
 
 Packs xbox/build/release/default.xbe into a disc image with nxdk's extract-xiso,
 writes an isolated xemu.toml (the user's boot ROM, BIOS and HDD image are only
@@ -16,7 +18,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import shutil
 import subprocess
 import sys
@@ -39,8 +40,10 @@ def main() -> int:
                    help="folder holding the user's MCPX, BIOS, eeprom.bin and HDD image (read only)")
     p.add_argument("--nxdk", type=Path, default=Path("C:/nxdk"))
     p.add_argument("--xbe", type=Path, default=XBOX / "build/release/default.xbe")
-    p.add_argument("--out", type=Path, default=Path("C:/Programming/SpideyPS1Recomp-xemu/run"),
-                   help="local-drive run folder (disc image, settings, captures)")
+    p.add_argument("--out", type=Path, default=ROOT / "private/work/xbox-run",
+                   help="run folder (settings, EEPROM copy, captures, logs)")
+    p.add_argument("--iso", type=Path, default=Path("C:/Games/Emulators/Xemu/OpenSpidey.iso"),
+                   help="local-drive disc image, replaced on every run")
     p.add_argument("--shots", default="8", help="comma-separated seconds after launch")
     p.add_argument("--scale", type=int, default=1)
     a = p.parse_args()
@@ -53,7 +56,8 @@ def main() -> int:
     (out / "captures").mkdir()
     shutil.copy2(a.xbe, disc / "default.xbe")
 
-    iso = out / "OpenSpidey.iso"
+    iso = a.iso.resolve()
+    iso.unlink(missing_ok=True)
     xiso = a.nxdk / "tools/extract-xiso/build/extract-xiso.exe"
     r = subprocess.run([str(xiso), "-c", str(disc), str(iso)], cwd=out, capture_output=True, text=True)
     if r.returncode or not iso.exists():
@@ -96,8 +100,7 @@ dvd_path = '{toml_path(iso)}'
             "-audio", f"driver=wav,path={toml_path(out / 'audio.wav')}"]
     with open(out / "stdout.log", "w") as so, open(out / "stderr.log", "w") as se:
         proc = subprocess.Popen(args, cwd=out, stdout=so, stderr=se, startupinfo=hidden,
-                                creationflags=subprocess.CREATE_NO_WINDOW,
-                                env=dict(os.environ, TEMP=str(out), TMP=str(out)))
+                                creationflags=subprocess.CREATE_NO_WINDOW)
     started = time.monotonic()
     results = []
     try:
