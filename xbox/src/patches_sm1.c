@@ -1,0 +1,101 @@
+/*
+ * Spider-Man 1 patches, ported from spiderman/patches (C#). Keep both in step: a
+ * gameplay fix for every platform goes in both (see xbox/README.md).
+ */
+#include <string.h>
+#include "gpu.h"
+#include "runtime.h"
+#include "SpiderMan.h"
+
+#define A0 c->r[4]
+#define A1 c->r[5]
+#define V0 c->r[2]
+
+/* ---- GpuPatches -------------------------------------------------------------------- */
+
+/* pre-hook: the hardware reset in front of the game's own ResetGraph. */
+int hook_GpuPatches_ResetGraph(CpuContext *c)
+{
+    gpu_write_gp1((A0 & 7u) == 0 ? 0x00000000u : 0x01000000u);
+    return 1;
+}
+
+void hook_GpuPatches_SetDispMask(CpuContext *c) { gpu_write_gp1(0x03000000u | (A0 ? 0u : 1u)); V0 = 0; }
+void hook_GpuPatches_SetGraphDebug(CpuContext *c) { V0 = 0; }
+
+void hook_GpuPatches_DrawPrim(CpuContext *c)
+{
+    uint32_t p = A0, words = mem_r32(p) >> 24;
+    for (uint32_t i = 0; i < words; i++) gpu_write_gp0(mem_r32(p + 4u + i * 4u));
+    V0 = 0;
+}
+
+void hook_GpuPatches_ClearOTagR(CpuContext *c)
+{
+    uint32_t ot = A0;
+    int n = (int)A1;
+    V0 = 0;
+    if (n <= 0) return;
+    for (int i = n - 1; i > 0; i--) mem_w32(ot + (uint32_t)i * 4u, (ot + (uint32_t)(i - 1) * 4u) & 0x00FFFFFFu);
+    mem_w32(ot, 0x00FFFFFFu);
+}
+
+/* ---- OverlayPatches: code overlays live at the fixed addresses they were recompiled
+ * for. The allocation LoadOverlay makes right after finding "<name>.bin" in CD.WAD is
+ * answered with that address instead of a heap block, and the overlay activated. ---- */
+#define REGION_LO 0x80200000u
+#define REGION_HI 0x802A0000u
+
+static const RecompOverlay *g_pending_overlay;
+static uint32_t g_pending_size;
+
+static const RecompOverlay *overlay_named(const char *name)
+{
+    const RecompGame *g = rt_game();
+    for (int i = 0; i < g->overlay_count; i++)
+        if (g->overlays[i]->base && rt_strcasecmp(g->overlays[i]->name, name) == 0) return g->overlays[i];
+    return 0;
+}
+
+int hook_OverlayPatches_CdWadFind(CpuContext *c)
+{
+    char name[64];
+    int n = 0;
+    for (uint32_t a = A0; n < 63; a++) { char ch = (char)mem_r8(a); if (!ch) break; name[n++] = ch; }
+    name[n] = 0;
+    g_pending_overlay = 0;
+    if (n > 4 && rt_strcasecmp(name + n - 4, ".bin") == 0) {
+        name[n - 4] = 0;
+        g_pending_overlay = overlay_named(name);
+    }
+    return 1;
+}
+
+void hook_OverlayPatches_CdWadFindExit(CpuContext *c) { if (g_pending_overlay) g_pending_size = V0; }
+
+int hook_OverlayPatches_HeapAlloc(CpuContext *c)
+{
+    if (g_pending_overlay && A0 == g_pending_size) {
+        V0 = g_pending_overlay->base;
+        rt_overlay_load(g_pending_overlay->name);
+        g_pending_overlay = 0;
+        return 0;
+    }
+    return 1;
+}
+
+int hook_OverlayPatches_HeapFree(CpuContext *c) { return !(A0 >= REGION_LO && A0 < REGION_HI); }
+int hook_OverlayPatches_HeapShrink(CpuContext *c) { (void)c; return 1; }
+
+/* ---- Timing ------------------------------------------------------------------------------ */
+/* Retail 8005E748 waits on the counter the game's vblank IRQ increments.
+ * TODO(xbox): the Venom chase pacing in Timing.WaitVBlanks (gameplay fix). */
+void hook_Timing_WaitVBlanks(CpuContext *c) { rt_wait_counter(c, c->r[28] + 0xC74u); }
+
+/* ---- Pad reads: the title screen polls the pad in a loop without VSync. ---------- */
+void hook_PadTrace_AfterRead(CpuContext *c) { (void)c; rt_idle(); }
+void hook_ArmorTest_AfterPadRead(CpuContext *c) { (void)c; }
+
+/* ---- Movies: none play on the Xbox yet; branch past the PS1 player as the PC does
+ * after playing a movie itself. ---------------------------------------------------------- */
+int hook_DreamcastMoviePatches_Play(CpuContext *c) { (void)c; return 1; }

@@ -8,6 +8,9 @@
 #include "runtime.h"
 
 static CpuContext g_cpu;
+static int g_cpu_ready;
+
+CpuContext *rt_cpu(void) { return g_cpu_ready ? &g_cpu : 0; }
 
 void rt_boot(const RecompGame *game, const char *disc_root)
 {
@@ -24,6 +27,7 @@ void rt_boot(const RecompGame *game, const char *disc_root)
         return;
     }
     rt_log("%s: %lu bytes at %08lX", game->boot_exe, (unsigned long)game->text_size, (unsigned long)game->load_address);
+    if (!cd_init(disc_root)) { rt_log("no disc map; CD reads will fail"); }
 
     rt_dispatch_init(game);
     bios_init();
@@ -34,6 +38,8 @@ void rt_boot(const RecompGame *game, const char *disc_root)
     c->r[29] = game->sp;
     c->r[30] = game->sp;
     c->r[31] = 0;
+    g_cpu_ready = 1;
+    rt_clock_init();
     rt_log("starting %s", game->title);
     if (game->main) game->main(c);
     else recomp_dispatch(c, game->pc);

@@ -1,9 +1,9 @@
 # OpenSpidey — original Xbox port (nxdk)
 
 Both games, Spider-Man and Spider-Man 2: Enter Electro, as one Xbox compilation
-([issue #22](https://github.com/GTTeancum/SpideyPS1recomp/issues/22)). Status: first run.
-Spider-Man 1's recompiled code boots in XEMU and runs its start-up until it needs
-CD, timing and graphics services the runtime does not provide yet. Nothing is drawn.
+([issue #22](https://github.com/GTTeancum/SpideyPS1recomp/issues/22)). Status: title screen.
+Spider-Man 1's recompiled code boots in XEMU and draws its title screen ("PRESS
+START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
 
 ## Rules
 
@@ -31,7 +31,9 @@ CD, timing and graphics services the runtime does not provide yet. Nothing is dr
 | `src/main.c` | entry point: video mode, game thread (4 MB stack), status screen |
 | `runtime/recomp.h` | the interface the generated code is written against |
 | `runtime/runtime.h` | runtime services: log and status, overlays, BIOS, boot |
-| `runtime/*.c` | RAM and scratchpad, dispatch, BIOS, boot, GTE registers, status |
+| `runtime/*.c` | RAM, hardware registers and DMA, dispatch, BIOS, boot, clock and interrupts, CD library, software GPU and graphics library, GTE registers, status |
+| `src/patches_sm1.c` | Spider-Man 1 patches ported from `spiderman/patches` (keep in step) |
+| `tools/make_disc_map.py` | the test disc's sector map from an install's `recompone-disc.json` |
 | `generated/<game>/` | RecompOne's C output for each game, ignored by git (made from the player's disc) |
 | `tools/gen_hook_defaults.py` | default bodies for hooks not implemented yet (`build/hooks_default.c`) |
 | `tools/compile_generated.sh` | compiles one game's generated C with nxdk (no link) |
@@ -63,10 +65,11 @@ MSYSTEM=MINGW64 C:/msys64/usr/bin/bash.exe --noprofile --norc xbox/tools/build.s
 
 ```bash
 G=private/clean-1.1/Spider-Man/game
-python -I xbox/tools/run_xemu.py --shots 15,30 --include $G/SLUS_008.75 --include $G/SYSTEM.CNF --include $G/CD.HED --include $G/CD.WAD
+python -I xbox/tools/make_disc_map.py $G private/work/xbox-disc/disc.map
+python -I xbox/tools/run_xemu.py --shots 20,40 --include $G/SLUS_008.75 --include $G/SYSTEM.CNF --include $G/CD.HED --include $G/CD.WAD --include private/work/xbox-disc/disc.map
 ```
 
-`--include` puts the player's extracted game files on the test disc. The runtime
+`--include` puts the player's extracted game files and the sector map on the test disc. The runtime
 keeps its full status in `g_status_text`; at every screenshot the script copies it
 out through the XEMU monitor (address from `build/OpenSpidey.map`) to
 `captures/status-<second>.txt`: progress, recent log lines and every missing
@@ -90,13 +93,16 @@ request_alignment` assertion). Settings, the EEPROM copy, logs and captures go t
    analysis and configuration; the C# output is byte-for-byte unchanged. Both games
    generate (SM1 3,314 functions in 32 files, SM2 3,262 in 30) and compile with
    nxdk at -O2 -Wall with no errors or warnings.
-3. **C runtime** — started 2026-11-03. Done: 8 MB RAM, scratchpad, overlay dispatch
-   with the PC's region rules, BIOS memory/string/heap/event/setjmp calls, boot from
-   the disc, GPU status register, status reporting. First run: SM1 loads its
-   executable, initialises interrupts, DMA, timers, pads and the GPU, allocates,
-   submits a frame, then retries `CdInit` (613,892 times in 30 s, with 61 million
-   `VSync` calls between). Next: VSync timing and interrupts, then the CD library
-   (`LibCd`, reading `CD.WAD` through the disc's sector layout), then the GTE.
+3. **C runtime** — 2026-11-03. RAM, scratchpad, hardware registers (plain storage
+   as on the PC) with GPU ports and DMA channels 2 and 6, overlay dispatch with the
+   PC's region rules, BIOS memory/string/heap/event/setjmp calls and interrupt
+   registration, a 60 Hz clock delivering vblank and DMA interrupts to the game's
+   handlers, the idle-loop breaker, VSync and the game's counter wait, the CD
+   library over the disc's sector map, a software GPU (port of the PC's reference
+   rasteriser) with the graphics library, and the SM1 patches the title needs
+   (GPU reset/display mask, fixed-address overlays, movie skip). Result: the title
+   screen. Next: the GTE (first commands appear after the title), MDEC (DMA 0),
+   pads, sound, movies, the Venom-chase pacing and the other SM1 hooks.
 4. **Xbox adapters** — drawing through pbkit/NV2A (`DrawOTag`, `PutDispEnv`,
    `PutDrawEnv`), sound through AC97, controllers.
 5. **Patches** — the 114 SM1 hooks (all defaults now) and the suit loader in C.

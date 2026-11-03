@@ -75,6 +75,7 @@ volatile uint32_t rt_dispatch_count;
 void recomp_dispatch(CpuContext *c, uint32_t address)
 {
     rt_dispatch_count++;
+    rt_recent_calls[rt_recent_next++ % RECENT] = address;
     if (bios_dispatch(c, address)) return;
     for (int i = g_active_count - 1; i >= 0; i--) {
         RecompFn fn = find(g_active[i], address);

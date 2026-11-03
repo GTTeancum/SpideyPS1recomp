@@ -20,7 +20,7 @@ DECL = re.compile(r"^(?:int|void) (hook_\w+)\(CpuContext \*c\); /\* (\w+): (.+) 
 
 def defined_in_sources() -> set[str]:
     names = set()
-    body = re.compile(r"^(?:int|void)\s+(hook_\w+)\s*\(\s*CpuContext\s*\*\s*c\s*\)\s*\{?\s*$", re.M)
+    body = re.compile(r"^(?:int|void)\s+(hook_\w+)\s*\(\s*CpuContext\s*\*\s*c\s*\)\s*(?:\{|$)", re.M)
     for folder in ("src", "runtime"):
         for path in (XBOX / folder).glob("*.c"):
             names.update(body.findall(path.read_text(encoding="utf-8", errors="replace")))

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
+#include "gpu.h"
 #include "runtime.h"
 
 #define MISSING_MAX 96
@@ -17,6 +18,19 @@ static int g_line_next;
 static unsigned g_status_draws;
 
 volatile int g_stopped;
+
+/* Named counters (rt_note) and the last few dispatched addresses. */
+static struct { const char *name; unsigned long count; } g_notes[32];
+static int g_note_count;
+uint32_t rt_recent_calls[RECENT];
+unsigned rt_recent_next;
+
+void rt_note(const char *name)
+{
+    for (int i = 0; i < g_note_count; i++)
+        if (g_notes[i].name == name) { g_notes[i].count++; return; }
+    if (g_note_count < 32) { g_notes[g_note_count].name = name; g_notes[g_note_count].count = 1; g_note_count++; }
+}
 
 void rt_log(const char *format, ...)
 {
@@ -70,6 +84,14 @@ static void status_text(void)
     for (int i = first; i < g_line_next; i++) ADD("log %s\n", g_lines[i % LOG_LINES]);
     for (int i = 0; i < g_missing_count; i++)
         ADD("missing %s %s %u\n", g_missing[i].kind, g_missing[i].name, g_missing[i].count);
+    GpuDisplay d;
+    gpu_display(&d);
+    ADD("vblanks %lu display %d,%d %dx%d enabled %d rgb24 %d presenting %d\n", (unsigned long)rt_vblank_count,
+        d.x, d.y, d.width, d.height, d.enabled, d.rgb24, rt_presenting);
+    for (int i = 0; i < g_note_count; i++) ADD("count %s %lu\n", g_notes[i].name, (unsigned long)g_notes[i].count);
+    ADD("recent calls:");
+    for (int i = 0; i < RECENT; i++) ADD(" %08lX", (unsigned long)rt_recent_calls[(rt_recent_next + i) % RECENT]);
+    ADD("\n");
 #undef ADD
     *p = 0;
 }
@@ -78,6 +100,7 @@ void rt_show_status(void)
 {
     ++g_status_draws;
     status_text();
+    if (rt_presenting) return;   /* the game owns the screen now; the text still updates */
     /* The debug screen holds about 26 lines of 56 characters and wipes itself
      * when it overflows, so it shows a summary; the text above has everything. */
     debugClearScreen();

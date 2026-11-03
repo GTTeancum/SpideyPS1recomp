@@ -132,6 +132,10 @@ static int ev_slot(uint32_t ev)
     return s < EVENTS ? s : -1;
 }
 
+/* ---- interrupts: the PSY-Q environment whose handler table the IRQs index ---------- */
+static uint32_t g_intr_env;
+uint32_t bios_intr_env(void) { return g_intr_env; }
+
 /* ---- dispatch ---------------------------------------------------------------------- */
 static void missing(char table, uint32_t fn)
 {
@@ -190,11 +194,17 @@ static void bios_a(CpuContext *c, uint32_t fn)
 
 static void bios_b(CpuContext *c, uint32_t fn)
 {
+    static char counted[256][8];
+    char *label = counted[fn & 0xFF];
+    if (!label[0]) snprintf(label, 8, "B(%02lX)", (unsigned long)(fn & 0xFF));
+    rt_note(label);
     int s;
     switch (fn) {
     case 0x00: case 0x02: case 0x03: V0 = 0; break;
     case 0x01: case 0x04: case 0x05: case 0x06: case 0x10: case 0x11: case 0x17:
-    case 0x18: case 0x19: case 0x1A: case 0x1B: case 0x1C: case 0x1D: case 0x1E: case 0x1F: break;
+    case 0x1A: case 0x1B: case 0x1C: case 0x1D: case 0x1E: case 0x1F: break;
+    case 0x18: g_intr_env = 0; break;                                                   /* SetDefaultExitFromException */
+    case 0x19: g_intr_env = A0 ? A0 - 0x36u : 0; break;                                 /* SetCustomExitFromException */
     case 0x08:                                                                          /* OpenEvent */
         V0 = 0xFFFFFFFFu;
         for (s = 0; s < EVENTS; s++)
@@ -206,7 +216,20 @@ static void bios_b(CpuContext *c, uint32_t fn)
             }
         break;
     case 0x09: s = ev_slot(A0); if (s >= 0) g_events[s].status = 0; V0 = 1; break;     /* CloseEvent */
-    case 0x0A: case 0x0B:                                                               /* Wait/TestEvent */
+    case 0x07:                                                                          /* DeliverEvent */
+        for (s = 0; s < EVENTS; s++)
+            if (g_events[s].status == 2 && g_events[s].cls == A0 && g_events[s].spec == A1) g_events[s].status = 4;
+        break;
+    case 0x20:                                                                          /* UnDeliverEvent */
+        for (s = 0; s < EVENTS; s++)
+            if (g_events[s].status == 4 && g_events[s].cls == A0 && g_events[s].spec == A1) g_events[s].status = 2;
+        break;
+    case 0x0A:                                                                          /* WaitEvent: never blocks, as on the PC */
+        s = ev_slot(A0);
+        if (s >= 0 && g_events[s].status == 4) g_events[s].status = 2;
+        V0 = 1;
+        break;
+    case 0x0B:                                                                          /* TestEvent */
         s = ev_slot(A0);
         V0 = s >= 0 && g_events[s].status == 4 ? (g_events[s].status = 2, 1u) : 0u;
         break;
@@ -238,6 +261,7 @@ void bios_init(void) { g_block_count = 0; }
 
 int bios_dispatch(CpuContext *c, uint32_t address)
 {
+    if (address == 0xA0u || address == 0xB0u || address == 0xC0u) rt_idle();
     switch (address) {
     case 0xA0u: bios_a(c, c->r[9]); return 1;
     case 0xB0u: bios_b(c, c->r[9]); return 1;
