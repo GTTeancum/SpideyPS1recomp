@@ -40,7 +40,13 @@ public static class LevelSwitch
 
     static string _target;
     static string _source;
-    static bool _descriptorSelected;
+    // The descriptor name replaced first (normally l1a1_t), and whether the target
+    // level has actually been entered. The menus look the start level up before a new
+    // game begins, so the replacement keeps applying to that name until the target's
+    // trigger file loads; selecting it only once let a later lookup start a level-1
+    // game wearing level-5 files (no chase HUD, no Venom).
+    static string _descriptorFrom;
+    static bool _entered;
     public static int Rewrites { get; private set; }
 
     public static void Install()
@@ -61,21 +67,22 @@ public static class LevelSwitch
     /// </summary>
     public static void SelectDescriptor(CpuContext c, IMemory m)
     {
-        if (_descriptorSelected || _target == null || c.A0 != CurrentLevelName) return;
+        if (_entered || _target == null || c.A0 != CurrentLevelName) return;
 
         string targetName = _target + "_t";
         if (!HasDescriptor(m, targetName)) return;
 
         string currentName = ReadCString(m, CurrentLevelName, 16);
         if (!Regex.IsMatch(currentName, @"^l\d+a\d+_t$", RegexOptions.IgnoreCase)) return;
+        if (_descriptorFrom != null &&
+            !string.Equals(currentName, _descriptorFrom, StringComparison.OrdinalIgnoreCase)) return;
 
         if (!string.Equals(currentName, targetName, StringComparison.OrdinalIgnoreCase))
         {
+            _descriptorFrom ??= currentName;
             WriteCString(m, CurrentLevelName, targetName);
             Console.WriteLine($"[level] descriptor {currentName} -> {targetName}");
         }
-
-        _descriptorSelected = true;
     }
 
     /// <summary>
@@ -93,6 +100,9 @@ public static class LevelSwitch
         if (!hit.Success) return name;
 
         string prefix = hit.Groups[1].Value, rest = hit.Groups[2].Value;
+        if (!_entered && string.Equals(prefix, _target, StringComparison.OrdinalIgnoreCase) &&
+            rest.StartsWith("_t", StringComparison.OrdinalIgnoreCase))
+            _entered = true;
 
         // Bind to whichever level the game asks for first and redirect only that one.
         _source ??= prefix.ToLowerInvariant();
