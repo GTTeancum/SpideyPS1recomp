@@ -1,0 +1,109 @@
+#include <hal/debug.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
+#include <windows.h>
+#include "runtime.h"
+
+#define MISSING_MAX 96
+#define LOG_LINES 4
+
+static struct { const char *kind, *name; unsigned count; } g_missing[MISSING_MAX];
+static int g_missing_count;
+
+/* The last few log lines, redrawn with the status screen. */
+static char g_lines[LOG_LINES][96];
+static int g_line_next;
+static unsigned g_status_draws;
+
+volatile int g_stopped;
+
+void rt_log(const char *format, ...)
+{
+    char *line = g_lines[g_line_next % LOG_LINES];
+    va_list args;
+    va_start(args, format);
+    vsnprintf(line, sizeof g_lines[0], format, args);
+    va_end(args);
+    g_line_next++;
+}
+
+void rt_missing(const char *kind, const char *name)
+{
+    for (int i = 0; i < g_missing_count; i++)
+        if (g_missing[i].name == name || strcmp(g_missing[i].name, name) == 0) {
+            g_missing[i].count++;
+            return;
+        }
+    if (g_missing_count < MISSING_MAX) {
+        g_missing[g_missing_count].kind = kind;
+        g_missing[g_missing_count].name = name;
+        g_missing[g_missing_count].count = 1;
+        g_missing_count++;
+    }
+}
+
+static const char *short_name(const char *name)
+{
+    static const char *prefixes[] = { "RecompOne.Runtime.Sdk.", "RecompOne.Runtime.", "Recompiled." };
+    for (unsigned i = 0; i < sizeof prefixes / sizeof prefixes[0]; i++) {
+        size_t n = strlen(prefixes[i]);
+        if (strncmp(name, prefixes[i], n) == 0) return name + n;
+    }
+    return name;
+}
+
+/*
+ * The full status as text, rebuilt with every redraw. The test tools copy it out
+ * through the XEMU monitor (xbox/tools/run_xemu.py) using its address from the
+ * link map; it starts with a marker so a wrong address is obvious.
+ */
+char g_status_text[16384] = "OPENSPIDEY-STATUS";
+
+static void status_text(void)
+{
+    char *p = g_status_text, *end = g_status_text + sizeof g_status_text - 1;
+#define ADD(...) do { if (p < end) p += snprintf(p, (size_t)(end - p), __VA_ARGS__); } while (0)
+    ADD("OPENSPIDEY-STATUS\nstatus %u dispatches %lu%s\n", g_status_draws,
+        (unsigned long)rt_dispatch_count, g_stopped ? " STOPPED" : "");
+    int first = g_line_next > LOG_LINES ? g_line_next - LOG_LINES : 0;
+    for (int i = first; i < g_line_next; i++) ADD("log %s\n", g_lines[i % LOG_LINES]);
+    for (int i = 0; i < g_missing_count; i++)
+        ADD("missing %s %s %u\n", g_missing[i].kind, g_missing[i].name, g_missing[i].count);
+#undef ADD
+    *p = 0;
+}
+
+void rt_show_status(void)
+{
+    ++g_status_draws;
+    status_text();
+    /* The debug screen holds about 26 lines of 56 characters and wipes itself
+     * when it overflows, so it shows a summary; the text above has everything. */
+    debugClearScreen();
+    debugPrint("OpenSpidey Xbox  %u  calls %lu%s\n", g_status_draws,
+               (unsigned long)rt_dispatch_count, g_stopped ? "  STOPPED" : "");
+    int first = g_line_next > LOG_LINES ? g_line_next - LOG_LINES : 0;
+    for (int i = first; i < g_line_next; i++) debugPrint(" %.54s\n", g_lines[i % LOG_LINES]);
+    debugPrint("missing services: %d (first 18)\n", g_missing_count);
+    for (int i = 0; i < g_missing_count && i < 18; i++)
+        debugPrint(" %-40.40s %u\n", short_name(g_missing[i].name), g_missing[i].count);
+}
+
+void rt_fatal(CpuContext *c, const char *format, ...)
+{
+    char line[96];
+    va_list args;
+    va_start(args, format);
+    vsnprintf(line, sizeof line, format, args);
+    va_end(args);
+    rt_log("STOPPED: %s", line);
+    if (c) {
+        rt_log("a0=%08lX a1=%08lX a2=%08lX a3=%08lX", (unsigned long)c->r[4], (unsigned long)c->r[5],
+               (unsigned long)c->r[6], (unsigned long)c->r[7]);
+        rt_log("v0=%08lX v1=%08lX ra=%08lX sp=%08lX", (unsigned long)c->r[2], (unsigned long)c->r[3],
+               (unsigned long)c->r[31], (unsigned long)c->r[29]);
+    }
+    g_stopped = 1;
+    for (;;) Sleep(1000);
+}

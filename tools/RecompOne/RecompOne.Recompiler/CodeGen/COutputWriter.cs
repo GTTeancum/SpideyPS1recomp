@@ -49,27 +49,29 @@ public static class COutputWriter
 
         // Hooks: pre-hooks and conditional instruction hooks answer yes/no; the rest
         // (replacements, post-hooks, instruction observers) return nothing.
-        var hooks = new SortedDictionary<string, (bool Returns, string Target)>(StringComparer.Ordinal);
-        void Hook(string target, bool returns)
+        // Kind is "replace", "pre", "post", "instruction" or "branch"; pre and branch return int.
+        var hooks = new SortedDictionary<string, (string Kind, string Target)>(StringComparer.Ordinal);
+        static bool Returns(string kind) => kind is "pre" or "branch";
+        void Hook(string target, string kind)
         {
             string name = lang.HookName(target);
             if (hooks.TryGetValue(name, out var seen))
             {
                 if (seen.Target != target)
                     throw new InvalidDataException($"C hook name {name} is used by both {seen.Target} and {target}");
-                if (seen.Returns != returns)
-                    throw new InvalidDataException($"{target} is used both as a pre/branch hook and as a plain hook");
+                if (seen.Kind != kind && (Returns(seen.Kind) || Returns(kind)))
+                    throw new InvalidDataException($"{target} is used both as a {seen.Kind} and a {kind} hook");
                 return;
             }
-            hooks[name] = (returns, target);
+            hooks[name] = (kind, target);
         }
         foreach (var f in allFuncs)
         {
-            if (f.IsPatch) Hook(f.PatchTarget, false);
-            foreach (var pre in f.PreHookTargets) Hook(pre, true);
-            foreach (var post in f.PostHookTargets) Hook(post, false);
-            foreach (var list in f.InstructionHookTargets.Values) foreach (var t in list) Hook(t, false);
-            foreach (var list in f.InstructionBranchHooks.Values) foreach (var bh in list) Hook(bh.Target, true);
+            if (f.IsPatch) Hook(f.PatchTarget, "replace");
+            foreach (var pre in f.PreHookTargets) Hook(pre, "pre");
+            foreach (var post in f.PostHookTargets) Hook(post, "post");
+            foreach (var list in f.InstructionHookTargets.Values) foreach (var t in list) Hook(t, "instruction");
+            foreach (var list in f.InstructionBranchHooks.Values) foreach (var bh in list) Hook(bh.Target, "branch");
         }
 
         var h = new StringBuilder();
@@ -83,7 +85,7 @@ public static class COutputWriter
         h.AppendLine();
         h.AppendLine("/* Hooks and replacements the platform provides (configuration targets) */");
         foreach (var (name, hook) in hooks)
-            h.AppendLine($"{(hook.Returns ? "int" : "void")} {name}(CpuContext *c); /* {hook.Target} */");
+            h.AppendLine($"{(Returns(hook.Kind) ? "int" : "void")} {name}(CpuContext *c); /* {hook.Kind}: {hook.Target} */");
         h.AppendLine();
         foreach (var o in overlays)
             h.AppendLine($"extern const RecompOverlay {OverlaySymbol(className, o)};");

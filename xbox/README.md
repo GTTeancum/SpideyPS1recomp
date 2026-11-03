@@ -1,8 +1,9 @@
 # OpenSpidey — original Xbox port (nxdk)
 
 Both games, Spider-Man and Spider-Man 2: Enter Electro, as one Xbox compilation
-([issue #22](https://github.com/GTTeancum/SpideyPS1recomp/issues/22)). Status: bring-up.
-The toolchain, disc image and XEMU test loop work; no game code runs yet.
+([issue #22](https://github.com/GTTeancum/SpideyPS1recomp/issues/22)). Status: first run.
+Spider-Man 1's recompiled code boots in XEMU and runs its start-up until it needs
+CD, timing and graphics services the runtime does not provide yet. Nothing is drawn.
 
 ## Rules
 
@@ -27,27 +28,23 @@ The toolchain, disc image and XEMU test loop work; no game code runs yet.
 
 | Path | Contents |
 | --- | --- |
-| `src/` | Xbox C sources (currently the bring-up entry point) |
-| `runtime/recomp.h` | the C runtime interface the generated code is written against |
+| `src/main.c` | entry point: video mode, game thread (4 MB stack), status screen |
+| `runtime/recomp.h` | the interface the generated code is written against |
+| `runtime/runtime.h` | runtime services: log and status, overlays, BIOS, boot |
+| `runtime/*.c` | RAM and scratchpad, dispatch, BIOS, boot, GTE registers, status |
 | `generated/<game>/` | RecompOne's C output for each game, ignored by git (made from the player's disc) |
+| `tools/gen_hook_defaults.py` | default bodies for hooks not implemented yet (`build/hooks_default.c`) |
 | `tools/compile_generated.sh` | compiles one game's generated C with nxdk (no link) |
 | `tools/build.sh` | nxdk build wrapper (MSYS2 bash, installed LLVM) |
-| `tools/run_xemu.py` | hidden, silent XEMU boot with native screenshots |
+| `tools/run_xemu.py` | hidden, silent XEMU boot with native screenshots and the status text |
 | `tools/xemu_native_screenshot.py` | triggers XEMU's own screenshot (from the OpenJKDF2ogx tools) |
-| `build/` | build output, ignored by git (`build/release/default.xbe`) |
+| `build/` | build output, ignored by git (`release/default.xbe`, `OpenSpidey.map`) |
 
 ## Build
 
-From the repository root (PowerShell or Git Bash), with nxdk at `C:\nxdk`, LLVM at
-`C:\Program Files\LLVM` and MSYS2 at `C:\msys64`:
-
-```bash
-MSYSTEM=MINGW64 C:/msys64/usr/bin/bash.exe --noprofile --norc xbox/tools/build.sh -j8
-```
-
-## Generate and check the game code
-
-From `spiderman/` (and likewise `spiderman2/` with its config):
+With nxdk at `C:\nxdk`, LLVM at `C:\Program Files\LLVM` and MSYS2 at `C:\msys64`.
+From `spiderman/`, generate the game code (see
+[docs/recompiler-c-output.md](../docs/recompiler-c-output.md)):
 
 ```bash
 dotnet ../tools/RecompOne/RecompOne.Recompiler/bin/Release/net10.0/recompone.dll config/spiderman.json --c ../xbox/generated/spiderman
@@ -56,17 +53,25 @@ dotnet ../tools/RecompOne/RecompOne.Recompiler/bin/Release/net10.0/recompone.dll
 Then from the repository root:
 
 ```bash
-MSYSTEM=MINGW64 C:/msys64/usr/bin/bash.exe --noprofile --norc xbox/tools/compile_generated.sh spiderman
+python -I xbox/tools/gen_hook_defaults.py spiderman
+MSYSTEM=MINGW64 C:/msys64/usr/bin/bash.exe --noprofile --norc xbox/tools/build.sh -j8
 ```
 
-See [docs/recompiler-c-output.md](../docs/recompiler-c-output.md) for the format and
-the runtime interface.
+`compile_generated.sh spiderman` compiles the generated code alone, as a quick check.
 
 ## Test in XEMU
 
 ```bash
-python -I xbox/tools/run_xemu.py --shots 10,15
+G=private/clean-1.1/Spider-Man/game
+python -I xbox/tools/run_xemu.py --shots 15,30 --include $G/SLUS_008.75 --include $G/SYSTEM.CNF --include $G/CD.HED --include $G/CD.WAD
 ```
+
+`--include` puts the player's extracted game files on the test disc. The runtime
+keeps its full status in `g_status_text`; at every screenshot the script copies it
+out through the XEMU monitor (address from `build/OpenSpidey.map`) to
+`captures/status-<second>.txt`: progress, recent log lines and every missing
+service (hook, BIOS call or hardware register) in first-use order with its count.
+The screen shows a summary of the same.
 
 Uses `private/work/xemu/xemu.exe` (a copy of the local XEMU) and reads the boot
 ROM, BIOS, EEPROM and HDD image from `C:\Games\Emulators\Xemu` without changing
@@ -84,14 +89,17 @@ request_alignment` assertion). Settings, the EEPROM copy, logs and captures go t
 2. **C output from RecompOne** — done 2026-11-03: `--c <dir>` writes C from the same
    analysis and configuration; the C# output is byte-for-byte unchanged. Both games
    generate (SM1 3,314 functions in 32 files, SM2 3,262 in 30) and compile with
-   nxdk at -O2 -Wall with no errors or warnings. Not yet linked: they need the 14
-   runtime symbols in `recomp.h` and 128 hooks (listed in each `generated/<game>/<Game>.h`).
-3. **C runtime** (here) — CPU context, RAM and scratchpad, overlay dispatch,
-   vblank/interrupt timing, and the PlayStation library calls the games use
-   (graphics, CD, sound, pad).
-4. **Xbox adapters** (here) — drawing through pbkit/NV2A, sound through AC97,
-   controllers, reading game data from the disc.
-5. **Patches** — the gameplay and quality-of-life patches and the suit loader in C.
+   nxdk at -O2 -Wall with no errors or warnings.
+3. **C runtime** — started 2026-11-03. Done: 8 MB RAM, scratchpad, overlay dispatch
+   with the PC's region rules, BIOS memory/string/heap/event/setjmp calls, boot from
+   the disc, GPU status register, status reporting. First run: SM1 loads its
+   executable, initialises interrupts, DMA, timers, pads and the GPU, allocates,
+   submits a frame, then retries `CdInit` (613,892 times in 30 s, with 61 million
+   `VSync` calls between). Next: VSync timing and interrupts, then the CD library
+   (`LibCd`, reading `CD.WAD` through the disc's sector layout), then the GTE.
+4. **Xbox adapters** — drawing through pbkit/NV2A (`DrawOTag`, `PutDispEnv`,
+   `PutDrawEnv`), sound through AC97, controllers.
+5. **Patches** — the 114 SM1 hooks (all defaults now) and the suit loader in C.
 6. **Video modes and the compilation launcher**, then Spider-Man 2.
 
 Game data is never part of the repository or a published image; the player's own

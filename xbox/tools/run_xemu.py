@@ -18,7 +18,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import shutil
+import socket
 import subprocess
 import sys
 import time
@@ -33,6 +35,31 @@ def toml_path(path: Path) -> str:
     return str(path).replace("\\", "/")
 
 
+def read_status(port: int, map_path: Path, target: Path) -> str | None:
+    """Copy the runtime's status text (g_status_text) out through the XEMU monitor."""
+    if not map_path.exists():
+        return None
+    m = re.search(r"_g_status_text\s+([0-9a-fA-F]+)", map_path.read_text(errors="replace"))
+    if not m:
+        return None
+    raw = target.with_suffix(".bin")
+    raw.unlink(missing_ok=True)
+    try:
+        with socket.create_connection(("127.0.0.1", port), timeout=5) as monitor:
+            monitor.settimeout(5)
+            monitor.recv(4096)
+            monitor.sendall(f'memsave 0x{int(m[1], 16):x} 16384 "{toml_path(raw)}"\n'.encode())
+            time.sleep(1)
+    except OSError as error:
+        return f"monitor: {error}"
+    if not raw.exists():
+        return None
+    text = raw.read_bytes().split(b"\0", 1)[0].decode("ascii", "replace")
+    raw.unlink()
+    target.write_text(text, encoding="utf-8")
+    return str(target)
+
+
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--xemu", type=Path, default=ROOT / "private/work/xemu/xemu.exe")
@@ -45,6 +72,9 @@ def main() -> int:
     p.add_argument("--iso", type=Path, default=Path("C:/Games/Emulators/Xemu/OpenSpidey.iso"),
                    help="local-drive disc image, replaced on every run")
     p.add_argument("--shots", default="8", help="comma-separated seconds after launch")
+    p.add_argument("--monitor-port", type=int, default=9251)
+    p.add_argument("--include", type=Path, action="append", default=[],
+                   help="file or folder copied to the disc root (the player's own game files; repeatable)")
     p.add_argument("--scale", type=int, default=1)
     a = p.parse_args()
 
@@ -55,6 +85,11 @@ def main() -> int:
     disc.mkdir(parents=True)
     (out / "captures").mkdir()
     shutil.copy2(a.xbe, disc / "default.xbe")
+    for item in a.include:
+        if item.is_dir():
+            shutil.copytree(item, disc / item.name)
+        else:
+            shutil.copy2(item, disc / item.name)
 
     iso = a.iso.resolve()
     iso.unlink(missing_ok=True)
@@ -97,6 +132,7 @@ dvd_path = '{toml_path(iso)}'
     hidden.dwFlags |= subprocess.STARTF_USESHOWWINDOW
     hidden.wShowWindow = 0  # SW_HIDE
     args = [str(a.xemu), "-config_path", str(config), "-snapshot",
+            "-monitor", f"tcp:127.0.0.1:{a.monitor_port},server,nowait",
             "-audio", f"driver=wav,path={toml_path(out / 'audio.wav')}"]
     with open(out / "stdout.log", "w") as so, open(out / "stderr.log", "w") as se:
         proc = subprocess.Popen(args, cwd=out, stdout=so, stderr=se, startupinfo=hidden,
@@ -124,6 +160,8 @@ dvd_path = '{toml_path(iso)}'
                     break
                 time.sleep(1)
             record["second"] = second
+            record["status"] = read_status(a.monitor_port, a.xbe.parent.parent / "OpenSpidey.map",
+                                           out / "captures" / f"status-{int(second)}.txt")
             results.append(record)
     finally:
         if proc.poll() is None:

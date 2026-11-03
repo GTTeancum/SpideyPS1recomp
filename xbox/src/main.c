@@ -1,28 +1,38 @@
-// OpenSpidey for the original Xbox: bring-up entry point.
+// OpenSpidey for the original Xbox: entry point.
 //
-// Proves the toolchain end to end (nxdk build, XBE, disc image, XEMU boot) before
-// any game code is ported. It sets the 4:3 480i/p mode the port starts from and
-// prints a heartbeat so a capture can tell a running build from a hung one.
+// Runs the recompiled game on its own thread: the generated code nests one C call
+// per PlayStation call, so it gets a large stack. The disc root is D: (nxdk mounts
+// the launch folder there); the test disc carries the player's extracted game files.
 
 #include <hal/debug.h>
 #include <hal/video.h>
 #include <windows.h>
+#include "runtime.h"
+#include "SpiderMan.h"
 
 // Read through the XEMU monitor by the test tools: a running build advances it.
 volatile unsigned int g_openspidey_heartbeat;
 
+static DWORD WINAPI game_thread(LPVOID arg)
+{
+    (void)arg;
+    rt_boot(&SpiderMan_game, "D:");
+    g_stopped = 1;
+    return 0;
+}
+
 int main(void)
 {
     XVideoSetMode(640, 480, 32, REFRESH_DEFAULT);
+    debugPrint("OpenSpidey - original Xbox\n");
 
+    HANDLE thread = CreateThread(NULL, 4u * 1024u * 1024u, game_thread, NULL, 0, NULL);
+    if (!thread) debugPrint("could not start the game thread\n");
+    // The game thread never draws; this one redraws the status once a second.
     for (;;) {
         g_openspidey_heartbeat++;
-        debugClearScreen();
-        debugPrint("OpenSpidey - original Xbox bring-up\n");
-        debugPrint("Spider-Man / Spider-Man 2: Enter Electro\n\n");
-        debugPrint("nxdk build running.\n");
-        debugPrint("heartbeat %u\n", g_openspidey_heartbeat);
-        Sleep(1000);
+        if (g_openspidey_heartbeat % 10 == 0) rt_show_status();
+        Sleep(100);
     }
     return 0;
 }
