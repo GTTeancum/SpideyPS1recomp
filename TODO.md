@@ -21,6 +21,5 @@ Community report details: [community-reports-2026-10-29](docs/issues/community-r
 
 - [ ] Chase Venom (SM1 l5a1) never starts: reported November 2, 2026 in the deployed build, launched with `SPIDEY_LEVEL=l5a1` and ordinary control, 60 FPS on. Spider-Man stands on the starting rooftop and the chase does not begin. Blocks closing #21.
 - [ ] Default Spider-Man model shows a seam on the head: reported November 2, 2026 during the same Chase Venom run, visible from behind.
-- [ ] Game Over screen flashes rapidly (SM1, 60 FPS on): reported November 2, 2026 after the Chase Venom run. Suspected cause: the in-between frame skips VRAM copies the screen is built from.
 
 Historical evidence: [Timing and audio repairs](docs/timing-and-audio-repairs.md), [repair handoff](docs/performance-repairs-2026-09-17.md), [P1 rendering evidence](docs/rendering-p1-2026-09-27.md). Additional SM2 work: [Spider-Man 2 to-do](spiderman2/TO_DO.md).

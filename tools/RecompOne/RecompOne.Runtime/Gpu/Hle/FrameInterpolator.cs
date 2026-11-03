@@ -27,6 +27,12 @@ namespace RecompOne.Runtime.Hle;
 ///
 /// VRAM transfers are not replayed: the live pass already left VRAM in its end state,
 /// and replaying uploads would only rewind textures the next frame relies on.
+///
+/// A frame is only redrawn when it first clears every area it draws into and nothing
+/// is copied or uploaded over that drawing afterwards. A screen that builds on what is
+/// already there, or is changed after it is drawn (SM1's Game Over tints the last
+/// picture and darkens it a little more each frame), would come out differently, so
+/// it gets no in-between frame and is simply shown at 30 FPS.
 /// </summary>
 public sealed class FrameInterpolator : IGpuBackend
 {
@@ -55,7 +61,7 @@ public sealed class FrameInterpolator : IGpuBackend
     /// <summary>Largest per-frame movement, in console pixels, still treated as motion.</summary>
     public static float MaxStep = 96f;
 
-    public static long Matched, Unmatched, Cuts, Frames;
+    public static long Matched, Unmatched, Cuts, Frames, NotCleared;
     static readonly bool Trace = Environment.GetEnvironmentVariable("RECOMP_INTERP_TRACE") == "1";
     static readonly bool Debug = Environment.GetEnvironmentVariable("RECOMP_INTERP_DEBUG") == "1";
 
@@ -103,8 +109,37 @@ public sealed class FrameInterpolator : IGpuBackend
         _inner.FillRect(x, y, w, h, color15);
     }
 
-    public void CopyVram(int sx, int sy, int dx, int dy, int w, int h) => _inner.CopyVram(sx, sy, dx, dy, w, h);
-    public void WriteVram(int x, int y, int w, int h, ReadOnlySpan<ushort> px) => _inner.WriteVram(x, y, w, h, px);
+    public void CopyVram(int sx, int sy, int dx, int dy, int w, int h)
+    {
+        NoteTransfer(dx, dy, w, h);
+        _inner.CopyVram(sx, sy, dx, dy, w, h);
+    }
+
+    public void WriteVram(int x, int y, int w, int h, ReadOnlySpan<ushort> px)
+    {
+        NoteTransfer(x, y, w, h);
+        _inner.WriteVram(x, y, w, h, px);
+    }
+
+    // A transfer into an area this frame has already drawn changes the picture after
+    // the drawing (SM1's Game Over tints the frozen frame line by line). Redrawing the
+    // recording would paint over it.
+    bool _overwritten;
+
+    void NoteTransfer(int x, int y, int w, int h)
+    {
+        if (_overwritten) return;
+        foreach (var op in _frame)
+        {
+            if (op.Kind != Kind.Env) continue;
+            var e = op.Env;
+            if (x <= e.ClipX1 && x + w > e.ClipX0 && y <= e.ClipY1 && y + h > e.ClipY0)
+            {
+                _overwritten = true;
+                return;
+            }
+        }
+    }
     public void ReadVram(int x, int y, int w, int h, Span<ushort> px) => _inner.ReadVram(x, y, w, h, px);
     public byte[]? ReadScaled(int x, int y, int w, int h, out int outW, out int outH) => _inner.ReadScaled(x, y, w, h, out outW, out outH);
     public byte[]? ReadPresented(out int outW, out int outH) => _inner.ReadPresented(out outW, out outH);
@@ -139,14 +174,62 @@ public sealed class FrameInterpolator : IGpuBackend
         _camera = Hardware.GteIds.FrameCamera;
         _reproject = _camera.Valid && _priorCamera.Valid && Invert(_camera.R, _inverse);
         Frames++;
+        bool cleared = ClearsWhatItDraws(_last) && !_overwritten;
+        _overwritten = false;
+        if (!cleared) NotCleared++;
         if (Trace && Frames % 60 == 0)
         {
             var origins = new HashSet<(int, int)>();
             foreach (var op in _last) if (op.Kind == Kind.Env) origins.Add((op.Env.ClipX0, op.Env.ClipY0));
             Console.WriteLine($"[interp] frame {Frames}: {_last.Count} ops, areas {string.Join(" ", origins)}, " +
-                $"previous {_previous.Count} named; matched {Matched} unmatched {Unmatched} cuts {Cuts} named {Hardware.GteIds.Named} misses {Hardware.GteIds.NameMisses}");
+                $"previous {_previous.Count} named; not cleared {NotCleared}; matched {Matched} unmatched {Unmatched} cuts {Cuts} named {Hardware.GteIds.Named} misses {Hardware.GteIds.NameMisses}");
         }
-        return hadPrevious && _last.Count > 0;
+        return hadPrevious && cleared;
+    }
+
+    /// <summary>
+    /// True when every primitive is drawn inside an area an earlier fill or opaque
+    /// background rectangle in the same frame covered, so drawing the frame again
+    /// gives the same picture.
+    /// </summary>
+    static bool ClearsWhatItDraws(List<Op> ops)
+    {
+        Span<(int X0, int Y0, int X1, int Y1)> fills = stackalloc (int, int, int, int)[16];
+        int count = 0;
+        var env = default(HleDrawEnv);
+        bool areaCleared = false;
+        foreach (var op in ops)
+        {
+            switch (op.Kind)
+            {
+                case Kind.Env:
+                    env = op.Env;
+                    areaCleared = Covered(fills[..count], env);
+                    break;
+                case Kind.Fill:
+                    if (count < fills.Length) fills[count++] = (op.X, op.Y, op.X + op.W, op.Y + op.H);
+                    areaCleared = Covered(fills[..count], env);
+                    break;
+                // The game's background clear arrives as an opaque full-area rectangle.
+                case Kind.Rect when op.Flags.Background && !op.Flags.SemiTrans:
+                    if (count < fills.Length)
+                        fills[count++] = ((int)op.Rect.X, (int)op.Rect.Y, (int)op.Rect.X + op.Rect.W, (int)op.Rect.Y + op.Rect.H);
+                    areaCleared = Covered(fills[..count], env);
+                    break;
+                default:
+                    if (!areaCleared) return false;
+                    break;
+            }
+        }
+        return true;
+    }
+
+    static bool Covered(ReadOnlySpan<(int X0, int Y0, int X1, int Y1)> fills, in HleDrawEnv env)
+    {
+        foreach (var f in fills)
+            if (f.X0 <= env.ClipX0 && f.Y0 <= env.ClipY0 && f.X1 >= env.ClipX1 && f.Y1 >= env.ClipY1)
+                return true;
+        return false;
     }
 
     void Remember(in HleVertex v, in HleDrawEnv env)

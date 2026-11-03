@@ -420,6 +420,12 @@ public sealed class GlCore : IGpuBackend
                 f.IgnoreCoverage))) Flush();
         if (_count + vertsNeeded > MaxVerts) Flush();
         CheckTextureFeedback(f);
+        // A draw area that matches no screen buffer (SM1's Game Over darkens with one
+        // spanning both) is drawn straight into VRAM. Put any newer screen-buffer
+        // picture there first, so it is what gets drawn over.
+        if (target == null)
+            WritebackDirtyIntersecting(_env.ClipX0, _env.ClipY0,
+                _env.ClipX1 - _env.ClipX0 + 1, _env.ClipY1 - _env.ClipY0 + 1);
 
         _kTarget = target;
         _kModelDepth = modelDepth;
@@ -1027,7 +1033,12 @@ public sealed class GlCore : IGpuBackend
             int x1 = Math.Min(_kClipX1, (int)Math.Ceiling(_drawMaxX));
             int y1 = Math.Min(_kClipY1, (int)Math.Ceiling(_drawMaxY));
             if (x1 >= x0 && y1 >= y0)
+            {
                 Assets.Textures.VramTracker.MarkGpuWrite(x0, y0, x1 - x0 + 1, y1 - y0 + 1);
+                // Screen buffers showing this area must show the draw too.
+                SyncRtsFromVram(x0, y0, x1 - x0 + 1, y1 - y0 + 1);
+                RebindTarget(null);
+            }
         }
         _count = 0;
         _batchTimer?.End();
