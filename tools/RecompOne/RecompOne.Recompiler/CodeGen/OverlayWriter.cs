@@ -15,8 +15,9 @@ public static class OverlayWriter
 {
     record OverlayResult(string Name, List<MipsFunction> Functions, int LbaStart, uint Base, uint Size, MipsInstruction[] Instructions, bool Debug);
 
-    public static void Write(RecompOneConfig config, DiscFs fs, string outDir)
+    public static void Write(RecompOneConfig config, DiscFs fs, string outDir, Dialect? lang = null)
     {
+        lang ??= Dialect.CSharp;
         string className = SafeIdentifier(config.Game.Name);
 
         Console.WriteLine("[Recompiler] reading SYSTEM.CNF");
@@ -126,7 +127,7 @@ public static class OverlayWriter
         ResolveCollisions(allFuncs);
         ApplyPatches(allFuncs, config.Patches);
         SdkPatches.Apply(allFuncs);
-        WriteAll(config, outDir, className, mainExe, sysCfg, overlayResults, allFuncs);
+        WriteAll(config, outDir, className, mainExe, sysCfg, overlayResults, allFuncs, lang);
     }
 
     public sealed record OverlayAnalysis(List<MipsFunction> Functions, MipsInstruction[] Instructions, FunctionInfo ElfInfo, byte[] DiscBin, int Lba, uint Base);
@@ -224,10 +225,10 @@ public static class OverlayWriter
         }
     }
 
-    static void WriteAll(RecompOneConfig config, string outDir, string className, PsxExe mainExe, SystemCfg sysCfg, List<OverlayResult> overlayResults, List<MipsFunction> allFuncs)
+    static void WriteAll(RecompOneConfig config, string outDir, string className, PsxExe mainExe, SystemCfg sysCfg, List<OverlayResult> overlayResults, List<MipsFunction> allFuncs, Dialect lang)
     {
         var uniqueAddrs = allFuncs.GroupBy(f => f.Start).Where(g => g.Count() == 1).Select(g => g.Key).ToHashSet();
-        var knownFuncs = allFuncs.Where(f => uniqueAddrs.Contains(f.Start)).ToDictionary(f => f.Start, f => $"{className}.{f.EmittedName}");
+        var knownFuncs = allFuncs.Where(f => uniqueAddrs.Contains(f.Start)).ToDictionary(f => f.Start, f => lang.FunctionName(className, f.EmittedName));
 
         int conflictCount = allFuncs.Count - knownFuncs.Count;
         Console.WriteLine($"[Recompiler] total functions: {allFuncs.Count}");
@@ -238,8 +239,26 @@ public static class OverlayWriter
             uint mainAddr = Convert.ToUInt32(config.Main, 16);
             var mainFunc = allFuncs.FirstOrDefault(f => f.Start == mainAddr);
             if (mainFunc == null) throw new InvalidOperationException($"[recompiler] the main function not found at 0x{mainAddr:X8}");
-            mainCall = $"{className}.{mainFunc.EmittedName}";
+            mainCall = lang.FunctionName(className, mainFunc.EmittedName);
             Console.WriteLine($"[Recompiler] main: {mainCall} @ 0x{mainAddr:X8}");
+        }
+
+        if (lang.IsC)
+        {
+            foreach (var result in overlayResults)
+            {
+                Console.WriteLine($"[Recompiler] emiting {className}_{result.Name}.c ({result.Functions.Count} functions)");
+                var interior = InteriorHooks(result.Functions, knownFuncs);
+                COutputWriter.WriteOverlay(className, result.Name, result.Functions,
+                    func => FunctionEmitter.Emit(func, Context(func, className, knownFuncs, interior, lang,
+                        false, false, false, config.AddressComments, config.DisasmComments, result.Instructions)),
+                    result.LbaStart, result.Base, result.Size, outDir);
+            }
+            Console.WriteLine($"[Recompiler] Emitting {className}.h and {className}_game.c");
+            COutputWriter.WriteGame(className, mainExe, sysCfg.BootExe, mainCall,
+                overlayResults.Select(o => o.Name).ToList(), allFuncs, outDir);
+            Console.WriteLine("[Recompiler] finished ");
+            return;
         }
 
         foreach (var result in overlayResults)
@@ -307,30 +326,10 @@ public static class OverlayWriter
         sb.AppendLine($"public static partial class {className}");
         sb.AppendLine("{");
 
+        var interior = InteriorHooks(funcs, knownFuncs);
         foreach (var func in funcs.OrderBy(f => f.Start))
-        {
-            var labels = LabelManager.Collect(func);
-            var ctx = new FunctionContext
-            {
-                FuncStart = func.Start,
-                FuncEnd = func.End,
-                KnownFunctions = knownFuncs,
-                InteriorHooks = funcs.Where(f => f.PreHookTargets.Count > 0 || f.PostHookTargets.Count > 0)
-                    .GroupBy(f => f.Start).ToDictionary(g => g.Key, g => knownFuncs[g.Key]),
-                Labels = labels,
-                LocalReturns = Analysis.LabelManager.LocalReturns(func),
-                LocalReturnJrs = Analysis.LabelManager.LocalReturnJrs(func),
-                Debug = debug,
-                CallRing = callRing,
-                SpAudit = spAudit,
-                AddressComments = addressComments,
-                DisasmComments = disasmComments,
-                JumpTablesByJr = func.JumpTables.ToDictionary(j => j.JrVram),
-                RaReturnJrs = FunctionDetector.ComputeRaReturnJrs(func),
-                AllInstructions = instrs
-            };
-            sb.Append(FunctionEmitter.Emit(func, ctx));
-        }
+            sb.Append(FunctionEmitter.Emit(func, Context(func, className, knownFuncs, interior, Dialect.CSharp,
+                debug, callRing, spAudit, addressComments, disasmComments, instrs)));
 
         sb.AppendLine("}");
         sb.AppendLine();
@@ -352,6 +351,33 @@ public static class OverlayWriter
     }
 
     static string DispatchTableName(string name) => $"{char.ToUpperInvariant(name[0])}{name[1..]}DispatchTable";
+
+    static Dictionary<uint, string> InteriorHooks(List<MipsFunction> funcs, Dictionary<uint, string> knownFuncs) =>
+        funcs.Where(f => f.PreHookTargets.Count > 0 || f.PostHookTargets.Count > 0)
+            .GroupBy(f => f.Start).ToDictionary(g => g.Key, g => knownFuncs[g.Key]);
+
+    static FunctionContext Context(MipsFunction func, string className, Dictionary<uint, string> knownFuncs,
+        Dictionary<uint, string> interior, Dialect lang, bool debug, bool callRing, bool spAudit,
+        bool addressComments, bool disasmComments, MipsInstruction[] instrs) => new()
+    {
+        Lang = lang,
+        ClassName = className,
+        FuncStart = func.Start,
+        FuncEnd = func.End,
+        KnownFunctions = knownFuncs,
+        InteriorHooks = interior,
+        Labels = LabelManager.Collect(func),
+        LocalReturns = Analysis.LabelManager.LocalReturns(func),
+        LocalReturnJrs = Analysis.LabelManager.LocalReturnJrs(func),
+        Debug = debug,
+        CallRing = callRing,
+        SpAudit = spAudit,
+        AddressComments = addressComments,
+        DisasmComments = disasmComments,
+        JumpTablesByJr = func.JumpTables.ToDictionary(j => j.JrVram),
+        RaReturnJrs = FunctionDetector.ComputeRaReturnJrs(func),
+        AllInstructions = instrs
+    };
 
     static void ResolveCollisions(List<MipsFunction> allFuncs)
     {

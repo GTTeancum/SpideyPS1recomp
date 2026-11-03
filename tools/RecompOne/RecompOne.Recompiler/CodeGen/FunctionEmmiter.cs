@@ -27,48 +27,55 @@ public static class FunctionEmitter
                 && !ctx.Labels.Contains(instrs[i + 1].Vram))
                 dsIdx.Add(i + 1);
 
-        string name = func.EmittedName;
+        var lang = ctx.Lang;
+        string name = lang.IsC ? ctx.FunctionName(func.EmittedName) : func.EmittedName;
         const string ind = "        ";
-        const string noInline = "    [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]";
+        string noInline = lang.IsC ? "" : "    [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]";
+        string Signature(string n) => lang.IsC ? $"void {n}(CpuContext *c)" : $"    public static void {n}(CpuContext c, IMemory m)";
+        void NoInline() { if (!lang.IsC) sb.AppendLine(noInline); }
 
         if (func.IsStub)
         {
-            sb.AppendLine(noInline);
-            sb.AppendLine($"    public static void {name}(CpuContext c, IMemory m) {{ }}");
+            NoInline();
+            sb.AppendLine(lang.IsC ? $"{Signature(name)} {{ (void)c; }}" : $"    public static void {name}(CpuContext c, IMemory m) {{ }}");
             return sb.ToString();
         }
         bool hooked = func.PreHookTargets.Count > 0 || func.PostHookTargets.Count > 0 || ctx.SpAudit;
 
         if (func.IsPatch)
         {
-            sb.AppendLine(noInline);
+            NoInline();
+            string patch = lang.HookName(func.PatchTarget);
             if (!hooked)
             {
-                sb.AppendLine($"    public static void {name}(CpuContext c, IMemory m) => {func.PatchTarget}(c, m);");
+                sb.AppendLine(lang.IsC
+                    ? $"{Signature(name)} {{ {lang.Call(patch)} }}"
+                    : $"    public static void {name}(CpuContext c, IMemory m) => {func.PatchTarget}(c, m);");
                 return sb.ToString();
             }
-            sb.AppendLine($"    public static void {name}(CpuContext c, IMemory m)");
-            sb.AppendLine("    {");
-            EmitHooks(sb, func, $"        {func.PatchTarget}(c, m);", ctx);
-            sb.AppendLine("    }");
+            sb.AppendLine(Signature(name));
+            sb.AppendLine(lang.IsC ? "{" : "    {");
+            EmitHooks(sb, func, $"        {lang.Call(patch)}", ctx);
+            sb.AppendLine(lang.IsC ? "}" : "    }");
             return sb.ToString();
         }
         if (hooked)
         {
-            sb.AppendLine(noInline);
-            sb.AppendLine($"    public static void {name}(CpuContext c, IMemory m)");
-            sb.AppendLine("    {");
-            EmitHooks(sb, func, $"        {name}_Impl(c, m);", ctx);
-            sb.AppendLine("    }");
+            if (lang.IsC) sb.AppendLine($"static {Signature(name + "_Impl")};");
+            NoInline();
+            sb.AppendLine(Signature(name));
+            sb.AppendLine(lang.IsC ? "{" : "    {");
+            EmitHooks(sb, func, $"        {lang.Call(name + "_Impl")}", ctx);
+            sb.AppendLine(lang.IsC ? "}" : "    }");
             name += "_Impl";
         }
 
-        sb.AppendLine(noInline);
-        sb.AppendLine($"    public static void {name}(CpuContext c, IMemory m)");
-        sb.AppendLine("    {");
-        if (ctx.CallRing)
+        NoInline();
+        sb.AppendLine(lang.IsC && hooked ? $"static {Signature(name)}" : Signature(name));
+        sb.AppendLine(lang.IsC ? "{" : "    {");
+        if (ctx.CallRing && !lang.IsC)
             sb.AppendLine($"        RecompOne.Runtime.Diagnostics.CallRing.Enter(0x{func.Start:X8}u);");
-        if (ctx.Debug)
+        if (ctx.Debug && !lang.IsC)
             sb.AppendLine($"        System.Console.WriteLine(\"{func.EmittedName} @ {func.OverlayName} @ 0x{func.Start:X8}\");");
 
         for (int i = 0; i < instrs.Length; i++)
@@ -84,11 +91,13 @@ public static class FunctionEmitter
             // after its label, without changing native control flow or RA.
             if (func.InstructionHookTargets.TryGetValue(instr.Vram, out var instructionHooks))
                 foreach (string target in instructionHooks)
-                    sb.AppendLine($"{ind}{target}(c, m);");
+                    sb.AppendLine($"{ind}{lang.Call(lang.HookName(target))}");
 
             if (func.InstructionBranchHooks.TryGetValue(instr.Vram, out var branchHooks))
                 foreach (var hook in branchHooks)
-                    sb.AppendLine($"{ind}if ({hook.Target}(c, m)) goto L{hook.Resume:X8};");
+                    sb.AppendLine(lang.IsC
+                        ? $"{ind}if ({lang.HookName(hook.Target)}(c)) goto L{hook.Resume:X8};"
+                        : $"{ind}if ({hook.Target}(c, m)) goto L{hook.Resume:X8};");
 
             if (instr.Vram != func.Start && ctx.InteriorHooks.TryGetValue(instr.Vram, out var interiorHook))
             {
@@ -96,8 +105,8 @@ public static class FunctionEmitter
                 // A local jump into another function must still run its hooks.
                 // Resume the native RA continuation rather than returning from the
                 // enclosing managed method and skipping its remaining work/epilogue.
-                sb.AppendLine($"{ind}{interiorHook}(c, m);");
-                sb.AppendLine($"{ind}switch (c.RA)");
+                sb.AppendLine($"{ind}{lang.Call(interiorHook)}");
+                sb.AppendLine($"{ind}switch ({lang.Reg(31)})");
                 sb.AppendLine($"{ind}{{");
                 foreach (uint back in ctx.LocalReturns.OrderBy(a => a))
                     sb.AppendLine($"{ind}    case 0x{back:X8}u: goto L{back:X8};");
@@ -112,7 +121,7 @@ public static class FunctionEmitter
                 InstructionEmitter.EmitWithDelaySlot(sb, instr, delaySlot, ctx, ind);
             }else
             {
-                string line = InstructionEmitter.EmitSingle(instr);
+                string line = lang.EmitSingle(instr);
                 if (!string.IsNullOrEmpty(line))
                     sb.AppendLine(ctx.Trail(instr, $"{ind}{line}"));
             }
@@ -122,28 +131,31 @@ public static class FunctionEmitter
         {
             uint target = ctx.SkipNopPadding(func.End);
             if (ctx.KnownFunctions.TryGetValue(target, out var fallthroughName))
-                sb.AppendLine($"{ind}{fallthroughName}(c, m);");
+                sb.AppendLine($"{ind}{lang.Call(fallthroughName)}");
             else
-                sb.AppendLine($"{ind}Dispatcher.Call(c, m, 0x{target:X8}u);");
+                sb.AppendLine($"{ind}{lang.Dispatch($"0x{target:X8}u")}");
         }
 
-        sb.AppendLine("    }");
+        sb.AppendLine(lang.IsC ? "}" : "    }");
         return sb.ToString();
     }
 
     static void EmitHooks(StringBuilder sb, MipsFunction func, string body, FunctionContext ctx = null)
     {
-        bool audit = ctx != null && ctx.SpAudit;
+        var lang = ctx?.Lang ?? Dialect.CSharp;
+        bool audit = ctx != null && ctx.SpAudit && !lang.IsC;
         if (audit)
         {
             sb.AppendLine("        uint __sp0 = c.SP;");
             sb.AppendLine("        var __r0 = RecompOne.Runtime.Diagnostics.SpAudit.Snapshot(c);");
         }
         foreach (var pre in func.PreHookTargets)
-            sb.AppendLine($"        if (!RecompOne.Runtime.Context.PreHook.Run({pre}, c, m)) return;");
+            sb.AppendLine(lang.IsC
+                ? $"        if (!{lang.HookName(pre)}(c)) return;"
+                : $"        if (!RecompOne.Runtime.Context.PreHook.Run({pre}, c, m)) return;");
         sb.AppendLine(body);
         foreach (var post in func.PostHookTargets)
-            sb.AppendLine($"        {post}(c, m);");
+            sb.AppendLine($"        {lang.Call(lang.HookName(post))}");
         if (audit)
         {
             sb.AppendLine($"        RecompOne.Runtime.Diagnostics.SpAudit.Check(0x{func.Start:X8}u, \"{func.EmittedName}\", __sp0, c.SP);");

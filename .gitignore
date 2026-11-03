@@ -62,3 +62,4 @@ xbox/main.lib
 xbox/**/*.obj
 xbox/**/*.d
 xbox/**/__pycache__/
+xbox/generated/

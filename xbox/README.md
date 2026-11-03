@@ -28,6 +28,9 @@ The toolchain, disc image and XEMU test loop work; no game code runs yet.
 | Path | Contents |
 | --- | --- |
 | `src/` | Xbox C sources (currently the bring-up entry point) |
+| `runtime/recomp.h` | the C runtime interface the generated code is written against |
+| `generated/<game>/` | RecompOne's C output for each game, ignored by git (made from the player's disc) |
+| `tools/compile_generated.sh` | compiles one game's generated C with nxdk (no link) |
 | `tools/build.sh` | nxdk build wrapper (MSYS2 bash, installed LLVM) |
 | `tools/run_xemu.py` | hidden, silent XEMU boot with native screenshots |
 | `tools/xemu_native_screenshot.py` | triggers XEMU's own screenshot (from the OpenJKDF2ogx tools) |
@@ -41,6 +44,23 @@ From the repository root (PowerShell or Git Bash), with nxdk at `C:\nxdk`, LLVM 
 ```bash
 MSYSTEM=MINGW64 C:/msys64/usr/bin/bash.exe --noprofile --norc xbox/tools/build.sh -j8
 ```
+
+## Generate and check the game code
+
+From `spiderman/` (and likewise `spiderman2/` with its config):
+
+```bash
+dotnet ../tools/RecompOne/RecompOne.Recompiler/bin/Release/net10.0/recompone.dll config/spiderman.json --c ../xbox/generated/spiderman
+```
+
+Then from the repository root:
+
+```bash
+MSYSTEM=MINGW64 C:/msys64/usr/bin/bash.exe --noprofile --norc xbox/tools/compile_generated.sh spiderman
+```
+
+See [docs/recompiler-c-output.md](../docs/recompiler-c-output.md) for the format and
+the runtime interface.
 
 ## Test in XEMU
 
@@ -61,9 +81,11 @@ request_alignment` assertion). Settings, the EEPROM copy, logs and captures go t
 
 1. **Bring-up** — done 2026-11-03: nxdk build, XBE, disc image, hidden XEMU boot,
    native captures, isolation check.
-2. **C output from RecompOne** — a C backend in the shared recompiler, beside the
-   current C# output, for both games' main code and overlays. Generic tool work,
-   kept with the shared tools.
+2. **C output from RecompOne** — done 2026-11-03: `--c <dir>` writes C from the same
+   analysis and configuration; the C# output is byte-for-byte unchanged. Both games
+   generate (SM1 3,314 functions in 32 files, SM2 3,262 in 30) and compile with
+   nxdk at -O2 -Wall with no errors or warnings. Not yet linked: they need the 14
+   runtime symbols in `recomp.h` and 128 hooks (listed in each `generated/<game>/<Game>.h`).
 3. **C runtime** (here) — CPU context, RAM and scratchpad, overlay dispatch,
    vblank/interrupt timing, and the PlayStation library calls the games use
    (graphics, CD, sound, pad).

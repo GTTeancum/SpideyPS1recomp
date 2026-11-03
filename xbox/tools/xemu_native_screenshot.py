@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # Trigger XEMU's own screenshot in a running (hidden) XEMU process.
-# Copied unchanged from the OpenJKDF2ogx Xbox tools (scripts/xbox).
+# Copied from the OpenJKDF2ogx Xbox tools (scripts/xbox); its offset cache now
+# lives in xbox/build.
 import hashlib
 from pathlib import Path
 import argparse
@@ -82,7 +83,7 @@ def xemu_find_screenshot_flag_pointer_rva(xemu_exe):
     # Cache discovery by executable content so early loading captures do not
     # wait for a full PE cross-reference scan on every invocation.
     digest = hashlib.sha256(data).hexdigest()
-    cache_file = Path(__file__).resolve().parents[2] / "build/xemu-native-capture-cache.json"
+    cache_file = Path(__file__).resolve().parents[1] / "build/xemu-native-capture-cache.json"
     try:
         disk_cache = json.loads(cache_file.read_text())
         if disk_cache.get("sha256") == digest:

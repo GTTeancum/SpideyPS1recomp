@@ -7,7 +7,7 @@ namespace RecompOne.Recompiler.CodeGen;
 //Todo: later cleanup
 public static class InstructionEmitter
 {
-    static string R(int r) => r == 0 ? "0u" : r switch
+    internal static string R(int r) => r == 0 ? "0u" : r switch
     {
         1 =>  "c.At",
         2 =>  "c.V0",  3 =>  "c.V1",
@@ -172,30 +172,31 @@ public static class InstructionEmitter
         uint fn = ctrl.Word & 0x3F;
         int rs = ctrl.Rs, rt = ctrl.Rt, rd = ctrl.Rd;
         uint pc = ctrl.Vram;
-        string RS = R(rs), RT = R(rt);
+        var lang = ctx.Lang;
+        string RS = lang.Reg(rs), RT = lang.Reg(rt), RA = lang.Reg(31), I32 = lang.I32;
         string ind2 = indent + "    ";
 
         void Ds()
         {
             if (ds == null) return;
             //fixes delay slot as branch target bug
-            string line = EmitSingle(ds);
+            string line = lang.EmitSingle(ds);
             if (!string.IsNullOrEmpty(line)) sb.AppendLine(ctx.Trail(ds, $"{indent}{line}"));
         }
 
         void DsInline()
         {
             if (ds == null) return;
-            string line = EmitSingle(ds);
+            string line = lang.EmitSingle(ds);
             if (!string.IsNullOrEmpty(line)) sb.AppendLine(ctx.Trail(ds, $"{ind2}{line}"));
         }
 
         void CallOrDispatch(uint addr, string ind)
         {
             if (ctx.KnownFunctions.TryGetValue(addr, out var name))
-                sb.AppendLine(ctx.Trail(ctrl, $"{ind}{name}(c, m);"));
+                sb.AppendLine(ctx.Trail(ctrl, $"{ind}{lang.Call(name)}"));
             else
-                sb.AppendLine(ctx.Trail(ctrl, $"{ind}Dispatcher.Call(c, m, 0x{addr:X8}u);"));
+                sb.AppendLine(ctx.Trail(ctrl, $"{ind}{lang.Dispatch($"0x{addr:X8}u")}"));
         }
 
         bool InFunc(uint target) => target >= ctx.FuncStart && target < ctx.FuncEnd;
@@ -229,8 +230,8 @@ public static class InstructionEmitter
             {
                 4 => $"{RS} == {RT}",
                 5 => $"{RS} != {RT}",
-                6 => $"(int){RS} <= 0",
-                _ => $"(int){RS} > 0",
+                6 => $"{I32}{RS} <= 0",
+                _ => $"{I32}{RS} > 0",
             };
             Conditional(cond, target);
             return;
@@ -243,14 +244,14 @@ public static class InstructionEmitter
             bool link = rtField is 0x10 or 0x11;
             string cond = rtField switch
             {
-                0x00 or 0x10 => $"(int){RS} < 0",
-                0x01 or 0x11 => $"(int){RS} >= 0",
+                0x00 or 0x10 => $"{I32}{RS} < 0",
+                0x01 or 0x11 => $"{I32}{RS} >= 0",
                 _ => "false"
             };
             if (link)
             {
                 Ds();
-                sb.AppendLine(ctx.Trail(ctrl, $"{indent}c.RA = 0x{pc + 8:X8}u;"));
+                sb.AppendLine(ctx.Trail(ctrl, $"{indent}{RA} = 0x{pc + 8:X8}u;"));
                 sb.AppendLine(ctx.Trail(ctrl, $"{indent}if ({cond}) {{"));
                 if (InFunc(target)) sb.AppendLine(ctx.Trail(ctrl, $"{ind2}goto L{target:X8};"));
                 else CallOrDispatch(target, ind2);
@@ -264,7 +265,7 @@ public static class InstructionEmitter
         {
             uint target = ctrl.JumpTarget;
             Ds();
-            sb.AppendLine(ctx.Trail(ctrl, $"{indent}c.RA = 0x{pc + 8:X8}u;"));
+            sb.AppendLine(ctx.Trail(ctrl, $"{indent}{RA} = 0x{pc + 8:X8}u;"));
             CallOrDispatch(target, indent);
             return;
         }
@@ -284,7 +285,7 @@ public static class InstructionEmitter
                 // `ra` may hold a point inside this function, put there by a `jal` to
                 // one of its own local subroutines. Returning outright would skip the
                 // epilogue and leak the frame, so dispatch on the value.
-                sb.AppendLine(ctx.Trail(ctrl, $"{indent}switch (c.RA)"));
+                sb.AppendLine(ctx.Trail(ctrl, $"{indent}switch ({RA})"));
                 sb.AppendLine(ctx.Trail(ctrl, $"{indent}{{"));
                 foreach (uint back in ctx.LocalReturns.OrderBy(a => a))
                     sb.AppendLine(ctx.Trail(ctrl, $"{indent}    case 0x{back:X8}u: goto L{back:X8};"));
@@ -301,16 +302,16 @@ public static class InstructionEmitter
                     if (InFunc(entry))
                         sb.AppendLine(ctx.Trail(ctrl, $"{indent}    case 0x{entry:X8}u: goto L{entry:X8};"));
                     else if (ctx.KnownFunctions.TryGetValue(entry, out var jname))
-                        sb.AppendLine(ctx.Trail(ctrl, $"{indent}    case 0x{entry:X8}u: {jname}(c, m); return;"));
+                        sb.AppendLine(ctx.Trail(ctrl, $"{indent}    case 0x{entry:X8}u: {lang.Call(jname)} return;"));
                     else
-                        sb.AppendLine(ctx.Trail(ctrl, $"{indent}    case 0x{entry:X8}u: Dispatcher.Call(c, m, 0x{entry:X8}u); return;"));
+                        sb.AppendLine(ctx.Trail(ctrl, $"{indent}    case 0x{entry:X8}u: {lang.Dispatch($"0x{entry:X8}u")} return;"));
                 }
-                sb.AppendLine(ctx.Trail(ctrl, $"{indent}    default: Dispatcher.Call(c, m, {RS}); return;"));
+                sb.AppendLine(ctx.Trail(ctrl, $"{indent}    default: {lang.Dispatch(RS)} return;"));
                 sb.AppendLine(ctx.Trail(ctrl, $"{indent}}}"));
             }
             else
             {
-                sb.AppendLine(ctx.Trail(ctrl, $"{indent}Dispatcher.Call(c, m, {RS});"));
+                sb.AppendLine(ctx.Trail(ctrl, $"{indent}{lang.Dispatch(RS)}"));
                 sb.AppendLine(ctx.Trail(ctrl, $"{indent}return;"));
             }
             return;
@@ -318,14 +319,14 @@ public static class InstructionEmitter
         if (op == 0 && fn == 9)
         {
             Ds();
-            if (rd != 0) sb.AppendLine(ctx.Trail(ctrl, $"{indent}{R(rd)} = 0x{pc + 8:X8}u;"));
-            sb.AppendLine(ctx.Trail(ctrl, $"{indent}Dispatcher.Call(c, m, {RS});"));
+            if (rd != 0) sb.AppendLine(ctx.Trail(ctrl, $"{indent}{lang.Reg(rd)} = 0x{pc + 8:X8}u;"));
+            sb.AppendLine(ctx.Trail(ctrl, $"{indent}{lang.Dispatch(RS)}"));
             return;
         }
         if (op == 18 && ((ctrl.Word >> 21) & 0x1F) == 8)
         {
             uint target = ctrl.BranchTarget;
-            string cond = rt == 1 ? "RecompOne.Runtime.Gte.GetCondition()" : "!RecompOne.Runtime.Gte.GetCondition()";
+            string cond = rt == 1 ? lang.GteCondition : "!" + lang.GteCondition;
             Conditional(cond, target);
             return;
         }
@@ -334,6 +335,9 @@ public static class InstructionEmitter
 
 public sealed class FunctionContext
 {
+    public Dialect Lang = Dialect.CSharp;
+    public string ClassName = "";
+    public string FunctionName(string emittedName) => Lang.FunctionName(ClassName, emittedName);
     public uint FuncStart;
     public uint FuncEnd;
     public Dictionary<uint, string> KnownFunctions = [];

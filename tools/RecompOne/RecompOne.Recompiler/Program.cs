@@ -7,7 +7,7 @@ using RecompOne.Runtime.Cdrom;
 
 if (args.Length == 0)
 {
-    Console.Error.WriteLine("usage: recompone <config.json>");
+    Console.Error.WriteLine("usage: recompone <config.json> [--c <output dir>]");
     Console.Error.WriteLine("       recompone --generate-function-file -elf <path> -map <path> -out <output.json> [-rebase <hex>]");
     return 1;
 }
@@ -16,6 +16,17 @@ if (string.Equals(args[0], "--generate-function-file", StringComparison.OrdinalI
     return GenerateFunctionFile(args);
 
 string configPath = Path.GetFullPath(args[0]);
+// --c <dir>: write the portable C output there instead of the C# output.
+string? cOut = null;
+for (int a = 1; a < args.Length; a++)
+{
+    if (args[a] == "--c" && a + 1 < args.Length) cOut = Path.GetFullPath(args[++a]);
+    else
+    {
+        Console.Error.WriteLine($"unknown argument: {args[a]}");
+        return 1;
+    }
+}
 if (!File.Exists(configPath))
 {
     Console.Error.WriteLine($"config not found: {configPath}");
@@ -50,14 +61,14 @@ Console.WriteLine($"[RecompOne] Game: {config.Game.Name} ({config.Game.Id})");
 Console.WriteLine($"[RecompOne] Game data: {cuePath}");
 
 var fs = DiscFs.Open(cuePath);
-string outDir = Path.GetFullPath(Path.Combine(configDir, config.Game.Output));
+string outDir = cOut ?? Path.GetFullPath(Path.Combine(configDir, config.Game.Output));
 Directory.CreateDirectory(outDir);
 
 Console.WriteLine($"[RecompOne] Output Path: {outDir}");
 
 try
 {
-    OverlayWriter.Write(config, fs, outDir);
+    OverlayWriter.Write(config, fs, outDir, cOut != null ? Dialect.C : Dialect.CSharp);
     Console.WriteLine("[RecompOne] Recompilation finished.");
     return 0;
 }

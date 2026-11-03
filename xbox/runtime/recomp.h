@@ -1,0 +1,119 @@
+/*
+ * OpenSpidey Xbox C runtime: the interface RecompOne's C output is written against
+ * (docs/recompiler-c-output.md). Generated code includes this header only.
+ *
+ * Main RAM is the PC port's 8 MB "devkit" layout (the first 2 MB are the retail
+ * console's): the port's loose-WAD arenas and scratch tables live above 2 MB.
+ * Every KUSEG/KSEG0/KSEG1 mirror of RAM takes the inline path below; the
+ * scratchpad, hardware registers and BIOS go through mem_slow_* in the runtime.
+ * The Xbox CPU is little-endian like the PlayStation's, so RAM words are read as is.
+ */
+#pragma once
+#include <stdint.h>
+#include <string.h>
+
+typedef struct CpuContext {
+    uint32_t r[32];          /* general-purpose registers; r[0] is never written */
+    uint32_t hi, lo;
+    uint32_t sr, cause, epc, bad_vaddr, prid;   /* COP0 */
+} CpuContext;
+
+typedef void (*RecompFn)(CpuContext *c);
+
+typedef struct RecompFunction {
+    uint32_t address;
+    RecompFn fn;
+} RecompFunction;
+
+typedef struct RecompOverlay {
+    const char *name;
+    int lba;                 /* disc sector of the overlay image, -1 when not on disc */
+    uint32_t base, size;     /* load address and size; 0 for the main executable */
+    const RecompFunction *functions;   /* sorted by address */
+    int count;
+} RecompOverlay;
+
+typedef struct RecompGame {
+    const char *title;
+    const char *boot_exe;
+    uint32_t load_address, text_size, gp, sp, pc;
+    RecompFn main;           /* configured main function, or 0 to start at pc */
+    const RecompOverlay *const *overlays;
+    int overlay_count;
+} RecompGame;
+
+/* ---- control flow --------------------------------------------------------- */
+void recomp_dispatch(CpuContext *c, uint32_t address);
+void bios_syscall(CpuContext *c);
+void bios_break(CpuContext *c);
+
+/* ---- memory --------------------------------------------------------------- */
+#define RECOMP_RAM_SIZE 0x00800000u
+extern uint8_t recomp_ram[RECOMP_RAM_SIZE];
+
+uint32_t mem_slow_r8(uint32_t address);
+uint32_t mem_slow_r16(uint32_t address);
+uint32_t mem_slow_r32(uint32_t address);
+void mem_slow_w8(uint32_t address, uint8_t value);
+void mem_slow_w16(uint32_t address, uint16_t value);
+void mem_slow_w32(uint32_t address, uint32_t value);
+
+static inline int mem_is_ram(uint32_t address) { return (address & 0x1FFFFFFFu) < RECOMP_RAM_SIZE; }
+static inline uint8_t *mem_ram(uint32_t address) { return recomp_ram + (address & (RECOMP_RAM_SIZE - 1u)); }
+
+static inline uint32_t mem_r8(uint32_t a)
+{
+    return mem_is_ram(a) ? *mem_ram(a) : mem_slow_r8(a);
+}
+static inline uint32_t mem_r16(uint32_t a)
+{
+    if (!mem_is_ram(a)) return mem_slow_r16(a);
+    uint16_t v; __builtin_memcpy(&v, mem_ram(a), 2); return v;
+}
+static inline uint32_t mem_r32(uint32_t a)
+{
+    if (!mem_is_ram(a)) return mem_slow_r32(a);
+    uint32_t v; __builtin_memcpy(&v, mem_ram(a), 4); return v;
+}
+static inline void mem_w8(uint32_t a, uint8_t v)
+{
+    if (mem_is_ram(a)) *mem_ram(a) = v; else mem_slow_w8(a, v);
+}
+static inline void mem_w16(uint32_t a, uint16_t v)
+{
+    if (mem_is_ram(a)) __builtin_memcpy(mem_ram(a), &v, 2); else mem_slow_w16(a, v);
+}
+static inline void mem_w32(uint32_t a, uint32_t v)
+{
+    if (mem_is_ram(a)) __builtin_memcpy(mem_ram(a), &v, 4); else mem_slow_w32(a, v);
+}
+
+/* Unaligned word halves (LWL/LWR/SWL/SWR), little-endian; same masks as the PC runtime. */
+static inline uint32_t mem_lwl(uint32_t old, uint32_t a)
+{
+    uint32_t shift = (a & 3u) * 8u, word = mem_r32(a & ~3u);
+    return (old & (0x00FFFFFFu >> shift)) | (word << (24u - shift));
+}
+static inline uint32_t mem_lwr(uint32_t old, uint32_t a)
+{
+    uint32_t shift = (a & 3u) * 8u, word = mem_r32(a & ~3u);
+    return (old & (0xFFFFFF00u << (24u - shift))) | (word >> shift);
+}
+static inline void mem_swl(uint32_t a, uint32_t v)
+{
+    uint32_t shift = (a & 3u) * 8u, word = mem_r32(a & ~3u);
+    mem_w32(a & ~3u, (word & (0xFFFFFF00u << shift)) | (v >> (24u - shift)));
+}
+static inline void mem_swr(uint32_t a, uint32_t v)
+{
+    uint32_t shift = (a & 3u) * 8u, word = mem_r32(a & ~3u);
+    mem_w32(a & ~3u, (word & (0x00FFFFFFu >> (24u - shift))) | (v << shift));
+}
+
+/* ---- geometry transformation engine (COP2) -------------------------------- */
+void gte_execute(uint32_t instruction);
+uint32_t gte_read_data(int reg);
+uint32_t gte_read_control(int reg);
+void gte_write_data(int reg, uint32_t value);
+void gte_write_control(int reg, uint32_t value);
+int gte_condition(void);
