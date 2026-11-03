@@ -25,6 +25,7 @@ DOTNET_SUITES = (
 )
 PYTHON_SUITES = {
     "Sm1ActorAnimationLayoutConverterRegression": "dreamcast/tools/test_sm1_actor_animation_layout.py",
+    "XboxIsolationRegression": "tools/check_xbox_isolation.py",
 }
 SUITES = (*DOTNET_SUITES, *PYTHON_SUITES)
 

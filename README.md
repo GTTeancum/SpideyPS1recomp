@@ -260,6 +260,11 @@ Set environment variables before starting the executable.
 `spiderman/` and `spiderman2/` have separate game code, configuration, extracted
 data and output. `tools/RecompOne/` contains the shared recompiler/runtime;
 `dreamcast/` contains character-conversion and audit tooling, not a third game port.
+`xbox/` is the original Xbox port (nxdk, in progress); see its README.
+
+**Changing gameplay for every platform:** the Xbox port runs the shared game in C,
+separately from the PC's C# runtime and patches. A gameplay fix meant for all
+platforms must be made in both places, and checked on each.
 
 - [SM1 technical notes](spiderman/README.md)
 - [SM2 technical notes](spiderman2/README.md)

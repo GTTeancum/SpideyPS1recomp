@@ -54,3 +54,11 @@ __pycache__/
 
 # Local/CI regression logs and machine-readable results.
 /artifacts/regressions/
+
+# Xbox (nxdk) build output
+xbox/build/
+xbox/main.exe
+xbox/main.lib
+xbox/**/*.obj
+xbox/**/*.d
+xbox/**/__pycache__/
