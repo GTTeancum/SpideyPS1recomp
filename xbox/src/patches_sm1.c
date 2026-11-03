@@ -92,6 +92,12 @@ int hook_OverlayPatches_HeapShrink(CpuContext *c) { (void)c; return 1; }
  * TODO(xbox): the Venom chase pacing in Timing.WaitVBlanks (gameplay fix). */
 void hook_Timing_WaitVBlanks(CpuContext *c) { rt_wait_counter(c, c->r[28] + 0xC74u); }
 
+/* ---- PadPatches: SM1 sets pads up through PadInitMtap; its original runs and the
+ * runtime learns the two buffers. The pad is presented as a DualShock (analog). --- */
+static uint32_t g_pend_buf1, g_pend_buf2;
+int hook_PadPatches_PadInitMtapEnter(CpuContext *c) { g_pend_buf1 = A0; g_pend_buf2 = A1; return 1; }
+void hook_PadPatches_PadInitMtapExit(CpuContext *c) { (void)c; rt_pad_set_buffers(g_pend_buf1, g_pend_buf2, 1); }
+
 /* ---- Pad reads: the title screen polls the pad in a loop without VSync. ---------- */
 void hook_PadTrace_AfterRead(CpuContext *c) { (void)c; rt_idle(); }
 void hook_ArmorTest_AfterPadRead(CpuContext *c) { (void)c; }

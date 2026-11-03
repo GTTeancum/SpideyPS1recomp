@@ -88,6 +88,7 @@ void rt_tick(void)
     }
     if (++g_ticks_until_present >= 2) { g_ticks_until_present = 0; present(); }
     cd_tick();
+    rt_pad_refresh();
     rt_vblank_count++;
     rt_raise_irq(0);
 }

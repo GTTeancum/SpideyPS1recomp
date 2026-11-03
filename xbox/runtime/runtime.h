@@ -63,6 +63,13 @@ CpuContext *rt_cpu(void);
 int cd_init(const char *disc_root);
 void cd_tick(void);
 
+/* ---- pads ------------------------------------------------------------------------ */
+extern volatile uint16_t rt_pad_buttons;      /* port 1, active-low PlayStation layout */
+extern volatile uint8_t rt_pad_sticks[4];     /* right x, right y, left x, left y */
+void rt_pad_set_buffers(uint32_t buf1, uint32_t buf2, int analog);
+void rt_pad_load_script(const char *disc_root);
+void rt_pad_refresh(void);
+
 /* ---- boot -------------------------------------------------------------------- */
 /* Load the boot executable from the disc and run the game. Returns only on failure. */
 void rt_boot(const RecompGame *game, const char *disc_root);

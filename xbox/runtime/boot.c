@@ -28,6 +28,7 @@ void rt_boot(const RecompGame *game, const char *disc_root)
     }
     rt_log("%s: %lu bytes at %08lX", game->boot_exe, (unsigned long)game->text_size, (unsigned long)game->load_address);
     if (!cd_init(disc_root)) { rt_log("no disc map; CD reads will fail"); }
+    rt_pad_load_script(disc_root);
 
     rt_dispatch_init(game);
     bios_init();
