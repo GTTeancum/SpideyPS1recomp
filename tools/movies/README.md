@@ -96,8 +96,10 @@ format validation; external modification of an open file can still cause failure
 and TTSLOGO. `LOGO.STR` is deliberately not aliased to an unrelated logo. LEGAL,
 NEVERSOFT, SOFDEC and TREYARCH are decoded in tests but remain unmapped extras.
 No SFD, PS1 movie, save, model rig, skin weight or animation asset is rewritten.
-Encoded pixel aspect metadata is retained; real Dreamcast presentation is not
-claimed verified against hardware.
+Pictures are shown with square pixels, like the PS1 movies (320x240 fills 4:3): the
+files' encoded pixel aspect (CCIR 601 525-line, the encoder's NTSC default) made them
+about 9% too narrow. Real Dreamcast presentation is not claimed verified against
+hardware.
 
 ## Executed validation and reproduction
 

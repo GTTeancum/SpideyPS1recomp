@@ -387,7 +387,9 @@ int movie_play_sfd(const char *path)
     unsigned pitch;
     uint32_t *pixels = hw_picture_next(&pitch);
     yuv_to_argb(yuv, w, h, pixels, pitch);
-    float aspect = (float)((double)w * info.sar_num / ((double)h * info.sar_den));
+    /* Square pixels, as the PS1 movies: 320x240 fills 4:3. The files' pixel aspect code
+     * (CCIR 601 525-line, the encoder's NTSC default) made them about 9% too narrow. */
+    float aspect = (float)w / (float)h;
     double video_seconds = 0, audio_seconds_total = (double)info.audio_frames / info.sample_rate;
     Session s;
     session_begin(&s, (int)info.sample_rate);
