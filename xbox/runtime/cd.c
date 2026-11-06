@@ -197,8 +197,12 @@ static void pump_ready(int max_sectors)
     g_pumping = 0;
 }
 
+static int g_held;
+void cd_hold(int on) { g_held = on; }
+
 void cd_tick(void)
 {
+    if (g_held) return;
     if (g_read_active && (g_mode & 0x40)) return;     /* XA audio: not played yet */
     if (!g_read_active || (!g_cb_data && !g_cb_ready) || !rt_cpu()) return;
     if (!g_cb_data) { pump_ready(400000); return; }

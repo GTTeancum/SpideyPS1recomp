@@ -33,6 +33,10 @@ START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
 | `runtime/runtime.h` | runtime services: log and status, overlays, BIOS, boot |
 | `runtime/*.c` | RAM, hardware registers and DMA, dispatch, BIOS, boot, clock and interrupts, CD library, software GPU and graphics library, GTE registers, status |
 | `src/patches_sm1.c` | Spider-Man 1 patches ported from `spiderman/patches` (keep in step) |
+| `src/movies_sm1.c` | SM1's movie hook: Dreamcast `.SFD` where installed, else the PS1 `.STR` |
+| `runtime/movie.c` | movie playback: AC97 sound, the movie clock, skip, the two players' loops |
+| `runtime/str.c` | PS1 `.STR` decoder: MDEC video (bitstream v1/v2) and XA ADPCM sound |
+| `runtime/sfd_core.cpp` | the PC's Dreamcast SFD decoder (`tools/movies/native`), compiled in |
 | `tools/make_disc_map.py` | the test disc's sector map from an install's `recompone-disc.json` |
 | `generated/<game>/` | RecompOne's C output for each game, ignored by git (made from the player's disc) |
 | `tools/gen_hook_defaults.py` | default bodies for hooks not implemented yet (`build/hooks_default.c`) |
@@ -94,8 +98,22 @@ python -I xbox/tools/prep_suits.py "<PC install>/mods/suits" private/work/xbox-d
   model the actor and its RTG2 rig split apart (`src/suits_sm1.c`, `src/retarget_sm1.c`;
   the rig maths is the PC's `tools/retarget/native/retarget_core.cpp`, compiled in).
 
-`D:\openspidey.ini` holds `level=<lNaM>` (start a new game there, `src/level_sm1.c`)
-and `suit=<id>`. Include `openspidey.ini`, `mods` and `assets` with `--include`.
+`D:\openspidey.ini` holds `level=<lNaM>` (start a new game there, `src/level_sm1.c`),
+`suit=<id>` and `dreamcast_movies=0` (PS1 movies only). Include `openspidey.ini`,
+`mods` and `assets` with `--include`.
+
+## Movies
+
+The game's own STR player needs the MDEC and XA streaming, which the Xbox runtime does
+not have, so the runtime plays movies itself from the hook at 8002AD0C (the PC's
+`DreamcastMoviePatches`): the Dreamcast `.SFD` from `D:\mods\movies\dreamcast` when
+present (the 23 the PC maps, copied as the PC's installer copies them), else the PS1
+movie from the disc's `CINEMAS` folder (raw 2336-byte sectors, as the install holds
+them). Sound is resampled to the AC97's 48 kHz and is the clock; Start or Cross skips
+after the first second. A movie that cannot play is skipped, as before. Checked in
+XEMU (2026-11-06) on the boot logos: PS1 and Dreamcast pictures, sound matching
+ffmpeg's decode of the same files, skip, and the title screen after. Not yet on a
+console; the Dreamcast decoder's 64-bit IDCT is the first thing to time there.
 
 `compile_generated.sh spiderman` compiles the generated code alone, as a quick check.
 
@@ -182,7 +200,8 @@ do not call them.
    handlers, the idle-loop breaker, VSync and the game's counter wait, the CD
    library over the disc's sector map, a software GPU (port of the PC's reference
    rasteriser) with the graphics library, and the SM1 patches the title needs
-   (GPU reset/display mask, fixed-address overlays, movie skip). Result: the title
+   (GPU reset/display mask, fixed-address overlays, movie skip; movies now play, see
+   Movies). Result: the title
    screen. Next: the GTE (first commands appear after the title), MDEC (DMA 0),
    pads, sound, movies, the Venom-chase pacing and the other SM1 hooks.
 4. **Xbox adapters** — drawing through pbkit/NV2A (`DrawOTag`, `PutDispEnv`,

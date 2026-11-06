@@ -1088,6 +1088,95 @@ void hw_present(int x, int y, int wide)
     PROF_END(PROF_PRESENT, t);
 }
 
+/* ---- movie pictures ---------------------------------------------------------------------- */
+/* Four buffers in turn: a picture is shown once per hw_picture_show, and pbkit queues
+ * at most three, so the buffer handed out next is never one the GPU may still read. */
+#define PICTURES 4
+static uint32_t *g_pictures[PICTURES];
+static unsigned g_picture_pitch, g_picture_w, g_picture_h, g_picture_bytes;
+static int g_picture_next = -1;
+
+int hw_picture_begin(int w, int h)
+{
+    if (!hw_ready() || w <= 0 || h <= 0) return 0;
+    hw_picture_end();
+    g_picture_pitch = ((unsigned)w * 4u + 63u) & ~63u;   /* linear textures: 64-byte rows */
+    g_picture_w = (unsigned)w; g_picture_h = (unsigned)h;
+    g_picture_bytes = g_picture_pitch * (unsigned)h;
+    for (int i = 0; i < PICTURES; i++) {
+        g_pictures[i] = contiguous(g_picture_bytes);
+        if (!g_pictures[i]) { hw_picture_end(); return 0; }
+        memset(g_pictures[i], 0, g_picture_bytes);
+    }
+    g_picture_next = -1;
+    return 1;
+}
+
+uint32_t *hw_picture_next(unsigned *pitch)
+{
+    if (!g_pictures[0]) return 0;
+    g_picture_next = (g_picture_next + 1) % PICTURES;
+    *pitch = g_picture_pitch;
+    return g_pictures[g_picture_next];
+}
+
+void hw_picture_show(float aspect)
+{
+    if (!g_pictures[0] || g_picture_next < 0) return;
+    RT_WHERE("hw picture");
+    target(-1);
+    pb_fill(0, 0, OUT_W, OUT_H, 0xFF000000u);
+    /* Fit the picture's display aspect to the screen's, centred. The screen's own
+     * aspect is 16:9 or 4:3 whatever its pixel count (480 lines on a widescreen TV). */
+    float screen = rt_video_wide ? 16.0f / 9.0f : 4.0f / 3.0f;
+    float w = (float)OUT_W, h = (float)OUT_H;
+    if (aspect > 0.0f) {
+        if (aspect > screen) h = (float)OUT_H * screen / aspect;
+        else w = (float)OUT_W * aspect / screen;
+    }
+    float left = ((float)OUT_W - w) * 0.5f, top = ((float)OUT_H - h) * 0.5f;
+    uint32_t *p = open_block();
+    Tex t = linear(g_pictures[g_picture_next], g_picture_pitch, g_picture_w, g_picture_h);
+    t.filter = FILTER_LINEAR;
+    p = bind(p, &t);
+    p = stencil(p, -1);
+    p = alpha(p, -1);
+    p = blend(p, -1);
+    p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_TRIANGLE_STRIP);
+    for (int i = 0; i < 4; i++) {
+        float X = (i & 1) ? left + w : left, Y = (i & 2) ? top + h : top;
+        float U = (i & 1) ? (float)g_picture_w : 0.0f, V = (i & 2) ? (float)g_picture_h : 0.0f;
+        p = vertex(p, X, Y, .5f, .5f, .5f, U, V, 1.0f);
+    }
+    p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_END);
+    g_open = p;
+    close_block();
+    while (pb_finished()) {}
+    g_target = -1;
+    g_bound = 0;
+    g_bound_palette = 0;
+    g_bound_filter = 0;
+    g_stencil = -2;
+    g_bound_address = 0;
+    g_blend = -2;
+    g_alpha = -1;
+    g_frame++;
+    rt_hw_frames++;
+    RT_WHERE("hw picture shown");
+}
+
+void hw_picture_end(void)
+{
+    if (!g_pictures[0] && !g_pictures[PICTURES - 1]) return;
+    close_block();
+    drain(7);
+    for (int i = 0; i < PICTURES; i++) {
+        if (g_pictures[i]) MmFreeContiguousMemory(g_pictures[i]);
+        g_pictures[i] = 0;
+    }
+    g_picture_next = -1;
+}
+
 
 /* ---- set-up -------------------------------------------------------------------------------- */
 int hw_init(void)
@@ -1139,4 +1228,11 @@ int hw_init(void)
     pb_show_front_screen();
     g_active = 1;
     return 1;
+}
+
+int hw_ready(void)
+{
+    static int tried;
+    if (!tried) { tried = 1; hw_init(); }
+    return g_active;
 }

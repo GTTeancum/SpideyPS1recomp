@@ -113,10 +113,6 @@ void hook_PadPatches_PadInitMtapExit(CpuContext *c) { (void)c; rt_pad_set_buffer
 void hook_PadTrace_AfterRead(CpuContext *c) { (void)c; rt_idle(); }
 void hook_ArmorTest_AfterPadRead(CpuContext *c) { (void)c; }
 
-/* ---- Movies: none play on the Xbox yet; branch past the PS1 player as the PC does
- * after playing a movie itself. ---------------------------------------------------------- */
-int hook_DreamcastMoviePatches_Play(CpuContext *c) { (void)c; return 1; }
-
 /* ---- Menu packet order (MenuPacketOrder.SingleMetadataTail): func_8006A21C moves
  * OT[0] behind the last polygon; with only a terminal DR_AREA its fallback aliases
  * that packet and the ordering table becomes a cycle. --------------------------------- */

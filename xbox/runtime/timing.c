@@ -15,6 +15,7 @@ volatile uint32_t rt_vblank_count;
 volatile uint32_t rt_ticks_dropped, rt_longest_wait_ms;
 static LARGE_INTEGER g_last_tick;
 volatile int rt_presenting;
+volatile int rt_movie_playing;
 int rt_video_720p, rt_video_wide, rt_frame_wide;
 volatile const char *rt_where = "";
 volatile uint64_t rt_prof[PROF_COUNT];
@@ -58,11 +59,9 @@ static void present(void)
 {
     GpuDisplay d;
     gpu_display(&d);
-    if (!d.enabled || d.width <= 0 || d.height <= 0 || d.rgb24) return;
+    if (rt_movie_playing || !d.enabled || d.width <= 0 || d.height <= 0 || d.rgb24) return;
 #ifndef RT_SOFTWARE_GPU
-    static int hw_tried;
-    if (!hw_tried) { hw_tried = 1; hw_init(); }
-    if (hw_active()) {
+    if (hw_ready()) {
         rt_presenting = 1;
         hw_note_display(d.x, d.y, d.width, d.height);
         hw_present(d.x, d.y, rt_frame_wide);

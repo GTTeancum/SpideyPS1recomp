@@ -22,6 +22,8 @@ typedef struct HwTexture {
 
 int hw_init(void);
 int hw_active(void);
+/* hw_init the first time; whether the NV2A is in use. */
+int hw_ready(void);
 
 /* Which display buffer a draw area belongs to (-1: not a display buffer). */
 int hw_region_for(int x, int y);
@@ -63,3 +65,12 @@ void hw_area(int left, int top, int right, int bottom);
 /* Show the display buffer at (x, y) on the TV: filling a 16:9 screen when `wide`,
  * else at 4:3 (pillarboxed on a 16:9 screen). */
 void hw_present(int x, int y, int wide);
+
+/* Movie pictures (movie.c): w x h A8R8G8B8 images the CPU writes, shown on their own,
+ * scaled to fill as much of the screen as their display aspect (width / height)
+ * allows. begin allocates them (0: no memory or no NV2A), next hands out the buffer to
+ * write the coming picture into, show puts that one on screen, end frees them. */
+int hw_picture_begin(int w, int h);
+uint32_t *hw_picture_next(unsigned *pitch);
+void hw_picture_show(float aspect);
+void hw_picture_end(void);

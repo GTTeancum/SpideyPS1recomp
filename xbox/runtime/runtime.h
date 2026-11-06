@@ -63,6 +63,7 @@ extern volatile uint32_t rt_ot_start, rt_ot_addr, rt_ot_packets;   /* libgpu.c: 
 extern volatile const char *rt_where;
 #define RT_WHERE(s) (rt_where = (s))
 extern volatile int rt_presenting;     /* the game has put a picture on screen */
+extern volatile int rt_movie_playing;  /* movie.c owns the screen: the clock presents nothing */
 
 /* ---- widescreen (timing.c, gte.c, libgpu.c, gpu.c; the game's rules in src/) ---- */
 extern int rt_video_720p, rt_video_wide;   /* output mode; wide: the display is 16:9 */
@@ -123,6 +124,9 @@ CpuContext *rt_cpu(void);
 /* Read the disc's sector map (written by tools/make_disc_map.py). */
 int cd_init(const char *disc_root);
 void cd_tick(void);
+/* While held, the clock delivers no sectors: a movie the runtime plays itself stands
+ * in for the game's own STR stream (the PC's LibCdStream.HoldForHostMovie). */
+void cd_hold(int on);
 
 /* ---- pads ------------------------------------------------------------------------ */
 extern volatile uint16_t rt_pad_buttons;      /* port 1, active-low PlayStation layout */
@@ -130,6 +134,8 @@ extern volatile uint8_t rt_pad_sticks[4];     /* right x, right y, left x, left 
 void rt_pad_set_buffers(uint32_t buf1, uint32_t buf2, int analog);
 void rt_pad_load_script(const char *disc_root);
 void rt_pad_refresh(void);
+/* Port 1's buttons as the game sees them (controller and script), active-low. */
+uint16_t rt_pad_state(void);
 
 /* ---- boot -------------------------------------------------------------------- */
 /* Load the boot executable from the disc and run the game. Returns only on failure. */

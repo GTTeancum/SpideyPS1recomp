@@ -3,6 +3,7 @@
  * once at start-up. Keys:
  *   level=l2a1        start a new game in that level and act (LevelSwitch)
  *   suit=superior     wear that mod suit (D:\mods\suits\<id>, made by prep_suits.py)
+ *   dreamcast_movies=0  play the PS1 movies even where a Dreamcast one is installed
  */
 #include <stdio.h>
 #include <string.h>
