@@ -31,6 +31,7 @@ int main(void)
     if (!rt_video_720p) XVideoSetMode(640, 480, 32, REFRESH_DEFAULT);
     rt_video_wide = rt_video_720p || (XVideoGetEncoderSettings() & VIDEO_WIDESCREEN) != 0;
     settings_load();
+    if (setting("precise_vertices") && setting("precise_vertices")[0] == '0') rt_precise_vertices = 0;
     wide_sm1_install();
     level_sm1_install();
     suits_sm1_install();

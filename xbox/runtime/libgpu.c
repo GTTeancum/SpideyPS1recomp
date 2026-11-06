@@ -58,7 +58,7 @@ static void hook_LibGpu_DrawOTag_timed(CpuContext *c)
         rt_ot_packets = (uint32_t)guard;
         rt_ot_addr = addr;
         uint32_t header = mem_r32(addr), count = header >> 24;
-        for (uint32_t i = 0; i < count; i++) gpu_write_gp0(mem_r32(addr + 4u + i * 4u));
+        for (uint32_t i = 0; i < count; i++) gpu_write_gp0_at(mem_r32(addr + 4u + i * 4u), addr + 4u + i * 4u);
         uint32_t next = header & 0xFFFFFFu;
         if (next == 0xFFFFFFu || (next & 0x800000u)) break;
         addr = next & (RECOMP_RAM_SIZE - 4u);

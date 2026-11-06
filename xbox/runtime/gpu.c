@@ -18,7 +18,10 @@ static int h_range1 = 0x200, h_range2 = 0xC00, v_range1 = 0x10, v_range2 = 0x100
 static int hres, hres368, vres480, pal, disp24, interlace, display_disabled = 1, dma_dir;
 
 static uint32_t fifo[256];
+static uint32_t fifo_addr[256];        /* the RAM word each came from, 0: none (vertex tags) */
 static int fifo_count, need, polyline;
+volatile uint32_t rt_hw_precise, rt_hw_imprecise;
+int rt_precise_vertices = 1;   /* 0: the old drawing, whole pixels and screen-point depths (comparison) */
 
 static int load_image, load_x, load_y, load_w, load_h, load_px;
 static int read_image, read_x, read_y, read_w, read_h, read_px;
@@ -136,7 +139,8 @@ static void shade_texel(int x, int y, uint16_t texel, int r, int g, int b, int r
 }
 
 /* ---- primitives ---------------------------------------------------------------- */
-typedef struct { int x, y, r, g, b, u, v; float w; } Vert;
+/* px, py: the precise position (drawing offset applied) when `precise`. */
+typedef struct { int x, y, r, g, b, u, v; float w; float px, py; int precise; } Vert;
 
 static int top_left(const Vert *p0, const Vert *p1)
 {
@@ -217,7 +221,7 @@ static void hw_key(HwTexture *t, int clut)
 
 static void hw_vertex(HwVertex *o, const Vert *v)
 {
-    o->x = (float)v->x; o->y = (float)v->y;
+    o->x = v->precise ? v->px : (float)v->x; o->y = v->precise ? v->py : (float)v->y;
     o->r = (uint8_t)v->r; o->g = (uint8_t)v->g; o->b = (uint8_t)v->b; o->u = (uint8_t)v->u; o->v = (uint8_t)v->v;
     o->w = v->w;
 }
@@ -250,7 +254,7 @@ static void draw_polygon(void)
     int gouraud = (cmd >> 28) & 1, quad = (cmd >> 27) & 1, tex = (cmd >> 26) & 1;
     int semi = (cmd >> 25) & 1, raw = (cmd >> 24) & 1, n = quad ? 4 : 3;
     Vert v[4];
-    int idx = 1, clut = 0, tpage = current_tpage();
+    int idx = 1, clut = 0, tpage = current_tpage(), tagged = 0, world = 1;
     int cr = (int)(cmd & 0xFF), cg = (int)((cmd >> 8) & 0xFF), cb = (int)((cmd >> 16) & 0xFF);
     for (int i = 0; i < n; i++) {
         if (gouraud && i > 0) {
@@ -258,10 +262,26 @@ static void draw_polygon(void)
             cr = (int)(cw & 0xFF); cg = (int)((cw >> 8) & 0xFF); cb = (int)((cw >> 16) & 0xFF);
         }
         v[i].r = cr; v[i].g = cg; v[i].b = cb;
-        uint32_t vw = fifo[idx++];
+        uint32_t va = fifo_addr[idx], vw = fifo[idx++];
         v[i].x = offset_x + coord_x(vw);
         v[i].y = offset_y + coord_y(vw);
-        v[i].w = hw_depth_at(coord_x(vw), coord_y(vw));
+        /* A GTE screen point: world geometry, not HUD (the widescreen rules). */
+        float screen_depth = hw_depth_at(coord_x(vw), coord_y(vw));
+        if (!(screen_depth > 0)) world = 0;
+        if (!rt_precise_vertices) { v[i].w = screen_depth; v[i].precise = 0; v[i].px = (float)v[i].x; v[i].py = (float)v[i].y; tagged++; }
+        else {
+        /* The packet word's own tag gives the depth and the precise position (the PC's
+         * GpuRaster.DrawPolygon); a depth found from the screen position alone can
+         * belong to another vertex at the same pixel and bend the texture, so it is
+         * not used for drawing. */
+        const VTag *t = va ? vtag_of(va, vw) : 0;
+        if (t && (vw & 0x07FF07FFu) != (t->native & 0x07FF07FFu)) t = 0;
+        v[i].w = t ? t->z : 0.0f;
+        v[i].precise = t != 0;
+        v[i].px = t ? (float)offset_x + t->x : (float)v[i].x;
+        v[i].py = t ? (float)offset_y + t->y : (float)v[i].y;
+        if (t) tagged++;
+        }
         v[i].u = v[i].v = 0;
         if (tex) {
             uint32_t uvw = fifo[idx++];
@@ -271,18 +291,26 @@ static void draw_polygon(void)
             else if (i == 1) { tpage = (int)((uvw >> 16) & 0xFFFF); set_texpage((uint32_t)tpage); }
         }
     }
+    /* Textured: perspective and precise positions only with every vertex tagged, else
+     * the whole polygon affine at its packet positions (mixing would tear the texture). */
+    if (tex) {
+        if (tagged == n) rt_hw_precise++;
+        else {
+            rt_hw_imprecise++;
+            for (int i = 0; i < n; i++) { v[i].w = 0.0f; v[i].precise = 0; }
+        }
+    }
     int r = hw_target();
     if (r >= 0) {
         if (rt_prim_hook || rt_prim_replace_hook) {
-            RtPrim p = { n, { 0 }, { 0 }, { 0 }, { 0 }, 1, tex, semi, gouraud, tpage, clut,
+            RtPrim p = { n, { 0 }, { 0 }, { 0 }, { 0 }, world, tex, semi, gouraud, tpage, clut,
                          area_left, area_top, area_right, area_bottom, offset_x, offset_y };
             for (int i = 0; i < n; i++) {
                 p.x[i] = v[i].x; p.y[i] = v[i].y; p.u[i] = (uint8_t)v[i].u; p.v[i] = (uint8_t)v[i].v;
-                if (!(v[i].w > 0)) p.depth = 0;
             }
             if (rt_prim_replace_hook && rt_prim_replace_hook(&p, r)) return;
             if (rt_prim_hook) rt_prim_hook(&p);
-            for (int i = 0; i < n; i++) v[i].x = p.x[i];
+            for (int i = 0; i < n; i++) { v[i].px += (float)(p.x[i] - v[i].x); v[i].x = p.x[i]; }
         }
         hw_polygon(r, v, quad, tex, gouraud, semi, raw, clut);
         return;
@@ -525,7 +553,9 @@ static void execute(void)
     }
 }
 
-void gpu_write_gp0(uint32_t word)
+void gpu_write_gp0(uint32_t word) { gpu_write_gp0_at(word, 0); }
+
+void gpu_write_gp0_at(uint32_t word, uint32_t address)
 {
     if (load_image) { store_halfword((uint16_t)word); store_halfword((uint16_t)(word >> 16)); return; }
     if (polyline) {
@@ -533,6 +563,7 @@ void gpu_write_gp0(uint32_t word)
         else if (fifo_count < 256) fifo[fifo_count++] = word;
         return;
     }
+    fifo_addr[fifo_count] = address;
     fifo[fifo_count++] = word;
     if (fifo_count == 1) {
         need = command_length(word);

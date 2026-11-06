@@ -34,6 +34,7 @@ START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
 | `runtime/*.c` | RAM, hardware registers and DMA, dispatch, BIOS, boot, clock and interrupts, CD library, software GPU and graphics library, GTE registers, status |
 | `src/patches_sm1.c` | Spider-Man 1 patches ported from `spiderman/patches` (keep in step) |
 | `src/movies_sm1.c` | SM1's movie hook: Dreamcast `.SFD` where installed, else the PS1 `.STR` |
+| `runtime/vtag.c` | vertex tags in RAM: the GTE's precise positions and depths beside the words that carry them |
 | `runtime/movie.c` | movie playback: AC97 sound, the movie clock, skip, the two players' loops |
 | `runtime/str.c` | PS1 `.STR` decoder: MDEC video (bitstream v1/v2) and XA ADPCM sound |
 | `runtime/sfd_core.cpp` | the PC's Dreamcast SFD decoder (`tools/movies/native`), compiled in |
@@ -176,8 +177,14 @@ bytes a few times a second, not the whole status text.
 The output follows the console's settings: 720p when allowed, else 480. Rendering
 is on the NV2A (`runtime/hwgpu.c`): each PlayStation display buffer is a render
 target at the output size; 4- and 8-bit textures are I8 images with the chip's
-palette lookup; polygons whose corners came from the GTE are drawn perspective
-correct. Widescreen (`src/wide_sm1.c`, a port of `spiderman/patches/Wide.cs` and
+palette lookup. Each SXY the GTE produces keeps its exact, unrounded position and
+camera depth as a vertex tag (`runtime/vtag.c`, the PC's GteScreen provenance), which
+the generated code carries through registers and RAM into the packet words; a
+polygon whose vertices all carry one is drawn at the precise positions, perspective
+correct. Without them, whole-pixel corners at 720p left slivers between split faces
+(far buildings), and a depth looked up from the screen position could be another
+vertex's and bend the texture; untagged textured polygons now draw affine instead.
+The SM1 subdivision and edge rules are `src/world_sm1.c` (the PC's WorldSubpixel). Widescreen (`src/wide_sm1.c`, a port of `spiderman/patches/Wide.cs` and
 `WorldFrustum.cs`) is on for gameplay when the display is 16:9; menus stay 4:3
 and are pillarboxed. A fix to the widescreen rules belongs in both copies.
 

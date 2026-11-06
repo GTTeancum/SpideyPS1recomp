@@ -69,9 +69,12 @@ extern volatile int rt_movie_playing;  /* movie.c owns the screen: the clock pre
 extern int rt_video_720p, rt_video_wide;   /* output mode; wide: the display is 16:9 */
 extern int rt_frame_wide;                  /* this frame is presented at 16:9 */
 extern int rt_fov_num, rt_fov_den;         /* GTE horizontal projection scale */
-/* The camera depth recorded for an RTP's screen point (perspective texturing), given
- * its input vector and SZ. NULL: SZ itself. */
-extern uint16_t (*rt_rtp_depth_hook)(int32_t vx, int32_t vy, int32_t vz, uint16_t sz);
+/* Called as a tagged word is stored (the PC's GteScreen.RamVertexTransform), with the
+ * physical address: may adjust the tag (or clear it, z = 0) before it is kept. */
+extern void (*rt_vtag_store_hook)(uint32_t address, uint32_t value, VTag *tag);
+extern volatile uint32_t rt_vtag_pages, rt_vtag_stores, rt_vtag_refused;   /* vtag.c */
+extern volatile uint32_t rt_hw_precise, rt_hw_imprecise;   /* gpu.c: textured polygons with and without tags */
+extern int rt_precise_vertices;   /* gpu.c: draw with vertex tags (0: whole pixels, for comparison) */
 extern uint32_t rt_disp_grandparent;       /* PutDispEnv's caller's caller: the frame loop */
 /* Called at each PutDispEnv, once a frame, to decide the next frame's projection. */
 extern void (*rt_frame_hook)(void);

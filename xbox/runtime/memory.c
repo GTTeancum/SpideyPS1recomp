@@ -52,14 +52,14 @@ static void dma_gpu(uint32_t madr, uint32_t bcr, uint32_t chcr)
         uint32_t addr = madr & (RECOMP_RAM_SIZE - 4u);
         for (int guard = 0; guard < 0x100000; guard++) {
             uint32_t header = mem_r32(addr), count = header >> 24;
-            for (uint32_t i = 0; i < count; i++) gpu_write_gp0(mem_r32(addr + 4u + i * 4u));
+            for (uint32_t i = 0; i < count; i++) gpu_write_gp0_at(mem_r32(addr + 4u + i * 4u), addr + 4u + i * 4u);
             uint32_t next = header & 0xFFFFFFu;
             if (next == 0xFFFFFFu || (next & 0x800000u)) break;
             addr = next & (RECOMP_RAM_SIZE - 4u);
         }
     } else if (chcr & 1u) {
         uint32_t words = word_count(bcr);
-        for (uint32_t i = 0; i < words; i++) gpu_write_gp0(mem_r32(madr + i * 4u));
+        for (uint32_t i = 0; i < words; i++) gpu_write_gp0_at(mem_r32(madr + i * 4u), madr + i * 4u);
     } else {
         uint32_t words = word_count(bcr);
         for (uint32_t i = 0; i < words; i++) mem_w32(madr + i * 4u, gpu_read_data());

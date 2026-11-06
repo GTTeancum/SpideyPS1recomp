@@ -30,8 +30,8 @@ from pathlib import Path
 TABLE = "0x80780000u /* SM1 texture registry, relocated */"
 MARK = "SM1 texture registry, relocated"
 SPIN_MARK = "rt_idle(); /* vblank countdown */"
-SPIN = re.compile(r"(\n        (L[0-9A-F]{8}): ;\n)(        c->r\[2\] = 0x800B0000u;\n"
-                  r"        c->r\[2\] = mem_r32\(\(c->r\[2\] \+ 0x5464u\)\);\n"
+SPIN = re.compile(r"(\n        (L[0-9A-F]{8}): ;\n)(        c->r\[2\] = 0x800B0000u; c->t\[2\] = 0;\n"
+                  r"        c->r\[2\] = mem_r32_t\(c, 2, \(c->r\[2\] \+ 0x5464u\)\);\n"
                   r"        if \(c->r\[2\] != 0u\) \{\n(?:            [^\n]*\n)?            goto \2;\n)")
 
 
@@ -63,21 +63,22 @@ def main() -> int:
         return 0
 
     # One writer and two readers construct the retail base five times.
-    text = replace_exact(text, "c->r[7] = c->r[7] - 0x65E8u;", f"c->r[7] = {TABLE};", 1)
-    text = replace_exact(text, "c->r[5] = mem_r32((c->r[4] - 0x65E8u));", f"c->r[5] = mem_r32({TABLE});", 1)
-    text = replace_exact(text, "c->r[17] = c->r[4] - 0x65E8u;", f"c->r[17] = {TABLE};", 1)
-    text = replace_exact(text, "c->r[16] = mem_r32((c->r[5] - 0x65E8u));", f"c->r[16] = mem_r32({TABLE});", 1)
-    text = replace_exact(text, "c->r[19] = c->r[5] - 0x65E8u;", f"c->r[19] = {TABLE};", 1)
+    # (The C output carries vertex tags beside each register write: c->t[n].)
+    text = replace_exact(text, "c->r[7] = c->r[7] - 0x65E8u; c->t[7] = c->t[7];", f"c->r[7] = {TABLE}; c->t[7] = 0;", 1)
+    text = replace_exact(text, "c->r[5] = mem_r32_t(c, 5, (c->r[4] - 0x65E8u));", f"c->r[5] = mem_r32_t(c, 5, {TABLE});", 1)
+    text = replace_exact(text, "c->r[17] = c->r[4] - 0x65E8u; c->t[17] = c->t[4];", f"c->r[17] = {TABLE}; c->t[17] = 0;", 1)
+    text = replace_exact(text, "c->r[16] = mem_r32_t(c, 16, (c->r[5] - 0x65E8u));", f"c->r[16] = mem_r32_t(c, 16, {TABLE});", 1)
+    text = replace_exact(text, "c->r[19] = c->r[5] - 0x65E8u; c->t[19] = c->t[5];", f"c->r[19] = {TABLE}; c->t[19] = 0;", 1)
 
     # Register every texture of the player model slots (TextureRegistry.IsPlayerModelSlot).
     start, end = function(text, "func_80068BB0_Impl")  # the hooked function's body
     body = replace_exact(
         text[start:end],
-        "        c->r[30] = c->r[6] + 0x14u;\n        c->r[2] = c->r[2] < c->r[3] ? 1u : 0u;\n",
-        "        c->r[30] = c->r[6] + 0x14u;\n"
+        "        c->r[30] = c->r[6] + 0x14u; c->t[30] = c->t[6];\n        c->r[2] = c->r[2] < c->r[3] ? 1u : 0u; c->t[2] = 0;\n",
+        "        c->r[30] = c->r[6] + 0x14u; c->t[30] = c->t[6];\n"
         "        if (mem_r32(c->r[29] + 0x78u) == 2u || mem_r32(c->r[29] + 0x78u) == 12u) /* player model slot */\n"
         "            goto L80069040;\n"
-        "        c->r[2] = c->r[2] < c->r[3] ? 1u : 0u;\n",
+        "        c->r[2] = c->r[2] < c->r[3] ? 1u : 0u; c->t[2] = 0;\n",
         1,
     )
     text = text[:start] + body + text[end:]

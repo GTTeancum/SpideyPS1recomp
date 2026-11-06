@@ -112,6 +112,9 @@ static void status_text(void)
         rt_fov_num, rt_fov_den);
     ADD("textured triangles perspective %lu affine %lu replaced %lu\n", (unsigned long)rt_hw_perspective, (unsigned long)rt_hw_affine,
         (unsigned long)rt_hw_replaced);
+    ADD("vertex tags pages %lu stores %lu refused %lu; textured polygons precise %lu imprecise %lu\n",
+        (unsigned long)rt_vtag_pages, (unsigned long)rt_vtag_stores, (unsigned long)rt_vtag_refused,
+        (unsigned long)rt_hw_precise, (unsigned long)rt_hw_imprecise);
     for (int i = 0; i < RT_METRICS; i++)
         if (rt_metric_name[i]) ADD("metric %s %lu\n", rt_metric_name[i], (unsigned long)rt_metric[i]);
     ADD("shown %08lX %lux%lu\n", (unsigned long)rt_hw_shown, (unsigned long)rt_hw_shown_w, (unsigned long)rt_hw_shown_h);

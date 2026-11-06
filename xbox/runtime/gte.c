@@ -1,7 +1,9 @@
 /*
- * Geometry transformation engine (COP2), a port of the PC runtime's Hardware/Gte.cs
- * without its host-precision screen tracking (widescreen field of view, precise
- * winding and perspective/60 FPS provenance): the console's integer behaviour only.
+ * Geometry transformation engine (COP2), a port of the PC runtime's Hardware/Gte.cs:
+ * the console's integer behaviour, the widescreen field of view, and the host-precision
+ * screen tracking -- each SXY's exact position and depth from the unrounded homogeneous
+ * transform, carried with it as a vertex tag (recomp.h), and the precise winding
+ * correction in NCLIP. Not ported: the PC's 60 FPS vertex identities.
  */
 #include "hwgpu.h"
 #include "prof.h"
@@ -28,7 +30,11 @@ static uint32_t FLAG;
 static uint8_t UNR[0x101];
 static int g_unr_ready;
 int rt_fov_num = 1, rt_fov_den = 1;
-uint16_t (*rt_rtp_depth_hook)(int32_t vx, int32_t vy, int32_t vz, uint16_t sz);
+
+/* The precise projection of each SXY slot (the PC's ScreenX/Y/Z and ScreenNative):
+ * z 0 when the slot has none (written by the CPU, or behind the camera). */
+static float SXF[3], SYF[3], SZF[3];
+static uint32_t SNATIVE[3];
 
 INLINE void flag(int bit) { FLAG |= 1u << bit; }
 
@@ -154,7 +160,22 @@ INLINE void rtp(int32_t vx, int32_t vy, int32_t vz, int sf, int lm, int last)
     int32_t nx = sat_x((int32_t)(sx >> 16)), ny = sat_y((int32_t)(sy >> 16));
     SX[0] = SX[1]; SX[1] = SX[2]; SX[2] = (int16_t)nx;
     SY[0] = SY[1]; SY[1] = SY[2]; SY[2] = (int16_t)ny;
-    hw_note_depth(nx, ny, rt_rtp_depth_hook ? rt_rtp_depth_hook(vx, vy, vz, (uint16_t)sz) : (uint16_t)sz);
+    SXF[0] = SXF[1]; SXF[1] = SXF[2]; SYF[0] = SYF[1]; SYF[1] = SYF[2];
+    SZF[0] = SZF[1]; SZF[1] = SZF[2]; SNATIVE[0] = SNATIVE[1]; SNATIVE[1] = SNATIVE[2];
+    SZF[2] = 0.0f;
+    if (m3 > 0) {
+        /* One homogeneous transform for position and depth, as the PC: rounding IR/SZ
+         * or the console's approximate reciprocal puts a projected midpoint off the
+         * line between its endpoints. The registers above stay the console's. */
+        double k = (double)H / (double)m3, fx = (double)m1 * k;
+        if (rt_fov_num != rt_fov_den) fx = fx * rt_fov_num / rt_fov_den;
+        SXF[2] = (float)(fx + OFX / 65536.0);
+        SYF[2] = (float)((double)m2 * k + OFY / 65536.0);
+        SZF[2] = (float)(m3 / 4096.0);
+        SNATIVE[2] = 0x80000000u | ((uint32_t)nx & 0x7FFu) | (((uint32_t)ny & 0x7FFu) << 16);
+    }
+    /* Which screen points came from the GTE: tells world geometry from the HUD. */
+    hw_note_depth(nx, ny, (uint16_t)sz);
     if (last) {
         int64_t dp = check_mac0((int64_t)div * DQA + DQB);
         MAC0 = (int32_t)dp;
@@ -212,6 +233,14 @@ INLINE void gte_run(uint32_t cmd)
     case 0x30: rtp(V[0], V[1], V[2], sf, lm, 0); rtp(V[3], V[4], V[5], sf, lm, 0); rtp(V[6], V[7], V[8], sf, lm, 1); break;
     case 0x06:
         MAC0 = (int32_t)check_mac0((int64_t)SX[0] * (SY[1] - SY[2]) + (int64_t)SX[1] * (SY[2] - SY[0]) + (int64_t)SX[2] * (SY[0] - SY[1]));
+        if (SZF[0] > 0 && SZF[1] > 0 && SZF[2] > 0) {
+            /* Keep the console's magnitude (subdivision thresholds use it); correct only
+             * the winding where integer rounding disagrees with the precise triangle
+             * that is drawn, or a thin face is culled that should show. */
+            double area = ((double)SXF[1] - SXF[0]) * ((double)SYF[2] - SYF[0]) - ((double)SYF[1] - SYF[0]) * ((double)SXF[2] - SXF[0]);
+            int s = area > 0 ? 1 : -1, m = MAC0 > 0 ? 1 : MAC0 < 0 ? -1 : 0;
+            if ((area > 1e-8 || area < -1e-8) && s != m) MAC0 = s;
+        }
         break;
     case 0x2D: MAC0 = (int32_t)check_mac0((int64_t)ZSF3 * (SZ[1] + SZ[2] + SZ[3])); OTZ = (uint16_t)sat_sz(MAC0 >> 12); break;
     case 0x2E: MAC0 = (int32_t)check_mac0((int64_t)ZSF4 * (SZ[0] + SZ[1] + SZ[2] + SZ[3])); OTZ = (uint16_t)sat_sz(MAC0 >> 12); break;
@@ -337,10 +366,15 @@ void gte_write_data(int reg, uint32_t val)
     case 9: IR1 = (int16_t)val; break;
     case 10: IR2 = (int16_t)val; break;
     case 11: IR3 = (int16_t)val; break;
-    case 12: SX[0] = (int16_t)val; SY[0] = (int16_t)(val >> 16); break;
-    case 13: SX[1] = (int16_t)val; SY[1] = (int16_t)(val >> 16); break;
-    case 14: SX[2] = (int16_t)val; SY[2] = (int16_t)(val >> 16); break;
-    case 15: SX[0] = SX[1]; SY[0] = SY[1]; SX[1] = SX[2]; SY[1] = SY[2]; SX[2] = (int16_t)val; SY[2] = (int16_t)(val >> 16); break;
+    case 12: SX[0] = (int16_t)val; SY[0] = (int16_t)(val >> 16); SZF[0] = 0; break;
+    case 13: SX[1] = (int16_t)val; SY[1] = (int16_t)(val >> 16); SZF[1] = 0; break;
+    case 14: SX[2] = (int16_t)val; SY[2] = (int16_t)(val >> 16); SZF[2] = 0; break;
+    case 15:
+        SX[0] = SX[1]; SY[0] = SY[1]; SX[1] = SX[2]; SY[1] = SY[2]; SX[2] = (int16_t)val; SY[2] = (int16_t)(val >> 16);
+        SXF[0] = SXF[1]; SXF[1] = SXF[2]; SYF[0] = SYF[1]; SYF[1] = SYF[2];
+        SZF[0] = SZF[1]; SZF[1] = SZF[2]; SNATIVE[0] = SNATIVE[1]; SNATIVE[1] = SNATIVE[2];
+        SZF[2] = 0;
+        break;
     case 16: SZ[0] = (uint16_t)val; break;
     case 17: SZ[1] = (uint16_t)val; break;
     case 18: SZ[2] = (uint16_t)val; break;
@@ -442,3 +476,50 @@ void gte_write_control(int reg, uint32_t val)
 
 /* The PC's Gte.GetCondition: the BC2F/BC2T condition is always false. */
 int gte_condition(void) { return 0; }
+
+/* ---- vertex tags (the PC's Gte.ReadTo, WriteFrom, LoadWord, StoreWord) -------------- */
+static int screen_slot(int reg) { reg &= 31; return reg >= 12 && reg <= 15 ? (reg == 15 ? 2 : reg - 12) : -1; }
+
+/* MFC2 hands out tags from a ring: the register keeps pointing at its copy while the
+ * GTE moves on to the next vertex. */
+static VTag g_ring[256];
+static unsigned g_ring_next;
+
+uint32_t gte_read_data_t(CpuContext *c, int cpu_reg, int reg)
+{
+    uint32_t v = gte_read_data(reg);
+    int s = screen_slot(reg);
+    if (s < 0 || !(SZF[s] > 0)) { c->t[cpu_reg] = 0; return v; }
+    VTag *t = &g_ring[g_ring_next++ & 255u];
+    t->value = v; t->native = SNATIVE[s]; t->x = SXF[s]; t->y = SYF[s]; t->z = SZF[s];
+    c->t[cpu_reg] = t;
+    return v;
+}
+
+/* Write first so SXYP shifts the FIFO, then attach the projection to the slot written. */
+void gte_write_data_t(int reg, uint32_t value, const VTag *tag)
+{
+    gte_write_data(reg, value);
+    int s = screen_slot(reg);
+    if (s < 0 || !tag) return;
+    SXF[s] = tag->x; SYF[s] = tag->y; SZF[s] = tag->z; SNATIVE[s] = tag->native;
+}
+
+void gte_load_word(int reg, uint32_t address)
+{
+    uint32_t v = mem_r32(address);
+    gte_write_data_t(reg, v, vtag_of(address, v));
+}
+
+void gte_store_word(uint32_t address, int reg)
+{
+    uint32_t v = gte_read_data(reg);
+    int s = screen_slot(reg);
+    if (s >= 0 && SZF[s] > 0) {
+        VTag t = { v, SNATIVE[s], SXF[s], SYF[s], SZF[s] };
+        mem_w32(address, v);
+        vtag_store(address, v, &t);
+        return;
+    }
+    mem_w32_t(address, v, 0);
+}

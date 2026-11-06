@@ -27,7 +27,7 @@ void hook_GpuPatches_SetGraphDebug(CpuContext *c) { V0 = 0; }
 void hook_GpuPatches_DrawPrim(CpuContext *c)
 {
     uint32_t p = A0, words = mem_r32(p) >> 24;
-    for (uint32_t i = 0; i < words; i++) gpu_write_gp0(mem_r32(p + 4u + i * 4u));
+    for (uint32_t i = 0; i < words; i++) gpu_write_gp0_at(mem_r32(p + 4u + i * 4u), p + 4u + i * 4u);
     V0 = 0;
 }
 
