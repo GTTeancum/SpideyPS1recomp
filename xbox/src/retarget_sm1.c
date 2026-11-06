@@ -18,6 +18,7 @@
 #include <string.h>
 #include <windows.h>
 #include <x86intrin.h>
+#include "prof.h"
 #include "runtime.h"
 #include "settings.h"
 
@@ -187,22 +188,39 @@ static void pose_rig(const float *driver)
     }
 }
 
-/* rtg_evaluate's skinning, one skin matrix per bone. */
+/* rtg_evaluate's skinning, one skin matrix per bone. The three rows go through the SSE
+ * unit side by side: each lane does its row's operations in the core's order, single
+ * precision as the scalar code, so the sums are the same to the bit (checked against
+ * the core at load). Columns: g_column[bone][k] holds the matrix's column k. */
+static __m128 g_column[MAX_BONES][4];
+
 static int skin(void)
 {
-    for (int i = 0; i < g_bones; i++) mul(g_bone_pose + i * 12, g_bone[i].inverse, g_skin + i * 12);
+    for (int i = 0; i < g_bones; i++) {
+        float *s = g_skin + i * 12;
+        mul(g_bone_pose + i * 12, g_bone[i].inverse, s);
+        for (int k = 0; k < 4; k++) g_column[i][k] = _mm_setr_ps(s[k], s[4 + k], s[8 + k], 0);
+    }
     for (int i = 0; i < g_vertices; i++) {
         const Vertex *v = &g_vertex[i];
         const float *p = v->p;
-        float result[6] = { 0, 0, 0, 0, 0, 0 };
+        __m128 p0 = _mm_set1_ps(p[0]), p1 = _mm_set1_ps(p[1]), p2 = _mm_set1_ps(p[2]);
+        __m128 p3 = _mm_set1_ps(p[3]), p4 = _mm_set1_ps(p[4]), p5 = _mm_set1_ps(p[5]);
+        __m128 position = _mm_setzero_ps(), normal = _mm_setzero_ps();
         for (uint32_t j = 0; j < v->count; j++) {
             const Weight *w = &g_weight[v->first + j];
-            const float *m = g_skin + w->bone * 12;
-            for (int r = 0; r < 3; r++) {
-                result[r] += w->weight * (m[r * 4] * p[0] + m[r * 4 + 1] * p[1] + m[r * 4 + 2] * p[2] + m[r * 4 + 3]);
-                result[r + 3] += w->weight * (m[r * 4] * p[3] + m[r * 4 + 1] * p[4] + m[r * 4 + 2] * p[5]);
-            }
+            const __m128 *m = g_column[w->bone];
+            __m128 weight = _mm_set1_ps(w->weight);
+            __m128 at = _mm_add_ps(_mm_add_ps(_mm_add_ps(_mm_mul_ps(m[0], p0), _mm_mul_ps(m[1], p1)), _mm_mul_ps(m[2], p2)), m[3]);
+            __m128 turned = _mm_add_ps(_mm_add_ps(_mm_mul_ps(m[0], p3), _mm_mul_ps(m[1], p4)), _mm_mul_ps(m[2], p5));
+            position = _mm_add_ps(position, _mm_mul_ps(weight, at));
+            normal = _mm_add_ps(normal, _mm_mul_ps(weight, turned));
         }
+        float result[6], lanes[4];
+        _mm_storeu_ps(lanes, position);
+        result[0] = lanes[0]; result[1] = lanes[1]; result[2] = lanes[2];
+        _mm_storeu_ps(lanes, normal);
+        result[3] = lanes[0]; result[4] = lanes[1]; result[5] = lanes[2];
         float n = result[3] * result[3] + result[4] * result[4] + result[5] * result[5];
         if (n > 1e-12f) { float a = 1 / __builtin_sqrtf(n); for (int j = 3; j < 6; j++) result[j] *= a; }
         for (int j = 0; j < 6; j++) {
@@ -247,14 +265,9 @@ volatile uint32_t rt_rig_calls;
 static int ram(uint32_t p, uint32_t n) { return n <= 0x800000u && p >= 0x80000000u && p <= 0x80800000u - n; }
 static int active(void) { return g_rig && assets_sm1_suit_loaded(); }
 
-/* Round half to even, as the PC's MathF.Round (nxdk's lroundf asserts). */
-static int16_t q16(float x)
-{
-    double f = floor((double)x), d = (double)x - f;
-    long n = (long)f;
-    if (d > 0.5 || (d == 0.5 && (n & 1))) n++;
-    return (int16_t)n;
-}
+/* Round half to even, as the PC's MathF.Round (nxdk's lroundf asserts): the SSE
+ * conversion in the default rounding mode, nearest-even. */
+static int16_t q16(float x) { return (int16_t)_mm_cvtss_si32(_mm_set_ss(x)); }
 
 static int is_spidey(uint32_t entry) { return mem_r32(entry) == 0x64697073u && mem_r16(entry + 4) == 0x7965u && mem_r8(entry + 6) == 0; }
 
@@ -295,7 +308,7 @@ void hook_SuitRetargeting_UsePreservedAnimationCount(CpuContext *c)
 }
 
 /* Instruction hook at 80077418: the native pose is ready; skin the suit onto it. */
-void hook_SuitRetargeting_ApplyPose(CpuContext *c)
+static void hook_SuitRetargeting_ApplyPose_timed(CpuContext *c)
 {
     g_page_count = 0;
     if (!active()) return;
@@ -335,11 +348,13 @@ void hook_SuitRetargeting_ApplyPose(CpuContext *c)
         uint32_t start = mesh + 28, normals = start + (uint32_t)count * 8;
         int nf = (int)mem_r16(mesh + 6);
         uint32_t faces = normals + (uint32_t)(count + nf) * 8;
-        float radius = 0, mn[3] = { 1e30f, 1e30f, 1e30f }, mx[3] = { -1e30f, -1e30f, -1e30f };
+        /* The largest length, as one root of the largest square: a correctly rounded
+         * root never decreases, so this is the largest of the roots. */
+        float radius2 = 0, mn[3] = { 1e30f, 1e30f, 1e30f }, mx[3] = { -1e30f, -1e30f, -1e30f };
         for (int j = 0; j < count; j++) {
             const float *p = &v[j * 6];
-            float len = __builtin_sqrtf(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
-            if (len > radius) radius = len;
+            float len2 = p[0] * p[0] + p[1] * p[1] + p[2] * p[2];
+            if (len2 > radius2) radius2 = len2;
             for (int k = 0; k < 3; k++) { if (p[k] < mn[k]) mn[k] = p[k]; if (p[k] > mx[k]) mx[k] = p[k]; }
             uint32_t address = start + (uint32_t)j * 8;
             mem_w16(address, (uint16_t)q16(p[0]));
@@ -358,6 +373,7 @@ void hook_SuitRetargeting_ApplyPose(CpuContext *c)
                          e1[0] * e2[1] - e1[1] * e2[0]);
         }
         /* Culling bounds follow the skin. */
+        float radius = __builtin_sqrtf(radius2);
         mem_w32(mesh + 8, (uint32_t)(-floor(-(double)radius)) * 256u);
         if (count > 0)
             for (int k = 0; k < 3; k++) {
@@ -370,6 +386,14 @@ void hook_SuitRetargeting_ApplyPose(CpuContext *c)
         g_page_count = pages; g_next_page = pages;
     }
 }
+
+void hook_SuitRetargeting_ApplyPose(CpuContext *c)
+{
+    PROF_BEGIN(t);
+    hook_SuitRetargeting_ApplyPose_timed(c);
+    PROF_END(PROF_RIG, t);
+}
+
 
 static int paged_context(CpuContext *c)
 {

@@ -36,6 +36,8 @@ START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
 | `tools/make_disc_map.py` | the test disc's sector map from an install's `recompone-disc.json` |
 | `generated/<game>/` | RecompOne's C output for each game, ignored by git (made from the player's disc) |
 | `tools/gen_hook_defaults.py` | default bodies for hooks not implemented yet (`build/hooks_default.c`) |
+| `tools/gen_gte_ops.py` | the GTE command words the generated code issues (`runtime/gte_ops.h`) |
+| `runtime/memfast.s` | word-at-a-time `memcpy`/`memset` in place of nxdk's byte loops |
 | `tools/compile_generated.sh` | compiles one game's generated C with nxdk (no link) |
 | `tools/build.sh` | nxdk build wrapper (MSYS2 bash, installed LLVM) |
 | `tools/run_xemu.py` | hidden, silent XEMU boot with native screenshots and the status text |
@@ -57,12 +59,21 @@ Then from the repository root:
 ```bash
 python -I xbox/tools/patch_generated_sm1.py
 python -I xbox/tools/gen_hook_defaults.py spiderman
+python -I xbox/tools/gen_gte_ops.py
 MSYSTEM=MINGW64 C:/msys64/usr/bin/bash.exe --noprofile --norc xbox/tools/build.sh -j8
 ```
 
 `patch_generated_sm1.py` is the C counterpart of the PC's generated-source transform
 `spiderman/tools/patch_texture_registry.py` (texture registry relocated, player models
-register every texture); run it after every generation.
+register every texture), and makes the game's four vblank-countdown loops call the
+clock (the PC catches them by counting memory reads); run it after every generation.
+`gen_gte_ops.py` lists the GTE command words for the per-command GTE routines; a word
+missing from the list still works, through the general routine.
+
+The dependency files nxdk writes name Windows paths make does not match, so a change
+to a header does not rebuild what includes it: delete the `.obj` files under `src`,
+`runtime`, `generated` and `build` before building after one (or after switching
+`RT_PROFILE`).
 
 ## Assets and settings
 
@@ -116,6 +127,31 @@ request_alignment` assertion). Settings, the EEPROM copy, logs and captures go t
 widescreen TV, so the build runs at 1280x720 in 16:9. `--registers` also saves the
 CPU registers and stack at each shot (a halted CPU with interrupts off is an nxdk
 assert or a crash). `--ram` saves the PlayStation's RAM.
+
+## Test on a development console
+
+`tools/xbdm.py` talks to a debug console's monitor (TCP 731) directly, no SDK:
+
+```bash
+python -I xbox/tools/xbdm.py 10.0.0.231 put private/work/xbox-install 'E:\OpenSpidey'
+python -I xbox/tools/xbdm.py 10.0.0.231 run 'E:\OpenSpidey\default.xbe'
+python -I xbox/tools/xbdm.py 10.0.0.231 status
+python -I xbox/tools/xbdm.py 10.0.0.231 frame shot.png
+```
+
+`put` sends only files whose size changed (and always the XBE). `status` reads
+`g_status_text` from console memory; `frame` pauses the console and copies the last
+display buffer shown (the console's own screenshot cannot find a picture drawn
+without D3D). The install folder holds the XBE, the player's game files, the sector
+map, `openspidey.ini`, `assets`, `mods` and, for unattended runs, `input.txt`.
+
+`tools/xbprofile.py HOST [SAMPLES]` samples where the game thread is: it suspends the
+thread and takes the position from the processor's interrupt frame on its stack
+(code addresses lower on a parked thread's stack are stale). Time a thread spends
+asleep in the clock's wait can show under the last function interrupted before it.
+The status text counts ticks dropped (the game more than four ticks behind) and the
+longest gap between ticks. Reading console memory costs console time: poll a few
+bytes a few times a second, not the whole status text.
 
 ## Video
 

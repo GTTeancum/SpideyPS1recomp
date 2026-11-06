@@ -49,6 +49,7 @@ void texpack_note_gpu_write(int x, int y, int w, int h)
     bounds(x, y, w, h, &c0, &r0, &c1, &r1);
     for (int r = r0; r <= r1; r++)
         for (int c = c0; c <= c1; c++) g_gpu_dirty[r * COLS + c] = 1;
+    g_upload_clock++;   /* invalidates recent answers */
 }
 
 static int gpu_dirty(int x, int y, int w, int h)
@@ -176,10 +177,13 @@ static int ready(PackTexture *t)
     snprintf(path, sizeof path, "%s\\%016llx_%016llx.dds", g_pack_dir,
              (unsigned long long)t->index_hash, (unsigned long long)t->clut_hash);
     t->failed = 1;
-    FILE *f = fopen(path, "rb");
-    if (!f) return 0;
+    /* The kernel's file calls, straight into the texture: this runs mid-game, and the
+     * C library reads through a 1 KB buffer (a 512x512 texture was 128 disk reads). */
+    HANDLE f = CreateFileA(path, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, 0);
+    if (f == INVALID_HANDLE_VALUE) return 0;
     uint8_t header[128];
-    if (fread(header, 1, sizeof header, f) == sizeof header && memcmp(header, "DDS ", 4) == 0 &&
+    DWORD got = 0;
+    if (ReadFile(f, header, sizeof header, &got, 0) && got == sizeof header && memcmp(header, "DDS ", 4) == 0 &&
         memcmp(header + 84, "DXT1", 4) == 0) {
         uint32_t h, w;
         memcpy(&h, header + 12, 4);
@@ -187,14 +191,14 @@ static int ready(PackTexture *t)
         uint32_t bytes = w * h / 2;
         if (w >= 4 && h >= 4 && w <= 1024 && h <= 1024 && !(w & (w - 1)) && !(h & (h - 1))) {
             void *p = MmAllocateContiguousMemoryEx(bytes, 0, 0x03ffafff, 0, PAGE_READWRITE | PAGE_WRITECOMBINE);
-            if (p && fread(p, 1, bytes, f) == bytes) {
+            if (p && ReadFile(f, p, bytes, &got, 0) && got == bytes) {
                 __builtin_ia32_sfence();
                 t->dxt1 = p; t->width = (int)w; t->height = (int)h; t->failed = 0;
                 rt_pack_loads++;
             } else if (p) MmFreeContiguousMemory(p);
         }
     }
-    fclose(f);
+    CloseHandle(f);
     return t->dxt1 != 0;
 }
 
@@ -205,16 +209,66 @@ static int ready(PackTexture *t)
 typedef struct { int16_t x, y, w, h; int32_t clut; uint32_t stamp; PackTexture *hit; int valid; } Memo;
 static Memo g_memo[MEMO];
 
+/* Recent answers, by texture page, CLUT and the uploaded region they covered. Nearly
+ * every textured primitive reuses one of a few textures, and the full lookup reads the
+ * whole upload's bookkeeping; an answer holds until VRAM or the uploads change. */
+#define PACK_RECENT 1024
+typedef struct { int page_x, page_y, depth, clut_x, clut_y, u0, v0, w, h; uint32_t epoch; PackTexture *hit; int valid; } Recent;
+static Recent g_recent[PACK_RECENT];
+
+static int answer(PackTexture *hit, int u0, int v0, int w, int h, RtReplacement *out)
+{
+    if (!hit || !ready(hit)) return 0;
+    out->dxt1 = hit->dxt1;
+    out->width = hit->width; out->height = hit->height;
+    out->u0 = u0; out->v0 = v0; out->w = w; out->h = h;
+    rt_pack_hits++;
+    return 1;
+}
+
+static int lookup_full(const RtTile *tile, RtReplacement *out, Recent *keep);
+
+/* One recent answer per slot, the slot picked from the texture page, CLUT and the
+ * tile's 16x16 cell, so a lookup checks one entry. */
+static unsigned recent_slot(const RtTile *t)
+{
+    unsigned h = (unsigned)t->page_x * 0x9E37u ^ (unsigned)t->page_y * 0x85EBu ^ (unsigned)t->depth * 0xC2B2u ^
+                 (unsigned)t->clut_x * 0x27D4u ^ (unsigned)t->clut_y * 0x1657u ^ (unsigned)(t->u0 >> 4) * 0x2545u ^
+                 (unsigned)(t->v0 >> 4) * 0x3C6Fu;
+    return (h ^ (h >> 9)) & (PACK_RECENT - 1);
+}
+
 int texpack_lookup(const RtTile *tile, RtReplacement *out)
 {
     if (!g_pack_count) return 0;
+    uint32_t epoch = hw_vram_generation() + g_upload_clock;
+    Recent *r = &g_recent[recent_slot(tile)];
+    if (r->valid && r->epoch == epoch && r->page_x == tile->page_x && r->page_y == tile->page_y &&
+        r->depth == tile->depth && r->clut_x == tile->clut_x && r->clut_y == tile->clut_y &&
+        tile->u0 >= r->u0 && tile->v0 >= r->v0 && tile->u0 + tile->w <= r->u0 + r->w && tile->v0 + tile->h <= r->v0 + r->h)
+        return answer(r->hit, r->u0, r->v0, r->w, r->h, out);
+    r->valid = 0;
+    int found = lookup_full(tile, out, r);
+    if (r->valid) {
+        r->page_x = tile->page_x; r->page_y = tile->page_y; r->depth = tile->depth;
+        r->clut_x = tile->clut_x; r->clut_y = tile->clut_y; r->epoch = epoch;
+    }
+    return found;
+}
+
+static int lookup_full(const RtTile *tile, RtReplacement *out, Recent *keep)
+{
     int bpp = tile->depth == 0 ? 4 : tile->depth == 1 ? 8 : 16;
     int per_word = bpp == 4 ? 4 : bpp == 8 ? 2 : 1;
     Region t = { tile->page_x, tile->page_y, tile->u0, tile->v0, tile->w, tile->h, bpp,
                  tile->clut_x, tile->clut_y, bpp == 4 ? 16 : bpp == 8 ? 256 : 0 };
     int tx = vram_x(&t), tw = vram_w(&t), ty = t.page_y + t.v0;
     const Upload *up = find_upload(tx, ty, tw, t.h);
-    if (!up || gpu_dirty(up->x, up->y, up->w, up->h)) return 0;
+    /* No art for this: remember the miss for these exact texels. */
+    if (!up || gpu_dirty(up->x, up->y, up->w, up->h)) {
+        keep->u0 = tile->u0; keep->v0 = tile->v0; keep->w = tile->w; keep->h = tile->h; keep->hit = 0; keep->valid = 1;
+        return 0;
+    }
     Region r = { t.page_x, t.page_y, (up->x - t.page_x) * per_word, up->y - t.page_y, up->w * per_word, up->h,
                  bpp, t.clut_x, t.clut_y, t.clut_count };
     if (r.w <= 0 || r.h <= 0 || r.w * r.h > 256 * 256) return 0;
@@ -233,10 +287,6 @@ int texpack_lookup(const RtTile *tile, RtReplacement *out)
         e->valid = 1;
         e->hit = fingerprint(&r, &a, &b) ? find(a, b) : 0;
     }
-    if (!e->hit || !ready(e->hit)) return 0;
-    out->dxt1 = e->hit->dxt1;
-    out->width = e->hit->width; out->height = e->hit->height;
-    out->u0 = r.u0; out->v0 = r.v0; out->w = r.w; out->h = r.h;
-    rt_pack_hits++;
-    return 1;
+    keep->u0 = r.u0; keep->v0 = r.v0; keep->w = r.w; keep->h = r.h; keep->hit = e->hit; keep->valid = 1;
+    return answer(e->hit, r.u0, r.v0, r.w, r.h, out);
 }

@@ -7,6 +7,14 @@
 #include "gpu.h"
 #include "hwgpu.h"
 #include "texpack.h"
+
+/* pbkit's pb_push1/pb_push2 are out-of-line calls; state changes are frequent enough
+ * that the calls showed in profiles. Same encoding: method header, then the words. */
+static inline uint32_t *push1_inline(uint32_t *p, uint32_t cmd, uint32_t a) { p[0] = (1u << 18) | cmd; p[1] = a; return p + 2; }
+static inline uint32_t *push2_inline(uint32_t *p, uint32_t cmd, uint32_t a, uint32_t b) { p[0] = (2u << 18) | cmd; p[1] = a; p[2] = b; return p + 3; }
+#define pb_push1 push1_inline
+#define pb_push2 push2_inline
+#include "prof.h"
 #include "runtime.h"
 
 /* Display buffers and the screen are the console's output mode (640x480 or 1280x720). */
@@ -31,6 +39,9 @@ static int g_region_next;
 
 int hw_active(void) { return g_active; }
 
+/* For the status text: the display buffers known and how they were replaced. */
+volatile uint32_t rt_hw_region_info[HW_REGIONS], rt_hw_region_swaps;
+
 void hw_note_display(int x, int y, int width, int height)
 {
     if (width <= 0 || height <= 0) return;
@@ -46,6 +57,8 @@ void hw_note_display(int x, int y, int width, int height)
     g_region_next = (g_region_next + 1) % HW_REGIONS;
     Region *r = &g_regions[i];
     r->x = x; r->y = y; r->w = width; r->h = height; r->valid = 1;
+    rt_hw_region_swaps++;
+    rt_hw_region_info[i] = (uint32_t)x | (uint32_t)y << 10 | (uint32_t)width << 20;
     hw_blit(i, x, y, width, height);
 }
 
@@ -62,10 +75,31 @@ int hw_region_for(int x, int y)
 /* ---- command buffer ------------------------------------------------------------------- */
 static uint32_t *g_open, *g_base;
 static unsigned g_open_prims;
+/* Where the open block started. A block is limited in size, not only in primitives:
+ * the push-buffer wrap check (below) runs when a block opens, so one block must not
+ * grow past the slack it leaves. A shadow draw alone can add hundreds of KB; an
+ * unbounded block ran off the push buffer's end and the GPU halted on the garbage
+ * ("Dma push buffer engine encountered invalid data"). */
+static uint32_t *g_open_start;
+#define BLOCK_BYTES_MAX (16u * 1024u)
+static int block_full(const uint32_t *p) { return (unsigned)(p - g_open_start) * 4u > BLOCK_BYTES_MAX; }
+/* Kept free at the buffer's end, and between the CPU's writes and the GPU's reads. */
+#define WRAP_SLACK (256u * 1024u)
+/* The GPU's read position in the push buffer (physical), as pbkit reads it. */
+#define DMA_GET (*(volatile uint32_t *)(VIDEO_BASE + 0x00800000u + 0x44u))   /* NV_USER, channel 0 */
 static int g_target = -1;
+
+/* Consecutive triangles with the same state share one BEGIN/END (submit). */
+static int g_batch;
+static void end_batch(void)
+{
+    if (g_batch && g_open) g_open = pb_push1(g_open, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_END);
+    g_batch = 0;
+}
 
 static void close_block(void)
 {
+    end_batch();
     if (!g_open) return;
     pb_end(g_open);
     g_open = 0;
@@ -74,19 +108,31 @@ static void close_block(void)
 
 static uint32_t *open_block(void)
 {
-    if (g_open && g_open_prims < 128) { g_open_prims++; return g_open; }
+    end_batch();
+    if (g_open && g_open_prims < 128 && !block_full(g_open)) { g_open_prims++; return g_open; }
     close_block();
     uint32_t *p = pb_begin();
     if (!g_base || p < g_base) g_base = p;
-    if ((unsigned)(p - g_base) * 4u > PUSHBUFFER_SIZE - 256u * 1024u) {
-        pb_end(p);
-        pb_reset();
-        g_base = 0;
+    if ((unsigned)(p - g_base) * 4u > PUSHBUFFER_SIZE - WRAP_SLACK) {
+        /* Wrap without pbkit's pb_reset, which waits for the GPU to empty the whole
+         * buffer: write the jump back to the head and move the put pointer there. The
+         * GPU runs on through the old commands, takes the jump and stops at put. */
+        *p = 1u + ((uint32_t)g_base & 0x0FFFFFFFu);
+        pb_end(g_base);
         g_target = -1;
         p = pb_begin();
-        g_base = p;
     }
+    /* Lapping the GPU: commands it has not read yet lie ahead of p, and must not be
+     * overwritten. Its read position strictly inside the slack ahead means wait (at
+     * p itself it is idle, waiting for these commands). */
+    for (;;) {
+        uint32_t *get = (uint32_t *)(DMA_GET | 0x80000000u);
+        if (get <= p || get >= p + WRAP_SLACK / 4u) break;
+        rt_hw_wait = 6;
+    }
+    rt_hw_wait = 0;
     g_open = p;
+    g_open_start = p;
     g_open_prims = 1;
     return p;
 }
@@ -114,6 +160,7 @@ static void target(int r)
 static uint32_t g_block_gen[VRAM_H / BLOCK][VRAM_W / BLOCK];
 static uint32_t g_gen = 1;
 static uint32_t g_frame;
+static int in_flight(uint32_t used) { return used + 3u > g_frame; }
 static uint32_t *g_white, *g_blit;
 volatile uint32_t rt_hw_texture_decodes, rt_hw_palette_builds, rt_hw_frames, rt_hw_wait, rt_hw_perspective, rt_hw_affine;
 
@@ -138,6 +185,10 @@ int (*rt_texture_hook)(const RtTile *tile, RtReplacement *out);
 static uint32_t g_bound_filter = FILTER_POINT;
 
 /* Wait for the GPU to drain; `site` shows in the status text while waiting. */
+/* Used by a frame the GPU may not have finished: the current or the two before
+ * (pb_finished holds the CPU back once three frames are queued). */
+static int in_flight(uint32_t used);
+
 static void drain(uint32_t site)
 {
     rt_hw_wait = site;
@@ -271,7 +322,7 @@ static void swizzle_tables(int w, int h, uint32_t *su, uint32_t *sv)
         }
 }
 
-static void convert_page(Page *e)
+static void convert_page_timed(Page *e)
 {
     static uint32_t su[256], sv[256];
     if (e->tw == 256 && e->th == 256)
@@ -295,6 +346,14 @@ static void convert_page(Page *e)
     e->stamp = g_gen;
     rt_hw_texture_decodes++;
 }
+
+static void convert_page(Page *e)
+{
+    PROF_BEGIN(t);
+    convert_page_timed(e);
+    PROF_END(PROF_PAGE, t);
+}
+
 
 /* A slot to fill: a free one, else the least recently used. */
 static Page *refill(Page *slots, int count)
@@ -326,9 +385,9 @@ static Page *page(const HwTexture *t)
     if (hit && hit->stamp >= fresh) { hit->used = g_frame; return last[tiled][depth] = hit; }
     /* Stale or missing. Rewrite a stale page in place unless this frame drew from it;
      * a slot this frame drew from may still be in the GPU's queue, so that costs a drain. */
-    Page *e = hit && hit->used != g_frame ? hit : refill(slots, count);
+    Page *e = hit && !in_flight(hit->used) ? hit : refill(slots, count);
     if (hit && e != hit) hit->valid = 0;
-    if (e->valid && e->used == g_frame) { close_block(); drain(1); }
+    if (e->valid && in_flight(e->used)) { close_block(); drain(1); }
     uint32_t bytes = (uint32_t)(k.tw * k.th * (depth == 2 ? 4 : 1));
     if (e->pixels && e->bytes != bytes) { MmFreeContiguousMemory(e->pixels); e->pixels = 0; }
     if (!e->pixels) {
@@ -358,13 +417,13 @@ static Palette *palette(int clut, int depth)
     uint16_t *index = &g_palette_of[depth][clut & 0xFFFF];
     Palette *hit = *index ? &g_palettes[*index - 1] : 0;
     if (hit && hit->stamp >= fresh) { hit->used = g_frame; return hit; }
-    Palette *e = hit && hit->used != g_frame ? hit : 0;
+    Palette *e = hit && !in_flight(hit->used) ? hit : 0;
     if (!e) {
         /* Round robin, skipping palettes this frame still needs. */
         for (int tries = 0; tries < PALETTES && !e; tries++) {
             Palette *c = &g_palettes[g_palette_next];
             g_palette_next = (g_palette_next + 1) % PALETTES;
-            if (!c->valid || c->used != g_frame) e = c;
+            if (!c->valid || !in_flight(c->used)) e = c;
         }
         if (!e) { close_block(); drain(5); e = &g_palettes[g_palette_next]; }
         if (e->valid) g_palette_of[e->depth][e->clut] = 0;
@@ -385,7 +444,7 @@ static uint32_t log2u(unsigned v) { uint32_t n = 0; while ((1u << n) < v) n++; r
 #define SWIZZLED(color, w, h) (TEXTURE_BASE | ((color) << 8) | (1 << 16) | (log2u(w) << 20) | (log2u(h) << 24))
 
 /* The texture a primitive samples; 0 when it cannot be had. */
-static int texture(const HwTexture *key, Tex *out)
+static int texture_timed(const HwTexture *key, Tex *out)
 {
     Page *pg = page(key);
     if (!pg) return 0;
@@ -409,11 +468,20 @@ static int texture(const HwTexture *key, Tex *out)
     return 1;
 }
 
+static int texture(const HwTexture *key, Tex *out)
+{
+    PROF_BEGIN(t);
+    int r = texture_timed(key, out);
+    PROF_END(PROF_TEXTURE, t);
+    return r;
+}
+
+
 /* A replacement texture for these texels, if the game's rules have one. Replacement
  * art samples bilinear, and its cutouts (DXT1 alpha) are drawn without the
  * PlayStation's per-texel semi-transparency, which the art does not carry. */
 volatile uint32_t rt_hw_replaced;
-static int replacement(const HwTexture *key, int u0, int v0, int w, int h, Tex *out)
+static int replacement_timed(const HwTexture *key, int u0, int v0, int w, int h, Tex *out)
 {
     /* Under a texture window the texels sampled are the window's tile, as the PC's
      * TextureResolver has it (twOr, window extent): match on that tile, and repeat
@@ -445,6 +513,15 @@ static int replacement(const HwTexture *key, int u0, int v0, int w, int h, Tex *
     return 1;
 }
 
+static int replacement(const HwTexture *key, int u0, int v0, int w, int h, Tex *out)
+{
+    PROF_BEGIN(t);
+    int r = replacement_timed(key, u0, v0, w, h, out);
+    PROF_END(PROF_REPLACE, t);
+    return r;
+}
+
+
 static Tex linear(const void *pixels, unsigned pitch, unsigned w, unsigned h)
 {
     Tex t = { pixels, LINEAR_ARGB, 0, pitch, w, h, 0, 0, 1.0f, 1.0f, FILTER_POINT, ADDRESS(0, 0) };
@@ -455,6 +532,39 @@ static Tex linear(const void *pixels, unsigned pitch, unsigned w, unsigned h)
 static const void *g_bound;
 static uint32_t g_bound_palette;
 static int g_blend = -2, g_alpha = -1;
+
+/* Stencil: used by the shadow only (bit 0x01). */
+#define STENCIL_SHADOW 4         /* darken each pixel once */
+#define STENCIL_SHADOW_CLEAR 5   /* clear the shadow's bit again, colour writes off */
+static int g_stencil = -1, g_stencil_force = -1;
+
+static uint32_t *stencil(uint32_t *p, int state)
+{
+    if (g_stencil == state) return p;
+    g_stencil = state;
+    if (state < 0) return pb_push1(p, NV097_SET_STENCIL_TEST_ENABLE, 0);
+    int shadow = state >= STENCIL_SHADOW;
+    p = pb_push1(p, NV097_SET_STENCIL_TEST_ENABLE, 1);
+    p = pb_push1(p, NV097_SET_STENCIL_MASK, shadow ? 0x01 : 0x80);
+    p = pb_push1(p, NV097_SET_STENCIL_FUNC_MASK, shadow ? 0x01 : 0x80);
+    p = pb_push1(p, NV097_SET_STENCIL_OP_FAIL, NV097_SET_STENCIL_OP_V_KEEP);
+    p = pb_push1(p, NV097_SET_STENCIL_OP_ZFAIL, NV097_SET_STENCIL_OP_V_KEEP);
+    if (state == STENCIL_SHADOW) {
+        p = pb_push1(p, NV097_SET_STENCIL_FUNC, NV097_SET_ALPHA_FUNC_V_EQUAL);
+        p = pb_push1(p, NV097_SET_STENCIL_FUNC_REF, 0);
+        p = pb_push1(p, NV097_SET_STENCIL_OP_ZPASS, NV097_SET_STENCIL_OP_V_INCRSAT);
+    } else if (state == STENCIL_SHADOW_CLEAR) {
+        p = pb_push1(p, NV097_SET_STENCIL_FUNC, NV097_SET_ALPHA_FUNC_V_ALWAYS);
+        p = pb_push1(p, NV097_SET_STENCIL_FUNC_REF, 0);
+        p = pb_push1(p, NV097_SET_STENCIL_OP_ZPASS, NV097_SET_STENCIL_OP_V_ZERO);
+    } else {
+        /* check: pass where the mask bit is clear; written pixels get set's value. */
+        p = pb_push1(p, NV097_SET_STENCIL_FUNC, (state & 2) ? NV097_SET_ALPHA_FUNC_V_NOTEQUAL : NV097_SET_ALPHA_FUNC_V_ALWAYS);
+        p = pb_push1(p, NV097_SET_STENCIL_FUNC_REF, 0x80);
+        p = pb_push1(p, NV097_SET_STENCIL_OP_ZPASS, (state & 1) ? NV097_SET_STENCIL_OP_V_REPLACE : NV097_SET_STENCIL_OP_V_ZERO);
+    }
+    return p;
+}
 
 static uint32_t *bind(uint32_t *p, const Tex *t)
 {
@@ -553,7 +663,7 @@ static float depth_exact(int sx, int sy)
     return 0.0f;
 }
 
-float hw_depth_at(int sx, int sy) { return depth_exact(sx, sy); }
+static float hw_depth_at_timed(int sx, int sy) { return depth_exact(sx, sy); }
 
 void hw_depth_frame(void) { g_depth_gen++; }
 
@@ -562,35 +672,73 @@ static float sx(int r, float x) { return (x - (float)g_regions[r].x) * (float)OU
 static float sy(int r, float y) { return (y - (float)g_regions[r].y) * (float)OUT_H / (float)g_regions[r].h; }
 
 /* w > 0 makes the chip interpolate colour and texture coordinates in perspective. */
-static uint32_t *vertex(uint32_t *p, float x, float y, float r, float g, float b, float u, float v, float w)
+
+/* Written inline (pbkit's pb_push4f is an out-of-line call per attribute, a large
+ * share of frame time with thousands of vertices): a method header, then four floats. */
+#define METHOD4(cmd) ((4u << 18) | (cmd))
+static inline uint32_t *push4f(uint32_t *p, uint32_t cmd, float a, float b, float c, float d)
 {
-    p = pb_push4f(p, NV097_SET_VERTEX_DATA4F_M + 3 * 16, r, g, b, 1.0f);
-    p = pb_push4f(p, NV097_SET_VERTEX_DATA4F_M + 9 * 16, u, v, 0.0f, 1.0f);
-    p = pb_push4f(p, NV097_SET_VERTEX_DATA4F_M, x, y, 0.0f, w);
+    float *f = (float *)(p + 1);
+    p[0] = METHOD4(cmd);
+    f[0] = a; f[1] = b; f[2] = c; f[3] = d;
+    return p + 5;
+}
+
+static inline uint32_t *vertex(uint32_t *p, float x, float y, float r, float g, float b, float u, float v, float w)
+{
+    p = push4f(p, NV097_SET_VERTEX_DATA4F_M + 3 * 16, r, g, b, 1.0f);
+    p = push4f(p, NV097_SET_VERTEX_DATA4F_M + 9 * 16, u, v, 0.0f, 1.0f);
+    p = push4f(p, NV097_SET_VERTEX_DATA4F_M, x, y, 0.0f, w);
     return p;
 }
+
+float hw_depth_at(int sx, int sy)
+{
+    PROF_BEGIN(t);
+    float r = hw_depth_at_timed(sx, sy);
+    PROF_END(PROF_DEPTH, t);
+    return r;
+}
+
 
 /* Draw `count` vertices once per required pass: opaque texels without blending,
  * then semi-transparent texels with the primitive's blend mode. */
 static void submit(int r, uint32_t op, const float (*xy)[2], const float (*rgb)[3], const float (*uv)[2], const float *w, int count,
                    const Tex *tex, int textured, int semi, int mode)
 {
+    PROF_BEGIN(sub);
     target(r);
     int passes = textured && semi ? 2 : 1;
     for (int pass = 0; pass < passes; pass++) {
-        uint32_t *p = open_block();
-        p = bind(p, tex);
-        if (!textured) { p = alpha(p, -1); p = blend(p, semi ? mode : -1); }
-        else if (!semi) { p = alpha(p, 0); p = blend(p, -1); }
-        else if (pass == 0) { p = alpha(p, ALPHA_OPAQUE); p = blend(p, -1); }
-        else { p = alpha(p, ALPHA_SEMI); p = blend(p, mode); }
-        p = pb_push1(p, NV097_SET_BEGIN_END, op);
+        int keep, how;
+        if (!textured) { keep = -1; how = semi ? mode : -1; }
+        else if (!semi) { keep = 0; how = -1; }
+        else if (pass == 0) { keep = ALPHA_OPAQUE; how = -1; }
+        else { keep = ALPHA_SEMI; how = mode; }
+        uint32_t *p;
+        int mask = g_stencil_force;
+        int same = g_bound == tex->pixels && (!tex->palette || g_bound_palette == tex->palette) &&
+                   g_bound_filter == tex->filter && g_bound_address == tex->address && g_alpha == keep && g_blend == how &&
+                   g_stencil == mask;
+        if (op == NV097_SET_BEGIN_END_OP_TRIANGLES && g_batch && g_open && g_open_prims < 128 && !block_full(g_open) && same) {
+            p = g_open;
+            g_open_prims++;
+        } else {
+            p = open_block();
+            p = bind(p, tex);
+            p = alpha(p, keep);
+            p = blend(p, how);
+            p = stencil(p, mask);
+            p = pb_push1(p, NV097_SET_BEGIN_END, op);
+        }
         for (int i = 0; i < count; i++)
             p = vertex(p, xy[i][0], xy[i][1], rgb[i][0], rgb[i][1], rgb[i][2],
                        (uv[i][0] - tex->uoff) * tex->uscale, (uv[i][1] - tex->voff) * tex->vscale, w ? w[i] : 1.0f);
-        p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_END);
+        if (op == NV097_SET_BEGIN_END_OP_TRIANGLES) g_batch = 1;
+        else p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_END);
         g_open = p;
     }
+    PROF_END(PROF_SUBMIT, sub);
 }
 
 /* Vertex colour as the shader expects it: modulating colour /255 (128 -> x2 = 1),
@@ -600,6 +748,98 @@ static void shade(float out[3], uint8_t r, uint8_t g, uint8_t b, int textured, i
     float k = !textured ? 1.0f / 510.0f : 1.0f / 255.0f;
     if (textured && raw) { out[0] = out[1] = out[2] = 0.5f; return; }
     out[0] = r * k; out[1] = g * k; out[2] = b * k;
+}
+
+/*
+ * PlayStation geometry may reach far off screen (the GTE gives +-1023, the backdrop and
+ * ground use it), and at 720p those corners exceed the range the NV2A rasterises: it
+ * dropped whole triangles, leaving black wedges where the sky and ground should be. A
+ * triangle with a corner outside a guard band is clipped to it here first. Attributes
+ * are interpolated as the chip does, in perspective (by 1/w), so the cut is invisible.
+ */
+#define GUARD 512.0f
+static int g_area[4] = { 0, 0, VRAM_W - 1, VRAM_H - 1 };
+void hw_area(int left, int top, int right, int bottom) { g_area[0] = left; g_area[1] = top; g_area[2] = right; g_area[3] = bottom; }
+static float g_edge[4];   /* clip rectangle, output pixels: left, right, top, bottom */
+
+static void clip_edges(int r)
+{
+    g_edge[0] = sx(r, (float)g_area[0]); g_edge[1] = sx(r, (float)(g_area[2] + 1));
+    g_edge[2] = sy(r, (float)g_area[1]); g_edge[3] = sy(r, (float)(g_area[3] + 1));
+    if (g_edge[0] < -GUARD) g_edge[0] = -GUARD;
+    if (g_edge[1] > (float)OUT_W + GUARD) g_edge[1] = (float)OUT_W + GUARD;
+    if (g_edge[2] < -GUARD) g_edge[2] = -GUARD;
+    if (g_edge[3] > (float)OUT_H + GUARD) g_edge[3] = (float)OUT_H + GUARD;
+}
+typedef struct { float x, y, r, g, b, u, v, q; } ClipVertex;   /* q = 1/w; colour, uv premultiplied by q */
+
+static int inside(const ClipVertex *c, int edge)
+{
+    switch (edge) {
+    case 0: return c->x >= g_edge[0];
+    case 1: return c->x <= g_edge[1];
+    case 2: return c->y >= g_edge[2];
+    default: return c->y <= g_edge[3];
+    }
+}
+
+static ClipVertex crossing(const ClipVertex *a, const ClipVertex *b, int edge)
+{
+    float t;
+    switch (edge) {
+    case 0: t = (g_edge[0] - a->x) / (b->x - a->x); break;
+    case 1: t = (g_edge[1] - a->x) / (b->x - a->x); break;
+    case 2: t = (g_edge[2] - a->y) / (b->y - a->y); break;
+    default: t = (g_edge[3] - a->y) / (b->y - a->y); break;
+    }
+    ClipVertex c;
+    c.x = a->x + (b->x - a->x) * t; c.y = a->y + (b->y - a->y) * t;
+    c.r = a->r + (b->r - a->r) * t; c.g = a->g + (b->g - a->g) * t; c.b = a->b + (b->b - a->b) * t;
+    c.u = a->u + (b->u - a->u) * t; c.v = a->v + (b->v - a->v) * t; c.q = a->q + (b->q - a->q) * t;
+    return c;
+}
+
+static void submit_tri(int r, const float (*xy)[2], const float (*rgb)[3], const float (*uv)[2], const float *w,
+                       const Tex *tex, int textured, int semi, int mode)
+{
+    clip_edges(r);
+    int out = 0;
+    for (int i = 0; i < 3; i++)
+        if (xy[i][0] < g_edge[0] || xy[i][0] > g_edge[1] || xy[i][1] < g_edge[2] || xy[i][1] > g_edge[3]) out = 1;
+    if (!out) { submit(r, NV097_SET_BEGIN_END_OP_TRIANGLES, xy, rgb, uv, w, 3, tex, textured, semi, mode); return; }
+    ClipVertex poly[2][12];
+    int n = 3, cur = 0;
+    for (int i = 0; i < 3; i++) {
+        float q = 1.0f / (w ? w[i] : 1.0f);
+        ClipVertex c = { xy[i][0], xy[i][1], rgb[i][0] * q, rgb[i][1] * q, rgb[i][2] * q, uv[i][0] * q, uv[i][1] * q, q };
+        poly[0][i] = c;
+    }
+    for (int edge = 0; edge < 4 && n; edge++) {
+        const ClipVertex *in = poly[cur];
+        ClipVertex *o = poly[cur ^ 1];
+        int m = 0;
+        for (int i = 0; i < n && m < 10; i++) {
+            const ClipVertex *a = &in[i], *b = &in[(i + 1) % n];
+            int ia = inside(a, edge), ib = inside(b, edge);
+            if (ia) o[m++] = *a;
+            if (ia != ib) o[m++] = crossing(a, b, edge);
+        }
+        n = m;
+        cur ^= 1;
+    }
+    for (int i = 1; i + 1 < n; i++) {
+        const ClipVertex *c[3] = { &poly[cur][0], &poly[cur][i], &poly[cur][i + 1] };
+        float txy[3][2], trgb[3][3], tuv[3][2], tw[3];
+        for (int k = 0; k < 3; k++) {
+            float wk = 1.0f / c[k]->q;
+            txy[k][0] = c[k]->x; txy[k][1] = c[k]->y;
+            trgb[k][0] = c[k]->r * wk; trgb[k][1] = c[k]->g * wk; trgb[k][2] = c[k]->b * wk;
+            tuv[k][0] = c[k]->u * wk; tuv[k][1] = c[k]->v * wk;
+            tw[k] = wk;
+        }
+        submit(r, NV097_SET_BEGIN_END_OP_TRIANGLES, (const float (*)[2])txy, (const float (*)[3])trgb, (const float (*)[2])tuv,
+               w ? tw : 0, 3, tex, textured, semi, mode);
+    }
 }
 
 void hw_triangle(int r, const HwVertex v[3], const HwTexture *tex, int semi, int mode, int raw, int gouraud)
@@ -644,14 +884,14 @@ void hw_triangle(int r, const HwVertex v[3], const HwTexture *tex, int semi, int
             if (v[i].v > v_hi) v_hi = v[i].v;
         }
         if (replacement(tex, u_lo, v_lo, u_hi - u_lo + 1, v_hi - v_lo + 1, &t)) {
-            submit(r, NV097_SET_BEGIN_END_OP_TRIANGLES, xy, rgb, uv, w, 3, &t, 1, 0, mode);
+            submit_tri(r, xy, rgb, uv, w, &t, 1, 0, mode);
             return;
         }
         if (!texture(tex, &t)) return;
-        submit(r, NV097_SET_BEGIN_END_OP_TRIANGLES, xy, rgb, uv, w, 3, &t, 1, semi, mode);
+        submit_tri(r, xy, rgb, uv, w, &t, 1, semi, mode);
     } else {
         Tex t = linear(g_white, 64, 16, 16);
-        submit(r, NV097_SET_BEGIN_END_OP_TRIANGLES, xy, rgb, uv, w, 3, &t, 0, semi, mode);
+        submit_tri(r, xy, rgb, uv, w, &t, 0, semi, mode);
     }
 }
 
@@ -659,11 +899,19 @@ void hw_rect(int r, int x, int y, int w, int h, uint8_t u0, uint8_t v0, int tw, 
              const HwTexture *tex, int semi, int mode, int raw)
 {
     float x0 = sx(r, (float)x), x1 = sx(r, (float)(x + w)), y0 = sy(r, (float)y), y1 = sy(r, (float)(y + h));
+    /* Trimmed to the drawing area, texture coordinates with it. */
+    clip_edges(r);
+    float fu0 = u0, fv0 = v0, fu1 = (float)(u0 + tw), fv1 = (float)(v0 + th);
+    if (x0 < g_edge[0]) { fu0 += (fu1 - fu0) * (g_edge[0] - x0) / (x1 - x0); x0 = g_edge[0]; }
+    if (x1 > g_edge[1]) { fu1 -= (fu1 - fu0) * (x1 - g_edge[1]) / (x1 - x0); x1 = g_edge[1]; }
+    if (y0 < g_edge[2]) { fv0 += (fv1 - fv0) * (g_edge[2] - y0) / (y1 - y0); y0 = g_edge[2]; }
+    if (y1 > g_edge[3]) { fv1 -= (fv1 - fv0) * (y1 - g_edge[3]) / (y1 - y0); y1 = g_edge[3]; }
+    if (x1 <= x0 || y1 <= y0) return;
     float xy[4][2] = { { x0, y0 }, { x1, y0 }, { x0, y1 }, { x1, y1 } };
     float c[3];
     shade(c, cr, cg, cb, tex != 0, raw);
     float rgb[4][3] = { { c[0], c[1], c[2] }, { c[0], c[1], c[2] }, { c[0], c[1], c[2] }, { c[0], c[1], c[2] } };
-    float uv[4][2] = { { u0, v0 }, { (float)(u0 + tw), v0 }, { u0, (float)(v0 + th) }, { (float)(u0 + tw), (float)(v0 + th) } };
+    float uv[4][2] = { { fu0, fv0 }, { fu1, fv0 }, { fu0, fv1 }, { fu1, fv1 } };
     if (tex) {
         Tex t;
         if (replacement(tex, u0, v0, tw, th, &t)) {
@@ -723,6 +971,7 @@ void hw_blit(int r, int x, int y, int w, int h)
     uint32_t *p = open_block();
     Tex t = linear(g_blit, VRAM_W * 4, (unsigned)bw, (unsigned)bh);
     p = bind(p, &t);
+    p = stencil(p, -1);
     p = alpha(p, -1);
     p = blend(p, -1);
     p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_TRIANGLE_STRIP);
@@ -739,42 +988,50 @@ void hw_shadow(int r, const float (*xy)[2], int count)
 {
     if (count <= 0) return;
     target(r);
-    close_block();
-    pb_erase_depth_stencil_buffer(0, 0, OUT_W, OUT_H);
-    uint32_t *p = open_block();
-    p = pb_push1(p, NV097_SET_STENCIL_TEST_ENABLE, 1);
-    p = pb_push1(p, NV097_SET_STENCIL_MASK, 0xFF);
-    p = pb_push1(p, NV097_SET_STENCIL_FUNC, NV097_SET_ALPHA_FUNC_V_EQUAL);
-    p = pb_push1(p, NV097_SET_STENCIL_FUNC_REF, 0);
-    p = pb_push1(p, NV097_SET_STENCIL_FUNC_MASK, 0xFF);
-    p = pb_push1(p, NV097_SET_STENCIL_OP_FAIL, NV097_SET_STENCIL_OP_V_KEEP);
-    p = pb_push1(p, NV097_SET_STENCIL_OP_ZFAIL, NV097_SET_STENCIL_OP_V_KEEP);
-    p = pb_push1(p, NV097_SET_STENCIL_OP_ZPASS, NV097_SET_STENCIL_OP_V_INCRSAT);
-    g_open = p;
-    /* Black, averaged with what is there (blend mode 0): half brightness. */
+    /* Black, averaged with what is there (blend mode 0): half brightness, each pixel
+     * once (stencil bit 0x01); then, colour writes off, clear the bit again so the
+     * PlayStation mask bit (0x80) is untouched. Only the shadow uses bit 0x01 and the
+     * clear tests nothing, so one rectangle over the triangles clears it as redrawing
+     * every triangle did, for a fraction of the vertices. */
     static float sxy[96][2], rgb[96][3], uv[96][2];
+    for (int i = 0; i < 96; i++) { rgb[i][0] = rgb[i][1] = rgb[i][2] = 0; uv[i][0] = uv[i][1] = 0; }
     Tex t = linear(g_white, 64, 16, 16);
+    float x0 = 1e30f, y0 = 1e30f, x1 = -1e30f, y1 = -1e30f;
+    g_stencil_force = STENCIL_SHADOW;
     for (int start = 0; start < count; start += 32) {
         int n = count - start < 32 ? count - start : 32;
         for (int i = 0; i < n * 3; i++) {
-            sxy[i][0] = sx(r, xy[start * 3 + i][0]); sxy[i][1] = sy(r, xy[start * 3 + i][1]);
-            rgb[i][0] = rgb[i][1] = rgb[i][2] = 0; uv[i][0] = uv[i][1] = 0;
+            float x = sx(r, xy[start * 3 + i][0]), y = sy(r, xy[start * 3 + i][1]);
+            sxy[i][0] = x; sxy[i][1] = y;
+            if (x < x0) x0 = x;
+            if (x > x1) x1 = x;
+            if (y < y0) y0 = y;
+            if (y > y1) y1 = y;
         }
         submit(r, NV097_SET_BEGIN_END_OP_TRIANGLES, (const float (*)[2])sxy, (const float (*)[3])rgb, (const float (*)[2])uv,
                0, n * 3, &t, 0, 1, 0);
     }
-    p = open_block();
-    p = pb_push1(p, NV097_SET_STENCIL_TEST_ENABLE, 0);
-    g_open = p;
+    g_stencil_force = STENCIL_SHADOW_CLEAR;
+    { uint32_t *p = open_block(); g_open = pb_push1(p, NV097_SET_COLOR_MASK, 0); }
+    x0 -= 2; y0 -= 2; x1 += 2; y1 += 2;
+    const float quad[6][2] = { { x0, y0 }, { x1, y0 }, { x0, y1 }, { x1, y0 }, { x1, y1 }, { x0, y1 } };
+    submit(r, NV097_SET_BEGIN_END_OP_TRIANGLES, quad, (const float (*)[3])rgb, (const float (*)[2])uv, 0, 6, &t, 0, 1, 0);
+    g_stencil_force = -1;
+    uint32_t *p = open_block();
+    g_open = pb_push1(p, NV097_SET_COLOR_MASK, 0x01010101);
 }
 
-void hw_present(int x, int y, int wide)
+/* The last presented display buffer, for test tools reading console memory. */
+volatile uint32_t rt_hw_shown, rt_hw_shown_w, rt_hw_shown_h;
+
+static void hw_present_timed(int x, int y, int wide)
 {
     int r = -1;
     for (int i = 0; i < HW_REGIONS; i++)
         if (g_regions[i].valid && g_regions[i].x == x && g_regions[i].y == y) r = i;
     if (r < 0) return;
     RT_WHERE("hw present");
+    rt_hw_shown = (uint32_t)pb_extra_buffer(r); rt_hw_shown_w = (uint32_t)OUT_W; rt_hw_shown_h = (uint32_t)OUT_H;
     target(-1);
     /* A 4:3 picture on a 16:9 screen takes the middle three quarters. */
     float left = 0, right = (float)OUT_W;
@@ -787,6 +1044,7 @@ void hw_present(int x, int y, int wide)
     uint32_t *p = open_block();
     Tex t = linear(pb_extra_buffer(r), (unsigned)OUT_W * 4u, OUT_W, OUT_H);
     p = bind(p, &t);
+    p = stencil(p, -1);
     p = alpha(p, -1);
     p = blend(p, -1);
     p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_TRIANGLE_STRIP);
@@ -797,16 +1055,24 @@ void hw_present(int x, int y, int wide)
     p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_END);
     g_open = p;
     close_block();
+    /* No wait for the GPU here: pbkit queues the flip (triple buffered) and the next
+     * frame's commands follow in order. The push buffer wraps in open_block, and
+     * texture memory the GPU may still read is only rewritten after a drain (in_flight). */
+#ifdef RT_SYNC_PRESENT
     drain(4);
+#endif
     rt_hw_wait = 5;
     while (pb_finished()) {}
     rt_hw_wait = 0;
+#ifdef RT_SYNC_PRESENT
     pb_reset();
     g_base = 0;
+#endif
     g_target = -1;
     g_bound = 0;
     g_bound_palette = 0;
     g_bound_filter = 0;
+    g_stencil = -2;
     g_bound_address = 0;
     g_blend = -2;
     g_alpha = -1;
@@ -814,6 +1080,14 @@ void hw_present(int x, int y, int wide)
     rt_hw_frames++;
     RT_WHERE("hw presented");
 }
+
+void hw_present(int x, int y, int wide)
+{
+    PROF_BEGIN(t);
+    hw_present_timed(x, y, wide);
+    PROF_END(PROF_PRESENT, t);
+}
+
 
 /* ---- set-up -------------------------------------------------------------------------------- */
 int hw_init(void)

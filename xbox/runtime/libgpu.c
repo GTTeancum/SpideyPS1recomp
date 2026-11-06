@@ -5,6 +5,7 @@
  */
 #include "hwgpu.h"
 #include "gpu.h"
+#include "prof.h"
 #include "runtime.h"
 
 #define A0 c->r[4]
@@ -44,7 +45,7 @@ void (*rt_frame_hook)(void);
 void (*rt_drawotag_hook)(void);
 volatile uint32_t rt_drawotag_count;
 
-void hook_LibGpu_DrawOTag(CpuContext *c)
+static void hook_LibGpu_DrawOTag_timed(CpuContext *c)
 {
     rt_note("DrawOTag");
     hw_depth_frame();
@@ -63,6 +64,14 @@ void hook_LibGpu_DrawOTag(CpuContext *c)
         addr = next & (RECOMP_RAM_SIZE - 4u);
     }
 }
+
+void hook_LibGpu_DrawOTag(CpuContext *c)
+{
+    PROF_BEGIN(t);
+    hook_LibGpu_DrawOTag_timed(c);
+    PROF_END(PROF_OT, t);
+}
+
 
 void hook_LibGpu_DrawSync(CpuContext *c) { V0 = 0; }
 

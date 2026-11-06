@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
 #include "runtime.h"
 
 /* ---- disc --------------------------------------------------------------------------- */
@@ -56,20 +57,65 @@ static const DiscFile *file_at(int lba)
     return 0;
 }
 
-/* One open file at a time: reads are sequential runs inside one file. */
-static FILE *g_open;
-static const DiscFile *g_open_file;
+/* Reads go through the kernel's file calls in 64 KB blocks, a few kept (a load
+ * alternates between the archive's directory and the file it finds). The C library's
+ * 1 KB buffer, refilled after every per-sector seek, made a mid-level load hundreds of
+ * small disk reads (a third of a second's stall in level 3). Files stay open. */
+#define BLOCK (64 * 1024)
+#define BLOCKS 4
+#define HANDLES 8
+static struct { const DiscFile *file; HANDLE handle; } g_handles[HANDLES];
+static int g_handle_next;
+static struct { const DiscFile *file; long at, len; uint32_t used; uint8_t data[BLOCK]; } g_blocks[BLOCKS];
+static uint32_t g_block_clock;
+volatile uint32_t rt_cd_blocks, rt_cd_us;   /* blocks read, time in the kernel's reads */
 
-static FILE *open_file(const DiscFile *d)
+static HANDLE open_file(const DiscFile *d)
 {
-    if (g_open_file == d) return g_open;
-    if (g_open) fclose(g_open);
+    for (int i = 0; i < HANDLES; i++) if (g_handles[i].file == d) return g_handles[i].handle;
     char path[260];
     snprintf(path, sizeof path, "%s\\%s", g_root, d->path);
     for (char *p = path; *p; p++) if (*p == '/') *p = '\\';
-    g_open = fopen(path, "rb");
-    g_open_file = g_open ? d : 0;
-    return g_open;
+    HANDLE h = CreateFileA(path, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, 0);
+    if (h == INVALID_HANDLE_VALUE) return h;
+    int i = g_handle_next++ % HANDLES;
+    if (g_handles[i].file) {
+        CloseHandle(g_handles[i].handle);
+        for (int b = 0; b < BLOCKS; b++) if (g_blocks[b].file == g_handles[i].file) g_blocks[b].file = 0;
+    }
+    g_handles[i].file = d; g_handles[i].handle = h;
+    return h;
+}
+
+/* size bytes at offset of file d; short at its end. */
+static void read_bytes(const DiscFile *d, HANDLE f, long offset, uint8_t *out, int size)
+{
+    while (size > 0) {
+        int b = -1;
+        for (int i = 0; i < BLOCKS; i++)
+            if (g_blocks[i].file == d && offset >= g_blocks[i].at && offset < g_blocks[i].at + g_blocks[i].len) { b = i; break; }
+        if (b < 0) {
+            b = 0;   /* the least recently used */
+            for (int i = 1; i < BLOCKS; i++) if (g_blocks[i].used < g_blocks[b].used) b = i;
+            DWORD got = 0;
+            long at = offset - offset % BLOCK;
+            g_blocks[b].file = 0;
+            LARGE_INTEGER t0, t1, hz;
+            QueryPerformanceCounter(&t0);
+            BOOL ok = SetFilePointer(f, at, 0, FILE_BEGIN) != INVALID_SET_FILE_POINTER && ReadFile(f, g_blocks[b].data, BLOCK, &got, 0);
+            QueryPerformanceCounter(&t1);
+            QueryPerformanceFrequency(&hz);
+            rt_cd_blocks++;
+            rt_cd_us += (uint32_t)((t1.QuadPart - t0.QuadPart) * 1000000 / hz.QuadPart);
+            if (!ok || offset >= at + (long)got) return;   /* unreadable, or past the end of the file */
+            g_blocks[b].file = d; g_blocks[b].at = at; g_blocks[b].len = (long)got;
+        }
+        g_blocks[b].used = ++g_block_clock;
+        int n = (int)(g_blocks[b].at + g_blocks[b].len - offset);
+        if (n > size) n = size;
+        memcpy(out, g_blocks[b].data + (offset - g_blocks[b].at), (size_t)n);
+        out += n; offset += n; size -= n;
+    }
 }
 
 /* Data of one sector: 2048 user bytes, or the 2336 bytes after the sync and header
@@ -79,13 +125,12 @@ static void read_sector(int lba, int size, uint8_t *out)
     memset(out, 0, (size_t)size);
     const DiscFile *d = file_at(lba);
     if (!d) { rt_missing("CD", "sector outside the files"); return; }
-    FILE *f = open_file(d);
-    if (!f) return;
+    HANDLE f = open_file(d);
+    if (f == INVALID_HANDLE_VALUE) return;
     long offset = (long)(lba - d->lba) * (long)sector_bytes(d);
     if (d->raw && size == 2048) offset += 8;      /* skip the XA subheader */
     if (!d->raw && size > 2048) { out += size - 2048; size = 2048; }
-    fseek(f, offset, SEEK_SET);
-    fread(out, 1, (size_t)size, f);
+    read_bytes(d, f, offset, out, size);
 }
 
 /* ---- libcd state ---------------------------------------------------------------------- */

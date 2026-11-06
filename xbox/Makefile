@@ -10,13 +10,34 @@ GAMES = spiderman
 SHADER_OBJS = $(CURDIR)/runtime/ps1vs.inl $(CURDIR)/runtime/ps1ps.inl
 
 SRCS = $(wildcard $(CURDIR)/src/*.c) $(wildcard $(CURDIR)/runtime/*.c) $(wildcard $(CURDIR)/runtime/*.cpp) \
+       $(wildcard $(CURDIR)/runtime/*.s) \
        $(foreach g,$(GAMES),$(wildcard $(CURDIR)/generated/$(g)/*.c)) \
        $(CURDIR)/build/hooks_default.c
 
 NXDK_CFLAGS += -I$(CURDIR)/runtime $(foreach g,$(GAMES),-I$(CURDIR)/generated/$(g)) \
-               -O2 -Wno-unused-label -Wno-unused-variable
+               -O3 -Wno-unused-label -Wno-unused-variable
+
+# nxdk compiles freestanding (-fno-builtin): memcpy and memset are library calls (its
+# own move a byte at a time; runtime/memfast.s replaces them, and recomp.h sends small
+# copies to the compiler's builtins). Without errno from maths, __builtin_sqrtf is the
+# SSE square root instead of a call to the library's x87 one (same result: a double
+# square root rounded to single is the correctly rounded single one).
+NXDK_CFLAGS += -fno-math-errno
+NXDK_CXXFLAGS += -fno-math-errno
+# The C++ (the PC's retarget core) needs the optimisation level too: without it the
+# core ran unoptimised, every value kept in memory.
+NXDK_CXXFLAGS += -O3
+
+# Link-time optimisation: lets the GTE and memory helpers inline into the generated
+# game code across files.
+LTO = y
+
+# make RT_PROFILE=1: time breakdown in the status text (tools/xbdm.py status).
+ifeq ($(RT_PROFILE),1)
+NXDK_CFLAGS += -DRT_PROFILE
+endif
 
 # The link map locates g_status_text for the XEMU monitor (tools/run_xemu.py).
-NXDK_LDFLAGS += -map:build/OpenSpidey.map
+NXDK_LDFLAGS += -map:build/OpenSpidey.map -opt:lldlto=3
 
 include $(NXDK_DIR)/Makefile

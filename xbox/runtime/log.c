@@ -5,6 +5,7 @@
 #include <string.h>
 #include <windows.h>
 #include "gpu.h"
+#include "prof.h"
 #include "runtime.h"
 
 #define MISSING_MAX 96
@@ -43,19 +44,20 @@ void rt_log(const char *format, ...)
     g_line_next++;
 }
 
-void rt_missing(const char *kind, const char *name)
+unsigned *rt_missing(const char *kind, const char *name)
 {
+    /* Callers pass string constants: the same pointer first, then the same text. */
     for (int i = 0; i < g_missing_count; i++)
-        if (g_missing[i].name == name || strcmp(g_missing[i].name, name) == 0) {
-            g_missing[i].count++;
-            return;
-        }
+        if (g_missing[i].name == name) { g_missing[i].count++; return &g_missing[i].count; }
+    for (int i = 0; i < g_missing_count; i++)
+        if (strcmp(g_missing[i].name, name) == 0) { g_missing[i].count++; return &g_missing[i].count; }
     if (g_missing_count < MISSING_MAX) {
         g_missing[g_missing_count].kind = kind;
         g_missing[g_missing_count].name = name;
         g_missing[g_missing_count].count = 1;
-        g_missing_count++;
+        return &g_missing[g_missing_count++].count;
     }
+    return 0;
 }
 
 static const char *short_name(const char *name)
@@ -92,6 +94,11 @@ static void status_text(void)
     gpu_display(&d);
     ADD("vblanks %lu display %d,%d %dx%d enabled %d rgb24 %d presenting %d\n", (unsigned long)rt_vblank_count,
         d.x, d.y, d.width, d.height, d.enabled, d.rgb24, rt_presenting);
+    ADD("ticks dropped %lu longest gap %lu ms\n", (unsigned long)rt_ticks_dropped, (unsigned long)rt_longest_wait_ms);
+    {
+        extern volatile uint32_t rt_cd_blocks, rt_cd_us;
+        ADD("disc blocks read %lu in %lu ms\n", (unsigned long)rt_cd_blocks, (unsigned long)(rt_cd_us / 1000));
+    }
     ADD("hw frames %lu decodes %lu palettes %lu wait %lu\n", (unsigned long)rt_hw_frames, (unsigned long)rt_hw_texture_decodes,
         (unsigned long)rt_hw_palette_builds,
         (unsigned long)rt_hw_wait);
@@ -107,6 +114,47 @@ static void status_text(void)
         (unsigned long)rt_hw_replaced);
     for (int i = 0; i < RT_METRICS; i++)
         if (rt_metric_name[i]) ADD("metric %s %lu\n", rt_metric_name[i], (unsigned long)rt_metric[i]);
+    ADD("shown %08lX %lux%lu\n", (unsigned long)rt_hw_shown, (unsigned long)rt_hw_shown_w, (unsigned long)rt_hw_shown_h);
+#ifdef RT_PROFILE
+    {
+        static const char *const names[PROF_COUNT] = { "gpu-list", "tex-convert", "present", "idle", "rig", "shadow", "cd", "irq", "tex-lookup", "replace", "submit", "depth", "gte" };
+        static uint64_t last_total, last[PROF_COUNT];
+        uint64_t now_prof[PROF_COUNT];
+        /* The game thread updates these 64-bit counters as two 32-bit halves: re-read
+         * until a value is stable, or a half-updated one gives nonsense. */
+        for (int i = 0; i < PROF_COUNT; i++) { uint64_t a, b; do { a = rt_prof[i]; b = rt_prof[i]; } while (a != b); now_prof[i] = a; }
+        uint64_t total = __rdtsc(), span = total - last_total;
+        if (last_total && span) {
+            ADD("time");
+            uint64_t counted = 0;
+            for (int i = 0; i < PROF_COUNT; i++) {
+                uint64_t d = now_prof[i] - last[i];
+                if (i <= PROF_IRQ && i != PROF_PAGE) counted += d;
+                ADD(" %s %lu%%", names[i], (unsigned long)(d * 100 / span));
+            }
+            ADD(" game %lu%%\n", (unsigned long)((span > counted ? span - counted : 0) * 100 / span));
+        }
+        last_total = total;
+        for (int i = 0; i < PROF_COUNT; i++) last[i] = now_prof[i];
+    }
+#endif
+#ifdef RT_PROFILE
+    {
+        extern volatile uint64_t rt_gte_op_cycles[64];
+        extern volatile uint32_t rt_gte_op_count[64];
+        ADD("gte ops");
+        for (int i = 0; i < 64; i++)
+            if (rt_gte_op_count[i] > 1000)
+                ADD(" %02x:%luk/%lumc", i, (unsigned long)(rt_gte_op_count[i] / 1000), (unsigned long)(rt_gte_op_cycles[i] / 1000000));
+        ADD("%s", "\n");
+    }
+#endif
+    {
+        extern volatile uint32_t rt_hw_region_info[], rt_hw_region_swaps;
+        ADD("regions %lu:", (unsigned long)rt_hw_region_swaps);
+        for (int i = 0; i < 2; i++) ADD(" %lu,%lu w%lu", (unsigned long)(rt_hw_region_info[i] & 1023), (unsigned long)((rt_hw_region_info[i] >> 10) & 1023), (unsigned long)(rt_hw_region_info[i] >> 20));
+        ADD("%s", "\n");
+    }
     ADD("texture pack hits %lu loads %lu\n", (unsigned long)rt_pack_hits, (unsigned long)rt_pack_loads);
     ADD("drawotag from %08lX at %08lX packets %lu\n", (unsigned long)rt_ot_start, (unsigned long)rt_ot_addr,
         (unsigned long)rt_ot_packets);

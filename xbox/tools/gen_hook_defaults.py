@@ -48,6 +48,11 @@ def main() -> int:
         '#include "runtime.h"',
         "",
     ]
+    # Some of these run for every mesh drawn (the PC's tracing hooks): after the first
+    # call each keeps its own counter instead of searching the missing list by name.
+    def count(kind: str, target: str) -> str:
+        return f'static unsigned *n; if (n) ++*n; else n = rt_missing(\"{kind} hook\", \"{target}\");'
+
     missing = 0
     for name, (kind, target) in sorted(hooks.items()):
         if name in done:
@@ -55,9 +60,9 @@ def main() -> int:
         missing += 1
         if kind in ("pre", "branch"):
             value = 1 if kind == "pre" else 0
-            out.append(f"int {name}(CpuContext *c) {{ (void)c; rt_missing(\"{kind} hook\", \"{target}\"); return {value}; }}")
+            out.append(f"int {name}(CpuContext *c) {{ (void)c; {count(kind, target)} return {value}; }}")
         else:
-            out.append(f"void {name}(CpuContext *c) {{ (void)c; rt_missing(\"{kind} hook\", \"{target}\"); }}")
+            out.append(f"void {name}(CpuContext *c) {{ (void)c; {count(kind, target)} }}")
     text = "\n".join(out) + "\n"
     build = XBOX / "build"
     build.mkdir(exist_ok=True)

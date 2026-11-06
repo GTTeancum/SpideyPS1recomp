@@ -19,7 +19,7 @@ static inline int rt_strcasecmp(const char *a, const char *b)
 /* Lines go to the screen and to a ring the screen can redraw from. */
 void rt_log(const char *format, ...) __attribute__((format(printf, 1, 2)));
 /* Report something the runtime does not implement yet, once per name. */
-void rt_missing(const char *kind, const char *name);
+unsigned *rt_missing(const char *kind, const char *name);   /* its counter, 0 when the list is full */
 /* Stop: show the reason, the registers and what is missing; never returns. */
 void rt_fatal(CpuContext *c, const char *format, ...) __attribute__((noreturn, format(printf, 2, 3)));
 /* Count a named event for the status (pass a string literal). */
@@ -49,11 +49,13 @@ uint32_t bios_intr_env(void);
 
 /* ---- clock and interrupts ------------------------------------------------------ */
 extern volatile uint32_t rt_vblank_count;
+extern volatile uint32_t rt_ticks_dropped, rt_longest_wait_ms;   /* ticks lost far behind; longest gap between ticks */
 /* Named numbers game code reports in the status text (log.c). */
 #define RT_METRICS 4
 extern volatile uint32_t rt_metric[RT_METRICS];
 extern const char *rt_metric_name[RT_METRICS];
 extern volatile uint32_t rt_hw_replaced;
+extern volatile uint32_t rt_hw_shown, rt_hw_shown_w, rt_hw_shown_h;   /* hwgpu.c: last frame shown */
 extern volatile uint32_t rt_pack_hits, rt_pack_loads;   /* texpack.c */   /* primitives drawn with a replacement texture */
 extern volatile uint32_t rt_hw_texture_decodes, rt_hw_palette_builds, rt_hw_frames, rt_hw_wait, rt_hw_perspective, rt_hw_affine;   /* hwgpu.c */
 extern volatile uint32_t rt_ot_start, rt_ot_addr, rt_ot_packets;   /* libgpu.c: DrawOTag progress */

@@ -15,13 +15,24 @@ a model's texture pages only when their hashes are among the 13 built-in Spider-
 materials; converted and mod actors have other hashes, so the player's model slots
 (2 in the shell, 12 in gameplay) register every texture.
 
+Vblank countdown: four loops spin on the counter at 0x800B5464, which the vblank
+interrupt counts down (one runs when Spider-Man is knocked out in level 3). Here
+interrupts arrive only with a 60 Hz tick, and a loop that only reads memory never
+delivers one, so each loop calls rt_idle (the PC catches the same loops by counting
+memory reads, PSMemory.TrackRead).
+
 Idempotent: an already transformed file is left alone.
 """
+import re
 import sys
 from pathlib import Path
 
 TABLE = "0x80780000u /* SM1 texture registry, relocated */"
 MARK = "SM1 texture registry, relocated"
+SPIN_MARK = "rt_idle(); /* vblank countdown */"
+SPIN = re.compile(r"(\n        (L[0-9A-F]{8}): ;\n)(        c->r\[2\] = 0x800B0000u;\n"
+                  r"        c->r\[2\] = mem_r32\(\(c->r\[2\] \+ 0x5464u\)\);\n"
+                  r"        if \(c->r\[2\] != 0u\) \{\n(?:            [^\n]*\n)?            goto \2;\n)")
 
 
 def replace_exact(text: str, old: str, new: str, expected: int) -> str:
@@ -41,6 +52,12 @@ def main() -> int:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parents[1] / "generated" / "spiderman")
     path = root / "SpiderMan_main.c"
     text = path.read_text(encoding="utf-8")
+    if SPIN_MARK not in text:
+        text, count = SPIN.subn(lambda m: m[1] + "        " + SPIN_MARK + "\n" + m[3], text)
+        if count != 4:
+            raise SystemExit(f"expected 4 vblank countdown loops, found {count}")
+        path.write_text(text, encoding="utf-8", newline="\n")
+        print("vblank countdown: 4 loops call rt_idle")
     if MARK in text:
         print("texture registry: already transformed")
         return 0

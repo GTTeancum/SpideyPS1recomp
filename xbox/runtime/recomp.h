@@ -12,6 +12,12 @@
 #include <stdint.h>
 #include <string.h>
 
+/* nxdk builds freestanding (-ffreestanding, -fno-builtin), so a plain memcpy of four
+ * bytes is a call. The builtins inline fixed small sizes and call the library (the
+ * word-at-a-time runtime/memfast.s) for the rest. */
+#define memcpy(d, s, n) __builtin_memcpy(d, s, n)
+#define memset(d, c, n) __builtin_memset(d, c, n)
+
 typedef struct CpuContext {
     uint32_t r[32];          /* general-purpose registers; r[0] is never written */
     uint32_t hi, lo;
@@ -110,8 +116,28 @@ static inline void mem_swr(uint32_t a, uint32_t v)
     mem_w32(a & ~3u, (word & (0x00FFFFFFu >> (24u - shift))) | (v << shift));
 }
 
+/* A loop that spins on an interrupt-updated variable calls this so ticks keep
+ * coming (inserted by tools/patch_generated_sm1.py). */
+void rt_idle(void);
+
 /* ---- geometry transformation engine (COP2) -------------------------------- */
-void gte_execute(uint32_t instruction);
+/* The generated code passes constant command words: each listed one goes straight to
+ * its own routine, compiled with the word's options fixed (runtime/gte_ops.h, from
+ * tools/gen_gte_ops.py); any other word takes the general routine. */
+#include "gte_ops.h"
+void gte_execute_any(uint32_t instruction);
+#define GTE_DECLARE(word) void gte_op_##word(void);
+GTE_OPS(GTE_DECLARE)
+#undef GTE_DECLARE
+static inline __attribute__((always_inline)) void gte_execute(uint32_t instruction)
+{
+    switch (instruction) {
+#define GTE_CASE(word) case 0x##word##u: gte_op_##word(); return;
+    GTE_OPS(GTE_CASE)
+#undef GTE_CASE
+    }
+    gte_execute_any(instruction);
+}
 uint32_t gte_read_data(int reg);
 uint32_t gte_read_control(int reg);
 void gte_write_data(int reg, uint32_t value);

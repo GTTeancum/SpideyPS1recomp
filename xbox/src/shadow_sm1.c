@@ -14,6 +14,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
+#include "prof.h"
 #include "runtime.h"
 #include "hwgpu.h"
 #include "settings.h"
@@ -39,7 +40,12 @@ static float dot(V3 a, V3 b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 static V3 normalize(V3 a) { float n = __builtin_sqrtf(dot(a, a)); return n > 0 ? scale(a, 1.0f / n) : a; }
 
 #define MAX_TRIANGLES 16384   /* a Dreamcast actor has several thousand */
-static V3 g_tri[MAX_TRIANGLES * 3];
+#define MAX_VERTICES 8192
+/* The frame's player vertices, each once, and triangles as indices into them: a
+ * vertex is shared by several triangles, so it is projected once, not per corner. */
+static V3 g_vert[MAX_VERTICES];
+static int g_vert_count;
+static uint16_t g_tri[MAX_TRIANGLES * 3];
 static int g_tri_count;
 static uint32_t g_frame = 0xFFFFFFFFu;
 static float g_h, g_ofx, g_ofy;
@@ -52,11 +58,16 @@ static int g_debug;   /* shadow=debug: the captured body unflattened (alignment 
  * loaded (the file has the number in y). So every shared vertex is recorded by its
  * number as its part is drawn, and a later part's joint takes it from there. */
 #define MAX_SOURCES 4096
-static V3 g_source[MAX_SOURCES];
+static uint16_t g_source[MAX_SOURCES];     /* shared vertex number -> g_vert index */
 static uint32_t g_source_frame[MAX_SOURCES];
-static V3 g_current[512];
+static int g_current[512];                 /* part vertex -> g_vert index, -1 unknown */
 
-/* Shared vertices before part `mesh` in the actor's model: its first shared number. */
+/* Shared vertices before part `mesh` in the actor's model: its first shared number.
+ * Counted for every part once a frame (per actor table), not again for each part. */
+static uint32_t g_firsts_frame = 0xFFFFFFFFu, g_firsts_table, g_firsts_parts;
+static uint32_t g_firsts_mesh[64];
+static int g_firsts[64];
+
 static int first_source(uint32_t actor, uint32_t mesh)
 {
     uint32_t slot = mem_r8(actor + 0x1B);
@@ -65,22 +76,28 @@ static int first_source(uint32_t actor, uint32_t mesh)
     if (table < 0x80000004u || table >= 0x80800000u) return -1;
     uint32_t parts = mem_r32(table - 4);
     if (parts > 64) return -1;
-    int count = 0;
-    for (uint32_t i = 0; i < parts; i++) {
-        uint32_t part = mem_r32(table + i * 4);
-        if (part == mesh) return count;
-        uint32_t nv = mem_r16(part + 2);
-        for (uint32_t v = 0; v < nv && nv <= 512; v++) if ((mem_r16(part + 28 + v * 8 + 6) & 3) == 1) count++;
+    if (g_firsts_frame != g_frame || g_firsts_table != table || g_firsts_parts != parts) {
+        int count = 0;
+        for (uint32_t i = 0; i < parts; i++) {
+            uint32_t part = mem_r32(table + i * 4);
+            g_firsts_mesh[i] = part;
+            g_firsts[i] = count;
+            uint32_t nv = mem_r16(part + 2);
+            for (uint32_t v = 0; v < nv && nv <= 512; v++) if ((mem_r16(part + 28 + v * 8 + 6) & 3) == 1) count++;
+        }
+        g_firsts_frame = g_frame; g_firsts_table = table; g_firsts_parts = parts;
     }
+    for (uint32_t i = 0; i < parts; i++) if (g_firsts_mesh[i] == mesh) return g_firsts[i];
     return -1;
 }
 
-int hook_PlayerShadow_MeshDraw(CpuContext *c)
+static int hook_PlayerShadow_MeshDraw_timed(CpuContext *c)
 {
     if (!S2 || S2 != mem_r32(PLAYER_POINTER)) return 1;
     if (rt_drawotag_count != g_frame) {
         g_frame = rt_drawotag_count;
         g_tri_count = 0;
+        g_vert_count = 0;
         g_h = (float)(int16_t)gte_read_control(26);
         g_ofx = (int32_t)gte_read_control(24) / 65536.0f;
         g_ofy = (int32_t)gte_read_control(25) / 65536.0f;
@@ -109,17 +126,20 @@ int hook_PlayerShadow_MeshDraw(CpuContext *c)
         int16_t x = (int16_t)mem_r16(v), y = (int16_t)mem_r16(v + 2), z = (int16_t)mem_r16(v + 4);
         uint32_t kind = mem_r16(v + 6) & 3;
         int16_t sx = (int16_t)(x >> shift), sy = (int16_t)(y >> shift), sz = (int16_t)(z >> shift);
-        V3 p;
+        int at = -1;
         if (kind & 2) {
             uint32_t k = (uint16_t)x / 8u;
-            if (k < MAX_SOURCES && g_source_frame[k] == g_frame + 1u) p = g_source[k];
-            else { p = v3(NAN, NAN, NAN); rt_metric[3]++; }
-        } else {
+            if (k < MAX_SOURCES && g_source_frame[k] == g_frame + 1u) at = g_source[k];
+            else {}
+        } else if (g_vert_count < MAX_VERTICES) {
+            V3 p;
             p = add(tr, v3(rt[0] * sx + rt[1] * sy + rt[2] * sz, rt[3] * sx + rt[4] * sy + rt[5] * sz, rt[6] * sx + rt[7] * sy + rt[8] * sz));
-            if (kind == 1 && source >= 0 && source < MAX_SOURCES) { g_source[source] = p; g_source_frame[source] = g_frame + 1u; }
-            if (kind == 1 && source >= 0) source++;
+            at = g_vert_count;
+            g_vert[g_vert_count++] = p;
+            if (kind == 1 && source >= 0 && source < MAX_SOURCES) { g_source[source] = (uint16_t)at; g_source_frame[source] = g_frame + 1u; }
         }
-        g_current[i] = p;
+        if (!(kind & 2) && kind == 1 && source >= 0) source++;
+        g_current[i] = at;
     }
     /* Faces are variable length (u16 size at +2); vertex indices at +4..+7, the fourth
      * repeating the third for a triangle. */
@@ -133,9 +153,9 @@ int hook_PlayerShadow_MeshDraw(CpuContext *c)
             int tris[2][3] = { { idx[0], idx[1], idx[2] }, { idx[1], idx[3], idx[2] } };
             int count = idx[3] < nv && idx[3] != idx[2] ? 2 : 1;
             for (int t = 0; t < count && g_tri_count < MAX_TRIANGLES; t++) {
-                V3 a = g_current[tris[t][0]], b = g_current[tris[t][1]], d = g_current[tris[t][2]];
-                if (isnan(a.x) || isnan(b.x) || isnan(d.x)) continue;
-                g_tri[g_tri_count * 3] = a; g_tri[g_tri_count * 3 + 1] = b; g_tri[g_tri_count * 3 + 2] = d;
+                int a = g_current[tris[t][0]], b = g_current[tris[t][1]], d = g_current[tris[t][2]];
+                if (a < 0 || b < 0 || d < 0) continue;
+                g_tri[g_tri_count * 3] = (uint16_t)a; g_tri[g_tri_count * 3 + 1] = (uint16_t)b; g_tri[g_tri_count * 3 + 2] = (uint16_t)d;
                 g_tri_count++;
             }
         }
@@ -144,6 +164,15 @@ int hook_PlayerShadow_MeshDraw(CpuContext *c)
     return 1;
 }
 
+int hook_PlayerShadow_MeshDraw(CpuContext *c)
+{
+    PROF_BEGIN(t);
+    int r = hook_PlayerShadow_MeshDraw_timed(c);
+    PROF_END(PROF_SHADOW, t);
+    return r;
+}
+
+
 static void project(V3 p, float *x, float *y)
 {
     *x = g_h * p.x / p.z * (float)rt_fov_num / (float)rt_fov_den + g_ofx;
@@ -151,25 +180,37 @@ static void project(V3 p, float *x, float *y)
 }
 
 static float g_shadow_xy[MAX_TRIANGLES * 3][2];
+/* The player's screen extent and centre: the same for every blob of a frame. */
+static uint32_t g_extent_frame = 0xFFFFFFFFu;
+static int g_extent_count;
+static V3 g_centre;
+static float g_min_x, g_max_x, g_max_y;
+static float g_flat[MAX_VERTICES][2];
+static uint8_t g_flat_ok[MAX_VERTICES];
 
 /* The player's blob: draw the silhouette in its place. */
 static int replace_blob(const RtPrim *e, int region)
 {
     if (e->count != 4 || !e->textured || !e->semi || !is_blob(e) || !g_tri_count) return 0;
     /* Where the player is on screen, to tell his blob from enemies' and pickups'. */
-    V3 centre = v3(0, 0, 0);
-    float min_x = 1e30f, max_x = -1e30f, max_y = -1e30f;
-    for (int i = 0; i < g_tri_count * 3; i++) {
-        V3 p = g_tri[i];
-        centre = add(centre, p);
-        if (p.z <= 1) continue;
-        float sx, sy;
-        project(p, &sx, &sy);
-        if (sx < min_x) min_x = sx;
-        if (sx > max_x) max_x = sx;
-        if (sy > max_y) max_y = sy;
+    if (g_extent_frame != g_frame || g_extent_count != g_vert_count) {
+        V3 sum = v3(0, 0, 0);
+        g_min_x = 1e30f; g_max_x = -1e30f; g_max_y = -1e30f;
+        for (int i = 0; i < g_vert_count; i++) {
+            V3 p = g_vert[i];
+            sum = add(sum, p);
+            if (p.z <= 1) continue;
+            float sx, sy;
+            project(p, &sx, &sy);
+            if (sx < g_min_x) g_min_x = sx;
+            if (sx > g_max_x) g_max_x = sx;
+            if (sy > g_max_y) g_max_y = sy;
+        }
+        g_centre = scale(sum, 1.0f / (float)g_vert_count);
+        g_extent_frame = g_frame; g_extent_count = g_vert_count;
     }
-    centre = scale(centre, 1.0f / (float)(g_tri_count * 3));
+    V3 centre = g_centre;
+    float min_x = g_min_x, max_x = g_max_x, max_y = g_max_y;
     float bx = 0, by = 0;
     for (int i = 0; i < 4; i++) { bx += (float)(e->x[i] - e->offset_x); by += (float)(e->y[i] - e->offset_y); }
     bx /= 4; by /= 4;
@@ -190,21 +231,22 @@ static int replace_blob(const RtPrim *e, int region)
     if (s0 <= 0 || floor_point.z <= 16 || fabsf(fx - bx) > 0.25f * width + 6) return 0;
     float along = dot(light, down);
     if (along < 0.2f) return 0;
+    for (int i = 0; i < g_vert_count; i++) {
+        V3 p = g_vert[i];
+        if (!g_debug) p = add(p, scale(light, dot(sub(floor_point, p), down) / along));
+        g_flat_ok[i] = p.z > 16;
+        if (!g_flat_ok[i]) continue;
+        project(p, &g_flat[i][0], &g_flat[i][1]);
+        g_flat[i][0] += (float)e->offset_x;
+        g_flat[i][1] += (float)e->offset_y;
+    }
     int n = 0;
     for (int t = 0; t < g_tri_count; t++) {
-        int ok = 1;
-        for (int j = 0; j < 3 && ok; j++) {
-            V3 p = g_tri[t * 3 + j];
-            if (!g_debug) p = add(p, scale(light, dot(sub(floor_point, p), down) / along));
-            if (p.z <= 16) { ok = 0; break; }
-            float x, y;
-            project(p, &x, &y);
-            g_shadow_xy[n * 3 + j][0] = x + (float)e->offset_x;
-            g_shadow_xy[n * 3 + j][1] = y + (float)e->offset_y;
-        }
-        if (ok) n++;
+        const uint16_t *v = &g_tri[t * 3];
+        if (!g_flat_ok[v[0]] || !g_flat_ok[v[1]] || !g_flat_ok[v[2]]) continue;
+        for (int j = 0; j < 3; j++) { g_shadow_xy[n * 3 + j][0] = g_flat[v[j]][0]; g_shadow_xy[n * 3 + j][1] = g_flat[v[j]][1]; }
+        n++;
     }
-    rt_metric[2] = (uint32_t)n;
     hw_shadow(region, (const float (*)[2])g_shadow_xy, n);
     return 1;
 }
@@ -212,9 +254,8 @@ static int replace_blob(const RtPrim *e, int region)
 void shadow_sm1_install(void)
 {
     g_light = normalize(v3(0.45f, 1.0f, 0.55f));   /* SPIDEY_SHADOW_LIGHT's default */
-    rt_prim_replace_hook = replace_blob;
     const char *mode = setting("shadow");
+    if (mode && !strcmp(mode, "off")) return;   /* shadow=off: the retail blob */
+    rt_prim_replace_hook = replace_blob;
     g_debug = mode && !strcmp(mode, "debug");
-    rt_metric_name[2] = "shadow triangles";
-    rt_metric_name[3] = "shadow joints not found";
 }

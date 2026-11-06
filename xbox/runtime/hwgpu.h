@@ -55,6 +55,11 @@ void hw_depth_frame(void);
  * the stencil, cleared first, as the PC's PrimFlags.Shadow does. */
 void hw_shadow(int r, const float (*xy)[2], int count);
 
+/* The drawing area (GP0 E3/E4, VRAM coordinates, inclusive): primitives are clipped
+ * to it, as the PlayStation does. Cutscenes narrow it to keep the scene off the black
+ * bars at the top and bottom. */
+void hw_area(int left, int top, int right, int bottom);
+
 /* Show the display buffer at (x, y) on the TV: filling a 16:9 screen when `wide`,
  * else at 4:3 (pillarboxed on a 16:9 screen). */
 void hw_present(int x, int y, int wide);

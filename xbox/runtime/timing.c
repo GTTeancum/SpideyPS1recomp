@@ -8,12 +8,16 @@
 #include <windows.h>
 #include "gpu.h"
 #include "hwgpu.h"
+#include "prof.h"
 #include "runtime.h"
 
 volatile uint32_t rt_vblank_count;
+volatile uint32_t rt_ticks_dropped, rt_longest_wait_ms;
+static LARGE_INTEGER g_last_tick;
 volatile int rt_presenting;
 int rt_video_720p, rt_video_wide, rt_frame_wide;
 volatile const char *rt_where = "";
+volatile uint64_t rt_prof[PROF_COUNT];
 static LARGE_INTEGER g_frequency, g_next;
 static int g_ticks_until_present;
 
@@ -93,21 +97,33 @@ void rt_tick(void)
     g_next.QuadPart += period;
     LARGE_INTEGER now;
     QueryPerformanceCounter(&now);
-    if (now.QuadPart - g_next.QuadPart > period * 4) g_next = now;   /* far behind: drop ticks */
+    /* Far behind: drop the ticks beyond four, but stay behind, so a late game never
+     * waits (resetting to now made the next tick wait a full period). */
+    if (now.QuadPart - g_next.QuadPart > period * 4) {
+        rt_ticks_dropped += (uint32_t)((now.QuadPart - g_next.QuadPart) / period - 4);
+        g_next.QuadPart = now.QuadPart - period * 4;
+    }
+    if (g_last_tick.QuadPart) {
+        uint32_t ms = (uint32_t)((now.QuadPart - g_last_tick.QuadPart) * 1000 / g_frequency.QuadPart);
+        if (ms > rt_longest_wait_ms) rt_longest_wait_ms = ms;
+    }
+    g_last_tick = now;
+    PROF_BEGIN(idle);
     while (now.QuadPart < g_next.QuadPart) {
         LONGLONG left = g_next.QuadPart - now.QuadPart;
         Sleep(left > g_frequency.QuadPart / 500 ? 1 : 0);
         QueryPerformanceCounter(&now);
     }
+    PROF_END(PROF_IDLE, idle);
     RT_WHERE("tick present");
     if (++g_ticks_until_present >= 2) { g_ticks_until_present = 0; present(); }
     RT_WHERE("tick cd");
-    cd_tick();
+    { PROF_BEGIN(cd); cd_tick(); PROF_END(PROF_CD, cd); }
     RT_WHERE("tick pad");
     rt_pad_refresh();
     RT_WHERE("tick irq");
     rt_vblank_count++;
-    rt_raise_irq(0);
+    { PROF_BEGIN(irq); rt_raise_irq(0); PROF_END(PROF_IRQ, irq); }
     RT_WHERE("game");
 }
 

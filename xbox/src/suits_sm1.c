@@ -37,6 +37,10 @@ static int g_texture_count;
 typedef struct { int page_x, page_y, depth, clut_x, clut_y, u0, v0, w, h; const SuitTexture *texture; } Binding;
 static Binding g_bindings[MAX_BINDINGS];
 static int g_binding_count;
+/* The texture pages (32 x 3 depths) the bindings use: a world triangle on any other
+ * page is answered without going through the list. */
+static uint32_t g_binding_pages[3];
+static int page_bit(int page_x, int page_y) { return (page_x / 64) + (page_y / 256) * 16; }
 
 static int ram(uint32_t p, uint32_t size) { return p >= 0x80000000u && p <= 0x80800000u - size; }
 
@@ -111,6 +115,7 @@ static const SuitTexture *texture_for(uint32_t id)
 static void bind_materials(void)
 {
     g_binding_count = 0;
+    g_binding_pages[0] = g_binding_pages[1] = g_binding_pages[2] = 0;
     uint32_t entry = 0;
     for (uint32_t i = 0; i < 40; i++) {
         uint32_t p = ACTORS + i * 64u;
@@ -141,6 +146,7 @@ static void bind_materials(void)
         b->w = (((int)mem_r8(p + 4) - u) & 255) + 1;
         b->h = (((int)mem_r8(p + 9) - v) & 255) + 1;
         b->texture = t;
+        g_binding_pages[b->depth] |= 1u << page_bit(b->page_x, b->page_y);
     }
     if (g_binding_count) rt_note("suit materials bound");
 }
@@ -148,6 +154,8 @@ static void bind_materials(void)
 /* ---- lookup (SuitMods.ResolveUncached's match) -------------------------------------- */
 static int lookup(const RtTile *tile, RtReplacement *out)
 {
+    if (tile->depth < 0 || tile->depth > 2 || !(g_binding_pages[tile->depth] >> page_bit(tile->page_x, tile->page_y) & 1))
+        return 0;
     if (!assets_sm1_suit_loaded()) return 0;
     for (int i = 0; i < g_binding_count; i++) {
         const Binding *b = &g_bindings[i];

@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <string.h>
 #include "gpu.h"
 #include "hwgpu.h"
@@ -517,8 +518,8 @@ static void execute(void)
         win_mask_x = (int)(word & 0x1F); win_mask_y = (int)((word >> 5) & 0x1F);
         win_off_x = (int)((word >> 10) & 0x1F); win_off_y = (int)((word >> 15) & 0x1F);
         break;
-    case 0xE3: area_left = (int)(word & 0x3FF); area_top = (int)((word >> 10) & 0x3FF); break;
-    case 0xE4: area_right = (int)(word & 0x3FF); area_bottom = (int)((word >> 10) & 0x3FF); break;
+    case 0xE3: area_left = (int)(word & 0x3FF); area_top = (int)((word >> 10) & 0x3FF); hw_area(area_left, area_top, area_right, area_bottom); break;
+    case 0xE4: area_right = (int)(word & 0x3FF); area_bottom = (int)((word >> 10) & 0x3FF); hw_area(area_left, area_top, area_right, area_bottom); break;
     case 0xE5: offset_x = sign_extend11(word & 0x7FF); offset_y = sign_extend11((word >> 11) & 0x7FF); break;
     case 0xE6: set_mask = word & 1; check_mask = (word >> 1) & 1; break;
     }

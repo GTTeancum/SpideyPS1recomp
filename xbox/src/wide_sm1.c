@@ -14,7 +14,9 @@
  * Widescreen follows the console: on with 720p or a 480 TV set to widescreen.
  */
 #include <math.h>
+#include <string.h>
 #include "runtime.h"
+#include "settings.h"
 
 #define A0 c->r[4]
 
@@ -170,6 +172,14 @@ int hook_WorldFrustum_Enter(CpuContext *c)
         m[2 * i] = (int16_t)word;
         m[2 * i + 1] = (int16_t)(word >> 16);
     }
+    /* The planes change only with the camera, while this runs per object: reuse the
+     * widened matrix for the same input. */
+    static uint32_t last_in[5], last_out[5], last_num, last_den;
+    static int have;
+    if (have && last_num == (uint32_t)rt_fov_num && last_den == (uint32_t)rt_fov_den && !memcmp(last_in, g_saved, sizeof last_in)) {
+        for (int i = 0; i < 5; i++) gte_write_control(16 + i, last_out[i]);
+        return 1;
+    }
     /* The colour matrix holds the bottom, left and right inward planes. Their sum is
      * the forward component, their difference horizontal: widen only that, then
      * normalise so the native radius and box tests keep their units. */
@@ -184,8 +194,12 @@ int hook_WorldFrustum_Enter(CpuContext *c)
         m[3 + i] = round16(left[i] * 4096 / sqrt(ll));
         m[6 + i] = round16(right[i] * 4096 / sqrt(rr));
     }
-    for (int i = 0; i < 5; i++)
-        gte_write_control(16 + i, (uint32_t)(uint16_t)m[2 * i] | ((uint32_t)(uint16_t)m[2 * i + 1] << 16));
+    for (int i = 0; i < 5; i++) {
+        last_out[i] = (uint32_t)(uint16_t)m[2 * i] | ((uint32_t)(uint16_t)m[2 * i + 1] << 16);
+        gte_write_control(16 + i, last_out[i]);
+        last_in[i] = g_saved[i];
+    }
+    last_num = (uint32_t)rt_fov_num; last_den = (uint32_t)rt_fov_den; have = 1;
     return 1;
 }
 
@@ -197,8 +211,11 @@ void hook_WorldFrustum_Exit(CpuContext *c)
     g_changed = 0;
 }
 
+/* widescreen=0 in D:\openspidey.ini keeps the game 4:3. */
 void wide_sm1_install(void)
 {
+    const char *on = setting("widescreen");
+    if (on && !strcmp(on, "0")) return;
     rt_frame_hook = follow;
     rt_prim_hook = screen;
 }

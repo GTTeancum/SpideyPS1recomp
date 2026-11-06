@@ -20,6 +20,7 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include <windows.h>
 #include "runtime.h"
 #include "settings.h"
 #include "SpiderMan.h"
@@ -293,16 +294,30 @@ int hook_AssetOverrides_CdWadRead(CpuContext *c)
     if (!g_pending) return 1;
     g_pending = 0;
     uint32_t to = A0;
-    for (uint32_t i = 0; i < g_pending_rounded; i += 4) mem_w32(to + i, 0);
-    FILE *f = fopen(g_pending_path, "rb");
-    if (f) {
-        uint8_t buffer[2048];
-        uint32_t done = 0;
-        size_t n;
-        while (done < g_pending_bytes && (n = fread(buffer, 1, sizeof buffer, f)) > 0) {
-            for (size_t i = 0; i < n && done < g_pending_bytes; i++) mem_w8(to + done++, buffer[i]);
+    /* This can run mid-level (a trigger loading an actor): one kernel read straight into
+     * PlayStation RAM, not the C library's 1 KB reads and a byte at a time. */
+    if (mem_is_ram(to) && mem_is_ram(to + g_pending_rounded - 1u) &&
+        (to & (RECOMP_RAM_SIZE - 1u)) + g_pending_rounded <= RECOMP_RAM_SIZE) {
+        uint8_t *at = mem_ram(to);
+        memset(at, 0, g_pending_rounded);
+        HANDLE f = CreateFileA(g_pending_path, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, 0);
+        if (f != INVALID_HANDLE_VALUE) {
+            DWORD got = 0;
+            ReadFile(f, at, g_pending_bytes, &got, 0);
+            CloseHandle(f);
         }
-        fclose(f);
+    } else {
+        for (uint32_t i = 0; i < g_pending_rounded; i += 4) mem_w32(to + i, 0);
+        FILE *f = fopen(g_pending_path, "rb");
+        if (f) {
+            uint8_t buffer[2048];
+            uint32_t done = 0;
+            size_t n;
+            while (done < g_pending_bytes && (n = fread(buffer, 1, sizeof buffer, f)) > 0) {
+                for (size_t i = 0; i < n && done < g_pending_bytes; i++) mem_w8(to + done++, buffer[i]);
+            }
+            fclose(f);
+        }
     }
     V0 = 0xFFFFFFFFu;
     rt_note("actor served from the disc's assets");

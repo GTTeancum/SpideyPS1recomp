@@ -4,7 +4,12 @@
  * winding and perspective/60 FPS provenance): the console's integer behaviour only.
  */
 #include "hwgpu.h"
+#include "prof.h"
 #include "runtime.h"
+
+/* The arithmetic is inlined into one routine per command word (gte_ops.h), where the
+ * command's shift and saturation mode are constants. */
+#define INLINE static inline __attribute__((always_inline))
 
 static int16_t V[9];
 static uint8_t RGBC_R, RGBC_G, RGBC_B, RGBC_CODE;
@@ -25,24 +30,24 @@ static int g_unr_ready;
 int rt_fov_num = 1, rt_fov_den = 1;
 uint16_t (*rt_rtp_depth_hook)(int32_t vx, int32_t vy, int32_t vz, uint16_t sz);
 
-static void flag(int bit) { FLAG |= 1u << bit; }
+INLINE void flag(int bit) { FLAG |= 1u << bit; }
 
-static int32_t sat_ir(int n, int32_t v, int lm)
+INLINE int32_t sat_ir(int n, int32_t v, int lm)
 {
     int32_t min = lm ? 0 : -0x8000;
     if (v < min) { v = min; flag(25 - n); }
     else if (v > 0x7FFF) { v = 0x7FFF; flag(25 - n); }
     return v;
 }
-static int32_t sat_ir0(int32_t v) { if (v < 0) { flag(12); return 0; } if (v > 0x1000) { flag(12); return 0x1000; } return v; }
-static int32_t sat_color(int n, int32_t v) { if (v < 0) { flag(21 - n); return 0; } if (v > 0xFF) { flag(21 - n); return 0xFF; } return v; }
-static int32_t sat_sz(int32_t v) { if (v < 0) { flag(18); return 0; } if (v > 0xFFFF) { flag(18); return 0xFFFF; } return v; }
-static int32_t sat_x(int32_t v) { if (v < -0x400) { flag(14); return -0x400; } if (v > 0x3FF) { flag(14); return 0x3FF; } return v; }
-static int32_t sat_y(int32_t v) { if (v < -0x400) { flag(13); return -0x400; } if (v > 0x3FF) { flag(13); return 0x3FF; } return v; }
-static int64_t check_mac0(int64_t v) { if (v > 0x7FFFFFFFLL) flag(16); else if (v < -0x80000000LL) flag(15); return v; }
-static void check_mac(int n, int64_t v) { if (v >= (1LL << 43)) flag(31 - n); else if (v < -(1LL << 43)) flag(28 - n); }
+INLINE int32_t sat_ir0(int32_t v) { if (v < 0) { flag(12); return 0; } if (v > 0x1000) { flag(12); return 0x1000; } return v; }
+INLINE int32_t sat_color(int n, int32_t v) { if (v < 0) { flag(21 - n); return 0; } if (v > 0xFF) { flag(21 - n); return 0xFF; } return v; }
+INLINE int32_t sat_sz(int32_t v) { if (v < 0) { flag(18); return 0; } if (v > 0xFFFF) { flag(18); return 0xFFFF; } return v; }
+INLINE int32_t sat_x(int32_t v) { if (v < -0x400) { flag(14); return -0x400; } if (v > 0x3FF) { flag(14); return 0x3FF; } return v; }
+INLINE int32_t sat_y(int32_t v) { if (v < -0x400) { flag(13); return -0x400; } if (v > 0x3FF) { flag(13); return 0x3FF; } return v; }
+INLINE int64_t check_mac0(int64_t v) { if (v > 0x7FFFFFFFLL) flag(16); else if (v < -0x80000000LL) flag(15); return v; }
+INLINE void check_mac(int n, int64_t v) { if (v >= (1LL << 43)) flag(31 - n); else if (v < -(1LL << 43)) flag(28 - n); }
 
-static void set_mac(int n, int64_t v, int sf, int lm)
+INLINE void set_mac(int n, int64_t v, int sf, int lm)
 {
     check_mac(n, v);
     int32_t m = (int32_t)(v >> sf);
@@ -51,21 +56,21 @@ static void set_mac(int n, int64_t v, int sf, int lm)
     else { MAC3 = m; IR3 = sat_ir(3, m, lm); }
 }
 
-static void mat_vec(const int16_t *mx, int32_t t0, int32_t t1, int32_t t2, int32_t vx, int32_t vy, int32_t vz, int sf, int lm)
+INLINE void mat_vec(const int16_t *mx, int32_t t0, int32_t t1, int32_t t2, int32_t vx, int32_t vy, int32_t vz, int sf, int lm)
 {
     set_mac(1, ((int64_t)t0 << 12) + (int64_t)mx[0] * vx + (int64_t)mx[1] * vy + (int64_t)mx[2] * vz, sf, lm);
     set_mac(2, ((int64_t)t1 << 12) + (int64_t)mx[3] * vx + (int64_t)mx[4] * vy + (int64_t)mx[5] * vz, sf, lm);
     set_mac(3, ((int64_t)t2 << 12) + (int64_t)mx[6] * vx + (int64_t)mx[7] * vy + (int64_t)mx[8] * vz, sf, lm);
 }
 
-static void push_color(void)
+INLINE void push_color(void)
 {
     int32_t r = sat_color(0, MAC1 >> 4), g = sat_color(1, MAC2 >> 4), b = sat_color(2, MAC3 >> 4);
     RGB[0] = RGB[1]; RGB[1] = RGB[2];
     RGB[2] = (uint32_t)r | ((uint32_t)g << 8) | ((uint32_t)b << 16) | ((uint32_t)RGBC_CODE << 24);
 }
 
-static void interp(int64_t in1, int64_t in2, int64_t in3, int sf, int lm)
+INLINE void interp(int64_t in1, int64_t in2, int64_t in3, int sf, int lm)
 {
     IR1 = sat_ir(1, (int32_t)((((int64_t)FC[0] << 12) - in1) >> sf), 0);
     IR2 = sat_ir(2, (int32_t)((((int64_t)FC[1] << 12) - in2) >> sf), 0);
@@ -76,7 +81,7 @@ static void interp(int64_t in1, int64_t in2, int64_t in3, int sf, int lm)
     push_color();
 }
 
-static void modulate(int sf, int lm)
+INLINE void modulate(int sf, int lm)
 {
     set_mac(1, ((int64_t)RGBC_R * IR1) << 4, sf, lm);
     set_mac(2, ((int64_t)RGBC_G * IR2) << 4, sf, lm);
@@ -84,7 +89,7 @@ static void modulate(int sf, int lm)
     push_color();
 }
 
-static int clz16(uint32_t v) { int n = 0; for (int i = 15; i >= 0 && !(v & (1u << i)); i--) n++; return n; }
+static int clz16(uint32_t v) { return v & 0xFFFFu ? __builtin_clz(v & 0xFFFFu) - 16 : 16; }
 
 static uint32_t divide(uint32_t h, uint32_t sz3)
 {
@@ -96,19 +101,35 @@ static uint32_t divide(uint32_t h, uint32_t sz3)
         g_unr_ready = 1;
     }
     if (h >= sz3 * 2) { flag(17); return 0x1FFFF; }
+    /* The same steps in 32-bit arithmetic where the values fit (d < 2^16, u <= 0x200),
+     * one 32x32->64 multiply at the end. */
     int z = clz16(sz3);
-    uint64_t n = (uint64_t)h << z, d = (uint64_t)sz3 << z;
-    int64_t idx = (int64_t)((d - 0x7FC0) >> 7);
-    if ((int64_t)d - 0x7FC0 < 0) idx = 0;
-    if (idx < 0) idx = 0; else if (idx > 0x100) idx = 0x100;
-    uint64_t u = (uint64_t)UNR[idx] + 0x101;
-    d = (0x2000080ULL - d * u) >> 8;
-    d = (0x0000080ULL + d * u) >> 8;
-    uint64_t res = (n * d + 0x8000) >> 16;
+    uint32_t n = h << z, d = sz3 << z;
+    int32_t idx = d < 0x7FC0 ? 0 : (int32_t)((d - 0x7FC0) >> 7);
+    if (idx > 0x100) idx = 0x100;
+    uint32_t u = (uint32_t)UNR[idx] + 0x101;
+    d = (0x2000080u - d * u) >> 8;
+    d = (0x0000080u + d * u) >> 8;
+    uint64_t res = ((uint64_t)n * d + 0x8000) >> 16;
     return res > 0x1FFFF ? 0x1FFFFu : (uint32_t)res;
 }
 
-static void rtp(int32_t vx, int32_t vy, int32_t vz, int sf, int lm, int last)
+/* px * num / den, truncated toward zero as C divides. Widening (num <= den) keeps the
+ * quotient no larger than px, so for |px| < 2^31 it fits 32 bits and one 64-by-32
+ * divide instruction gives it, without the 64-bit division call (or a double division
+ * and two rounding-mode switches to truncate it). */
+INLINE int64_t fov_scale(int64_t px)
+{
+    int64_t n = px * rt_fov_num;
+    if (rt_fov_num > 0 && rt_fov_num <= rt_fov_den && px > -0x80000000LL && px < 0x80000000LL) {
+        int32_t q, r;
+        __asm__("idivl %4" : "=a"(q), "=d"(r) : "a"((uint32_t)n), "d"((uint32_t)((uint64_t)n >> 32)), "rm"((int32_t)rt_fov_den));
+        return q;
+    }
+    return n / rt_fov_den;
+}
+
+INLINE void rtp(int32_t vx, int32_t vy, int32_t vz, int sf, int lm, int last)
 {
     int64_t m1 = ((int64_t)TR[0] << 12) + (int64_t)RT[0] * vx + (int64_t)RT[1] * vy + (int64_t)RT[2] * vz;
     int64_t m2 = ((int64_t)TR[1] << 12) + (int64_t)RT[3] * vx + (int64_t)RT[4] * vy + (int64_t)RT[5] * vz;
@@ -127,7 +148,7 @@ static void rtp(int32_t vx, int32_t vy, int32_t vz, int sf, int lm, int last)
     /* Widescreen widens the view here, as the PC's Gte.Rtp does: the game culls and
      * orders on these coordinates, so it then submits the extra scenery itself. */
     int64_t px = (int64_t)div * IR1;
-    if (rt_fov_num != rt_fov_den) px = px * rt_fov_num / rt_fov_den;
+    if (rt_fov_num != rt_fov_den) px = fov_scale(px);
     int64_t sx = check_mac0(px + OFX); MAC0 = (int32_t)sx;
     int64_t sy = check_mac0((int64_t)div * IR2 + OFY); MAC0 = (int32_t)sy;
     int32_t nx = sat_x((int32_t)(sx >> 16)), ny = sat_y((int32_t)(sy >> 16));
@@ -141,26 +162,26 @@ static void rtp(int32_t vx, int32_t vy, int32_t vz, int sf, int lm, int last)
     }
 }
 
-static void ncs(int vec, int sf, int lm)
+INLINE void ncs(int vec, int sf, int lm)
 {
     mat_vec(LLM, 0, 0, 0, V[vec * 3], V[vec * 3 + 1], V[vec * 3 + 2], sf, lm);
     mat_vec(LCM, BK[0], BK[1], BK[2], IR1, IR2, IR3, sf, lm);
     push_color();
 }
-static void ncds(int vec, int sf, int lm)
+INLINE void ncds(int vec, int sf, int lm)
 {
     mat_vec(LLM, 0, 0, 0, V[vec * 3], V[vec * 3 + 1], V[vec * 3 + 2], sf, lm);
     mat_vec(LCM, BK[0], BK[1], BK[2], IR1, IR2, IR3, sf, lm);
     interp(((int64_t)RGBC_R * IR1) << 4, ((int64_t)RGBC_G * IR2) << 4, ((int64_t)RGBC_B * IR3) << 4, sf, lm);
 }
-static void nccs(int vec, int sf, int lm)
+INLINE void nccs(int vec, int sf, int lm)
 {
     mat_vec(LLM, 0, 0, 0, V[vec * 3], V[vec * 3 + 1], V[vec * 3 + 2], sf, lm);
     mat_vec(LCM, BK[0], BK[1], BK[2], IR1, IR2, IR3, sf, lm);
     modulate(sf, lm);
 }
 
-static void mvmva(int sf, int lm, int mx, int vn, int cv)
+INLINE void mvmva(int sf, int lm, int mx, int vn, int cv)
 {
     const int16_t *mat = mx == 1 ? LLM : mx == 2 ? LCM : RT;
     int32_t vx, vy, vz;
@@ -181,7 +202,7 @@ static void mvmva(int sf, int lm, int mx, int vn, int cv)
     mat_vec(mat, t0, t1, t2, vx, vy, vz, sf, lm);
 }
 
-void gte_execute(uint32_t cmd)
+INLINE void gte_run(uint32_t cmd)
 {
     FLAG = 0;
     int sf = (cmd & (1u << 19)) ? 12 : 0, lm = (cmd >> 10) & 1;
@@ -237,6 +258,27 @@ void gte_execute(uint32_t cmd)
     }
     if (FLAG & 0x7F87E000u) FLAG |= 0x80000000u;
 }
+
+volatile uint64_t rt_gte_op_cycles[64];
+volatile uint32_t rt_gte_op_count[64];
+#ifdef RT_PROFILE
+#define TIMED(cmd)                                                \
+    do {                                                          \
+        PROF_BEGIN(g);                                            \
+        gte_run(cmd);                                             \
+        rt_gte_op_cycles[(cmd) & 0x3F] += __rdtsc() - prof_g;     \
+        rt_gte_op_count[(cmd) & 0x3F]++;                          \
+        PROF_END(PROF_GTE, g);                                    \
+    } while (0)
+#else
+#define TIMED(cmd) gte_run(cmd)
+#endif
+
+/* Any command word; recomp.h's gte_execute sends the listed ones to their own routine. */
+void gte_execute_any(uint32_t cmd) { TIMED(cmd); }
+
+#define GTE_OP(word) void gte_op_##word(void) { TIMED(0x##word##u); }
+GTE_OPS(GTE_OP)
 
 static uint32_t pack(int16_t lo, int16_t hi) { return (uint32_t)(uint16_t)lo | ((uint32_t)(uint16_t)hi << 16); }
 
