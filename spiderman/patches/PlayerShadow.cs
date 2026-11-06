@@ -32,14 +32,16 @@ public static class PlayerShadow
 {
     const uint PlayerPointer = 0x800B5268;
     const uint CameraRotation = 0x800A57CC;
-    const uint OutputBuffer = 0x800B58F0;
-    const int BlobTexPage = 76, BlobClut = 33;
+    // The blob: CLUT 33, subtractive blending. Its texture page (76 with the stock
+    // actors) moves when a suit's own model takes VRAM, so the page is not part of the
+    // test; the position checks tie it to the player.
+    const int BlobClut = 33;
 
     static readonly string Mode = Environment.GetEnvironmentVariable("SPIDEY_SHADOW")?.Trim().ToLowerInvariant() ?? "on";
     static readonly Vector3 Light = ParseLight(Environment.GetEnvironmentVariable("SPIDEY_SHADOW_LIGHT"));
     static readonly List<Vector3> Triangles = new();
     static readonly List<Vector3> _current = new();
-    static readonly Dictionary<uint, Vector3> _byAddress = new();
+    static readonly Dictionary<int, Vector3> _sources = new();
     static long _frame = -1;
     static float _h, _ofx, _ofy;
     static readonly short[] Camera = new short[9];
@@ -65,7 +67,7 @@ public static class PlayerShadow
         if (Diag.Frame != _frame)
         {
             Triangles.Clear();
-            _byAddress.Clear();
+            _sources.Clear();
             _frame = Diag.Frame;
             _h = (short)Gte.ReadControl(26);
             _ofx = (int)Gte.ReadControl(24) / 65536f;
@@ -88,23 +90,34 @@ public static class PlayerShadow
         rt[8] = unchecked((short)Gte.ReadControl(4)) / 4096f;
         var tr = new Vector3((int)Gte.ReadControl(5), (int)Gte.ReadControl(6), (int)Gte.ReadControl(7));
 
-        // Vertices flagged 2 in their pad word are joint vertices, already transformed
-        // for an earlier part. The transform (func_8007B798/B9CC) reads them from
-        // (output buffer + 0x1F38 - x), where it stores 8 bytes per vertex, so record
-        // every vertex by the address the game writes it to and resolve joints the same way.
-        uint output = m.ReadU32(OutputBuffer);
+        // Joints. A model's shared vertices (pad flag 1) are numbered in order across its
+        // parts, and a joint vertex (flag 2) names the one it repeats: once loaded its x
+        // is 8 x that number (the file has the number in y). Record each shared vertex by
+        // its number as its part is drawn; a later part's joint takes it from there.
+        // Looking joints up by transform output address instead missed most of them and
+        // left holes at every joint (shoulders, hips, neck).
+        int source = FirstSource(m, c.S2, mesh);
+        // With gp+0x1170 clear the game's transform (8007B798 / 8007BBD4) divides each vertex by
+        // 16 (arithmetic shift) before projecting it; with it set (8007B9CC / 8007BD04) vertices
+        // go in whole. Taking them whole in the first case made the silhouette 16 times too
+        // big and threw it across the scene (climbing, distant camera).
+        int shift = m.ReadU32(c.GP + 0x1170u) == 0 ? 4 : 0;
         _current.Clear();
         for (int i = 0; i < nv; i++)
         {
             uint v = mesh + 28 + (uint)i * 8;
             short x = unchecked((short)m.ReadU16(v)), y = unchecked((short)m.ReadU16(v + 2)), z = unchecked((short)m.ReadU16(v + 4));
+            uint kind = m.ReadU16(v + 6) & 3u;
             Vector3 p;
-            if ((m.ReadU16(v + 6) & 2) != 0)
-                p = _byAddress.TryGetValue(output + 0x1F38u - (uint)(ushort)x, out var joint) ? joint : new Vector3(float.NaN);
+            if ((kind & 2) != 0)
+                p = _sources.TryGetValue((ushort)x / 8, out var joint) ? joint : new Vector3(float.NaN);
             else
-                p = tr + new Vector3(rt[0] * x + rt[1] * y + rt[2] * z, rt[3] * x + rt[4] * y + rt[5] * z, rt[6] * x + rt[7] * y + rt[8] * z);
+            {
+                int sx = x >> shift, sy = y >> shift, sz = z >> shift;
+                p = tr + new Vector3(rt[0] * sx + rt[1] * sy + rt[2] * sz, rt[3] * sx + rt[4] * sy + rt[5] * sz, rt[6] * sx + rt[7] * sy + rt[8] * sz);
+                if (kind == 1 && source >= 0) _sources[source++] = p;
+            }
             _current.Add(p);
-            _byAddress[output + (uint)i * 8] = p;
         }
         // Faces are variable length (u16 size at +2); vertex indices at +4..+7, the
         // fourth repeating the third for a triangle.
@@ -124,6 +137,27 @@ public static class PlayerShadow
         }
     }
 
+    /// <summary>Shared vertices before part <paramref name="mesh"/> in the actor's model.</summary>
+    static int FirstSource(IMemory m, uint actor, uint mesh)
+    {
+        uint slot = m.ReadU8(actor + 0x1B);
+        if (slot >= 40) return -1;
+        uint table = m.ReadU32(0x800A0904u + slot * 64u + 0x10u);
+        if (table < 0x80000004u || table >= 0x80800000u) return -1;
+        uint parts = m.ReadU32(table - 4);
+        if (parts > 64) return -1;
+        int count = 0;
+        for (uint i = 0; i < parts; i++)
+        {
+            uint part = m.ReadU32(table + i * 4);
+            if (part == mesh) return count;
+            uint nv = m.ReadU16(part + 2);
+            for (uint v = 0; v < nv && nv <= 512; v++)
+                if ((m.ReadU16(part + 28 + v * 8 + 6) & 3u) == 1) count++;
+        }
+        return -1;
+    }
+
     static void AddTriangle(int a, int b, int c)
     {
         Vector3 pa = _current[a], pb = _current[b], pc = _current[c];
@@ -134,7 +168,7 @@ public static class PlayerShadow
     static void OnPrim(RenderPrimEvent e)
     {
         if (e.Skip || e.Count != 4 || !e.Textured || !e.SemiTransparent ||
-            e.TexPage != BlobTexPage || e.Clut != BlobClut || Triangles.Count == 0) return;
+            ((e.TexPage >> 5) & 3) != 2 || e.Clut != BlobClut || Triangles.Count == 0) return;
         if (GpuHle.Backend is not { Ready: true } backend) return;
 
         // Where the player is on screen, to tell his blob from enemies' and pickups'.
