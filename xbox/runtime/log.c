@@ -1,4 +1,5 @@
 #include <hal/debug.h>
+#include <hal/video.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
@@ -72,6 +73,9 @@ static const char *short_name(const char *name)
  * through the XEMU monitor (xbox/tools/run_xemu.py) using its address from the
  * link map; it starts with a marker so a wrong address is obvious.
  */
+volatile uint32_t rt_metric[RT_METRICS];
+const char *rt_metric_name[RT_METRICS];
+
 char g_status_text[16384] = "OPENSPIDEY-STATUS";
 
 static void status_text(void)
@@ -88,6 +92,24 @@ static void status_text(void)
     gpu_display(&d);
     ADD("vblanks %lu display %d,%d %dx%d enabled %d rgb24 %d presenting %d\n", (unsigned long)rt_vblank_count,
         d.x, d.y, d.width, d.height, d.enabled, d.rgb24, rt_presenting);
+    ADD("hw frames %lu decodes %lu palettes %lu wait %lu\n", (unsigned long)rt_hw_frames, (unsigned long)rt_hw_texture_decodes,
+        (unsigned long)rt_hw_palette_builds,
+        (unsigned long)rt_hw_wait);
+    ADD("where %s\n", (const char *)rt_where);
+    MM_STATISTICS mm = { sizeof mm };
+    MmQueryStatistics(&mm);
+    ADD("memory free %lu KB of %lu KB\n", (unsigned long)mm.AvailablePages * 4ul, (unsigned long)mm.TotalPhysicalPages * 4ul);
+    VIDEO_MODE vm = XVideoGetMode();
+    ADD("mode %dx%d encoder %08lX\n", vm.width, vm.height, (unsigned long)XVideoGetEncoderSettings());
+    ADD("video 720p %d wide-display %d frame-wide %d fov %d/%d\n", rt_video_720p, rt_video_wide, rt_frame_wide,
+        rt_fov_num, rt_fov_den);
+    ADD("textured triangles perspective %lu affine %lu replaced %lu\n", (unsigned long)rt_hw_perspective, (unsigned long)rt_hw_affine,
+        (unsigned long)rt_hw_replaced);
+    for (int i = 0; i < RT_METRICS; i++)
+        if (rt_metric_name[i]) ADD("metric %s %lu\n", rt_metric_name[i], (unsigned long)rt_metric[i]);
+    ADD("texture pack hits %lu loads %lu\n", (unsigned long)rt_pack_hits, (unsigned long)rt_pack_loads);
+    ADD("drawotag from %08lX at %08lX packets %lu\n", (unsigned long)rt_ot_start, (unsigned long)rt_ot_addr,
+        (unsigned long)rt_ot_packets);
     for (int i = 0; i < g_note_count; i++) ADD("count %s %lu\n", g_notes[i].name, (unsigned long)g_notes[i].count);
     ADD("recent calls:");
     for (int i = 0; i < RECENT; i++) ADD(" %08lX", (unsigned long)rt_recent_calls[(rt_recent_next + i) % RECENT]);

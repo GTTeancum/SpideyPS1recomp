@@ -1,5 +1,8 @@
 #include <string.h>
 #include "gpu.h"
+#include "hwgpu.h"
+#include "texpack.h"
+#include "runtime.h"
 
 uint16_t gpu_vram[VRAM_H][VRAM_W] __attribute__((aligned(16)));
 
@@ -132,7 +135,7 @@ static void shade_texel(int x, int y, uint16_t texel, int r, int g, int b, int r
 }
 
 /* ---- primitives ---------------------------------------------------------------- */
-typedef struct { int x, y, r, g, b, u, v; } Vert;
+typedef struct { int x, y, r, g, b, u, v; float w; } Vert;
 
 static int top_left(const Vert *p0, const Vert *p1)
 {
@@ -182,6 +185,12 @@ static void raster_triangle(Vert a, Vert b, Vert c, int tex, int gouraud, int se
     }
 }
 
+/* The texture page state as a GP0 texpage value. */
+static int current_tpage(void)
+{
+    return (tex_page_x / 64) | ((tex_page_y / 256) << 4) | (blend_mode << 5) | (tex_depth << 7) | (tex_disable << 11);
+}
+
 static void set_texpage(uint32_t tp)
 {
     tex_page_x = (int)(tp & 0xF) * 64;
@@ -191,13 +200,56 @@ static void set_texpage(uint32_t tp)
     tex_disable = (tp & (1u << 11)) != 0;
 }
 
+/* ---- graphics chip routing ------------------------------------------------------- */
+/* The display buffer the current draw area belongs to (-1: draw in VRAM). */
+void (*rt_prim_hook)(RtPrim *p);
+int (*rt_prim_replace_hook)(const RtPrim *p, int region);
+
+static int hw_target(void) { return hw_region_for(area_left, area_top); }
+
+static void hw_key(HwTexture *t, int clut)
+{
+    t->page_x = tex_page_x; t->page_y = tex_page_y;
+    t->depth = tex_depth == 3 ? 2 : tex_depth; t->clut = clut;
+    t->win_mask_x = win_mask_x; t->win_mask_y = win_mask_y; t->win_off_x = win_off_x; t->win_off_y = win_off_y;
+}
+
+static void hw_vertex(HwVertex *o, const Vert *v)
+{
+    o->x = (float)v->x; o->y = (float)v->y;
+    o->r = (uint8_t)v->r; o->g = (uint8_t)v->g; o->b = (uint8_t)v->b; o->u = (uint8_t)v->u; o->v = (uint8_t)v->v;
+    o->w = v->w;
+}
+
+/* Something was drawn into VRAM outside the display buffers (a texture, say). */
+static void drew_offscreen(int x0, int y0, int x1, int y1)
+{
+    x0 = maxi(x0, area_left); y0 = maxi(y0, area_top); x1 = mini(x1, area_right); y1 = mini(y1, area_bottom);
+    if (x1 >= x0 && y1 >= y0) {
+        hw_vram_written(x0, y0, x1 - x0 + 1, y1 - y0 + 1);
+        texpack_note_gpu_write(x0, y0, x1 - x0 + 1, y1 - y0 + 1);
+    }
+}
+
+static void hw_polygon(int r, const Vert *v, int quad, int tex, int gouraud, int semi, int raw, int clut)
+{
+    HwTexture key;
+    if (tex) hw_key(&key, clut);
+    HwVertex t[3];
+    hw_vertex(&t[0], &v[0]); hw_vertex(&t[1], &v[1]); hw_vertex(&t[2], &v[2]);
+    hw_triangle(r, t, tex ? &key : 0, semi, blend_mode, raw, gouraud);
+    if (!quad) return;
+    hw_vertex(&t[0], &v[1]); hw_vertex(&t[1], &v[2]); hw_vertex(&t[2], &v[3]);
+    hw_triangle(r, t, tex ? &key : 0, semi, blend_mode, raw, gouraud);
+}
+
 static void draw_polygon(void)
 {
     uint32_t cmd = fifo[0];
     int gouraud = (cmd >> 28) & 1, quad = (cmd >> 27) & 1, tex = (cmd >> 26) & 1;
     int semi = (cmd >> 25) & 1, raw = (cmd >> 24) & 1, n = quad ? 4 : 3;
     Vert v[4];
-    int idx = 1, clut = 0;
+    int idx = 1, clut = 0, tpage = current_tpage();
     int cr = (int)(cmd & 0xFF), cg = (int)((cmd >> 8) & 0xFF), cb = (int)((cmd >> 16) & 0xFF);
     for (int i = 0; i < n; i++) {
         if (gouraud && i > 0) {
@@ -208,17 +260,37 @@ static void draw_polygon(void)
         uint32_t vw = fifo[idx++];
         v[i].x = offset_x + coord_x(vw);
         v[i].y = offset_y + coord_y(vw);
+        v[i].w = hw_depth_at(coord_x(vw), coord_y(vw));
         v[i].u = v[i].v = 0;
         if (tex) {
             uint32_t uvw = fifo[idx++];
             v[i].u = (int)(uvw & 0xFF);
             v[i].v = (int)((uvw >> 8) & 0xFF);
             if (i == 0) clut = (int)((uvw >> 16) & 0xFFFF);
-            else if (i == 1) set_texpage((uvw >> 16) & 0xFFFF);
+            else if (i == 1) { tpage = (int)((uvw >> 16) & 0xFFFF); set_texpage((uint32_t)tpage); }
         }
+    }
+    int r = hw_target();
+    if (r >= 0) {
+        if (rt_prim_hook || rt_prim_replace_hook) {
+            RtPrim p = { n, { 0 }, { 0 }, { 0 }, { 0 }, 1, tex, semi, gouraud, tpage, clut,
+                         area_left, area_top, area_right, area_bottom, offset_x, offset_y };
+            for (int i = 0; i < n; i++) {
+                p.x[i] = v[i].x; p.y[i] = v[i].y; p.u[i] = (uint8_t)v[i].u; p.v[i] = (uint8_t)v[i].v;
+                if (!(v[i].w > 0)) p.depth = 0;
+            }
+            if (rt_prim_replace_hook && rt_prim_replace_hook(&p, r)) return;
+            if (rt_prim_hook) rt_prim_hook(&p);
+            for (int i = 0; i < n; i++) v[i].x = p.x[i];
+        }
+        hw_polygon(r, v, quad, tex, gouraud, semi, raw, clut);
+        return;
     }
     raster_triangle(v[0], v[1], v[2], tex, gouraud, semi, raw, clut);
     if (quad) raster_triangle(v[1], v[2], v[3], tex, gouraud, semi, raw, clut);
+    int x0 = v[0].x, x1 = v[0].x, y0 = v[0].y, y1 = v[0].y;
+    for (int i = 1; i < n; i++) { x0 = mini(x0, v[i].x); x1 = maxi(x1, v[i].x); y0 = mini(y0, v[i].y); y1 = maxi(y1, v[i].y); }
+    drew_offscreen(x0, y0, x1, y1);
 }
 
 static void draw_rectangle(void)
@@ -237,6 +309,22 @@ static void draw_rectangle(void)
     int w, h;
     if (sz == 0) { uint32_t wh = fifo[idx]; w = (int)(wh & 0xFFFF); h = (int)((wh >> 16) & 0xFFFF); }
     else w = h = sz == 1 ? 1 : sz == 2 ? 8 : 16;
+    int r = hw_target();
+    if (r >= 0) {
+        HwTexture key;
+        if (tex) hw_key(&key, clut);
+        int dw = w;
+        if (rt_prim_hook) {
+            RtPrim p = { 2, { x, x + w - 1 }, { y, y + h - 1 }, { (uint8_t)u0, (uint8_t)(u0 + w - 1) },
+                         { (uint8_t)v0, (uint8_t)(v0 + h - 1) }, 0, tex, semi, 0, current_tpage(), clut,
+                         area_left, area_top, area_right, area_bottom, offset_x, offset_y };
+            rt_prim_hook(&p);
+            x = p.x[0]; dw = p.x[1] - p.x[0] + 1;
+        }
+        hw_rect(r, x, y, dw, h, (uint8_t)u0, (uint8_t)v0, w, h, (uint8_t)cr, (uint8_t)cg, (uint8_t)cb, tex ? &key : 0, semi, blend_mode, raw);
+        return;
+    }
+    drew_offscreen(x, y, x + w - 1, y + h - 1);
     int x0 = maxi(x, area_left), x1 = mini(x + w - 1, area_right);
     int y0 = maxi(y, area_top), y1 = mini(y + h - 1, area_bottom);
     for (int py = y0; py <= y1; py++)
@@ -249,6 +337,14 @@ static void draw_rectangle(void)
 static void line_segment(int x0, int y0, int r0, int g0, int b0, int x1, int y1, int r1, int g1, int b1, int semi)
 {
     x0 += offset_x; y0 += offset_y; x1 += offset_x; y1 += offset_y;
+    int r = hw_target();
+    if (r >= 0) {
+        HwVertex v[2] = { { (float)x0, (float)y0, (uint8_t)r0, (uint8_t)g0, (uint8_t)b0, 0, 0, 0 },
+                          { (float)x1, (float)y1, (uint8_t)r1, (uint8_t)g1, (uint8_t)b1, 0, 0, 0 } };
+        hw_line(r, v, semi, blend_mode);
+        return;
+    }
+    drew_offscreen(mini(x0, x1), mini(y0, y1), maxi(x0, x1), maxi(y0, y1));
     int dx = x1 - x0, dy = y1 - y0;
     int steps = maxi(dx < 0 ? -dx : dx, dy < 0 ? -dy : dy);
     if (steps == 0) { plot(x0, y0, r0, g0, b0, semi, 0); return; }
@@ -298,6 +394,17 @@ static void fill_rect(void)
     for (int dy = 0; dy < h; dy++)
         for (int dx = 0; dx < w; dx++)
             gpu_vram[(y + dy) & (VRAM_H - 1)][(x + dx) & (VRAM_W - 1)] = color;
+    int r = hw_region_for(x, y);
+    if (r >= 0) hw_fill(r, x, y, w, h, color);
+    else { hw_vram_written(x, y, w, h); texpack_note_gpu_write(x, y, w, h); }
+}
+
+/* VRAM rewritten by a copy or an upload: textures read it, display buffers show it. */
+static void vram_replaced(int x, int y, int w, int h)
+{
+    hw_vram_written(x, y, w, h);
+    int r = hw_region_for(x, y);
+    if (r >= 0) hw_blit(r, x, y, w, h);
 }
 
 static void copy_vram(void)
@@ -313,6 +420,8 @@ static void copy_vram(void)
             if (check_mask && (*d & 0x8000)) continue;
             *d = set_mask ? (uint16_t)(px | 0x8000) : px;
         }
+    texpack_note_gpu_write(dx, dy, w, h);
+    vram_replaced(dx, dy, w, h);
 }
 
 static void begin_image_load(void)
@@ -332,7 +441,11 @@ static void store_halfword(uint16_t value)
     uint16_t stored = set_mask ? (uint16_t)(value | 0x8000) : value;
     int x = (load_x + load_px % load_w) & (VRAM_W - 1), y = (load_y + load_px / load_w) & (VRAM_H - 1);
     if (!(check_mask && (gpu_vram[y][x] & 0x8000))) gpu_vram[y][x] = stored;
-    if (++load_px >= load_w * load_h) load_image = 0;
+    if (++load_px >= load_w * load_h) {
+        load_image = 0;
+        texpack_note_upload(load_x, load_y, load_w, load_h);
+        vram_replaced(load_x, load_y, load_w, load_h);
+    }
 }
 
 static void begin_image_read(void)

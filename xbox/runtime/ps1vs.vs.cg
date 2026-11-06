@@ -1,0 +1,10 @@
+// Positions arrive in output pixels; colour and texture coordinates pass through.
+struct VertexIn { float4 position : POSITION; float4 color : DIFFUSE; float4 uv : TEXCOORD0; };
+struct VertexOut { float4 position : POSITION; float4 color : COLOR0; float4 uv : TEXCOORD0; };
+VertexOut main(VertexIn input) {
+    VertexOut output;
+    output.position = input.position;
+    output.color = input.color;
+    output.uv = input.uv;
+    return output;
+}

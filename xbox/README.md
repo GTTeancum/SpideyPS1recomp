@@ -55,9 +55,36 @@ dotnet ../tools/RecompOne/RecompOne.Recompiler/bin/Release/net10.0/recompone.dll
 Then from the repository root:
 
 ```bash
+python -I xbox/tools/patch_generated_sm1.py
 python -I xbox/tools/gen_hook_defaults.py spiderman
 MSYSTEM=MINGW64 C:/msys64/usr/bin/bash.exe --noprofile --norc xbox/tools/build.sh -j8
 ```
+
+`patch_generated_sm1.py` is the C counterpart of the PC's generated-source transform
+`spiderman/tools/patch_texture_registry.py` (texture registry relocated, player models
+register every texture); run it after every generation.
+
+## Assets and settings
+
+The disc carries the player's game files plus what the Windows-side preparation makes
+from a PC install (the future installer's job):
+
+```bash
+python -I xbox/tools/prep_assets.py "<PC install>/assets/builtin" private/work/xbox-disc/assets
+python -I xbox/tools/prep_suits.py "<PC install>/mods/suits" private/work/xbox-disc/mods
+```
+
+- `assets/builtin`: the Dreamcast character actors, served in place of the game's own
+  (`src/assets_sm1.c`, a port of `LooseWadOverrides` and `Costume`).
+- `assets/packs/dreamcast-sm1-actors`: their art as DXT1 DDS, matched by the PC pack's
+  fingerprint of each uploaded texture (`runtime/texpack.c`).
+- `mods/suits/<id>`: a suit's textures as DXT1 DDS capped at 512 (suit art is often
+  1024-2048 and the Xbox has about 10 MB spare at 720p), and for suits with their own
+  model the actor and its RTG2 rig split apart (`src/suits_sm1.c`, `src/retarget_sm1.c`;
+  the rig maths is the PC's `tools/retarget/native/retarget_core.cpp`, compiled in).
+
+`D:\openspidey.ini` holds `level=<lNaM>` (start a new game there, `src/level_sm1.c`)
+and `suit=<id>`. Include `openspidey.ini`, `mods` and `assets` with `--include`.
 
 `compile_generated.sh spiderman` compiles the generated code alone, as a quick check.
 
@@ -84,6 +111,25 @@ with its window hidden and audio written to a file. The disc image is written to
 only): XEMU rejects disc images on a network share (`bdrv_open_driver:
 request_alignment` assertion). Settings, the EEPROM copy, logs and captures go to
 `private/work/xbox-run`.
+
+`--hd` selects XEMU's HD cable and marks the EEPROM copy for 480p, 720p and a
+widescreen TV, so the build runs at 1280x720 in 16:9. `--registers` also saves the
+CPU registers and stack at each shot (a halted CPU with interrupts off is an nxdk
+assert or a crash). `--ram` saves the PlayStation's RAM.
+
+## Video
+
+The output follows the console's settings: 720p when allowed, else 480. Rendering
+is on the NV2A (`runtime/hwgpu.c`): each PlayStation display buffer is a render
+target at the output size; 4- and 8-bit textures are I8 images with the chip's
+palette lookup; polygons whose corners came from the GTE are drawn perspective
+correct. Widescreen (`src/wide_sm1.c`, a port of `spiderman/patches/Wide.cs` and
+`WorldFrustum.cs`) is on for gameplay when the display is 16:9; menus stay 4:3
+and are pillarboxed. A fix to the widescreen rules belongs in both copies.
+
+nxdk's maths library has unimplemented functions that assert and halt the console
+(`lround`, `lrint`, `cbrt`, `log2` and others in `lib/pdclib/platform/xbox/functions/math`);
+do not call them.
 
 ## Plan
 

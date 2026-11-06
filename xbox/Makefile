@@ -6,7 +6,10 @@ NXDK_DIR ?= /c/nxdk
 # default hooks with tools/gen_hook_defaults.py before building.
 GAMES = spiderman
 
-SRCS = $(wildcard $(CURDIR)/src/*.c) $(wildcard $(CURDIR)/runtime/*.c) \
+# NV2A shaders (nxdk's %.inl rules: Cg -> vp20/fp20 -> push-buffer words).
+SHADER_OBJS = $(CURDIR)/runtime/ps1vs.inl $(CURDIR)/runtime/ps1ps.inl
+
+SRCS = $(wildcard $(CURDIR)/src/*.c) $(wildcard $(CURDIR)/runtime/*.c) $(wildcard $(CURDIR)/runtime/*.cpp) \
        $(foreach g,$(GAMES),$(wildcard $(CURDIR)/generated/$(g)/*.c)) \
        $(CURDIR)/build/hooks_default.c
 

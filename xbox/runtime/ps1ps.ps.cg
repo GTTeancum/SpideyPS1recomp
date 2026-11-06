@@ -1,0 +1,8 @@
+// PlayStation texture modulation: texel x vertex colour x 2 (colour 128 is 1.0).
+// Texel alpha carries the texel class for the alpha test: 0 transparent, 0.5
+// opaque, 1 semi-transparent (STP set).
+struct Fragment { float4 color : COLOR0; float4 uv : TEXCOORD0; };
+float4 main(Fragment input, uniform sampler2D image) : COLOR {
+    float4 t = tex2Dproj(image, input.uv);
+    return float4(t.rgb * input.color.rgb * 2, t.a);
+}

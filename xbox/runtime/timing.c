@@ -7,10 +7,13 @@
 #include <hal/video.h>
 #include <windows.h>
 #include "gpu.h"
+#include "hwgpu.h"
 #include "runtime.h"
 
 volatile uint32_t rt_vblank_count;
 volatile int rt_presenting;
+int rt_video_720p, rt_video_wide, rt_frame_wide;
+volatile const char *rt_where = "";
 static LARGE_INTEGER g_frequency, g_next;
 static int g_ticks_until_present;
 
@@ -52,6 +55,16 @@ static void present(void)
     GpuDisplay d;
     gpu_display(&d);
     if (!d.enabled || d.width <= 0 || d.height <= 0 || d.rgb24) return;
+#ifndef RT_SOFTWARE_GPU
+    static int hw_tried;
+    if (!hw_tried) { hw_tried = 1; hw_init(); }
+    if (hw_active()) {
+        rt_presenting = 1;
+        hw_note_display(d.x, d.y, d.width, d.height);
+        hw_present(d.x, d.y, rt_frame_wide);
+        return;
+    }
+#endif
     rt_presenting = 1;
     uint32_t *fb = (uint32_t *)XVideoGetFB();
     if (!fb) return;
@@ -86,11 +99,16 @@ void rt_tick(void)
         Sleep(left > g_frequency.QuadPart / 500 ? 1 : 0);
         QueryPerformanceCounter(&now);
     }
+    RT_WHERE("tick present");
     if (++g_ticks_until_present >= 2) { g_ticks_until_present = 0; present(); }
+    RT_WHERE("tick cd");
     cd_tick();
+    RT_WHERE("tick pad");
     rt_pad_refresh();
+    RT_WHERE("tick irq");
     rt_vblank_count++;
     rt_raise_irq(0);
+    RT_WHERE("game");
 }
 
 /* VSync(mode): a negative mode polls the counter, servicing an edge when one is due;

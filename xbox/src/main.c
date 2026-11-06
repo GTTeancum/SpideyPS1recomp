@@ -9,6 +9,8 @@
 #include <windows.h>
 #include "runtime.h"
 #include "SpiderMan.h"
+#include "settings.h"
+
 
 // Read through the XEMU monitor by the test tools: a running build advances it.
 volatile unsigned int g_openspidey_heartbeat;
@@ -23,7 +25,18 @@ static DWORD WINAPI game_thread(LPVOID arg)
 
 int main(void)
 {
-    XVideoSetMode(640, 480, 32, REFRESH_DEFAULT);
+    // 720p where the console's video settings allow it, else 480 (p or i, as the
+    // settings say). The picture is 16:9 on 720p and on a 480 TV set to widescreen.
+    rt_video_720p = XVideoSetMode(1280, 720, 32, REFRESH_DEFAULT);
+    if (!rt_video_720p) XVideoSetMode(640, 480, 32, REFRESH_DEFAULT);
+    rt_video_wide = rt_video_720p || (XVideoGetEncoderSettings() & VIDEO_WIDESCREEN) != 0;
+    settings_load();
+    wide_sm1_install();
+    level_sm1_install();
+    suits_sm1_install();
+    assets_sm1_install();
+    retarget_sm1_install();
+    shadow_sm1_install();
     debugPrint("OpenSpidey - original Xbox\n");
 
     HANDLE thread = CreateThread(NULL, 4u * 1024u * 1024u, game_thread, NULL, 0, NULL);

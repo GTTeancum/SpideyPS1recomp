@@ -3,6 +3,7 @@
  * runtime's LibGpu feeding the software GPU (gpu.c). Drawing is immediate, so
  * DrawSync never waits.
  */
+#include "hwgpu.h"
 #include "gpu.h"
 #include "runtime.h"
 
@@ -37,11 +38,24 @@ static uint32_t get_tw(int x, int y, int w, int h)
     return 0xE2000000u | (c1 << 15) | (c0 << 10) | (c3 << 5) | c2;
 }
 
+volatile uint32_t rt_ot_start, rt_ot_addr, rt_ot_packets;
+uint32_t rt_disp_grandparent;
+void (*rt_frame_hook)(void);
+void (*rt_drawotag_hook)(void);
+volatile uint32_t rt_drawotag_count;
+
 void hook_LibGpu_DrawOTag(CpuContext *c)
 {
     rt_note("DrawOTag");
+    hw_depth_frame();
+    rt_drawotag_count++;
+    RT_WHERE("DrawOTag");
+    if (rt_drawotag_hook) rt_drawotag_hook();
     uint32_t addr = A0 & (RECOMP_RAM_SIZE - 4u);
+    rt_ot_start = addr;
     for (int guard = 0; guard < 0x100000; guard++) {
+        rt_ot_packets = (uint32_t)guard;
+        rt_ot_addr = addr;
         uint32_t header = mem_r32(addr), count = header >> 24;
         for (uint32_t i = 0; i < count; i++) gpu_write_gp0(mem_r32(addr + 4u + i * 4u));
         uint32_t next = header & 0xFFFFFFu;
@@ -81,6 +95,8 @@ void hook_LibGpu_PutDrawEnv(CpuContext *c)
 void hook_LibGpu_PutDispEnv(CpuContext *c)
 {
     rt_note("PutDispEnv");
+    rt_disp_grandparent = mem_r32(c->r[29] + 16u);
+    if (rt_frame_hook) rt_frame_hook();
     uint32_t env = A0;
     int disp_x = s16(env + 0x00), disp_y = s16(env + 0x02), disp_w = s16(env + 0x04), disp_h = s16(env + 0x06);
     int scr_x = s16(env + 0x08), scr_y = s16(env + 0x0A), scr_w = s16(env + 0x0C), scr_h = s16(env + 0x0E);

@@ -3,6 +3,7 @@
  * without its host-precision screen tracking (widescreen field of view, precise
  * winding and perspective/60 FPS provenance): the console's integer behaviour only.
  */
+#include "hwgpu.h"
 #include "runtime.h"
 
 static int16_t V[9];
@@ -21,6 +22,8 @@ static int16_t DQA, ZSF3, ZSF4;
 static uint32_t FLAG;
 static uint8_t UNR[0x101];
 static int g_unr_ready;
+int rt_fov_num = 1, rt_fov_den = 1;
+uint16_t (*rt_rtp_depth_hook)(int32_t vx, int32_t vy, int32_t vz, uint16_t sz);
 
 static void flag(int bit) { FLAG |= 1u << bit; }
 
@@ -121,11 +124,16 @@ static void rtp(int32_t vx, int32_t vy, int32_t vz, int sf, int lm, int last)
     int32_t sz = sat_sz((int32_t)(m3 >> 12));
     SZ[0] = SZ[1]; SZ[1] = SZ[2]; SZ[2] = SZ[3]; SZ[3] = (uint16_t)sz;
     uint32_t div = divide(H, SZ[3]);
-    int64_t sx = check_mac0((int64_t)div * IR1 + OFX); MAC0 = (int32_t)sx;
+    /* Widescreen widens the view here, as the PC's Gte.Rtp does: the game culls and
+     * orders on these coordinates, so it then submits the extra scenery itself. */
+    int64_t px = (int64_t)div * IR1;
+    if (rt_fov_num != rt_fov_den) px = px * rt_fov_num / rt_fov_den;
+    int64_t sx = check_mac0(px + OFX); MAC0 = (int32_t)sx;
     int64_t sy = check_mac0((int64_t)div * IR2 + OFY); MAC0 = (int32_t)sy;
     int32_t nx = sat_x((int32_t)(sx >> 16)), ny = sat_y((int32_t)(sy >> 16));
     SX[0] = SX[1]; SX[1] = SX[2]; SX[2] = (int16_t)nx;
     SY[0] = SY[1]; SY[1] = SY[2]; SY[2] = (int16_t)ny;
+    hw_note_depth(nx, ny, rt_rtp_depth_hook ? rt_rtp_depth_hook(vx, vy, vz, (uint16_t)sz) : (uint16_t)sz);
     if (last) {
         int64_t dp = check_mac0((int64_t)div * DQA + DQB);
         MAC0 = (int32_t)dp;
