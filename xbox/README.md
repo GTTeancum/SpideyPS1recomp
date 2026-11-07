@@ -35,6 +35,10 @@ START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
 | `src/patches_sm1.c` | Spider-Man 1 patches ported from `spiderman/patches` (keep in step) |
 | `src/movies_sm1.c` | SM1's movie hook: Dreamcast `.SFD` where installed, else the PS1 `.STR` |
 | `runtime/vtag.c` | vertex tags in RAM: the GTE's precise positions and depths beside the words that carry them |
+| `runtime/spu.c` | the sound chip: 24 voices, envelopes, CD audio input, mixed at 44.1 kHz each vblank (port of the PC's Spu.cs/XaAudio.cs) |
+| `runtime/audio.c` | AC97 output at 48 kHz, shared by the sound chip and movies |
+| `runtime/xa.c` | CD-XA ADPCM decoding (streamed music, PS1 movie sound) |
+| `src/input.c` | the Xbox controller as PlayStation pad 1 (SDL2, the PC's default bindings) |
 | `runtime/movie.c` | movie playback: AC97 sound, the movie clock, skip, the two players' loops |
 | `runtime/str.c` | PS1 `.STR` decoder: MDEC video (bitstream v1/v2) and XA ADPCM sound |
 | `runtime/sfd_core.cpp` | the PC's Dreamcast SFD decoder (`tools/movies/native`), compiled in |
@@ -102,6 +106,16 @@ python -I xbox/tools/prep_suits.py "<PC install>/mods/suits" private/work/xbox-d
 `D:\openspidey.ini` holds `level=<lNaM>` (start a new game there, `src/level_sm1.c`),
 `suit=<id>` and `dreamcast_movies=0` (PS1 movies only). Include `openspidey.ini`,
 `mods` and `assets` with `--include`.
+
+## Sound
+
+The sound chip (`runtime/spu.c`) is a port of the PC's: its registers and DMA channel
+4 reach it through `runtime/memory.c`, and each vblank mixes 735 frames (44.1 kHz) into
+the AC97 output (`runtime/audio.c`, resampled to 48 kHz). Streamed music and dialogue
+are CD-XA: a read in XA mode (`runtime/cd.c`) plays the disc's ADPCM sectors at drive
+speed instead of delivering them, the selected file and channel decoded into the chip's
+CD input (the title music is `COMPILED.XA` channel 13). Movies take the AC97 while they
+play. No reverb, as on the PC. `COMPILED.XA` must be on the disc.
 
 ## Movies
 
@@ -184,7 +198,15 @@ polygon whose vertices all carry one is drawn at the precise positions, perspect
 correct. Without them, whole-pixel corners at 720p left slivers between split faces
 (far buildings), and a depth looked up from the screen position could be another
 vertex's and bend the texture; untagged textured polygons now draw affine instead.
-The SM1 subdivision and edge rules are `src/world_sm1.c` (the PC's WorldSubpixel). Widescreen (`src/wide_sm1.c`, a port of `spiderman/patches/Wide.cs` and
+The SM1 subdivision and edge rules are `src/world_sm1.c` (the PC's WorldSubpixel).
+Textured polygons take texels as the PC's shader does (floor where the texture runs
+forward across the screen, ceil where it runs backward). Hairline cracks where the
+game's pieces meet only to within a fraction of a pixel showed as specks and short
+seams that move with the camera; the PC fills them after drawing, which needs a spare
+full-screen buffer the Xbox has no memory for, so opaque world triangles are drawn 0.6
+pixels larger instead. `geometry_debug=1` draws world materials in flat colours (cracks
+show as thin lines of another colour); `geometry_debug=2` starts each frame magenta
+(undrawn pixels show). Widescreen (`src/wide_sm1.c`, a port of `spiderman/patches/Wide.cs` and
 `WorldFrustum.cs`) is on for gameplay when the display is 16:9; menus stay 4:3
 and are pillarboxed. A fix to the widescreen rules belongs in both copies.
 

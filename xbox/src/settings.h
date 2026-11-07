@@ -6,6 +6,10 @@ void settings_load(void);
 /* The value for `key`, or NULL. */
 const char *setting(const char *key);
 
+/* The controller (input.c): start once, then poll often from the main thread. */
+void input_start(void);
+void input_poll(void);
+
 /* Game rules set up from the settings (the src/..._sm1.c files). */
 void wide_sm1_install(void);
 void level_sm1_install(void);

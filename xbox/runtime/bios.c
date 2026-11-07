@@ -15,15 +15,35 @@
 /* ---- guest strings and memory ------------------------------------------------ */
 static uint32_t g_len(uint32_t s) { uint32_t n = 0; while (mem_r8(s + n)) n++; return n; }
 
+/* Projected coordinates are often staged inside whole primitive packets and copied
+ * before submission: aligned words keep their vertex tags, as the PC's BiosA.BMemcpy
+ * does (a byte-at-a-time copy dropped them, and those polygons drew at whole pixels
+ * beside their precise neighbours: small seams in the buildings). */
 static uint32_t g_memcpy(uint32_t d, uint32_t s, uint32_t n)
 {
+    if (((d | s) & 3u) == 0) {
+        uint32_t words = n & ~3u;
+        for (uint32_t i = 0; i < words; i += 4u) {
+            uint32_t v = mem_r32(s + i);
+            mem_w32_t(d + i, v, vtag_of(s + i, v));
+        }
+        for (uint32_t i = words; i < n; i++) mem_w8(d + i, (uint8_t)mem_r8(s + i));
+        return d;
+    }
     for (uint32_t i = 0; i < n; i++) mem_w8(d + i, (uint8_t)mem_r8(s + i));
     return d;
 }
 
 static uint32_t g_memmove(uint32_t d, uint32_t s, uint32_t n)
 {
-    if (d <= s) return g_memcpy(d, s, n);
+    if (d <= s || d >= s + n) return g_memcpy(d, s, n);
+    if (((d | s | n) & 3u) == 0) {
+        for (uint32_t i = n; i > 0; i -= 4u) {
+            uint32_t v = mem_r32(s + i - 4u);
+            mem_w32_t(d + i - 4u, v, vtag_of(s + i - 4u, v));
+        }
+        return d;
+    }
     for (uint32_t i = n; i-- > 0;) mem_w8(d + i, (uint8_t)mem_r8(s + i));
     return d;
 }

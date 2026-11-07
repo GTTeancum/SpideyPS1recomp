@@ -850,7 +850,9 @@ void hw_triangle(int r, const HwVertex v[3], const HwTexture *tex, int semi, int
     int depth = 0;
 #else
     int depth = v[0].w > 0 && v[1].w > 0 && v[2].w > 0;
-    if (depth) {
+    /* With vertex tags each depth is the corner's own; the guard below was for depths
+     * looked up by screen position (precise_vertices=0). */
+    if (depth && !rt_precise_vertices) {
         /* A corner with a depth from the wrong point (two points can share a pixel) shows
          * as a fan of streaks. A small triangle cannot span a large depth range, so one
          * that seems to is drawn affine instead. */
@@ -874,7 +876,45 @@ void hw_triangle(int r, const HwVertex v[3], const HwTexture *tex, int semi, int
         shade(rgb[i], s->r, s->g, s->b, tex != 0, raw);
         uv[i][0] = v[i].u; uv[i][1] = v[i].v;
     }
+    if (depth && !semi && rt_precise_vertices) {
+        /* Hairline cracks: where the game's pieces meet only to within a fraction of a
+         * pixel (a split face beside an unsplit one, a vertex on a neighbour's edge),
+         * pixel centres can fall between them and show what was there before: a speck
+         * or short seam that moves with the camera. The PC fills such pixels after
+         * drawing (GlShaders WideCompleteFs); without a spare buffer for that here,
+         * each opaque world triangle is drawn 0.6 pixels larger about its centre so
+         * neighbours overlap. Texture coordinates stay with the corners (sub-pixel
+         * stretch); semi-transparent ones are left alone (an overlap would show). */
+        float cx = (xy[0][0] + xy[1][0] + xy[2][0]) / 3.0f, cy = (xy[0][1] + xy[1][1] + xy[2][1]) / 3.0f;
+        for (int i = 0; i < 3; i++) {
+            float dx = xy[i][0] - cx, dy = xy[i][1] - cy, len = __builtin_sqrtf(dx * dx + dy * dy);
+            if (len > 0.01f) { xy[i][0] += dx * (0.6f / len); xy[i][1] += dy * (0.6f / len); }
+        }
+    }
+    if (rt_geometry_debug == 1 && tex && depth) {
+        /* Gap test (geometry_debug=1): each material one flat colour, so a crack shows
+         * as a thin line of another colour inside it, countable exactly. */
+        uint32_t hsh = ((uint32_t)tex->clut * 2654435761u) ^ ((uint32_t)(tex->page_x | tex->page_y << 10) * 40503u);
+        float cr = (float)((hsh >> 8) & 0xFF) / 510.0f, cg = (float)((hsh >> 16) & 0xFF) / 510.0f, cb = (float)((hsh >> 24) & 0xFF) / 510.0f;
+        for (int i = 0; i < 3; i++) { rgb[i][0] = cr; rgb[i][1] = cg; rgb[i][2] = cb; }
+        Tex t = linear(g_white, 64, 16, 16);
+        submit_tri(r, xy, rgb, uv, w, &t, 0, 0, mode);
+        return;
+    }
     if (tex) {
+        /* Which texel a pixel takes, as the PC's renderer (GlShaders: floor where the
+         * texture runs forward across the screen, ceil where it runs backward) and the
+         * console do: with floor alone, mirrored art (window columns, brick) showed the
+         * neighbouring texel in a thin line along polygon edges. The direction is
+         * constant across a triangle, affine or perspective. */
+        float ax = xy[1][0] - xy[0][0], ay = xy[1][1] - xy[0][1], bx = xy[2][0] - xy[0][0], by = xy[2][1] - xy[0][1];
+        float area = ax * by - bx * ay;
+        if (area > 1e-6f || area < -1e-6f) {
+            float dudx = ((uv[1][0] - uv[0][0]) * by - (uv[2][0] - uv[0][0]) * ay) / area;
+            float dvdy = (ax * (uv[2][1] - uv[0][1]) - bx * (uv[1][1] - uv[0][1])) / area;
+            float du = dudx < 0 ? 0.999f : 0.0001f, dv = dvdy < 0 ? 0.999f : 0.0001f;
+            for (int i = 0; i < 3; i++) { uv[i][0] += du; uv[i][1] += dv; }
+        }
         Tex t;
         int u_lo = v[0].u, u_hi = v[0].u, v_lo = v[0].v, v_hi = v[0].v;
         for (int i = 1; i < 3; i++) {

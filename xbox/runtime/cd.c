@@ -9,6 +9,8 @@
 #include <string.h>
 #include <windows.h>
 #include "runtime.h"
+#include "spu.h"
+#include "xa.h"
 
 /* ---- disc --------------------------------------------------------------------------- */
 typedef struct { int lba, raw; uint32_t size; char path[64]; } DiscFile;
@@ -170,6 +172,7 @@ static void set_error(uint8_t err, uint8_t extra)
 
 static void reset_state(void)
 {
+    spu_cd_mix(0x80, 0, 0x80, 0);
     g_status = StatMotor; g_mode = 0; g_com = 0; g_last_intr = Complete;
     g_cb_sync = g_cb_ready = g_cb_data = 0;
     g_read_active = 0; g_filter_file = g_filter_channel = 0;
@@ -200,10 +203,41 @@ static void pump_ready(int max_sectors)
 static int g_held;
 void cd_hold(int on) { g_held = on; }
 
+/* ---- XA audio streaming (the PC's LibCd.PumpXa) ------------------------------------------
+ * A read in XA mode plays the disc's ADPCM sectors instead of delivering them: paced at
+ * the drive's speed (75 or 150 sectors a second, filtered-out sectors taking their disc
+ * time too, so the game's position checks end clips on time), the file and channel the
+ * filter selects decoded into the sound chip's CD input. */
+static double g_xa_carry;
+static int32_t g_xa_history[2][2];
+
+static void xa_start(void)
+{
+    g_xa_carry = 0;
+    memset(g_xa_history, 0, sizeof g_xa_history);
+    spu_xa_reset();
+}
+
+static void xa_tick(void)
+{
+    static uint8_t sector[2336];
+    static int16_t pcm[XA_MAX_FRAMES * 2];
+    g_xa_carry += ((g_mode & 0x80) ? 150.0 : 75.0) / 60.0;
+    while (g_xa_carry >= 1.0) {
+        g_xa_carry -= 1.0;
+        read_sector(current_lba(), 2336, sector);
+        advance(1);
+        if (!xa_is_audio(sector)) continue;
+        if ((g_mode & 0x08) && (sector[0] != g_filter_file || sector[1] != g_filter_channel)) continue;
+        int n = xa_decode(sector, g_xa_history, pcm);
+        spu_xa_push(pcm, n, xa_rate(sector));
+    }
+}
+
 void cd_tick(void)
 {
     if (g_held) return;
-    if (g_read_active && (g_mode & 0x40)) return;     /* XA audio: not played yet */
+    if (g_read_active && (g_mode & 0x40)) { xa_tick(); return; }
     if (!g_read_active || (!g_cb_data && !g_cb_ready) || !rt_cpu()) return;
     if (!g_cb_data) { pump_ready(400000); return; }
     CpuContext saved = *rt_cpu();
@@ -231,9 +265,12 @@ static int exec_command(uint8_t com, uint32_t param, uint32_t result)
             if (result) write_result(result);
             return DiskError;
         }
+        if (g_mode & 0x40) xa_start();
         g_read_active = 1;
         g_status = StatMotor | StatRead;
         break;
+    case Mute: spu_cd_muted = 1; break;
+    case Demute: spu_cd_muted = 0; break;
     case Play: g_read_active = 0; g_status = StatMotor | StatPlay; break;
     case Getparam:
         g_result[0] = g_status; g_result[1] = g_mode; g_result[2] = 0;
@@ -370,4 +407,9 @@ void hook_LibCd_CdDataCallback(CpuContext *c) { V0 = g_cb_data; g_cb_data = A0; 
 void hook_LibCd_CdStatus(CpuContext *c) { pump_ready(1); V0 = g_status; }
 void hook_LibCd_CdMode(CpuContext *c) { V0 = g_mode; }
 void hook_LibCd_CdLastCom(CpuContext *c) { V0 = g_com; }
-void hook_LibCd_CdMix(CpuContext *c) { V0 = 1; }
+/* CdlATV order: left to left, left to right, right to right, right to left. */
+void hook_LibCd_CdMix(CpuContext *c)
+{
+    if (A0) spu_cd_mix((uint8_t)mem_r8(A0), (uint8_t)mem_r8(A0 + 1), (uint8_t)mem_r8(A0 + 2), (uint8_t)mem_r8(A0 + 3));
+    V0 = 1;
+}

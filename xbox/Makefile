@@ -1,6 +1,8 @@
 XBE_TITLE = OpenSpidey
 OUTPUT_DIR = build/release
 NXDK_DIR ?= /c/nxdk
+# SDL2's game controller API for the Xbox pad (src/input.c).
+NXDK_SDL = y
 
 # Generated game code: make it with RecompOne's --c output (see README) and the
 # default hooks with tools/gen_hook_defaults.py before building.

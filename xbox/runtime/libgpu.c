@@ -52,6 +52,7 @@ static void hook_LibGpu_DrawOTag_timed(CpuContext *c)
     rt_drawotag_count++;
     RT_WHERE("DrawOTag");
     if (rt_drawotag_hook) rt_drawotag_hook();
+    if (rt_geometry_debug == 2) gpu_debug_clear();
     uint32_t addr = A0 & (RECOMP_RAM_SIZE - 4u);
     rt_ot_start = addr;
     for (int guard = 0; guard < 0x100000; guard++) {

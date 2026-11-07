@@ -21,7 +21,11 @@ static uint32_t fifo[256];
 static uint32_t fifo_addr[256];        /* the RAM word each came from, 0: none (vertex tags) */
 static int fifo_count, need, polyline;
 volatile uint32_t rt_hw_precise, rt_hw_imprecise;
-int rt_precise_vertices = 1;   /* 0: the old drawing, whole pixels and screen-point depths (comparison) */
+/* Untagged textured vertices: not from RAM, no tag page, slot stale or empty, word
+ * differs from the tag's SXY; and the last few addresses and words. */
+volatile uint32_t rt_vtag_miss[5], rt_vtag_miss_addr[8], rt_vtag_miss_word[8], rt_vtag_miss_next;
+int rt_precise_vertices = 1;
+int rt_geometry_debug;         /* 1: world materials drawn flat, for the gap test */   /* 0: the old drawing, whole pixels and screen-point depths (comparison) */
 
 static int load_image, load_x, load_y, load_w, load_h, load_px;
 static int read_image, read_x, read_y, read_w, read_h, read_px;
@@ -248,6 +252,15 @@ static void hw_polygon(int r, const Vert *v, int quad, int tex, int gouraud, int
     hw_triangle(r, t, tex ? &key : 0, semi, blend_mode, raw, gouraud);
 }
 
+/* Hole test (geometry_debug=2): the drawing area starts each frame magenta, so any
+ * pixel the frame's polygons leave undrawn (a crack, or a transparent texel taken at
+ * an edge) shows. */
+void gpu_debug_clear(void)
+{
+    int r = hw_target();
+    if (r >= 0) hw_fill(r, area_left, area_top, area_right - area_left + 1, area_bottom - area_top + 1, 0x7C1F);
+}
+
 static void draw_polygon(void)
 {
     uint32_t cmd = fifo[0];
@@ -275,7 +288,15 @@ static void draw_polygon(void)
          * belong to another vertex at the same pixel and bend the texture, so it is
          * not used for drawing. */
         const VTag *t = va ? vtag_of(va, vw) : 0;
-        if (t && (vw & 0x07FF07FFu) != (t->native & 0x07FF07FFu)) t = 0;
+        if (t && (vw & 0x07FF07FFu) != (t->native & 0x07FF07FFu)) { rt_vtag_miss[3]++; t = 0; }
+        else if (!t && tex && screen_depth > 0) {
+            /* Why this textured vertex has no tag (the status counts them). */
+            const VTag *e = va ? vtag_slot(va) : 0;
+            int why = !va ? 0 : !e ? 1 : !(e->z > 0) ? 2 : 4;
+            rt_vtag_miss[why]++;
+            rt_vtag_miss_addr[rt_vtag_miss_next & 7] = va;
+            rt_vtag_miss_word[rt_vtag_miss_next++ & 7] = vw;
+        }
         v[i].w = t ? t->z : 0.0f;
         v[i].precise = t != 0;
         v[i].px = t ? (float)offset_x + t->x : (float)v[i].x;
@@ -296,7 +317,7 @@ static void draw_polygon(void)
     if (tex) {
         if (tagged == n) rt_hw_precise++;
         else {
-            rt_hw_imprecise++;
+            if (world) rt_hw_imprecise++;
             for (int i = 0; i < n; i++) { v[i].w = 0.0f; v[i].precise = 0; }
         }
     }

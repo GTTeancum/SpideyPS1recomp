@@ -112,9 +112,24 @@ static void status_text(void)
         rt_fov_num, rt_fov_den);
     ADD("textured triangles perspective %lu affine %lu replaced %lu\n", (unsigned long)rt_hw_perspective, (unsigned long)rt_hw_affine,
         (unsigned long)rt_hw_replaced);
+    {
+        extern volatile uint32_t rt_spu_peak, rt_spu_voices;
+        extern int spu_xa_buffered(void);
+        ADD("sound peak %lu voices %lu xa buffered %d\n", (unsigned long)rt_spu_peak, (unsigned long)rt_spu_voices, spu_xa_buffered());
+        rt_spu_peak = 0;
+        rt_spu_voices = 0;
+    }
     ADD("vertex tags pages %lu stores %lu refused %lu; textured polygons precise %lu imprecise %lu\n",
         (unsigned long)rt_vtag_pages, (unsigned long)rt_vtag_stores, (unsigned long)rt_vtag_refused,
         (unsigned long)rt_hw_precise, (unsigned long)rt_hw_imprecise);
+    {
+        extern volatile uint32_t rt_vtag_miss[5], rt_vtag_miss_addr[8], rt_vtag_miss_word[8];
+        ADD("untagged world vertices no-address %lu no-page %lu cleared %lu changed %lu other-word %lu; last",
+            (unsigned long)rt_vtag_miss[0], (unsigned long)rt_vtag_miss[1], (unsigned long)rt_vtag_miss[2], (unsigned long)rt_vtag_miss[4],
+            (unsigned long)rt_vtag_miss[3]);
+        for (int i = 0; i < 8; i++) ADD(" %08lX:%08lX", (unsigned long)rt_vtag_miss_addr[i], (unsigned long)rt_vtag_miss_word[i]);
+        ADD("%s", "\n");
+    }
     for (int i = 0; i < RT_METRICS; i++)
         if (rt_metric_name[i]) ADD("metric %s %lu\n", rt_metric_name[i], (unsigned long)rt_metric[i]);
     ADD("shown %08lX %lux%lu\n", (unsigned long)rt_hw_shown, (unsigned long)rt_hw_shown_w, (unsigned long)rt_hw_shown_h);

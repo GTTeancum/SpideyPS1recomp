@@ -10,6 +10,7 @@
 #include "hwgpu.h"
 #include "prof.h"
 #include "runtime.h"
+#include "spu.h"
 
 volatile uint32_t rt_vblank_count;
 volatile uint32_t rt_ticks_dropped, rt_longest_wait_ms;
@@ -118,6 +119,8 @@ void rt_tick(void)
     if (++g_ticks_until_present >= 2) { g_ticks_until_present = 0; present(); }
     RT_WHERE("tick cd");
     { PROF_BEGIN(cd); cd_tick(); PROF_END(PROF_CD, cd); }
+    RT_WHERE("tick sound");
+    spu_tick();
     RT_WHERE("tick pad");
     rt_pad_refresh();
     RT_WHERE("tick irq");

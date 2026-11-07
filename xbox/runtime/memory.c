@@ -1,11 +1,13 @@
 /*
  * Everything the inline RAM path in recomp.h does not cover: the scratchpad,
  * hardware registers and the BIOS ROM, following the PC runtime's PSMemory/Dma.
- * The GPU ports and DMA channels 2 (GPU) and 6 (ordering-table clear) are emulated;
- * other registers are plain storage that reads back what was written, as on the PC.
+ * The GPU ports, the sound chip's registers (spu.c) and DMA channels 2 (GPU), 4 (sound
+ * RAM) and 6 (ordering-table clear) are emulated; other registers are plain storage
+ * that reads back what was written, as on the PC.
  */
 #include "gpu.h"
 #include "runtime.h"
+#include "spu.h"
 
 uint8_t recomp_ram[RECOMP_RAM_SIZE] __attribute__((aligned(16)));
 static uint8_t g_scratchpad[1024];
@@ -78,6 +80,7 @@ static void dma_run(int channel, uint32_t madr, uint32_t bcr, uint32_t chcr)
 {
     switch (channel) {
     case 2: dma_gpu(madr, bcr, chcr); break;
+    case 4: if (chcr & 1u) spu_dma_write(madr, word_count(bcr) * 4u); break;   /* to the sound chip; reads ignored, as on the PC */
     case 6: dma_clear_ot(madr, bcr); break;
     default: unmapped("dma", 0x1F801088u + 0x10u * (uint32_t)channel); break;
     }
@@ -101,6 +104,7 @@ uint32_t mem_slow_r32(uint32_t a)
     if (p == 0x1F801810u) return gpu_read_data();
     if (p == 0x1F801814u) return gpu_read_status();
     if (p == 0x1F8010F4u) return g_dicr;
+    if (spu_is_reg(p)) return spu_read16(p) | ((uint32_t)spu_read16(p + 2u) << 16);
     if (in_io(p)) return io32(p);
     if (p >= 0x1FC00000u && p < 0x1FC80000u) return 0;
     unmapped("read", p);
@@ -111,6 +115,7 @@ uint32_t mem_slow_r16(uint32_t a)
 {
     uint32_t p = PHYS(a);
     if (in_scratchpad(p)) { uint16_t v; __builtin_memcpy(&v, g_scratchpad + (p & 0x3FEu), 2); return v; }
+    if (spu_is_reg(p)) return spu_read16(p);
     if (in_io(p)) { uint16_t v; __builtin_memcpy(&v, g_io + (p & 0x1FFEu), 2); return v; }
     if (p >= 0x1FC00000u && p < 0x1FC80000u) return 0;
     unmapped("read", p);
@@ -139,6 +144,7 @@ void mem_slow_w32(uint32_t a, uint32_t v)
         dma_run((int)((p - 0x1F801080u) / 0x10u), io32(p - 8u), io32(p - 4u), v);
         return;
     }
+    if (spu_is_reg(p)) { spu_write16(p, (uint16_t)v); spu_write16(p + 2u, (uint16_t)(v >> 16)); return; }
     if (in_io(p)) { io32_set(p, v); return; }
     unmapped("write", p);
 }
@@ -147,6 +153,7 @@ void mem_slow_w16(uint32_t a, uint16_t v)
 {
     uint32_t p = PHYS(a);
     if (in_scratchpad(p)) { __builtin_memcpy(g_scratchpad + (p & 0x3FEu), &v, 2); return; }
+    if (spu_is_reg(p)) { spu_write16(p, v); return; }
     if (in_io(p)) { __builtin_memcpy(g_io + (p & 0x1FFEu), &v, 2); return; }
     unmapped("write", p);
 }
