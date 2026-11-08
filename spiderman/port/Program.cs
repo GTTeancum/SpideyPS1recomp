@@ -44,6 +44,16 @@ public static class Program
         RecompOne.Runtime.Host.BundledNativeRuntime.Initialize();
         if (!AcquireRuntimeLease()) return 4;
         Diag.OpenLog();
+        // The game icon on the window (Windows' taskbar uses the executable's own icon).
+        using (var icon = Assembly.GetExecutingAssembly().GetManifestResourceStream("OpenSpidey.Icon.png"))
+        {
+            if (icon != null)
+            {
+                using var bytes = new MemoryStream();
+                icon.CopyTo(bytes);
+                RecompOne.Runtime.Host.HostWindow.SetIcon(bytes.ToArray());
+            }
+        }
 
         string installRoot = ExeDirectory() ?? AppContext.BaseDirectory;
         string installOutput = InstallOutput(installRoot);

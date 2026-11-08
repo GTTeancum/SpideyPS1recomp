@@ -145,6 +145,11 @@ static void status_text(void)
         for (int i = 0; i < 8; i++) ADD(" %08lX:%08lX", (unsigned long)rt_vtag_miss_addr[i], (unsigned long)rt_vtag_miss_word[i]);
         ADD("%s", "\n");
     }
+    {
+        extern volatile uint32_t rt_card_ready, rt_card_writes, rt_card_files, rt_card_saves;
+        ADD("memory card ready %lu saves %lu files opened %lu writes %lu\n", (unsigned long)rt_card_ready,
+            (unsigned long)rt_card_saves, (unsigned long)rt_card_files, (unsigned long)rt_card_writes);
+    }
     for (int i = 0; i < RT_METRICS; i++)
         if (rt_metric_name[i]) ADD("metric %s %lu\n", rt_metric_name[i], (unsigned long)rt_metric[i]);
     ADD("shown %08lX %lux%lu\n", (unsigned long)rt_hw_shown, (unsigned long)rt_hw_shown_w, (unsigned long)rt_hw_shown_h);

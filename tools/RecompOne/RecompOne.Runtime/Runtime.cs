@@ -34,16 +34,35 @@ public static class Runtime
     public static Config.ViewConfig View => Config.ConfigManager.View;
     public static void SaveView() => Config.ConfigManager.SaveView(Host.Window.PanelManager.Panels);
     
-    public static Hardware.MemoryCard CardA = new("carda.sav") { Enabled = true };
-    public static Hardware.MemoryCard CardB = new("cardb.sav") { Enabled = true };
+    public static Hardware.MemoryCard CardA = new("saves/carda.sav") { Enabled = true };
+    public static Hardware.MemoryCard CardB = new("saves/cardb.sav") { Enabled = true };
 
+    /// <summary>
+    /// Memory cards live in saves/ beside the game. Earlier builds kept them loose beside
+    /// the executable (and wrote that default into settings.json): that old default now
+    /// means saves/, and a card still at the old place is moved there the first time.
+    /// </summary>
     static void LoadMemoryCards()
     {
         var g = Config.ConfigManager.Game;
-        CardA = new(Fallback(g.CardAPath, "carda.sav")) { Enabled = g.CardAEnabled };
-        CardB = new(Fallback(g.CardBPath, "cardb.sav")) { Enabled = g.CardBEnabled };
+        CardA = new(CardPath(g.CardAPath, "carda.sav")) { Enabled = g.CardAEnabled };
+        CardB = new(CardPath(g.CardBPath, "cardb.sav")) { Enabled = g.CardBEnabled };
+    }
 
-        static string Fallback(string path, string def) => string.IsNullOrWhiteSpace(path) ? def : path;
+    static string CardPath(string configured, string file)
+    {
+        string saves = Path.Combine("saves", file);
+        if (!string.IsNullOrWhiteSpace(configured) && configured != file) return configured;
+        try
+        {
+            if (File.Exists(file) && !File.Exists(saves))
+            {
+                Directory.CreateDirectory("saves");
+                File.Move(file, saves);
+            }
+        }
+        catch (Exception e) { Console.Error.WriteLine($"[Runtime] moving {file} into saves: {e.Message}"); }
+        return saves;
     }
     public static readonly Memory.RamLogger RamLog = new();
     public static readonly Dispatch.OverlayEventLog OverlayLog = new();

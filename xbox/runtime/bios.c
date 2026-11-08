@@ -6,6 +6,7 @@
  */
 #include <stdio.h>
 #include "runtime.h"
+#include "card.h"
 
 #define A0 c->r[4]
 #define A1 c->r[5]
@@ -152,6 +153,31 @@ static int ev_slot(uint32_t ev)
     return s < EVENTS ? s : -1;
 }
 
+/* DeliverEvent: enabled events of this class and spec become delivered. */
+void bios_deliver_event(uint32_t cls, uint32_t spec)
+{
+    for (int s = 0; s < EVENTS; s++)
+        if (g_events[s].status == 2 && g_events[s].cls == cls && g_events[s].spec == spec) g_events[s].status = 4;
+}
+
+/* An event raised from interrupt context (the PC's BiosB.DeliverEventIntr): a
+ * callback-mode event (mode 0x1000) runs its function, the others become delivered. */
+int bios_deliver_event_intr(uint32_t cls, uint32_t spec)
+{
+    int hits = 0;
+    for (int s = 0; s < EVENTS; s++) {
+        if (g_events[s].status != 2 || g_events[s].cls != cls || g_events[s].spec != spec) continue;
+        hits++;
+        if ((g_events[s].mode & 0x1000u) && g_events[s].func) {
+            CpuContext *c = rt_cpu();
+            CpuContext saved = *c;
+            recomp_dispatch(c, g_events[s].func);
+            *c = saved;
+        } else g_events[s].status = 4;
+    }
+    return hits;
+}
+
 /* ---- interrupts: the PSY-Q environment whose handler table the IRQs index ---------- */
 static uint32_t g_intr_env;
 uint32_t bios_intr_env(void) { return g_intr_env; }
@@ -168,6 +194,7 @@ static void missing(char table, uint32_t fn)
 
 static void bios_a(CpuContext *c, uint32_t fn)
 {
+    if (card_bios_a(c, fn)) return;
     switch (fn) {
     case 0x0E: case 0x0F: V0 = (uint32_t)((int32_t)A0 < 0 ? -(int32_t)A0 : (int32_t)A0); break;
     case 0x13:                                                                          /* setjmp */
@@ -218,6 +245,7 @@ static void bios_b(CpuContext *c, uint32_t fn)
     char *label = counted[fn & 0xFF];
     if (!label[0]) snprintf(label, 8, "B(%02lX)", (unsigned long)(fn & 0xFF));
     rt_note(label);
+    if (card_bios_b(c, fn)) return;
     int s;
     switch (fn) {
     case 0x00: case 0x02: case 0x03: V0 = 0; break;
@@ -236,10 +264,7 @@ static void bios_b(CpuContext *c, uint32_t fn)
             }
         break;
     case 0x09: s = ev_slot(A0); if (s >= 0) g_events[s].status = 0; V0 = 1; break;     /* CloseEvent */
-    case 0x07:                                                                          /* DeliverEvent */
-        for (s = 0; s < EVENTS; s++)
-            if (g_events[s].status == 2 && g_events[s].cls == A0 && g_events[s].spec == A1) g_events[s].status = 4;
-        break;
+    case 0x07: bios_deliver_event(A0, A1); break;                                      /* DeliverEvent */
     case 0x20:                                                                          /* UnDeliverEvent */
         for (s = 0; s < EVENTS; s++)
             if (g_events[s].status == 4 && g_events[s].cls == A0 && g_events[s].spec == A1) g_events[s].status = 2;

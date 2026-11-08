@@ -78,6 +78,12 @@
           Symbol names for stall dumps (see patches/Diag.cs), embedded rather than
           copied beside the executable.
         -->
+        <!-- The game icon (from OpenSpidey.png): the window's icon, and beside the
+             executable for desktop entries (Linux). -->
+        <EmbeddedResource Include="OpenSpidey.png">
+            <LogicalName>OpenSpidey.Icon.png</LogicalName>
+        </EmbeddedResource>
+        <None Include="OpenSpidey.png" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
         <EmbeddedResource Include="..\config\funcmaps\*.json" Exclude="..\config\funcmaps\*_sweep.json">
             <LogicalName>funcmaps.%(Filename)%(Extension)</LogicalName>
         </EmbeddedResource>

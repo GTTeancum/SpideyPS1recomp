@@ -9,6 +9,7 @@
 #include "gpu.h"
 #include "hwgpu.h"
 #include "prof.h"
+#include "card.h"
 #include "runtime.h"
 #include "spu.h"
 
@@ -123,6 +124,7 @@ void rt_tick(void)
     spu_tick();
     RT_WHERE("tick pad");
     rt_pad_refresh();
+    card_pump();
     RT_WHERE("tick irq");
     rt_vblank_count++;
     { PROF_BEGIN(irq); rt_raise_irq(0); PROF_END(PROF_IRQ, irq); }

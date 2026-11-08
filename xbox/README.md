@@ -39,6 +39,10 @@ START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
 | `runtime/audio.c` | AC97 output at 48 kHz, shared by the sound chip and movies |
 | `runtime/xa.c` | CD-XA ADPCM decoding (streamed music, PS1 movie sound) |
 | `src/input.c` | the Xbox controller as PlayStation pad 1 (SDL2, the PC's default bindings) |
+| `runtime/card.c` | the PlayStation memory card on the hard disk (port of the PC's MemoryCard.cs and BIOS card calls) |
+| `runtime/title.h` | the title ID and name: the one place they are defined |
+| `tools/patch_xbe.py` | writes the title ID into the built XBE (run by `build.sh`) |
+| `tools/make_xbox_images.py` | dashboard images and launcher thumbnail from the game icon (run by `build.sh`) |
 | `runtime/movie.c` | movie playback: AC97 sound, the movie clock, skip, the two players' loops |
 | `runtime/str.c` | PS1 `.STR` decoder: MDEC video (bitstream v1/v2) and XA ADPCM sound |
 | `runtime/sfd_core.cpp` | the PC's Dreamcast SFD decoder (`tools/movies/native`), compiled in |
@@ -116,6 +120,21 @@ are CD-XA: a read in XA mode (`runtime/cd.c`) plays the disc's ADPCM sectors at 
 speed instead of delivering them, the selected file and channel decoded into the chip's
 CD input (the title music is `COMPILED.XA` channel 13). Movies take the AC97 while they
 play. No reverb, as on the PC. `COMPILED.XA` must be on the disc.
+
+## Saving
+
+The game saves to PlayStation memory cards, kept on the hard disk as the same 128 KB
+card files the PC keeps in its `saves` folder (`carda.sav`, `cardb.sav`; they move
+between the two unchanged): `E:\UDATA\6F730001\4F70656E5370\carda.sav`. `runtime/card.c` answers the game's BIOS
+card calls as the PC runtime does, writing each changed frame through to the disk.
+`6F730001` is the title ID (`runtime/title.h`): nxdk's cxbe writes 0xFFFF0002 into every
+program, so `tools/patch_xbe.py` replaces it after the link; the lower-case "os" cannot
+match a retail publisher. The dashboard reads the title's name from `TitleMeta.xbx` and
+its pictures from `TitleImage.xbx` and `SaveImage.xbx`, which `tools/make_xbox_images.py`
+makes from `spiderman/port/OpenSpidey.png` (with `default.tbn` for launchers); copy the
+three beside `default.xbe` on the console. Checked in XEMU: save, load, and the save
+surviving a console reset (`run_xemu.py --reset-at`). XEMU's hard disk image has no
+dashboard, so how the dashboard shows the title is checked on the console.
 
 ## Movies
 

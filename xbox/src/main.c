@@ -4,6 +4,7 @@
 // per PlayStation call, so it gets a large stack. The disc root is D: (nxdk mounts
 // the launch folder there); the test disc carries the player's extracted game files.
 
+#include "card.h"
 #include <hal/debug.h>
 #include <hal/video.h>
 #include <windows.h>
@@ -43,6 +44,7 @@ int main(void)
     retarget_sm1_install();
     shadow_sm1_install();
     debugPrint("OpenSpidey - original Xbox\n");
+    card_init();
     input_start();
 
     HANDLE thread = CreateThread(NULL, 4u * 1024u * 1024u, game_thread, NULL, 0, NULL);

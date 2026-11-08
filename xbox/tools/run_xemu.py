@@ -162,6 +162,11 @@ def main() -> int:
     p.add_argument("--hd", action="store_true",
                    help="HD cable and a widescreen TV allowing 480p and 720p (set on the EEPROM copy)")
     p.add_argument("--ram", action="store_true", help="also save PlayStation RAM at each shot (ram-<second>.bin)")
+    p.add_argument("--command-at", action="append", default=[],
+                   help="SECOND:COMMAND, an XEMU monitor command run after the shot at that second (repeatable)")
+    p.add_argument("--reset-at", type=float, default=0,
+                   help="reset the console after the shot at this second (hard disk writes survive the reset "
+                        "until XEMU exits, so a save can be checked across a reboot)")
     a = p.parse_args()
 
     out = a.out.resolve()
@@ -171,6 +176,10 @@ def main() -> int:
     disc.mkdir(parents=True)
     (out / "captures").mkdir()
     shutil.copy2(a.xbe, disc / "default.xbe")
+    # The dashboard images and launcher thumbnail tools/build.sh writes beside the XBE.
+    for extra in ("TitleImage.xbx", "SaveImage.xbx", "default.tbn"):
+        if (a.xbe.parent / extra).is_file():
+            shutil.copy2(a.xbe.parent / extra, disc / extra)
     for item in a.include:
         if item.is_dir():
             shutil.copytree(item, disc / item.name)
@@ -259,6 +268,12 @@ dvd_path = '{toml_path(iso)}'
             if a.ram:
                 save_ram(a.monitor_port, a.xbe.parent.parent / "OpenSpidey.map", out / "captures" / f"ram-{int(second)}.bin")
             results.append(record)
+            for item in a.command_at:
+                at, command = item.split(":", 1)
+                if float(at) == second:
+                    monitor_command(a.monitor_port, command, out / "captures" / f"command-{int(second)}.txt")
+            if a.reset_at and second == a.reset_at:
+                monitor_command(a.monitor_port, "system_reset", out / "captures" / f"reset-{int(second)}.txt")
     finally:
         if proc.poll() is None:
             proc.kill()

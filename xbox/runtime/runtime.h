@@ -46,6 +46,8 @@ void bios_init(void);
 
 /* The PSY-Q interrupt environment registered with B(19h), 0 if none yet. */
 uint32_t bios_intr_env(void);
+void bios_deliver_event(uint32_t cls, uint32_t spec);
+int bios_deliver_event_intr(uint32_t cls, uint32_t spec);
 
 /* ---- clock and interrupts ------------------------------------------------------ */
 extern volatile uint32_t rt_vblank_count;
