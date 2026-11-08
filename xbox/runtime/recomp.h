@@ -24,13 +24,37 @@
  * registers and RAM until the GPU draws it, so the picture uses the precise geometry
  * rather than whole PlayStation pixels and a depth guessed from the screen position
  * (runtime/vtag.c). `value` is the RAM word as tagged (a later write invalidates the
- * tag by changing it); `native` the SXY word the position belongs to, which a packet
- * vertex must equal for the tag to apply.
+ * tag by changing it); x16, y16 the position in sixteenths of a pixel; z the camera
+ * depth. A packet vertex uses a tag's position only when its own coordinates are the
+ * position's pixel, give or take the one-pixel crack offsets the game adds, or the
+ * GTE's saturation of a point beyond the screen -- unless the tag is certified:
+ * `native` (the PC's NativeScreen) is 0x80000000 | the SXY word a hook proved the
+ * position belongs to (a subdivision grid point, an edge point the game nudged), and
+ * then exactly that word qualifies however far the position is from it.
  */
+#define VTAG_CERTIFIED 0x80000000u
+#define VTAG_SXY 0x07FF07FFu
 typedef struct VTag {
-    uint32_t value, native;
-    float x, y, z;
+    uint32_t value;
+    int16_t x16, y16;
+    float z;
+    uint32_t native;
 } VTag;
+
+static inline int16_t vtag_fixed(float v) { v *= 16.0f; return (int16_t)(v > 32767.0f ? 32767 : v < -32768.0f ? -32768 : (int)(v + (v < 0 ? -0.5f : 0.5f))); }
+static inline int vtag_coord_ok(int packet, int precise_floor)
+{
+    int d = packet - precise_floor;
+    return (d >= -1 && d <= 1) || (packet >= 510 && precise_floor > packet) || (packet <= -510 && precise_floor < packet);
+}
+/* Whether an SXY word (11-bit signed x, y) belongs to the tag's position (the PC's
+ * GteScreen.MatchesPackedScreen). */
+static inline int vtag_matches(uint32_t word, const VTag *t)
+{
+    if (t->native & VTAG_CERTIFIED) return (word & VTAG_SXY) == (t->native & VTAG_SXY);
+    int px = (int)(word << 21) >> 21, py = (int)((word >> 16) << 21) >> 21;
+    return vtag_coord_ok(px, t->x16 >> 4) && vtag_coord_ok(py, t->y16 >> 4);
+}
 
 typedef struct CpuContext {
     uint32_t r[32];          /* general-purpose registers; r[0] is never written */
@@ -143,9 +167,9 @@ void vtag_store(uint32_t address, uint32_t value, const VTag *tag);
 /* Out of line, called from every generated load and store: inlined, the tag work
  * doubled the program (19 MB) past the memory the Xbox has spare for it. */
 const VTag *vtag_load(uint32_t address, uint32_t value);
-const VTag *vtag_containing(uint32_t address);
+const VTag *vtag_containing_slow(uint32_t address);
 void vtag_stored(uint32_t address, uint32_t value, const VTag *tag);
-const VTag *vtag_pick(const VTag *a, const VTag *b);
+const VTag *vtag_pick_slow(const VTag *a, const VTag *b);
 
 /* The tag slot of an aligned word, if its page exists. */
 static inline VTag *vtag_slot(uint32_t a)
@@ -165,12 +189,32 @@ static inline const VTag *vtag_of(uint32_t a, uint32_t value)
     return e && e->z > 0.0f && e->value == value ? e : 0;
 }
 
+#ifdef RT_NO_VTAGS   /* timing comparison: the generated code's tag work compiled out */
+#define mem_r32_t(c, r, a) mem_r32(a)
+#define mem_w32_t(a, v, t) mem_w32(a, v)
+#define mem_w16_t(a, v, t) mem_w16(a, v)
+#define vtag_containing(a) ((const VTag *)0)
+#define vtag_pick(a, b) ((const VTag *)0)
+#else
 /* LW; LB/LBU/LH/LHU take the containing word's tag (vtag_containing: mesh builders
  * unpack SXY as halves and recombine them, the PC's GteScreen.ContainingVertex). */
+/* Whether the word's 4 KB page has ever held a tag: checked inline so the common case
+ * (memory no vertex has touched) costs a test instead of a call. A call on every load
+ * and store halved the frame rate in level 3. */
+static inline int vtag_page_present(uint32_t a)
+{
+    uint32_t p = a & 0x1FFFFFFFu;
+    if (p < RECOMP_RAM_SIZE) return vtag_pages[p >> 12] != 0;
+    return (p & ~0x3FFu) == 0x1F800000u && vtag_pages[VTAG_PAGES - 1] != 0;
+}
+
+static inline const VTag *vtag_containing(uint32_t a) { return vtag_page_present(a) ? vtag_containing_slow(a) : 0; }
+static inline const VTag *vtag_pick(const VTag *a, const VTag *b) { return !a ? b : (!b || a == b) ? a : vtag_pick_slow(a, b); }
+
 static inline uint32_t mem_r32_t(CpuContext *c, int r, uint32_t a)
 {
     uint32_t v = mem_r32(a);
-    c->t[r] = vtag_load(a, v);
+    c->t[r] = vtag_page_present(a) ? vtag_load(a, v) : 0;
     return v;
 }
 
@@ -178,8 +222,17 @@ static inline uint32_t mem_r32_t(CpuContext *c, int r, uint32_t a)
 static inline void mem_w32_t(uint32_t a, uint32_t v, const VTag *t)
 {
     mem_w32(a, v);
-    vtag_stored(a, v, t);
+    if (t || vtag_page_present(a)) vtag_stored(a, v, t);
 }
+/* SH: a coordinate written as a half; once the halves make up the word the register's
+ * tag describes, the word takes the tag (the PC's GteScreen.StoreU16). */
+void vtag_half_stored(uint32_t address, const VTag *tag);
+static inline void mem_w16_t(uint32_t a, uint16_t v, const VTag *t)
+{
+    mem_w16(a, v);
+    if (t) vtag_half_stored(a, t);
+}
+#endif
 
 /* vtag_pick: two sources (the PC's SetDerived with two registers): either one's tag,
  * the same projection if both carry one, else none. */

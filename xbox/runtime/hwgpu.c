@@ -533,38 +533,64 @@ static const void *g_bound;
 static uint32_t g_bound_palette;
 static int g_blend = -2, g_alpha = -1;
 
-/* Stencil: used by the shadow only (bit 0x01). */
-#define STENCIL_SHADOW 4         /* darken each pixel once */
-#define STENCIL_SHADOW_CLEAR 5   /* clear the shadow's bit again, colour writes off */
+/*
+ * Stencil bits. 0x01: the shadow's "darkened once" mark, cleared again after each
+ * shadow. 0x02: some primitive drew this pixel this frame. 0x04: what drew it last was
+ * opaque world geometry. The gap fill (crack_fill) reads 0x02 and 0x04 when the frame
+ * is finished, then clears both.
+ */
+#define STENCIL_SHADOW_BIT 0x01
+#define STENCIL_COVERED 0x02
+#define STENCIL_WORLD 0x04
+enum {
+    STENCIL_COVER_WORLD = 1,   /* opaque world: covered and world */
+    STENCIL_COVER_OTHER,       /* anything else opaque (HUD, sprites): covered, not world */
+    STENCIL_COVER_BLEND,       /* a blended pass: covered; the world bit stays as it was */
+    STENCIL_SHADOW,            /* darken each pixel once */
+    STENCIL_SHADOW_CLEAR,      /* clear the shadow's bit again, colour writes off */
+    STENCIL_WORLD_TEST,        /* pass only on world pixels, write nothing */
+    STENCIL_UNCOVERED,         /* pass only on pixels no primitive drew, write nothing */
+    STENCIL_COVERED_TEST,      /* pass only on pixels a primitive drew (geometry_debug=5) */
+    STENCIL_UNCOVER,           /* the frame's background clear: nothing drawn here yet */
+};
+static const struct { uint32_t func, ref, func_mask, write_mask, zpass; } g_stencil_states[] = {
+    [STENCIL_COVER_WORLD]  = { NV097_SET_ALPHA_FUNC_V_ALWAYS, STENCIL_COVERED | STENCIL_WORLD, 0, STENCIL_COVERED | STENCIL_WORLD, NV097_SET_STENCIL_OP_V_REPLACE },
+    [STENCIL_COVER_OTHER]  = { NV097_SET_ALPHA_FUNC_V_ALWAYS, STENCIL_COVERED, 0, STENCIL_COVERED | STENCIL_WORLD, NV097_SET_STENCIL_OP_V_REPLACE },
+    [STENCIL_COVER_BLEND]  = { NV097_SET_ALPHA_FUNC_V_ALWAYS, STENCIL_COVERED, 0, STENCIL_COVERED, NV097_SET_STENCIL_OP_V_REPLACE },
+    [STENCIL_SHADOW]       = { NV097_SET_ALPHA_FUNC_V_EQUAL, 0, STENCIL_SHADOW_BIT, STENCIL_SHADOW_BIT, NV097_SET_STENCIL_OP_V_INCRSAT },
+    [STENCIL_SHADOW_CLEAR] = { NV097_SET_ALPHA_FUNC_V_ALWAYS, 0, STENCIL_SHADOW_BIT, STENCIL_SHADOW_BIT, NV097_SET_STENCIL_OP_V_ZERO },
+    [STENCIL_WORLD_TEST]   = { NV097_SET_ALPHA_FUNC_V_EQUAL, STENCIL_WORLD, STENCIL_WORLD, 0, NV097_SET_STENCIL_OP_V_KEEP },
+    [STENCIL_UNCOVERED]    = { NV097_SET_ALPHA_FUNC_V_EQUAL, 0, STENCIL_COVERED, 0, NV097_SET_STENCIL_OP_V_KEEP },
+    [STENCIL_COVERED_TEST] = { NV097_SET_ALPHA_FUNC_V_EQUAL, STENCIL_COVERED, STENCIL_COVERED, 0, NV097_SET_STENCIL_OP_V_KEEP },
+    [STENCIL_UNCOVER]      = { NV097_SET_ALPHA_FUNC_V_ALWAYS, 0, 0, STENCIL_COVERED | STENCIL_WORLD, NV097_SET_STENCIL_OP_V_REPLACE },
+};
 static int g_stencil = -1, g_stencil_force = -1;
 
 static uint32_t *stencil(uint32_t *p, int state)
 {
     if (g_stencil == state) return p;
     g_stencil = state;
-    if (state < 0) return pb_push1(p, NV097_SET_STENCIL_TEST_ENABLE, 0);
-    int shadow = state >= STENCIL_SHADOW;
+    if (state <= 0) return pb_push1(p, NV097_SET_STENCIL_TEST_ENABLE, 0);
     p = pb_push1(p, NV097_SET_STENCIL_TEST_ENABLE, 1);
-    p = pb_push1(p, NV097_SET_STENCIL_MASK, shadow ? 0x01 : 0x80);
-    p = pb_push1(p, NV097_SET_STENCIL_FUNC_MASK, shadow ? 0x01 : 0x80);
+    p = pb_push1(p, NV097_SET_STENCIL_MASK, g_stencil_states[state].write_mask);
+    p = pb_push1(p, NV097_SET_STENCIL_FUNC, g_stencil_states[state].func);
+    p = pb_push1(p, NV097_SET_STENCIL_FUNC_REF, g_stencil_states[state].ref);
+    p = pb_push1(p, NV097_SET_STENCIL_FUNC_MASK, g_stencil_states[state].func_mask);
     p = pb_push1(p, NV097_SET_STENCIL_OP_FAIL, NV097_SET_STENCIL_OP_V_KEEP);
     p = pb_push1(p, NV097_SET_STENCIL_OP_ZFAIL, NV097_SET_STENCIL_OP_V_KEEP);
-    if (state == STENCIL_SHADOW) {
-        p = pb_push1(p, NV097_SET_STENCIL_FUNC, NV097_SET_ALPHA_FUNC_V_EQUAL);
-        p = pb_push1(p, NV097_SET_STENCIL_FUNC_REF, 0);
-        p = pb_push1(p, NV097_SET_STENCIL_OP_ZPASS, NV097_SET_STENCIL_OP_V_INCRSAT);
-    } else if (state == STENCIL_SHADOW_CLEAR) {
-        p = pb_push1(p, NV097_SET_STENCIL_FUNC, NV097_SET_ALPHA_FUNC_V_ALWAYS);
-        p = pb_push1(p, NV097_SET_STENCIL_FUNC_REF, 0);
-        p = pb_push1(p, NV097_SET_STENCIL_OP_ZPASS, NV097_SET_STENCIL_OP_V_ZERO);
-    } else {
-        /* check: pass where the mask bit is clear; written pixels get set's value. */
-        p = pb_push1(p, NV097_SET_STENCIL_FUNC, (state & 2) ? NV097_SET_ALPHA_FUNC_V_NOTEQUAL : NV097_SET_ALPHA_FUNC_V_ALWAYS);
-        p = pb_push1(p, NV097_SET_STENCIL_FUNC_REF, 0x80);
-        p = pb_push1(p, NV097_SET_STENCIL_OP_ZPASS, (state & 1) ? NV097_SET_STENCIL_OP_V_REPLACE : NV097_SET_STENCIL_OP_V_ZERO);
-    }
+    p = pb_push1(p, NV097_SET_STENCIL_OP_ZPASS, g_stencil_states[state].zpass);
     return p;
 }
+
+/* ---- gap fill state ------------------------------------------------------------------------ */
+int rt_crack_fill = 0;            /* settings: crack_fill=1 turns the gap fill on (off by default) */
+volatile uint32_t rt_crack_frames;
+static int g_world;               /* the primitive being drawn is world geometry (gpu.c) */
+static int g_background;          /* it is the frame's background clear (PutDrawEnv isbg) */
+static int g_drawn = -1;          /* the region primitives have marked since the last fill */
+static unsigned g_crack_program;  /* crackvs's first transform-program slot */
+void hw_set_world(int world) { g_world = world; }
+void hw_set_background(int background) { g_background = background; }
 
 static uint32_t *bind(uint32_t *p, const Tex *t)
 {
@@ -717,6 +743,10 @@ static void submit(int r, uint32_t op, const float (*xy)[2], const float (*rgb)[
         else { keep = ALPHA_SEMI; how = mode; }
         uint32_t *p;
         int mask = g_stencil_force;
+        if (mask < 0 && rt_crack_fill) {
+            mask = g_background ? STENCIL_UNCOVER : how >= 0 ? STENCIL_COVER_BLEND : g_world ? STENCIL_COVER_WORLD : STENCIL_COVER_OTHER;
+            g_drawn = r;
+        }
         int same = g_bound == tex->pixels && (!tex->palette || g_bound_palette == tex->palette) &&
                    g_bound_filter == tex->filter && g_bound_address == tex->address && g_alpha == keep && g_blend == how &&
                    g_stencil == mask;
@@ -875,21 +905,6 @@ void hw_triangle(int r, const HwVertex v[3], const HwTexture *tex, int semi, int
         xy[i][0] = sx(r, v[i].x); xy[i][1] = sy(r, v[i].y);
         shade(rgb[i], s->r, s->g, s->b, tex != 0, raw);
         uv[i][0] = v[i].u; uv[i][1] = v[i].v;
-    }
-    if (depth && !semi && rt_precise_vertices) {
-        /* Hairline cracks: where the game's pieces meet only to within a fraction of a
-         * pixel (a split face beside an unsplit one, a vertex on a neighbour's edge),
-         * pixel centres can fall between them and show what was there before: a speck
-         * or short seam that moves with the camera. The PC fills such pixels after
-         * drawing (GlShaders WideCompleteFs); without a spare buffer for that here,
-         * each opaque world triangle is drawn 0.6 pixels larger about its centre so
-         * neighbours overlap. Texture coordinates stay with the corners (sub-pixel
-         * stretch); semi-transparent ones are left alone (an overlap would show). */
-        float cx = (xy[0][0] + xy[1][0] + xy[2][0]) / 3.0f, cy = (xy[0][1] + xy[1][1] + xy[2][1]) / 3.0f;
-        for (int i = 0; i < 3; i++) {
-            float dx = xy[i][0] - cx, dy = xy[i][1] - cy, len = __builtin_sqrtf(dx * dx + dy * dy);
-            if (len > 0.01f) { xy[i][0] += dx * (0.6f / len); xy[i][1] += dy * (0.6f / len); }
-        }
     }
     if (rt_geometry_debug == 1 && tex && depth) {
         /* Gap test (geometry_debug=1): each material one flat colour, so a crack shows
@@ -1061,6 +1076,121 @@ void hw_shadow(int r, const float (*xy)[2], int count)
     g_open = pb_push1(p, NV097_SET_COLOR_MASK, 0x01010101);
 }
 
+/* ---- gap fill ------------------------------------------------------------------------------
+ * The PC renderer's crack rule (GlShaders.WideCompleteFs): where two surfaces meet at a
+ * T-junction in the game's models, the triangles leave pixels between them that
+ * neither covers, and the background shows through as a short line. A pixel no
+ * primitive drew takes its left neighbour when world geometry lies on both its left
+ * and right, else its upper neighbour when world geometry lies above and below it.
+ * Open sky, cleared areas and HUD art cannot satisfy that, so only enclosed one-pixel
+ * cracks change. Done once per finished frame, in the display buffer itself:
+ *   1. its alpha becomes the world mark (0.5 where stencil bit 0x04 is set, else 0);
+ *   2. crackps reads the four neighbours' alpha and colour, and writes colour only on
+ *      pixels stencil bit 0x02 says nothing drew (so every pixel it reads is one it
+ *      never writes);
+ *   3. the stencil is cleared for the next frame.
+ */
+static uint32_t *ps1_shader(uint32_t *p)
+{
+#include "ps1ps.inl"
+    return p;
+}
+
+static uint32_t *crack_shader(uint32_t *p)
+{
+#include "crackps.inl"
+    return p;
+}
+
+static void crack_fill(int r)
+{
+    RT_WHERE("hw crack fill");
+    target(r);
+    const float W = (float)OUT_W, H = (float)OUT_H;
+
+    /* 1. The world mark in alpha. */
+    uint32_t *p = open_block();
+    p = pb_push1(p, NV097_SET_CLEAR_RECT_HORIZONTAL, (uint32_t)(OUT_W - 1) << 16);
+    p = pb_push1(p, NV097_SET_CLEAR_RECT_VERTICAL, (uint32_t)(OUT_H - 1) << 16);
+    p = pb_push1(p, NV097_SET_COLOR_CLEAR_VALUE, 0);
+    p = pb_push1(p, NV097_CLEAR_SURFACE, NV097_CLEAR_SURFACE_A);
+    Tex white = linear(g_white, 64, 16, 16);   /* texel alpha 0x80 */
+    p = bind(p, &white);
+    p = alpha(p, -1);
+    p = blend(p, -1);
+    p = stencil(p, STENCIL_WORLD_TEST);
+    p = pb_push1(p, NV097_SET_COLOR_MASK, NV097_SET_COLOR_MASK_ALPHA_WRITE_ENABLE);
+    p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_TRIANGLE_STRIP);
+    for (int i = 0; i < 4; i++) p = vertex(p, (i & 1) ? W : 0, (i & 2) ? H : 0, .5f, .5f, .5f, 0, 0, 1.0f);
+    p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_END);
+    if (rt_geometry_debug == 4 || rt_geometry_debug == 5) {
+        /* Diagnosis: 4 paints the world mark green, 5 paints pixels a primitive drew blue. */
+        p = stencil(p, rt_geometry_debug == 4 ? STENCIL_WORLD_TEST : STENCIL_COVERED_TEST);
+        p = pb_push1(p, NV097_SET_COLOR_MASK, 0x00010101);
+        p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_TRIANGLE_STRIP);
+        float g = rt_geometry_debug == 4 ? 1.0f : 0.0f, b = 1.0f - g;
+        for (int i = 0; i < 4; i++) p = vertex(p, (i & 1) ? W : 0, (i & 2) ? H : 0, 0, g * 0.5f, b * 0.5f, 0, 0, 1.0f);
+        p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_END);
+    }
+    g_open = p;
+
+    /* 2. The fill: the buffer on all four texture stages, sampled one pixel left,
+     * right, above and below. */
+    p = open_block();
+    p = crack_shader(p);
+    p = pb_push1(p, NV097_SET_TRANSFORM_PROGRAM_START, g_crack_program);
+    Tex t = linear(pb_extra_buffer(r), (unsigned)OUT_W * 4u, OUT_W, OUT_H);
+    for (unsigned st = 0; st < 4; st++) {
+        uint32_t o = st * 64u;
+        p = pb_push2(p, NV097_SET_TEXTURE_OFFSET + o, (uint32_t)t.pixels & 0x03ffffff, t.format);
+        p = pb_push1(p, NV097_SET_TEXTURE_ADDRESS + o, t.address);
+        p = pb_push1(p, NV097_SET_TEXTURE_CONTROL0 + o, 0x4003ffc0);
+        p = pb_push1(p, NV097_SET_TEXTURE_CONTROL1 + o, t.pitch << 16);
+        p = pb_push1(p, NV097_SET_TEXTURE_FILTER + o, t.filter);
+        p = pb_push1(p, NV097_SET_TEXTURE_IMAGE_RECT + o, (t.w << 16) | t.h);
+    }
+    g_bound = 0; g_bound_palette = 0; g_bound_filter = 0; g_bound_address = 0;
+    p = stencil(p, STENCIL_UNCOVERED);
+    /* crackps's alpha is 1 where a neighbour pair encloses the pixel, else 0. */
+    p = pb_push1(p, NV097_SET_ALPHA_TEST_ENABLE, rt_geometry_debug != 6);   /* 6: diagnosis, every uncovered pixel */
+    p = pb_push1(p, NV097_SET_ALPHA_FUNC, NV097_SET_ALPHA_FUNC_V_GREATER);
+    p = pb_push1(p, NV097_SET_ALPHA_REF, 0x80);
+    g_alpha = -3;
+    p = pb_push1(p, NV097_SET_COLOR_MASK, NV097_SET_COLOR_MASK_RED_WRITE_ENABLE | NV097_SET_COLOR_MASK_GREEN_WRITE_ENABLE |
+                                          NV097_SET_COLOR_MASK_BLUE_WRITE_ENABLE);
+    p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_TRIANGLE_STRIP);
+    for (int i = 0; i < 4; i++) {
+        float X = (i & 1) ? W : 0, Y = (i & 2) ? H : 0;
+        p = push4f(p, NV097_SET_VERTEX_DATA4F_M + 9 * 16, X - 1.0f, Y, 0.0f, 1.0f);
+        p = push4f(p, NV097_SET_VERTEX_DATA4F_M + 10 * 16, X + 1.0f, Y, 0.0f, 1.0f);
+        p = push4f(p, NV097_SET_VERTEX_DATA4F_M + 11 * 16, X, Y - 1.0f, 0.0f, 1.0f);
+        p = push4f(p, NV097_SET_VERTEX_DATA4F_M + 12 * 16, X, Y + 1.0f, 0.0f, 1.0f);
+        p = push4f(p, NV097_SET_VERTEX_DATA4F_M, X, Y, 0.0f, 1.0f);
+    }
+    p = pb_push1(p, NV097_SET_BEGIN_END, NV097_SET_BEGIN_END_OP_END);
+    g_open = p;
+
+    /* 3. Back to the PlayStation drawing state; the stencil cleared for the next frame. */
+    p = open_block();
+    p = ps1_shader(p);
+    p = pb_push1(p, NV097_SET_TRANSFORM_PROGRAM_START, 0);
+    for (unsigned st = 1; st < 4; st++) p = pb_push1(p, NV097_SET_TEXTURE_CONTROL0 + st * 64u, 0);
+    p = pb_push1(p, NV097_SET_COLOR_MASK, 0x01010101);
+    p = stencil(p, -1);
+    g_open = p;
+    close_block();
+    pb_erase_depth_stencil_buffer(0, 0, OUT_W, OUT_H);
+    g_drawn = -1;
+    rt_crack_frames++;
+}
+
+void hw_frame_shown(int x, int y)
+{
+    if (!g_active || !rt_crack_fill || g_drawn < 0) return;
+    int r = hw_region_for(x, y);
+    if (r == g_drawn) crack_fill(r);
+}
+
 /* The last presented display buffer, for test tools reading console memory. */
 volatile uint32_t rt_hw_shown, rt_hw_shown_w, rt_hw_shown_h;
 
@@ -1219,10 +1349,27 @@ void hw_picture_end(void)
 
 
 /* ---- set-up -------------------------------------------------------------------------------- */
+static void load_program(const uint32_t *words, unsigned count, unsigned slot)
+{
+    uint32_t *p = pb_begin();
+    p = pb_push1(p, NV097_SET_TRANSFORM_PROGRAM_LOAD, slot);
+    pb_end(p);
+    for (unsigned i = 0; i < count; i += 4) {
+        p = pb_begin();
+        pb_push(p++, NV097_SET_TRANSFORM_PROGRAM, 4);
+        memcpy(p, words + i, 16);
+        p += 4;
+        pb_end(p);
+    }
+}
+
 int hw_init(void)
 {
-    uint32_t program[] = {
+    static const uint32_t program[] = {
 #include "ps1vs.inl"
+    };
+    static const uint32_t crack[] = {
+#include "crackvs.inl"
     };
     VIDEO_MODE mode = XVideoGetMode();
     if (mode.width > 0 && mode.height > 0) { g_out_w = mode.width; g_out_h = mode.height; }
@@ -1235,17 +1382,12 @@ int hw_init(void)
         MASK(NV097_SET_TRANSFORM_EXECUTION_MODE_MODE, NV097_SET_TRANSFORM_EXECUTION_MODE_MODE_PROGRAM) |
         MASK(NV097_SET_TRANSFORM_EXECUTION_MODE_RANGE_MODE, NV097_SET_TRANSFORM_EXECUTION_MODE_RANGE_MODE_PRIV));
     p = pb_push1(p, NV097_SET_TRANSFORM_PROGRAM_CXT_WRITE_EN, 0);
-    p = pb_push1(p, NV097_SET_TRANSFORM_PROGRAM_LOAD, 0);
     pb_end(p);
-    for (unsigned i = 0; i < sizeof program / sizeof program[0]; i += 4) {
-        p = pb_begin();
-        pb_push(p++, NV097_SET_TRANSFORM_PROGRAM, 4);
-        memcpy(p, program + i, 16);
-        p += 4;
-        pb_end(p);
-    }
+    load_program(program, sizeof program / sizeof program[0], 0);
+    g_crack_program = (unsigned)(sizeof program / sizeof program[0]) / 4u;
+    load_program(crack, sizeof crack / sizeof crack[0], g_crack_program);
     p = pb_begin();
-#include "ps1ps.inl"
+    p = ps1_shader(p);
     p = pb_push1(p, NV097_SET_CONTROL0, NV097_SET_CONTROL0_TEXTURE_PERSPECTIVE_ENABLE | NV097_SET_CONTROL0_STENCIL_WRITE_ENABLE);
     p = pb_push1(p, NV097_SET_CULL_FACE_ENABLE, 0);
     p = pb_push1(p, NV097_SET_DEPTH_TEST_ENABLE, 0);
@@ -1264,6 +1406,7 @@ int hw_init(void)
         pb_target_extra_buffer(i);
         pb_fill(0, 0, OUT_W, OUT_H, 0xFF000000u);
     }
+    pb_erase_depth_stencil_buffer(0, 0, OUT_W, OUT_H);
     pb_target_back_buffer();
     pb_show_front_screen();
     g_active = 1;

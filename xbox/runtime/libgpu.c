@@ -52,7 +52,8 @@ static void hook_LibGpu_DrawOTag_timed(CpuContext *c)
     rt_drawotag_count++;
     RT_WHERE("DrawOTag");
     if (rt_drawotag_hook) rt_drawotag_hook();
-    if (rt_geometry_debug == 2) gpu_debug_clear();
+    if (rt_geometry_debug == 2 || rt_geometry_debug == 4 || rt_geometry_debug == 6) gpu_debug_clear();   /* frames start magenta */
+    if (rt_geometry_debug == 3) gpu_census_frame();
     uint32_t addr = A0 & (RECOMP_RAM_SIZE - 4u);
     rt_ot_start = addr;
     for (int guard = 0; guard < 0x100000; guard++) {
@@ -95,9 +96,11 @@ void hook_LibGpu_PutDrawEnv(CpuContext *c)
         int w = clip_w < 0 ? 0 : clip_w > VRAM_W - 1 ? VRAM_W - 1 : clip_w;
         int h = clip_h < 0 ? 0 : clip_h > VRAM_H - 1 ? VRAM_H - 1 : clip_h;
         int x = clip_x - ofs_x, y = clip_y - ofs_y;
+        hw_set_background(1);
         gpu_write_gp0(0x60000000u | (b0 << 16) | (g0 << 8) | r0);
         gpu_write_gp0(((uint32_t)(uint16_t)y << 16) | (uint16_t)x);
         gpu_write_gp0(((uint32_t)(uint16_t)h << 16) | (uint16_t)w);
+        hw_set_background(0);
     }
     V0 = A0;
 }

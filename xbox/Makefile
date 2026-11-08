@@ -9,7 +9,8 @@ NXDK_SDL = y
 GAMES = spiderman
 
 # NV2A shaders (nxdk's %.inl rules: Cg -> vp20/fp20 -> push-buffer words).
-SHADER_OBJS = $(CURDIR)/runtime/ps1vs.inl $(CURDIR)/runtime/ps1ps.inl
+SHADER_OBJS = $(CURDIR)/runtime/ps1vs.inl $(CURDIR)/runtime/ps1ps.inl \
+              $(CURDIR)/runtime/crackvs.inl $(CURDIR)/runtime/crackps.inl
 
 SRCS = $(wildcard $(CURDIR)/src/*.c) $(wildcard $(CURDIR)/runtime/*.c) $(wildcard $(CURDIR)/runtime/*.cpp) \
        $(wildcard $(CURDIR)/runtime/*.s) \
@@ -33,6 +34,11 @@ NXDK_CXXFLAGS += -O3
 # Link-time optimisation: lets the GTE and memory helpers inline into the generated
 # game code across files.
 LTO = y
+
+# make RT_NO_VTAGS=1: the generated code's vertex-tag work compiled out (timing only).
+ifeq ($(RT_NO_VTAGS),1)
+NXDK_CFLAGS += -DRT_NO_VTAGS
+endif
 
 # make RT_PROFILE=1: time breakdown in the status text (tools/xbdm.py status).
 ifeq ($(RT_PROFILE),1)

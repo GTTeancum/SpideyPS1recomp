@@ -34,7 +34,7 @@ int rt_fov_num = 1, rt_fov_den = 1;
 /* The precise projection of each SXY slot (the PC's ScreenX/Y/Z and ScreenNative):
  * z 0 when the slot has none (written by the CPU, or behind the camera). */
 static float SXF[3], SYF[3], SZF[3];
-static uint32_t SNATIVE[3];
+static uint32_t SNATIVE[3];   /* a certified tag's word, kept with the slot (the PC's ScreenNative) */
 
 INLINE void flag(int bit) { FLAG |= 1u << bit; }
 
@@ -161,8 +161,9 @@ INLINE void rtp(int32_t vx, int32_t vy, int32_t vz, int sf, int lm, int last)
     SX[0] = SX[1]; SX[1] = SX[2]; SX[2] = (int16_t)nx;
     SY[0] = SY[1]; SY[1] = SY[2]; SY[2] = (int16_t)ny;
     SXF[0] = SXF[1]; SXF[1] = SXF[2]; SYF[0] = SYF[1]; SYF[1] = SYF[2];
-    SZF[0] = SZF[1]; SZF[1] = SZF[2]; SNATIVE[0] = SNATIVE[1]; SNATIVE[1] = SNATIVE[2];
+    SZF[0] = SZF[1]; SZF[1] = SZF[2];
     SZF[2] = 0.0f;
+    SNATIVE[0] = SNATIVE[1]; SNATIVE[1] = SNATIVE[2]; SNATIVE[2] = 0;
     if (m3 > 0) {
         /* One homogeneous transform for position and depth, as the PC: rounding IR/SZ
          * or the console's approximate reciprocal puts a projected midpoint off the
@@ -172,7 +173,6 @@ INLINE void rtp(int32_t vx, int32_t vy, int32_t vz, int sf, int lm, int last)
         SXF[2] = (float)(fx + OFX / 65536.0);
         SYF[2] = (float)((double)m2 * k + OFY / 65536.0);
         SZF[2] = (float)(m3 / 4096.0);
-        SNATIVE[2] = 0x80000000u | ((uint32_t)nx & 0x7FFu) | (((uint32_t)ny & 0x7FFu) << 16);
     }
     /* Which screen points came from the GTE: tells world geometry from the HUD. */
     hw_note_depth(nx, ny, (uint16_t)sz);
@@ -366,14 +366,15 @@ void gte_write_data(int reg, uint32_t val)
     case 9: IR1 = (int16_t)val; break;
     case 10: IR2 = (int16_t)val; break;
     case 11: IR3 = (int16_t)val; break;
-    case 12: SX[0] = (int16_t)val; SY[0] = (int16_t)(val >> 16); SZF[0] = 0; break;
-    case 13: SX[1] = (int16_t)val; SY[1] = (int16_t)(val >> 16); SZF[1] = 0; break;
-    case 14: SX[2] = (int16_t)val; SY[2] = (int16_t)(val >> 16); SZF[2] = 0; break;
+    case 12: SX[0] = (int16_t)val; SY[0] = (int16_t)(val >> 16); SZF[0] = 0; SNATIVE[0] = 0; break;
+    case 13: SX[1] = (int16_t)val; SY[1] = (int16_t)(val >> 16); SZF[1] = 0; SNATIVE[1] = 0; break;
+    case 14: SX[2] = (int16_t)val; SY[2] = (int16_t)(val >> 16); SZF[2] = 0; SNATIVE[2] = 0; break;
     case 15:
         SX[0] = SX[1]; SY[0] = SY[1]; SX[1] = SX[2]; SY[1] = SY[2]; SX[2] = (int16_t)val; SY[2] = (int16_t)(val >> 16);
         SXF[0] = SXF[1]; SXF[1] = SXF[2]; SYF[0] = SYF[1]; SYF[1] = SYF[2];
-        SZF[0] = SZF[1]; SZF[1] = SZF[2]; SNATIVE[0] = SNATIVE[1]; SNATIVE[1] = SNATIVE[2];
+        SZF[0] = SZF[1]; SZF[1] = SZF[2];
         SZF[2] = 0;
+        SNATIVE[0] = SNATIVE[1]; SNATIVE[1] = SNATIVE[2]; SNATIVE[2] = 0;
         break;
     case 16: SZ[0] = (uint16_t)val; break;
     case 17: SZ[1] = (uint16_t)val; break;
@@ -491,7 +492,7 @@ uint32_t gte_read_data_t(CpuContext *c, int cpu_reg, int reg)
     int s = screen_slot(reg);
     if (s < 0 || !(SZF[s] > 0)) { c->t[cpu_reg] = 0; return v; }
     VTag *t = &g_ring[g_ring_next++ & 255u];
-    t->value = v; t->native = SNATIVE[s]; t->x = SXF[s]; t->y = SYF[s]; t->z = SZF[s];
+    t->value = v; t->x16 = vtag_fixed(SXF[s]); t->y16 = vtag_fixed(SYF[s]); t->z = SZF[s]; t->native = SNATIVE[s];
     c->t[cpu_reg] = t;
     return v;
 }
@@ -502,7 +503,7 @@ void gte_write_data_t(int reg, uint32_t value, const VTag *tag)
     gte_write_data(reg, value);
     int s = screen_slot(reg);
     if (s < 0 || !tag) return;
-    SXF[s] = tag->x; SYF[s] = tag->y; SZF[s] = tag->z; SNATIVE[s] = tag->native;
+    SXF[s] = tag->x16 / 16.0f; SYF[s] = tag->y16 / 16.0f; SZF[s] = tag->z; SNATIVE[s] = tag->native;
 }
 
 void gte_load_word(int reg, uint32_t address)
@@ -516,7 +517,7 @@ void gte_store_word(uint32_t address, int reg)
     uint32_t v = gte_read_data(reg);
     int s = screen_slot(reg);
     if (s >= 0 && SZF[s] > 0) {
-        VTag t = { v, SNATIVE[s], SXF[s], SYF[s], SZF[s] };
+        VTag t = { v, vtag_fixed(SXF[s]), vtag_fixed(SYF[s]), SZF[s], SNATIVE[s] };
         mem_w32(address, v);
         vtag_store(address, v, &t);
         return;

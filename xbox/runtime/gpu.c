@@ -252,6 +252,111 @@ static void hw_polygon(int r, const Vert *v, int quad, int tex, int gouraud, int
     hw_triangle(r, t, tex ? &key : 0, semi, blend_mode, raw, gouraud);
 }
 
+/* ---- crack census (geometry_debug=3) ------------------------------------------------------
+ * Every world polygon a frame draws is recorded: its corners where they are drawn and
+ * whether each was a precise (tagged) or a rounded packet position. At the next frame
+ * the record is searched for the two ways adjacent polygons fail to meet:
+ *   near    two corners closer than a pixel but not the same point (they should be one);
+ *   tjunc   a corner on the inside of another polygon's edge (a T-junction: the edge is
+ *           one line, the corner side two, and they only agree to rounding).
+ * Each is counted by how many of the corners involved were precise (0, 1 or 2), with a
+ * few examples (positions and packet addresses), in the status text. */
+#define CENSUS_VERTS 12288
+#define CENSUS_TRIS 8192
+#define CENSUS_CELLS 8192
+typedef struct { float x, y; uint32_t addr; uint8_t precise; } CensusVert;
+static CensusVert g_cv[CENSUS_VERTS];
+static uint16_t g_ct[CENSUS_TRIS][3];
+static int g_cvn, g_ctn;
+static int16_t g_cell[CENSUS_CELLS], g_cnext[CENSUS_VERTS];
+volatile uint32_t rt_census_frames, rt_census_near[3], rt_census_tjunc[3], rt_census_polys;
+volatile uint32_t rt_census_sample[6][6];   /* class, ax, ay, bx, by (x16), addresses of a and b */
+static uint32_t g_census_next;
+
+static unsigned cell_of(int ix, int iy) { return ((unsigned)ix * 73856093u ^ (unsigned)iy * 19349663u) & (CENSUS_CELLS - 1u); }
+
+static void census_sample(int kind, int cls, const CensusVert *a, const CensusVert *b)
+{
+    volatile uint32_t *s = rt_census_sample[g_census_next++ % 6];
+    s[0] = (uint32_t)(kind * 16 + cls);
+    s[1] = (uint32_t)(int32_t)(a->x * 16); s[2] = (uint32_t)(int32_t)(a->y * 16);
+    s[3] = (uint32_t)(int32_t)(b->x * 16); s[4] = (uint32_t)(int32_t)(b->y * 16);
+    s[5] = (a->addr & 0xFFFFFFu) << 8 | ((b->addr >> 2) & 0xFFu);
+}
+
+static void census_analyse(void)
+{
+    if (!g_cvn) return;
+    rt_census_frames++;
+    for (int i = 0; i < CENSUS_CELLS; i++) g_cell[i] = -1;
+    for (int i = 0; i < g_cvn; i++) {
+        unsigned c = cell_of((int)__builtin_floorf(g_cv[i].x), (int)__builtin_floorf(g_cv[i].y));
+        g_cnext[i] = g_cell[c]; g_cell[c] = (int16_t)i;
+    }
+    /* near: within a pixel, not the same point */
+    for (int i = 0; i < g_cvn; i++) {
+        int ix = (int)__builtin_floorf(g_cv[i].x), iy = (int)__builtin_floorf(g_cv[i].y);
+        for (int dy = -1; dy <= 1; dy++)
+            for (int dx = -1; dx <= 1; dx++)
+                for (int j = g_cell[cell_of(ix + dx, iy + dy)]; j >= 0; j = g_cnext[j]) {
+                    if (j <= i) continue;
+                    float ex = g_cv[j].x - g_cv[i].x, ey = g_cv[j].y - g_cv[i].y, d2 = ex * ex + ey * ey;
+                    if (d2 > 1e-6f && d2 < 1.0f) {
+                        int cls = g_cv[i].precise + g_cv[j].precise;
+                        rt_census_near[cls]++;
+                        census_sample(1, cls, &g_cv[i], &g_cv[j]);
+                    }
+                }
+    }
+    /* tjunc: a corner within a quarter pixel of an edge's inside, away from its ends */
+    for (int t = 0; t < g_ctn; t++)
+        for (int e = 0; e < 3; e++) {
+            const CensusVert *a = &g_cv[g_ct[t][e]], *b = &g_cv[g_ct[t][(e + 1) % 3]];
+            float ex = b->x - a->x, ey = b->y - a->y, len2 = ex * ex + ey * ey;
+            if (len2 < 4.0f || len2 > 96.0f * 96.0f) continue;
+            float len = __builtin_sqrtf(len2);
+            int steps = (int)len + 1;
+            for (int s = 0; s <= steps; s++) {
+                float px = a->x + ex * s / steps, py = a->y + ey * s / steps;
+                for (int j = g_cell[cell_of((int)__builtin_floorf(px), (int)__builtin_floorf(py))]; j >= 0; j = g_cnext[j]) {
+                    const CensusVert *v = &g_cv[j];
+                    float vx = v->x - a->x, vy = v->y - a->y, u = (vx * ex + vy * ey) / len2;
+                    if (u < 0.02f || u > 0.98f) continue;
+                    float cx = vx - ex * u, cy = vy - ey * u;
+                    if (cx * cx + cy * cy > 0.0625f) continue;
+                    float da = vx * vx + vy * vy, bx = v->x - b->x, by = v->y - b->y;
+                    if (da < 0.25f || bx * bx + by * by < 0.25f) continue;
+                    int cls = v->precise + (a->precise && b->precise);
+                    rt_census_tjunc[cls]++;
+                    census_sample(2, cls, v, a);
+                }
+            }
+        }
+}
+
+/* At each frame's first DrawOTag: analyse the frame before and start a new record. */
+void gpu_census_frame(void)
+{
+    census_analyse();
+    g_cvn = g_ctn = 0;
+}
+
+static void census_polygon(const Vert *v, int n, const uint32_t *addr)
+{
+    if (g_ctn + 2 > CENSUS_TRIS || g_cvn + n > CENSUS_VERTS) return;
+    int base = g_cvn;
+    for (int i = 0; i < n; i++) {
+        CensusVert *c = &g_cv[g_cvn++];
+        c->x = v[i].precise ? v[i].px : (float)v[i].x;
+        c->y = v[i].precise ? v[i].py : (float)v[i].y;
+        c->addr = addr[i];
+        c->precise = (uint8_t)v[i].precise;
+    }
+    g_ct[g_ctn][0] = (uint16_t)base; g_ct[g_ctn][1] = (uint16_t)(base + 1); g_ct[g_ctn][2] = (uint16_t)(base + 2); g_ctn++;
+    if (n == 4) { g_ct[g_ctn][0] = (uint16_t)(base + 1); g_ct[g_ctn][1] = (uint16_t)(base + 2); g_ct[g_ctn][2] = (uint16_t)(base + 3); g_ctn++; }
+    rt_census_polys++;
+}
+
 /* Hole test (geometry_debug=2): the drawing area starts each frame magenta, so any
  * pixel the frame's polygons leave undrawn (a crack, or a transparent texel taken at
  * an edge) shows. */
@@ -268,6 +373,7 @@ static void draw_polygon(void)
     int semi = (cmd >> 25) & 1, raw = (cmd >> 24) & 1, n = quad ? 4 : 3;
     Vert v[4];
     int idx = 1, clut = 0, tpage = current_tpage(), tagged = 0, world = 1;
+    uint32_t addrs[4];
     int cr = (int)(cmd & 0xFF), cg = (int)((cmd >> 8) & 0xFF), cb = (int)((cmd >> 16) & 0xFF);
     for (int i = 0; i < n; i++) {
         if (gouraud && i > 0) {
@@ -276,19 +382,27 @@ static void draw_polygon(void)
         }
         v[i].r = cr; v[i].g = cg; v[i].b = cb;
         uint32_t va = fifo_addr[idx], vw = fifo[idx++];
+        addrs[i] = va;
         v[i].x = offset_x + coord_x(vw);
         v[i].y = offset_y + coord_y(vw);
-        /* A GTE screen point: world geometry, not HUD (the widescreen rules). */
+        /* A GTE screen point: world geometry, not HUD (the widescreen rules). With
+         * vertex tags the tag's depth says so, as the PC's Wide.FromGte (every corner
+         * with a depth); without, the depth table. */
         float screen_depth = hw_depth_at(coord_x(vw), coord_y(vw));
-        if (!(screen_depth > 0)) world = 0;
-        if (!rt_precise_vertices) { v[i].w = screen_depth; v[i].precise = 0; v[i].px = (float)v[i].x; v[i].py = (float)v[i].y; tagged++; }
+        if (!rt_precise_vertices) {
+            if (!(screen_depth > 0)) world = 0;
+            v[i].w = screen_depth; v[i].precise = 0; v[i].px = (float)v[i].x; v[i].py = (float)v[i].y; tagged++; }
         else {
         /* The packet word's own tag gives the depth and the precise position (the PC's
          * GpuRaster.DrawPolygon); a depth found from the screen position alone can
          * belong to another vertex at the same pixel and bend the texture, so it is
          * not used for drawing. */
         const VTag *t = va ? vtag_of(va, vw) : 0;
-        if (t && (vw & 0x07FF07FFu) != (t->native & 0x07FF07FFu)) { rt_vtag_miss[3]++; t = 0; }
+        /* A word whose coordinates are not the tag's position keeps the depth and loses
+         * only the position (the PC's ValidatePacketVertex, VertexTag.DepthOnly): the
+         * polygon stays in perspective and its other corners stay exact. */
+        int exact = t && vtag_matches(vw, t);
+        if (t && !exact) rt_vtag_miss[3]++;
         else if (!t && tex && screen_depth > 0) {
             /* Why this textured vertex has no tag (the status counts them). */
             const VTag *e = va ? vtag_slot(va) : 0;
@@ -297,10 +411,11 @@ static void draw_polygon(void)
             rt_vtag_miss_addr[rt_vtag_miss_next & 7] = va;
             rt_vtag_miss_word[rt_vtag_miss_next++ & 7] = vw;
         }
+        if (!t) world = 0;
         v[i].w = t ? t->z : 0.0f;
-        v[i].precise = t != 0;
-        v[i].px = t ? (float)offset_x + t->x : (float)v[i].x;
-        v[i].py = t ? (float)offset_y + t->y : (float)v[i].y;
+        v[i].precise = exact;
+        v[i].px = exact ? (float)offset_x + t->x16 / 16.0f : (float)v[i].x;
+        v[i].py = exact ? (float)offset_y + t->y16 / 16.0f : (float)v[i].y;
         if (t) tagged++;
         }
         v[i].u = v[i].v = 0;
@@ -312,15 +427,19 @@ static void draw_polygon(void)
             else if (i == 1) { tpage = (int)((uvw >> 16) & 0xFFFF); set_texpage((uint32_t)tpage); }
         }
     }
-    /* Textured: perspective and precise positions only with every vertex tagged, else
-     * the whole polygon affine at its packet positions (mixing would tear the texture). */
+    /* Textured: perspective only with every corner's depth, else the whole polygon
+     * affine at its packet positions (mixing would tear the texture), as the PC's
+     * directDepth. Counted: every corner exact, or not. */
     if (tex) {
-        if (tagged == n) rt_hw_precise++;
-        else {
-            if (world) rt_hw_imprecise++;
+        int exact = 0;
+        for (int i = 0; i < n; i++) exact += v[i].precise;
+        if (exact == n) rt_hw_precise++;
+        else if (tagged) rt_hw_imprecise++;
+        if (tagged != n) {
             for (int i = 0; i < n; i++) { v[i].w = 0.0f; v[i].precise = 0; }
         }
     }
+    if (rt_geometry_debug == 3 && world) census_polygon(v, n, addrs);
     int r = hw_target();
     if (r >= 0) {
         if (rt_prim_hook || rt_prim_replace_hook) {
@@ -333,7 +452,9 @@ static void draw_polygon(void)
             if (rt_prim_hook) rt_prim_hook(&p);
             for (int i = 0; i < n; i++) { v[i].px += (float)(p.x[i] - v[i].x); v[i].x = p.x[i]; }
         }
+        hw_set_world(world);
         hw_polygon(r, v, quad, tex, gouraud, semi, raw, clut);
+        hw_set_world(0);
         return;
     }
     raster_triangle(v[0], v[1], v[2], tex, gouraud, semi, raw, clut);
@@ -617,7 +738,7 @@ void gpu_write_gp1(uint32_t word)
     case 0x01: fifo_count = 0; polyline = 0; load_image = 0; break;
     case 0x03: display_disabled = p & 1; break;
     case 0x04: dma_dir = (int)(p & 3); break;
-    case 0x05: disp_x = (int)(p & 0x3FF); disp_y = (int)((p >> 10) & 0x1FF); break;
+    case 0x05: disp_x = (int)(p & 0x3FF); disp_y = (int)((p >> 10) & 0x1FF); hw_frame_shown(disp_x, disp_y); break;
     case 0x06: h_range1 = (int)(p & 0xFFF); h_range2 = (int)((p >> 12) & 0xFFF); break;
     case 0x07: v_range1 = (int)(p & 0x3FF); v_range2 = (int)((p >> 10) & 0x3FF); break;
     case 0x08:

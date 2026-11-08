@@ -113,6 +113,21 @@ static void status_text(void)
     ADD("textured triangles perspective %lu affine %lu replaced %lu\n", (unsigned long)rt_hw_perspective, (unsigned long)rt_hw_affine,
         (unsigned long)rt_hw_replaced);
     {
+        extern volatile uint32_t rt_crack_frames;
+        ADD("gap fill frames %lu\n", (unsigned long)rt_crack_frames);
+        extern volatile uint32_t rt_census_frames, rt_census_near[3], rt_census_tjunc[3], rt_census_polys, rt_census_sample[6][6];
+        if (rt_census_frames) {
+            ADD("census frames %lu polys %lu near %lu/%lu/%lu tjunc %lu/%lu/%lu\n", (unsigned long)rt_census_frames,
+                (unsigned long)rt_census_polys, (unsigned long)rt_census_near[0], (unsigned long)rt_census_near[1],
+                (unsigned long)rt_census_near[2], (unsigned long)rt_census_tjunc[0], (unsigned long)rt_census_tjunc[1],
+                (unsigned long)rt_census_tjunc[2]);
+            for (int i = 0; i < 6; i++)
+                ADD("census sample %02lX a %ld,%ld b %ld,%ld addr %08lX\n", (unsigned long)rt_census_sample[i][0],
+                    (long)(int32_t)rt_census_sample[i][1], (long)(int32_t)rt_census_sample[i][2], (long)(int32_t)rt_census_sample[i][3],
+                    (long)(int32_t)rt_census_sample[i][4], (unsigned long)rt_census_sample[i][5]);
+        }
+    }
+    {
         extern volatile uint32_t rt_spu_peak, rt_spu_voices;
         extern int spu_xa_buffered(void);
         ADD("sound peak %lu voices %lu xa buffered %d\n", (unsigned long)rt_spu_peak, (unsigned long)rt_spu_voices, spu_xa_buffered());

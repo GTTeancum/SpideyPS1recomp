@@ -193,18 +193,25 @@ is on the NV2A (`runtime/hwgpu.c`): each PlayStation display buffer is a render
 target at the output size; 4- and 8-bit textures are I8 images with the chip's
 palette lookup. Each SXY the GTE produces keeps its exact, unrounded position and
 camera depth as a vertex tag (`runtime/vtag.c`, the PC's GteScreen provenance), which
-the generated code carries through registers and RAM into the packet words; a
+the generated code carries through registers and RAM into the packet words (only in
+the functions that use the GTE: tag work in every load and store halved the frame rate
+in level 3 and its code ran the console out of memory); a
 polygon whose vertices all carry one is drawn at the precise positions, perspective
 correct. Without them, whole-pixel corners at 720p left slivers between split faces
 (far buildings), and a depth looked up from the screen position could be another
 vertex's and bend the texture; untagged textured polygons now draw affine instead.
 The SM1 subdivision and edge rules are `src/world_sm1.c` (the PC's WorldSubpixel).
 Textured polygons take texels as the PC's shader does (floor where the texture runs
-forward across the screen, ceil where it runs backward). Hairline cracks where the
-game's pieces meet only to within a fraction of a pixel showed as specks and short
-seams that move with the camera; the PC fills them after drawing, which needs a spare
-full-screen buffer the Xbox has no memory for, so opaque world triangles are drawn 0.6
-pixels larger instead. `geometry_debug=1` draws world materials in flat colours (cracks
+forward across the screen, ceil where it runs backward). Seams on buildings came from
+corners that lost their exact position and fell back to whole pixels beside
+neighbours drawn exactly. Tags are kept as the PC keeps them: a subdivision grid point
+or nudged edge point is certified for its word (`VTag.native`, the PC's NativeScreen)
+rather than judged by distance; a corner whose word no longer matches keeps its depth
+and loses only its position (the rest of the polygon stays exact); world geometry is
+"every corner tagged" (the PC's Wide.FromGte); and a coordinate written as two halves
+(SH, the object list) takes the tag back once the word is whole (both runtimes'
+StoreU16). The PC's after-drawing crack fill is ported (`crack_fill=1`, off by
+default): with the above, the hole test shows it is not needed. `geometry_debug=1` draws world materials in flat colours (cracks
 show as thin lines of another colour); `geometry_debug=2` starts each frame magenta
 (undrawn pixels show). Widescreen (`src/wide_sm1.c`, a port of `spiderman/patches/Wide.cs` and
 `WorldFrustum.cs`) is on for gameplay when the display is 16:9; menus stay 4:3

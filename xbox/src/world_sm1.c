@@ -10,9 +10,13 @@
  * corners interpolated. Each grid point gets the perspective-correct blend of the
  * corners' own precise projections instead, so it lies on the same projective edges as
  * an adjacent face that was not split (otherwise the two leave slivers between them).
+ * That projection can be pixels away from the routine's own rounded point (most of all
+ * on a large face close to the camera, the faces it splits), so the tag is certified
+ * for the grid word (VTag.native) as the PC's is, not judged by distance.
  *
  * func_8007D534 then nudges a split edge's points by a pixel to close integer raster
- * cracks; the precise geometry has none, so a nudged point keeps its projection.
+ * cracks; the precise geometry has none, so a nudged point keeps its projection,
+ * certified for the nudged word.
  */
 #include "runtime.h"
 #include "settings.h"
@@ -46,7 +50,10 @@ static int coord(uint32_t w, int shift) { return (int)(w << (21 - shift)) >> 21;
 static void grid_point(uint32_t address, uint32_t word, VTag *tag)
 {
     if (address < 0x1F800000u || address >= 0x1F800400u || (address & 15u)) return;
-    int x = coord(tag->native, 0), y = coord(tag->native, 16);
+    /* The SXY the GTE wrote: the position's pixel, saturated as the GTE saturates. */
+    int x = tag->x16 >> 4, y = tag->y16 >> 4;
+    x = x < -1024 ? -1024 : x > 1023 ? 1023 : x;
+    y = y < -1024 ? -1024 : y > 1023 ? 1023 : y;
     x = x < -510 ? -510 : x > 1022 ? 1022 : x;
     y = y < -1024 ? -1024 : y > 510 ? 510 : y;
     uint32_t expected = (uint32_t)(uint16_t)(int16_t)x | ((uint32_t)(uint16_t)(int16_t)y << 16);
@@ -61,9 +68,9 @@ static void grid_point(uint32_t address, uint32_t word, VTag *tag)
         double z = za + zb + zd;
         if (z > 0) {
             tag->z = (float)(z / 4096);
-            tag->x = (float)((za * g_corner[0].x + zb * g_corner[1].x + zd * g_corner[2].x) / z);
-            tag->y = (float)((za * g_corner[0].y + zb * g_corner[1].y + zd * g_corner[2].y) / z);
-            tag->native = 0x80000000u | (word & 0x07FF07FFu);
+            tag->x16 = (int16_t)((za * g_corner[0].x16 + zb * g_corner[1].x16 + zd * g_corner[2].x16) / z);
+            tag->y16 = (int16_t)((za * g_corner[0].y16 + zb * g_corner[1].y16 + zd * g_corner[2].y16) / z);
+            tag->native = VTAG_CERTIFIED | (word & VTAG_SXY);
             return;
         }
     }
@@ -106,7 +113,7 @@ int hook_WorldSubpixel_EdgeEnter(CpuContext *c)
         address += T6;
         uint32_t word = mem_r32(address);
         const VTag *t = vtag_of(address, word);
-        if (!t || (word & 0x07FF07FFu) != (t->native & 0x07FF07FFu)) continue;
+        if (!t || !vtag_matches(word, t)) continue;
         g_saved[g_count].address = address;
         g_saved[g_count].word = word;
         g_saved[g_count].tag = *t;
@@ -128,7 +135,7 @@ void hook_WorldSubpixel_EdgeExit(CpuContext *c)
         /* The offsets cover integer raster cracks; the precise projection has none, and
          * moving it would separate shared edges. Keep it, certified for the new word. */
         VTag t = g_saved[i].tag;
-        t.native = 0x80000000u | (word & 0x07FF07FFu);
+        t.native = VTAG_CERTIFIED | (word & VTAG_SXY);
         vtag_store(g_saved[i].address, word, &t);
     }
     g_count = 0;

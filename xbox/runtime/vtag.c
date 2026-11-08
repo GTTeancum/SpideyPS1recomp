@@ -11,9 +11,10 @@ VTag *vtag_pages[VTAG_PAGES];
 volatile uint32_t rt_vtag_pages, rt_vtag_stores, rt_vtag_refused;
 void (*rt_vtag_store_hook)(uint32_t address, uint32_t value, VTag *tag);
 
-/* 20 KB a page: 128 pages is 2.5 MB, more than the packet and staging buffers use. A
- * word beyond it goes untagged (the status counts them) rather than run memory out. */
-#define PAGE_LIMIT 128
+/* 16 KB a page: 96 pages is 1.5 MB, three times what the packet and staging buffers
+ * use (about 30 pages in play). A word beyond it goes untagged (the status counts
+ * them) rather than run memory out. */
+#define PAGE_LIMIT 96
 
 static VTag *page_for(uint32_t a)
 {
@@ -36,16 +37,20 @@ static VTag *page_for(uint32_t a)
  * through such scratch encodings and validates at the GPU, as this does). Anything else
  * is a register whose tag outlived its value through a hook or BIOS call that wrote it.
  */
-static int related(uint32_t v, uint32_t native)
+static int related(uint32_t v, const VTag *t)
 {
-    uint32_t nx = native & 0x7FFu, ny = (native >> 16) & 0x7FFu;
-    return (v & 0x07FF07FFu) == (native & 0x07FF07FFu) || (v & 0x7FFu) == nx || (v & 0x7FFu) == ny ||
-           ((v >> 16) & 0x7FFu) == ny;
+    int lo = (int)(v << 21) >> 21, hi = (int)((v >> 16) << 21) >> 21, fx = t->x16 >> 4, fy = t->y16 >> 4;
+    if (t->native & VTAG_CERTIFIED) {
+        /* Certified: the word's own coordinates, exactly. */
+        int nx = (int)(t->native << 21) >> 21, ny = (int)((t->native >> 16) << 21) >> 21;
+        return vtag_matches(v, t) || lo == nx || lo == ny || hi == ny;
+    }
+    return vtag_matches(v, t) || vtag_coord_ok(lo, fx) || vtag_coord_ok(lo, fy) || vtag_coord_ok(hi, fy);
 }
 
 void vtag_store(uint32_t address, uint32_t value, const VTag *tag)
 {
-    if (!related(value, tag->native)) {
+    if (!related(value, tag)) {
         VTag *e = vtag_slot(address);
         if (e) e->z = 0.0f;
         return;
@@ -61,7 +66,7 @@ void vtag_store(uint32_t address, uint32_t value, const VTag *tag)
 
 __attribute__((noinline)) const VTag *vtag_load(uint32_t address, uint32_t value) { return vtag_of(address, value); }
 
-__attribute__((noinline)) const VTag *vtag_containing(uint32_t address)
+__attribute__((noinline)) const VTag *vtag_containing_slow(uint32_t address)
 {
     const VTag *e = vtag_slot(address & ~3u);
     return e && e->z > 0.0f && e->value == mem_r32(address & ~3u) ? e : 0;
@@ -74,9 +79,16 @@ __attribute__((noinline)) void vtag_stored(uint32_t address, uint32_t value, con
     if (e) e->z = 0.0f;
 }
 
-__attribute__((noinline)) const VTag *vtag_pick(const VTag *a, const VTag *b)
+__attribute__((noinline)) void vtag_half_stored(uint32_t address, const VTag *tag)
+{
+    uint32_t a = address & ~3u, word = mem_r32(a);
+    if (tag->z > 0.0f && vtag_matches(word, tag)) vtag_store(a, word, tag);
+}
+
+__attribute__((noinline)) const VTag *vtag_pick_slow(const VTag *a, const VTag *b)
 {
     if (!a) return b;
     if (!b || a == b) return a;
-    return a->native == b->native && a->x == b->x && a->y == b->y && a->z == b->z ? a : 0;
+    return a->x16 == b->x16 && a->y16 == b->y16 && a->z == b->z && a->native == b->native ? a : 0;
 }
+

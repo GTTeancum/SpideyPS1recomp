@@ -10,6 +10,7 @@
 #include "runtime.h"
 #include "SpiderMan.h"
 #include "settings.h"
+#include "spu.h"
 
 
 // Read through the XEMU monitor by the test tools: a running build advances it.
@@ -33,6 +34,8 @@ int main(void)
     settings_load();
     if (setting("precise_vertices") && setting("precise_vertices")[0] == '0') rt_precise_vertices = 0;
     if (setting("geometry_debug")) rt_geometry_debug = setting("geometry_debug")[0] - '0';
+    if (setting("crack_fill")) rt_crack_fill = setting("crack_fill")[0] == '1';
+    if (setting("sound") && setting("sound")[0] == '0') spu_enabled = 0;
     wide_sm1_install();
     level_sm1_install();
     suits_sm1_install();

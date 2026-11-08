@@ -1,0 +1,13 @@
+// Gap fill (hwgpu.c, hw_present): positions in output pixels; four texture coordinates,
+// the display buffer one pixel left, right, up and down of the pixel drawn.
+struct VertexIn { float4 position : POSITION; float4 left : TEXCOORD0; float4 right : TEXCOORD1; float4 up : TEXCOORD2; float4 down : TEXCOORD3; };
+struct VertexOut { float4 position : POSITION; float4 left : TEXCOORD0; float4 right : TEXCOORD1; float4 up : TEXCOORD2; float4 down : TEXCOORD3; };
+VertexOut main(VertexIn input) {
+    VertexOut output;
+    output.position = input.position;
+    output.left = input.left;
+    output.right = input.right;
+    output.up = input.up;
+    output.down = input.down;
+    return output;
+}

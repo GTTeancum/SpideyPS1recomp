@@ -23,3 +23,4 @@ extern volatile int spu_cd_muted;               /* CdControl Mute/Demute */
 
 /* Once a vblank: mix that tick's frames and queue them for the speakers. */
 void spu_tick(void);
+extern int spu_enabled;   /* 0: no mixing */

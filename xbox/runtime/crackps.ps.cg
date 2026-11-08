@@ -1,0 +1,15 @@
+// Gap fill, the PC's GlShaders.WideCompleteFs crack rule: a pixel no world polygon
+// covered takes its left neighbour when world geometry covers both its left and right,
+// else its upper neighbour when it covers both above and below. Display-buffer alpha
+// marks world coverage (0.5 or 1 where a world polygon was drawn, 0 elsewhere). Output
+// alpha says whether to write; the stencil keeps covered pixels as they are.
+struct Fragment { float4 left : TEXCOORD0; float4 right : TEXCOORD1; float4 up : TEXCOORD2; float4 down : TEXCOORD3; };
+float4 main(Fragment input, uniform sampler2D left, uniform sampler2D right, uniform sampler2D up, uniform sampler2D down) : COLOR {
+    float4 l = tex2D(left, input.left.xy);
+    float4 r = tex2D(right, input.right.xy);
+    float4 u = tex2D(up, input.up.xy);
+    float4 d = tex2D(down, input.down.xy);
+    float across = saturate(l.a * r.a * 4);
+    float vertical = saturate(u.a * d.a * 4);
+    return float4(lerp(u.rgb, l.rgb, across), saturate(across + vertical));
+}

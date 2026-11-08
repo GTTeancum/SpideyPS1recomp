@@ -5,7 +5,9 @@
  *   suit=superior     wear that mod suit (D:\mods\suits\<id>, made by prep_suits.py)
  *   dreamcast_movies=0  play the PS1 movies even where a Dreamcast one is installed
  *   precise_vertices=0  draw as before vertex tags (whole pixels): for comparisons
- *   geometry_debug=1    world materials in flat colours (cracks show); 2: frames start magenta (holes show)
+ *   crack_fill=1        the gap fill (the PC's crack rule) on finished frames (off by default)
+ *   geometry_debug=1    world materials in flat colours (cracks show); 2: frames start magenta (holes show);
+ *                       4: also the gap fill's world mark green; 5: pixels drawn blue; 6: magenta, fill unconditional
  */
 #include <stdio.h>
 #include <string.h>

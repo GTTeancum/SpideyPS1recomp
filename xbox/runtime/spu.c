@@ -165,7 +165,7 @@ void spu_cd_mix(uint8_t ltol, uint8_t ltor, uint8_t rtor, uint8_t rtol)
 }
 
 /* ---- CD audio ring (XaAudio) ------------------------------------------------------------- */
-#define XA_CAPACITY (1u << 17)
+#define XA_CAPACITY (1u << 14)  /* 64 KB: about 0.4 s at 37.8 kHz, far more than a tick's sectors */
 #define XA_PRIME 1024           /* frames queued before playback starts */
 #define XA_STARTUP 2048         /* silent output frames then, so a late sector leaves no gap */
 #define XA_MAX_HOLD 8192        /* frames of underrun before playback stops */
@@ -369,10 +369,12 @@ static unsigned g_audio;
 volatile uint32_t rt_spu_peak;    /* loudest sample mixed since the last status (log.c) */
 volatile uint32_t rt_spu_voices;  /* most voices sounding at once since then */
 
+int spu_enabled = 1;   /* sound=0 in openspidey.ini: no mixing (timing comparisons) */
+
 void spu_tick(void)
 {
     static int16_t pcm[FRAMES_PER_TICK * 2];
-    if (rt_movie_playing) return;            /* the movie holds the CD and the speakers */
+    if (rt_movie_playing || !spu_enabled) return;   /* the movie holds the CD and the speakers */
     if (!audio_owned(g_audio)) g_audio = audio_open(RATE, 6);
     for (int n = 0; n < FRAMES_PER_TICK; n++) {
         sweep_tick(g_main_l, &g_main_cur_l, &g_main_cyc_l);

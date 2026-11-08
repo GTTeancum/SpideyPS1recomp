@@ -62,6 +62,15 @@ void hw_shadow(int r, const float (*xy)[2], int count);
  * bars at the top and bottom. */
 void hw_area(int left, int top, int right, int bottom);
 
+/* Whether the primitives drawn next are world geometry (GTE points), for the gap fill. */
+void hw_set_world(int world);
+/* Whether the primitive drawn next is the frame's background clear (DRAWENV isbg): as
+ * on the PC, it leaves its pixels "nothing drawn here", so cracks onto it are filled. */
+void hw_set_background(int background);
+/* GP1(05h): the game shows the display buffer at (x, y), finished. The gap fill runs
+ * on it once, if primitives were drawn into it since the last fill. */
+void hw_frame_shown(int x, int y);
+
 /* Show the display buffer at (x, y) on the TV: filling a 16:9 screen when `wide`,
  * else at 4:3 (pillarboxed on a 16:9 screen). */
 void hw_present(int x, int y, int wide);

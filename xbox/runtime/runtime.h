@@ -75,6 +75,7 @@ extern void (*rt_vtag_store_hook)(uint32_t address, uint32_t value, VTag *tag);
 extern volatile uint32_t rt_vtag_pages, rt_vtag_stores, rt_vtag_refused;   /* vtag.c */
 extern volatile uint32_t rt_hw_precise, rt_hw_imprecise;   /* gpu.c: textured polygons with and without tags */
 extern int rt_precise_vertices;   /* gpu.c: draw with vertex tags (0: whole pixels, for comparison) */
+extern int rt_crack_fill;           /* hwgpu.c: the gap fill (PC crack rule) on finished frames */
 extern int rt_geometry_debug;     /* gpu.c: world materials drawn in flat colours (the gap test) */
 extern uint32_t rt_disp_grandparent;       /* PutDispEnv's caller's caller: the frame loop */
 /* Called at each PutDispEnv, once a frame, to decide the next frame's projection. */
