@@ -106,7 +106,7 @@ class Xbdm:
         for part in self.line().split(" "):
             if "=" in part:
                 k, v = part.split("=", 1)
-                info[k] = int(v, 16)
+                info[k] = int(v.rstrip(","), 16)
         return info["width"], info["height"], info["pitch"], self.read(info["framebuffersize"]), info.get("format", 0)
 
 

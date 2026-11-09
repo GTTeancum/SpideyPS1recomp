@@ -43,7 +43,7 @@ int main(void)
     assets_sm1_install();
     retarget_sm1_install();
     shadow_sm1_install();
-    debugPrint("OpenSpidey - original Xbox\n");
+    debugPrint("Spider-Man X - original Xbox\n");
     card_init();
     input_start();
 

@@ -11,4 +11,5 @@
 
 #define OPENSPIDEY_TITLE_ID 0x6F730001u
 #define OPENSPIDEY_TITLE_ID_HEX "6F730001"
-#define OPENSPIDEY_TITLE_NAME "OpenSpidey"
+/* What launchers and the dashboard show; patch_xbe.py writes it into the certificate. */
+#define OPENSPIDEY_TITLE_NAME "Spider-Man X"

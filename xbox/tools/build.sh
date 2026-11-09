@@ -15,7 +15,8 @@ export PATH="${LLVM_BIN}:${NXDK_DIR}/bin:/usr/bin:/mingw64/bin:${PATH}"
 
 cd "$(dirname "$0")/.."
 make "$@"
-# The title's own ID in the certificate (cxbe writes the one every nxdk program shares)
-# and the dashboard images from the game icon, beside the XBE.
-"$PYTHON" -I tools/patch_xbe.py build/release/default.xbe
+# The dashboard images from the game icon, beside the XBE; then the title's own ID and
+# name in the certificate (cxbe writes the ID every nxdk program shares) and the images
+# inserted into the XBE, where launchers look for the icon.
 "$PYTHON" -I tools/make_xbox_images.py ../spiderman/port/OpenSpidey.png build/release
+"$PYTHON" -I tools/patch_xbe.py build/release/default.xbe

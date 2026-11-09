@@ -41,7 +41,7 @@ START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
 | `src/input.c` | the Xbox controller as PlayStation pad 1 (SDL2, the PC's default bindings) |
 | `runtime/card.c` | the PlayStation memory card on the hard disk (port of the PC's MemoryCard.cs and BIOS card calls) |
 | `runtime/title.h` | the title ID and name: the one place they are defined |
-| `tools/patch_xbe.py` | writes the title ID into the built XBE (run by `build.sh`) |
+| `tools/patch_xbe.py` | writes the title ID, name and dashboard pictures into the built XBE (run by `build.sh`) |
 | `tools/make_xbox_images.py` | dashboard images and launcher thumbnail from the game icon (run by `build.sh`) |
 | `runtime/movie.c` | movie playback: AC97 sound, the movie clock, skip, the two players' loops |
 | `runtime/str.c` | PS1 `.STR` decoder: MDEC video (bitstream v1/v2) and XA ADPCM sound |
@@ -129,10 +129,16 @@ between the two unchanged): `E:\UDATA\6F730001\4F70656E5370\carda.sav`. `runtime
 card calls as the PC runtime does, writing each changed frame through to the disk.
 `6F730001` is the title ID (`runtime/title.h`): nxdk's cxbe writes 0xFFFF0002 into every
 program, so `tools/patch_xbe.py` replaces it after the link; the lower-case "os" cannot
-match a retail publisher. The dashboard reads the title's name from `TitleMeta.xbx` and
+match a retail publisher. The title's name on the Xbox is "Spider-Man X": `patch_xbe.py`
+writes it into the certificate too (launchers list that; cxbe's `-TITLE` cannot take a
+space), and `runtime/card.c` rewrites `TitleMeta.xbx` with it at every start. On a
+debug console the monitor shows `E:\UDATA` as `V:`. The dashboard reads the title's name from `TitleMeta.xbx` and
 its pictures from `TitleImage.xbx` and `SaveImage.xbx`, which `tools/make_xbox_images.py`
 makes from `spiderman/port/OpenSpidey.png` (with `default.tbn` for launchers); copy the
-three beside `default.xbe` on the console. Checked in XEMU: save, load, and the save
+three beside `default.xbe` on the console. Launchers and emulators take the icon from
+inside the XBE, so `patch_xbe.py` also inserts the pictures and the name as the XDK's
+image builder does (`$$XTINFO`, `$$XTIMAGE`, `$$XSIMAGE`; the method of Perfect Dark X's
+`scripts/insert-xbe-dashboard-assets.py`). Checked in XEMU: save, load, and the save
 surviving a console reset (`run_xemu.py --reset-at`). XEMU's hard disk image has no
 dashboard, so how the dashboard shows the title is checked on the console.
 
