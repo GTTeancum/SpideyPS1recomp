@@ -1,21 +1,36 @@
 XBE_TITLE = OpenSpidey
-OUTPUT_DIR = build/release
 NXDK_DIR ?= /c/nxdk
+
+# One game per XBE: make GAME=spiderman (the default) or GAME=spiderman2. Each game's
+# code is about 10 MB, more than the console has spare for a second one, and the two
+# games define hooks of the same names. The runtime and the shared sources are common;
+# src/*_sm1.c belong to Spider-Man 1 and src/*_sm2.c to Spider-Man 2.
+GAME ?= spiderman
+ifeq ($(GAME),spiderman)
+GAME_TAG = sm1
+OUTPUT_DIR = build/release
+else ifeq ($(GAME),spiderman2)
+GAME_TAG = sm2
+OUTPUT_DIR = build/sm2
+else
+$(error GAME must be spiderman or spiderman2)
+endif
+OTHER_TAGS = $(filter-out $(GAME_TAG),sm1 sm2)
 # SDL2's game controller API for the Xbox pad (src/input.c).
 NXDK_SDL = y
 
 # Generated game code: make it with RecompOne's --c output (see README) and the
 # default hooks with tools/gen_hook_defaults.py before building.
-GAMES = spiderman
+GAMES = $(GAME)
 
 # NV2A shaders (nxdk's %.inl rules: Cg -> vp20/fp20 -> push-buffer words).
 SHADER_OBJS = $(CURDIR)/runtime/ps1vs.inl $(CURDIR)/runtime/ps1ps.inl \
               $(CURDIR)/runtime/crackvs.inl $(CURDIR)/runtime/crackps.inl
 
-SRCS = $(wildcard $(CURDIR)/src/*.c) $(wildcard $(CURDIR)/runtime/*.c) $(wildcard $(CURDIR)/runtime/*.cpp) \
+SRCS = $(filter-out $(foreach t,$(OTHER_TAGS),$(CURDIR)/src/%_$(t).c),$(wildcard $(CURDIR)/src/*.c)) $(wildcard $(CURDIR)/runtime/*.c) $(wildcard $(CURDIR)/runtime/*.cpp) \
        $(wildcard $(CURDIR)/runtime/*.s) \
        $(foreach g,$(GAMES),$(wildcard $(CURDIR)/generated/$(g)/*.c)) \
-       $(CURDIR)/build/hooks_default.c
+       $(CURDIR)/build/hooks_default_$(GAME).c
 
 NXDK_CFLAGS += -I$(CURDIR)/runtime $(foreach g,$(GAMES),-I$(CURDIR)/generated/$(g)) \
                -O3 -Wno-unused-label -Wno-unused-variable
@@ -46,9 +61,15 @@ NXDK_CFLAGS += -DRT_PROFILE
 endif
 
 # The link map locates g_status_text for the XEMU monitor (tools/run_xemu.py).
-NXDK_LDFLAGS += -map:build/OpenSpidey.map -opt:lldlto=3
+NXDK_LDFLAGS += -map:$(OUTPUT_DIR)/OpenSpidey.map -opt:lldlto=3
 
 include $(NXDK_DIR)/Makefile
+
+# nxdk links every game to the same main.exe, from every prerequisite listed: when the
+# game differs from the one last linked, build/linked-game changes, src/main.obj is
+# compiled again and so main.exe is linked again.
+$(shell mkdir -p build $(OUTPUT_DIR); [ "$$(cat build/linked-game 2>/dev/null)" = "$(GAME)" ] || echo "$(GAME)" > build/linked-game)
+$(CURDIR)/src/main.obj: build/linked-game
 
 # Header dependencies. The compiler is a Windows program: the dependency files it
 # writes beside each object (X.c.d, through nxdk's -MD) name the object and every header

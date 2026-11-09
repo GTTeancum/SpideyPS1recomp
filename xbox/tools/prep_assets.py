@@ -51,7 +51,9 @@ def main() -> int:
             key = png.stem.lower()
             if len(key) != 33 or key[16] != "_":
                 continue
-            image = fit(Image.open(png).convert("RGBA"), a.max)
+            # Pack art keeps the cap alone (down to DXT1's 4x4 block); suits' 256 floor
+            # is theirs.
+            image = fit(Image.open(png).convert("RGBA"), a.max, 4)
             data = dxt1(image)
             (target / f"{key}.dds").write_bytes(dds(image.width, image.height, data))
             keys.append(key)

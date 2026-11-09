@@ -260,13 +260,13 @@ dvd_path = '{toml_path(iso)}'
                     break
                 time.sleep(1)
             record["second"] = second
-            record["status"] = read_status(a.monitor_port, a.xbe.parent.parent / "OpenSpidey.map",
+            record["status"] = read_status(a.monitor_port, a.xbe.parent / "OpenSpidey.map",
                                            out / "captures" / f"status-{int(second)}.txt")
             if a.registers:
                 monitor_command(a.monitor_port, "info registers", out / "captures" / f"registers-{int(second)}.txt")
                 monitor_command(a.monitor_port, "x /64wx $esp", out / "captures" / f"stack-{int(second)}.txt")
             if a.ram:
-                save_ram(a.monitor_port, a.xbe.parent.parent / "OpenSpidey.map", out / "captures" / f"ram-{int(second)}.bin")
+                save_ram(a.monitor_port, a.xbe.parent / "OpenSpidey.map", out / "captures" / f"ram-{int(second)}.bin")
             results.append(record)
             for item in a.command_at:
                 at, command = item.split(":", 1)

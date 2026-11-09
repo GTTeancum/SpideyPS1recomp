@@ -17,3 +17,7 @@ int card_bios_b(CpuContext *c, uint32_t fn);
 
 /* Once per tick: re-deliver pending card completions (the PC's BiosB.PumpCard). */
 void card_pump(void);
+
+/* The save folder (E:\UDATA\<title ID>\<save folder>) once the hard disk is mounted,
+ * else NULL. */
+const char *card_dir(void);

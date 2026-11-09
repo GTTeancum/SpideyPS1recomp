@@ -14,6 +14,7 @@
 #include <string.h>
 #include <windows.h>
 #include <nxdk/mount.h>
+#include "files.h"
 #include "runtime.h"
 #include "card.h"
 #include "title.h"
@@ -50,12 +51,8 @@ static void fix(int o) { g_card[o + 0x7F] = frame_sum(o); }
 static void save_range(int offset, int length)
 {
     if (!g_ready) return;
-    FILE *f = fopen(g_card_file[g_cur], "r+b");
-    if (!f) f = fopen(g_card_file[g_cur], "wb");
-    if (!f) return;
-    if (fseek(f, offset, SEEK_SET) == 0) fwrite(g_card + offset, 1, (size_t)length, f);
-    fclose(f);
-    rt_card_writes++;
+    /* At every save: not stdio (files.h). */
+    if (rt_file_write(g_card_file[g_cur], (uint32_t)offset, g_card + offset, (uint32_t)length, 0)) rt_card_writes++;
 }
 static void save_all(void) { save_range(0, CARD_SIZE); }
 
@@ -438,6 +435,9 @@ static void copy_once(const char *from, const char *to)
     }
     fclose(f);
 }
+
+/* The save folder on the hard disk, for other per-player files (the chosen suit). */
+const char *card_dir(void) { return g_ready ? SAVE_DIR : 0; }
 
 void card_init(void)
 {

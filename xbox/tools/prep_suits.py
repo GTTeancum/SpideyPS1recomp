@@ -23,7 +23,9 @@ game's loader reads, without the RTG2 retarget rig, and rig.rtg2 is that rig, wh
 the Xbox evaluates each frame with the PC's retarget core. Only the SMU suits listed
 in smu-eligibility.json are converted, as on the PC.
 
-suit.txt lines:  name <text> / model <bundled model> / profile <0..9> /
+suit.txt lines:  name <text> / model <bundled model> / profile <0..9> (SM1's index) /
+                 profilename <name> (SM2 looks it up in its own list) /
+                 comments <text> (the costume viewer's description, wrapped on the Xbox) /
                  modelfile model.psx / rig rig.rtg2 / texture <id> <file> <w> <h>
 """
 from __future__ import annotations
@@ -239,7 +241,10 @@ def convert(suit: Path, out: Path, cap: int, least: int, eligible: set[str] | No
         return f"skipped {sid}: unknown ability profile {profile}"
     target = out / "suits" / sid
     target.mkdir(parents=True, exist_ok=True)
-    lines = [f"name {manifest['name']}", f"model {model}", f"profile {PROFILES.index(profile)}"]
+    # profile: SM1's index; profilename: the name, which SM2 looks up in its own list.
+    comments = " ".join(str(manifest.get("comments", "")).split())
+    lines = [f"name {manifest['name']}", f"model {model}", f"profile {PROFILES.index(profile)}",
+             f"profilename {profile}", f"comments {comments}"]
     if manifest.get("modelFile"):
         guest, rig = split_model((suit / manifest["modelFile"]).read_bytes())
         (target / "model.psx").write_bytes(guest)

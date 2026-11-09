@@ -107,8 +107,12 @@ static void str_pump(StrMovie *m, const Session *s, int *flushed)
  * the movie clock in ms. */
 volatile int32_t rt_movie_state[8];
 
+/* Whether the last movie played was skipped by the player (Start or Cross). */
+int rt_movie_skipped;
+
 int movie_play_str(const char *path)
 {
+    rt_movie_skipped = 0;
     StrMovie *m = str_open(path);
     if (!m) return 0;
     int w = str_width(m), h = str_height(m);
@@ -135,7 +139,7 @@ int movie_play_str(const char *path)
         str_read_ahead(m, 0.5);
         str_pump(m, &s, &flushed);
         double t = session_clock(&s) + start;
-        if (session_skip(&s, t)) { rt_log("movie: skipped"); ok = 1; break; }
+        if (session_skip(&s, t)) { rt_log("movie: skipped"); ok = 1; rt_movie_skipped = 1; break; }
         int failed = 0;
         for (int work = 0; work < 4; work++) {
             if (waiting) {

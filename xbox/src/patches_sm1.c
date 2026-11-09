@@ -12,34 +12,7 @@
 #define A1 c->r[5]
 #define V0 c->r[2]
 
-/* ---- GpuPatches -------------------------------------------------------------------- */
-
-/* pre-hook: the hardware reset in front of the game's own ResetGraph. */
-int hook_GpuPatches_ResetGraph(CpuContext *c)
-{
-    gpu_write_gp1((A0 & 7u) == 0 ? 0x00000000u : 0x01000000u);
-    return 1;
-}
-
-void hook_GpuPatches_SetDispMask(CpuContext *c) { gpu_write_gp1(0x03000000u | (A0 ? 0u : 1u)); V0 = 0; }
-void hook_GpuPatches_SetGraphDebug(CpuContext *c) { V0 = 0; }
-
-void hook_GpuPatches_DrawPrim(CpuContext *c)
-{
-    uint32_t p = A0, words = mem_r32(p) >> 24;
-    for (uint32_t i = 0; i < words; i++) gpu_write_gp0_at(mem_r32(p + 4u + i * 4u), p + 4u + i * 4u);
-    V0 = 0;
-}
-
-void hook_GpuPatches_ClearOTagR(CpuContext *c)
-{
-    uint32_t ot = A0;
-    int n = (int)A1;
-    V0 = 0;
-    if (n <= 0) return;
-    for (int i = n - 1; i > 0; i--) mem_w32(ot + (uint32_t)i * 4u, (ot + (uint32_t)(i - 1) * 4u) & 0x00FFFFFFu);
-    mem_w32(ot, 0x00FFFFFFu);
-}
+/* GpuPatches and PadPatches are shared with Spider-Man 2: src/patches_common.c. */
 
 /* ---- OverlayPatches: code overlays live at the fixed addresses they were recompiled
  * for. The allocation LoadOverlay makes right after finding "<name>.bin" in CD.WAD is
@@ -102,12 +75,6 @@ int hook_OverlayPatches_HeapShrink(CpuContext *c) { return !assets_sm1_owns(A0);
 /* Retail 8005E748 waits on the counter the game's vblank IRQ increments.
  * TODO(xbox): the Venom chase pacing in Timing.WaitVBlanks (gameplay fix). */
 void hook_Timing_WaitVBlanks(CpuContext *c) { rt_wait_counter(c, c->r[28] + 0xC74u); }
-
-/* ---- PadPatches: SM1 sets pads up through PadInitMtap; its original runs and the
- * runtime learns the two buffers. The pad is presented as a DualShock (analog). --- */
-static uint32_t g_pend_buf1, g_pend_buf2;
-int hook_PadPatches_PadInitMtapEnter(CpuContext *c) { g_pend_buf1 = A0; g_pend_buf2 = A1; return 1; }
-void hook_PadPatches_PadInitMtapExit(CpuContext *c) { (void)c; rt_pad_set_buffers(g_pend_buf1, g_pend_buf2, 1); }
 
 /* ---- Pad reads: the title screen polls the pad in a loop without VSync. ---------- */
 void hook_PadTrace_AfterRead(CpuContext *c) { (void)c; rt_idle(); }

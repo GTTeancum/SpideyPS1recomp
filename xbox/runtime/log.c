@@ -35,6 +35,8 @@ void rt_note(const char *name)
 }
 
 volatile int32_t rt_mem_kb[MEM_USES], rt_mem_peak_kb[MEM_USES];
+/* The SM1 asset arena's peak (src/assets_sm1.c sets it; 0 for a game without one). */
+volatile uint32_t rt_arena_peak, rt_arena_used;
 static volatile uint32_t g_mem_low_kb = 0xFFFFFFFFu, g_mem_low_vblank;
 static struct { const char *stage; uint32_t free_kb; } g_mem_marks[8];
 static int g_mem_mark_count;
@@ -163,8 +165,8 @@ static void status_text(void)
         ADD("movie state shown %ld video-done %ld flushed %ld sound %ld busy %ld ended %ld queued %ld clock %ld ms\n",
             (long)rt_movie_state[0], (long)rt_movie_state[1], (long)rt_movie_state[2], (long)rt_movie_state[3],
             (long)rt_movie_state[4], (long)rt_movie_state[5], (long)rt_movie_state[6], (long)rt_movie_state[7]);
-        extern volatile uint32_t rt_arena_peak;
-        ADD("memory asset arena peak %lu KB of %lu KB\n", (unsigned long)(rt_arena_peak / 1024u), 0x480000ul / 1024ul);
+        ADD("memory asset arena peak %lu KB of %lu KB, in use %lu KB\n", (unsigned long)(rt_arena_peak / 1024u), 0x480000ul / 1024ul,
+            (unsigned long)(rt_arena_used / 1024u));
     }
     VIDEO_MODE vm = XVideoGetMode();
     ADD("mode %dx%d encoder %08lX\n", vm.width, vm.height, (unsigned long)XVideoGetEncoderSettings());

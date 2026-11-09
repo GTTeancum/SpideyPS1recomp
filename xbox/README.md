@@ -1,9 +1,16 @@
 # OpenSpidey — original Xbox port (nxdk)
 
 Both games, Spider-Man and Spider-Man 2: Enter Electro, as one Xbox compilation
-([issue #22](https://github.com/GTTeancum/SpideyPS1recomp/issues/22)). Status: title screen.
-Spider-Man 1's recompiled code boots in XEMU and draws its title screen ("PRESS
-START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
+([issue #22](https://github.com/GTTeancum/SpideyPS1recomp/issues/22)). Status: Spider-Man
+plays on the console (levels, saving, movies, suits; see below). Spider-Man 2 reaches
+its title screen and attract demo in XEMU (2026-11-09), as on the PC; its patches are
+mostly still to port.
+
+Each game is its own XBE, built from the same runtime (`make GAME=spiderman` or
+`GAME=spiderman2`): either game's code is about 10 MB, more than the console has spare
+for both, and the two games define hooks of the same names. They share the title ID
+and so the memory cards in `E:\UDATA`, as one PlayStation's cards serve both games. A
+small launcher XBE choosing between them is still to come.
 
 ## Rules
 
@@ -28,7 +35,21 @@ START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
 
 | Path | Contents |
 | --- | --- |
-| `src/main.c` | entry point: video mode, game thread (4 MB stack), status screen |
+| `src/main.c` | entry point: video mode, game thread (256 KB stack), status screen |
+| `src/game.h`, `src/game_sm1.c`, `src/game_sm2.c` | the game an XBE runs: its generated program and its patches' set-up |
+| `src/patches_common.c` | patches both games share (`GpuPatches`, `PadPatches`, the Bag-Man shell depth, the armour test) |
+| `src/wide.c`, `src/world.c`, `src/shadow.c` | widescreen, precise world subdivision and the player's silhouette shadow, both games (each game gives its addresses) |
+| `src/movies_sm2.c` | SM2's movies: the runtime's PS1 player called from inside the game's own (`patch_generated_sm2.py`) |
+| `src/patches_sm2.c` | Spider-Man 2 patches ported from `spiderman2/patches` (keep in step) |
+| `src/level_sm2.c` | SM2's direct level start (`level=e3m1`, the PC's `LevelSwitch.cs`) |
+| `src/costume_sm2.c` | SM2's costumes and models: dedicated actors, Dreamcast assets, suit powers, frame packets, the costume viewer's mod rows |
+| `src/retarget_sm2.c` | SM2's suit retargeting and swing web (the PC's `SuitRetargeting.cs`, `SuitWebAttachment.cs`) |
+| `src/wad_overrides.c` | WAD entries served from the disc's prepared files into the expanded-RAM arena (the PC's `LooseWadOverrides`), both games |
+| `src/suits.c` | mod suits: the catalogue, choosing one (textures, rig, the kept choice) and material binding (the PC's `SuitMods`), both games |
+| `src/guest_layout.h` | the recomp's reserved blocks in the 8 MB guest RAM (arena, texture registry, costume viewer, scratch names) |
+| `runtime/files.c` | file reads and writes through the kernel's calls (nxdk's `fopen` leaks a kernel object per call) |
+| `src/rig.c` | the suit rig engine (the PC's `NativeRetargetRig` around its retarget core), both games |
+| `tools/patch_generated_sm2.py` | SM2's generated-source transforms (vblank countdowns, pad-read loop, movies, costume viewer) |
 | `runtime/recomp.h` | the interface the generated code is written against |
 | `runtime/runtime.h` | runtime services: log and status, overlays, BIOS, boot |
 | `runtime/*.c` | RAM, hardware registers and DMA, dispatch, BIOS, boot, clock and interrupts, CD library, software GPU and graphics library, GTE registers, status |
@@ -48,7 +69,7 @@ START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
 | `runtime/sfd_core.cpp` | the PC's Dreamcast SFD decoder (`tools/movies/native`); commented out for now (see Movies) |
 | `tools/make_disc_map.py` | the test disc's sector map from an install's `recompone-disc.json` |
 | `generated/<game>/` | RecompOne's C output for each game, ignored by git (made from the player's disc) |
-| `tools/gen_hook_defaults.py` | default bodies for hooks not implemented yet (`build/hooks_default.c`) |
+| `tools/gen_hook_defaults.py` | default bodies for hooks not implemented yet (`build/hooks_default_<game>.c`) |
 | `tools/gen_gte_ops.py` | the GTE command words the generated code issues (`runtime/gte_ops.h`) |
 | `runtime/memfast.s` | word-at-a-time `memcpy`/`memset` in place of nxdk's byte loops |
 | `tools/compile_generated.sh` | compiles one game's generated C with nxdk (no link) |
@@ -60,14 +81,15 @@ START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
 ## Build
 
 With nxdk at `C:\nxdk`, LLVM at `C:\Program Files\LLVM` and MSYS2 at `C:\msys64`.
-From `spiderman/`, generate the game code (see
+From `spiderman/` (and `spiderman2/`), generate the game code (see
 [docs/recompiler-c-output.md](../docs/recompiler-c-output.md)):
 
 ```bash
 dotnet ../tools/RecompOne/RecompOne.Recompiler/bin/Release/net10.0/recompone.dll config/spiderman.json --c ../xbox/generated/spiderman
+dotnet ../tools/RecompOne/RecompOne.Recompiler/bin/Release/net10.0/recompone.dll config/spiderman2.json --c ../xbox/generated/spiderman2
 ```
 
-Then from the repository root:
+Then from the repository root, for Spider-Man (`build/release/default.xbe`):
 
 ```bash
 python -I xbox/tools/patch_generated_sm1.py
@@ -75,6 +97,19 @@ python -I xbox/tools/gen_hook_defaults.py spiderman
 python -I xbox/tools/gen_gte_ops.py
 MSYSTEM=MINGW64 C:/msys64/usr/bin/bash.exe --noprofile --norc xbox/tools/build.sh -j8
 ```
+
+and for Spider-Man 2 (`build/sm2/default.xbe`):
+
+```bash
+python -I xbox/tools/patch_generated_sm2.py
+python -I xbox/tools/gen_hook_defaults.py spiderman2
+python -I xbox/tools/gen_gte_ops.py
+GAME=spiderman2 MSYSTEM=MINGW64 C:/msys64/usr/bin/bash.exe --noprofile --norc xbox/tools/build.sh -j8
+```
+
+Each build writes its link map beside its XBE (`build/release/OpenSpidey.map`,
+`build/sm2/OpenSpidey.map`): `run_xemu.py` reads the one beside the XBE it runs, and
+`xbdm.py` Spider-Man's unless `OPENSPIDEY_MAP` names another. Switching game relinks.
 
 `patch_generated_sm1.py` is the C counterpart of the PC's generated-source transform
 `spiderman/tools/patch_texture_registry.py` (texture registry relocated, player models
@@ -101,16 +136,24 @@ python -I xbox/tools/prep_suits.py "<PC install>/mods/suits" private/work/xbox-d
 ```
 
 - `assets/builtin`: the Dreamcast character actors, served in place of the game's own
-  (`src/assets_sm1.c`, a port of `LooseWadOverrides` and `Costume`).
-- `assets/packs/dreamcast-sm1-actors`: their art as DXT1 DDS, matched by the PC pack's
-  fingerprint of each uploaded texture (`runtime/texpack.c`).
+  (`src/wad_overrides.c`, the PC's `LooseWadOverrides`; which actor answers is the
+  game's costume code, `src/assets_sm1.c` and `src/costume_sm2.c`). Spider-Man 2's are
+  its Dreamcast Spider-Man, the 19 costume texture libraries and the dedicated
+  Bag-Man, Peter Parker, Quick Change and SM1 Spider-Man actors.
+- `assets/packs/<pack>`: their art as DXT1 DDS, matched by the PC pack's fingerprint
+  of each uploaded texture (`runtime/texpack.c`): `dreamcast-sm1-actors` and
+  `dreamcast-sm2-special-costumes`.
 - `mods/suits/<id>`: a suit's textures as DXT1 DDS, halved to 256 on the longest side
   but never below 256 on either side (suit art is often 1024-2048; see Memory), and for suits with their own
-  model the actor and its RTG2 rig split apart (`src/suits_sm1.c`, `src/retarget_sm1.c`;
-  the rig maths is the PC's `tools/retarget/native/retarget_core.cpp`, compiled in).
+  model the actor and its RTG2 rig split apart (`src/suits.c`, `src/rig.c`, the games'
+  `retarget_sm1.c`/`retarget_sm2.c`; the rig maths is the PC's
+  `tools/retarget/native/retarget_core.cpp`, compiled in). `suit.txt` gives the power
+  profile as SM1's index and by name, which SM2 looks up in its own list. The suit
+  folders are the same for both games.
 
-`D:\openspidey.ini` holds `level=<lNaM>` (start a new game there, `src/level_sm1.c`),
-`suit=<id>` and `dreamcast_movies=0` (PS1 movies only; no effect while Dreamcast movies are out). Include `openspidey.ini`,
+`D:\openspidey.ini` holds `level=<lNaM>` (Spider-Man 2: `level=<eNmM>`; start a new
+game there, `src/level_sm1.c`, `src/level_sm2.c`),
+`suit=<id>` (a test run's suit, not kept; players choose in the costume menu) and `dreamcast_movies=0` (PS1 movies only; no effect while Dreamcast movies are out). Include `openspidey.ini`,
 `mods` and `assets` with `--include`.
 
 ## Sound
@@ -149,7 +192,13 @@ dashboard, so how the dashboard shows the title is checked on the console.
 The game's own STR player needs the MDEC and XA streaming, which the Xbox runtime does
 not have, so the runtime plays movies itself from the hook at 8002AD0C (the PC's
 `DreamcastMoviePatches`): the PS1 movie from the disc's `CINEMAS` folder (raw
-2336-byte sectors, as the install holds them). Dreamcast movies are out on the Xbox
+2336-byte sectors, as the install holds them). Spider-Man 2 has no such hook on the PC
+(its build runs the game's own player on the PC's MDEC): `patch_generated_sm2.py`
+makes the game's player (func_80030350) call `src/movies_sm2.c` once it has noted the
+movie as seen, which plays the `CINEMAS` or `HEADLINE` STR the movie number names and
+returns as the player would (1 played, 0 skipped). Checked in XEMU (2026-11-09): the
+Activision and Vicarious Visions logos, 10.3 s and 15.9 s long, took 10.4 s and
+16.0 s, and the title followed. Dreamcast movies are out on the Xbox
 for now: the `.SFD` path (from `D:\mods\movies\dreamcast`, the 23 the PC maps) is
 commented out in `runtime/sfd_core.cpp`, `runtime/movie.c` and `src/movies_sm1.c`,
 and an Xbox install carries no `mods\movies`. Sound is resampled to the AC97's 48 kHz and is the clock; Start or Cross skips
@@ -210,7 +259,7 @@ python -I xbox/tools/run_xemu.py --shots 20,40 --include $G/SLUS_008.75 --includ
 
 `--include` puts the player's extracted game files and the sector map on the test disc. The runtime
 keeps its full status in `g_status_text`; at every screenshot the script copies it
-out through the XEMU monitor (address from `build/OpenSpidey.map`) to
+out through the XEMU monitor (address from the link map beside the XBE) to
 `captures/status-<second>.txt`: progress, recent log lines and every missing
 service (hook, BIOS call or hardware register) in first-use order with its count.
 The screen shows a summary of the same.
@@ -268,7 +317,7 @@ polygon whose vertices all carry one is drawn at the precise positions, perspect
 correct. Without them, whole-pixel corners at 720p left slivers between split faces
 (far buildings), and a depth looked up from the screen position could be another
 vertex's and bend the texture; untagged textured polygons now draw affine instead.
-The SM1 subdivision and edge rules are `src/world_sm1.c` (the PC's WorldSubpixel).
+The subdivision and edge rules are `src/world.c` (the PC's WorldSubpixel), both games.
 Textured polygons take texels as the PC's shader does (floor where the texture runs
 forward across the screen, ceil where it runs backward). Seams on buildings came from
 corners that lost their exact position and fell back to whole pixels beside
@@ -281,9 +330,16 @@ and loses only its position (the rest of the polygon stays exact); world geometr
 StoreU16). The PC's after-drawing crack fill is ported (`crack_fill=1`, off by
 default): with the above, the hole test shows it is not needed. `geometry_debug=1` draws world materials in flat colours (cracks
 show as thin lines of another colour); `geometry_debug=2` starts each frame magenta
-(undrawn pixels show). Widescreen (`src/wide_sm1.c`, a port of `spiderman/patches/Wide.cs` and
-`WorldFrustum.cs`) is on for gameplay when the display is 16:9; menus stay 4:3
-and are pillarboxed. A fix to the widescreen rules belongs in both copies.
+(undrawn pixels show). Widescreen (`src/wide.c`, a port of `spiderman/patches/Wide.cs` and
+`WorldFrustum.cs`, both games: each gives its gameplay loop's buffer swap) is on for
+gameplay when the display is 16:9; menus stay 4:3 and are pillarboxed. A fix to the
+widescreen rules belongs in both copies.
+
+Reading VRAM back (StoreImage, the source of a VRAM-to-VRAM copy) first brings what a
+display buffer's render target holds for that rectangle into `gpu_vram`
+(`hw_read_back`): drawn frames live in the render targets, not in `gpu_vram`. SM2's
+Game Over reads the last frame back a row at a time to dim it behind its menu, which
+came out black before. SM1 reads back three times in a minute of level 1.
 
 nxdk's maths library has unimplemented functions that assert and halt the console
 (`lround`, `lrint`, `cbrt`, `log2` and others in `lib/pdclib/platform/xbox/functions/math`);
@@ -311,7 +367,36 @@ do not call them.
 4. **Xbox adapters** — drawing through pbkit/NV2A (`DrawOTag`, `PutDispEnv`,
    `PutDrawEnv`), sound through AC97, controllers.
 5. **Patches** — the 114 SM1 hooks (all defaults now) and the suit loader in C.
-6. **Video modes and the compilation launcher**, then Spider-Man 2.
+6. **Video modes and the compilation launcher**, then Spider-Man 2. Spider-Man 2
+   bring-up, 2026-11-09: its own XBE; shared GPU and pad patches; its overlay rules
+   (region 0x80200000-0x80280000), vblank wait (gp+0xCD0) and menu packet order;
+   its six vblank-countdown loops (0x800C2430) and pad-read loop given the clock.
+   Result in XEMU: the Marvel logo, the title screen and the attract demo, matching
+   the PC (whose demo also has a black background). Gameplay and mods, 2026-11-09:
+   direct level start (`level=e1m1`) into the street fight; the Dreamcast Spider-Man
+   and costume assets served from the prepared files; mod suits of every kind,
+   checked in XEMU in E1M1 -- a reskin of SM1's model (1967 TV Series, on the
+   dedicated SM1 actor), an SMU suit with its own model and rig (Miles Morales,
+   animated by SM2's own animations, the rig matching the PC's core, 1.3 ms a pose),
+   and own-model suits on the Symbiote and Quick Change bases (the symbiote profile
+   changes the HUD icon). Spider-Man 1's suits and Dreamcast actors, now on the shared
+   code, rechecked in level 1. Parity with Spider-Man 1, 2026-11-09 (XEMU): movies
+   (`src/movies_sm2.c`), widescreen, precise world subdivision and the silhouette
+   shadow (now shared, `wide.c`, `world.c`, `shadow.c`), the Bag-Man shell depth and
+   the armour test (shared), saving and loading through the memory card menu ("SAVE
+   COMPLETED", "LOAD SUCCESSFUL"), and the Game Over menu over the dimmed last frame
+   (VRAM read-back, above). Every mission (24) started directly and played in XEMU
+   without a stop, the lowest free memory 7.2 MB at 720p. Costume menu, 2026-11-09
+   (XEMU): both games' COSTUME VIEWER lists the mod suits after the stock costumes
+   (SM1's twenty, with the ten imported SM2 Dreamcast costumes; SM2's nineteen), each
+   with its name, powers and comments, the PC's CostumeViewer port and its
+   generated-code transforms. A suit chosen there is worn in gameplay and kept across a
+   restart (suit-sm1.txt / suit-sm2.txt in the save folder). Each change frees the
+   previous suit's textures, rig and model: 112 changes in SM2 and 108 in SM1 left
+   free memory where it started. Found on the way: nxdk's fopen leaks a kernel mutant
+   per call (repeated reads and writes now use runtime/files.c), and a fill drawn while
+   a push-buffer block was open could corrupt it after a buffer wrap (XEMU: "Reserved
+   pb command"). Next: a console run, and the launcher.
 
 Game data is never part of the repository or a published image; the player's own
 discs supply it.

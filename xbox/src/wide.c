@@ -1,6 +1,8 @@
 /*
- * 16:9 widescreen for Spider-Man: a port of the PC's Wide.cs and WorldFrustum.cs
- * (spiderman/patches). A gameplay fix to either belongs in both places.
+ * 16:9 widescreen, both games: a port of the PC's Wide.cs and WorldFrustum.cs
+ * (spiderman/patches, which Spider-Man 2's build also compiles). A gameplay fix to
+ * either belongs in both places. Each game gives its gameplay loop's buffer-swap
+ * address (wide_install), as the PC's Wide.Install takes it.
  *
  * The field of view is widened at projection: the GTE squeezes projected X toward the
  * centre by 3/4 (gte.c), so the game culls and orders for the wider view and submits
@@ -20,8 +22,10 @@
 
 #define A0 c->r[4]
 
-/* SM1's gameplay loop buffer swap: PutDispEnv's caller's caller in gameplay. */
-#define SM1_GAMEPLAY_SWAP 0x8002C2ACu
+/* The gameplay loop's buffer swap (PutDispEnv's caller's caller in gameplay):
+ * SM1 0x8002C2AC, SM2 0x80031EA0. */
+static uint32_t g_gameplay_swap;
+static int g_chase_meter;               /* SM1's Chase Venom meter is on screen in gameplay */
 /* 4:3 of view in a 16:9 frame: projected X x 1000/1333. */
 #define FOV_NUM 1000
 #define FOV_DEN 1333
@@ -127,7 +131,7 @@ static void screen(RtPrim *p)
     int rlo = lo - p->left, rhi = hi - p->left, rtop = top - p->top, rbot = bot - p->top;
     int w = p->right - p->left + 1, h = p->bottom - p->top + 1;
     int aligned = screen_aligned(p);
-    if (aligned && chase_meter(p)) { squeeze(p, 1); return; }
+    if (aligned && g_chase_meter && chase_meter(p)) { squeeze(p, 1); return; }
     int panel = aligned && in_hud_corner(rlo, rhi, rtop, rbot, w, h);
     int host = panel ? -1 : carry_host(rlo, rhi, rtop, rbot);
     if (!panel && host < 0) return;
@@ -140,14 +144,14 @@ static void screen(RtPrim *p)
 /* Once a frame: widen for gameplay, keep the console's own 4:3 everywhere else. */
 static void follow(void)
 {
-    g_wide = rt_video_wide && rt_disp_grandparent == SM1_GAMEPLAY_SWAP;
+    g_wide = rt_video_wide && rt_disp_grandparent == g_gameplay_swap;
     rt_fov_num = g_wide ? FOV_NUM : 1;
     rt_fov_den = g_wide ? FOV_DEN : 1;
     rt_frame_wide = g_wide;
     roll_elements();
 }
 
-/* ---- object bounds tests (WorldFrustum, func_8007B1B4) -------------------------------- */
+/* ---- object bounds tests (WorldFrustum: SM1 func_8007B1B4, SM2 func_800877F4) -------- */
 /* Round half to even, as the PC's Math.Round does. (nxdk's lround is an unimplemented
  * stub that asserts and halts the console.) */
 static int16_t round16(double v)
@@ -212,8 +216,10 @@ void hook_WorldFrustum_Exit(CpuContext *c)
 }
 
 /* widescreen=0 in D:\openspidey.ini keeps the game 4:3. */
-void wide_sm1_install(void)
+void wide_install(uint32_t gameplay_swap, int chase_meter_hud)
 {
+    g_gameplay_swap = gameplay_swap;
+    g_chase_meter = chase_meter_hud;
     const char *on = setting("widescreen");
     if (on && !strcmp(on, "0")) return;
     rt_frame_hook = follow;

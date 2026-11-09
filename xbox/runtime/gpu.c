@@ -584,6 +584,7 @@ static void copy_vram(void)
     int dx = (int)(fifo[2] & 0x3FF), dy = (int)((fifo[2] >> 16) & 0x1FF);
     int w = (int)(fifo[3] & 0x3FF); if (!w) w = 0x400;
     int h = (int)((fifo[3] >> 16) & 0x1FF); if (!h) h = 0x200;
+    hw_read_back(sx, sy, w, h);   /* the source as the display buffers drew it */
     for (int row = 0; row < h; row++)
         for (int col = 0; col < w; col++) {
             uint16_t px = gpu_vram[(sy + row) & (VRAM_H - 1)][(sx + col) & (VRAM_W - 1)];
@@ -627,6 +628,7 @@ static void begin_image_read(void)
     read_h = (int)((fifo[2] >> 16) & 0x1FF); if (!read_h) read_h = 0x200;
     read_px = 0;
     read_image = 1;
+    hw_read_back(read_x, read_y, read_w, read_h);   /* what the display buffers drew */
 }
 
 static uint16_t read_halfword(void)

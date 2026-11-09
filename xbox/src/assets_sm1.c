@@ -14,17 +14,19 @@
  *   DcModelCompatibility  the PS1 head morph and Bag-Man's nested shell
  *   ArmorTextures       Spider-Armor's texture swap limited to matching pages
  *
- * Not ported: the costume viewer's 20-entry list (Costume.PrepareViewer and its
- * generated-code transform); the retail viewer's ten costumes load their Dreamcast
- * actors. Actors are validated by the Windows-side preparation, not at load.
+ * The costume viewer (Costume.PrepareViewer) lists twenty stock costumes and the mod
+ * suits (with tools/patch_generated_sm1.py); each costume is its own Dreamcast actor.
+ * Actors are validated by the Windows-side preparation, not at load.
  */
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
 #include "runtime.h"
+#include "guest_layout.h"
 #include "settings.h"
 #include "SpiderMan.h"
 #include "texpack.h"
+#include "wad_overrides.h"
 
 #define V0 c->r[2]
 #define A0 c->r[4]
@@ -40,105 +42,281 @@
 #define MODEL_TABLE 0x800A0904u
 #define MODEL_STRIDE 64u
 
-/* ---- the expanded-RAM arena (LooseWadOverrides) -------------------------------------- */
-#define ARENA_LO 0x80300000u
-#define ARENA_HI 0x80780000u
-#define BLOCKS 128
-typedef struct { uint32_t address, size; } Block;
-static Block g_free[BLOCKS], g_used[BLOCKS];
-static int g_free_count, g_used_count;
-volatile uint32_t rt_arena_peak;   /* highest byte above ARENA_LO ever handed out (status) */
+/* The expanded-RAM arena and the prepared actors: src/wad_overrides.c (shared). */
 
-static void arena_reset(void)
+/* ---- costume (Costume.cs) ------------------------------------------------------------ */
+/* The costume viewer lists twenty stock costumes -- retail's ten and ten of SM2's
+ * Dreamcast actors -- then the mod suits (VIEWER_ROWS in all). The choice is a word at
+ * 0x800A5704 in the block the game saves; retail reads only its low byte, which several
+ * shell tables index and so stays a 0..9 proxy. The full 0..19 choice is kept in the
+ * word's padding (+1, with the signature "S2" at +2); a mod suit's identity is kept on
+ * the Xbox (suits.c), never as a catalogue index in a save. */
+#define SELECTED 0x800A5704u
+#define EXTENDED (SELECTED + 1u)
+#define EXTENDED_MARKER (SELECTED + 2u)
+#define EXTENDED_MAGIC 0x3253u
+#define UNLOCKS 0x800A5708u
+#define LEGACY_MARKER 0x80000000u     /* the first 20-costume version's saves */
+#define LEGACY_MASK 0x1F000000u
+#define ORIGINAL 10
+#define STOCK 20
+static const char *const DREAMCAST_MODELS[STOCK] = {
+    "spidey.psx", "sp2099.psx", "spsymbi.psx", "spuniv.psx", "spunlim.psx",
+    "spbagman.psx", "spscar.psx", "spreilly.psx", "spquick.psx", "sppark.psx",
+    "sp2phoenix.psx", "sp2prodigy.psx", "sp2dusk.psx", "sp2insulated.psx",
+    "sp2rossred.psx", "sp2rosswhite.psx", "sp2venomx.psx", "sp2negative.psx",
+    "sp2battle.psx", "sp2default.psx",
+};
+static const char *const VIEWER_NAMES[STOCK] = {
+    "spider-man", "Spider-man 2099", "symbiote spider-man", "Captain Universe",
+    "Spidey unlimited", "Amazing bag man", "Scarlet Spidey", "Ben Reilly",
+    "Quick Change Spidey", "Peter Parker", "Spider-Phoenix", "Prodigy", "Dusk",
+    "Insulated Suit", "Alex Ross - Red", "Alex Ross - White",
+    "Venom 2 - Earth X", "Negative Zone", "Battle Damaged", "Spider-Man - SM2",
+};
+static const char *const IMPORTED_POWER_TEXT[STOCK - ORIGINAL][3] = {
+    { "INVULNERABLE", "ENHANCED STRENGTH", "UNLIMITED WEBBING" }, { "NO SPIDEY BELT" },
+    { "STEALTH MODE" }, { "ENHANCED STRENGTH" }, { "STANDARD POWERS" }, { "STANDARD POWERS" },
+    { "UNLIMITED WEBBING" }, { "NO SPIDEY BELT" }, { "STANDARD POWERS" }, { "STANDARD POWERS" },
+};
+static const char *const IMPORTED_UNLOCK_TEXT[STOCK - ORIGINAL] = {
+    "CAPTAIN UNIVERSE", "AMAZING BAG MAN", "SPIDEY UNLIMITED", "SPIDER-MAN 2099",
+    "SCARLET SPIDEY", "BEN REILLY", "SYMBIOTE SPIDER-MAN", "QUICK CHANGE SPIDEY",
+    "PETER PARKER", "START",
+};
+/* SuitManifest.PowerText: the GAME POWERS lines of SM1's ten profiles (charbio.dat). */
+static const char *const POWER_TEXT[ORIGINAL][4] = {
+    { "SUPER STRENGTH", "SUPER AGILITY", "STICK TO WALLS", "SPIDER SENSE" },
+    { "ENHANCED STRENGTH" }, { "UNLIMITED WEBBING" },
+    { "INVULNERABLE", "ENHANCED STRENGTH", "UNLIMITED WEBBING" },
+    { "STEALTH MODE" }, { "NO SPIDEY BELT" }, { "NONE" }, { "NONE" },
+    { "NO SPIDEY BELT" }, { "NO SPIDEY BELT" },
+};
+/* Where each imported costume's powers were copied from (never Peter Parker, 9). */
+static const uint8_t ABILITY_DONORS[STOCK] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 5, 4, 1, 6, 7, 2, 8, 0, 0 };
+/* Retail costume-configuration words (func_80047DF8), and the imported costumes'. */
+static const uint32_t ABILITY_CONFIG[STOCK] = {
+    0x00202040, 0x00402020, 0x00200000, 0x00404040, 0x00402020,
+    0x00403030, 0x00202040, 0x00402020, 0x00200000, 0x00200000,
+    0x00404040, 0x00403030, 0x00402020, 0x00402020, 0x00202040,
+    0x00402020, 0x00200000, 0x00200000, 0x00202040, 0x00202040,
+};
+/* An original costume's unlock also unlocks its imported partner. */
+static const int8_t UNLOCK_PARTNER[ORIGINAL] = { -1, 13, 16, 10, 12, 11, 14, 15, 17, 18 };
+
+static int g_loaded_costume = -1;     /* the costume whose actor spidey.psx answered with */
+
+/* Costume.ReadSelected: 0..19 a stock costume, 20.. a mod suit. */
+static int selected_costume(void)
 {
-    g_free[0].address = ARENA_LO; g_free[0].size = ARENA_HI - ARENA_LO;
-    g_free_count = 1; g_used_count = 0;
+    if (suit_active()) return STOCK + suits_selected();
+    uint32_t extended = mem_r8(EXTENDED);
+    if (mem_r16(EXTENDED_MARKER) == EXTENDED_MAGIC && extended < STOCK) return (int)extended;
+    uint32_t bits = mem_r32(UNLOCKS), retail = mem_r8(SELECTED);
+    uint32_t legacy = (bits & LEGACY_MASK) >> 24;
+    if ((bits & LEGACY_MARKER) && legacy < STOCK && retail == (legacy < ORIGINAL ? legacy : 0)) return (int)legacy;
+    return retail < ORIGINAL ? (int)retail : 0;
 }
 
-static uint32_t arena_alloc(uint32_t requested)
+/* Costume.WriteSelected. */
+static void write_selected(int selected)
 {
-    uint32_t size = (requested + 15u) & ~15u;
-    for (int i = 0; i < g_free_count; i++) {
-        if (g_free[i].size < size || g_used_count >= BLOCKS) continue;
-        uint32_t address = g_free[i].address;
-        g_free[i].address += size; g_free[i].size -= size;
-        if (!g_free[i].size) g_free[i] = g_free[--g_free_count];
-        g_used[g_used_count].address = address; g_used[g_used_count].size = size; g_used_count++;
-        if (address + size - ARENA_LO > rt_arena_peak) rt_arena_peak = address + size - ARENA_LO;
-        return address;
+    if (selected >= STOCK) {
+        if (suits_select(selected - STOCK, 1)) {
+            /* A suit reskins the Dreamcast default: its proxy stays 0 (its powers are
+             * applied by ApplyAbilityProfile), and 0 is the fallback if it is removed. */
+            mem_w8(EXTENDED, 0);
+            mem_w16(EXTENDED_MARKER, EXTENDED_MAGIC);
+            mem_w8(SELECTED, 0);
+            return;
+        }
+        selected = 0;
     }
-    rt_note("asset arena exhausted");
-    return 0;
+    suits_select(-1, 1);
+    if (selected < 0 || selected >= STOCK) selected = 0;
+    mem_w8(EXTENDED, (uint8_t)selected);
+    mem_w16(EXTENDED_MARKER, EXTENDED_MAGIC);
+    mem_w8(SELECTED, (uint8_t)(selected < ORIGINAL ? selected : 0));
 }
 
-int assets_sm1_allocation(uint32_t address, uint32_t *size)
+/* Costume.ApplyPersistentState: once a frame (a save loaded overwrites the block), the
+ * paired unlocks and the selection re-applied. */
+static void persistent_state(void)
 {
-    for (int i = 0; i < g_used_count; i++)
-        if (g_used[i].address == address) { if (size) *size = g_used[i].size; return 1; }
-    return 0;
+    uint32_t bits = mem_r32(UNLOCKS), retail = mem_r8(SELECTED);
+    if (retail >= ORIGINAL) retail = 0;
+    int selected = (int)retail;
+    uint32_t extended = mem_r8(EXTENDED);
+    if (mem_r16(EXTENDED_MARKER) == EXTENDED_MAGIC && extended < STOCK) selected = (int)extended;
+    else {
+        uint32_t legacy = (bits & LEGACY_MASK) >> 24;
+        if ((bits & LEGACY_MARKER) && legacy < STOCK && retail == (legacy < ORIGINAL ? legacy : 0)) {
+            selected = (int)legacy;
+            bits &= ~(LEGACY_MARKER | LEGACY_MASK);
+        }
+    }
+    bits |= 1u | (1u << 19);
+    for (int original = 1; original < ORIGINAL; original++)
+        if (bits & (1u << original)) bits |= 1u << UNLOCK_PARTNER[original];
+    mem_w32(UNLOCKS, bits);
+    write_selected(suit_active() ? STOCK + suits_selected() : selected);
 }
 
-static int arena_free(uint32_t address)
+static void (*g_next_frame_hook)(void);
+static void frame(void)
 {
-    int u = -1;
-    for (int i = 0; i < g_used_count; i++) if (g_used[i].address == address) { u = i; break; }
-    if (u < 0) return 0;
-    uint32_t start = address, size = g_used[u].size;
-    g_used[u] = g_used[--g_used_count];
-    for (int i = 0; i < g_free_count; i++)
-        if (g_free[i].address + g_free[i].size == start) { start = g_free[i].address; size += g_free[i].size; g_free[i--] = g_free[--g_free_count]; }
-        else if (g_free[i].address == start + size) { size += g_free[i].size; g_free[i--] = g_free[--g_free_count]; }
-    if (g_free_count < BLOCKS) { g_free[g_free_count].address = start; g_free[g_free_count].size = size; g_free_count++; }
+    persistent_state();
+    if (g_next_frame_hook) g_next_frame_hook();
+}
+
+/* The loaded spidey is the chosen suit's own (its materials bind). */
+int assets_sm1_suit_loaded(void) { return suit_active() && g_loaded_costume == STOCK + suits_selected(); }
+
+/* ---- the viewer (Costume.PrepareViewer; tools/patch_generated_sm1.py) ---------------- */
+#define VIEWER_TABLE GUEST_VIEWER_TABLE
+#define VIEWER_NAMES_AT (VIEWER_TABLE + 0x8000u)
+#define VIEWER_TEXT (VIEWER_TABLE + 0x10000u)
+#define VIEWER_END GUEST_VIEWER_END
+#define RETAIL_TABLE 0x802693A8u        /* shell's ten 12-byte rows */
+
+uint32_t costume_sm1_viewer_count(void)
+{
+    int n = STOCK + suits_count();
+    return (uint32_t)(n < VIEWER_ROWS ? n : VIEWER_ROWS);
+}
+
+int costume_sm1_is_unlocked(uint32_t index)
+{
+    return index < costume_sm1_viewer_count() && (index >= STOCK || (mem_r32(UNLOCKS) & (1u << index)) != 0);
+}
+
+uint32_t costume_sm1_read_selected(void) { return (uint32_t)selected_costume(); }
+
+void costume_sm1_write_selected(int selected)
+{
+    if ((uint32_t)selected < costume_sm1_viewer_count()) write_selected(selected);
+}
+
+/* One NUL-terminated line, or 0 when it would pass `end` (nothing written). */
+static uint32_t viewer_line(uint32_t at, const char *text, uint32_t end)
+{
+    uint32_t n = (uint32_t)strlen(text);
+    if (!at || at + n + 1 > end) return 0;
+    for (uint32_t i = 0; i < n; i++) mem_w8(at + i, (uint8_t)text[i]);
+    mem_w8(at + n, 0);
+    return at + n + 1;
+}
+
+/* A colour token: 2, then charbio.dat's heading (105,105,0) or body (68,68,100) colour. */
+static uint32_t viewer_colour(uint32_t at, int heading, uint32_t end)
+{
+    if (!at || at + 4 > end) return 0;
+    mem_w8(at, 2);
+    mem_w8(at + 1, heading ? 105 : 68);
+    mem_w8(at + 2, heading ? 105 : 68);
+    mem_w8(at + 3, heading ? 0 : 100);
+    return at + 4;
+}
+
+static void upper(char *out, size_t size, const char *in)
+{
+    size_t k = 0;
+    for (; in[k] && k < size - 1; k++) out[k] = (char)((in[k] >= 'a' && in[k] <= 'z') ? in[k] - 32 : in[k]);
+    out[k] = 0;
+}
+
+/* SuitManifest.WrapComments: upper case, 18-character lines, long words split. */
+static uint32_t viewer_comments(uint32_t at, const char *text, uint32_t end)
+{
+    char word[256], line[24] = "";
+    const char *p = text;
+    while (at && *p) {
+        while (*p == ' ') p++;
+        if (!*p) break;
+        size_t n = 0;
+        while (p[n] && p[n] != ' ' && n < sizeof word - 1) n++;
+        for (size_t i = 0; i < n; i++) word[i] = (char)((p[i] >= 'a' && p[i] <= 'z') ? p[i] - 32 : p[i]);
+        word[n] = 0;
+        p += n;
+        const char *rest = word;
+        size_t len = strlen(line);
+        if (len && len + strlen(rest) + 1 > 18) { at = viewer_line(at, line, end); line[0] = 0; len = 0; }
+        while (at && strlen(rest) > 18) {
+            char piece[19];
+            memcpy(piece, rest, 18); piece[18] = 0;
+            at = viewer_line(at, piece, end);
+            rest += 18;
+        }
+        if (len) strcat(line, " ");
+        strcat(line, rest);
+    }
+    if (at && line[0]) at = viewer_line(at, line, end);
+    return at;
+}
+
+/* Pre shell:func_80261C70: the retail ten rows verbatim, then ten imported costumes and
+ * the mod suits, each with its own name and description. */
+int hook_Costume_PrepareViewer(CpuContext *c)
+{
+    (void)c;
+    persistent_state();
+    for (uint32_t i = 0; i < ORIGINAL * 12u; i += 4) mem_w32(VIEWER_TABLE + i, mem_r32(RETAIL_TABLE + i));
+    uint32_t name = VIEWER_NAMES_AT, text = VIEWER_TEXT, count = costume_sm1_viewer_count();
+    for (uint32_t i = ORIGINAL; i < count; i++) {
+        int mod = i >= STOCK, s = (int)i - STOCK;
+        const char *display = mod ? suits_name(s) : VIEWER_NAMES[i];
+        char caps[48];
+        upper(caps, sizeof caps, display);
+        uint32_t n = viewer_line(name, display, VIEWER_TEXT), t = text;
+        t = viewer_colour(t, 1, VIEWER_END);
+        t = viewer_line(t, mod ? "COSTUME:" : "SPECIAL COSTUME", VIEWER_END);
+        t = viewer_colour(t, 0, VIEWER_END);
+        t = viewer_line(t, caps, VIEWER_END);
+        t = viewer_colour(t, 1, VIEWER_END);
+        t = viewer_line(t, "GAME POWERS:", VIEWER_END);
+        t = viewer_colour(t, 0, VIEWER_END);
+        const char *const *powers_text = mod ? POWER_TEXT[suits_profile(s) < ORIGINAL ? suits_profile(s) : 0]
+                                             : IMPORTED_POWER_TEXT[i - ORIGINAL];
+        for (int j = 0; j < (mod ? 4 : 3) && powers_text[j]; j++) t = viewer_line(t, powers_text[j], VIEWER_END);
+        t = viewer_colour(t, 1, VIEWER_END);
+        t = viewer_line(t, mod ? "COMMENTS:" : "UNLOCKED WITH:", VIEWER_END);
+        t = viewer_colour(t, 0, VIEWER_END);
+        t = mod ? viewer_comments(t, suits_comments(s), VIEWER_END) : viewer_line(t, IMPORTED_UNLOCK_TEXT[i - ORIGINAL], VIEWER_END);
+        /* Bounded: a row that does not fit is left out (and the ones after it). */
+        if (!n || !t || t + 1 > VIEWER_END) { rt_note("costume viewer text arena full"); break; }
+        mem_w8(t++, 255);
+        uint32_t row = VIEWER_TABLE + i * 12u;
+        mem_w32(row, name);
+        mem_w32(row + 4, text);
+        mem_w32(row + 8, 0x004C0008u);      /* retail default Spider-Man's style */
+        name = n; text = t;
+    }
     return 1;
 }
 
-/* ---- the actors on the disc ---------------------------------------------------------- */
-#define ACTORS 128
-static char g_actor_names[ACTORS][16];
-static int g_actor_count;
-
-static void load_actor_index(void)
+/* The retail constructor sets up forty inline 28-byte rows; this viewer's list was
+ * allocated for VIEWER_ROWS (the transform), so the rest are set up here alike. */
+void costume_sm1_configure_viewer_list(uint32_t list)
 {
-    FILE *f = fopen("D:\\assets\\builtin\\index.txt", "r");
-    if (!f) return;
-    char line[64];
-    while (g_actor_count < ACTORS && fgets(line, sizeof line, f)) {
-        int n = (int)strcspn(line, "\r\n");
-        if (n <= 0 || n >= 16) continue;
-        line[n] = 0;
-        strcpy(g_actor_names[g_actor_count++], line);
+    for (uint32_t row = 40; row < VIEWER_ROWS; row++) {
+        uint32_t target = list + 0x28u + row * 28u;
+        for (uint32_t o = 0; o < 28; o++) mem_w8(target + o, 0);
+        mem_w16(target + 8, (uint16_t)mem_r16(list + 0x30u));
+        mem_w16(target + 10, (uint16_t)mem_r16(list + 0x32u));
+        for (uint32_t o = 14; o < 26; o++) mem_w8(target + o, (uint8_t)mem_r8(list + 0x28u + o));
     }
-    fclose(f);
+    mem_w32(list + 0x20u, 70);     /* the right column's first text line */
+    mem_w8(list + 0x15u, 11);      /* last baseline 170, inside the frame ending at 175 */
 }
 
-static int have_actor(const char *name)
+/* The list frame aligned with the description frame (shell:func_80261C70's right panel). */
+void costume_sm1_align_viewer_frame(uint32_t list)
 {
-    for (int i = 0; i < g_actor_count; i++) if (rt_strcasecmp(g_actor_names[i], name) == 0) return 1;
-    return 0;
+    uint32_t f = mem_r32(list + 4u);
+    if (!f) return;
+    mem_w32(f + 0x20u, 0x3Au);
+    mem_w32(f + 0x10u, 0x75u);
 }
-
-/* ---- costume (Costume.cs) ------------------------------------------------------------ */
-#define SELECTED 0x800A5704u
-static const char *const DREAMCAST_MODELS[10] = {
-    "spidey.psx", "sp2099.psx", "spsymbi.psx", "spuniv.psx", "spunlim.psx",
-    "spbagman.psx", "spscar.psx", "spreilly.psx", "spquick.psx", "sppark.psx",
-};
-/* Retail costume-configuration words (func_80047DF8), retail costumes 0..9. */
-static const uint32_t ABILITY_CONFIG[10] = {
-    0x00202040, 0x00402020, 0x00200000, 0x00404040, 0x00402020,
-    0x00403030, 0x00202040, 0x00402020, 0x00200000, 0x00200000,
-};
-static int g_loaded_costume = -1;     /* SUIT_COSTUME: the suit; else 0..9 */
-#define SUIT_COSTUME 100
-
-static int selected_costume(void)
-{
-    if (suit_active()) return SUIT_COSTUME;
-    int retail = (int)mem_r8(SELECTED);
-    return retail < 10 ? retail : 0;
-}
-
-int assets_sm1_suit_loaded(void) { return g_loaded_costume == SUIT_COSTUME; }
 
 static const char *bundled_model(const char *model)
 {
@@ -150,12 +328,17 @@ static const char *bundled_model(const char *model)
     return "spidey.psx";
 }
 
-static int powers(int costume) { return costume == SUIT_COSTUME ? suit_profile() : costume; }
+/* Costume.RetailPowers: the retail costume (0..9) whose powers a costume has. */
+static int retail_powers(int costume)
+{
+    if (costume >= STOCK) return suit_profile() < ORIGINAL ? suit_profile() : 0;
+    return costume < ORIGINAL ? costume : ABILITY_DONORS[costume];
+}
 
 /* Pre func_80047DF8: retail keeps "costume + 1" at gp+0xA8C for the costume powers. */
 int hook_Costume_SetRetailCostume(CpuContext *c)
 {
-    mem_w32(GP + 0xA8Cu, (uint32_t)powers(selected_costume()) + 1u);
+    mem_w32(GP + 0xA8Cu, (uint32_t)retail_powers(selected_costume()) + 1u);
     return 1;
 }
 
@@ -164,13 +347,14 @@ void hook_Costume_ApplyAbilityProfile(CpuContext *c)
 {
     uint32_t player = V0;
     if ((player & 0xFF000000u) != 0x80000000u) return;
-    int p = powers(selected_costume());
-    mem_w32(player + 0x584u, ABILITY_CONFIG[p < 10 ? p : 0]);
+    int costume = selected_costume();
+    if (costume >= STOCK) costume = suit_profile() < ORIGINAL ? suit_profile() : 0;
+    mem_w32(player + 0x584u, ABILITY_CONFIG[costume]);
 }
 
 /* ---- the costume viewer's reload (Costume.RunRetailTextureOverlay, pre func_80046B40) -- */
-#define TEXTURE_REGISTRY 0x80780000u   /* patch_generated_sm1.py */
-#define VIEWER_MODEL_NAME 0x807F0000u
+#define TEXTURE_REGISTRY GUEST_TEXTURE_REGISTRY
+#define VIEWER_MODEL_NAME GUEST_SCRATCH_NAMES
 
 static int model_slot(const char *name)
 {
@@ -235,96 +419,41 @@ int hook_Costume_RunRetailTextureOverlay(CpuContext *c)
 }
 
 /* ---- the lookup (OverlayPatches.CdWadFind -> AssetOverrides.Find) -------------------- */
-static char g_pending_path[160];
-static uint32_t g_pending_bytes, g_pending_rounded;
-static int g_pending;
-
 void assets_sm1_find(CpuContext *c, const char *name)
 {
     (void)c;
-    g_pending = 0;
     char source[24];
-    if (strlen(name) >= sizeof source || strchr(name, '\\') || strchr(name, '/')) return;
+    if (strlen(name) >= sizeof source) { wad_find(name, 0); return; }
     strcpy(source, name);
     if (rt_strcasecmp(name, "spidey.psx") == 0) {
         int costume = selected_costume();
         g_loaded_costume = costume;
-        if (costume == SUIT_COSTUME && suit_model_file()) {
-            snprintf(g_pending_path, sizeof g_pending_path, "%s", suit_model_file());
-            goto open;
-        }
-        strcpy(source, costume == SUIT_COSTUME ? bundled_model(suit_model()) : DREAMCAST_MODELS[costume]);
+        if (costume >= STOCK && suit_model_file()) { wad_find_file(suit_model_file()); return; }
+        strcpy(source, costume >= STOCK ? bundled_model(suit_model()) : DREAMCAST_MODELS[costume]);
     }
-    if (!have_actor(source)) return;
-    snprintf(g_pending_path, sizeof g_pending_path, "D:\\assets\\builtin\\%s", source);
-open:;
-    FILE *f = fopen(g_pending_path, "rb");
-    if (!f) return;
-    fseek(f, 0, SEEK_END);
-    long bytes = ftell(f);
-    fclose(f);
-    if (bytes <= 0 || bytes > 2 * 1024 * 1024) return;
-    g_pending_bytes = (uint32_t)bytes;
-    g_pending_rounded = (g_pending_bytes + 0x7FFu) & ~0x7FFu;
-    g_pending = 1;
+    wad_find(name, source);
 }
 
 /* Post CdWadFind: the entry's size is the override's. */
-void assets_sm1_find_exit(CpuContext *c) { if (g_pending) V0 = g_pending_rounded; }
+void assets_sm1_find_exit(CpuContext *c) { wad_find_exit(c); }
 
 /* The allocation right after an overridden lookup comes from the arena. */
 int assets_sm1_heap_alloc(CpuContext *c)
 {
     /* FramePackets: only the two primitive pools in func_80061230. */
     if (A0 == 0x17000u && (RA == 0x80061280u || RA == 0x80061298u)) {
-        uint32_t pool = arena_alloc(0x80000u);
+        uint32_t pool = wad_scratch(0x80000u);
         if (pool) { V0 = pool; return 1; }
     }
-    if (!g_pending || A0 != g_pending_rounded) return 0;
-    uint32_t address = arena_alloc(A0);
-    if (!address) return 0;
-    V0 = address;
-    return 1;
+    return wad_heap_alloc(c);
 }
 
-int assets_sm1_heap_free(CpuContext *c) { return arena_free(A0); }
-int assets_sm1_owns(uint32_t address) { return assets_sm1_allocation(address, 0); }
+int assets_sm1_heap_free(CpuContext *c) { return wad_free(A0); }
+int assets_sm1_owns(uint32_t address) { return wad_owns(address); }
+int assets_sm1_allocation(uint32_t address, uint32_t *size) { return wad_allocation(address, size); }
 
 /* Pre CdWadRead: read the override into the buffer instead of the disc's entry. */
-int hook_AssetOverrides_CdWadRead(CpuContext *c)
-{
-    if (!g_pending) return 1;
-    g_pending = 0;
-    uint32_t to = A0;
-    /* This can run mid-level (a trigger loading an actor): one kernel read straight into
-     * PlayStation RAM, not the C library's 1 KB reads and a byte at a time. */
-    if (mem_is_ram(to) && mem_is_ram(to + g_pending_rounded - 1u) &&
-        (to & (RECOMP_RAM_SIZE - 1u)) + g_pending_rounded <= RECOMP_RAM_SIZE) {
-        uint8_t *at = mem_ram(to);
-        memset(at, 0, g_pending_rounded);
-        HANDLE f = CreateFileA(g_pending_path, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, 0);
-        if (f != INVALID_HANDLE_VALUE) {
-            DWORD got = 0;
-            ReadFile(f, at, g_pending_bytes, &got, 0);
-            CloseHandle(f);
-        }
-    } else {
-        for (uint32_t i = 0; i < g_pending_rounded; i += 4) mem_w32(to + i, 0);
-        FILE *f = fopen(g_pending_path, "rb");
-        if (f) {
-            uint8_t buffer[2048];
-            uint32_t done = 0;
-            size_t n;
-            while (done < g_pending_bytes && (n = fread(buffer, 1, sizeof buffer, f)) > 0) {
-                for (size_t i = 0; i < n && done < g_pending_bytes; i++) mem_w8(to + done++, buffer[i]);
-            }
-            fclose(f);
-        }
-    }
-    V0 = 0xFFFFFFFFu;
-    rt_note("actor served from the disc's assets");
-    return 0;
-}
+int hook_AssetOverrides_CdWadRead(CpuContext *c) { return !wad_read(c); }
 
 /* ---- FramePackets.SetLimit (post func_8002BB9C) -------------------------------------- */
 void hook_FramePackets_SetLimit(CpuContext *c)
@@ -420,7 +549,7 @@ void hook_ModelGuard_FindExit(CpuContext *c)
     int slot = -1;
     char file[24];
     snprintf(file, sizeof file, "%s.psx", g_wanted);
-    if (have_actor(file)) {
+    if (wad_have(file)) {
         /* Load the exact actor through the game's own loader. */
         CpuContext saved = *c;
         A0 = g_wanted_ptr; A1 = 0;
@@ -475,80 +604,15 @@ void hook_DcModelCompatibility_RestoreHeadAfterPs1Morph(CpuContext *c)
     }
 }
 
-/* DrawPrimSet: Bag-Man's Dreamcast nested shell (179 head faces, 86 inner ones marked
- * 0x6000 by the converter) gets SM1's per-face ordering-table offset. */
-#define BAGMAN_DEPTH 0x1F800344u
-static int g_bagman_active;
-static uint16_t g_bagman_saved;
-
-int hook_DcModelCompatibility_ApplyBagmanNestedShellDepth(CpuContext *c)
-{
-    g_bagman_active = 0;
-    if (A2 != 179u) return 1;
-    uint32_t face = A0;
-    int inner = 0, outer = 0;
-    for (int i = 0; i < 179; i++) {
-        uint16_t flags = (uint16_t)mem_r16(face), length = (uint16_t)mem_r16(face + 2u);
-        if (length < 20 || length > 64) return 1;
-        if ((flags & 0x6000) == 0x6000) inner++; else outer++;
-        face += length;
-    }
-    if (inner != 86 || outer != 93) return 1;
-    g_bagman_saved = (uint16_t)mem_r16(BAGMAN_DEPTH);
-    mem_w16(BAGMAN_DEPTH, 128);
-    g_bagman_active = 1;
-    return 1;
-}
-
-void hook_DcModelCompatibility_RestoreBagmanNestedShellDepth(CpuContext *c)
-{
-    (void)c;
-    if (!g_bagman_active) return;
-    mem_w16(BAGMAN_DEPTH, g_bagman_saved);
-    g_bagman_active = 0;
-}
-
-/* ---- ArmorTextures.SkipUnmapped (instruction branch at 80046FD4) --------------------- */
-static int armor_record(CpuContext *c, uint32_t armor_hash, int *four_bit, int *bytes)
-{
-    uint32_t hashes = mem_r32(SP + 0x28u), section = mem_r32(SP + 0x2Cu);
-    int count = (int)mem_r32(section);
-    if (count <= 0 || count > 64) return 0;
-    uint32_t record = section + (uint32_t)count * 4u + 4u;
-    for (uint32_t i = 0; i < (uint32_t)count; i++) {
-        if (mem_r32(hashes + mem_r32(record + 0xCu) * 4u + 4u) == armor_hash) {
-            uint32_t size = mem_r32(record + 0x10u);
-            int texels = (int)(size & 0xFFFF) * (int)(size >> 16);
-            *four_bit = mem_r32(record + 0x4u) == 0x10u;
-            *bytes = *four_bit ? texels / 2 : texels;
-            return 1;
-        }
-        record += mem_r32(section + 8u + i * 4u) - mem_r32(section + 4u + i * 4u);
-    }
-    return 0;
-}
-
-/* Returns 1 to skip this texture (resume at 800471B0): no armor version, a different
- * page size or depth, or a suit (which keeps its own look). */
-int hook_ArmorTextures_SkipUnmapped(CpuContext *c)
-{
-    uint32_t descriptor = S0, hash = mem_r32(descriptor + 0x14u), armor_hash = 0;
-    for (uint32_t i = 0; i < 13 && !armor_hash; i++)
-        if (mem_r32(0x80099658u + i * 8u) == hash) armor_hash = mem_r32(0x80099658u + i * 8u + 4u);
-    int four_bit = ((mem_r16(descriptor + 0x6u) >> 7) & 3u) == 0;
-    int width = (int16_t)mem_r16(S2);
-    int words = four_bit ? (width + 3) >> 2 : (width + 1) >> 1;
-    int bytes = words * 2 * (int16_t)mem_r16(S4);
-    int armor_four_bit, armor_bytes;
-    if (suit_active() || !armor_hash || !armor_record(c, armor_hash, &armor_four_bit, &armor_bytes) ||
-        armor_four_bit != four_bit || armor_bytes != bytes)
-        return 1;
-    return 0;
-}
+/* DcModelCompatibility's Bag-Man shell depth and the ArmorTextures test are shared:
+ * src/patches_common.c. */
+/* ---- ArmorTextures.SkipUnmapped (instruction branch at 80046FD4, resume 800471B0) --- */
+int hook_ArmorTextures_SkipUnmapped(CpuContext *c) { return armor_skip_unmapped(c, 0x80099658u, 13); }
 
 void assets_sm1_install(void)
 {
-    arena_reset();
-    load_actor_index();
+    wad_init();
+    g_next_frame_hook = rt_frame_hook;   /* widescreen's, set up before */
+    rt_frame_hook = frame;
     if (texpack_load("D:\\assets\\packs\\dreamcast-sm1-actors")) rt_note("Dreamcast texture pack loaded");
 }

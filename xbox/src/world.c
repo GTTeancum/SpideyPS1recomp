@@ -1,7 +1,9 @@
 /*
- * Precise projection through SM1's subdivided world faces: the Xbox counterpart of the
- * PC's WorldSubpixel (spiderman/patches/WorldSubpixel.cs). A fix to either belongs in
- * both places.
+ * Precise projection through the subdivided world faces, both games: the Xbox
+ * counterpart of the PC's WorldSubpixel (spiderman/patches/WorldSubpixel.cs, which
+ * Spider-Man 2's build also compiles). A fix to either belongs in both places. The
+ * routines named below are SM1's; SM2's are func_80089918 (corners), func_8008997C
+ * (subdivision) and func_80089B74 (edge), the same code at other addresses.
  *
  * func_8007D33C splits a large face near the camera into a grid by running RTPS through
  * a temporary GTE matrix built from the face's three projected corners, with barycentric

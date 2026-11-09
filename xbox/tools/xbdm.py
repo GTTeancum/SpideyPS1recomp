@@ -19,6 +19,14 @@ import sys
 from pathlib import Path
 
 
+def map_path() -> Path:
+    """The running build's link map: OPENSPIDEY_MAP, else Spider-Man 1's
+    (build/release/OpenSpidey.map; Spider-Man 2's is build/sm2/OpenSpidey.map)."""
+    import os
+    env = os.environ.get("OPENSPIDEY_MAP")
+    return Path(env) if env else Path(__file__).resolve().parents[1] / "build" / "release" / "OpenSpidey.map"
+
+
 class Xbdm:
     def __init__(self, host: str, timeout: float = 15.0):
         self.s = socket.create_connection((host, 731), timeout=timeout)
@@ -165,7 +173,7 @@ def main() -> int:
         # cannot find a picture drawn without D3D). Address from the link map.
         import re
         m = re.search(r"_g_status_text\s+([0-9a-fA-F]{8,16})\s",
-                      (Path(__file__).resolve().parents[1] / "build" / "OpenSpidey.map").read_text(errors="replace"))
+                      map_path().read_text(errors="replace"))
         # The game rewrites the text about once a second; a read that overlaps a
         # rewrite comes back cut short, so read until the copy is whole.
         for _ in range(5):
@@ -196,7 +204,7 @@ def main() -> int:
         import re
         from PIL import Image
         m = re.search(r"_g_status_text\s+([0-9a-fA-F]{8,16})\s",
-                      (Path(__file__).resolve().parents[1] / "build" / "OpenSpidey.map").read_text(errors="replace"))
+                      map_path().read_text(errors="replace"))
         text = getmem(x, int(m[1], 16), 0x4000).split(b"\0")[0].decode("latin-1")
         mode = re.search(r"^mode (\d+)x(\d+)", text, re.M)
         w, h = int(mode[1]), int(mode[2])

@@ -1,12 +1,14 @@
 /*
- * Player silhouette shadow (issue #9): a port of the PC's PlayerShadow.cs
- * (spiderman/patches). A fix to either belongs in both places.
+ * Player silhouette shadow (issue #9), both games: a port of the PC's PlayerShadow.cs
+ * (spiderman/patches, spiderman2/patches; the same code with each game's addresses,
+ * given to shadow_install). A fix to either belongs in both places.
  *
  * The console draws a round blob under Spider-Man; the N64 version casts his
- * silhouette. Capture: the per-part mesh draw (func_80077C08 / func_80077CC4, mesh in
- * A0, actor in the caller's S2) runs with the GTE holding that part's camera-space
- * RT/TR, so every player triangle is recorded in camera space as the game projects
- * it. Draw: the blob (tpage 76, CLUT 33, semi-transparent) gives the floor height --
+ * silhouette. Capture: the per-part mesh draw (SM1 func_80077C08 / func_80077CC4, SM2
+ * func_80084234 / func_800842F0; mesh in A0, actor in the caller's S2) runs with the
+ * GTE holding that part's camera-space RT/TR, so every player triangle is recorded in
+ * camera space as the game projects it. Draw: the blob (CLUT 33 in SM1, 41 in SM2,
+ * semi-transparent) gives the floor height --
  * the point below the player that projects onto its centre -- and the triangles,
  * flattened onto that floor along a fixed world light, are drawn in its place,
  * darkening each pixel once (hw_shadow, through the stencil).
@@ -23,12 +25,15 @@
 #define S2 c->r[18]
 #define GP c->r[28]
 
-#define PLAYER_POINTER 0x800B5268u
-#define CAMERA_ROTATION 0x800A57CCu
+/* The game's addresses (shadow_install): SM1 / SM2. */
+static uint32_t PLAYER_POINTER;        /* 0x800B5268 / 0x800C21F4 */
+static uint32_t CAMERA_ROTATION;       /* 0x800A57CC / 0x800B32C4 */
+static uint32_t MODEL_TABLE;           /* 0x800A0904 / 0x800ACED8 */
+static uint32_t TRANSFORM_FLAG;        /* gp+0x1170 / gp+0x1358: vertices pre-shifted */
 /* The blob: CLUT 33, subtractive blending. Its texture page moves when a suit's own
  * model takes VRAM (page 76 for the stock actors, 88 with Raimi Symbiote), so the page
  * is not part of the test; the position checks below tie it to the player. */
-#define BLOB_CLUT 33
+static int BLOB_CLUT;                  /* 33 / 41 */
 static int is_blob(const RtPrim *e) { return e->clut == BLOB_CLUT && ((e->tpage >> 5) & 3) == 2; }
 
 typedef struct { float x, y, z; } V3;
@@ -72,7 +77,7 @@ static int first_source(uint32_t actor, uint32_t mesh)
 {
     uint32_t slot = mem_r8(actor + 0x1B);
     if (slot >= 40) return -1;
-    uint32_t table = mem_r32(0x800A0904u + slot * 64u + 0x10u);
+    uint32_t table = mem_r32(MODEL_TABLE + slot * 64u + 0x10u);
     if (table < 0x80000004u || table >= 0x80800000u) return -1;
     uint32_t parts = mem_r32(table - 4);
     if (parts > 64) return -1;
@@ -120,7 +125,7 @@ static int hook_PlayerShadow_MeshDraw_timed(CpuContext *c)
      * vertex by 16 (arithmetic shift) before projecting it; with it set (8007B9CC /
      * 8007BD04) vertices go in whole. Taking them whole in the first case made the
      * silhouette 16 times too big and threw it across the scene (climbing, distant). */
-    int shift = mem_r32(GP + 0x1170u) == 0 ? 4 : 0;
+    int shift = mem_r32(GP + TRANSFORM_FLAG) == 0 ? 4 : 0;
     for (int i = 0; i < nv; i++) {
         uint32_t v = mesh + 28 + (uint32_t)i * 8;
         int16_t x = (int16_t)mem_r16(v), y = (int16_t)mem_r16(v + 2), z = (int16_t)mem_r16(v + 4);
@@ -251,8 +256,11 @@ static int replace_blob(const RtPrim *e, int region)
     return 1;
 }
 
-void shadow_sm1_install(void)
+void shadow_install(uint32_t player_pointer, uint32_t camera_rotation, uint32_t model_table, int blob_clut,
+                    uint32_t transform_flag)
 {
+    PLAYER_POINTER = player_pointer; CAMERA_ROTATION = camera_rotation; MODEL_TABLE = model_table;
+    BLOB_CLUT = blob_clut; TRANSFORM_FLAG = transform_flag;
     g_light = normalize(v3(0.45f, 1.0f, 0.55f));   /* SPIDEY_SHADOW_LIGHT's default */
     const char *mode = setting("shadow");
     if (mode && !strcmp(mode, "off")) return;   /* shadow=off: the retail blob */

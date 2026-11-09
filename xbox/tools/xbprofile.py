@@ -5,7 +5,7 @@
 
 Suspends the thread, reads its stack, takes the interrupted position from the interrupt
 code (the innermost function of ours it was in; the context's own EIP is the kernel
-point where the thread is parked) and names it from build/OpenSpidey.map. Prints the
+point where the thread is parked) and names it from the build's link map (xbdm.map_path). Prints the
 functions by share of samples.
 """
 from __future__ import annotations
@@ -19,11 +19,11 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from xbdm import Xbdm, getmem  # noqa: E402
+from xbdm import Xbdm, getmem, map_path  # noqa: E402
 
 
 def symbols() -> tuple[list[int], list[str], int, int]:
-    text = (Path(__file__).resolve().parents[1] / "build" / "OpenSpidey.map").read_text(errors="replace")
+    text = map_path().read_text(errors="replace")
     syms = sorted((int(m[2], 16), m[1]) for m in re.finditer(r"^\s*0001:[0-9a-fA-F]{8}\s+(\S+)\s+([0-9a-fA-F]{8,16})\s", text, re.M))
     lo = syms[0][0]
     hi = syms[-1][0] + 0x10000

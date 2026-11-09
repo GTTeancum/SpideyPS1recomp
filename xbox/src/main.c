@@ -10,7 +10,7 @@
 #include <windows.h>
 #include <xboxkrnl/xboxkrnl.h>
 #include "runtime.h"
-#include "SpiderMan.h"
+#include "game.h"
 #include "settings.h"
 #include "spu.h"
 
@@ -43,7 +43,7 @@ static DWORD WINAPI game_thread(LPVOID arg)
             rt_game_stack_base = (uintptr_t)t->StackBase;
         }
     }
-    rt_boot(&SpiderMan_game, "D:");
+    rt_boot(game_program(), "D:");
     g_stopped = 1;
     return 0;
 }
@@ -62,14 +62,9 @@ int main(void)
     if (setting("geometry_debug")) rt_geometry_debug = setting("geometry_debug")[0] - '0';
     if (setting("crack_fill")) rt_crack_fill = setting("crack_fill")[0] == '1';
     if (setting("sound") && setting("sound")[0] == '0') spu_enabled = 0;
-    wide_sm1_install();
-    level_sm1_install();
-    suits_sm1_install();
-    assets_sm1_install();
-    retarget_sm1_install();
-    shadow_sm1_install();
-    debugPrint("Spider-Man X - original Xbox\n");
-    card_init();
+    card_init();   /* first: the game's set-up reads the remembered suit from the save folder */
+    game_install();
+    debugPrint("%s - original Xbox\n", game_name);
     input_start();
     rt_mem_mark("set-up");
 

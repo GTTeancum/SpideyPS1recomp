@@ -62,6 +62,14 @@ void hw_note_display(int x, int y, int width, int height)
     hw_blit(i, x, y, width, height);
 }
 
+/* Reading VRAM back (StoreImage, a VRAM-to-VRAM copy's source): the pixels of a
+ * display buffer live in its render target, not in gpu_vram, so the part of the
+ * rectangle a display buffer covers is fetched from the render target first -- each
+ * PlayStation pixel from the output pixel at its centre -- once the GPU has finished.
+ * SM2's Game Over reads the last frame back a row at a time to dim it behind its menu;
+ * from gpu_vram it read black. Defined below (after the GPU wait). */
+void hw_read_back(int x, int y, int w, int h);
+
 int hw_region_for(int x, int y)
 {
     if (!g_active) return -1;
@@ -87,7 +95,10 @@ static int block_full(const uint32_t *p) { return (unsigned)(p - g_open_start) *
 #define WRAP_SLACK (256u * 1024u)
 /* The GPU's read position in the push buffer (physical), as pbkit reads it. */
 #define DMA_GET (*(volatile uint32_t *)(VIDEO_BASE + 0x00800000u + 0x44u))   /* NV_USER, channel 0 */
-static int g_target = -1;
+/* The surface drawn to: a display buffer (0..), the back buffer (-1), or not known
+ * (after a push-buffer wrap or a present), when the next target() sets it again. */
+#define TARGET_UNKNOWN (-2)
+static int g_target = TARGET_UNKNOWN;
 
 /* Consecutive triangles with the same state share one BEGIN/END (submit). */
 static int g_batch;
@@ -124,7 +135,7 @@ static uint32_t *open_block(void)
         *p = 1u + ((uint32_t)g_base & 0x0FFFFFFFu);
         g_wrap_from = p;
         pb_end(g_base);
-        g_target = -1;
+        g_target = TARGET_UNKNOWN;
         p = pb_begin();
     }
     /* Lapping the GPU: commands it has not read yet lie ahead of p, and must not be
@@ -140,6 +151,14 @@ static uint32_t *open_block(void)
     g_open_start = p;
     g_open_prims = 1;
     return p;
+}
+
+/* pbkit's rectangle fill writes at its put pointer, where an open block's commands
+ * are: the block is submitted first, or the fill would overwrite its start. */
+static void fill_rect(int x, int y, int w, int h, uint32_t argb)
+{
+    close_block();
+    pb_fill(x, y, w, h, argb);
 }
 
 static void target(int r)
@@ -205,6 +224,46 @@ static void drain(uint32_t site)
     rt_hw_wait = site;
     while (pb_busy()) {}
     rt_hw_wait = 0;
+}
+
+static void close_block(void);
+
+void hw_finish(void)
+{
+    if (!g_active) return;
+    close_block();
+    drain(8);
+}
+
+static float sx(int r, float x);
+static float sy(int r, float y);
+
+void hw_read_back(int x, int y, int w, int h)
+{
+    if (!g_active || w <= 0 || h <= 0) return;
+    int waited = 0;
+    for (int r = 0; r < HW_REGIONS; r++) {
+        const Region *g = &g_regions[r];
+        if (!g->valid) continue;
+        int x0 = x > g->x ? x : g->x, y0 = y > g->y ? y : g->y;
+        int x1 = x + w < g->x + g->w ? x + w : g->x + g->w, y1 = y + h < g->y + g->h ? y + h : g->y + g->h;
+        if (x1 <= x0 || y1 <= y0) continue;
+        if (!waited) { close_block(); drain(7); waited = 1; }
+        rt_note("VRAM read back from a display buffer");
+        const volatile uint32_t *pixels = (const volatile uint32_t *)pb_extra_buffer(r);
+        for (int vy = y0; vy < y1; vy++) {
+            int oy = (int)sy(r, (float)vy + 0.5f);
+            if (oy < 0) oy = 0; if (oy >= OUT_H) oy = OUT_H - 1;
+            for (int vx = x0; vx < x1; vx++) {
+                int ox = (int)sx(r, (float)vx + 0.5f);
+                if (ox < 0) ox = 0; if (ox >= OUT_W) ox = OUT_W - 1;
+                uint32_t p = pixels[oy * OUT_W + ox];
+                uint32_t r5 = (p >> 19) & 0x1Fu, g5 = (p >> 11) & 0x1Fu, b5 = (p >> 3) & 0x1Fu;
+                gpu_vram[vy & (VRAM_H - 1)][vx & (VRAM_W - 1)] = (uint16_t)(r5 | g5 << 5 | b5 << 10);
+            }
+        }
+        hw_vram_written(x0, y0, x1 - x0, y1 - y0);   /* textures from this area are stale */
+    }
 }
 
 void hw_vram_written(int x, int y, int w, int h)
@@ -1022,7 +1081,7 @@ void hw_fill(int r, int x, int y, int w, int h, uint16_t color15)
     int x0 = (int)sx(r, (float)x), y0 = (int)sy(r, (float)y);
     int x1 = (int)sx(r, (float)(x + w)), y1 = (int)sy(r, (float)(y + h));
     if (x0 < 0) x0 = 0; if (y0 < 0) y0 = 0; if (x1 > OUT_W) x1 = OUT_W; if (y1 > OUT_H) y1 = OUT_H;
-    if (x1 > x0 && y1 > y0) pb_fill(x0, y0, x1 - x0, y1 - y0, argb15(color15, 0xFF));
+    if (x1 > x0 && y1 > y0) fill_rect(x0, y0, x1 - x0, y1 - y0, argb15(color15, 0xFF));
 }
 
 void hw_blit(int r, int x, int y, int w, int h)
@@ -1233,8 +1292,8 @@ static void hw_present_timed(int x, int y, int wide)
     if (rt_video_wide && !wide) {
         left = (float)(OUT_W / 8);
         right = (float)(OUT_W - OUT_W / 8);
-        pb_fill(0, 0, OUT_W / 8, OUT_H, 0xFF000000u);
-        pb_fill(OUT_W - OUT_W / 8, 0, OUT_W / 8, OUT_H, 0xFF000000u);
+        fill_rect(0, 0, OUT_W / 8, OUT_H, 0xFF000000u);
+        fill_rect(OUT_W - OUT_W / 8, 0, OUT_W / 8, OUT_H, 0xFF000000u);
     }
     uint32_t *p = open_block();
     Tex t = linear(pb_extra_buffer(r), (unsigned)OUT_W * 4u, OUT_W, OUT_H);
@@ -1263,7 +1322,7 @@ static void hw_present_timed(int x, int y, int wide)
     pb_reset();
     g_base = 0;
 #endif
-    g_target = -1;
+    g_target = TARGET_UNKNOWN;
     g_bound = 0;
     g_bound_palette = 0;
     g_bound_filter = 0;
@@ -1334,7 +1393,7 @@ void hw_picture_show(float aspect)
     if (!g_pictures[0] || g_picture_next < 0) return;
     RT_WHERE("hw picture");
     target(-1);
-    pb_fill(0, 0, OUT_W, OUT_H, 0xFF000000u);
+    fill_rect(0, 0, OUT_W, OUT_H, 0xFF000000u);
     /* Fit the picture's display aspect to the screen's, centred. The screen's own
      * aspect is 16:9 or 4:3 whatever its pixel count (480 lines on a widescreen TV). */
     float screen = rt_video_wide ? 16.0f / 9.0f : 4.0f / 3.0f;
@@ -1361,7 +1420,7 @@ void hw_picture_show(float aspect)
     g_open = p;
     close_block();
     while (pb_finished()) {}
-    g_target = -1;
+    g_target = TARGET_UNKNOWN;
     g_bound = 0;
     g_bound_palette = 0;
     g_bound_filter = 0;
@@ -1445,7 +1504,7 @@ int hw_init(void)
     for (int i = 0; i < 16 * 16; i++) g_white[i] = (ALPHA_OPAQUE << 24) | 0xFFFFFFu;
     for (int i = 0; i < HW_REGIONS; i++) {
         pb_target_extra_buffer(i);
-        pb_fill(0, 0, OUT_W, OUT_H, 0xFF000000u);
+        fill_rect(0, 0, OUT_W, OUT_H, 0xFF000000u);
     }
     pb_erase_depth_stencil_buffer(0, 0, OUT_W, OUT_H);
     pb_target_back_buffer();
