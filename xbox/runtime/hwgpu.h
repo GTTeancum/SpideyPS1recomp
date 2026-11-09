@@ -43,6 +43,8 @@ void hw_blit(int r, int x, int y, int w, int h);
 void hw_vram_written(int x, int y, int w, int h);
 /* The VRAM generation: overall, and the newest under a rectangle (VRAM pixels). */
 uint32_t hw_vram_generation(void);
+/* Frames presented so far (a texture drawn in frame f may be read by the GPU until f+3). */
+uint32_t hw_frame_number(void);
 uint32_t hw_vram_newest(int x, int y, int w, int h);
 
 /* Projected depths, for perspective-correct texturing. The GTE notes every screen

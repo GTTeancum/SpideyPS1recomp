@@ -49,3 +49,21 @@ endif
 NXDK_LDFLAGS += -map:build/OpenSpidey.map -opt:lldlto=3
 
 include $(NXDK_DIR)/Makefile
+
+# Header dependencies. The compiler is a Windows program: the dependency files it
+# writes beside each object (X.c.d, through nxdk's -MD) name the object and every header
+# as Windows paths (Z:/..., Z:\...), which make -- with its /z/... names -- never
+# matches, so a header change rebuilt nothing. Each .d is rewritten as X.c.mk with make's
+# own paths (drive letter to /z/, backslashes to slashes; line continuations and
+# escaped spaces, as in C:\Program\ Files, kept) when it is newer than its .mk, and those
+# are included instead.
+DEP_FILES := $(wildcard $(CURDIR)/src/*.d $(CURDIR)/runtime/*.d \
+                        $(foreach g,$(GAMES),$(CURDIR)/generated/$(g)/*.d) $(CURDIR)/build/*.d)
+DEP_MAKEFILES := $(DEP_FILES:.d=.mk)
+$(shell for d in $(DEP_FILES); do m="$${d%.d}.mk"; \
+          if [ ! -e "$$m" ] || [ "$$d" -nt "$$m" ]; then \
+            sed -e 's/[\\] /@SPACE@/g' -e 's/[\\]$$/@CONTINUE@/' -e 's|[\\]|/|g' \
+                -e 's|@CONTINUE@|\\|' -e 's|@SPACE@|\\ |g' \
+                -e 's|\b\([A-Za-z]\):/|/\L\1/|g' "$$d" > "$$m"; \
+          fi; done)
+-include $(DEP_MAKEFILES)

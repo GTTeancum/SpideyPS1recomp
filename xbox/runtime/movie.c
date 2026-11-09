@@ -102,6 +102,11 @@ static void str_pump(StrMovie *m, const Session *s, int *flushed)
     if (!*flushed && str_ended(m) && !str_audio_queued(m)) { audio_flush(); *flushed = 1; }
 }
 
+/* The PS1 player's state, for the status text while a movie plays: pictures shown,
+ * video done, sound flushed, sound open, sound busy, file ended, sound still queued,
+ * the movie clock in ms. */
+volatile int32_t rt_movie_state[8];
+
 int movie_play_str(const char *path)
 {
     StrMovie *m = str_open(path);
@@ -125,6 +130,7 @@ int movie_play_str(const char *path)
     rt_log("movie %s: PS1 %dx%d, sound %d Hz%s", path, w, h, str_audio_rate(m), s.audio ? "" : " (silent)");
     int waiting = 1, video_done = 0, flushed = 0, ok = 0, shown = 0;
     double start = s.audio ? str_audio_start(m) : 0.0;
+    double worst_late = 0;   /* how far a picture came after its time, at most (status) */
     for (;;) {
         str_read_ahead(m, 0.5);
         str_pump(m, &s, &flushed);
@@ -135,6 +141,7 @@ int movie_play_str(const char *path)
             if (waiting) {
                 if (t < due) break;
                 hw_picture_show(aspect);
+                if (t - due > worst_late) worst_late = t - due;
                 last = due;
                 waiting = 0;
                 shown++;
@@ -148,9 +155,15 @@ int movie_play_str(const char *path)
             else { failed = 1; break; }
         }
         if (failed) { rt_log("movie %s: undecodable picture after %d", path, shown); ok = shown > 0; break; }
+        rt_movie_state[0] = shown; rt_movie_state[1] = video_done; rt_movie_state[2] = flushed;
+        rt_movie_state[3] = s.audio != 0; rt_movie_state[4] = s.audio ? audio_busy() : 0;
+        rt_movie_state[5] = str_ended(m); rt_movie_state[6] = str_audio_queued(m); rt_movie_state[7] = (int32_t)(t * 1000.0);
         if (video_done && !waiting && t >= last + 1.0 / 15.0 && (!s.audio || (flushed && !audio_busy()))) { ok = 1; break; }
         rt_tick();
     }
+    /* Whole milliseconds: the console's printf has no floating point. */
+    rt_log("movie timing: %d pictures, %ld ms long, played in %ld ms, worst picture %ld ms late",
+           shown, (long)(last * 1000.0), (long)(elapsed(&s) * 1000.0), (long)(worst_late * 1000.0));
     session_end(&s);
     hw_picture_end();
     str_close(m);
@@ -158,6 +171,9 @@ int movie_play_str(const char *path)
 }
 
 /* ---- Dreamcast .SFD (the PC's decoder) ------------------------------------------------------ */
+/* Commented out (2026-11-09): Dreamcast movies are out on the Xbox for now (about 40%
+ * speed on the console; see runtime/sfd_core.cpp). */
+#if 0
 typedef struct {
     unsigned width, height, fps_num, fps_den, sar_num, sar_den;
     unsigned sample_rate, channels, audio_frames, reserved;
@@ -221,6 +237,7 @@ int movie_play_sfd(const char *path)
     uint8_t *yuv = 0;
     SfdInfo info;
     int result;
+    int32_t held = 0;   /* workspace and picture bytes counted in the status */
     if (!ws || !GetFileSizeEx(file, &size) || (result = sfd_open(ws, bytes, sfd_read, file, (unsigned long long)size.QuadPart, &info)) != 0) {
         rt_log("movie %s: not a supported SFD", path);
         goto fail;
@@ -228,6 +245,7 @@ int movie_play_sfd(const char *path)
     int w = (int)info.width, h = (int)info.height;
     unsigned yuv_bytes = (unsigned)(w * h * 3 / 2), index;
     yuv = malloc(yuv_bytes);
+    if (yuv) { held = (int32_t)(bytes + 16u + yuv_bytes); rt_mem_add(MEM_MOVIE, held); }
     if (!yuv || !hw_picture_begin(w, h)) goto fail;
     if (sfd_video(ws, yuv, yuv_bytes, &index) != 1) { rt_log("movie %s: no first picture", path); hw_picture_end(); goto fail; }
     unsigned pitch;
@@ -271,12 +289,15 @@ int movie_play_sfd(const char *path)
     sfd_close(ws);
     free(yuv);
     free(raw);
+    rt_mem_add(MEM_MOVIE, -held);
     CloseHandle(file);
     return ok;
 fail:
     if (ws) sfd_close(ws);
+    if (held) rt_mem_add(MEM_MOVIE, -held);
     free(yuv);
     free(raw);
     CloseHandle(file);
     return 0;
 }
+#endif   /* Dreamcast .SFD */

@@ -92,8 +92,15 @@ void rt_clock_init(void)
 }
 
 /* Wait for the next 60 Hz edge and do what a console vblank does. */
+/* Lowest stack address seen in a tick (status: checks the stack depth measurement). */
+volatile uintptr_t rt_tick_sp_low = ~(uintptr_t)0;
+
 void rt_tick(void)
 {
+    {
+        uintptr_t sp = (uintptr_t)__builtin_frame_address(0);
+        if (sp < rt_tick_sp_low) rt_tick_sp_low = sp;
+    }
     LONGLONG period = g_frequency.QuadPart / 60;
     g_next.QuadPart += period;
     LARGE_INTEGER now;
@@ -125,6 +132,7 @@ void rt_tick(void)
     RT_WHERE("tick pad");
     rt_pad_refresh();
     card_pump();
+    rt_mem_sample();
     RT_WHERE("tick irq");
     rt_vblank_count++;
     { PROF_BEGIN(irq); rt_raise_irq(0); PROF_END(PROF_IRQ, irq); }

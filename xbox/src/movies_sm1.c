@@ -6,8 +6,9 @@
  *
  * The PC falls back to the game's own STR player when it has no Dreamcast movie; the
  * Xbox has no MDEC, so the runtime plays the PS1 movie itself (runtime/str.c) from the
- * disc's raw CINEMAS file. A Dreamcast .SFD in D:\mods\movies\dreamcast is played in
- * its place (dreamcast_movies=0 turns that off). Whatever happens the routine's own
+ * disc's raw CINEMAS file. A Dreamcast .SFD in D:\mods\movies\dreamcast was played in
+ * its place (dreamcast_movies=0 turned that off); that is commented out for now, as
+ * the SFD decoder plays at about 40% speed on the console. Whatever happens the routine's own
  * player is branched past: a movie that cannot play is skipped, as before.
  */
 #include <stdio.h>
@@ -19,6 +20,7 @@
 #define MOVIE_TABLE 0x80097DECu        /* 24 bytes a movie, its STR path first */
 #define MOVIES 24
 
+#if 0   /* Dreamcast movies: commented out for now (see runtime/sfd_core.cpp) */
 /* The 23 movies with a verified Dreamcast equivalent of the same name; LOGO has none. */
 static const char *const Dreamcast[] = {
     "ATVILOGO", "TTSLOGO", "L1M1", "L1M2", "L2M1", "L2M2", "L2M3", "L3M1", "L4M1", "L4M2",
@@ -32,6 +34,7 @@ static int dreamcast_mapped(const char *stem)
         if (rt_strcasecmp(Dreamcast[i], stem) == 0) return 1;
     return 0;
 }
+#endif
 
 int hook_DreamcastMoviePatches_Play(CpuContext *c)
 {
@@ -62,12 +65,14 @@ int hook_DreamcastMoviePatches_Play(CpuContext *c)
     snprintf(stem, sizeof stem, "%s", file);
     size_t len = strlen(stem);
     if (len > 4 && rt_strcasecmp(stem + len - 4, ".STR") == 0) stem[len - 4] = 0;
+#if 0   /* Dreamcast movies: commented out for now (see runtime/sfd_core.cpp) */
     const char *off = setting("dreamcast_movies");
     if (!(off && strcmp(off, "0") == 0) && dreamcast_mapped(stem)) {
         snprintf(target, sizeof target, "D:\\mods\\movies\\dreamcast\\%s.SFD", stem);
         if (movie_play_sfd(target)) return 1;
         rt_log("movie %s: no Dreamcast version played; PS1 movie", stem);
     }
+#endif
     snprintf(target, sizeof target, "D:\\%s", path);
     if (!movie_play_str(target)) rt_log("movie %s: not played", target);
     return 1;

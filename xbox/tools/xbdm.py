@@ -166,7 +166,12 @@ def main() -> int:
         import re
         m = re.search(r"_g_status_text\s+([0-9a-fA-F]{8,16})\s",
                       (Path(__file__).resolve().parents[1] / "build" / "OpenSpidey.map").read_text(errors="replace"))
-        text = getmem(x, int(m[1], 16), 0x4000).split(b"\0")[0].decode("latin-1")
+        # The game rewrites the text about once a second; a read that overlaps a
+        # rewrite comes back cut short, so read until the copy is whole.
+        for _ in range(5):
+            text = getmem(x, int(m[1], 16), 0x4000).split(b"\0")[0].decode("latin-1")
+            if text.startswith("OPENSPIDEY-STATUS") and "recent calls:" in text:
+                break
         if op == "status":
             print(text)
         else:

@@ -106,6 +106,10 @@ static void close_block(void)
     g_open_prims = 0;
 }
 
+/* Push-buffer use per frame (status): bytes written between two presents. */
+static uint32_t *g_wrap_from, *g_frame_mark;
+volatile uint32_t rt_hw_push_frame_peak;
+
 static uint32_t *open_block(void)
 {
     end_batch();
@@ -118,6 +122,7 @@ static uint32_t *open_block(void)
          * buffer: write the jump back to the head and move the put pointer there. The
          * GPU runs on through the old commands, takes the jump and stops at put. */
         *p = 1u + ((uint32_t)g_base & 0x0FFFFFFFu);
+        g_wrap_from = p;
         pb_end(g_base);
         g_target = -1;
         p = pb_begin();
@@ -161,7 +166,13 @@ static uint32_t g_block_gen[VRAM_H / BLOCK][VRAM_W / BLOCK];
 static uint32_t g_gen = 1;
 static uint32_t g_frame;
 static int in_flight(uint32_t used) { return used + 3u > g_frame; }
+uint32_t hw_frame_number(void) { return g_frame; }
 static uint32_t *g_white, *g_blit;
+/* The blit staging image: a display area's pixels (PS1 display modes are at most 640
+ * wide and 512 lines), 32-bit because the chip has no 16-bit format in the PS1's
+ * blue-green-red order. Rows are BLIT_W apart. */
+#define BLIT_W 640
+#define BLIT_H 512
 volatile uint32_t rt_hw_texture_decodes, rt_hw_palette_builds, rt_hw_frames, rt_hw_wait, rt_hw_perspective, rt_hw_affine;
 
 /* What a draw samples. scale maps PlayStation texel coordinates to the chip's:
@@ -389,10 +400,11 @@ static Page *page(const HwTexture *t)
     if (hit && e != hit) hit->valid = 0;
     if (e->valid && in_flight(e->used)) { close_block(); drain(1); }
     uint32_t bytes = (uint32_t)(k.tw * k.th * (depth == 2 ? 4 : 1));
-    if (e->pixels && e->bytes != bytes) { MmFreeContiguousMemory(e->pixels); e->pixels = 0; }
+    if (e->pixels && e->bytes != bytes) { MmFreeContiguousMemory(e->pixels); rt_mem_add(MEM_TEXTURES, -(int32_t)e->bytes); e->pixels = 0; }
     if (!e->pixels) {
         if (!(e->pixels = contiguous(bytes))) { e->valid = 0; return 0; }
         e->bytes = bytes;
+        rt_mem_add(MEM_TEXTURES, (int32_t)bytes);
     }
     e->page_x = k.page_x; e->page_y = k.page_y; e->depth = depth;
     e->win_mask_x = k.win_mask_x; e->win_mask_y = k.win_mask_y; e->win_off_x = k.win_off_x; e->win_off_y = k.win_off_y;
@@ -429,7 +441,18 @@ static Palette *palette(int clut, int depth)
         if (e->valid) g_palette_of[e->depth][e->clut] = 0;
         if (hit) hit->valid = 0;
     }
-    if (!e->colors && !(e->colors = contiguous(256u * 4u))) return 0;
+    if (!e->colors) {
+        /* The kernel hands out whole 4 KB pages: four palettes share one. A palette's
+         * colours stay with its slot for the life of the program. */
+        static uint32_t *page;
+        static unsigned used = 4;
+        if (used == 4) {
+            if (!(page = contiguous(4096u))) return 0;
+            rt_mem_add(MEM_PALETTES, 4096);
+            used = 0;
+        }
+        e->colors = page + used++ * 256u;
+    }
     const uint16_t *row = gpu_vram[cy & (VRAM_H - 1)];
     for (int i = 0; i < 256; i++) e->colors[i] = i < n ? texel_argb(row[(cx + i) & (VRAM_W - 1)]) : 0;
     e->clut = (uint16_t)clut; e->depth = (uint8_t)depth; e->valid = 1;
@@ -1012,9 +1035,11 @@ void hw_blit(int r, int x, int y, int w, int h)
     close_block();
     drain(2);
     int bw = x1 - x0, bh = y1 - y0;
+    if (bw > BLIT_W) { bw = BLIT_W; x1 = x0 + bw; }    /* the staging image's bounds */
+    if (bh > BLIT_H) { bh = BLIT_H; y1 = y0 + bh; }
     for (int row = 0; row < bh; row++) {
         const uint16_t *src = &gpu_vram[(y0 + row) & (VRAM_H - 1)][0];
-        uint32_t *out = g_blit + row * VRAM_W;
+        uint32_t *out = g_blit + row * BLIT_W;
         for (int col = 0; col < bw; col++) out[col] = argb15(src[(x0 + col) & (VRAM_W - 1)], 0xFF);
     }
     g_bound = 0;
@@ -1024,7 +1049,7 @@ void hw_blit(int r, int x, int y, int w, int h)
     float uv[4][2] = { { 0, 0 }, { (float)bw, 0 }, { 0, (float)bh }, { (float)bw, (float)bh } };
     target(r);
     uint32_t *p = open_block();
-    Tex t = linear(g_blit, VRAM_W * 4, (unsigned)bw, (unsigned)bh);
+    Tex t = linear(g_blit, BLIT_W * 4, (unsigned)bw, (unsigned)bh);
     p = bind(p, &t);
     p = stencil(p, -1);
     p = alpha(p, -1);
@@ -1246,8 +1271,21 @@ static void hw_present_timed(int x, int y, int wide)
     g_bound_address = 0;
     g_blend = -2;
     g_alpha = -1;
+    {
+        uint32_t *now = pb_begin();
+        pb_end(now);
+        if (g_frame_mark) {
+            uint32_t bytes = now >= g_frame_mark && !(g_wrap_from && g_wrap_from >= g_frame_mark)
+                ? (uint32_t)(now - g_frame_mark) * 4u
+                : (uint32_t)((g_wrap_from ? g_wrap_from - g_frame_mark : 0) + (now - g_base)) * 4u;
+            if (bytes > rt_hw_push_frame_peak) rt_hw_push_frame_peak = bytes;
+        }
+        g_frame_mark = now;
+        g_wrap_from = 0;
+    }
     g_frame++;
     rt_hw_frames++;
+    texpack_trim();
     RT_WHERE("hw presented");
 }
 
@@ -1276,6 +1314,7 @@ int hw_picture_begin(int w, int h)
     for (int i = 0; i < PICTURES; i++) {
         g_pictures[i] = contiguous(g_picture_bytes);
         if (!g_pictures[i]) { hw_picture_end(); return 0; }
+        rt_mem_add(MEM_MOVIE, (int32_t)g_picture_bytes);
         memset(g_pictures[i], 0, g_picture_bytes);
     }
     g_picture_next = -1;
@@ -1341,7 +1380,7 @@ void hw_picture_end(void)
     close_block();
     drain(7);
     for (int i = 0; i < PICTURES; i++) {
-        if (g_pictures[i]) MmFreeContiguousMemory(g_pictures[i]);
+        if (g_pictures[i]) { MmFreeContiguousMemory(g_pictures[i]); rt_mem_add(MEM_MOVIE, -(int32_t)g_picture_bytes); }
         g_pictures[i] = 0;
     }
     g_picture_next = -1;
@@ -1376,6 +1415,7 @@ int hw_init(void)
     pb_extra_buffers(HW_REGIONS);
     pb_size(PUSHBUFFER_SIZE);
     if (pb_init()) return 0;
+    rt_mem_mark("pbkit");
     uint32_t *p = pb_begin();
     p = pb_push1(p, NV097_SET_TRANSFORM_PROGRAM_START, 0);
     p = pb_push1(p, NV097_SET_TRANSFORM_EXECUTION_MODE,
@@ -1399,8 +1439,9 @@ int hw_init(void)
 
     swizzle_init();
     g_white = MmAllocateContiguousMemoryEx(64u * 16u, 0, 0x03ffafff, 0, PAGE_READWRITE | PAGE_WRITECOMBINE);
-    g_blit = MmAllocateContiguousMemoryEx(VRAM_W * VRAM_H * 4u, 0, 0x03ffafff, 0, PAGE_READWRITE | PAGE_WRITECOMBINE);
+    g_blit = MmAllocateContiguousMemoryEx(BLIT_W * BLIT_H * 4u, 0, 0x03ffafff, 0, PAGE_READWRITE | PAGE_WRITECOMBINE);
     if (!g_white || !g_blit) return 0;
+    rt_mem_mark("hw ready");
     for (int i = 0; i < 16 * 16; i++) g_white[i] = (ALPHA_OPAQUE << 24) | 0xFFFFFFu;
     for (int i = 0; i < HW_REGIONS; i++) {
         pb_target_extra_buffer(i);

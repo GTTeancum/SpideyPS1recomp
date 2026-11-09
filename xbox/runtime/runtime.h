@@ -24,6 +24,16 @@ unsigned *rt_missing(const char *kind, const char *name);   /* its counter, 0 wh
 void rt_fatal(CpuContext *c, const char *format, ...) __attribute__((noreturn, format(printf, 2, 3)));
 /* Count a named event for the status (pass a string literal). */
 void rt_note(const char *name);
+
+/* ---- memory accounting (status text) -----------------------------------------------
+ * Contiguous memory the runtime holds, by use (page-rounded, as the kernel hands it
+ * out), the lowest free memory seen since boot, and free memory at named start-up
+ * stages. */
+enum { MEM_TEXTURES, MEM_PALETTES, MEM_PACK, MEM_SUITS, MEM_MOVIE, MEM_USES };
+extern volatile int32_t rt_mem_kb[MEM_USES], rt_mem_peak_kb[MEM_USES];
+void rt_mem_add(int use, int32_t bytes);     /* negative when freed */
+void rt_mem_mark(const char *stage);         /* string literal */
+void rt_mem_sample(void);                    /* once a tick: track the low point */
 #define RECENT 16
 extern uint32_t rt_recent_calls[RECENT];
 extern unsigned rt_recent_next;
@@ -58,7 +68,7 @@ extern volatile uint32_t rt_metric[RT_METRICS];
 extern const char *rt_metric_name[RT_METRICS];
 extern volatile uint32_t rt_hw_replaced;
 extern volatile uint32_t rt_hw_shown, rt_hw_shown_w, rt_hw_shown_h;   /* hwgpu.c: last frame shown */
-extern volatile uint32_t rt_pack_hits, rt_pack_loads;   /* texpack.c */   /* primitives drawn with a replacement texture */
+extern volatile uint32_t rt_pack_hits, rt_pack_loads, rt_pack_released;   /* texpack.c */   /* primitives drawn with a replacement texture */
 extern volatile uint32_t rt_hw_texture_decodes, rt_hw_palette_builds, rt_hw_frames, rt_hw_wait, rt_hw_perspective, rt_hw_affine;   /* hwgpu.c */
 extern volatile uint32_t rt_ot_start, rt_ot_addr, rt_ot_packets;   /* libgpu.c: DrawOTag progress */
 /* The last runtime step the game thread entered, for the status text. */

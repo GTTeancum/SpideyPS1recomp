@@ -47,6 +47,7 @@
 typedef struct { uint32_t address, size; } Block;
 static Block g_free[BLOCKS], g_used[BLOCKS];
 static int g_free_count, g_used_count;
+volatile uint32_t rt_arena_peak;   /* highest byte above ARENA_LO ever handed out (status) */
 
 static void arena_reset(void)
 {
@@ -63,6 +64,7 @@ static uint32_t arena_alloc(uint32_t requested)
         g_free[i].address += size; g_free[i].size -= size;
         if (!g_free[i].size) g_free[i] = g_free[--g_free_count];
         g_used[g_used_count].address = address; g_used[g_used_count].size = size; g_used_count++;
+        if (address + size - ARENA_LO > rt_arena_peak) rt_arena_peak = address + size - ARENA_LO;
         return address;
     }
     rt_note("asset arena exhausted");

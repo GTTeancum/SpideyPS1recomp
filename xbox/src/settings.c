@@ -4,6 +4,7 @@
  *   level=l2a1        start a new game in that level and act (LevelSwitch)
  *   suit=superior     wear that mod suit (D:\mods\suits\<id>, made by prep_suits.py)
  *   dreamcast_movies=0  play the PS1 movies even where a Dreamcast one is installed
+ *                       (no effect for now: Dreamcast movies are commented out, see runtime/sfd_core.cpp)
  *   precise_vertices=0  draw as before vertex tags (whole pixels): for comparisons
  *   crack_fill=1        the gap fill (the PC's crack rule) on finished frames (off by default)
  *   geometry_debug=1    world materials in flat colours (cracks show); 2: frames start magenta (holes show);

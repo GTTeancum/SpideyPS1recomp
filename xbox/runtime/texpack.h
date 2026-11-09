@@ -23,3 +23,6 @@ void texpack_note_gpu_write(int x, int y, int w, int h);
 
 /* The pack's art for the texels a primitive samples, if any. */
 int texpack_lookup(const RtTile *tile, RtReplacement *out);
+
+/* Once a frame: release loaded art not drawn lately while over the budget. */
+void texpack_trim(void);

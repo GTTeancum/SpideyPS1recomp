@@ -33,7 +33,7 @@ START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
 | `runtime/runtime.h` | runtime services: log and status, overlays, BIOS, boot |
 | `runtime/*.c` | RAM, hardware registers and DMA, dispatch, BIOS, boot, clock and interrupts, CD library, software GPU and graphics library, GTE registers, status |
 | `src/patches_sm1.c` | Spider-Man 1 patches ported from `spiderman/patches` (keep in step) |
-| `src/movies_sm1.c` | SM1's movie hook: Dreamcast `.SFD` where installed, else the PS1 `.STR` |
+| `src/movies_sm1.c` | SM1's movie hook: the PS1 `.STR` (the Dreamcast `.SFD` path is commented out for now) |
 | `runtime/vtag.c` | vertex tags in RAM: the GTE's precise positions and depths beside the words that carry them |
 | `runtime/spu.c` | the sound chip: 24 voices, envelopes, CD audio input, mixed at 44.1 kHz each vblank (port of the PC's Spu.cs/XaAudio.cs) |
 | `runtime/audio.c` | AC97 output at 48 kHz, shared by the sound chip and movies |
@@ -45,7 +45,7 @@ START") through the Xbox runtime and a software PlayStation GPU (2026-11-03).
 | `tools/make_xbox_images.py` | dashboard images and launcher thumbnail from the game icon (run by `build.sh`) |
 | `runtime/movie.c` | movie playback: AC97 sound, the movie clock, skip, the two players' loops |
 | `runtime/str.c` | PS1 `.STR` decoder: MDEC video (bitstream v1/v2) and XA ADPCM sound |
-| `runtime/sfd_core.cpp` | the PC's Dreamcast SFD decoder (`tools/movies/native`), compiled in |
+| `runtime/sfd_core.cpp` | the PC's Dreamcast SFD decoder (`tools/movies/native`); commented out for now (see Movies) |
 | `tools/make_disc_map.py` | the test disc's sector map from an install's `recompone-disc.json` |
 | `generated/<game>/` | RecompOne's C output for each game, ignored by git (made from the player's disc) |
 | `tools/gen_hook_defaults.py` | default bodies for hooks not implemented yet (`build/hooks_default.c`) |
@@ -83,10 +83,12 @@ clock (the PC catches them by counting memory reads); run it after every generat
 `gen_gte_ops.py` lists the GTE command words for the per-command GTE routines; a word
 missing from the list still works, through the general routine.
 
-The dependency files nxdk writes name Windows paths make does not match, so a change
-to a header does not rebuild what includes it: delete the `.obj` files under `src`,
-`runtime`, `generated` and `build` before building after one (or after switching
-`RT_PROFILE`).
+The dependency files nxdk writes name Windows paths make does not match, so the
+Makefile rewrites each as a `.mk` with make's own paths and includes those: a change to
+a header rebuilds what includes it (checked: `texpack.h` rebuilds its four users,
+`recomp.h` the generated code too). Switching `RT_PROFILE` or `RT_NO_VTAGS` changes no
+file, so delete the `.obj` files under `src`, `runtime`, `generated` and `build` before
+building after one.
 
 ## Assets and settings
 
@@ -102,13 +104,13 @@ python -I xbox/tools/prep_suits.py "<PC install>/mods/suits" private/work/xbox-d
   (`src/assets_sm1.c`, a port of `LooseWadOverrides` and `Costume`).
 - `assets/packs/dreamcast-sm1-actors`: their art as DXT1 DDS, matched by the PC pack's
   fingerprint of each uploaded texture (`runtime/texpack.c`).
-- `mods/suits/<id>`: a suit's textures as DXT1 DDS capped at 512 (suit art is often
-  1024-2048 and the Xbox has about 10 MB spare at 720p), and for suits with their own
+- `mods/suits/<id>`: a suit's textures as DXT1 DDS, halved to 256 on the longest side
+  but never below 256 on either side (suit art is often 1024-2048; see Memory), and for suits with their own
   model the actor and its RTG2 rig split apart (`src/suits_sm1.c`, `src/retarget_sm1.c`;
   the rig maths is the PC's `tools/retarget/native/retarget_core.cpp`, compiled in).
 
 `D:\openspidey.ini` holds `level=<lNaM>` (start a new game there, `src/level_sm1.c`),
-`suit=<id>` and `dreamcast_movies=0` (PS1 movies only). Include `openspidey.ini`,
+`suit=<id>` and `dreamcast_movies=0` (PS1 movies only; no effect while Dreamcast movies are out). Include `openspidey.ini`,
 `mods` and `assets` with `--include`.
 
 ## Sound
@@ -146,16 +148,57 @@ dashboard, so how the dashboard shows the title is checked on the console.
 
 The game's own STR player needs the MDEC and XA streaming, which the Xbox runtime does
 not have, so the runtime plays movies itself from the hook at 8002AD0C (the PC's
-`DreamcastMoviePatches`): the Dreamcast `.SFD` from `D:\mods\movies\dreamcast` when
-present (the 23 the PC maps, copied as the PC's installer copies them), else the PS1
-movie from the disc's `CINEMAS` folder (raw 2336-byte sectors, as the install holds
-them). Sound is resampled to the AC97's 48 kHz and is the clock; Start or Cross skips
+`DreamcastMoviePatches`): the PS1 movie from the disc's `CINEMAS` folder (raw
+2336-byte sectors, as the install holds them). Dreamcast movies are out on the Xbox
+for now: the `.SFD` path (from `D:\mods\movies\dreamcast`, the 23 the PC maps) is
+commented out in `runtime/sfd_core.cpp`, `runtime/movie.c` and `src/movies_sm1.c`,
+and an Xbox install carries no `mods\movies`. Sound is resampled to the AC97's 48 kHz and is the clock; Start or Cross skips
 after the first second. A movie that cannot play is skipped, as before. Checked in
 XEMU (2026-11-06) on the boot logos: PS1 and Dreamcast pictures, sound matching
-ffmpeg's decode of the same files, skip, and the title screen after. Not yet on a
-console; the Dreamcast decoder's 64-bit IDCT is the first thing to time there.
+ffmpeg's decode of the same files, skip, and the title screen after. On the console
+(2026-11-09) the PS1 movies play in time (the status log gives each one's length, the
+time it took and the latest picture): the two boot logos 14.0 s and 14.7 s long took
+14.1 s and 14.8 s, the level 1 intro 185.9 s took 186.0 s, no picture over 0.21 s
+late, and the game carried on into the level with its sound. Every movie had hung at
+its end on the console until `runtime/audio.c` learned that the console's sound chip
+does not stop after the last buffer (see there); XEMU (2026-11-09) agrees, the logos
+ending and the title following. Why the Dreamcast movies are out: their picture is
+right but they play at about 40% speed on the console (the 14 s Activision logo took
+about 35 s, the game's ticks dropped meanwhile), and while one plays it holds about
+3.2 MB (the decoder's workspace and four 320x240 pictures). The SFD decoder would need
+to be made faster before they come back.
 
 `compile_generated.sh spiderman` compiles the generated code alone, as a quick check.
+
+## Memory
+
+At 720p the console's 64 MB goes, before the game loads a level: about 22.6 MB to
+the XBE (10 MB code, the 8 MB PlayStation RAM window, other buffers), 3.6 MB to
+`XVideoSetMode`'s frame buffer, about 26 MB to pbkit (three frame buffers, the
+depth/stencil buffer, the two display-buffer render targets, the 4 MB push buffer)
+and the game thread's stack. The status text reports the rest: `memory low` (the
+lowest free memory since boot), free memory at the start-up stages, contiguous memory
+by use (textures, palettes, texture pack, suits, movie), the asset arena's peak, the
+largest frame in the push buffer and the game thread's stack depth.
+
+Measured on the console in every level (38 acts, `private/work/hw/sweep.py`), the
+lowest free memory went from 1.1 MB to 5.7 MB (2026-11-09), and stays above 5.1 MB
+with the heaviest suit (Iron Spider with tentacles: own model and rig). What changed:
+- The game thread's stack is 256 KB, not 4 MB: the deepest it reached anywhere
+  (levels, a Dreamcast movie, a save) was 4 KB. The kernel commits a whole stack.
+- The blit staging image is a display area's size (640x512), not all of VRAM.
+- Palettes share 4 KB pages, four to a page (the kernel hands out whole pages).
+- Texture-pack art is released when over 1 MB loaded and not drawn for 60 frames,
+  so a long game does not keep every level's characters (checked with a 64 KB budget:
+  about 85 releases and reloads a level, the characters' art right).
+- Suit textures are 256 at most (see Assets and settings).
+
+Kept as they are: the push buffer (the largest frame measured was 1.1 MB, and the CPU
+may run two frames ahead), `XVideoSetMode`'s frame buffer (nxdk's debug text, its USB
+stack and its assert all draw into it, and `XVideoSetFB` cannot point it at pbkit's
+memory, so freeing it could let a stray message write freed memory), and the 8 MB RAM
+window (the asset arena peaked at 2.9 MB with a suit, too close to a 6 MB window's
+room). Frame rate standing still is 30 fps (the game's own rate) in levels 1 and 3.
 
 ## Test in XEMU
 

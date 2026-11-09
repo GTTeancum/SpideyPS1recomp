@@ -11,4 +11,5 @@
 /* 1: played to the end or skipped. 0: the file is missing or cannot be decoded, or
  * playback failed; nothing is left on screen or in the sound output. */
 int movie_play_str(const char *path);
-int movie_play_sfd(const char *path);
+/* Dreamcast movies: commented out for now (see runtime/sfd_core.cpp). */
+/* int movie_play_sfd(const char *path); */

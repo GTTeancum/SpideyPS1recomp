@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Prepare the PC's mod suits for the Xbox: PNG textures to DXT1 DDS, size capped.
 
-    python -I xbox/tools/prep_suits.py SUITS_DIR OUT_DIR [--max 512] [--only ID ...]
+    python -I xbox/tools/prep_suits.py SUITS_DIR OUT_DIR [--max 256] [--min 256] [--only ID ...]
 
 SUITS_DIR is a PC install's mods/suits folder (one folder per suit with suit.json).
 OUT_DIR receives suits/<id>/suit.txt and the DDS files, laid out as the Xbox reads
@@ -9,11 +9,12 @@ them from the disc (D:\\mods\\suits). This is the asset preparation a Windows
 installer for the Xbox build will run.
 
 Why: suit textures are authored for the PC -- 1024x1024 and 2048x1024 PNGs are
-common, up to 34 MB per suit unpacked -- while the Xbox has about 13 MB spare at
-720p. The NV2A samples DXT1 directly, at 4 bits per texel, and a PlayStation
-character is a few hundred pixels tall even at 720p, so textures are capped at
-512 on their longest side: 128 KB for a 512x512 texture against 4 MB for a
-1024x1024 PNG unpacked. DXT1's 1-bit alpha carries the cutouts (the PC treats
+common, up to 34 MB per suit unpacked -- while the Xbox has about 5-6 MB spare in a
+level at 720p (xbox/README.md, Memory). The NV2A samples DXT1 directly, at 4 bits per texel, and a PlayStation
+character is a few hundred pixels tall even at 720p, so textures are halved until
+the longest side is 256, but never below 256 on either side (a suit's atlas keeps at
+least 256x256): 32 KB for a 256x256 texture against 4 MB for a 1024x1024 PNG
+unpacked. Textures already smaller are kept as they are. DXT1's 1-bit alpha carries the cutouts (the PC treats
 alpha below one half as transparent).
 
 Suits with their own model (modelFile, the Spider-Man Unlimited conversions) get it
@@ -44,12 +45,13 @@ def pow2_floor(n: int) -> int:
     return p
 
 
-def fit(image: Image.Image, cap: int) -> Image.Image:
-    """Power-of-two size, longest side at most `cap`, aspect kept."""
+def fit(image: Image.Image, cap: int, least: int) -> Image.Image:
+    """Power-of-two size, halved while the longest side is over `cap` and both sides
+    stay at least `least`; aspect kept."""
     w, h = image.size
     w2, h2 = pow2_floor(w), pow2_floor(h)
-    while max(w2, h2) > cap:
-        w2, h2 = max(4, w2 // 2), max(4, h2 // 2)
+    while max(w2, h2) > cap and min(w2, h2) // 2 >= least:
+        w2, h2 = w2 // 2, h2 // 2
     if (w2, h2) == (w, h):
         return image
     rgb = image.convert("RGB").resize((w2, h2), Image.LANCZOS)
@@ -224,7 +226,7 @@ def smu_eligible(suits: Path) -> set[str] | None:
     return set(json.loads(path.read_text(encoding="utf-8"))["eligibleIds"]) if path.exists() else None
 
 
-def convert(suit: Path, out: Path, cap: int, eligible: set[str] | None) -> str:
+def convert(suit: Path, out: Path, cap: int, least: int, eligible: set[str] | None) -> str:
     manifest = read_manifest(suit / "suit.json")
     sid = manifest["id"]
     if sid.startswith("smu-") and (eligible is None or sid not in eligible):
@@ -247,7 +249,7 @@ def convert(suit: Path, out: Path, cap: int, eligible: set[str] | None) -> str:
             lines.append("rig rig.rtg2")
     total = 0
     for key, rel in sorted(manifest["textures"].items()):
-        image = fit(Image.open(suit / rel).convert("RGBA"), cap)
+        image = fit(Image.open(suit / rel).convert("RGBA"), cap, least)
         data = dxt1(image)
         name = f"{key.upper()}.dds"
         (target / name).write_bytes(dds(image.width, image.height, data))
@@ -262,7 +264,8 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     p.add_argument("suits", type=Path)
     p.add_argument("out", type=Path)
-    p.add_argument("--max", type=int, default=512, help="longest texture side (power of two)")
+    p.add_argument("--max", type=int, default=256, help="longest texture side (power of two)")
+    p.add_argument("--min", type=int, default=256, help="no side is halved below this")
     p.add_argument("--only", nargs="*", help="suit ids to convert (default: all)")
     a = p.parse_args()
     eligible = smu_eligible(a.suits)
@@ -270,7 +273,7 @@ def main() -> int:
         if a.only and suit.name not in a.only:
             continue
         try:
-            print(convert(suit, a.out, a.max, eligible))
+            print(convert(suit, a.out, a.max, a.min, eligible))
         except (ValueError, struct.error) as error:
             print(f"rejected {suit.name}: {error}")
     return 0

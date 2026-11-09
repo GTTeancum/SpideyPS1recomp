@@ -60,6 +60,7 @@ static void *load_dds(const char *path, int *width, int *height)
         if (w >= 4 && h >= 4 && w <= 1024 && h <= 1024 && !(w & (w - 1)) && !(h & (h - 1))) {
             pixels = MmAllocateContiguousMemoryEx(bytes, 0, 0x03ffafff, 0, PAGE_READWRITE | PAGE_WRITECOMBINE);
             if (pixels && fread(pixels, 1, bytes, f) != bytes) { MmFreeContiguousMemory(pixels); pixels = 0; }
+            if (pixels) rt_mem_add(MEM_SUITS, (int32_t)bytes);
             /* Write-combined: drain the CPU's writes before the GPU is pointed at them. */
             __builtin_ia32_sfence();
             *width = (int)w; *height = (int)h;

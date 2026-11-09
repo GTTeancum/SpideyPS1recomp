@@ -5,6 +5,15 @@
  * sixteen buffers of 1024 frames (about 340 ms) are kept queued: buffer i of the ring
  * is the one descriptor i mod 16 plays. Where the chip is, read from its registers, is
  * the played position (a movie's clock). Sound is resampled linearly to 48 kHz.
+ *
+ * Running dry: the console's chip does not halt after the last buffer handed over (XEMU's
+ * does); it runs on round the ring, replaying old descriptors (seen 2026-11-09: CIV
+ * cycling 0..13 with LVI 13, the last third of a second of a movie's sound looping).
+ * Running past the end is read as "everything played": the chip is stopped and reset,
+ * the frames played so far are kept for the clock, and the next buffers start it again.
+ * Read as a distance in the ring, a position past the end looked like a queue that never
+ * drained: a movie waiting for its sound to finish never ended, and the game's sound was
+ * dropped as overrun.
  */
 #include <string.h>
 #include <hal/audio.h>
@@ -25,6 +34,8 @@ extern AC97_DEVICE ac97Device;      /* nxdk's, hal/audio.c */
 
 static int16_t *g_pcm;              /* BUFFERS x CHUNK stereo frames, contiguous */
 static uint32_t g_desc;             /* buffers handed to the chip since the reset */
+static uint64_t g_played;           /* frames played before the last reset (the clock) */
+static uint32_t g_done, g_civ;      /* descriptor the chip is on, counted from the reset; CIV last read */
 static int g_fill;                  /* frames in the buffer being filled */
 static int g_started, g_prebuffer;
 static unsigned g_owner, g_tokens;
@@ -53,18 +64,39 @@ static void ac97_reset(void)
     ac97Device.nextDescriptor = 0;
     XAudioPause();
     g_desc = 0;
+    g_done = 0;
+    g_civ = AC97[AC97_CIV] & 31u;   /* 0 after the reset */
     g_fill = 0;
     g_started = 0;
 }
 
+/* Everything handed over has played: stop the chip and start the ring again, keeping
+ * the frames played for the clock. */
+static void ran_dry(void)
+{
+    uint64_t played = g_played + (uint64_t)g_desc * CHUNK;
+    ac97_reset();
+    g_played = played;
+}
+
 /* Buffers handed over and not played to the end. Before it starts, the chip reads as
- * halted; once started, halted means it ran out. */
+ * halted. Once started, every read of CIV adds the descriptors it has moved on by since
+ * the last read to g_done (the 32-entry ring is never lapped between reads: 16 buffers
+ * take 340 ms), so g_done is the descriptor it is on, counted from the reset. Past the
+ * last one handed over (g_done >= g_desc) it has run dry: on the console it skips the
+ * empty descriptors in microseconds and replays old ones, so a single look at CIV
+ * rarely sees it past the end, but the count does. Halted (XEMU's chip at the end, or
+ * one just told to play) means none pending, as before; submit() starts it again. */
 static int pending(void)
 {
     if (!g_started) return (int)g_desc;
-    if (!g_desc || (*(volatile uint16_t *)(AC97 + AC97_SR) & 1)) return 0;
-    int n = ((int)(g_desc & 31u) - (AC97[AC97_CIV] & 31)) & 31;
-    return n > BUFFERS ? BUFFERS : n;
+    if (!g_desc) return 0;
+    uint32_t civ = AC97[AC97_CIV] & 31u;
+    g_done += (civ - g_civ) & 31u;
+    g_civ = civ;
+    if (g_done >= g_desc) { ran_dry(); return 0; }
+    if (*(volatile uint16_t *)(AC97 + AC97_SR) & 1) return 0;
+    return (int)(g_desc - g_done);
 }
 
 static uint32_t frames_left(void)
@@ -98,6 +130,7 @@ unsigned audio_open(int rate, int prebuffer)
         initialised = 1;
     }
     ac97_reset();
+    g_played = 0;
     g_step = (uint32_t)rate * 65536u / OUT_RATE;
     g_phase = 0;
     g_hist[0] = g_hist[1] = 0;
@@ -161,5 +194,9 @@ void audio_flush(void)
     if (!g_started && g_desc) { g_started = 1; XAudioPlay(); }
 }
 
-double audio_seconds(void) { return (double)((uint64_t)g_desc * CHUNK - frames_left()) / OUT_RATE; }
+double audio_seconds(void)
+{
+    uint32_t left = frames_left();   /* first: it may find the chip run dry and reset */
+    return (double)(g_played + (uint64_t)g_desc * CHUNK - left) / OUT_RATE;
+}
 int audio_busy(void) { return frames_left() > 0; }

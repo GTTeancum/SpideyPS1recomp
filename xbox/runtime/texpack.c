@@ -4,6 +4,7 @@
 #include "gpu.h"
 #include "hwgpu.h"
 #include "texpack.h"
+#include "runtime.h"
 
 /* ---- uploads (VramTracker) ----------------------------------------------------------- */
 /* The last few uploads overlapping each 16x16 block: a texture is whatever the game
@@ -127,14 +128,21 @@ static int fingerprint(const Region *r, uint64_t *index_hash, uint64_t *clut_has
 }
 
 /* ---- the pack ------------------------------------------------------------------------ */
-typedef struct { uint64_t index_hash, clut_hash; void *dxt1; int width, height, failed; } PackTexture;
+typedef struct { uint64_t index_hash, clut_hash; void *dxt1; int width, height, failed; uint32_t used; } PackTexture;
 #define PACK_MAX 2048
 #define PACK_SLOTS 4096
 static PackTexture g_pack[PACK_MAX];
 static int16_t g_pack_slot[PACK_SLOTS];      /* index + 1 into g_pack, by fingerprint */
 static int g_pack_count;
 static char g_pack_dir[96];
-volatile uint32_t rt_pack_hits, rt_pack_loads;
+volatile uint32_t rt_pack_hits, rt_pack_loads, rt_pack_released;
+/* Loaded art is released once the loaded total passes PACK_BUDGET and a texture has
+ * not been drawn for PACK_IDLE frames (the GPU is at most three frames behind, see
+ * hwgpu.c's in_flight), so a long game does not keep every level's characters. A
+ * released texture is read again from the disc on its next use. */
+#define PACK_BUDGET (1024u * 1024u)
+#define PACK_IDLE 60u
+static uint32_t g_pack_bytes;
 
 static unsigned slot_of(uint64_t a, uint64_t b) { return (unsigned)((a ^ (b * 0x9E3779B97F4A7C15ull)) >> 40) & (PACK_SLOTS - 1); }
 
@@ -193,6 +201,9 @@ static int ready(PackTexture *t)
             void *p = MmAllocateContiguousMemoryEx(bytes, 0, 0x03ffafff, 0, PAGE_READWRITE | PAGE_WRITECOMBINE);
             if (p && ReadFile(f, p, bytes, &got, 0) && got == bytes) {
                 __builtin_ia32_sfence();
+                rt_mem_add(MEM_PACK, (int32_t)bytes);
+                g_pack_bytes += bytes;
+                t->used = hw_frame_number();
                 t->dxt1 = p; t->width = (int)w; t->height = (int)h; t->failed = 0;
                 rt_pack_loads++;
             } else if (p) MmFreeContiguousMemory(p);
@@ -200,6 +211,22 @@ static int ready(PackTexture *t)
     }
     CloseHandle(f);
     return t->dxt1 != 0;
+}
+
+void texpack_trim(void)
+{
+    uint32_t now = hw_frame_number();
+    if (g_pack_bytes <= PACK_BUDGET || now % 30u) return;
+    for (int i = 0; i < g_pack_count && g_pack_bytes > PACK_BUDGET; i++) {
+        PackTexture *t = &g_pack[i];
+        if (!t->dxt1 || now - t->used <= PACK_IDLE) continue;
+        uint32_t bytes = (uint32_t)(t->width * t->height / 2);
+        MmFreeContiguousMemory(t->dxt1);
+        t->dxt1 = 0;
+        rt_mem_add(MEM_PACK, -(int32_t)bytes);
+        g_pack_bytes -= bytes;
+        rt_pack_released++;
+    }
 }
 
 /* ---- lookup (TextureResolver.ResolvePage, upload path) ------------------------------- */
@@ -219,6 +246,7 @@ static Recent g_recent[PACK_RECENT];
 static int answer(PackTexture *hit, int u0, int v0, int w, int h, RtReplacement *out)
 {
     if (!hit || !ready(hit)) return 0;
+    hit->used = hw_frame_number();
     out->dxt1 = hit->dxt1;
     out->width = hit->width; out->height = hit->height;
     out->u0 = u0; out->v0 = v0; out->w = w; out->h = h;

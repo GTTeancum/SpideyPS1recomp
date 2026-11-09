@@ -34,6 +34,37 @@ void rt_note(const char *name)
     if (g_note_count < 32) { g_notes[g_note_count].name = name; g_notes[g_note_count].count = 1; g_note_count++; }
 }
 
+volatile int32_t rt_mem_kb[MEM_USES], rt_mem_peak_kb[MEM_USES];
+static volatile uint32_t g_mem_low_kb = 0xFFFFFFFFu, g_mem_low_vblank;
+static struct { const char *stage; uint32_t free_kb; } g_mem_marks[8];
+static int g_mem_mark_count;
+
+static uint32_t free_kb(void)
+{
+    MM_STATISTICS mm = { sizeof mm };
+    MmQueryStatistics(&mm);
+    return (uint32_t)mm.AvailablePages * 4u;
+}
+
+void rt_mem_add(int use, int32_t bytes)
+{
+    int32_t kb = (bytes < 0 ? -1 : 1) * (int32_t)((((uint32_t)(bytes < 0 ? -bytes : bytes)) + 4095u) / 4096u * 4u);
+    rt_mem_kb[use] += kb;
+    if (rt_mem_kb[use] > rt_mem_peak_kb[use]) rt_mem_peak_kb[use] = rt_mem_kb[use];
+}
+
+void rt_mem_mark(const char *stage)
+{
+    if (g_mem_mark_count < 8) { g_mem_marks[g_mem_mark_count].stage = stage; g_mem_marks[g_mem_mark_count].free_kb = free_kb(); g_mem_mark_count++; }
+    rt_mem_sample();
+}
+
+void rt_mem_sample(void)
+{
+    uint32_t kb = free_kb();
+    if (kb < g_mem_low_kb) { g_mem_low_kb = kb; g_mem_low_vblank = rt_vblank_count; }
+}
+
 void rt_log(const char *format, ...)
 {
     char *line = g_lines[g_line_next % LOG_LINES];
@@ -99,6 +130,22 @@ static void status_text(void)
         extern volatile uint32_t rt_cd_blocks, rt_cd_us;
         ADD("disc blocks read %lu in %lu ms\n", (unsigned long)rt_cd_blocks, (unsigned long)(rt_cd_us / 1000));
     }
+    {
+        extern volatile uint32_t rt_hw_push_frame_peak;
+        ADD("push buffer largest frame %lu KB\n", (unsigned long)(rt_hw_push_frame_peak / 1024u));
+        extern volatile uintptr_t rt_game_stack_base, rt_game_stack_limit;
+        if (rt_game_stack_limit) {
+            /* Deepest the game thread's stack has reached: the lowest word no longer
+             * holding the mark main.c wrote below its first frame. Read only. */
+            const volatile uint32_t *w = (const volatile uint32_t *)rt_game_stack_limit;
+            while ((uintptr_t)w < rt_game_stack_base && *w == 0x5AFE57ACu) w++;
+            extern volatile uintptr_t rt_tick_sp_low;
+            ADD("game stack used %lu KB of %lu KB (base %08lX limit %08lX, tick frame low %08lX)\n",
+                (unsigned long)((rt_game_stack_base - (uintptr_t)w) / 1024u),
+                (unsigned long)((rt_game_stack_base - rt_game_stack_limit) / 1024u),
+                (unsigned long)rt_game_stack_base, (unsigned long)rt_game_stack_limit, (unsigned long)rt_tick_sp_low);
+        }
+    }
     ADD("hw frames %lu decodes %lu palettes %lu wait %lu\n", (unsigned long)rt_hw_frames, (unsigned long)rt_hw_texture_decodes,
         (unsigned long)rt_hw_palette_builds,
         (unsigned long)rt_hw_wait);
@@ -106,6 +153,19 @@ static void status_text(void)
     MM_STATISTICS mm = { sizeof mm };
     MmQueryStatistics(&mm);
     ADD("memory free %lu KB of %lu KB\n", (unsigned long)mm.AvailablePages * 4ul, (unsigned long)mm.TotalPhysicalPages * 4ul);
+    ADD("memory low %lu KB at vblank %lu\n", (unsigned long)g_mem_low_kb, (unsigned long)g_mem_low_vblank);
+    for (int i = 0; i < g_mem_mark_count; i++) ADD("memory at %s %lu KB\n", g_mem_marks[i].stage, (unsigned long)g_mem_marks[i].free_kb);
+    {
+        static const char *const names[MEM_USES] = { "textures", "palettes", "pack", "suits", "movie" };
+        for (int i = 0; i < MEM_USES; i++)
+            ADD("memory use %s %ld KB peak %ld KB\n", names[i], (long)rt_mem_kb[i], (long)rt_mem_peak_kb[i]);
+        extern volatile int32_t rt_movie_state[8];
+        ADD("movie state shown %ld video-done %ld flushed %ld sound %ld busy %ld ended %ld queued %ld clock %ld ms\n",
+            (long)rt_movie_state[0], (long)rt_movie_state[1], (long)rt_movie_state[2], (long)rt_movie_state[3],
+            (long)rt_movie_state[4], (long)rt_movie_state[5], (long)rt_movie_state[6], (long)rt_movie_state[7]);
+        extern volatile uint32_t rt_arena_peak;
+        ADD("memory asset arena peak %lu KB of %lu KB\n", (unsigned long)(rt_arena_peak / 1024u), 0x480000ul / 1024ul);
+    }
     VIDEO_MODE vm = XVideoGetMode();
     ADD("mode %dx%d encoder %08lX\n", vm.width, vm.height, (unsigned long)XVideoGetEncoderSettings());
     ADD("video 720p %d wide-display %d frame-wide %d fov %d/%d\n", rt_video_720p, rt_video_wide, rt_frame_wide,
@@ -193,7 +253,8 @@ static void status_text(void)
         for (int i = 0; i < 2; i++) ADD(" %lu,%lu w%lu", (unsigned long)(rt_hw_region_info[i] & 1023), (unsigned long)((rt_hw_region_info[i] >> 10) & 1023), (unsigned long)(rt_hw_region_info[i] >> 20));
         ADD("%s", "\n");
     }
-    ADD("texture pack hits %lu loads %lu\n", (unsigned long)rt_pack_hits, (unsigned long)rt_pack_loads);
+    ADD("texture pack hits %lu loads %lu released %lu\n", (unsigned long)rt_pack_hits, (unsigned long)rt_pack_loads,
+        (unsigned long)rt_pack_released);
     ADD("drawotag from %08lX at %08lX packets %lu\n", (unsigned long)rt_ot_start, (unsigned long)rt_ot_addr,
         (unsigned long)rt_ot_packets);
     for (int i = 0; i < g_note_count; i++) ADD("count %s %lu\n", g_notes[i].name, (unsigned long)g_notes[i].count);
