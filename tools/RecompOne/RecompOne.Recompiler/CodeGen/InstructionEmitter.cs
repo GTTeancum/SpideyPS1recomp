@@ -140,7 +140,7 @@ public static class InstructionEmitter
             37 => rt == 0 ? "" : $"RecompOne.Runtime.Hardware.GteScreen.LoadU16(c, {rt}, m, {Addr(rs, imm)}, false);",
             38 => rt == 0 ? "" : $"{RT} = m.ReadWordRight({RT}, {Addr(rs, imm)});",
             40 => $"m.WriteU8({Addr(rs, imm)}, (byte){RT});",
-            41 => $"RecompOne.Runtime.Hardware.GteScreen.StoreU16(m, {Addr(rs, imm)}, (ushort){RT}, c.GetGteVertexTag({rt}));",
+            41 => $"m.WriteU16({Addr(rs, imm)}, (ushort){RT});",
             42 => $"m.WriteWordLeft({Addr(rs, imm)}, {RT});",
             43 => $"RecompOne.Runtime.Hardware.GteScreen.StoreU32(m, {Addr(rs, imm)}, {RT}, c.GetGteVertexTag({rt}));",
             46 => $"m.WriteWordRight({Addr(rs, imm)}, {RT});",

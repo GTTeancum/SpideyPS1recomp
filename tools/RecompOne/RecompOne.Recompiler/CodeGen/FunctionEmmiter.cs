@@ -28,10 +28,6 @@ public static class FunctionEmitter
                 dsIdx.Add(i + 1);
 
         var lang = ctx.Lang;
-        // C output: vertex tags only in functions that use the GTE (COP2, LWC2, SWC2),
-        // where projected coordinates are produced, staged and packed. Everywhere else
-        // the tag work cost the Xbox half its frame rate and memory it does not have.
-        CInstructionEmitter.TagsEnabled = lang.IsC && instrs.Any(i => (i.Word >> 26) is 18 or 50 or 58);
         string name = lang.IsC ? ctx.FunctionName(func.EmittedName) : func.EmittedName;
         const string ind = "        ";
         string noInline = lang.IsC ? "" : "    [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]";

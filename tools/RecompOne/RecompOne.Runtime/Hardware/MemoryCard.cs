@@ -19,33 +19,21 @@ public sealed class MemoryCard
             var b = File.ReadAllBytes(path);
             Array.Copy(b, _d, Math.Min(b.Length, CardSize));
         }
-        // A card with no file is formatted in memory only: its file (and folder) is
-        // written by the first change, so merely starting the game creates nothing.
-        else FormatImage();
+        else Format();
     }
 
-    public void Flush()
-    {
-        string? folder = Path.GetDirectoryName(_path);
-        if (!string.IsNullOrEmpty(folder)) Directory.CreateDirectory(folder);
-        File.WriteAllBytes(_path, _d);
-    }
+    public void Flush() => File.WriteAllBytes(_path, _d);
 
     static byte Sum(byte[] d, int o) { byte x = 0; for (int i = 0; i < 0x7F; i++) x ^= d[o + i]; return x; }
     void Fix(int o) => _d[o + 0x7F] = Sum(_d, o);
 
     public void Format()
     {
-        FormatImage();
-        Flush();
-    }
-
-    void FormatImage()
-    {
         Array.Clear(_d);
         _d[0] = 0x4D; _d[1] = 0x43; Fix(0);
         for (int i = 1; i <= Dir; i++) { int o = i * Fr; _d[o] = 0xA0; _d[o + 8] = 0xFF; _d[o + 9] = 0xFF; Fix(o); }
         for (int i = 16; i <= 35; i++) { int o = i * Fr; _d[o] = _d[o + 1] = _d[o + 2] = _d[o + 3] = 0xFF; _d[o + 8] = 0xFF; _d[o + 9] = 0xFF; Fix(o); }
+        Flush();
     }
 
     string NameOf(int b)

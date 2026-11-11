@@ -78,9 +78,7 @@ public sealed unsafe class NativeSfd : IDisposable
             Width = (int)info.Width; Height = (int)info.Height;
             FpsNumerator = info.FpsNum; FpsDenominator = info.FpsDen;
             SampleRate = (int)info.SampleRate; SourceChannels = (int)info.Channels; AudioFrames = info.AudioFrames;
-            // Square pixels, as the PS1 movies: 320x240 fills 4:3. The files' pixel aspect
-            // code (CCIR 601 525-line, the encoder's NTSC default) made them ~9% too narrow.
-            DisplayAspect = (float)Width / Height;
+            DisplayAspect = (float)((double)Width * info.SarNum / (Height * (double)info.SarDen));
             _yuv = new byte[checked(Width * Height * 3 / 2)];
         }
         catch { Dispose(); throw; }

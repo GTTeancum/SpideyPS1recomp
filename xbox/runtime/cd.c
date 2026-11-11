@@ -7,10 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <windows.h>
 #include "runtime.h"
-#include "spu.h"
-#include "xa.h"
 
 /* ---- disc --------------------------------------------------------------------------- */
 typedef struct { int lba, raw; uint32_t size; char path[64]; } DiscFile;
@@ -59,65 +56,20 @@ static const DiscFile *file_at(int lba)
     return 0;
 }
 
-/* Reads go through the kernel's file calls in 64 KB blocks, a few kept (a load
- * alternates between the archive's directory and the file it finds). The C library's
- * 1 KB buffer, refilled after every per-sector seek, made a mid-level load hundreds of
- * small disk reads (a third of a second's stall in level 3). Files stay open. */
-#define BLOCK (64 * 1024)
-#define BLOCKS 4
-#define HANDLES 8
-static struct { const DiscFile *file; HANDLE handle; } g_handles[HANDLES];
-static int g_handle_next;
-static struct { const DiscFile *file; long at, len; uint32_t used; uint8_t data[BLOCK]; } g_blocks[BLOCKS];
-static uint32_t g_block_clock;
-volatile uint32_t rt_cd_blocks, rt_cd_us;   /* blocks read, time in the kernel's reads */
+/* One open file at a time: reads are sequential runs inside one file. */
+static FILE *g_open;
+static const DiscFile *g_open_file;
 
-static HANDLE open_file(const DiscFile *d)
+static FILE *open_file(const DiscFile *d)
 {
-    for (int i = 0; i < HANDLES; i++) if (g_handles[i].file == d) return g_handles[i].handle;
+    if (g_open_file == d) return g_open;
+    if (g_open) fclose(g_open);
     char path[260];
     snprintf(path, sizeof path, "%s\\%s", g_root, d->path);
     for (char *p = path; *p; p++) if (*p == '/') *p = '\\';
-    HANDLE h = CreateFileA(path, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, 0);
-    if (h == INVALID_HANDLE_VALUE) return h;
-    int i = g_handle_next++ % HANDLES;
-    if (g_handles[i].file) {
-        CloseHandle(g_handles[i].handle);
-        for (int b = 0; b < BLOCKS; b++) if (g_blocks[b].file == g_handles[i].file) g_blocks[b].file = 0;
-    }
-    g_handles[i].file = d; g_handles[i].handle = h;
-    return h;
-}
-
-/* size bytes at offset of file d; short at its end. */
-static void read_bytes(const DiscFile *d, HANDLE f, long offset, uint8_t *out, int size)
-{
-    while (size > 0) {
-        int b = -1;
-        for (int i = 0; i < BLOCKS; i++)
-            if (g_blocks[i].file == d && offset >= g_blocks[i].at && offset < g_blocks[i].at + g_blocks[i].len) { b = i; break; }
-        if (b < 0) {
-            b = 0;   /* the least recently used */
-            for (int i = 1; i < BLOCKS; i++) if (g_blocks[i].used < g_blocks[b].used) b = i;
-            DWORD got = 0;
-            long at = offset - offset % BLOCK;
-            g_blocks[b].file = 0;
-            LARGE_INTEGER t0, t1, hz;
-            QueryPerformanceCounter(&t0);
-            BOOL ok = SetFilePointer(f, at, 0, FILE_BEGIN) != INVALID_SET_FILE_POINTER && ReadFile(f, g_blocks[b].data, BLOCK, &got, 0);
-            QueryPerformanceCounter(&t1);
-            QueryPerformanceFrequency(&hz);
-            rt_cd_blocks++;
-            rt_cd_us += (uint32_t)((t1.QuadPart - t0.QuadPart) * 1000000 / hz.QuadPart);
-            if (!ok || offset >= at + (long)got) return;   /* unreadable, or past the end of the file */
-            g_blocks[b].file = d; g_blocks[b].at = at; g_blocks[b].len = (long)got;
-        }
-        g_blocks[b].used = ++g_block_clock;
-        int n = (int)(g_blocks[b].at + g_blocks[b].len - offset);
-        if (n > size) n = size;
-        memcpy(out, g_blocks[b].data + (offset - g_blocks[b].at), (size_t)n);
-        out += n; offset += n; size -= n;
-    }
+    g_open = fopen(path, "rb");
+    g_open_file = g_open ? d : 0;
+    return g_open;
 }
 
 /* Data of one sector: 2048 user bytes, or the 2336 bytes after the sync and header
@@ -127,12 +79,13 @@ static void read_sector(int lba, int size, uint8_t *out)
     memset(out, 0, (size_t)size);
     const DiscFile *d = file_at(lba);
     if (!d) { rt_missing("CD", "sector outside the files"); return; }
-    HANDLE f = open_file(d);
-    if (f == INVALID_HANDLE_VALUE) return;
+    FILE *f = open_file(d);
+    if (!f) return;
     long offset = (long)(lba - d->lba) * (long)sector_bytes(d);
     if (d->raw && size == 2048) offset += 8;      /* skip the XA subheader */
     if (!d->raw && size > 2048) { out += size - 2048; size = 2048; }
-    read_bytes(d, f, offset, out, size);
+    fseek(f, offset, SEEK_SET);
+    fread(out, 1, (size_t)size, f);
 }
 
 /* ---- libcd state ---------------------------------------------------------------------- */
@@ -172,7 +125,6 @@ static void set_error(uint8_t err, uint8_t extra)
 
 static void reset_state(void)
 {
-    spu_cd_mix(0x80, 0, 0x80, 0);
     g_status = StatMotor; g_mode = 0; g_com = 0; g_last_intr = Complete;
     g_cb_sync = g_cb_ready = g_cb_data = 0;
     g_read_active = 0; g_filter_file = g_filter_channel = 0;
@@ -200,44 +152,9 @@ static void pump_ready(int max_sectors)
     g_pumping = 0;
 }
 
-static int g_held;
-void cd_hold(int on) { g_held = on; }
-
-/* ---- XA audio streaming (the PC's LibCd.PumpXa) ------------------------------------------
- * A read in XA mode plays the disc's ADPCM sectors instead of delivering them: paced at
- * the drive's speed (75 or 150 sectors a second, filtered-out sectors taking their disc
- * time too, so the game's position checks end clips on time), the file and channel the
- * filter selects decoded into the sound chip's CD input. */
-static double g_xa_carry;
-static int32_t g_xa_history[2][2];
-
-static void xa_start(void)
-{
-    g_xa_carry = 0;
-    memset(g_xa_history, 0, sizeof g_xa_history);
-    spu_xa_reset();
-}
-
-static void xa_tick(void)
-{
-    static uint8_t sector[2336];
-    static int16_t pcm[XA_MAX_FRAMES * 2];
-    g_xa_carry += ((g_mode & 0x80) ? 150.0 : 75.0) / 60.0;
-    while (g_xa_carry >= 1.0) {
-        g_xa_carry -= 1.0;
-        read_sector(current_lba(), 2336, sector);
-        advance(1);
-        if (!xa_is_audio(sector)) continue;
-        if ((g_mode & 0x08) && (sector[0] != g_filter_file || sector[1] != g_filter_channel)) continue;
-        int n = xa_decode(sector, g_xa_history, pcm);
-        spu_xa_push(pcm, n, xa_rate(sector));
-    }
-}
-
 void cd_tick(void)
 {
-    if (g_held) return;
-    if (g_read_active && (g_mode & 0x40)) { xa_tick(); return; }
+    if (g_read_active && (g_mode & 0x40)) return;     /* XA audio: not played yet */
     if (!g_read_active || (!g_cb_data && !g_cb_ready) || !rt_cpu()) return;
     if (!g_cb_data) { pump_ready(400000); return; }
     CpuContext saved = *rt_cpu();
@@ -265,12 +182,9 @@ static int exec_command(uint8_t com, uint32_t param, uint32_t result)
             if (result) write_result(result);
             return DiskError;
         }
-        if (g_mode & 0x40) xa_start();
         g_read_active = 1;
         g_status = StatMotor | StatRead;
         break;
-    case Mute: spu_cd_muted = 1; break;
-    case Demute: spu_cd_muted = 0; break;
     case Play: g_read_active = 0; g_status = StatMotor | StatPlay; break;
     case Getparam:
         g_result[0] = g_status; g_result[1] = g_mode; g_result[2] = 0;
@@ -407,9 +321,4 @@ void hook_LibCd_CdDataCallback(CpuContext *c) { V0 = g_cb_data; g_cb_data = A0; 
 void hook_LibCd_CdStatus(CpuContext *c) { pump_ready(1); V0 = g_status; }
 void hook_LibCd_CdMode(CpuContext *c) { V0 = g_mode; }
 void hook_LibCd_CdLastCom(CpuContext *c) { V0 = g_com; }
-/* CdlATV order: left to left, left to right, right to right, right to left. */
-void hook_LibCd_CdMix(CpuContext *c)
-{
-    if (A0) spu_cd_mix((uint8_t)mem_r8(A0), (uint8_t)mem_r8(A0 + 1), (uint8_t)mem_r8(A0 + 2), (uint8_t)mem_r8(A0 + 3));
-    V0 = 1;
-}
+void hook_LibCd_CdMix(CpuContext *c) { V0 = 1; }

@@ -3,9 +3,7 @@
  * runtime's LibGpu feeding the software GPU (gpu.c). Drawing is immediate, so
  * DrawSync never waits.
  */
-#include "hwgpu.h"
 #include "gpu.h"
-#include "prof.h"
 #include "runtime.h"
 
 #define A0 c->r[4]
@@ -39,41 +37,18 @@ static uint32_t get_tw(int x, int y, int w, int h)
     return 0xE2000000u | (c1 << 15) | (c0 << 10) | (c3 << 5) | c2;
 }
 
-volatile uint32_t rt_ot_start, rt_ot_addr, rt_ot_packets;
-uint32_t rt_disp_grandparent;
-void (*rt_frame_hook)(void);
-void (*rt_drawotag_hook)(void);
-volatile uint32_t rt_drawotag_count;
-
-static void hook_LibGpu_DrawOTag_timed(CpuContext *c)
+void hook_LibGpu_DrawOTag(CpuContext *c)
 {
     rt_note("DrawOTag");
-    hw_depth_frame();
-    rt_drawotag_count++;
-    RT_WHERE("DrawOTag");
-    if (rt_drawotag_hook) rt_drawotag_hook();
-    if (rt_geometry_debug == 2 || rt_geometry_debug == 4 || rt_geometry_debug == 6) gpu_debug_clear();   /* frames start magenta */
-    if (rt_geometry_debug == 3) gpu_census_frame();
     uint32_t addr = A0 & (RECOMP_RAM_SIZE - 4u);
-    rt_ot_start = addr;
     for (int guard = 0; guard < 0x100000; guard++) {
-        rt_ot_packets = (uint32_t)guard;
-        rt_ot_addr = addr;
         uint32_t header = mem_r32(addr), count = header >> 24;
-        for (uint32_t i = 0; i < count; i++) gpu_write_gp0_at(mem_r32(addr + 4u + i * 4u), addr + 4u + i * 4u);
+        for (uint32_t i = 0; i < count; i++) gpu_write_gp0(mem_r32(addr + 4u + i * 4u));
         uint32_t next = header & 0xFFFFFFu;
         if (next == 0xFFFFFFu || (next & 0x800000u)) break;
         addr = next & (RECOMP_RAM_SIZE - 4u);
     }
 }
-
-void hook_LibGpu_DrawOTag(CpuContext *c)
-{
-    PROF_BEGIN(t);
-    hook_LibGpu_DrawOTag_timed(c);
-    PROF_END(PROF_OT, t);
-}
-
 
 void hook_LibGpu_DrawSync(CpuContext *c) { V0 = 0; }
 
@@ -96,11 +71,9 @@ void hook_LibGpu_PutDrawEnv(CpuContext *c)
         int w = clip_w < 0 ? 0 : clip_w > VRAM_W - 1 ? VRAM_W - 1 : clip_w;
         int h = clip_h < 0 ? 0 : clip_h > VRAM_H - 1 ? VRAM_H - 1 : clip_h;
         int x = clip_x - ofs_x, y = clip_y - ofs_y;
-        hw_set_background(1);
         gpu_write_gp0(0x60000000u | (b0 << 16) | (g0 << 8) | r0);
         gpu_write_gp0(((uint32_t)(uint16_t)y << 16) | (uint16_t)x);
         gpu_write_gp0(((uint32_t)(uint16_t)h << 16) | (uint16_t)w);
-        hw_set_background(0);
     }
     V0 = A0;
 }
@@ -108,8 +81,6 @@ void hook_LibGpu_PutDrawEnv(CpuContext *c)
 void hook_LibGpu_PutDispEnv(CpuContext *c)
 {
     rt_note("PutDispEnv");
-    rt_disp_grandparent = mem_r32(c->r[29] + 16u);
-    if (rt_frame_hook) rt_frame_hook();
     uint32_t env = A0;
     int disp_x = s16(env + 0x00), disp_y = s16(env + 0x02), disp_w = s16(env + 0x04), disp_h = s16(env + 0x06);
     int scr_x = s16(env + 0x08), scr_y = s16(env + 0x0A), scr_w = s16(env + 0x0C), scr_h = s16(env + 0x0E);

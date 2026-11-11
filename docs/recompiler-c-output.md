@@ -22,12 +22,10 @@ derived from the player's disc and is not committed (`xbox/generated/` is ignore
 - control flow in `InstructionEmitter.EmitWithDelaySlot` and `FunctionEmitter.Emit`:
   delay slots, branches, jump tables, local returns, interior and branch hooks.
 
-Single instructions have two writers: `InstructionEmitter.EmitSingle` (C#) and
-`CInstructionEmitter` (C). Both carry the GTE vertex provenance the renderer needs
-for precise positions and perspective depth: moves and arithmetic pass a register's
-tag on (the C# `MoveGpr`/`SetDerived`), other register writes clear it, loads and
-word stores carry it through RAM. The C output has no 60 FPS vertex identities. An
-instruction semantics or provenance fix belongs in both.
+Single instructions have two writers: `InstructionEmitter.EmitSingle` (C#, with the
+GTE provenance the PC's 60 FPS presentation needs) and `CInstructionEmitter` (C,
+plain loads, stores and assignments; the Xbox port has no 60 FPS). An instruction
+semantics fix belongs in both.
 
 The C# output must stay byte-for-byte identical: after changing the code writer,
 regenerate both games and compare with the previous `generated/` folders.
@@ -49,20 +47,16 @@ game symbols such as `memcpy` never meet the C library's.
 The generated code includes only `recomp.h`, which the platform provides
 (`xbox/runtime/recomp.h`):
 
-- `CpuContext` with `r[32]`, `hi`, `lo`, the COP0 fields `sr`, `cause`, `epc`,
-  `bad_vaddr`, `prid`, and `t[32]`, each register's vertex tag (`const VTag *`).
-  Generated functions are `void f(CpuContext *c)`.
+- `CpuContext` with `r[32]`, `hi`, `lo` and the COP0 fields `sr`, `cause`, `epc`,
+  `bad_vaddr`, `prid`. Generated functions are `void f(CpuContext *c)`.
 - Memory: `mem_r8/16/32` (zero-extended), `mem_w8/16/32`, `mem_lwl/lwr/swl/swr`.
-  Byte and halfword sign extension is written into the generated code. With tags:
-  `mem_r32_t(c, rt, a)` (LW), `vtag_containing(a)` (byte and halfword loads),
-  `mem_w32_t(a, value, tag)` (SW), `vtag_pick(a, b)` (two-source arithmetic).
+  Byte and halfword sign extension is written into the generated code.
 - `recomp_dispatch(c, address)` calls the function at a run-time address (jump
   registers, function pointers, overlay entry points).
 - `bios_syscall`, `bios_break`.
-- GTE: `gte_execute(word)`, `gte_read_control(reg)`, `gte_write_control(reg, value)`,
-  `gte_condition()`; MFC2/MTC2 as `gte_read_data_t(c, rt, reg)` /
-  `gte_write_data_t(reg, value, tag)`, LWC2/SWC2 as `gte_load_word(rt, a)` /
-  `gte_store_word(a, rt)`.
+- GTE: `gte_execute(word)`, `gte_read_data/control(reg)`,
+  `gte_write_data/control(reg, value)`, `gte_condition()`. LWC2/SWC2 are written as
+  `gte_write_data(rt, mem_r32(a))` / `mem_w32(a, gte_read_data(rt))`.
 - `RecompFunction`, `RecompOverlay`, `RecompGame` describe the tables.
 
 ### Hooks

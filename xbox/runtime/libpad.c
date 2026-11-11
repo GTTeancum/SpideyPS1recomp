@@ -81,12 +81,10 @@ void rt_pad_set_buffers(uint32_t buf1, uint32_t buf2, int analog)
     g_analog = analog;
 }
 
-uint16_t rt_pad_state(void) { return (uint16_t)(rt_pad_buttons & ~scripted()); }
-
 /* Every vblank. */
 void rt_pad_refresh(void)
 {
-    uint16_t buttons = rt_pad_state();
+    uint16_t buttons = (uint16_t)(rt_pad_buttons & ~scripted());
     if (g_buf1) write_pad(g_buf1, buttons, 1);
     if (g_buf2) write_pad(g_buf2, 0xFFFF, 0);
 }

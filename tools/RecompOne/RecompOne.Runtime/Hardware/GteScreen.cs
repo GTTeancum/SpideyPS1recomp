@@ -90,21 +90,6 @@ public static class GteScreen
             ps.TagGteVertex(address, value, tag);
     }
 
-    /// <summary>
-    /// SH of one coordinate of a projected vertex. Code that rebuilds an SXY word from
-    /// its halves (SM1's object list writes X, then Y) leaves a word whose tag was
-    /// never stored: once the halves make up the word the tag describes, the word takes
-    /// the tag. An incomplete word (X written, Y not yet) is left alone.
-    /// </summary>
-    public static void StoreU16(Memory.IMemory memory, uint address, ushort value, VertexTag tag)
-    {
-        memory.WriteU16(address, value);
-        if (!(tag.Depth > 0f) || !tag.HasSubpixel || memory is not Memory.PSMemory ps) return;
-        uint wordAddress = address & ~3u;
-        uint word = memory.ReadU32(wordAddress);
-        if (MatchesPackedScreen(word, tag)) ps.TagGteVertex(wordAddress, word, tag);
-    }
-
     public static VertexTag ValidatePacketVertex(uint value, VertexTag tag)
     {
         if (tag.HasSubpixel && !MatchesPackedScreen(value, tag))

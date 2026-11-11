@@ -1,9 +1,5 @@
-#include <stdio.h>
 #include <string.h>
 #include "gpu.h"
-#include "hwgpu.h"
-#include "texpack.h"
-#include "runtime.h"
 
 uint16_t gpu_vram[VRAM_H][VRAM_W] __attribute__((aligned(16)));
 
@@ -18,14 +14,7 @@ static int h_range1 = 0x200, h_range2 = 0xC00, v_range1 = 0x10, v_range2 = 0x100
 static int hres, hres368, vres480, pal, disp24, interlace, display_disabled = 1, dma_dir;
 
 static uint32_t fifo[256];
-static uint32_t fifo_addr[256];        /* the RAM word each came from, 0: none (vertex tags) */
 static int fifo_count, need, polyline;
-volatile uint32_t rt_hw_precise, rt_hw_imprecise;
-/* Untagged textured vertices: not from RAM, no tag page, slot stale or empty, word
- * differs from the tag's SXY; and the last few addresses and words. */
-volatile uint32_t rt_vtag_miss[5], rt_vtag_miss_addr[8], rt_vtag_miss_word[8], rt_vtag_miss_next;
-int rt_precise_vertices = 1;
-int rt_geometry_debug;         /* 1: world materials drawn flat, for the gap test */   /* 0: the old drawing, whole pixels and screen-point depths (comparison) */
 
 static int load_image, load_x, load_y, load_w, load_h, load_px;
 static int read_image, read_x, read_y, read_w, read_h, read_px;
@@ -143,8 +132,7 @@ static void shade_texel(int x, int y, uint16_t texel, int r, int g, int b, int r
 }
 
 /* ---- primitives ---------------------------------------------------------------- */
-/* px, py: the precise position (drawing offset applied) when `precise`. */
-typedef struct { int x, y, r, g, b, u, v; float w; float px, py; int precise; } Vert;
+typedef struct { int x, y, r, g, b, u, v; } Vert;
 
 static int top_left(const Vert *p0, const Vert *p1)
 {
@@ -194,12 +182,6 @@ static void raster_triangle(Vert a, Vert b, Vert c, int tex, int gouraud, int se
     }
 }
 
-/* The texture page state as a GP0 texpage value. */
-static int current_tpage(void)
-{
-    return (tex_page_x / 64) | ((tex_page_y / 256) << 4) | (blend_mode << 5) | (tex_depth << 7) | (tex_disable << 11);
-}
-
 static void set_texpage(uint32_t tp)
 {
     tex_page_x = (int)(tp & 0xF) * 64;
@@ -209,171 +191,13 @@ static void set_texpage(uint32_t tp)
     tex_disable = (tp & (1u << 11)) != 0;
 }
 
-/* ---- graphics chip routing ------------------------------------------------------- */
-/* The display buffer the current draw area belongs to (-1: draw in VRAM). */
-void (*rt_prim_hook)(RtPrim *p);
-int (*rt_prim_replace_hook)(const RtPrim *p, int region);
-
-static int hw_target(void) { return hw_region_for(area_left, area_top); }
-
-static void hw_key(HwTexture *t, int clut)
-{
-    t->page_x = tex_page_x; t->page_y = tex_page_y;
-    t->depth = tex_depth == 3 ? 2 : tex_depth; t->clut = clut;
-    t->win_mask_x = win_mask_x; t->win_mask_y = win_mask_y; t->win_off_x = win_off_x; t->win_off_y = win_off_y;
-}
-
-static void hw_vertex(HwVertex *o, const Vert *v)
-{
-    o->x = v->precise ? v->px : (float)v->x; o->y = v->precise ? v->py : (float)v->y;
-    o->r = (uint8_t)v->r; o->g = (uint8_t)v->g; o->b = (uint8_t)v->b; o->u = (uint8_t)v->u; o->v = (uint8_t)v->v;
-    o->w = v->w;
-}
-
-/* Something was drawn into VRAM outside the display buffers (a texture, say). */
-static void drew_offscreen(int x0, int y0, int x1, int y1)
-{
-    x0 = maxi(x0, area_left); y0 = maxi(y0, area_top); x1 = mini(x1, area_right); y1 = mini(y1, area_bottom);
-    if (x1 >= x0 && y1 >= y0) {
-        hw_vram_written(x0, y0, x1 - x0 + 1, y1 - y0 + 1);
-        texpack_note_gpu_write(x0, y0, x1 - x0 + 1, y1 - y0 + 1);
-    }
-}
-
-static void hw_polygon(int r, const Vert *v, int quad, int tex, int gouraud, int semi, int raw, int clut)
-{
-    HwTexture key;
-    if (tex) hw_key(&key, clut);
-    HwVertex t[3];
-    hw_vertex(&t[0], &v[0]); hw_vertex(&t[1], &v[1]); hw_vertex(&t[2], &v[2]);
-    hw_triangle(r, t, tex ? &key : 0, semi, blend_mode, raw, gouraud);
-    if (!quad) return;
-    hw_vertex(&t[0], &v[1]); hw_vertex(&t[1], &v[2]); hw_vertex(&t[2], &v[3]);
-    hw_triangle(r, t, tex ? &key : 0, semi, blend_mode, raw, gouraud);
-}
-
-/* ---- crack census (geometry_debug=3) ------------------------------------------------------
- * Every world polygon a frame draws is recorded: its corners where they are drawn and
- * whether each was a precise (tagged) or a rounded packet position. At the next frame
- * the record is searched for the two ways adjacent polygons fail to meet:
- *   near    two corners closer than a pixel but not the same point (they should be one);
- *   tjunc   a corner on the inside of another polygon's edge (a T-junction: the edge is
- *           one line, the corner side two, and they only agree to rounding).
- * Each is counted by how many of the corners involved were precise (0, 1 or 2), with a
- * few examples (positions and packet addresses), in the status text. */
-#define CENSUS_VERTS 12288
-#define CENSUS_TRIS 8192
-#define CENSUS_CELLS 8192
-typedef struct { float x, y; uint32_t addr; uint8_t precise; } CensusVert;
-static CensusVert g_cv[CENSUS_VERTS];
-static uint16_t g_ct[CENSUS_TRIS][3];
-static int g_cvn, g_ctn;
-static int16_t g_cell[CENSUS_CELLS], g_cnext[CENSUS_VERTS];
-volatile uint32_t rt_census_frames, rt_census_near[3], rt_census_tjunc[3], rt_census_polys;
-volatile uint32_t rt_census_sample[6][6];   /* class, ax, ay, bx, by (x16), addresses of a and b */
-static uint32_t g_census_next;
-
-static unsigned cell_of(int ix, int iy) { return ((unsigned)ix * 73856093u ^ (unsigned)iy * 19349663u) & (CENSUS_CELLS - 1u); }
-
-static void census_sample(int kind, int cls, const CensusVert *a, const CensusVert *b)
-{
-    volatile uint32_t *s = rt_census_sample[g_census_next++ % 6];
-    s[0] = (uint32_t)(kind * 16 + cls);
-    s[1] = (uint32_t)(int32_t)(a->x * 16); s[2] = (uint32_t)(int32_t)(a->y * 16);
-    s[3] = (uint32_t)(int32_t)(b->x * 16); s[4] = (uint32_t)(int32_t)(b->y * 16);
-    s[5] = (a->addr & 0xFFFFFFu) << 8 | ((b->addr >> 2) & 0xFFu);
-}
-
-static void census_analyse(void)
-{
-    if (!g_cvn) return;
-    rt_census_frames++;
-    for (int i = 0; i < CENSUS_CELLS; i++) g_cell[i] = -1;
-    for (int i = 0; i < g_cvn; i++) {
-        unsigned c = cell_of((int)__builtin_floorf(g_cv[i].x), (int)__builtin_floorf(g_cv[i].y));
-        g_cnext[i] = g_cell[c]; g_cell[c] = (int16_t)i;
-    }
-    /* near: within a pixel, not the same point */
-    for (int i = 0; i < g_cvn; i++) {
-        int ix = (int)__builtin_floorf(g_cv[i].x), iy = (int)__builtin_floorf(g_cv[i].y);
-        for (int dy = -1; dy <= 1; dy++)
-            for (int dx = -1; dx <= 1; dx++)
-                for (int j = g_cell[cell_of(ix + dx, iy + dy)]; j >= 0; j = g_cnext[j]) {
-                    if (j <= i) continue;
-                    float ex = g_cv[j].x - g_cv[i].x, ey = g_cv[j].y - g_cv[i].y, d2 = ex * ex + ey * ey;
-                    if (d2 > 1e-6f && d2 < 1.0f) {
-                        int cls = g_cv[i].precise + g_cv[j].precise;
-                        rt_census_near[cls]++;
-                        census_sample(1, cls, &g_cv[i], &g_cv[j]);
-                    }
-                }
-    }
-    /* tjunc: a corner within a quarter pixel of an edge's inside, away from its ends */
-    for (int t = 0; t < g_ctn; t++)
-        for (int e = 0; e < 3; e++) {
-            const CensusVert *a = &g_cv[g_ct[t][e]], *b = &g_cv[g_ct[t][(e + 1) % 3]];
-            float ex = b->x - a->x, ey = b->y - a->y, len2 = ex * ex + ey * ey;
-            if (len2 < 4.0f || len2 > 96.0f * 96.0f) continue;
-            float len = __builtin_sqrtf(len2);
-            int steps = (int)len + 1;
-            for (int s = 0; s <= steps; s++) {
-                float px = a->x + ex * s / steps, py = a->y + ey * s / steps;
-                for (int j = g_cell[cell_of((int)__builtin_floorf(px), (int)__builtin_floorf(py))]; j >= 0; j = g_cnext[j]) {
-                    const CensusVert *v = &g_cv[j];
-                    float vx = v->x - a->x, vy = v->y - a->y, u = (vx * ex + vy * ey) / len2;
-                    if (u < 0.02f || u > 0.98f) continue;
-                    float cx = vx - ex * u, cy = vy - ey * u;
-                    if (cx * cx + cy * cy > 0.0625f) continue;
-                    float da = vx * vx + vy * vy, bx = v->x - b->x, by = v->y - b->y;
-                    if (da < 0.25f || bx * bx + by * by < 0.25f) continue;
-                    int cls = v->precise + (a->precise && b->precise);
-                    rt_census_tjunc[cls]++;
-                    census_sample(2, cls, v, a);
-                }
-            }
-        }
-}
-
-/* At each frame's first DrawOTag: analyse the frame before and start a new record. */
-void gpu_census_frame(void)
-{
-    census_analyse();
-    g_cvn = g_ctn = 0;
-}
-
-static void census_polygon(const Vert *v, int n, const uint32_t *addr)
-{
-    if (g_ctn + 2 > CENSUS_TRIS || g_cvn + n > CENSUS_VERTS) return;
-    int base = g_cvn;
-    for (int i = 0; i < n; i++) {
-        CensusVert *c = &g_cv[g_cvn++];
-        c->x = v[i].precise ? v[i].px : (float)v[i].x;
-        c->y = v[i].precise ? v[i].py : (float)v[i].y;
-        c->addr = addr[i];
-        c->precise = (uint8_t)v[i].precise;
-    }
-    g_ct[g_ctn][0] = (uint16_t)base; g_ct[g_ctn][1] = (uint16_t)(base + 1); g_ct[g_ctn][2] = (uint16_t)(base + 2); g_ctn++;
-    if (n == 4) { g_ct[g_ctn][0] = (uint16_t)(base + 1); g_ct[g_ctn][1] = (uint16_t)(base + 2); g_ct[g_ctn][2] = (uint16_t)(base + 3); g_ctn++; }
-    rt_census_polys++;
-}
-
-/* Hole test (geometry_debug=2): the drawing area starts each frame magenta, so any
- * pixel the frame's polygons leave undrawn (a crack, or a transparent texel taken at
- * an edge) shows. */
-void gpu_debug_clear(void)
-{
-    int r = hw_target();
-    if (r >= 0) hw_fill(r, area_left, area_top, area_right - area_left + 1, area_bottom - area_top + 1, 0x7C1F);
-}
-
 static void draw_polygon(void)
 {
     uint32_t cmd = fifo[0];
     int gouraud = (cmd >> 28) & 1, quad = (cmd >> 27) & 1, tex = (cmd >> 26) & 1;
     int semi = (cmd >> 25) & 1, raw = (cmd >> 24) & 1, n = quad ? 4 : 3;
     Vert v[4];
-    int idx = 1, clut = 0, tpage = current_tpage(), tagged = 0, world = 1;
-    uint32_t addrs[4];
+    int idx = 1, clut = 0;
     int cr = (int)(cmd & 0xFF), cg = (int)((cmd >> 8) & 0xFF), cb = (int)((cmd >> 16) & 0xFF);
     for (int i = 0; i < n; i++) {
         if (gouraud && i > 0) {
@@ -381,87 +205,20 @@ static void draw_polygon(void)
             cr = (int)(cw & 0xFF); cg = (int)((cw >> 8) & 0xFF); cb = (int)((cw >> 16) & 0xFF);
         }
         v[i].r = cr; v[i].g = cg; v[i].b = cb;
-        uint32_t va = fifo_addr[idx], vw = fifo[idx++];
-        addrs[i] = va;
+        uint32_t vw = fifo[idx++];
         v[i].x = offset_x + coord_x(vw);
         v[i].y = offset_y + coord_y(vw);
-        /* A GTE screen point: world geometry, not HUD (the widescreen rules). With
-         * vertex tags the tag's depth says so, as the PC's Wide.FromGte (every corner
-         * with a depth); without, the depth table. */
-        float screen_depth = hw_depth_at(coord_x(vw), coord_y(vw));
-        if (!rt_precise_vertices) {
-            if (!(screen_depth > 0)) world = 0;
-            v[i].w = screen_depth; v[i].precise = 0; v[i].px = (float)v[i].x; v[i].py = (float)v[i].y; tagged++; }
-        else {
-        /* The packet word's own tag gives the depth and the precise position (the PC's
-         * GpuRaster.DrawPolygon); a depth found from the screen position alone can
-         * belong to another vertex at the same pixel and bend the texture, so it is
-         * not used for drawing. */
-        const VTag *t = va ? vtag_of(va, vw) : 0;
-        /* A word whose coordinates are not the tag's position keeps the depth and loses
-         * only the position (the PC's ValidatePacketVertex, VertexTag.DepthOnly): the
-         * polygon stays in perspective and its other corners stay exact. */
-        int exact = t && vtag_matches(vw, t);
-        if (t && !exact) rt_vtag_miss[3]++;
-        else if (!t && tex && screen_depth > 0) {
-            /* Why this textured vertex has no tag (the status counts them). */
-            const VTag *e = va ? vtag_slot(va) : 0;
-            int why = !va ? 0 : !e ? 1 : !(e->z > 0) ? 2 : 4;
-            rt_vtag_miss[why]++;
-            rt_vtag_miss_addr[rt_vtag_miss_next & 7] = va;
-            rt_vtag_miss_word[rt_vtag_miss_next++ & 7] = vw;
-        }
-        if (!t) world = 0;
-        v[i].w = t ? t->z : 0.0f;
-        v[i].precise = exact;
-        v[i].px = exact ? (float)offset_x + t->x16 / 16.0f : (float)v[i].x;
-        v[i].py = exact ? (float)offset_y + t->y16 / 16.0f : (float)v[i].y;
-        if (t) tagged++;
-        }
         v[i].u = v[i].v = 0;
         if (tex) {
             uint32_t uvw = fifo[idx++];
             v[i].u = (int)(uvw & 0xFF);
             v[i].v = (int)((uvw >> 8) & 0xFF);
             if (i == 0) clut = (int)((uvw >> 16) & 0xFFFF);
-            else if (i == 1) { tpage = (int)((uvw >> 16) & 0xFFFF); set_texpage((uint32_t)tpage); }
+            else if (i == 1) set_texpage((uvw >> 16) & 0xFFFF);
         }
-    }
-    /* Textured: perspective only with every corner's depth, else the whole polygon
-     * affine at its packet positions (mixing would tear the texture), as the PC's
-     * directDepth. Counted: every corner exact, or not. */
-    if (tex) {
-        int exact = 0;
-        for (int i = 0; i < n; i++) exact += v[i].precise;
-        if (exact == n) rt_hw_precise++;
-        else if (tagged) rt_hw_imprecise++;
-        if (tagged != n) {
-            for (int i = 0; i < n; i++) { v[i].w = 0.0f; v[i].precise = 0; }
-        }
-    }
-    if (rt_geometry_debug == 3 && world) census_polygon(v, n, addrs);
-    int r = hw_target();
-    if (r >= 0) {
-        if (rt_prim_hook || rt_prim_replace_hook) {
-            RtPrim p = { n, { 0 }, { 0 }, { 0 }, { 0 }, world, tex, semi, gouraud, tpage, clut,
-                         area_left, area_top, area_right, area_bottom, offset_x, offset_y };
-            for (int i = 0; i < n; i++) {
-                p.x[i] = v[i].x; p.y[i] = v[i].y; p.u[i] = (uint8_t)v[i].u; p.v[i] = (uint8_t)v[i].v;
-            }
-            if (rt_prim_replace_hook && rt_prim_replace_hook(&p, r)) return;
-            if (rt_prim_hook) rt_prim_hook(&p);
-            for (int i = 0; i < n; i++) { v[i].px += (float)(p.x[i] - v[i].x); v[i].x = p.x[i]; }
-        }
-        hw_set_world(world);
-        hw_polygon(r, v, quad, tex, gouraud, semi, raw, clut);
-        hw_set_world(0);
-        return;
     }
     raster_triangle(v[0], v[1], v[2], tex, gouraud, semi, raw, clut);
     if (quad) raster_triangle(v[1], v[2], v[3], tex, gouraud, semi, raw, clut);
-    int x0 = v[0].x, x1 = v[0].x, y0 = v[0].y, y1 = v[0].y;
-    for (int i = 1; i < n; i++) { x0 = mini(x0, v[i].x); x1 = maxi(x1, v[i].x); y0 = mini(y0, v[i].y); y1 = maxi(y1, v[i].y); }
-    drew_offscreen(x0, y0, x1, y1);
 }
 
 static void draw_rectangle(void)
@@ -480,22 +237,6 @@ static void draw_rectangle(void)
     int w, h;
     if (sz == 0) { uint32_t wh = fifo[idx]; w = (int)(wh & 0xFFFF); h = (int)((wh >> 16) & 0xFFFF); }
     else w = h = sz == 1 ? 1 : sz == 2 ? 8 : 16;
-    int r = hw_target();
-    if (r >= 0) {
-        HwTexture key;
-        if (tex) hw_key(&key, clut);
-        int dw = w;
-        if (rt_prim_hook) {
-            RtPrim p = { 2, { x, x + w - 1 }, { y, y + h - 1 }, { (uint8_t)u0, (uint8_t)(u0 + w - 1) },
-                         { (uint8_t)v0, (uint8_t)(v0 + h - 1) }, 0, tex, semi, 0, current_tpage(), clut,
-                         area_left, area_top, area_right, area_bottom, offset_x, offset_y };
-            rt_prim_hook(&p);
-            x = p.x[0]; dw = p.x[1] - p.x[0] + 1;
-        }
-        hw_rect(r, x, y, dw, h, (uint8_t)u0, (uint8_t)v0, w, h, (uint8_t)cr, (uint8_t)cg, (uint8_t)cb, tex ? &key : 0, semi, blend_mode, raw);
-        return;
-    }
-    drew_offscreen(x, y, x + w - 1, y + h - 1);
     int x0 = maxi(x, area_left), x1 = mini(x + w - 1, area_right);
     int y0 = maxi(y, area_top), y1 = mini(y + h - 1, area_bottom);
     for (int py = y0; py <= y1; py++)
@@ -508,14 +249,6 @@ static void draw_rectangle(void)
 static void line_segment(int x0, int y0, int r0, int g0, int b0, int x1, int y1, int r1, int g1, int b1, int semi)
 {
     x0 += offset_x; y0 += offset_y; x1 += offset_x; y1 += offset_y;
-    int r = hw_target();
-    if (r >= 0) {
-        HwVertex v[2] = { { (float)x0, (float)y0, (uint8_t)r0, (uint8_t)g0, (uint8_t)b0, 0, 0, 0 },
-                          { (float)x1, (float)y1, (uint8_t)r1, (uint8_t)g1, (uint8_t)b1, 0, 0, 0 } };
-        hw_line(r, v, semi, blend_mode);
-        return;
-    }
-    drew_offscreen(mini(x0, x1), mini(y0, y1), maxi(x0, x1), maxi(y0, y1));
     int dx = x1 - x0, dy = y1 - y0;
     int steps = maxi(dx < 0 ? -dx : dx, dy < 0 ? -dy : dy);
     if (steps == 0) { plot(x0, y0, r0, g0, b0, semi, 0); return; }
@@ -565,17 +298,6 @@ static void fill_rect(void)
     for (int dy = 0; dy < h; dy++)
         for (int dx = 0; dx < w; dx++)
             gpu_vram[(y + dy) & (VRAM_H - 1)][(x + dx) & (VRAM_W - 1)] = color;
-    int r = hw_region_for(x, y);
-    if (r >= 0) hw_fill(r, x, y, w, h, color);
-    else { hw_vram_written(x, y, w, h); texpack_note_gpu_write(x, y, w, h); }
-}
-
-/* VRAM rewritten by a copy or an upload: textures read it, display buffers show it. */
-static void vram_replaced(int x, int y, int w, int h)
-{
-    hw_vram_written(x, y, w, h);
-    int r = hw_region_for(x, y);
-    if (r >= 0) hw_blit(r, x, y, w, h);
 }
 
 static void copy_vram(void)
@@ -584,7 +306,6 @@ static void copy_vram(void)
     int dx = (int)(fifo[2] & 0x3FF), dy = (int)((fifo[2] >> 16) & 0x1FF);
     int w = (int)(fifo[3] & 0x3FF); if (!w) w = 0x400;
     int h = (int)((fifo[3] >> 16) & 0x1FF); if (!h) h = 0x200;
-    hw_read_back(sx, sy, w, h);   /* the source as the display buffers drew it */
     for (int row = 0; row < h; row++)
         for (int col = 0; col < w; col++) {
             uint16_t px = gpu_vram[(sy + row) & (VRAM_H - 1)][(sx + col) & (VRAM_W - 1)];
@@ -592,8 +313,6 @@ static void copy_vram(void)
             if (check_mask && (*d & 0x8000)) continue;
             *d = set_mask ? (uint16_t)(px | 0x8000) : px;
         }
-    texpack_note_gpu_write(dx, dy, w, h);
-    vram_replaced(dx, dy, w, h);
 }
 
 static void begin_image_load(void)
@@ -613,11 +332,7 @@ static void store_halfword(uint16_t value)
     uint16_t stored = set_mask ? (uint16_t)(value | 0x8000) : value;
     int x = (load_x + load_px % load_w) & (VRAM_W - 1), y = (load_y + load_px / load_w) & (VRAM_H - 1);
     if (!(check_mask && (gpu_vram[y][x] & 0x8000))) gpu_vram[y][x] = stored;
-    if (++load_px >= load_w * load_h) {
-        load_image = 0;
-        texpack_note_upload(load_x, load_y, load_w, load_h);
-        vram_replaced(load_x, load_y, load_w, load_h);
-    }
+    if (++load_px >= load_w * load_h) load_image = 0;
 }
 
 static void begin_image_read(void)
@@ -628,7 +343,6 @@ static void begin_image_read(void)
     read_h = (int)((fifo[2] >> 16) & 0x1FF); if (!read_h) read_h = 0x200;
     read_px = 0;
     read_image = 1;
-    hw_read_back(read_x, read_y, read_w, read_h);   /* what the display buffers drew */
 }
 
 static uint16_t read_halfword(void)
@@ -690,16 +404,14 @@ static void execute(void)
         win_mask_x = (int)(word & 0x1F); win_mask_y = (int)((word >> 5) & 0x1F);
         win_off_x = (int)((word >> 10) & 0x1F); win_off_y = (int)((word >> 15) & 0x1F);
         break;
-    case 0xE3: area_left = (int)(word & 0x3FF); area_top = (int)((word >> 10) & 0x3FF); hw_area(area_left, area_top, area_right, area_bottom); break;
-    case 0xE4: area_right = (int)(word & 0x3FF); area_bottom = (int)((word >> 10) & 0x3FF); hw_area(area_left, area_top, area_right, area_bottom); break;
+    case 0xE3: area_left = (int)(word & 0x3FF); area_top = (int)((word >> 10) & 0x3FF); break;
+    case 0xE4: area_right = (int)(word & 0x3FF); area_bottom = (int)((word >> 10) & 0x3FF); break;
     case 0xE5: offset_x = sign_extend11(word & 0x7FF); offset_y = sign_extend11((word >> 11) & 0x7FF); break;
     case 0xE6: set_mask = word & 1; check_mask = (word >> 1) & 1; break;
     }
 }
 
-void gpu_write_gp0(uint32_t word) { gpu_write_gp0_at(word, 0); }
-
-void gpu_write_gp0_at(uint32_t word, uint32_t address)
+void gpu_write_gp0(uint32_t word)
 {
     if (load_image) { store_halfword((uint16_t)word); store_halfword((uint16_t)(word >> 16)); return; }
     if (polyline) {
@@ -707,7 +419,6 @@ void gpu_write_gp0_at(uint32_t word, uint32_t address)
         else if (fifo_count < 256) fifo[fifo_count++] = word;
         return;
     }
-    fifo_addr[fifo_count] = address;
     fifo[fifo_count++] = word;
     if (fifo_count == 1) {
         need = command_length(word);
@@ -740,7 +451,7 @@ void gpu_write_gp1(uint32_t word)
     case 0x01: fifo_count = 0; polyline = 0; load_image = 0; break;
     case 0x03: display_disabled = p & 1; break;
     case 0x04: dma_dir = (int)(p & 3); break;
-    case 0x05: disp_x = (int)(p & 0x3FF); disp_y = (int)((p >> 10) & 0x1FF); hw_frame_shown(disp_x, disp_y); break;
+    case 0x05: disp_x = (int)(p & 0x3FF); disp_y = (int)((p >> 10) & 0x1FF); break;
     case 0x06: h_range1 = (int)(p & 0xFFF); h_range2 = (int)((p >> 12) & 0xFFF); break;
     case 0x07: v_range1 = (int)(p & 0x3FF); v_range2 = (int)((p >> 10) & 0x3FF); break;
     case 0x08:

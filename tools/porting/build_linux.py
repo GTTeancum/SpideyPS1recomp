@@ -82,20 +82,6 @@ def main() -> int:
                 launcher = dest / ("Run-" + assembly + ".sh")
                 launcher.write_text('#!/usr/bin/env bash\nset -euo pipefail\nhere="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"\nexec "$here/' + assembly + '" "$@"\n')
                 launcher.chmod(0o755)
-                if (dest / "OpenSpidey.png").is_file():
-                    # A desktop entry needs absolute paths, so it is written where the
-                    # player runs this, not at build time; nothing is installed unasked.
-                    entry = dest / "Install-Desktop-Entry.sh"
-                    entry.write_text(
-                        '#!/usr/bin/env bash\nset -euo pipefail\n'
-                        'here="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"\n'
-                        'apps="${XDG_DATA_HOME:-$HOME/.local/share}/applications"\nmkdir -p "$apps"\n'
-                        'cat > "$apps/openspidey-' + assembly.lower() + '.desktop" <<EOF\n'
-                        '[Desktop Entry]\nType=Application\nName=OpenSpidey (' + assembly + ')\n'
-                        'Exec="$here/' + assembly + '"\nPath=$here\nIcon=$here/OpenSpidey.png\n'
-                        'Categories=Game;\nStartupWMClass=' + assembly + '\nEOF\n'
-                        'echo "Added to the applications menu: $apps/openspidey-' + assembly.lower() + '.desktop"\n')
-                    entry.chmod(0o755)
                 if any(dest.glob("*vcruntime*.dll")) or any(dest.glob("*msvcp*.dll")) or ((dest / "OpenSpideyRetarget.dll").exists() or (dest / "OpenSpideySfd.dll").exists()):
                     raise RuntimeError("Windows native dependencies leaked into the Linux output")
                 results["games"].append({"game": name, "apphost_sha256": hashlib.sha256(binary.read_bytes()).hexdigest(), "elf_x64": True})

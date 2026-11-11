@@ -7,20 +7,10 @@
 #include <hal/video.h>
 #include <windows.h>
 #include "gpu.h"
-#include "hwgpu.h"
-#include "prof.h"
-#include "card.h"
 #include "runtime.h"
-#include "spu.h"
 
 volatile uint32_t rt_vblank_count;
-volatile uint32_t rt_ticks_dropped, rt_longest_wait_ms;
-static LARGE_INTEGER g_last_tick;
 volatile int rt_presenting;
-volatile int rt_movie_playing;
-int rt_video_720p, rt_video_wide, rt_frame_wide;
-volatile const char *rt_where = "";
-volatile uint64_t rt_prof[PROF_COUNT];
 static LARGE_INTEGER g_frequency, g_next;
 static int g_ticks_until_present;
 
@@ -61,15 +51,7 @@ static void present(void)
 {
     GpuDisplay d;
     gpu_display(&d);
-    if (rt_movie_playing || !d.enabled || d.width <= 0 || d.height <= 0 || d.rgb24) return;
-#ifndef RT_SOFTWARE_GPU
-    if (hw_ready()) {
-        rt_presenting = 1;
-        hw_note_display(d.x, d.y, d.width, d.height);
-        hw_present(d.x, d.y, rt_frame_wide);
-        return;
-    }
-#endif
+    if (!d.enabled || d.width <= 0 || d.height <= 0 || d.rgb24) return;
     rt_presenting = 1;
     uint32_t *fb = (uint32_t *)XVideoGetFB();
     if (!fb) return;
@@ -92,51 +74,23 @@ void rt_clock_init(void)
 }
 
 /* Wait for the next 60 Hz edge and do what a console vblank does. */
-/* Lowest stack address seen in a tick (status: checks the stack depth measurement). */
-volatile uintptr_t rt_tick_sp_low = ~(uintptr_t)0;
-
 void rt_tick(void)
 {
-    {
-        uintptr_t sp = (uintptr_t)__builtin_frame_address(0);
-        if (sp < rt_tick_sp_low) rt_tick_sp_low = sp;
-    }
     LONGLONG period = g_frequency.QuadPart / 60;
     g_next.QuadPart += period;
     LARGE_INTEGER now;
     QueryPerformanceCounter(&now);
-    /* Far behind: drop the ticks beyond four, but stay behind, so a late game never
-     * waits (resetting to now made the next tick wait a full period). */
-    if (now.QuadPart - g_next.QuadPart > period * 4) {
-        rt_ticks_dropped += (uint32_t)((now.QuadPart - g_next.QuadPart) / period - 4);
-        g_next.QuadPart = now.QuadPart - period * 4;
-    }
-    if (g_last_tick.QuadPart) {
-        uint32_t ms = (uint32_t)((now.QuadPart - g_last_tick.QuadPart) * 1000 / g_frequency.QuadPart);
-        if (ms > rt_longest_wait_ms) rt_longest_wait_ms = ms;
-    }
-    g_last_tick = now;
-    PROF_BEGIN(idle);
+    if (now.QuadPart - g_next.QuadPart > period * 4) g_next = now;   /* far behind: drop ticks */
     while (now.QuadPart < g_next.QuadPart) {
         LONGLONG left = g_next.QuadPart - now.QuadPart;
         Sleep(left > g_frequency.QuadPart / 500 ? 1 : 0);
         QueryPerformanceCounter(&now);
     }
-    PROF_END(PROF_IDLE, idle);
-    RT_WHERE("tick present");
     if (++g_ticks_until_present >= 2) { g_ticks_until_present = 0; present(); }
-    RT_WHERE("tick cd");
-    { PROF_BEGIN(cd); cd_tick(); PROF_END(PROF_CD, cd); }
-    RT_WHERE("tick sound");
-    spu_tick();
-    RT_WHERE("tick pad");
+    cd_tick();
     rt_pad_refresh();
-    card_pump();
-    rt_mem_sample();
-    RT_WHERE("tick irq");
     rt_vblank_count++;
-    { PROF_BEGIN(irq); rt_raise_irq(0); PROF_END(PROF_IRQ, irq); }
-    RT_WHERE("game");
+    rt_raise_irq(0);
 }
 
 /* VSync(mode): a negative mode polls the counter, servicing an edge when one is due;
