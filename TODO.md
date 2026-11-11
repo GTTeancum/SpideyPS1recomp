@@ -13,7 +13,6 @@ Local status notes describe this repository only.
 ### Enhancements
 
 - [ ] [#21: 60 FPS interpolated presentation on Windows and Linux](https://github.com/GTTeancum/SpideyPS1recomp/issues/21) — implemented and pushed; stays open until a live Chase Venom playthrough confirms Venom can still be followed. Notes: [issue-21-60fps](docs/issues/issue-21-60fps.md).
-- [ ] [#22: Original Xbox port (NXDK)](https://github.com/GTTeancum/SpideyPS1recomp/issues/22) — both games as one compilation; RecompOne emits C, no 60 FPS, 480i/480p/720p, QoL and extra suits kept. Started November 3, 2026: bring-up done (nxdk build boots in XEMU, isolation check). Plan and status: [xbox/README.md](xbox/README.md). Rough budget: 50–60 working hours for both games.
 
 Community report details: [community-reports-2026-10-29](docs/issues/community-reports-2026-10-29.md).
 
