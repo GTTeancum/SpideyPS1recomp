@@ -36,7 +36,7 @@ def main():
     else:sub(0xDE1,0,0,0,w,h,0x1908,0x1401,rgba.ctypes.data)
     read=np.empty_like(rgba);gettex(0xDE1,0,0x1908,0x1401,read.ctypes.data);assert np.array_equal(read,rgba);assert error()==0
     clearcolor(0,0,0,1);clear(0x4000);viewport(0,0,800,600);enable(0xDE1)
-    aspect=w/h*decoder.info['sar_num']/decoder.info['sar_den'];sx=min(1,aspect/(800/600));sy=min(1,(800/600)/aspect)
+    aspect=w/h;sx=min(1,aspect/(800/600));sy=min(1,(800/600)/aspect)
     begin(7)
     for (tu,tv),(x,z) in zip([(0,1),(1,1),(1,0),(0,0)],[(-sx,-sy),(sx,-sy),(sx,sy),(-sx,sy)]):uv(tu,tv);vertex(x,z)
     end();finish();screen=np.empty((600,800,4),dtype=np.uint8);pixels(0,0,800,600,0x1908,0x1401,screen.ctypes.data);assert error()==0
