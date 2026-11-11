@@ -1,12 +1,17 @@
 # OpenSpideyPS1
 
+> [!WARNING]
+> **This project is no longer updated.** It is preserved as-is for reference.
+> The 1.0 releases below remain available, but there will be no further fixes,
+> releases or support, and issues and pull requests will not be reviewed.
+
 Native recompilations of **Spider-Man** and **Spider-Man 2: Enter Electro** for
 Windows, built with [RecompOne](https://github.com/BlackLabelHQ/RecompOne).
 The PlayStation code is translated to C# ahead of time and runs against a shared
 runtime that implements the original console services, with modern rendering and
 higher-detail character assets.
 
-This is an active development project, not a claim of complete game compatibility.
+This was a development project, not a claim of complete game compatibility.
 Both games reach gameplay; targeted menu, level, costume and renderer tests do not
 replace full playthroughs or long-duration stability testing.
 
