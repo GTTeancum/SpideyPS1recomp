@@ -1,18 +1,14 @@
 # To-do
 
-Synced with GitHub issues on November 2, 2026 ([all issues](https://github.com/GTTeancum/SpideyPS1recomp/issues)).
+Synced with GitHub issues on November 16, 2026 ([all issues](https://github.com/GTTeancum/SpideyPS1recomp/issues)).
 Local status notes describe this repository only.
+Remove completed items from this file; keep completion history in the linked issue notes.
 
 ## Open GitHub issues
 
 ### Bugs
 
-- [ ] [#18: SteamOS/Wine/Proton: reported startup crash after ROM import](https://github.com/GTTeancum/SpideyPS1recomp/issues/18) — needs more info from the reporter (game, build, logs/screenshot)
 - [ ] [#20: Reported rainbow horizontal bands on world textures while custom player renders correctly](https://github.com/GTTeancum/SpideyPS1recomp/issues/20) — needs more info from the reporter (game, build, logs/screenshot)
-
-### Enhancements
-
-- [ ] [#21: 60 FPS interpolated presentation on Windows and Linux](https://github.com/GTTeancum/SpideyPS1recomp/issues/21) — implemented and pushed; stays open until a live Chase Venom playthrough confirms Venom can still be followed. Notes: [issue-21-60fps](docs/issues/issue-21-60fps.md).
 
 Community report details: [community-reports-2026-10-29](docs/issues/community-reports-2026-10-29.md).
 

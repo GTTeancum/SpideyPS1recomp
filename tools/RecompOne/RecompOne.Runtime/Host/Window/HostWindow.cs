@@ -214,7 +214,9 @@ public static partial class HostWindow
     /// </summary>
     public static void GrowWindow(int dx, int dy)
     {
-        if (_window == null || ConfigManager.View.Fullscreen) return;
+        // The OS can maximize a window independently of the fullscreen setting.
+        // Writing Size here would replace the maximized bounds during aspect fitting.
+        if (ConfigManager.View.Fullscreen || _window is not { WindowState: WindowState.Normal }) return;
         var size = _window.Size;
         int w = Math.Clamp(size.X + dx, 320, 7680);
         int h = Math.Clamp(size.Y + dy, 240, 4320);
