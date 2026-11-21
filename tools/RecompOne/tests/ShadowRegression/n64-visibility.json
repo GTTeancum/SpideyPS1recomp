@@ -1,0 +1,1658 @@
+{
+  "cases": [
+    {
+      "input": {
+        "name": "ordinary",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "no receiver",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": false,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": false,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "untextured",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": false,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 1,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "translucent receiver",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 1,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": false,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "other material flag",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 2,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "excluded state",
+        "level": 3,
+        "demo": false,
+        "state": 1024,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": false,
+        "mode": 1,
+        "rays": []
+      }
+    },
+    {
+      "input": {
+        "name": "combined state",
+        "level": 3,
+        "demo": false,
+        "state": 1025,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 1,
+        "rays": []
+      }
+    },
+    {
+      "input": {
+        "name": "script suppression",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": true,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": false,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "unrelated attachment",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": true,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "distance boundary",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          1500,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              1500.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "distance beyond",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          1501,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 1,
+        "rays": []
+      }
+    },
+    {
+      "input": {
+        "name": "camera occlusion",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": true,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 1,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "below floor looking down",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          200,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0.6,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": false,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              200.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "camera angle boundary",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          200,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0.5,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              200.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "camera height boundary",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0.6,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "occluded below floor",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          200,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0.6,
+        "occluded": true,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 1,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              200.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "untextured below floor",
+        "level": 3,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": false,
+        "material_flags": 0,
+        "eye": [
+          0,
+          200,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0.6,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 1,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              200.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "mode state 0x80",
+        "level": 3,
+        "demo": false,
+        "state": 128,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 1,
+        "rays": []
+      }
+    },
+    {
+      "input": {
+        "name": "mode state 0x400",
+        "level": 3,
+        "demo": false,
+        "state": 1024,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": false,
+        "mode": 1,
+        "rays": []
+      }
+    },
+    {
+      "input": {
+        "name": "mode state 0x800000",
+        "level": 3,
+        "demo": false,
+        "state": 8388608,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 1,
+        "rays": []
+      }
+    },
+    {
+      "input": {
+        "name": "level 19 demo False",
+        "level": 19,
+        "demo": false,
+        "state": 0,
+        "attached": true,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": false,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "level 19 demo True",
+        "level": 19,
+        "demo": true,
+        "state": 0,
+        "attached": true,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "level 21 demo False",
+        "level": 21,
+        "demo": false,
+        "state": 0,
+        "attached": true,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": false,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "level 21 demo True",
+        "level": 21,
+        "demo": true,
+        "state": 0,
+        "attached": true,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "level 24 demo False",
+        "level": 24,
+        "demo": false,
+        "state": 0,
+        "attached": true,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 1,
+        "rays": []
+      }
+    },
+    {
+      "input": {
+        "name": "level 24 demo True",
+        "level": 24,
+        "demo": true,
+        "state": 0,
+        "attached": true,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "level 66 demo False",
+        "level": 66,
+        "demo": false,
+        "state": 0,
+        "attached": true,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 1,
+        "rays": [
+          {
+            "kind": "long",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              7900.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "level 66 demo True",
+        "level": 66,
+        "demo": true,
+        "state": 0,
+        "attached": true,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": true
+      },
+      "output": {
+        "draw": true,
+        "mode": 0,
+        "rays": [
+          {
+            "kind": "camera",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              90.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "long probe miss",
+        "level": 66,
+        "demo": false,
+        "state": 0,
+        "attached": false,
+        "script_hidden": false,
+        "valid": true,
+        "material": true,
+        "material_flags": 0,
+        "eye": [
+          0,
+          -100,
+          0
+        ],
+        "player": [
+          0,
+          -100,
+          0
+        ],
+        "height": 100,
+        "forward_y": 0,
+        "occluded": false,
+        "long_valid": false
+      },
+      "output": {
+        "draw": false,
+        "mode": 1,
+        "rays": [
+          {
+            "kind": "long",
+            "start": [
+              0.0,
+              -100.0,
+              0.0
+            ],
+            "end": [
+              0.0,
+              7900.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "level": 2,
+      "script": 234,
+      "opcode": 195,
+      "operand": 1,
+      "before": false,
+      "after": true
+    },
+    {
+      "level": 2,
+      "script": 233,
+      "opcode": 195,
+      "operand": 1,
+      "before": false,
+      "after": false
+    },
+    {
+      "level": 1,
+      "script": 234,
+      "opcode": 195,
+      "operand": 1,
+      "before": false,
+      "after": false
+    },
+    {
+      "level": 3,
+      "script": 1,
+      "opcode": 195,
+      "operand": 0,
+      "before": true,
+      "after": false
+    },
+    {
+      "level": 3,
+      "script": 366,
+      "opcode": 195,
+      "operand": 0,
+      "before": true,
+      "after": false
+    },
+    {
+      "level": 2,
+      "script": 234,
+      "opcode": 195,
+      "operand": 1,
+      "before": true,
+      "after": true
+    },
+    {
+      "level": 25,
+      "script": 349,
+      "opcode": 199,
+      "operand": 0,
+      "before": true,
+      "after": false
+    },
+    {
+      "level": 25,
+      "script": 348,
+      "opcode": 199,
+      "operand": 0,
+      "before": true,
+      "after": true
+    }
+  ],
+  "levels": [
+    {
+      "index": 0,
+      "name": "l1a1_t"
+    },
+    {
+      "index": 1,
+      "name": "l1a2_t"
+    },
+    {
+      "index": 2,
+      "name": "l1a3_t"
+    },
+    {
+      "index": 3,
+      "name": "l1a4_t"
+    },
+    {
+      "index": 4,
+      "name": "l2a1_t"
+    },
+    {
+      "index": 5,
+      "name": "l2a2_t"
+    },
+    {
+      "index": 6,
+      "name": "l3a1_t"
+    },
+    {
+      "index": 7,
+      "name": "l3a2_t"
+    },
+    {
+      "index": 8,
+      "name": "l3a3_t"
+    },
+    {
+      "index": 9,
+      "name": "l3a4_t"
+    },
+    {
+      "index": 10,
+      "name": "l3a5_t"
+    },
+    {
+      "index": 11,
+      "name": "l4a1_t"
+    },
+    {
+      "index": 12,
+      "name": "l5a1_t"
+    },
+    {
+      "index": 13,
+      "name": "l5a2_t"
+    },
+    {
+      "index": 14,
+      "name": "l5a3_t"
+    },
+    {
+      "index": 15,
+      "name": "l5a4_t"
+    },
+    {
+      "index": 16,
+      "name": "l5a5_t"
+    },
+    {
+      "index": 17,
+      "name": "l5a6_t"
+    },
+    {
+      "index": 18,
+      "name": "l5a7_t"
+    },
+    {
+      "index": 19,
+      "name": "l6a1_t"
+    },
+    {
+      "index": 20,
+      "name": "l6a2_t"
+    },
+    {
+      "index": 21,
+      "name": "l6a3_t"
+    },
+    {
+      "index": 22,
+      "name": "l6a4_t"
+    },
+    {
+      "index": 23,
+      "name": "l7a1_t"
+    },
+    {
+      "index": 24,
+      "name": "l7a2_t"
+    },
+    {
+      "index": 25,
+      "name": "l7a3_t"
+    },
+    {
+      "index": 26,
+      "name": "l7a4_t"
+    },
+    {
+      "index": 27,
+      "name": "l7a5_t"
+    },
+    {
+      "index": 28,
+      "name": "l8a1_t"
+    },
+    {
+      "index": 29,
+      "name": "l8a2_t"
+    },
+    {
+      "index": 30,
+      "name": "l8a3_t"
+    },
+    {
+      "index": 31,
+      "name": "l8a4_t"
+    },
+    {
+      "index": 32,
+      "name": "l8a5_t"
+    },
+    {
+      "index": 33,
+      "name": "l8a6_t"
+    },
+    {
+      "index": 50,
+      "name": "l9a1_t"
+    },
+    {
+      "index": 51,
+      "name": "l9a2_t"
+    },
+    {
+      "index": 52,
+      "name": "l9a3_t"
+    },
+    {
+      "index": 53,
+      "name": "l9a4_t"
+    },
+    {
+      "index": 54,
+      "name": "lba1_t"
+    },
+    {
+      "index": 55,
+      "name": "lba2_t"
+    },
+    {
+      "index": 56,
+      "name": "lba3_t"
+    },
+    {
+      "index": 57,
+      "name": "lba4_t"
+    },
+    {
+      "index": 58,
+      "name": "lca1_t"
+    },
+    {
+      "index": 59,
+      "name": "lca2_t"
+    },
+    {
+      "index": 60,
+      "name": "lca3_t"
+    },
+    {
+      "index": 61,
+      "name": "lca4_t"
+    },
+    {
+      "index": 62,
+      "name": "lda1_t"
+    },
+    {
+      "index": 63,
+      "name": "lda2_t"
+    },
+    {
+      "index": 64,
+      "name": "lda3_t"
+    },
+    {
+      "index": 65,
+      "name": "lga1_t"
+    },
+    {
+      "index": 66,
+      "name": "lha1_t"
+    }
+  ],
+  "fixed_matrix_guard": [
+    {
+      "row": [
+        -32701,
+        0,
+        0,
+        1
+      ],
+      "accepted": false
+    },
+    {
+      "row": [
+        -32700,
+        0,
+        0,
+        1
+      ],
+      "accepted": true
+    },
+    {
+      "row": [
+        32700,
+        0,
+        0,
+        1
+      ],
+      "accepted": true
+    },
+    {
+      "row": [
+        32701,
+        0,
+        0,
+        1
+      ],
+      "accepted": false
+    },
+    {
+      "row": [
+        0,
+        -32701,
+        0,
+        1
+      ],
+      "accepted": false
+    },
+    {
+      "row": [
+        0,
+        -32700,
+        0,
+        1
+      ],
+      "accepted": true
+    },
+    {
+      "row": [
+        0,
+        32700,
+        0,
+        1
+      ],
+      "accepted": true
+    },
+    {
+      "row": [
+        0,
+        32701,
+        0,
+        1
+      ],
+      "accepted": false
+    },
+    {
+      "row": [
+        0,
+        0,
+        -32701,
+        1
+      ],
+      "accepted": false
+    },
+    {
+      "row": [
+        0,
+        0,
+        -32700,
+        1
+      ],
+      "accepted": true
+    },
+    {
+      "row": [
+        0,
+        0,
+        32700,
+        1
+      ],
+      "accepted": true
+    },
+    {
+      "row": [
+        0,
+        0,
+        32701,
+        1
+      ],
+      "accepted": false
+    },
+    {
+      "row": [
+        0,
+        0,
+        0,
+        -32701
+      ],
+      "accepted": false
+    },
+    {
+      "row": [
+        0,
+        0,
+        0,
+        -32700
+      ],
+      "accepted": true
+    },
+    {
+      "row": [
+        0,
+        0,
+        0,
+        32700
+      ],
+      "accepted": true
+    },
+    {
+      "row": [
+        0,
+        0,
+        0,
+        32701
+      ],
+      "accepted": false
+    }
+  ]
+}

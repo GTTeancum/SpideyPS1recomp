@@ -7,8 +7,8 @@ public sealed class GlDisplayRt
     public int X, Y, W, H;
     public int Margin;
     public uint Tex, Fbo;
-    // PS1 ordering-table buckets cannot resolve intersecting clothing surfaces.
-    // Allocate depth only when a suit with exact vertex depth is actually drawn.
+    // PS1 ordering-table buckets cannot resolve intersecting surfaces. Allocate
+    // depth on the first eligible suit/scene primitive with exact vertex depth.
     // Its stencil half marks pixels a host ground shadow has already darkened.
     public uint ModelDepth;
     public long ModelDepthFrame = long.MinValue;

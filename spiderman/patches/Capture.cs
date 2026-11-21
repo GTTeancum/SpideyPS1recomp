@@ -518,6 +518,36 @@ public static class Capture
         if (w <= 0 || h <= 0) return;
         int x = gpu.DisplayX, y = gpu.DisplayY;
 
+        // Opt-in renderer A/B: replay exactly the same captured command list,
+        // textures, pose and camera with scene depth disabled/enabled. Read the
+        // application's framebuffer directly and restore it before resuming.
+        if (Environment.GetEnvironmentVariable("SPIDEY_CAPTURE_DEPTH_PAIR") == "1" &&
+            !gpu.Display24Bit && backend is FrameInterpolator { ReplaySafe: true } replay &&
+            replay.TryGetReplayArea(out var replayArea))
+        {
+            Console.WriteLine($"[capture] depth pair replay area ({replayArea.ClipX0},{replayArea.ClipY0}), display ({x},{y})");
+            bool saved = GpuHle.SceneDepthEnabled;
+            try
+            {
+                foreach (bool depth in new[] { false, true })
+                {
+                    GpuHle.SceneDepthEnabled = depth;
+                    replay.Replay(1);
+                    var pixels = backend.ReadScaled(replayArea.ClipX0, replayArea.ClipY0,
+                        replayArea.ClipX1 - replayArea.ClipX0 + 1,
+                        replayArea.ClipY1 - replayArea.ClipY0 + 1, out int pw, out int ph);
+                    if (pixels == null) throw new InvalidOperationException("Depth-pair framebuffer readback failed");
+                    SaveScaled(frame, pixels, pw, ph, depth ? "_depth_on" : "_depth_off");
+                }
+            }
+            finally
+            {
+                GpuHle.SceneDepthEnabled = saved;
+                replay.Replay(1);
+            }
+            return;
+        }
+
         if (_fxaaPair)
         {
             var source = backend.ReadPreFxaa(out int sw, out int sh);

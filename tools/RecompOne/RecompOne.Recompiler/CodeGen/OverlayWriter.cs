@@ -503,6 +503,7 @@ public static class OverlayWriter
                 foreach (var func in funcs)
                 {
                     if (!patch.MatchesOverlay(func.OverlayName)) continue;
+                    if (!string.IsNullOrEmpty(patch.Function) && !PatchNameMatches(func, patch.Function)) continue;
                     int from = Array.FindIndex(func.Instructions, i => i.Vram == addr.Value);
                     if (from < 0) continue;
                     int to = Array.FindIndex(func.Instructions, i => i.Vram == resume);
@@ -525,6 +526,7 @@ public static class OverlayWriter
                 foreach (var func in funcs)
                 {
                     if (!patch.MatchesOverlay(func.OverlayName)) continue;
+                    if (!string.IsNullOrEmpty(patch.Function) && !PatchNameMatches(func, patch.Function)) continue;
                     int index = Array.FindIndex(func.Instructions, i => i.Vram == addr.Value);
                     if (index < 0) continue;
                     if (index > 0 && func.Instructions[index - 1].HasDelaySlot)

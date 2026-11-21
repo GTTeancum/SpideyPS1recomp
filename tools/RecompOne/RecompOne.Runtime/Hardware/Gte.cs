@@ -2,6 +2,12 @@ namespace RecompOne.Runtime;
 
 public static class Gte
 {
+    /// <summary>
+    /// Title-scoped conversion of recovered projection depth into scene units.
+    /// Does not change the native GTE registers or the projected screen position.
+    /// </summary>
+    public static float ProjectionDepthScale { get; set; } = 1f;
+
     static readonly short[] V = new short[9];
     // RAM address each input vector's XY word was loaded from (LWC2), 0 after MTC2.
     static readonly uint[] VSource = new uint[3];
@@ -215,7 +221,7 @@ public static class Gte
         ScreenNative[0] = ScreenNative[1]; ScreenNative[1] = ScreenNative[2];
         ScreenPrecise[0] = ScreenPrecise[1]; ScreenPrecise[1] = ScreenPrecise[2];
         ScreenPrecise[2] = m3 > 0;
-        ScreenZ[2] = (float)(m3 / 4096.0);
+        ScreenZ[2] = (float)(m3 / 4096.0) * ProjectionDepthScale;
         ScreenX[2] = ProjectionFloat(sx);
         ScreenY[2] = ProjectionFloat(sy);
         ScreenNative[2] = 0;

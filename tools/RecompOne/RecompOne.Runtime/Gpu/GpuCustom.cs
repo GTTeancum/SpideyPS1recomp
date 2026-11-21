@@ -41,5 +41,16 @@ public sealed partial class Gpu
         if (count >= 4) be.DrawTri(v1, v2, CustomVertex(d), flags);
     }
 
-    public void EmitCustomOrder(int order) => GpuPrims.Emit(order, this);
+    public void EmitCustomOrder(int order) => GpuPrims.EmitTableSlot(order, this);
+
+    public void EmitProjectedTri(HleVertex a, HleVertex b, HleVertex c, in PrimFlags flags)
+    {
+        if (!HleOn) return;
+        var be = GpuHle.Backend!;
+        be.SetDrawEnv(CurEnv());
+        a.X += _drawOffsetX; a.Y += _drawOffsetY;
+        b.X += _drawOffsetX; b.Y += _drawOffsetY;
+        c.X += _drawOffsetX; c.Y += _drawOffsetY;
+        be.DrawTri(a, b, c, flags);
+    }
 }

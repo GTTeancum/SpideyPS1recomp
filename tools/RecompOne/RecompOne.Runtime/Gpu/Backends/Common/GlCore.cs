@@ -628,7 +628,8 @@ public sealed class GlCore : IGpuBackend
             U = v.U, V = v.V,
             World = f.World ? 1f : 0f,
             Hud = f.Hud ? 1f : 0f,
-            PerspectiveW = f.Textured && v.HasGteZ ? Math.Max(v.Z, 1f) : 1f,
+            PerspectiveW = (f.Textured || (GpuHle.SceneDepthEnabled && f.World)) && v.HasGteZ
+                ? Math.Max(v.Z, 1f) : 1f,
         };
     }
 
@@ -637,9 +638,11 @@ public sealed class GlCore : IGpuBackend
         ResolveReplacement(f,
             (int)Math.Min(a.U, Math.Min(b.U, c.U)), (int)Math.Min(a.V, Math.Min(b.V, c.V)),
             (int)Math.Max(a.U, Math.Max(b.U, c.U)), (int)Math.Max(a.V, Math.Max(b.V, c.V)));
-        // Keep native ordering for scenery, effects and HUD. Only opaque suit
-        // surfaces with complete GTE provenance participate in self-occlusion.
-        Begin(f, 3, _pendingModelSurface && f.World && !f.SemiTrans &&
+        // Scene depth requires a title to normalize every actor precision mode.
+        // HUD, screen-space art, transparency and incomplete provenance retain
+        // native ordering. Texture cut-outs still discard before writing depth.
+        Begin(f, 3, (GpuHle.SceneDepthEnabled || _pendingModelSurface) &&
+            f.World && !f.Hud && !f.Background && (!f.SemiTrans || f.Shadow) &&
             a.HasGteZ && b.HasGteZ && c.HasGteZ);
         _verts[_count++] = V(a, f); _verts[_count++] = V(b, f); _verts[_count++] = V(c, f);
     }
@@ -950,7 +953,13 @@ public sealed class GlCore : IGpuBackend
             rt.EnsureModelDepth(_gl, _frame);
             _gl.Enable(EnableCap.DepthTest);
             _gl.DepthFunc(DepthFunction.Lequal);
-            _gl.DepthMask(true);
+            _gl.DepthMask(!_kShadow);
+            if (_kShadow)
+            {
+                // Coplanar receiver: bias raster depth, never the projected geometry.
+                _gl.Enable(EnableCap.PolygonOffsetFill);
+                _gl.PolygonOffset(-1f, -1f);
+            }
         }
         if (_kShadow && rt != null)
         {
@@ -1005,6 +1014,8 @@ public sealed class GlCore : IGpuBackend
 
         _gl.Disable(EnableCap.DepthTest);
         _gl.Disable(EnableCap.StencilTest);
+        _gl.Disable(EnableCap.PolygonOffsetFill);
+        _gl.DepthMask(true);
         if (rt is { CoverageFbo: not 0 } &&
             GpuHle.SourceAspect > GpuHle.BaseAspect + 0.001f)
         {

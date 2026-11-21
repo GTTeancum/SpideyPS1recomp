@@ -29,13 +29,18 @@ public static class LibGpu
 
         uint addr = c.A0 & Runtime.RamWordMask;
         bool custom = GpuPrims.Any && GpuPrims.OtLength > 0;
+        bool visitedCustomTable = false;
         uint otBase = GpuPrims.OtBase & Runtime.RamWordMask;
         uint otEnd = otBase + (uint)GpuPrims.OtLength * 4u;
 
         for (int guard = 0; guard < 0x100000; guard++)
         {
+            if (custom && GpuPrims.EmitPacket(addr, gpu)) visitedCustomTable = true;
             if (custom && addr >= otBase && addr < otEnd)
+            {
+                visitedCustomTable = true;
                 gpu.EmitCustomOrder((int)((addr - otBase) >> 2));
+            }
 
             uint header = m.ReadU32(addr);
             uint count = header >> 24;
@@ -52,7 +57,9 @@ public static class LibGpu
             addr = next & Runtime.RamWordMask;
         }
 
-        if (custom) GpuPrims.Clear();
+        // Font/immediate draws can submit another list while a world OT is being
+        // built. They must not consume primitives queued for that world table.
+        if (visitedCustomTable) GpuPrims.Clear();
     }
 
     /// <summary>

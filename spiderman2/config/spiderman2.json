@@ -407,6 +407,92 @@
     },
     {
       "overlay": "main",
+      "function": "func_800837C4",
+      "mode": "pre",
+      "target": "Recompiled.PlayerShadow.ActorBegin"
+    },
+    {
+      "overlay": "main",
+      "function": "func_800837C4",
+      "mode": "post",
+      "target": "Recompiled.PlayerShadow.ActorEnd"
+    },
+    {
+      "overlay": "main",
+      "function": "func_800633EC",
+      "mode": "pre",
+      "target": "Recompiled.PlayerShadow.UpdateBlob"
+    },
+    {
+      "overlay": "main",
+      "address": "80057BC4",
+      "function": "func_80057BA4",
+      "mode": "instruction_branch",
+      "resumeAddress": "80057F28",
+      "target": "Recompiled.PlayerShadow.ClearPlayerQuads"
+    },
+    {
+      "overlay": "main",
+      "address": "8003C528",
+      "mode": "instruction",
+      "target": "Recompiled.PlayerShadow.GroundCollision"
+    },
+    {
+      "overlay": "main",
+      "function": "func_8001A85C",
+      "mode": "pre",
+      "target": "Recompiled.PlayerShadow.Reset"
+    },
+    {
+      "overlay": "main",
+      "function": "func_80087DD8",
+      "mode": "pre",
+      "target": "Recompiled.SceneDepth.ActorTransformEnter"
+    },
+    {
+      "overlay": "main",
+      "function": "func_80087DD8",
+      "mode": "post",
+      "target": "Recompiled.SceneDepth.ActorTransformExit"
+    },
+    {
+      "overlay": "main",
+      "function": "func_8008800C",
+      "mode": "pre",
+      "target": "Recompiled.SceneDepth.ActorTransformEnter"
+    },
+    {
+      "overlay": "main",
+      "function": "func_8008800C",
+      "mode": "post",
+      "target": "Recompiled.SceneDepth.ActorTransformExit"
+    },
+    {
+      "overlay": "main",
+      "function": "func_80088214",
+      "mode": "pre",
+      "target": "Recompiled.SceneDepth.ActorTransformEnter"
+    },
+    {
+      "overlay": "main",
+      "function": "func_80088214",
+      "mode": "post",
+      "target": "Recompiled.SceneDepth.ActorTransformExit"
+    },
+    {
+      "overlay": "main",
+      "function": "func_80088344",
+      "mode": "pre",
+      "target": "Recompiled.SceneDepth.ActorTransformEnter"
+    },
+    {
+      "overlay": "main",
+      "function": "func_80088344",
+      "mode": "post",
+      "target": "Recompiled.SceneDepth.ActorTransformExit"
+    },
+    {
+      "overlay": "main",
       "function": "func_80084234",
       "mode": "pre",
       "target": "Recompiled.PlayerShadow.MeshDraw"

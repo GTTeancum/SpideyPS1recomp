@@ -572,49 +572,49 @@
       "overlay": "main",
       "function": "func_8007B798",
       "mode": "pre",
-      "target": "Recompiled.ModelDiagnostics.TransformEnter"
+      "target": "Recompiled.SceneDepth.ActorTransformEnter"
     },
     {
       "overlay": "main",
       "function": "func_8007B798",
       "mode": "post",
-      "target": "Recompiled.ModelDiagnostics.TransformExit"
+      "target": "Recompiled.SceneDepth.ActorTransformExit"
     },
     {
       "overlay": "main",
       "function": "func_8007B9CC",
       "mode": "pre",
-      "target": "Recompiled.ModelDiagnostics.TransformEnter"
+      "target": "Recompiled.SceneDepth.ActorTransformEnter"
     },
     {
       "overlay": "main",
       "function": "func_8007B9CC",
       "mode": "post",
-      "target": "Recompiled.ModelDiagnostics.TransformExit"
+      "target": "Recompiled.SceneDepth.ActorTransformExit"
     },
     {
       "overlay": "main",
       "function": "func_8007BBD4",
       "mode": "pre",
-      "target": "Recompiled.ModelDiagnostics.TransformEnter"
+      "target": "Recompiled.SceneDepth.ActorTransformEnter"
     },
     {
       "overlay": "main",
       "function": "func_8007BBD4",
       "mode": "post",
-      "target": "Recompiled.ModelDiagnostics.TransformExit"
+      "target": "Recompiled.SceneDepth.ActorTransformExit"
     },
     {
       "overlay": "main",
       "function": "func_8007BD04",
       "mode": "pre",
-      "target": "Recompiled.ModelDiagnostics.TransformEnter"
+      "target": "Recompiled.SceneDepth.ActorTransformEnter"
     },
     {
       "overlay": "main",
       "function": "func_8007BD04",
       "mode": "post",
-      "target": "Recompiled.ModelDiagnostics.TransformExit"
+      "target": "Recompiled.SceneDepth.ActorTransformExit"
     },
     {
       "overlay": "main",
@@ -757,6 +757,54 @@
       "mode": "instruction_branch",
       "resumeAddress": "8002AF8C",
       "target": "Recompiled.DreamcastMoviePatches.Play"
+    },
+    {
+      "overlay": "main",
+      "function": "func_80077198",
+      "mode": "pre",
+      "target": "Recompiled.PlayerShadow.ActorBegin"
+    },
+    {
+      "overlay": "main",
+      "function": "func_80077198",
+      "mode": "post",
+      "target": "Recompiled.PlayerShadow.ActorEnd"
+    },
+    {
+      "overlay": "main",
+      "function": "func_80059508",
+      "mode": "pre",
+      "target": "Recompiled.PlayerShadow.UpdateBlob"
+    },
+    {
+      "overlay": "main",
+      "function": "LoadLevel",
+      "mode": "pre",
+      "target": "Recompiled.PlayerShadow.Reset"
+    },
+    {
+      "overlay": "main",
+      "address": "80036390",
+      "mode": "instruction",
+      "target": "Recompiled.PlayerShadow.GroundCollision"
+    },
+    {
+      "overlay": "main",
+      "function": "func_8004F5B4",
+      "mode": "pre",
+      "target": "Recompiled.PlayerShadow.ShadowCheck"
+    },
+    {
+      "overlay": "main",
+      "address": "8005C984",
+      "mode": "instruction",
+      "target": "Recompiled.PlayerShadow.ScriptCinematic"
+    },
+    {
+      "overlay": "main",
+      "address": "8005D06C",
+      "mode": "instruction",
+      "target": "Recompiled.PlayerShadow.ScriptPlayerAction"
     }
   ],
   "callRing": true

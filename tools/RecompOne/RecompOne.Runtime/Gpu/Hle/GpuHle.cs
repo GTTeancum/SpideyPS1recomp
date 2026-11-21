@@ -5,6 +5,12 @@ public static class GpuHle
     public static bool Active { get; set; }
     public static IGpuBackend? Backend { get; set; }
 
+    /// <summary>
+    /// Enabled by titles whose GTE provenance uses consistent scene units across
+    /// scenery and actor precision modes. Other titles retain suit self-occlusion.
+    /// </summary>
+    public static bool SceneDepthEnabled { get; set; }
+
     public static float WideAspect { get; set; }
     public static float OutputAspect { get; set; } = 4f / 3f;
 

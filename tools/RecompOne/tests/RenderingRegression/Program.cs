@@ -597,7 +597,74 @@ foreach (bool paused in new[] { false, true })
     if (!pass) failures++;
 }
 #endif
+// ClearImage does not send SetDrawEnv. Uploading/copying a static bitmap after
+// that clear must survive the host's interpolation replay (SM1 title screen).
+foreach (bool copy in new[] { false, true })
+foreach (var (x, y, overlaps) in new[] { (28, 12, true), (30, 14, true), (32, 12, false), (28, 16, false) })
+{
+    var pixels = new InterpolationVramBackend();
+    var interpolation = new FrameInterpolator(pixels);
+    interpolation.FillRect(0, 0, 32, 16, 0);
+    interpolation.EndFrame(); // Supply a previous frame, as boot does before title.bmr.
+    interpolation.FillRect(0, 0, 32, 16, 0);
+    ushort[] bitmap = Enumerable.Range(1, 16).Select(n => (ushort)n).ToArray();
+    if (copy)
+    {
+        pixels.WriteVram(48, 48, 4, 4, bitmap);
+        interpolation.CopyVram(48, 48, x, y, 4, 4);
+    }
+    else interpolation.WriteVram(x, y, 4, 4, bitmap);
+    ushort[] live = (ushort[])pixels.Pixels.Clone();
+    bool replay = interpolation.EndFrame();
+    if (replay)
+    {
+        interpolation.Replay(0.5f);
+        interpolation.Replay(1f);
+    }
+    bool pass = replay == !overlaps && pixels.Pixels.SequenceEqual(live);
+    Console.WriteLine($"Static bitmap after clear copy={copy} x={x} y={y}: {(pass ? "PASS" : "FAIL")}");
+    if (!pass) failures++;
+
+    // An unsafe bitmap frame must not permanently disable later interpolation.
+    interpolation.FillRect(0, 0, 32, 16, 0);
+    if (!interpolation.EndFrame())
+    {
+        Console.WriteLine("Interpolation did not recover after bitmap frame: FAIL");
+        failures++;
+    }
+}
 return failures == 0 ? 0 : 1;
+
+sealed class InterpolationVramBackend : IGpuBackend
+{
+    public readonly ushort[] Pixels = new ushort[64 * 64];
+    public bool Ready => true;
+    public void SetDrawEnv(in HleDrawEnv env) { }
+    public void DrawTri(in HleVertex a, in HleVertex b, in HleVertex c, in PrimFlags f) { }
+    public void DrawRect(in HleRect r, in PrimFlags f) { }
+    public void DrawLine(in HleVertex a, in HleVertex b, in PrimFlags f) { }
+    public void FillRect(int x, int y, int w, int h, ushort color15)
+    {
+        for (int row = 0; row < h; row++) Pixels.AsSpan((y + row) * 64 + x, w).Fill(color15);
+    }
+    public void CopyVram(int sx, int sy, int dx, int dy, int w, int h)
+    {
+        var copy = new ushort[w * h];
+        ReadVram(sx, sy, w, h, copy);
+        WriteVram(dx, dy, w, h, copy);
+    }
+    public void WriteVram(int x, int y, int w, int h, ReadOnlySpan<ushort> px)
+    {
+        for (int row = 0; row < h; row++) px.Slice(row * w, w).CopyTo(Pixels.AsSpan((y + row) * 64 + x, w));
+    }
+    public void ReadVram(int x, int y, int w, int h, Span<ushort> px)
+    {
+        for (int row = 0; row < h; row++) Pixels.AsSpan((y + row) * 64 + x, w).CopyTo(px.Slice(row * w, w));
+    }
+    public int RegisterImage(ReadOnlySpan<byte> rgba, int width, int height) => 0;
+    public void Flush() { }
+    public void Present(in HleDispEnv disp) { }
+}
 
 sealed class NumericBackend : IGpuBackend
 {

@@ -49,7 +49,11 @@ def recompile():
             continue
         generated = (Path(ROOT) / 'generated' / (patch['overlay'] + '.cs')).read_text()
         call = patch['target'] + '(c,m)'
-        if generated.replace(' ', '').count(call) != 1:
+        count = generated.replace(' ', '').count(call)
+        # Ordinary instruction hooks may occur in several overlapping function
+        # bodies (the memory-card save state machine has multiple entry points).
+        # Branch hooks still require exactly one source/resume function.
+        if count == 0 or (patch['mode'] == 'instruction_branch' and count != 1):
             raise SystemExit('missing or duplicated generated instruction hook: ' + patch['target'])
     p = sh([sys.executable, 'tools/patch_costume_viewer.py'])
     if p.returncode != 0:

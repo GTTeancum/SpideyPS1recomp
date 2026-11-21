@@ -40,6 +40,9 @@ public static class GpuPrims
         public bool UseImage, SemiTrans, Raw, Gouraud;
         public int Image, Blend;
         public PrimVertex V0, V1, V2, V3;
+        public bool Projected;
+        public HleVertex P0, P1, P2;
+        public PrimFlags Flags;
     }
 
     static Entry[] _entries = new Entry[256];
@@ -48,6 +51,8 @@ public static class GpuPrims
     static readonly int[] _heads = NewLinks();
     static readonly int[] _tails = NewLinks();
     static readonly List<int> _used = [];
+    static readonly Dictionary<uint, int> _packets = [];
+    static readonly HashSet<int> _packetOrders = [];
 
     static int[] NewLinks()
     {
@@ -78,7 +83,27 @@ public static class GpuPrims
             _tails[_used[i]] = -1;
         }
         _used.Clear();
+        _packets.Clear(); _packetOrders.Clear();
         _n = 0;
+    }
+
+    /// <summary>Bind an order to a real packet so native empty-OT compaction cannot remove it.</summary>
+    public static void AttachPacket(uint address, int order)
+    {
+        _packets[address & Runtime.RamWordMask] = order;
+        _packetOrders.Add(order);
+    }
+
+    public static bool EmitPacket(uint address, Gpu gpu)
+    {
+        if (!_packets.TryGetValue(address & Runtime.RamWordMask, out int order)) return false;
+        Emit(order, gpu);
+        return true;
+    }
+
+    internal static void EmitTableSlot(int order, Gpu gpu)
+    {
+        if (!_packetOrders.Contains(order)) Emit(order, gpu);
     }
 
     public static void Tri(int order, in PrimVertex a, in PrimVertex b, in PrimVertex c,
@@ -101,6 +126,15 @@ public static class GpuPrims
         e.V0 = a; e.V1 = b; e.V2 = c; e.V3 = d;
     }
 
+    /// <summary>Queue a host-projected world triangle, preserving depth and identity.</summary>
+    public static void ProjectedTri(int order, in HleVertex a, in HleVertex b, in HleVertex c, in PrimFlags flags)
+    {
+        int i = Alloc(order, -1, flags.SemiTrans, flags.BlendMode, true, false);
+        if (i < 0) return;
+        ref var e = ref _entries[i];
+        e.Projected = true; e.P0 = a; e.P1 = b; e.P2 = c; e.Flags = flags;
+    }
+
     public static void Sprite(int order, int image, float x, float y, float w, float h,
         bool semiTrans = false, int blend = 0,
         float u0 = 0f, float v0 = 0f, float u1 = 1f, float v1 = 1f)
@@ -121,6 +155,7 @@ public static class GpuPrims
 
         int idx = _n++;
         ref var e = ref _entries[idx];
+        e.Projected = false;
         e.Next = -1;
         e.UseImage = image >= 0;
         e.Image = image;
@@ -146,6 +181,11 @@ public static class GpuPrims
         for (int i = _heads[order]; i >= 0; i = _entries[i].Next)
         {
             ref var e = ref _entries[i];
+            if (e.Projected)
+            {
+                gpu.EmitProjectedTri(e.P0, e.P1, e.P2, e.Flags);
+                continue;
+            }
             gpu.EmitPrim(e.Count, in e.V0, in e.V1, in e.V2, in e.V3,
                 e.UseImage, e.Image, e.SemiTrans, e.Raw, e.Gouraud, e.Blend);
         }

@@ -139,6 +139,7 @@ public static class Program
         // Native bounds and subdivision hooks supply the widened geometry.
         // Copying old boundary pixels can conceal holes and stretch textures.
         Wide.Install(0x80031EA0u, defaultEnabled: true);
+        SceneDepth.Install();
         PlayerShadow.Install();
         // World vertices reach the GTE camera-relative; the camera lets frame
         // interpolation recognise scenery and move it with the camera.

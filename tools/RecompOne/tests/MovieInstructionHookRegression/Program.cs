@@ -40,6 +40,20 @@ try
         catch(TargetInvocationException e) when(e.InnerException is InvalidDataException){rejected=true;}
         if(!rejected) throw new Exception("unsafe branch accepted: "+from+" -> "+to);checks++;
     }
+    // Recovered retail maps can contain overlapping entry ranges. A named hook
+    // must affect only the requested entry, not every alias covering its address.
+    foreach (string mode in new[] { "instruction", "instruction_branch" })
+    {
+        var main = new MipsFunction { Start=0x1000, End=0x1024, Instructions=ins, Name="Menu" };
+        var alias = new MipsFunction { Start=0x1008, End=0x1024, Instructions=ins[2..], Name="Alias" };
+        var patch = new PatchEntry { Mode=mode, Function="Menu", Address="100C",
+            ResumeAddress="1010", Target="Fixture.Hook" };
+        apply.Invoke(null, new object[] { new List<MipsFunction>{main,alias}, new[]{patch} });
+        bool present = mode == "instruction" ? main.InstructionHookTargets.Count == 1 : main.InstructionBranchHooks.Count == 1;
+        if (!present || alias.InstructionHookTargets.Count != 0 || alias.InstructionBranchHooks.Count != 0)
+            throw new Exception("named instruction hook leaked into an overlapping entry");
+        checks++;
+    }
     Console.WriteLine($"{checks} executable emitter checks passed; not gameplay.");return 0;
 }
 finally {foreach(var i in ins)i.Dispose();}

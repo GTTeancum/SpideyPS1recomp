@@ -73,6 +73,9 @@
         <Compile Include="..\patches\**\*.cs" />
         <!-- Projection/HUD policy is engine-shared; only the measured swap address differs. -->
         <Compile Include="..\..\spiderman\patches\Wide.cs" Link="Shared\Wide.cs" />
+        <Compile Include="..\..\spiderman\patches\PlayerShadow.Render.cs" Link="Shared\PlayerShadow.Render.cs" />
+        <Compile Include="..\..\spiderman\patches\N64ShadowProjection.cs" Link="Shared\N64ShadowProjection.cs" />
+        <Compile Include="..\..\spiderman\patches\ShadowVisibility.cs" Link="Shared\ShadowVisibility.cs" />
         <Compile Include="..\..\spiderman\patches\WorldFrustum.cs" Link="Shared\WorldFrustum.cs" />
         <Compile Include="..\..\spiderman\patches\WorldSubpixel.cs" Link="Shared\WorldSubpixel.cs" />
     </ItemGroup>

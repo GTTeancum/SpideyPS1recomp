@@ -69,6 +69,26 @@ public sealed class FrameInterpolator : IGpuBackend
 
     public bool Ready => _inner.Ready;
     public bool HasFrame => _last.Count > 0;
+    public bool ReplaySafe { get; private set; }
+
+    /// <summary>Locate the recorded world draw area, which can differ from the
+    /// currently displayed buffer after the game's vblank buffer flip.</summary>
+    public bool TryGetReplayArea(out HleDrawEnv area)
+    {
+        area = default;
+        var env = default(HleDrawEnv);
+        bool found = false;
+        foreach (var op in _last)
+        {
+            if (op.Kind == Kind.Env) env = op.Env;
+            if (op.Kind != Kind.Tri || !op.Flags.World) continue;
+            if (found && (area.ClipX0 != env.ClipX0 || area.ClipY0 != env.ClipY0 ||
+                area.ClipX1 != env.ClipX1 || area.ClipY1 != env.ClipY1)) return false;
+            area = env;
+            found = true;
+        }
+        return found;
+    }
 
     public void SetDrawEnv(in HleDrawEnv env)
     {
@@ -123,7 +143,8 @@ public sealed class FrameInterpolator : IGpuBackend
 
     // A transfer into an area this frame has already drawn changes the picture after
     // the drawing (SM1's Game Over tints the frozen frame line by line). Redrawing the
-    // recording would paint over it.
+    // recording would paint over it. ClearImage fills bypass SetDrawEnv: the title
+    // screen clears VRAM and then uploads its bitmap, so fills need their own bounds.
     bool _overwritten;
 
     void NoteTransfer(int x, int y, int w, int h)
@@ -131,9 +152,15 @@ public sealed class FrameInterpolator : IGpuBackend
         if (_overwritten) return;
         foreach (var op in _frame)
         {
-            if (op.Kind != Kind.Env) continue;
-            var e = op.Env;
-            if (x <= e.ClipX1 && x + w > e.ClipX0 && y <= e.ClipY1 && y + h > e.ClipY0)
+            bool overlaps = op.Kind switch
+            {
+                Kind.Env => x <= op.Env.ClipX1 && x + w > op.Env.ClipX0 &&
+                            y <= op.Env.ClipY1 && y + h > op.Env.ClipY0,
+                Kind.Fill => x < op.X + op.W && x + w > op.X &&
+                             y < op.Y + op.H && y + h > op.Y,
+                _ => false,
+            };
+            if (overlaps)
             {
                 _overwritten = true;
                 return;
@@ -175,6 +202,7 @@ public sealed class FrameInterpolator : IGpuBackend
         _reproject = _camera.Valid && _priorCamera.Valid && Invert(_camera.R, _inverse);
         Frames++;
         bool cleared = ClearsWhatItDraws(_last) && !_overwritten;
+        ReplaySafe = cleared;
         _overwritten = false;
         if (!cleared) NotCleared++;
         if (Trace && Frames % 60 == 0)
