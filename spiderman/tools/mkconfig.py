@@ -203,6 +203,8 @@ def main():
         {'overlay': 'main', 'address': '8002AD0C', 'mode': 'instruction_branch',
          'resumeAddress': '8002AF8C', 'target': 'Recompiled.DreamcastMoviePatches.Play'},
     ])
+    patches.append({'overlay': 'main', 'function': 'func_80076480', 'address': '80076C74',
+                    'mode': 'instruction', 'target': 'Recompiled.DcModelCompatibility.RestoreRigidModelRotation'})
     cfg = {
         'game': {'id': 'SLUS-00875', 'name': 'SpiderMan', 'output': '../generated'},
         'cue': '../extracted',

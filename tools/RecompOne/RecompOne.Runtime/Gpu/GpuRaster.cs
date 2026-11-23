@@ -113,8 +113,11 @@ public sealed partial class Gpu
             v[i].R = cr; v[i].G = cg; v[i].B = cb;
 
             uint vw = _fifo[idx++];
-            v[i].PacketX = (short)vw;
-            v[i].PacketY = (short)(vw >> 16);
+            // Keep one more sign bit than GP0 consumes. The game can pack clip
+            // flags above it into each halfword. Comparing the full flagged
+            // shorts hides small particles straddling the signed 11-bit seam.
+            v[i].PacketX = ((int)vw << 20) >> 20;
+            v[i].PacketY = ((int)vw << 4) >> 20;
             v[i].X = _drawOffsetX + CoordX(vw);
             v[i].Y = _drawOffsetY + CoordY(vw);
             Hardware.GteScreen.VertexTag packetVertex = Hardware.GteScreen.ValidatePacketVertex(

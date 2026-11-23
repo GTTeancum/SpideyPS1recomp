@@ -27,6 +27,15 @@ public static class DcModelCompatibility
     static bool _bagmanDepthActive;
     static ushort _savedBagmanDepth;
 
+    // The rotated rigid-object path borrows GTE rotation registers 0..4 to
+    // compose its light matrix. S4 points to the model-to-camera matrix the
+    // game built immediately before lighting, including the object's scale.
+    public static void RestoreRigidModelRotation(CpuContext c, IMemory m)
+    {
+        for (int i = 0; i < 5; i++)
+            RecompOne.Runtime.Gte.WriteControl(i, m.ReadU32(c.S4 + (uint)i * 4));
+    }
+
     static short ReadBagmanDepthBias()
     {
         string? configured = Environment.GetEnvironmentVariable("RECOMP_BAGMAN_DEPTH_BIAS");

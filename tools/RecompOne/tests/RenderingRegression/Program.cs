@@ -341,6 +341,23 @@ foreach (float distance in new[] { 1000f, 20000f })
     Console.WriteLine($"GP0 shared edge depth={distance} repaired={preserve}: continuous={sharedPass} {(expected ? "PASS" : "FAIL")}");
     if (!expected) failures++;
 }
+// Two unmodified opaque Daily Bugle fire packets. Clip bits differ between
+// adjacent corners even though the particle is only nine screen units wide.
+foreach (var corners in new uint[][] {
+    new uint[] { 0x207D23FD, 0x207E0403, 0x008123FA, 0x00830401 },
+    new uint[] { 0x00870400, 0x008523FA, 0x20820403, 0x208023FC } })
+{
+    sink.Triangles.Clear();
+    gpu.WriteGp0(0x2C808080);
+    foreach (uint corner in corners)
+    {
+        gpu.WriteGp0(corner);
+        gpu.WriteGp0(0);
+    }
+    bool pass = sink.Triangles.Count == 0;
+    Console.WriteLine($"Bugle furnace particle stays offscreen: {(pass ? "PASS" : "FAIL")}");
+    if (!pass) failures++;
+}
 // Chase Venom's web particles straddle -1024 after adding screen-space corners.
 // Decode the real GP0 quad in both draw buffers, on either coordinate axis, while
 // keeping ordinary particles and legitimate large saturated world surfaces.
@@ -467,6 +484,26 @@ Console.WriteLine($"Rectangle after world polygon stays screen-space: {(spritePa
 if (!spritePass) failures++;
 
 #if !SM2
+// Rotated rigid objects borrow GTE matrix 0 for lighting. Restoring the
+// scaled rotation must preserve the translation and the separately composed lights.
+{
+    var saved = Enumerable.Range(0, 32).Select(i => RecompOne.Runtime.Gte.ReadControl(i)).ToArray();
+    const uint modelMatrix = 0x80016700;
+    uint[] scaleAndRotation = { 0xFF000000, 0x01000000, 0, 0, 0x0100 };
+    for (int i = 0; i < scaleAndRotation.Length; i++)
+    {
+        memory.WriteU32(modelMatrix + (uint)i * 4, scaleAndRotation[i]);
+        RecompOne.Runtime.Gte.WriteControl(i, 0x1000);
+    }
+    RecompOne.Runtime.Gte.WriteControl(5, 645);
+    RecompOne.Runtime.Gte.WriteControl(8, 0x1000F000);
+    Recompiled.DcModelCompatibility.RestoreRigidModelRotation(new CpuContext { S4 = modelMatrix }, memory);
+    bool pass = scaleAndRotation.SequenceEqual(Enumerable.Range(0, 5).Select(i => RecompOne.Runtime.Gte.ReadControl(i))) &&
+        RecompOne.Runtime.Gte.ReadControl(5) == 645 && RecompOne.Runtime.Gte.ReadControl(8) == 0x1000F000;
+    Console.WriteLine($"Symbiote fragment retains its own scale and rotation after lighting: {(pass ? "PASS" : "FAIL")}");
+    if (!pass) failures++;
+    for (int i = 0; i < saved.Length; i++) RecompOne.Runtime.Gte.WriteControl(i, saved[i]);
+}
 var oldWide = RecompOne.Runtime.Config.ConfigManager.Game.Widescreen;
 RecompOne.Runtime.Config.ConfigManager.Game.Widescreen = true;
 RecompOne.Runtime.Sdk.LibGpu.LastDispGrandparent = 0x8002C2AC;
