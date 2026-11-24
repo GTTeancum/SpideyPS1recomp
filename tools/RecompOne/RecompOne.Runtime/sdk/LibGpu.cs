@@ -35,7 +35,7 @@ public static class LibGpu
 
         for (int guard = 0; guard < 0x100000; guard++)
         {
-            if (custom && GpuPrims.EmitPacket(addr, gpu)) visitedCustomTable = true;
+            if (custom && !GpuPrims.ClearAfterEveryDrawOTag && GpuPrims.EmitPacket(addr, gpu)) visitedCustomTable = true;
             if (custom && addr >= otBase && addr < otEnd)
             {
                 visitedCustomTable = true;
@@ -50,7 +50,7 @@ public static class LibGpu
                 uint word = m.ReadU32(packetAddress);
                 Hardware.GteScreen.VertexTag tag = m is PSMemory ps &&
                     ps.TryGetGteVertex(packetAddress, word, out var found) ? found : default;
-                gpu.WriteGp0(word, tag);
+                gpu.WriteGp0(word, tag, packetAddress);
             }
             uint next = header & 0xFFFFFFu;
             if (next == 0xFFFFFFu || (next & 0x800000u) != 0) break;
@@ -59,7 +59,7 @@ public static class LibGpu
 
         // Font/immediate draws can submit another list while a world OT is being
         // built. They must not consume primitives queued for that world table.
-        if (visitedCustomTable) GpuPrims.Clear();
+        if (visitedCustomTable || (custom && GpuPrims.ClearAfterEveryDrawOTag)) GpuPrims.Clear();
     }
 
     /// <summary>

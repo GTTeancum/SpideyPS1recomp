@@ -289,6 +289,11 @@ internal static unsafe class InputManager
             Controller.RightX = AxisToByte(_sdl.GameControllerGetAxis(_pad0, GameControllerAxis.Rightx));
             Controller.RightY = AxisToByte(_sdl.GameControllerGetAxis(_pad0, GameControllerAxis.Righty));
         }
+        else
+        {
+            // A disconnected pad must not leave the camera orbiting on its last axis.
+            Controller.LeftX = Controller.LeftY = Controller.RightX = Controller.RightY = 0x80;
+        }
 
         if (_pad1 != null)
         {

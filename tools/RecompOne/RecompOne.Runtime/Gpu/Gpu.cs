@@ -120,7 +120,11 @@ public sealed partial class Gpu
     public void WriteGp0(uint word, float gteDepth = 0f)
         => WriteGp0(word, Hardware.GteScreen.VertexTag.DepthOnly(gteDepth));
 
+    uint _commandAddress;
     public void WriteGp0(uint word, Hardware.GteScreen.VertexTag gteVertex)
+        => WriteGp0(word, gteVertex, 0);
+
+    public void WriteGp0(uint word, Hardware.GteScreen.VertexTag gteVertex, uint sourceAddress)
     {
         if (gteVertex.Depth > 0f) Interlocked.Increment(ref PacketWordsWithDepth);
         if (_loadImage) { StoreImageHalfword((ushort)word); StoreImageHalfword((ushort)(word >> 16)); return; }
@@ -135,6 +139,7 @@ public sealed partial class Gpu
         _fifoGteVertex.Add(gteVertex);
         if (_fifo.Count == 1)
         {
+            _commandAddress = sourceAddress;
             _need = CommandLength(word);
             if (_need == LenPolyline) { _polyline = true; return; }
             if (_need == LenImageLoad) _need = 3;

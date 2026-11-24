@@ -9,6 +9,7 @@ public sealed class MemoryCard
 
     readonly byte[] _d = new byte[CardSize];
     readonly string _path;
+    public string FilePath => _path;
     public bool Enabled = true;
 
     public MemoryCard(string path)

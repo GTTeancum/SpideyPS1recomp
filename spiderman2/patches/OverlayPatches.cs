@@ -108,6 +108,7 @@ public static class OverlayPatches
         if (RecompOne.Runtime.Assets.LooseWadOverrides.TryCompleteAliasedFind(c))
         {
             Capture.NoteWadLoad(_lastLookup, System.Threading.Interlocked.Read(ref Diag.Frame));
+            Replay.NoteWadLoad(_lastLookup, System.Threading.Interlocked.Read(ref Diag.Frame));
             if (TraceWad)
                 System.Console.WriteLine(
                     $"[wad] f{System.Threading.Interlocked.Read(ref Diag.Frame),-6} {_lastLookup,-16} " +
@@ -127,6 +128,7 @@ public static class OverlayPatches
     {
         RecompOne.Runtime.Assets.LooseWadOverrides.FindExit(c);
         Capture.NoteWadLoad(_lastLookup, System.Threading.Interlocked.Read(ref Diag.Frame));
+        Replay.NoteWadLoad(_lastLookup, System.Threading.Interlocked.Read(ref Diag.Frame));
         if (TraceWad)
             System.Console.WriteLine(
                 $"[wad] f{System.Threading.Interlocked.Read(ref Diag.Frame),-6} {_lastLookup,-16} " +

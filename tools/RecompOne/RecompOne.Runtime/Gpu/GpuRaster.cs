@@ -180,6 +180,7 @@ public sealed partial class Gpu
             e.Textured = tex; e.SemiTransparent = semi; e.Gouraud = gouraud; e.Raw = raw;
             e.World = false; e.Hud = false; e.IgnoreCoverage = false;
             e.Background = background;
+            e.CommandAddress = _commandAddress;
             e.Clut = clut; e.TexPage = CurTPage(); e.Skip = false;
             Event.Dispatch(e);
             if (e.Skip) return;
@@ -362,6 +363,7 @@ public sealed partial class Gpu
             e.Textured = tex; e.SemiTransparent = semi; e.Gouraud = false; e.Raw = raw;
             e.World = false; e.Hud = false; e.IgnoreCoverage = false;
             e.Background = background;
+            e.CommandAddress = _commandAddress;
             e.Clut = clut; e.TexPage = CurTPage(); e.Skip = false;
             Event.Dispatch(e);
             if (e.Skip) return;

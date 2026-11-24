@@ -6,13 +6,14 @@ using RecompOne.Runtime.Memory;
 namespace Recompiled;
 
 /// <summary>Bounded native draw-command pools for dense character crowds.</summary>
-public static class FramePackets
+public static partial class FramePackets
 {
     // Two bounded 512 KiB pools. Full L1A1 replacement crowds exceed 256 KiB.
     // Both live in the tracked expanded arena, outside the retail heap/overlays.
     public const uint Capacity = 0x80000;
     static readonly bool Trace = Environment.GetEnvironmentVariable("SPIDEY_PACKET_TRACE") == "1";
     static uint _base, _peak;
+    const uint PacketCursor = 0x800B54B0;
 
     public static bool TryAllocate(CpuContext c)
     {
@@ -26,6 +27,7 @@ public static class FramePackets
     {
         uint frame = m.ReadU32(0x800B54A8);
         uint pool = m.ReadU32(frame+0x74);
+        ReusePacketPool(pool);
         if (!LooseWadOverrides.OwnsAllocation(pool)) return;
         _base = pool & 0x7FFFFFFF;
         // Preserve retail's 256-byte slack and per-primitive capacity checks.
@@ -35,7 +37,7 @@ public static class FramePackets
     public static void Audit(IMemory m)
     {
         if (!Trace || _base == 0) return;
-        uint cursor = m.ReadU32(0x800B54B0)&0x7FFFFFFF;
+        uint cursor = m.ReadU32(PacketCursor)&0x7FFFFFFF;
         if (cursor < _base || cursor > _base+Capacity)
             throw new InvalidOperationException("SM1 frame packet cursor outside active allocation");
         uint used = cursor-_base;

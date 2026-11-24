@@ -10,10 +10,7 @@ namespace Recompiled;
 /// </summary>
 public static class DcModelCompatibility
 {
-    const uint ModelTable = 0x800A0904u;
-    const uint ActiveModelSlot = 0x800B53CDu;
     const int RetailHeadVertexCount = 38;
-    const int HeadMeshIndex = 7;
     const int BagmanHeadFaceCount = 179;
     const int BagmanInnerFaceCount = 86;
     const ushort BagmanInnerDepthMarker = 0x6000;
@@ -50,43 +47,23 @@ public static class DcModelCompatibility
     /// <summary>
     /// SM1's menu expression routine writes two hard-coded 38-vertex PS1 head
     /// targets directly into mesh 7.  Dreamcast heads have different topology and
-    /// vertex counts, so the loop walks beyond both target tables and turns code/data
-    /// bytes into head coordinates.  The game already keeps an exact backup of the
-    /// active head for this effect; restore that geometry for non-retail topology.
+    /// vertex counts. Skip the geometry loop before it reads either target or backup.
+    /// The native backup is allocated only once and can belong to an earlier costume;
+    /// restoring from it corrupts joint references after changing models. The native
+    /// expression flags and blend state are still updated before this branch.
     /// </summary>
-    public static void RestoreHeadAfterPs1Morph(CpuContext c, IMemory m)
+    public static bool SkipIncompatibleHeadMorph(CpuContext c, IMemory m)
     {
-        uint slot = m.ReadU8(ActiveModelSlot);
-        uint modelEntry = ModelTable + (slot << 6);
-        uint pointerTable = m.ReadU32(modelEntry + 0x10u);
-        if (pointerTable < 4u || m.ReadU32(pointerTable - 4u) <= HeadMeshIndex)
-            return;
-
-        uint head = m.ReadU32(pointerTable + HeadMeshIndex * 4u);
-        int vertexCount = m.ReadU16(head + 2u);
-        if (vertexCount == RetailHeadVertexCount)
-            return;
-
-        uint backup = m.ReadU32(c.GP + 0xAB4u);
-        if (backup == 0u)
-            return;
-
-        uint vertices = head + 0x1Cu;
-        for (uint index = 0; index < vertexCount; index++)
-        {
-            uint source = backup + index * 8u;
-            uint target = vertices + index * 8u;
-            m.WriteU16(target, m.ReadU16(source));
-            m.WriteU16(target + 2u, m.ReadU16(source + 2u));
-            m.WriteU16(target + 4u, m.ReadU16(source + 4u));
-        }
-
-        if (Trace && _reportedHeads.Add(head))
+        if (c.S0 == RetailHeadVertexCount)
+            return false;
+        uint vertices = c.A3;
+        if (Trace && _reportedHeads.Add(vertices))
         {
             Console.WriteLine(
                 $"[dc-model] bypassed retail {RetailHeadVertexCount}-vertex head morph " +
-                $"for mesh with {vertexCount} vertices at 0x{head:X8}");
+                $"for mesh with {c.S0} vertices at 0x{vertices:X8}");
         }
+        return true;
     }
 
     /// <summary>

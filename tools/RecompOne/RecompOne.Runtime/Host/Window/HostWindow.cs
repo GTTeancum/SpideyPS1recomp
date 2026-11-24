@@ -21,36 +21,11 @@ public static partial class HostWindow
     static bool _headless;
     static Gpu? _gpu;
     static string _baseTitle = "";
-    static long _fpsWindowStart;
-    static int _fpsFrames;
-    static double _lastFps;
 
     static void ApplyTitle()
     {
         if (_window == null) return;
-        _window.Title = _lastFps > 0
-            ? $"{_baseTitle} - {_lastFps:F1} FPS"
-            : _baseTitle;
-    }
-
-    /// <summary>Count real game frames, excluding host-only service redraws.</summary>
-    public static void NoteGameFrame()
-    {
-        if (_window == null) return;
-        long now = System.Diagnostics.Stopwatch.GetTimestamp();
-        if (_fpsWindowStart == 0)
-        {
-            _fpsWindowStart = now;
-            _fpsFrames = 1;
-            return;
-        }
-        _fpsFrames++;
-        double elapsed = (double)(now - _fpsWindowStart) / System.Diagnostics.Stopwatch.Frequency;
-        if (elapsed < 1.0) return;
-        _lastFps = _fpsFrames / elapsed;
-        _fpsFrames = 0;
-        _fpsWindowStart = now;
-        ApplyTitle();
+        _window.Title = _baseTitle;
     }
 
     // Private soak diagnostic: leave normal rendering untouched until native/process
@@ -235,9 +210,6 @@ public static partial class HostWindow
         if(!ConfigManager.View.Fullscreen && ConfigManager.View.GetInt("VideoWidth")>0 && ConfigManager.View.GetInt("VideoHeight")>0)
             OutputPanel.RequestResolution(ConfigManager.View.GetInt("VideoWidth"),ConfigManager.View.GetInt("VideoHeight"));
         _baseTitle = title ?? "";
-        _fpsWindowStart = 0;
-        _fpsFrames = 0;
-        _lastFps = 0;
 
         foreach (var api in ApiChain())
         {
@@ -247,7 +219,7 @@ public static partial class HostWindow
                 {
                     Size = new Vector2D<int>(ConfigManager.View.WindowWidth, ConfigManager.View.WindowHeight),
                     Title = _baseTitle,
-                    IsVisible = !_captureHidden,
+                    IsVisible = !_captureHidden && !OperatingSystem.IsWindows(),
                     VSync = ConfigManager.View.VSync,
                     UpdatesPerSecond = 0,
                     FramesPerSecond = 0,
@@ -260,6 +232,8 @@ public static partial class HostWindow
                 _window.Render += OnRender;
                 _window.Closing += OnClosing;
                 _window.Initialize();
+                // Let the shell see the game icons on the first visible window.
+                if (OperatingSystem.IsWindows() && !_captureHidden) _window.IsVisible = true;
                 Console.WriteLine($"[Host] gl context {api.Version.MajorVersion}.{api.Version.MinorVersion} {api.Profile}");
                 return;
             }
@@ -592,6 +566,8 @@ public static partial class HostWindow
         var input = _window!.CreateInput();
         InputManager.Initialize(input);
 
+        if (OperatingSystem.IsWindows() && _window.Native?.Win32 is { } win32)
+            WindowsApplicationIcon.Apply(win32.Hwnd);
         if (_pendingIcon is { } icon) Apply(icon);
 
         _gl = GL.GetApi(_window);

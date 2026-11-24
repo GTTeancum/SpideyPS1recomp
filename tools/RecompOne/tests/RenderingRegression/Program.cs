@@ -285,7 +285,16 @@ if (!fallbackPass) failures++;
 var sink = new NumericBackend();
 GpuHle.Active = true;
 GpuHle.Backend = sink;
-Recompiled.Wide.Install();
+#if SM2
+const uint gameplaySwap = 0x80031EA0, menuFrame = 0x800C247C, menuCursor = 0x800C2484, menuLimit = 0x800C2034,
+    menuTable = 0x800A184C, menuPoly = 0x80075510, menuOther = 0x80075514,
+    menuGp = 0x800C0000, menuRamp = menuGp + 0x1010;
+#else
+const uint gameplaySwap = 0x8002C2AC, menuFrame = 0x800B54A8, menuCursor = 0x800B54B0, menuLimit = 0x800B4FE8,
+    menuTable = 0x80095194, menuPoly = 0x8006A2F4, menuOther = 0x8006A2F8,
+    menuGp = 0x800B47F4, menuRamp = menuGp + 0xEC8;
+#endif
+Recompiled.Wide.Install(gameplaySwap, nativeCenteredText: Recompiled.FramePackets.IsQuitPromptCommand);
 var gpu = new RecompOne.Runtime.Gpu();
 foreach (bool preserve in new[] { false, true })
 foreach (float distance in new[] { 1000f, 20000f })
@@ -504,10 +513,49 @@ if (!spritePass) failures++;
     if (!pass) failures++;
     for (int i = 0; i < saved.Length; i++) RecompOne.Runtime.Gte.WriteControl(i, saved[i]);
 }
+#endif
 var oldWide = RecompOne.Runtime.Config.ConfigManager.Game.Widescreen;
 RecompOne.Runtime.Config.ConfigManager.Game.Widescreen = true;
-RecompOne.Runtime.Sdk.LibGpu.LastDispGrandparent = 0x8002C2AC;
+RecompOne.Runtime.Sdk.LibGpu.LastDispGrandparent = gameplaySwap;
 RecompOne.Runtime.Events.Event.Dispatch(new RecompOne.Runtime.Events.VSyncEvent { Frame = 1 });
+// The initial R in the quit prompt has the same bounds as a corner HUD quad.
+// Only the packets emitted by the centered text call keep their native placement.
+const uint drawFrame = 0x80014000, packetPool = 0x120000, secondPool = 0x140000;
+memory.WriteU32(menuFrame, drawFrame);
+void UsePool(uint pool)
+{
+    memory.WriteU32(drawFrame + 0x74, pool | 0x80000000);
+    Recompiled.FramePackets.SetLimit(cpu, memory);
+}
+UsePool(packetPool);
+memory.WriteU32(menuCursor, 0x80000000 | packetPool);
+Recompiled.FramePackets.BeginQuitPrompt(cpu, memory);
+memory.WriteU32(menuCursor, 0x80000000 | (packetPool + 40));
+Recompiled.FramePackets.EndQuitPrompt(cpu, memory);
+UsePool(secondPool);
+foreach (var (address, firstX) in new[] { (packetPool + 4, 187), (packetPool + 40, 140) })
+{
+    var glyph = new RecompOne.Runtime.Events.RenderPrimEvent {
+        CommandAddress = address, Count = 4, Textured = true,
+        Clut = 169, TexPage = 8, DrawRight = 511, DrawBottom = 239,
+    };
+    for (int i = 0; i < 4; i++)
+    {
+        glyph.X[i] = 187 + (i % 2) * 16;
+        glyph.Y[i] = 65 + (i / 2) * 12;
+    }
+    RecompOne.Runtime.Events.Event.Dispatch(glyph);
+    bool pass = glyph.X[0] == firstX && glyph.Hud;
+    Console.WriteLine($"Quit prompt and adjacent HUD packet at {address:X}: {(pass ? "PASS" : "FAIL")}");
+    if (!pass) failures++;
+}
+UsePool(packetPool);
+if (Recompiled.FramePackets.IsQuitPromptCommand(packetPool + 4))
+{
+    Console.WriteLine("Reused draw buffer retained old quit prompt packets: FAIL");
+    failures++;
+}
+#if !SM2
 foreach (int drawY in new[] { 0, 256 })
 foreach (int meterY in new[] { -16, 0, 28, 53, 54, 58, 90, 120, 230 })
 foreach (int x in new[] { 138, 174, 192, 246, 264, 462 })
@@ -550,18 +598,9 @@ foreach (int meterY in new[] { -16, 16, 46, 58, 90, 120, 230 })
     Console.WriteLine($"Chase cap/marker page={page} clut={clut} world={world}: {(pass ? "PASS" : "FAIL")}");
     if (!pass) failures++;
 }
+#endif
 RecompOne.Runtime.Config.ConfigManager.Game.Widescreen = oldWide;
 GpuHle.FovNum = GpuHle.FovDen = 1;
-#endif
-#if SM2
-const uint menuFrame = 0x800C247C, menuCursor = 0x800C2484, menuLimit = 0x800C2034,
-    menuTable = 0x800A184C, menuPoly = 0x80075510, menuOther = 0x80075514,
-    menuGp = 0x800C0000, menuRamp = menuGp + 0x1010;
-#else
-const uint menuFrame = 0x800B54A8, menuCursor = 0x800B54B0, menuLimit = 0x800B4FE8,
-    menuTable = 0x80095194, menuPoly = 0x8006A2F4, menuOther = 0x8006A2F8,
-    menuGp = 0x800B47F4, menuRamp = menuGp + 0xEC8;
-#endif
 foreach (var (polygon, singleMetadata) in new[] { (false, true), (false, false), (true, false) })
 foreach (uint initialRamp in new uint[] { 0, 0x2E0, 0x300 })
 {

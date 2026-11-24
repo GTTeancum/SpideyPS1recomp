@@ -44,16 +44,7 @@ public static class Program
         RecompOne.Runtime.Host.BundledNativeRuntime.Initialize();
         if (!AcquireRuntimeLease()) return 4;
         Diag.OpenLog();
-        // The game icon on the window (Windows' taskbar uses the executable's own icon).
-        using (var icon = Assembly.GetExecutingAssembly().GetManifestResourceStream("OpenSpidey.Icon.png"))
-        {
-            if (icon != null)
-            {
-                using var bytes = new MemoryStream();
-                icon.CopyTo(bytes);
-                RecompOne.Runtime.Host.HostWindow.SetIcon(bytes.ToArray());
-            }
-        }
+        ConfigureWindowIcon();
 
         string installRoot = ExeDirectory() ?? AppContext.BaseDirectory;
         string installOutput = InstallOutput(installRoot);
@@ -155,8 +146,8 @@ public static class Program
 
         // Precise projected geometry supplies the wide view. Repeating pixels
         // from the old 4:3 boundary invents stretched surfaces in uncovered areas.
-        Wide.Install();
-        SceneDepth.Install();
+        Wide.Install(nativeCenteredText: FramePackets.IsQuitPromptCommand);
+        RecompOne.Runtime.Hle.GpuPrims.ClearAfterEveryDrawOTag = true;
         PlayerShadow.Install();
         // World vertices reach the GTE camera-relative; the camera position lets frame
         // interpolation recognise the same scenery point from one frame to the next.
@@ -184,6 +175,22 @@ public static class Program
 
         RecompOne.Runtime.Runtime.Shutdown();
         return 0;
+    }
+
+    static void ConfigureWindowIcon()
+    {
+        // On Windows the apphost provides the multi-size icon for the window and its class.
+        if (OperatingSystem.IsWindows() && !RecompOne.Runtime.Host.RuntimePaths.IsDotnetHost(Environment.ProcessPath))
+            return;
+        using (var icon = Assembly.GetExecutingAssembly().GetManifestResourceStream("OpenSpidey.Icon.png"))
+        {
+            if (icon != null)
+            {
+                using var bytes = new MemoryStream();
+                icon.CopyTo(bytes);
+                RecompOne.Runtime.Host.HostWindow.SetIcon(bytes.ToArray());
+            }
+        }
     }
 
     static bool AcquireRuntimeLease()

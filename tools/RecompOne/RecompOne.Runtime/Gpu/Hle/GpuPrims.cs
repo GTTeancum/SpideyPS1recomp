@@ -30,6 +30,9 @@ public struct PrimVertex
 
 public static class GpuPrims
 {
+    // SM1 submits one custom primitive queue per DrawOTag call.
+    public static bool ClearAfterEveryDrawOTag { get; set; }
+
     public const int MaxOrder = 0x800;
     const int MaxEntries = 0x4000;
 

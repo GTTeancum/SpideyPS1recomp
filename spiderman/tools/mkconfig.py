@@ -205,6 +205,9 @@ def main():
     ])
     patches.append({'overlay': 'main', 'function': 'func_80076480', 'address': '80076C74',
                     'mode': 'instruction', 'target': 'Recompiled.DcModelCompatibility.RestoreRigidModelRotation'})
+    for address, hook in [('80017D68', 'BeginQuitPrompt'), ('80017D74', 'EndQuitPrompt')]:
+        patches.append({'overlay': 'main', 'function': 'func_80017AF4', 'address': address,
+                        'mode': 'instruction', 'target': 'Recompiled.FramePackets.' + hook})
     cfg = {
         'game': {'id': 'SLUS-00875', 'name': 'SpiderMan', 'output': '../generated'},
         'cue': '../extracted',

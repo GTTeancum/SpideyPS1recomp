@@ -138,13 +138,14 @@ public static class Program
         RecompOne.Runtime.Diagnostics.PerformanceLog.GameCounterAddress = 0x800C1F94;
         // Native bounds and subdivision hooks supply the widened geometry.
         // Copying old boundary pixels can conceal holes and stretch textures.
-        Wide.Install(0x80031EA0u, defaultEnabled: true);
+        Wide.Install(0x80031EA0u, defaultEnabled: true, nativeCenteredText: FramePackets.IsQuitPromptCommand);
         SceneDepth.Install();
         PlayerShadow.Install();
         // World vertices reach the GTE camera-relative; the camera lets frame
         // interpolation recognise scenery and move it with the camera.
         RecompOne.Runtime.Hardware.GteIds.CameraPosition = 0x800B3254u;
         RecompOne.Runtime.Hardware.GteIds.CameraRotation = 0x800B32C4u;
+        Replay.Install();
         Harness.Install();
 
         AppDomain.CurrentDomain.UnhandledException += (_, e) => Diag.Fatal(e.ExceptionObject as Exception);

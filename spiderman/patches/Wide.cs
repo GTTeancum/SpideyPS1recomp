@@ -36,6 +36,7 @@ public static class Wide
     const uint Sm1GameplaySwap = 0x8002C2AC;
     static uint _gameplaySwap;
     static bool _defaultEnabled;
+    static Func<uint, bool> _nativeCenteredText;
 
     public static bool Enabled { get; private set; }
 
@@ -47,7 +48,7 @@ public static class Wide
     /// uses the default; SM2 supplies its independently measured main-loop address.
     /// </param>
     public static void Install(uint gameplaySwap = Sm1GameplaySwap, bool completeBackdrop = false,
-        bool defaultEnabled = false)
+        bool defaultEnabled = false, Func<uint, bool> nativeCenteredText = null)
     {
         // Before the widescreen bail-out, so the same measurement can be taken in 4:3.
         // SPIDEY_WIDE_DEBUG=1 paints the background fill magenta, which is the only way
@@ -57,6 +58,7 @@ public static class Wide
             Environment.GetEnvironmentVariable("SPIDEY_WIDE_DEBUG") == "1";
 
         _defaultEnabled = defaultEnabled;
+        _nativeCenteredText = nativeCenteredText;
         GpuHle.WidescreenSupported = true;
         GpuHle.WidescreenDefault = defaultEnabled;
         GpuHle.WideBackgroundCompletion = completeBackdrop &&
@@ -184,6 +186,13 @@ public static class Wide
             return;
         }
         if (!transform) return;
+        if (e.Textured && aligned && _nativeCenteredText?.Invoke(e.CommandAddress) == true)
+        {
+            // The game centered this entire line. Keep the native positions of
+            // every glyph and shadow, even if one quad overlaps a HUD corner.
+            e.Hud = true;
+            return;
+        }
         if (aligned && IsChaseMeter(e))
         {
             // The rail spans the corner classifier's boundary. Its caps, repeated

@@ -191,6 +191,19 @@
   "patches": [
     {
       "overlay": "main",
+      "address": "80071864",
+      "mode": "instruction",
+      "target": "Recompiled.RightStickOrbit.Gameplay"
+    },
+    {
+      "overlay": "shell",
+      "address": "80262568",
+      "mode": "instruction_branch",
+      "resumeAddress": "802625B4",
+      "target": "Recompiled.RightStickOrbit.Viewer"
+    },
+    {
+      "overlay": "main",
       "function": "func_8005E748",
       "mode": "replace",
       "target": "Recompiled.Timing.WaitVBlanks"
@@ -231,6 +244,20 @@
       "address": "80076C74",
       "mode": "instruction",
       "target": "Recompiled.DcModelCompatibility.RestoreRigidModelRotation"
+    },
+    {
+      "overlay": "main",
+      "function": "func_80017AF4",
+      "address": "80017D68",
+      "mode": "instruction",
+      "target": "Recompiled.FramePackets.BeginQuitPrompt"
+    },
+    {
+      "overlay": "main",
+      "function": "func_80017AF4",
+      "address": "80017D74",
+      "mode": "instruction",
+      "target": "Recompiled.FramePackets.EndQuitPrompt"
     },
     {
       "overlay": "main",
@@ -487,9 +514,10 @@
     },
     {
       "overlay": "main",
-      "function": "func_800472C0",
-      "mode": "post",
-      "target": "Recompiled.DcModelCompatibility.RestoreHeadAfterPs1Morph"
+      "address": "80047368",
+      "mode": "instruction_branch",
+      "resumeAddress": "80047458",
+      "target": "Recompiled.DcModelCompatibility.SkipIncompatibleHeadMorph"
     },
     {
       "overlay": "main",
@@ -547,6 +575,84 @@
     },
     {
       "overlay": "main",
+      "address": "8007810C",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.SourceVertex"
+    },
+    {
+      "overlay": "main",
+      "address": "8007838C",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.ClassifyPlane"
+    },
+    {
+      "overlay": "main",
+      "address": "8007852C",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.Intersect"
+    },
+    {
+      "overlay": "main",
+      "address": "80078608",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.Intersect"
+    },
+    {
+      "overlay": "main",
+      "address": "80078634",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.Intersect"
+    },
+    {
+      "overlay": "main",
+      "address": "80078650",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.FinishPlane"
+    },
+    {
+      "overlay": "main",
+      "address": "8007882C",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.NearWeight"
+    },
+    {
+      "overlay": "main",
+      "address": "80078AB8",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.SideWeight"
+    },
+    {
+      "overlay": "main",
+      "address": "80078D14",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.SideWeight"
+    },
+    {
+      "overlay": "main",
+      "address": "80078F78",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.SideWeight"
+    },
+    {
+      "overlay": "main",
+      "address": "800791E4",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.SideWeight"
+    },
+    {
+      "overlay": "main",
+      "address": "80079D68",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.TriangleGrid"
+    },
+    {
+      "overlay": "main",
+      "address": "8007A5F8",
+      "mode": "instruction",
+      "target": "Recompiled.CpuWorldProjection.QuadGrid"
+    },
+    {
+      "overlay": "main",
       "function": "func_8007D2D8",
       "mode": "pre",
       "target": "Recompiled.WorldSubpixel.SetSubdivisionCorners"
@@ -579,49 +685,49 @@
       "overlay": "main",
       "function": "func_8007B798",
       "mode": "pre",
-      "target": "Recompiled.SceneDepth.ActorTransformEnter"
+      "target": "Recompiled.ModelDiagnostics.TransformEnter"
     },
     {
       "overlay": "main",
       "function": "func_8007B798",
       "mode": "post",
-      "target": "Recompiled.SceneDepth.ActorTransformExit"
+      "target": "Recompiled.ModelDiagnostics.TransformExit"
     },
     {
       "overlay": "main",
       "function": "func_8007B9CC",
       "mode": "pre",
-      "target": "Recompiled.SceneDepth.ActorTransformEnter"
+      "target": "Recompiled.ModelDiagnostics.TransformEnter"
     },
     {
       "overlay": "main",
       "function": "func_8007B9CC",
       "mode": "post",
-      "target": "Recompiled.SceneDepth.ActorTransformExit"
+      "target": "Recompiled.ModelDiagnostics.TransformExit"
     },
     {
       "overlay": "main",
       "function": "func_8007BBD4",
       "mode": "pre",
-      "target": "Recompiled.SceneDepth.ActorTransformEnter"
+      "target": "Recompiled.ModelDiagnostics.TransformEnter"
     },
     {
       "overlay": "main",
       "function": "func_8007BBD4",
       "mode": "post",
-      "target": "Recompiled.SceneDepth.ActorTransformExit"
+      "target": "Recompiled.ModelDiagnostics.TransformExit"
     },
     {
       "overlay": "main",
       "function": "func_8007BD04",
       "mode": "pre",
-      "target": "Recompiled.SceneDepth.ActorTransformEnter"
+      "target": "Recompiled.ModelDiagnostics.TransformEnter"
     },
     {
       "overlay": "main",
       "function": "func_8007BD04",
       "mode": "post",
-      "target": "Recompiled.SceneDepth.ActorTransformExit"
+      "target": "Recompiled.ModelDiagnostics.TransformExit"
     },
     {
       "overlay": "main",
@@ -766,52 +872,63 @@
       "target": "Recompiled.DreamcastMoviePatches.Play"
     },
     {
-      "overlay": "main",
-      "function": "func_80077198",
+      "overlay": "shell",
+      "function": "ptr_80266038",
       "mode": "pre",
-      "target": "Recompiled.PlayerShadow.ActorBegin"
+      "target": "Recompiled.ContinueSave.Startup"
+    },
+    {
+      "overlay": "shell",
+      "address": "80264AD4",
+      "mode": "instruction",
+      "target": "Recompiled.ContinueSave.CaptureOverwrite"
+    },
+    {
+      "overlay": "shell",
+      "address": "80264D00",
+      "mode": "instruction",
+      "target": "Recompiled.ContinueSave.CaptureNew"
     },
     {
       "overlay": "main",
-      "function": "func_80077198",
+      "function": "func_80014F00",
       "mode": "post",
-      "target": "Recompiled.PlayerShadow.ActorEnd"
+      "target": "Recompiled.ContinueSave.Saved"
     },
     {
-      "overlay": "main",
-      "function": "func_80059508",
+      "overlay": "shell",
+      "function": "func_802562B4",
       "mode": "pre",
-      "target": "Recompiled.PlayerShadow.UpdateBlob"
+      "target": "Recompiled.MainMenu.Enter"
     },
     {
-      "overlay": "main",
-      "function": "LoadLevel",
-      "mode": "pre",
-      "target": "Recompiled.PlayerShadow.Reset"
+      "overlay": "shell",
+      "function": "func_802562B4",
+      "mode": "post",
+      "target": "Recompiled.MainMenu.Leave"
     },
     {
-      "overlay": "main",
-      "address": "80036390",
+      "overlay": "shell",
+      "address": "80256754",
       "mode": "instruction",
-      "target": "Recompiled.PlayerShadow.GroundCollision"
+      "target": "Recompiled.MainMenu.DrawUnselected",
+      "function": "func_802562B4"
     },
     {
-      "overlay": "main",
-      "function": "func_8004F5B4",
-      "mode": "pre",
-      "target": "Recompiled.PlayerShadow.ShadowCheck"
+      "overlay": "shell",
+      "address": "8025676C",
+      "mode": "instruction_branch",
+      "resumeAddress": "80256824",
+      "target": "Recompiled.MainMenu.DrawSelected",
+      "function": "func_802562B4"
     },
     {
-      "overlay": "main",
-      "address": "8005C984",
-      "mode": "instruction",
-      "target": "Recompiled.PlayerShadow.ScriptCinematic"
-    },
-    {
-      "overlay": "main",
-      "address": "8005D06C",
-      "mode": "instruction",
-      "target": "Recompiled.PlayerShadow.ScriptPlayerAction"
+      "overlay": "shell",
+      "address": "80256844",
+      "mode": "instruction_branch",
+      "resumeAddress": "802569B0",
+      "target": "Recompiled.MainMenu.Input",
+      "function": "func_802562B4"
     }
   ],
   "callRing": true

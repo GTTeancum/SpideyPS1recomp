@@ -203,7 +203,6 @@ public static class Runtime
             Diagnostics.PresentationProfile.BeginPresentation();
             HostWindow.PresentGameFrame(Gpu);
             long titleStart = Diagnostics.PresentationProfile.Stamp();
-            HostWindow.NoteGameFrame();
             Diagnostics.PresentationProfile.TitleMs = Diagnostics.PresentationProfile.Elapsed(titleStart);
             long audioStart = Diagnostics.PresentationProfile.Stamp();
             Audio.Attach(Spu);

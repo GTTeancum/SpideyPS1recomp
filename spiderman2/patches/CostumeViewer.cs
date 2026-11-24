@@ -29,6 +29,33 @@ public static partial class Costume
         LoadedCostume = -1;
     }
 
+    public static void SelectViewerRow(CpuContext c, IMemory m)
+    {
+        int selected = (int)c.S2;
+        if (SuitMods.IsMod(selected))
+        {
+            // S7 is the native preview object. A switch can happen while the
+            // previous row's delayed announcement is still playing or queued.
+            uint cue = m.ReadU32(c.S7 + 0x1AC);
+            if (cue != 0 && m.ReadU32(c.S7 + 0x1B4) != 0)
+            {
+                uint group = cue >> 16, channel = cue & 0xFFFF;
+                // Mirror only the matching parts of the native XA stop at 800311C8.
+                if (m.ReadU32(c.GP + 0x7E4) != 0 && m.ReadU32(c.GP + 0x800) == group &&
+                    m.ReadU32(c.GP + 0x804) == channel)
+                    m.WriteU32(c.GP + 0x808, m.ReadU32(c.GP + 0x80C));
+                const uint pending = 0x800A5384;
+                if (m.ReadU32(pending) == group && m.ReadU32(pending + 4) == channel)
+                {
+                    m.WriteU32(pending, 0);
+                    m.WriteU32(pending + 4, 0);
+                    m.WriteU32(pending + 8, 0);
+                }
+            }
+        }
+        WriteSelected(m, selected);
+    }
+
     static void ApplyModPowers(IMemory m)
     {
         if (SuitMods.Active < 0) return;
@@ -53,7 +80,8 @@ public static partial class Costume
             uint entry = ViewerTable + (uint)i * 12;
             m.WriteU32(entry, name);
             m.WriteU32(entry + 4, description);
-            m.WriteU32(entry + 8, m.ReadU32(0x80251568));
+            // The native viewer treats zero as no announcement (also used by retail rows 17 and 18).
+            m.WriteU32(entry + 8, 0);
             name = Line(m, name, mod.Name);
             description = Color(m, description, true);
             description = Line(m, description, "COSTUME:");

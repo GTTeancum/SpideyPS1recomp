@@ -1,5 +1,4 @@
 using System.Numerics;
-using System.Reflection;
 using System.Text.Json;
 using Recompiled;
 using RecompOne.Runtime;
@@ -61,87 +60,14 @@ foreach(var s in visibility.RootElement.GetProperty("scripts").EnumerateArray())
         s.GetProperty("script").GetUInt32(),s.GetProperty("opcode").GetInt32(),s.GetProperty("operand").GetUInt32())==s.GetProperty("after").GetBoolean(),"ROM script suppression transition");
 
 var mem = new PSMemory(0x800000);
-const uint actor=0x80100000;
-var cpu = new CpuContext { SP=0x807EF000, GP=0x800B47F4, S3=actor, A0=actor };
-mem.WriteU32(0x800B5268,actor);
 foreach(var level in visibility.RootElement.GetProperty("levels").EnumerateArray())
 {
     string name=level.GetProperty("name").GetString()!;
     for(uint i=0;i<name.Length;i++) mem.WriteU8(0x800A568C+i,(byte)name[(int)i]);
     Check(N64ShadowVisibility.Level(mem)==(level.GetProperty("index").GetInt32(),false),"ROM level table: "+name);
 }
-void LevelName(string name) { for(uint i=0;i<16;i++) mem.WriteU8(0x800A568C+i,i<name.Length?(byte)name[(int)i]:(byte)0); }
-LevelName("dem1_t");Check(N64ShadowVisibility.Level(mem).Demo,"demo filename selects demo policy, not a stale story index");
-LevelName("l1a4_t");
-mem.WriteU32(cpu.SP+0xD8,1); mem.WriteU32(cpu.SP+0xE0,200*4096); mem.WriteU16(cpu.SP+0xEA,unchecked((ushort)-4096));
-PlayerShadow.GroundCollision(cpu,mem);
-T Field<T>(string name) => (T)typeof(PlayerShadow).GetField(name,BindingFlags.Static|BindingFlags.NonPublic)!.GetValue(null)!;
-Check(Field<bool>("_hasReceiver") && Field<float>("_height")==200 && Field<Vector3>("_normal")==new Vector3(0,-1,0), "native ground probe captures fixed-point receiver height/normal");
-cpu.S3=actor+0x2000; mem.WriteU32(cpu.SP+0xD8,0); PlayerShadow.GroundCollision(cpu,mem);
-Check(Field<bool>("_hasReceiver"), "NPC probe cannot replace player receiver");
-cpu.S3=actor; PlayerShadow.GroundCollision(cpu,mem);
-Check(!Field<bool>("_hasReceiver"), "player ground-probe miss invalidates cached receiver");
-mem.WriteU32(cpu.SP+0xD8,1); PlayerShadow.GroundCollision(cpu,mem); PlayerShadow.Reset(cpu,mem);
-Check(!Field<bool>("_hasReceiver") && Field<uint>("_receiverOwner")==0, "level reload clears old receiver even if actor address is reused");
-cpu.A0=actor+0x2000;
-Check(PlayerShadow.UpdateBlob(cpu,mem), "NPC blob stays under native ownership");
-cpu.A0=actor; mem.WriteU16(actor+0x46,0x108);
-Check(!PlayerShadow.UpdateBlob(cpu,mem) && mem.ReadU16(actor+0x46)==0x100 && cpu.SP==0x807EF000, "player blob suppressed without touching other body flags or stack");
-cpu.A0=actor+0x2000;
-Check(PlayerShadow.ShadowCheck(cpu,mem), "NPC shadow-check lifecycle is unchanged");
-cpu.A0=actor; mem.WriteU8(actor+0x154,1);
-Check(!PlayerShadow.ShadowCheck(cpu,mem) && mem.ReadU8(actor+0x154)==0, "player's separate PS1 shadow-check path cannot recreate its blob");
-// Exercise actor hooks with an actual receiver and a pose fully behind the camera.
-mem.WriteU32(cpu.SP+0xD8,1); PlayerShadow.GroundCollision(cpu,mem);
-mem.WriteU32(cpu.GP+0x1128,0x80130000);
-for (uint i=0;i<9;i++) mem.WriteU16(0x800A57CC+i*2, (ushort)(i%4==0?4096:0));
-mem.WriteU32(cpu.GP+0xCB4,0x80140000); mem.WriteU32(0x80140070,0x80150000);
-mem.WriteU32(cpu.GP+0xCBC,0x80160000); mem.WriteU32(0x800B4FE8,0x80170000);
-mem.WriteU32(0x80150000,0x00FFFFFF);
-PlayerShadow.ActorBegin(cpu,mem);
-Field<List<Vector3>>("Triangles").AddRange(new Vector3[] {new(0,0,-20),new(2,0,-20),new(0,2,-20)});
-PlayerShadow.ActorEnd(cpu,mem);
-Check(!GpuPrims.Any && mem.ReadU32(cpu.GP+0xCBC)==0x80160000 && mem.ReadU32(0x80150000)==0x00FFFFFF,
-    "fully clipped actor leaves native packet arena and OT untouched");
-mem.WriteU32(actor+0xF44,0x400); PlayerShadow.ActorBegin(cpu,mem);
-Check(Field<bool>("_drawing"), "unrelated F44 flag cannot hide shadow");
-mem.WriteU32(actor+0xF3C,0x400); PlayerShadow.ActorBegin(cpu,mem);
-Check(!Field<bool>("_drawing"), "N64 excluded player state 0x400 does not submit a shadow");
-mem.WriteU32(actor+0xF3C,0);mem.WriteU32(actor+0xF44,0);
-LevelName("l6a1_t");mem.WriteU32(actor+0xBC4,1);PlayerShadow.ActorBegin(cpu,mem);
-Check(!Field<bool>("_drawing"),"Tunnel Crawl attached state BC4 suppresses silhouette");
-LevelName("l6a3_t");PlayerShadow.ActorBegin(cpu,mem);
-Check(!Field<bool>("_drawing"),"Lizard's Maze attached state BC4 suppresses silhouette");
-LevelName("l1a4_t");PlayerShadow.ActorBegin(cpu,mem);
-Check(Field<bool>("_drawing"),"bank ceiling attachment retains silhouette");
-uint face=0x80131000;
-mem.WriteU16(face,0x1F);Check(PlayerShadow.ReceiverMaterial(mem,face)==(true,0u),"textured opaque receiver");
-mem.WriteU16(face,0x5F);Check(PlayerShadow.ReceiverMaterial(mem,face)==(true,1u),"PS1 semi-transparency maps to N64 material bit 0");
-mem.WriteU16(face,0x1C);Check(PlayerShadow.ReceiverMaterial(mem,face)==(false,0u),"untextured receiver uses pixel depth");
-cpu.S1=0x80132000;cpu.FP=0xEA;LevelName("l1a3_t");mem.WriteU16(cpu.S1,1);PlayerShadow.ScriptCinematic(cpu,mem);
-Check(Field<bool>("_scriptHidden"),"native C3 hook sets L1A3 script EA suppression");
-LevelName("l1a4_t");cpu.FP=0x16E;mem.WriteU16(cpu.S1,0);PlayerShadow.ScriptCinematic(cpu,mem);
-Check(Field<bool>("_scriptHidden"),"bank 16E retains previous N64 cinematic value");
-cpu.FP=1;PlayerShadow.ScriptCinematic(cpu,mem);
-Check(!Field<bool>("_scriptHidden"),"native C3 cinematic end clears suppression");
-LevelName("l1a3_t");cpu.FP=0xEA;mem.WriteU16(cpu.S1,1);PlayerShadow.ScriptCinematic(cpu,mem);
-LevelName("l7a3_t");cpu.FP=0x15D;PlayerShadow.ScriptPlayerAction(cpu,mem);
-Check(!Field<bool>("_scriptHidden"),"native C7 action clears L7A3 script 15D suppression");
-LevelName("l1a4_t");mem.WriteU16(face,0x5F);mem.WriteU32(cpu.SP+0xF0,face);PlayerShadow.GroundCollision(cpu,mem);
-PlayerShadow.ActorBegin(cpu,mem);Check(!Field<bool>("_drawing"),"native receiver face suppresses translucent material");
-mem.WriteU16(face,0x1F);mem.WriteU32(0x80130008,300);mem.WriteU16(0x800A57CC+14,4096);
-var beforeProbe=cpu.Snapshot();uint[] controls=Enumerable.Range(0,32).Select(Gte.ReadControl).ToArray();
-PlayerShadow.ActorBegin(cpu,mem);
-Check(!Field<bool>("_drawing"),"below-plane camera query with no occluder takes ROM early-out");
-Check(cpu.Snapshot().gpr.SequenceEqual(beforeProbe.gpr) && Enumerable.Range(0,32).Select(Gte.ReadControl).SequenceEqual(controls),
-    "native camera collision query preserves caller registers and GTE controls");
-mem.WriteU32(0x80130008,200);PlayerShadow.ActorBegin(cpu,mem);
-Check(Field<bool>("_drawing"),"camera exactly at receiving plane is not culled");
-LevelName("lha1_t");PlayerShadow.ActorBegin(cpu,mem);
-Check(!Field<bool>("_drawing"),"training's fresh native probe miss cannot use stale cached floor");
-Check(cpu.Snapshot().gpr.SequenceEqual(beforeProbe.gpr) && Enumerable.Range(0,32).Select(Gte.ReadControl).SequenceEqual(controls),
-    "native long collision query preserves caller registers and GTE controls");
-PlayerShadow.Reset(cpu,mem);
+mem.LoadBytes(0x800A568C, "dem1_t\0"u8.ToArray());
+Check(N64ShadowVisibility.Level(mem).Demo, "demo filename selects demo policy");
 TestGl();
 Console.WriteLine($"{checks} shadow checks passed; hidden GL context, no audio or host input.");
 

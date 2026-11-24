@@ -179,6 +179,19 @@
   "patches": [
     {
       "overlay": "main",
+      "address": "8007D9B4",
+      "mode": "instruction",
+      "target": "Recompiled.RightStickOrbit.Gameplay"
+    },
+    {
+      "overlay": "shell",
+      "address": "80249B90",
+      "mode": "instruction_branch",
+      "resumeAddress": "80249BDC",
+      "target": "Recompiled.RightStickOrbit.Viewer"
+    },
+    {
+      "overlay": "main",
       "function": "func_80069124",
       "mode": "replace",
       "target": "Recompiled.Timing.WaitVBlanks"
@@ -260,6 +273,20 @@
       "function": "func_800314E4",
       "mode": "post",
       "target": "Recompiled.FramePackets.SetLimit"
+    },
+    {
+      "overlay": "main",
+      "function": "func_8001935C",
+      "address": "800195D0",
+      "mode": "instruction",
+      "target": "Recompiled.FramePackets.BeginQuitPrompt"
+    },
+    {
+      "overlay": "main",
+      "function": "func_8001935C",
+      "address": "800195DC",
+      "mode": "instruction",
+      "target": "Recompiled.FramePackets.EndQuitPrompt"
     },
     {
       "overlay": "main",
@@ -528,6 +555,41 @@
       "mode": "instruction_branch",
       "resumeAddress": "8004EB0C",
       "target": "Recompiled.ArmorTextures.SkipUnmapped"
+    },
+    {
+      "overlay": "shell",
+      "function": "func_80241E30",
+      "mode": "pre",
+      "target": "Recompiled.MainMenu.Enter"
+    },
+    {
+      "overlay": "shell",
+      "function": "func_80241E30",
+      "mode": "post",
+      "target": "Recompiled.MainMenu.Leave"
+    },
+    {
+      "overlay": "shell",
+      "address": "80242474",
+      "mode": "instruction",
+      "target": "Recompiled.MainMenu.DrawUnselected",
+      "function": "func_80241E30"
+    },
+    {
+      "overlay": "shell",
+      "address": "8024248C",
+      "mode": "instruction_branch",
+      "resumeAddress": "80242544",
+      "target": "Recompiled.MainMenu.DrawSelected",
+      "function": "func_80241E30"
+    },
+    {
+      "overlay": "shell",
+      "address": "80242564",
+      "mode": "instruction_branch",
+      "resumeAddress": "802426DC",
+      "target": "Recompiled.MainMenu.Input",
+      "function": "func_80241E30"
     }
   ],
   "callRing": true

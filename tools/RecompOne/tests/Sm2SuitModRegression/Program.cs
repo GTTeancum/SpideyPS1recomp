@@ -95,11 +95,43 @@ for (int profile = 0; profile < 19; profile++)
     Check(SuitRules.PowerText[profile].SequenceEqual(powers), "original GAME POWERS wording: " + SuitRules.Profiles[profile]);
     Costume.PrepareViewer(new CpuContext(), memory);
     Check(memory.ReadU32(Costume.ViewerTable + 19*12) >= Costume.ViewerTable + 0x8000, "mod text stays in dedicated arena");
+    Check(memory.ReadU32(Costume.ViewerTable + 19 * 12 + 8) == 0, "mod has no selector voice for profile " + profile);
 }
+Check(memory.ReadU32(0x80251568) != 0, "default retail suit has a real announcement");
 for (int i = 0; i < 19; i++)
 {
+    uint offset = (uint)i * 12;
+    Check(memory.ReadU32(Costume.ViewerTable + offset + 8) == memory.ReadU32(0x80251568 + offset),
+        "retail selector voice preserved for row " + i);
     Costume.WriteSelected(memory, i);
     Check(SuitMods.Active == -1 && memory.ReadU8(selected) == i && memory.ReadU32(unlocks) == 1, "stock selection restored: " + i);
+}
+// Pressing Cross during an active retail announcement should release only that XA cue.
+{
+    var selection = new CpuContext { GP = 0x800C1764, S7 = 0x80110000, S2 = 19 };
+    uint audio = selection.GP, preview = selection.S7;
+    const uint pending = 0x800A5384, group = 29, channel = 6;
+    memory.WriteU32(preview + 0x1AC, group << 16 | channel);
+    memory.WriteU32(preview + 0x1B4, 1);
+    memory.WriteU32(audio + 0x7E4, 1);
+    memory.WriteU32(audio + 0x800, group);
+    memory.WriteU32(audio + 0x804, channel);
+    memory.WriteU32(audio + 0x808, 20);
+    memory.WriteU32(audio + 0x80C, 10);
+    memory.WriteU32(pending, group);
+    memory.WriteU32(pending + 4, channel + 1);
+    Costume.SelectViewerRow(selection, memory);
+    Check(memory.ReadU32(audio + 0x808) == 10 && memory.ReadU32(pending + 4) == channel + 1,
+        "mod interrupts its previous retail voice and preserves an unrelated queued stream");
+    memory.WriteU32(audio + 0x804, channel + 1);
+    memory.WriteU32(audio + 0x808, 20);
+    memory.WriteU32(pending + 4, channel);
+    memory.WriteU32(pending + 8, 1);
+    Costume.SelectViewerRow(selection, memory);
+    Check(memory.ReadU32(audio + 0x808) == 20 && memory.ReadU32(pending) == 0 &&
+        memory.ReadU32(pending + 4) == 0 && memory.ReadU32(pending + 8) == 0,
+        "mod clears a queued retail voice while preserving an unrelated active stream");
+    Costume.WriteSelected(memory, 0);
 }
 foreach (var mutation in new Action<JsonNode>[] {
     d => d["donor"] = "other-model", d => d["address"] = "0x80010000",

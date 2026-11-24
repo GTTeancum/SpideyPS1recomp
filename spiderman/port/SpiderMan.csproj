@@ -70,7 +70,7 @@
 
     <ItemGroup>
         <Compile Include="..\generated\**\*.cs" />
-        <Compile Include="..\patches\**\*.cs" />
+        <Compile Include="..\patches\**\*.cs" Exclude="..\patches\PlayerShadow.Render.cs;..\patches\N64ShadowProjection.cs;..\patches\N64ShadowVisibility.cs;..\patches\ShadowVisibility.cs" />
     </ItemGroup>
 
     <ItemGroup>

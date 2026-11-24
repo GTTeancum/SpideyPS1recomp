@@ -83,7 +83,7 @@ public sealed class Dma
                     uint word = _mem.ReadU32(packetAddress);
                     Hardware.GteScreen.VertexTag tag = _mem is PSMemory ps &&
                         ps.TryGetGteVertex(packetAddress, word, out var found) ? found : default;
-                    _gpu.WriteGp0(word, tag);
+                    _gpu.WriteGp0(word, tag, packetAddress);
                 }
                 uint next = header & 0xFFFFFFu;
                 if (next == 0xFFFFFFu || (next & 0x800000u) != 0) break;
@@ -99,7 +99,7 @@ public sealed class Dma
                 uint word = _mem.ReadU32(packetAddress);
                 Hardware.GteScreen.VertexTag tag = _mem is PSMemory ps &&
                     ps.TryGetGteVertex(packetAddress, word, out var found) ? found : default;
-                _gpu.WriteGp0(word, tag);
+                _gpu.WriteGp0(word, tag, packetAddress);
             }
         }
         else

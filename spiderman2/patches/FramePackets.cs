@@ -6,10 +6,11 @@ using RecompOne.Runtime.Memory;
 namespace Recompiled;
 
 /// <summary>Bounded double-buffered native draw commands for denser actors.</summary>
-public static class FramePackets
+public static partial class FramePackets
 {
     public const uint Capacity = 0x40000; // Two 256 KiB blocks, including retail safety slack.
     static readonly bool Trace = Environment.GetEnvironmentVariable("SPIDEY_PACKET_TRACE") == "1";
+    const uint PacketCursor = 0x800C2484;
     static uint _base, _peak;
     static bool _reported;
 
@@ -28,6 +29,7 @@ public static class FramePackets
     {
         uint frame = m.ReadU32(0x800C247C);
         uint pool = m.ReadU32(frame + 0x74);
+        ReusePacketPool(pool);
         if (!LooseWadOverrides.OwnsAllocation(pool)) return;
         _base = pool & 0x7FFFFFFF;
         m.WriteU32(c.GP + 0x8D0, _base + Capacity - 0x100);
@@ -36,7 +38,7 @@ public static class FramePackets
     public static void Audit(IMemory m)
     {
         if (!Trace || _base == 0) return;
-        uint cursor = m.ReadU32(0x800C2484) & 0x7FFFFFFF;
+        uint cursor = m.ReadU32(PacketCursor) & 0x7FFFFFFF;
         if (cursor < _base || cursor > _base + Capacity) return;
         uint used = cursor - _base;
         if (used <= _peak) return;

@@ -3,6 +3,8 @@ namespace RecompOne.Runtime.Events;
 /// <summary>fires for each primitive before it is drawns</summary>
 public sealed class RenderPrimEvent : GameEvent
 {
+    // Guest RAM address of the GP0 command word, or zero for immediate writes.
+    public uint CommandAddress;
     public int Count;
     public readonly int[] X = new int[4];
     public readonly int[] Y = new int[4];

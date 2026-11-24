@@ -4,6 +4,10 @@ Synced with GitHub issues on November 16, 2026 ([all issues](https://github.com/
 Local status notes describe this repository only.
 Remove completed items from this file; keep completion history in the linked issue notes.
 
+## Local SM2 suit testing
+
+- [ ] After the current SM2 playtest, stage the revised Earth-62412, Spidey New Design, and UK masks and verify them in the SM2 costume viewer.
+
 ## Open GitHub issues
 
 ### Bugs

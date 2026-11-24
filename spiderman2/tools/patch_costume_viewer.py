@@ -41,7 +41,7 @@ def main():
     f = re.sub(pattern, lambda m: m[0] if m[1] in ['4', '5'] else
                f'c.{dict([(2,"V0"),(3,"V1")])[int(m[1])]} = Recompiled.Costume.ReadSelected(m);', f)
     f = exact(f, 'm.WriteU8((c.A3 + 0x72u), (byte)c.S2);',
-              'Recompiled.Costume.WriteSelected(m, (int)c.S2);')
+              'Recompiled.Costume.SelectViewerRow(c, m);')
     f = exact(f, 'm.WriteU8((c.S5 + 0x15u), (byte)c.V1);',
               'm.WriteU8((c.S5 + 0x15u), (byte)c.V1);\n        Recompiled.Costume.ConfigureViewerList(m, c.S5);')
     f = exact(f, 'SpiderMan2.func_80017EF8(c, m);',

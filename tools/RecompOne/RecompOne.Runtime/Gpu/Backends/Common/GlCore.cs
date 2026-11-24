@@ -69,7 +69,8 @@ public sealed class GlCore : IGpuBackend
 
     GlDisplayRt? _kTarget;
     bool _kTransparent;
-    bool _kModelDepth, _pendingModelSurface, _kShadow;
+    bool _kModelDepth, _pendingModelSurface, _kSuitDepth, _kShadow;
+    const uint ShadowStencil = 1, SuitStencil = 2;
     int _kImage = -1;
     int _kBlend, _kSetMask, _kCheckMask, _kBackground, _kIgnoreCoverage;
     byte _kClearR, _kClearG, _kClearB, _kDrawClearR, _kDrawClearG, _kDrawClearB;
@@ -415,7 +416,8 @@ public sealed class GlCore : IGpuBackend
         int blend = f.BlendMode;
         int image = f.UseImage ? f.Image : -1;
         var target = Classify();
-        if (_count > 0 && (target != _kTarget || _kModelDepth != modelDepth || _kShadow != f.Shadow ||
+        bool suitDepth = modelDepth && _pendingModelSurface && !transparent;
+        if (_count > 0 && (target != _kTarget || _kModelDepth != modelDepth || _kSuitDepth != suitDepth || _kShadow != f.Shadow ||
             !DesiredMatches(transparent, blend, image, f.Background,
                 f.IgnoreCoverage))) Flush();
         if (_count + vertsNeeded > MaxVerts) Flush();
@@ -429,6 +431,7 @@ public sealed class GlCore : IGpuBackend
 
         _kTarget = target;
         _kModelDepth = modelDepth;
+        _kSuitDepth = suitDepth;
         _kShadow = f.Shadow;
         _kImage = image;
         _kBackground = f.Background ? 1 : 0;
@@ -638,12 +641,11 @@ public sealed class GlCore : IGpuBackend
         ResolveReplacement(f,
             (int)Math.Min(a.U, Math.Min(b.U, c.U)), (int)Math.Min(a.V, Math.Min(b.V, c.V)),
             (int)Math.Max(a.U, Math.Max(b.U, c.U)), (int)Math.Max(a.V, Math.Max(b.V, c.V)));
-        // Scene depth requires a title to normalize every actor precision mode.
-        // HUD, screen-space art, transparency and incomplete provenance retain
-        // native ordering. Texture cut-outs still discard before writing depth.
-        Begin(f, 3, (GpuHle.SceneDepthEnabled || _pendingModelSurface) &&
-            f.World && !f.Hud && !f.Background && (!f.SemiTrans || f.Shadow) &&
-            a.HasGteZ && b.HasGteZ && c.HasGteZ);
+        // SM1 uses native ordering for scenery and depth only for opaque suit faces.
+        bool depth = GpuHle.SceneDepthEnabled
+            ? f.World && !f.Hud && !f.Background && (!f.SemiTrans || f.Shadow)
+            : _pendingModelSurface && f.World && !f.SemiTrans;
+        Begin(f, 3, depth && a.HasGteZ && b.HasGteZ && c.HasGteZ);
         _verts[_count++] = V(a, f); _verts[_count++] = V(b, f); _verts[_count++] = V(c, f);
     }
 
@@ -952,9 +954,29 @@ public sealed class GlCore : IGpuBackend
         {
             rt.EnsureModelDepth(_gl, _frame);
             _gl.Enable(EnableCap.DepthTest);
-            _gl.DepthFunc(DepthFunction.Lequal);
-            _gl.DepthMask(!_kShadow);
-            if (_kShadow)
+            // The ordering table decides which ordinary surface is visible. Its
+            // camera depth is needed by shadows, but must never reject its color.
+            _gl.DepthFunc(!GpuHle.SceneDepthEnabled || _kShadow || _kSuitDepth ? DepthFunction.Lequal : DepthFunction.Always);
+            _gl.DepthMask(!GpuHle.SceneDepthEnabled || !_kShadow);
+            if (!_kShadow && GpuHle.SceneDepthEnabled)
+            {
+                _gl.Enable(EnableCap.StencilTest);
+                _gl.StencilMask(SuitStencil);
+                if (_kSuitDepth)
+                {
+                    // Seed depth wherever the suit first covers scenery. The
+                    // normal LEQUAL draw then resolves all overlapping suit faces.
+                    _gl.StencilFunc(StencilFunction.Notequal, (int)SuitStencil, SuitStencil);
+                    _gl.StencilOp(StencilOp.Keep, StencilOp.Keep, StencilOp.Replace);
+                    _gl.DepthFunc(DepthFunction.Always);
+                    _gl.Disable(EnableCap.Blend);
+                    _gl.DrawArrays(PrimitiveType.Triangles, _vertexFirst, (uint)_count);
+                    _gl.DepthFunc(DepthFunction.Lequal);
+                }
+                _gl.StencilFunc(StencilFunction.Always, _kSuitDepth ? (int)SuitStencil : 0, SuitStencil);
+                _gl.StencilOp(StencilOp.Keep, StencilOp.Keep, StencilOp.Replace);
+            }
+            if (GpuHle.SceneDepthEnabled && _kShadow)
             {
                 // Coplanar receiver: bias raster depth, never the projected geometry.
                 _gl.Enable(EnableCap.PolygonOffsetFill);
@@ -966,8 +988,9 @@ public sealed class GlCore : IGpuBackend
             // The first shadow triangle over a pixel marks it; later ones skip it.
             rt.EnsureModelDepth(_gl, _frame);
             _gl.Enable(EnableCap.StencilTest);
-            _gl.StencilMask(0xFF);
-            _gl.StencilFunc(StencilFunction.Equal, 0, 0xFF);
+            uint mask = GpuHle.SceneDepthEnabled ? ShadowStencil : 0xFFu;
+            _gl.StencilMask(mask);
+            _gl.StencilFunc(StencilFunction.Equal, 0, mask);
             _gl.StencilOp(StencilOp.Keep, StencilOp.Keep, StencilOp.Incr);
         }
         if (_legacy)

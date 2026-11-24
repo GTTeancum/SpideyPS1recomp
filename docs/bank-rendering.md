@@ -1,5 +1,169 @@
 # Bank rendering reports — November 16, 2026
 
+## November 22 SM1 bank entrance
+
+The bank entrance repair is in the staged SM1 executable, SHA-256
+`11654d48de7f0413f7244a4ba352d17a7b3c2ed1dcb2ddc6f41f3d6b629889c1`.
+
+On November 22 the tester confirmed the bank geometry fix during normal gameplay in the staged SM1 build.
+
+The playtest was on November 16 with an earlier build. The specific build is
+unknown. Commit `15deb3e` introduced horizontal scaling in GTE projection on
+August 29. Commit `e62d7ba` repaired native object bounds and GTE subdivision
+on September 8. Its SM1 hooks do not cover the CPU clipper. The same hooks are
+present in the September 29 `sm1-v1.1` tag, November 5 `6541518` and November
+10 `6d7a0c3`. The November 10 rollback `b292b97` returned to the November 5
+tree. The September 29 Windows release reproduced both gaps using its packaged
+executable, period costume files and the same bank camera positions.
+[Release, rollback and corrected views](../.local/bank-entrance/SM1-bank-projection-proof.png).
+
+The CPU clipper used fixed 4:3 bounds and rounded camera-space intersections.
+Its triangle and quad grids then used a CPU perspective divide that bypassed
+GTE subpixel projection and lost depth before texture interpolation. The repair
+carries the source vertices through the five actual clip planes, computes each
+edge intersection once for both position and the native texture/color weights,
+and propagates screen position and depth through the 15- and 25-vertex grids.
+Ordinary world geometry still draws in the game's ordering-table order.
+
+The headless, muted comparison covered 32 stationary bank views and 24 captures
+of a recorded approach and camera turn. At frame 2169 the sign-side region
+(x ≥ 855) went from 101,437 black pixels in the rollback to zero. At frame 1899
+the 129,736-pixel opening facing the elevator closed. In four consecutive
+rendered frames of the approach, all 418 triangles using the hallway wall
+palette carried depth at every vertex. Three additional 4:3 gameplay captures verified the sign, elevator and doorway.
+The regression suite passed 72 checks,
+including textured pixel readback and both 4:3 and widescreen clipping.
+[Recorded camera turn](../.local/bank-entrance/SM1-bank-walk.webp).
+
+### November 16 renderer comparison
+
+The earlier rollback build restored suit-only depth, the four native
+actor-transform hooks, the original per-list custom draw order and the player
+shadow used in the November 16 10:12 p.m. deployment. Its SHA-256 is
+`ae33b83a3518299aaeb6cda7a9fc8b2a2760a8b4e3e184491199be7b4134c1a9`.
+The two executables have matching compiled method bodies for all 36 methods
+in PlayerShadow, WorldFrustum, WorldSubpixel and Wide, and all 15 checked
+methods and wrappers for the bank world draw, clipping, subdivision and actor
+transforms.
+
+Each executable ran the same 32 hidden, muted bank captures with the slot 1
+save and the Amazing TASM suit. At frame 2169 the black wall gap beside THE
+BANK sign covers the same pixels in both images. All 101,437 pure black pixels
+in the right side (x ≥ 855) match in the two native captures. Character poses
+and lighting differ in some other views.
+[Archive and fresh build side by side](../.local/bank-entrance/SM1-bank-Nov16-vs-rebuilt.png).
+
+The November 21 staged retest confirmed the SM2 opening sweep. SM1 still had a
+vertical black strip between the wall panels by THE BANK sign. The strip stayed
+visible with the player and camera at rest. It also appeared on the opposite
+side of the picture looking back at the elevator.
+
+A hidden, muted SM1 run reproduced both views at player position
+`(2730, -97, -2850)` in `l1a4_t`. It used the staged Amazing TASM suit.
+The sign view reproduced with frame interpolation disabled as well.
+[Sign before](../.local/bank-occlusion/hall-seam/frame_01305.png) and
+[elevator before](../.local/bank-occlusion/hall-poses/frame_01899.png).
+
+SM1 has two CPU projection loops for clipped, subdivided faces. The triangle
+loop at `80079AE0` and quad loop at `8007A2D0` both divide camera X and Y by
+camera Z and add the original 512 × 240 screen centre. These vertices bypass
+the GTE widescreen projection and arrive at the GPU without depth. In the
+sign view, 48 wall triangles using CLUT 358 took that path. At the junction,
+the GTE placed one corner at X 299.51 with depth 446.51. The CPU placed its
+copy at X 313 using the 4:3 projection. The difference opens the visible gap
+and the missing depth also makes texture coordinates interpolate affinely.
+
+### Source history from the slot named a
+
+Slot 1 contains `L1A4_T`. Its 180 bytes match the November 16 card backup
+from 9:22 p.m. Eastern. The card format does not date individual slots. The
+November 18 history entry belongs to slot 3.
+
+The local executable archived before the Continue fix (`a73bd43d4994`) and
+the November 16 10:09 p.m. build (`b5d3f42bc6b0`) both tested depth only
+for replacement suit surfaces. By the 10:47 p.m. local build, `GlCore.DrawTri`
+also sent opaque world triangles through `LEQUAL`. Overlapping scenery drawn
+in PS1 ordering-table order could then lose pixels to a previous draw. This
+change subsequently landed in `911aebd` on November 21. The staged rollback
+(`1eaf85793040`) writes receiver depth with `ALWAYS` for ordinary scenery.
+The maximize change in `806e642` guards a host window size write.
+
+The archived method bodies for the SM1 world draw loop (`80076480`), world
+transform (`8007C2AC`), clipper (`80077EC8`), and both CPU grid builders
+(`80079574`, `80079DB8`) match before and after the depth change. All eight
+methods in `WorldSubpixel`, the three in `WorldFrustum`, and the widescreen
+classifier also match. The bank geometry, lighting/texture library, objects,
+trigger file and all 689 staged builtin asset files match the November 16
+installation manifest.
+
+An experimental SM1 build aligned the CPU-projected vertices with the original
+GTE edges, supplied camera Z to the texture interpolator and widened the two
+horizontal clip planes in both classification and intersection. At the same
+stationary position with interpolation enabled, the wall beside THE BANK and
+the floor edge facing the elevator meet in both directions. The experiment was removed when SM1 returned to the November 16 rendering code. [Hallway views before and after](../.local/bank-entrance/SM1-bank-hallway.png).
+
+### The black wedge through the doorway
+
+At the circled type of opening below the brown panel, a source-level ray
+through the recorded view crosses bank floor mesh 165 (`Fourth_11`, name CRC
+`47AC876B`) before the black face on `Third_01`. The floor is about 1,085
+camera units away. The face behind it is about 1,733 units away. The captured
+GPU packet carries RGB (0, 0, 0) at every corner of that face. Its authored
+color word at `l1a4_g.psx + 0x2C98 + 8` is `0x2C000000`.
+
+The bank entry script begins at `l1a4_t.trg + 0x6AA`. Its opcode 191 at
+`+0x76E` hides `Fourth_00` through `Fourth_28`. The native group setter
+at `8005F984` sets object flag bit 0. The visibility pass at `8007B304`
+checks that bit before the frustum planes, then sets bit 15 at `8007B5B4`.
+The draw loop at `8007660C` skips the object. Five archived bank snapshots
+taken on November 16 before the depth change already show `Fourth_11` with
+flags `0x8001`. The reported staged build has the same flags. The experimental CPU
+projection correction closed the hallway seams while the room script still
+hides the doorway floor. The available source and snapshots do not establish
+what first exposed that sightline during the user's playthrough.
+[Doorway capture](../.local/bank-occlusion/hall-trace/frame_01447.png).
+
+The original September v1.1 executable also draws the dark face below the door
+panel in a native 4:3 view. The new widescreen build shows it at the same
+doorway. The disc mesh contains the black face and the bank entry script
+controls the floor object in front of it.
+[4:3 release and corrected widescreen doorway](../.local/bank-entrance/SM1-doorway-comparison.png).
+
+## November 21 rollback in both games
+
+The scene-wide depth comparison introduced in `911aebd` could hide later
+scenery behind the backdrop. The SM2 opening camera sweep in `e1m0` exposed
+this at the Vicarious Visions billboard. Buildings on both sides disappeared
+partway up their façades. The same ordering change also affected SM1.
+
+Both games again draw ordinary geometry in the native ordering-table order.
+Opaque surfaces record the depth of the visible receiver for the N64 silhouette.
+Replacement suit faces still depth-test against each other. Textures still use
+the original per-vertex projection depth for perspective-correct interpolation.
+
+Hidden, muted SM2 runs captured 45 corresponding views from the level load
+through the opening sweep. At frame 1747, the rollback restores the tan tower
+and the striped tower on opposite sides of the sign. Frame 1987 restores the
+neighboring buildings seen through the unfinished floor. A further 20 captures
+follow the camera down to Spider-Man and Beast. [Billboard comparison](../.local/bank-geometry/SM2-billboard.png),
+[window comparison](../.local/bank-geometry/SM2-window.png),
+[animated sweep comparison](../.local/bank-geometry/SM2-opening-sweep.webp).
+
+SM1 runs covered the entrance in both `l1a3` and `l1a4` and a right-stick
+turn near the bank sign with the staged Amazing TASM suit. The 63 rollback
+captures showed the corridor, thresholds and bank walls. These routes did not
+reproduce the reported whole-section loss or establish where textures visibly
+warped. [Entrance](../.local/bank-occlusion/geometry-after-presented/frame_01200.png),
+[doorway during the turn](../.local/bank-occlusion/geometry-turn-after/frame_01410.png).
+
+The hidden GL pixel tests verify native draw order, suit self-occlusion and a
+receding wall whose perspective-correct sample differs from its affine sample.
+All 40 scene-depth checks, 234 shadow checks and 27 SM2 shadow checks passed.
+[Staged executable hashes](../.local/bank-geometry/deployment.json).
+
+The November 16 wall/hostage comparison below describes the superseded behavior.
+Native ordering can again show the bank hostage through a partition.
+
 ## NPC occlusion
 
 The user supplied three screenshots from the staged SM1 install. The second
