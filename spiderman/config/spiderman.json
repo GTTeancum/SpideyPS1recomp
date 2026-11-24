@@ -190,6 +190,34 @@
   ],
   "patches": [
     {
+      "overlay": "venom",
+      "function": "ptr_80293100",
+      "address": "8029321C",
+      "mode": "instruction",
+      "target": "Recompiled.FramePackets.BeginChaseMeter"
+    },
+    {
+      "overlay": "venom",
+      "function": "ptr_80293100",
+      "address": "8029331C",
+      "mode": "instruction",
+      "target": "Recompiled.FramePackets.EndChaseMeter"
+    },
+    {
+      "overlay": "superock",
+      "function": "ptr_80280EA4",
+      "address": "8028100C",
+      "mode": "instruction",
+      "target": "Recompiled.FramePackets.BeginChaseMeter"
+    },
+    {
+      "overlay": "superock",
+      "function": "ptr_80280EA4",
+      "address": "80281110",
+      "mode": "instruction",
+      "target": "Recompiled.FramePackets.EndChaseMeter"
+    },
+    {
       "overlay": "main",
       "address": "80071864",
       "mode": "instruction",

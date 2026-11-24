@@ -49,7 +49,7 @@ public sealed partial class Gpu
     // widescreen margins. Semi-transparent effects get the retail limit: a smoke or dust
     // sprite next to the camera projects 2000 pixels wide, the retail GPU drops it, and
     // drawing a stack of them additively whites out half the screen (SM2 E1M1 fight).
-    static bool RejectSpan(int spanX, int spanY, bool semi)
+    static bool RejectSpan(float spanX, float spanY, bool semi)
     {
         if (semi && (spanX > 1023 || spanY > 511))
         {
@@ -59,7 +59,7 @@ public sealed partial class Gpu
         return RejectSpan(spanX, spanY);
     }
 
-    static bool RejectSpan(int spanX, int spanY)
+    static bool RejectSpan(float spanX, float spanY)
     {
         if (spanY > Hle.GpuHle.MaxSpanY)
         {

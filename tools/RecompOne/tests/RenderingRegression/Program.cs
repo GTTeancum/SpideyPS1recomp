@@ -294,7 +294,12 @@ const uint gameplaySwap = 0x8002C2AC, menuFrame = 0x800B54A8, menuCursor = 0x800
     menuTable = 0x80095194, menuPoly = 0x8006A2F4, menuOther = 0x8006A2F8,
     menuGp = 0x800B47F4, menuRamp = menuGp + 0xEC8;
 #endif
-Recompiled.Wide.Install(gameplaySwap, nativeCenteredText: Recompiled.FramePackets.IsQuitPromptCommand);
+Func<uint, bool>? chaseMeter = null;
+#if !SM2
+chaseMeter = Recompiled.FramePackets.IsChaseMeterCommand;
+#endif
+Recompiled.Wide.Install(gameplaySwap, nativeCenteredText: Recompiled.FramePackets.IsQuitPromptCommand,
+    nativeChaseMeter: chaseMeter);
 var gpu = new RecompOne.Runtime.Gpu();
 foreach (bool preserve in new[] { false, true })
 foreach (float distance in new[] { 1000f, 20000f })
@@ -372,12 +377,14 @@ foreach (var corners in new uint[][] {
 // keeping ordinary particles and legitimate large saturated world surfaces.
 foreach (int drawY in new[] { 0, 256 })
 foreach (bool horizontal in new[] { false, true })
-foreach (var (lo, hi, expected) in new[] {
-    (-1028, -1021, 0), (1020, 1027, 0), (100, 107, 2), (-1024, 1023, 2) })
+foreach (var (command, lo, hi, expected) in new[] {
+    (0x2E808080u, -1028, -1021, 0), (0x2E808080u, 1020, 1027, 0),
+    (0x2E808080u, 100, 107, 2), (0x2E808080u, -1024, 1023, 0),
+    (0x2C808080u, -1024, 1023, 2) })
 {
     gpu.WriteGp0(0xE5000000u | (uint)drawY << 11);
     sink.Triangles.Clear();
-    gpu.WriteGp0(0x2E808080);
+    gpu.WriteGp0(command);
     for (int i = 0; i < 4; i++)
     {
         int x = horizontal ? ((i & 1) == 0 ? lo : hi) : 259 + (i & 1) * 7;
@@ -388,11 +395,14 @@ foreach (var (lo, hi, expected) in new[] {
                      (i < 2 ? 40u << 16 : 0));
     }
     bool pass = sink.Triangles.Count == expected;
-    Console.WriteLine($"GP0 effect wrap drawY={drawY} horizontal={horizontal} bounds={lo}..{hi}: triangles={sink.Triangles.Count} {(pass ? "PASS" : "FAIL")}");
+    Console.WriteLine($"GP0 span cmd={command:X8} drawY={drawY} horizontal={horizontal} bounds={lo}..{hi}: triangles={sink.Triangles.Count} {(pass ? "PASS" : "FAIL")}");
     if (!pass) failures++;
 }
 gpu.WriteGp0(0xE5000000);
-foreach (bool completeProjection in new[] { false, true })
+// The same encoded corners may represent an offscreen seven-pixel effect or a
+// genuinely oversized translucent sprite. Only the small projected triangles survive.
+foreach (var (completeProjection, large, expected) in new[] {
+    (false, false, 1), (true, false, 2), (true, true, 0) })
 {
     sink.Triangles.Clear();
     gpu.WriteGp0(0x2E808080);
@@ -400,16 +410,16 @@ foreach (bool completeProjection in new[] { false, true })
     {
         int x = 259 + (i & 1) * 7, y = (i >> 1) == 0 ? -1028 : -1021;
         uint word = (ushort)(short)x | (uint)(ushort)(short)y << 16;
-        var tag = new GteScreen.VertexTag(560, x + 0.25f, y + 0.75f, true)
+        var tag = new GteScreen.VertexTag(560, x + 0.25f, y + 0.75f + (large && i >= 2 ? 2048 : 0), true)
             { NativeScreen = word | 0x80000000u };
         if (!completeProjection && i == 0) tag = GteScreen.VertexTag.DepthOnly(560);
         gpu.WriteGp0(word, tag);
         gpu.WriteGp0((uint)(96 + (i & 1) * 24) | (uint)(208 + (i >> 1) * 24) << 8 |
                      (i < 2 ? 40u << 16 : 0));
     }
-    bool pass = sink.Triangles.Count == (completeProjection ? 2 : 1) &&
+    bool pass = sink.Triangles.Count == expected &&
         sink.Triangles.All(t => t.A.Y < -1020 && t.B.Y < -1020 && t.C.Y < -1020);
-    Console.WriteLine($"GP0 wrapped packet with complete projection={completeProjection}: precise XY retained {(pass ? "PASS" : "FAIL")}");
+    Console.WriteLine($"GP0 wrapped packet complete={completeProjection} large={large}: expected={expected} emitted={sink.Triangles.Count}, precise offscreen XY {(pass ? "PASS" : "FAIL")}");
     if (!pass) failures++;
 }
 // Exercise the actual native sphere + AABB object selector in the newly visible
@@ -556,47 +566,52 @@ if (Recompiled.FramePackets.IsQuitPromptCommand(packetPool + 4))
     failures++;
 }
 #if !SM2
+// Both chase overlays emit two markers, 19 rail tiles and two caps. Super Ock
+// follows these packets with a separate radiation gauge. The rail animates
+// through several texture frames and the two levels use different palettes.
+const int meterPackets = 23, bytesPerQuad = 40;
+memory.WriteU32(menuCursor, 0x80000000 | packetPool);
+Recompiled.FramePackets.BeginChaseMeter(cpu, memory);
+memory.WriteU32(menuCursor, 0x80000000 | (packetPool + meterPackets * bytesPerQuad));
+Recompiled.FramePackets.EndChaseMeter(cpu, memory);
+UsePool(secondPool);
+foreach (int clut in new[] { 225, 419 })
 foreach (int drawY in new[] { 0, 256 })
-foreach (int meterY in new[] { -16, 0, 28, 53, 54, 58, 90, 120, 230 })
-foreach (int x in new[] { 138, 174, 192, 246, 264, 462 })
+foreach (int meterY in new[] { -16, 28, 58, 120, 230 })
 {
-    var e = new RecompOne.Runtime.Events.RenderPrimEvent {
-        Count = 4, Textured = true, TexPage = 8, Clut = 419,
-        DrawRight = 511, DrawTop = drawY, DrawBottom = drawY + 239,
-    };
-    for (int i = 0; i < 4; i++)
+    bool pass = true;
+    for (int part = 0; part <= meterPackets; part++)
     {
-        e.X[i] = x + (i % 2) * 18; e.Y[i] = drawY + meterY + (i / 2) * 7;
-        e.U[i] = 240 + (i % 2) * 11; e.V[i] = 248 + (i / 2) * 7;
+        bool meter = part < meterPackets;
+        int x = part switch { 0 => 446, 1 => 430, 21 => 133, 22 => 480, 23 => 446, _ => 138 + 18 * (part - 2) };
+        int width = part switch { 0 or 1 => 30, 21 or 22 => 5, _ => 18 };
+        foreach (bool world in new[] { false, true })
+        {
+            var e = new RecompOne.Runtime.Events.RenderPrimEvent {
+                CommandAddress = packetPool + (uint)(part * bytesPerQuad + 4),
+                Count = 4, Textured = true, TexPage = 8, Clut = clut, DrawRight = 511,
+                DrawTop = drawY, DrawBottom = drawY + 239
+            };
+            for (int i = 0; i < 4; i++)
+            {
+                e.X[i] = x + (i % 2) * width; e.Y[i] = drawY + meterY + (i / 2) * 7;
+                e.U[i] = 240 + (i % 2) * 11; e.V[i] = 248 + (i / 2) * 7;
+                e.HasDepth[i] = world; e.Depth[i] = world ? 1000 : 0;
+            }
+            RecompOne.Runtime.Events.Event.Dispatch(e);
+            int ExpectedX(int native) => meter && !world ? 511 + (native - 511) * 1000 / 1333 : native;
+            pass &= e.World == world && (!meter || world || e.Hud) &&
+                    e.X[0] == ExpectedX(x) && e.X[1] == ExpectedX(x + width);
+        }
     }
-    RecompOne.Runtime.Events.Event.Dispatch(e);
-    bool pass = e.Hud && !e.World && e.X[0] == 511 + (x - 511) * 1000 / 1333 &&
-        e.X[1] == 511 + (x + 18 - 511) * 1000 / 1333;
-    Console.WriteLine($"Chase rail common anchor x={x} drawY={drawY} meterY={meterY}: {(pass ? "PASS" : "FAIL")}");
+    Console.WriteLine($"Chase markers, rail, caps and adjacent HUD clut={clut} drawY={drawY} meterY={meterY}: {(pass ? "PASS" : "FAIL")}");
     if (!pass) failures++;
 }
-foreach (var (page, clut, u, v, uw, vh) in new[] {
-    (8, 418, 108, 248, 3, 7), (12, 418, 52, 168, 3, 7),
-    (136, 3552, 126, 152, 17, 25), (138, 3616, 32, 208, 29, 29) })
-foreach (bool world in new[] { false, true })
-foreach (int drawY in new[] { 0, 256 })
-foreach (int meterY in new[] { -16, 16, 46, 58, 90, 120, 230 })
+UsePool(packetPool);
+if (Recompiled.FramePackets.IsChaseMeterCommand(packetPool + 4))
 {
-    var e = new RecompOne.Runtime.Events.RenderPrimEvent {
-        Count = 4, Textured = true, TexPage = page, Clut = clut,
-        DrawRight = 511, DrawTop = drawY, DrawBottom = drawY + 239,
-    };
-    for (int i = 0; i < 4; i++)
-    {
-        e.X[i] = 240 + (i % 2) * 30; e.Y[i] = drawY + meterY + (i / 2) * vh;
-        e.U[i] = u + (i % 2) * uw; e.V[i] = v + (i / 2) * vh;
-        e.HasDepth[i] = world; e.Depth[i] = world ? 1000 : 0;
-    }
-    RecompOne.Runtime.Events.Event.Dispatch(e);
-    bool pass = e.World == world && e.Hud == !world &&
-        e.X[0] == (world ? 240 : 511 + (240 - 511) * 1000 / 1333);
-    Console.WriteLine($"Chase cap/marker page={page} clut={clut} world={world}: {(pass ? "PASS" : "FAIL")}");
-    if (!pass) failures++;
+    Console.WriteLine("Reused draw buffer retained old chase meter packets: FAIL");
+    failures++;
 }
 #endif
 RecompOne.Runtime.Config.ConfigManager.Game.Widescreen = oldWide;

@@ -146,7 +146,7 @@ public static class Program
 
         // Precise projected geometry supplies the wide view. Repeating pixels
         // from the old 4:3 boundary invents stretched surfaces in uncovered areas.
-        Wide.Install(nativeCenteredText: FramePackets.IsQuitPromptCommand);
+        Wide.Install(nativeCenteredText: FramePackets.IsQuitPromptCommand, nativeChaseMeter: FramePackets.IsChaseMeterCommand);
         RecompOne.Runtime.Hle.GpuPrims.ClearAfterEveryDrawOTag = true;
         PlayerShadow.Install();
         // World vertices reach the GTE camera-relative; the camera position lets frame

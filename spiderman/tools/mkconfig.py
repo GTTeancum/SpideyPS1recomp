@@ -208,6 +208,14 @@ def main():
     for address, hook in [('80017D68', 'BeginQuitPrompt'), ('80017D74', 'EndQuitPrompt')]:
         patches.append({'overlay': 'main', 'function': 'func_80017AF4', 'address': address,
                         'mode': 'instruction', 'target': 'Recompiled.FramePackets.' + hook})
+    # Each overlay submits its two markers, nineteen rail tiles and both caps together.
+    # End Super Ock's range before its separate radiation gauge.
+    for overlay, function, start, end in [
+            ('venom', 'ptr_80293100', '8029321C', '8029331C'),
+            ('superock', 'ptr_80280EA4', '8028100C', '80281110')]:
+        for address, hook in [(start, 'BeginChaseMeter'), (end, 'EndChaseMeter')]:
+            patches.append({'overlay': overlay, 'function': function, 'address': address,
+                            'mode': 'instruction', 'target': 'Recompiled.FramePackets.' + hook})
     cfg = {
         'game': {'id': 'SLUS-00875', 'name': 'SpiderMan', 'output': '../generated'},
         'cue': '../extracted',

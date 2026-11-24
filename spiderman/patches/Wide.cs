@@ -36,7 +36,7 @@ public static class Wide
     const uint Sm1GameplaySwap = 0x8002C2AC;
     static uint _gameplaySwap;
     static bool _defaultEnabled;
-    static Func<uint, bool> _nativeCenteredText;
+    static Func<uint, bool> _nativeCenteredText, _nativeChaseMeter;
 
     public static bool Enabled { get; private set; }
 
@@ -48,7 +48,7 @@ public static class Wide
     /// uses the default; SM2 supplies its independently measured main-loop address.
     /// </param>
     public static void Install(uint gameplaySwap = Sm1GameplaySwap, bool completeBackdrop = false,
-        bool defaultEnabled = false, Func<uint, bool> nativeCenteredText = null)
+        bool defaultEnabled = false, Func<uint, bool> nativeCenteredText = null, Func<uint, bool> nativeChaseMeter = null)
     {
         // Before the widescreen bail-out, so the same measurement can be taken in 4:3.
         // SPIDEY_WIDE_DEBUG=1 paints the background fill magenta, which is the only way
@@ -59,6 +59,7 @@ public static class Wide
 
         _defaultEnabled = defaultEnabled;
         _nativeCenteredText = nativeCenteredText;
+        _nativeChaseMeter = nativeChaseMeter;
         GpuHle.WidescreenSupported = true;
         GpuHle.WidescreenDefault = defaultEnabled;
         GpuHle.WideBackgroundCompletion = completeBackdrop &&
@@ -193,7 +194,7 @@ public static class Wide
             e.Hud = true;
             return;
         }
-        if (aligned && IsChaseMeter(e))
+        if (aligned && e.Textured && _nativeChaseMeter?.Invoke(e.CommandAddress) == true)
         {
             // The rail spans the corner classifier's boundary. Its caps, repeated
             // middle tiles and moving heads must share one coordinate transform.
@@ -254,29 +255,6 @@ public static class Wide
     {
         for (int i = 0; i < e.Count; i++)
             if (!e.HasDepth[i]) return false;
-        return true;
-    }
-
-    static bool IsChaseMeter(RenderPrimEvent e)
-    {
-        if (_gameplaySwap != Sm1GameplaySwap || !e.Textured || e.Count != 4) return false;
-
-        // Native Chase Venom HUD atlas identities, measured in both draw buffers.
-        // HUD transitions move these outside the top quarter, so classify by
-        // atlas identity, not position. The caller already excludes GTE geometry.
-        var region = (e.TexPage & ~0x60, e.Clut) switch
-        {
-            (8, 418) => (108, 248, 111, 255), // left cap
-            (12, 418) => (52, 168, 55, 175), // right cap
-            (8, 419) => (240, 248, 251, 255), // repeated rail
-            (136, 3552) => (126, 152, 143, 177), // Spider-Man marker
-            (138, 3616) => (32, 208, 61, 237), // Venom marker
-            _ => (-1, -1, -1, -1),
-        };
-        if (region.Item1 < 0) return false;
-        for (int i = 0; i < e.Count; i++)
-            if (e.U[i] < region.Item1 || e.U[i] > region.Item3 ||
-                e.V[i] < region.Item2 || e.V[i] > region.Item4) return false;
         return true;
     }
 

@@ -48,10 +48,21 @@ public sealed partial class Gpu
     {
         int spanX = Math.Max(a.X, Math.Max(b.X, c.X)) - Math.Min(a.X, Math.Min(b.X, c.X));
         int spanY = Math.Max(a.Y, Math.Max(b.Y, c.Y)) - Math.Min(a.Y, Math.Min(b.Y, c.Y));
-        // Complete validated projections already bypass the wrapped integer XY.
-        if (!(a.HasSubpixel && b.HasSubpixel && c.HasSubpixel) &&
-            RejectCoordinateWrap(a, b, c, spanX, spanY)) return;
-        if (RejectSpan(spanX, spanY, semi)) return;
+        bool projected = a.HasSubpixel && b.HasSubpixel && c.HasSubpixel;
+        if (!projected && RejectCoordinateWrap(a, b, c, spanX, spanY)) return;
+
+        // A small effect crossing the GP0 sign boundary can have a 2041-pixel
+        // integer span. Enforce the particle size limit on the coordinates the
+        // backend will actually draw when all three projections are trustworthy.
+        if (semi && projected)
+        {
+            float width = MathF.Max(a.RenderX, MathF.Max(b.RenderX, c.RenderX))
+                        - MathF.Min(a.RenderX, MathF.Min(b.RenderX, c.RenderX));
+            float height = MathF.Max(a.RenderY, MathF.Max(b.RenderY, c.RenderY))
+                         - MathF.Min(a.RenderY, MathF.Min(b.RenderY, c.RenderY));
+            if (RejectSpan(width, height, semi)) return;
+        }
+        else if (RejectSpan(spanX, spanY, semi)) return;
 
         if (tex && world)
             GpuHle.NoteWorldGeometry(a.Z, b.Z, c.Z,

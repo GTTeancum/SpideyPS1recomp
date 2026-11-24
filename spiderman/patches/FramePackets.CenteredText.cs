@@ -6,31 +6,45 @@ namespace Recompiled;
 
 public static partial class FramePackets
 {
-    static uint _pool, _promptStart;
-    // The two native draw buffers can be built and submitted on different frames.
-    static readonly Dictionary<uint, (uint Start, uint End)> PromptByPool = new(2);
+    static uint _pool;
+    static readonly PacketRange QuitPrompt = new();
 
-    public static void BeginQuitPrompt(CpuContext c, IMemory m) =>
-        _promptStart = m.ReadU32(PacketCursor) & 0x7FFFFF;
-
-    public static void EndQuitPrompt(CpuContext c, IMemory m)
+    // A native HUD draw can be submitted after the other buffer has started.
+    sealed class PacketRange
     {
-        uint end = m.ReadU32(PacketCursor) & 0x7FFFFF;
-        if (_promptStart != 0 && end > _promptStart) PromptByPool[_pool] = (_promptStart, end);
-        _promptStart = 0;
+        readonly Dictionary<uint, (uint Start, uint End)> _byPool = new(2);
+        uint _start;
+
+        public void Begin(IMemory m) => _start = m.ReadU32(PacketCursor) & 0x7FFFFF;
+
+        public void End(IMemory m)
+        {
+            uint end = m.ReadU32(PacketCursor) & 0x7FFFFF;
+            if (_start != 0 && end > _start) _byPool[_pool] = (_start, end);
+            _start = 0;
+        }
+
+        public bool Contains(uint address)
+        {
+            foreach (var range in _byPool.Values)
+                if (address >= range.Start && address < range.End) return true;
+            return false;
+        }
+
+        public void Reuse(uint pool)
+        {
+            _start = 0;
+            _byPool.Remove(pool);
+        }
     }
 
-    public static bool IsQuitPromptCommand(uint address)
-    {
-        foreach (var range in PromptByPool.Values)
-            if (address >= range.Start && address < range.End) return true;
-        return false;
-    }
+    public static void BeginQuitPrompt(CpuContext c, IMemory m) => QuitPrompt.Begin(m);
+    public static void EndQuitPrompt(CpuContext c, IMemory m) => QuitPrompt.End(m);
+    public static bool IsQuitPromptCommand(uint address) => QuitPrompt.Contains(address);
 
     static void ReusePacketPool(uint pool)
     {
         _pool = pool & 0x7FFFFF;
-        _promptStart = 0;
-        PromptByPool.Remove(_pool);
+        QuitPrompt.Reuse(_pool);
     }
 }

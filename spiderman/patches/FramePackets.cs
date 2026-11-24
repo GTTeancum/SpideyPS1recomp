@@ -15,6 +15,12 @@ public static partial class FramePackets
     static uint _base, _peak;
     const uint PacketCursor = 0x800B54B0;
 
+    static readonly PacketRange ChaseMeter = new();
+
+    public static void BeginChaseMeter(CpuContext c, IMemory m) => ChaseMeter.Begin(m);
+    public static void EndChaseMeter(CpuContext c, IMemory m) => ChaseMeter.End(m);
+    public static bool IsChaseMeterCommand(uint address) => ChaseMeter.Contains(address);
+
     public static bool TryAllocate(CpuContext c)
     {
         // Only the two primitive pools in func_80061230, not its ordering tables.
@@ -28,6 +34,7 @@ public static partial class FramePackets
         uint frame = m.ReadU32(0x800B54A8);
         uint pool = m.ReadU32(frame+0x74);
         ReusePacketPool(pool);
+        ChaseMeter.Reuse(_pool);
         if (!LooseWadOverrides.OwnsAllocation(pool)) return;
         _base = pool & 0x7FFFFFFF;
         // Preserve retail's 256-byte slack and per-primitive capacity checks.
