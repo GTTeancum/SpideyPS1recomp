@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.902797637826123,
   "neutralBounds": [
     [
-      -561.3486938476562,
-      -1642.13916015625,
-      -482.02392578125
+      -562.9173583984375,
+      -1736.209716796875,
+      -311.0000305175781
     ],
     [
-      561.6083984375,
+      560.0393676757812,
       1719.0,
-      311.41839599609375
+      279.7389831542969
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0005529118257072696,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Native_american_D.png": "72b03f84e383a6d63584d64dece2ed8db92cc425bc3dbd5b357f0da00f6a4c30"
   },
-  "outputSha256": "9fad3a631fd7dcf0f94e620bf36189d0ca469683e34a9c0376ffc599b6c4cda0",
+  "outputSha256": "b5e7f86df528772f1dee65f53bc5c73133d593c75a51b9688d857a13e06285b2",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

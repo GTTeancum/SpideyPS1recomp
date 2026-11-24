@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027958833897448,
   "neutralBounds": [
     [
-      -542.8626098632812,
-      -1744.9571533203125,
-      -617.7333984375
+      -544.3499755859375,
+      -1827.026611328125,
+      -363.807373046875
     ],
     [
-      540.3079833984375,
-      1719.0,
-      337.62469482421875
+      538.81982421875,
+      1697.214111328125,
+      354.1190185546875
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0005574487458943622,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Spider_Herc_D.png": "b4990dd848c8ea4c4afdfe4b8e43c1672add3d502d210db0889b3966b5a89334"
   },
-  "outputSha256": "36a63f48a424a9ebcb3cce903b3f1ec48e61991a678875cbe7536edd68f512c4",
+  "outputSha256": "b091071402ed1203ecff77ba14d06428b20ef260f84e044ae58ec1d136a18e43",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

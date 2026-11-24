@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027954168207218,
   "neutralBounds": [
     [
-      -527.9633178710938,
-      -1654.37255859375,
-      -429.979248046875
+      -527.9631958007812,
+      -1727.099853515625,
+      -311.0
     ],
     [
-      526.9595947265625,
-      1719.0,
-      283.1219177246094
+      526.959716796875,
+      1718.9998779296875,
+      283.16290283203125
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0006058443323126994,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanStealth_Red_D.png": "14d92308111c41d65bb352e99eb4310dd097a2b41439e388a0769c9816819bab"
   },
-  "outputSha256": "319ed735ab7dbcc2056c196033382568761a70025021d741d88c8e5a1eaeba9d",
+  "outputSha256": "09fb3d8e311ac79428e48f1baa4a03b4a35735a1b2172ffd2c47e3d20cbe6559",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -526,5 +526,13 @@
       ],
       "slot": 0
     }
-  ]
+  ],
+  "headUvRepair": {
+    "method": "inset native head-island boundary UVs",
+    "originalSha256": "319ed735ab7dbcc2056c196033382568761a70025021d741d88c8e5a1eaeba9d",
+    "repairedSha256": "c2c0bb5b483ad1a7a438e92a78c8c1a03f5d8529aa44fc148a3af92cc13e635f",
+    "corners": 70,
+    "changedBytes": 84,
+    "preserved": "all non-UV actor bytes and external textures"
+  }
 }

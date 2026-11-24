@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027996182447742,
   "neutralBounds": [
     [
-      -609.4305419921875,
-      -1629.2362060546875,
-      -435.863037109375
+      -611.038818359375,
+      -1710.199951171875,
+      -311.0
     ],
     [
-      609.4288940429688,
+      607.8194580078125,
       1718.9998779296875,
-      294.8484191894531
+      301.3055725097656
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0006101150920585496,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Peter_Urich_D.png": "5407e594c7a5957b9fb98e92d0b7b8e26e37b437f7f1be280fd98cc4778049c0"
   },
-  "outputSha256": "0bf44cde77b46a4d88ccfd78ca93583ee7768d12ddb6d31645af05fee52c0cb6",
+  "outputSha256": "7412345b9f236e47fd629060788b8ce3715909336cc8828806e68876fd86e288",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

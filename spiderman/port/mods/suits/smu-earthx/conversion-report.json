@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027940770818161,
   "neutralBounds": [
     [
-      -555.4104614257812,
-      -1639.988525390625,
-      -474.5232238769531
+      -555.4105224609375,
+      -1715.0498046875,
+      -482.386962890625
     ],
     [
       555.260986328125,
       1719.0,
-      282.72967529296875
+      280.8526916503906
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0005866473866262822,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\SpiderEarthX_D.png": "ad1f755703ec73febf1dbf41a1cd3b403b5ceee509d097f90cc904d13126d87a"
   },
-  "outputSha256": "e8fe9021a1ad5b2d9faadbe60a3071d4721f4765d82f9f358a073b7712922093",
+  "outputSha256": "6e875331ae1981917251e77cac2e88f1d1ed640a2ade28800aedc31d7934452e",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -526,5 +526,9 @@
       ],
       "slot": 0
     }
-  ]
+  ],
+  "headUvRepair": {
+    "method": "inset native skull centerline UVs",
+    "corners": 28
+  }
 }

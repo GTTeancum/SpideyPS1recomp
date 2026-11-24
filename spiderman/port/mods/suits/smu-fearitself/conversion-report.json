@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027943410607323,
   "neutralBounds": [
     [
-      -709.0314331054688,
-      -1726.9464111328125,
-      -569.8536987304688
+      -710.518798828125,
+      -1821.3065185546875,
+      -311.5310363769531
     ],
     [
-      709.1507568359375,
-      1719.0,
-      278.70654296875
+      707.6624145507812,
+      1698.1593017578125,
+      256.2759704589844
     ]
   ],
   "sourceBindReconstructionMaxError": 0.000257338096616877,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\FearItself_D.png": "4cc9f84b90b2beed02c1d3119e2d4f5f2913327ccd9258f790a168b5fa238bc8"
   },
-  "outputSha256": "76cf80512eb2e8bc9918afbb89028871274aa5258ac3064f940526f65abe64b3",
+  "outputSha256": "eee5937bec7e9a965869966b21a233259c0e1ca4293b62cad7f310a683e3a369",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

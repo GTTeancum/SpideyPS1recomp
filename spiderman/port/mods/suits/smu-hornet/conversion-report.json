@@ -108,13 +108,13 @@
   "neutralBounds": [
     [
       -673.4359741210938,
-      -1636.06787109375,
-      -459.7093505859375
+      -1709.9580078125,
+      -311.0
     ],
     [
       670.7946166992188,
       1719.0001220703125,
-      459.3604736328125
+      621.9978637695312
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0005675185398104077,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanHornet_D.png": "13524ae24143d828f6973e09cbabec2baaa7c2dc473fb987e3897d150f65b58d"
   },
-  "outputSha256": "4b205348dda532d49a202c7439b390cea413ecda5bb8ae56a0e7a394a9c4a7a8",
+  "outputSha256": "5bd54c93c0bdc09f6a457206bde863cd7adb44a4a5be2bc1d1f6dd98377d7af9",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

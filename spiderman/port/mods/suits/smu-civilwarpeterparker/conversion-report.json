@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.90279812952205,
   "neutralBounds": [
     [
-      -530.0791015625,
-      -1700.1126708984375,
-      -526.7154541015625
+      -531.566650390625,
+      -1808.6480712890625,
+      -378.5682373046875
     ],
     [
-      530.0785522460938,
+      528.59033203125,
       1719.0001220703125,
-      498.885009765625
+      513.47314453125
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0005857873838976957,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\CivilWarPeterParker_D.png": "6f09d80781724b39b08ae23ad66aab6bf2ce9306ac72b3b6d888753bf9656c5e"
   },
-  "outputSha256": "158164a70f18a30de32e99ff4ad171f8a6b53ba6cd266abc2667ef71a7c2e279",
+  "outputSha256": "baf2168c9ddb98400ff6f984e2bb4125f2e0eeb6ae4c13aa184623b88ee4cfd2",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -526,5 +526,9 @@
       ],
       "slot": 0
     }
-  ]
+  ],
+  "headUvRepair": {
+    "method": "inset native skull centerline UVs",
+    "corners": 62
+  }
 }

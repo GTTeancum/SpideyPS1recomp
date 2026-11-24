@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027978335016634,
   "neutralBounds": [
     [
-      -551.6024780273438,
-      -1768.27880859375,
-      -764.64208984375
+      -553.0900268554688,
+      -1847.147705078125,
+      -311.4477233886719
     ],
     [
-      553.4681396484375,
-      1719.0,
-      304.48919677734375
+      551.9799194335938,
+      1669.3236083984375,
+      298.40997314453125
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0007801700294294278,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman2020_D.png": "aa3fa04285d2d29c75455eb5051f5694703f6c57f050eb6dd8575dd5a6f45302"
   },
-  "outputSha256": "2a378699925b21c8263225ef6f6ed06bec8fa43d7b3b67a478a5a6ab57af9472",
+  "outputSha256": "b3db482bc264520c911bae14b40f80fbed1a3d95be104f5792ded43f4036a56d",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -526,5 +526,9 @@
       ],
       "slot": 0
     }
-  ]
+  ],
+  "headUvRepair": {
+    "method": "inset native skull centerline UVs",
+    "corners": 70
+  }
 }

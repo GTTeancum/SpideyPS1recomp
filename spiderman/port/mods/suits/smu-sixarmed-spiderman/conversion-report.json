@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027944068536436,
   "neutralBounds": [
     [
-      -693.3776245117188,
-      -2187.02197265625,
-      -571.0525512695312
+      -696.111328125,
+      -2082.339599609375,
+      -311.0
     ],
     [
-      688.9237060546875,
+      686.197509765625,
       1719.0,
-      1215.89892578125
+      903.5363159179688
     ]
   ],
   "sourceBindReconstructionMaxError": 0.00029981966099512647,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\SixArmed_SpiderMan_D.png": "b1f72701251fa043244fe84044e3d87f88a60fbca9ddcdf3216f5f11fb90c41f"
   },
-  "outputSha256": "f4f0b63f383889538eed9d76915ebe1dec993b0591e08a062dea371c9fdf8455",
+  "outputSha256": "82064b999eb47b3f7113cc7355c92194090c35c94b8adb624594a4c594b266bc",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027945998675877,
   "neutralBounds": [
     [
-      -585.8294677734375,
-      -1734.7060546875,
-      -568.4325561523438
+      -587.3169555664062,
+      -1843.6932373046875,
+      -433.618896484375
     ],
     [
-      585.831298828125,
-      1719.0,
-      490.80706787109375
+      584.343017578125,
+      1694.0262451171875,
+      385.703369140625
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0006102005954744527,
@@ -125,7 +125,7 @@
     "C:\\Programming\\SMU-Costumes\\textures-png\\SpaceSuitGlass_D.png": "4103ffd532593505b2ad12941d7a888ea0cc9a44239a285559a523e2ac47dce8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\SpaceSuit_D.png": "e966e210117a5f66da0e96376c17a34cbc983e8f0e2fd043c0fce79a2460cfd7"
   },
-  "outputSha256": "182fd0527fb04a898407bea9b5b73408c9ac8c7d6714b9abe443a4207cb65952",
+  "outputSha256": "ecbc7d87ce6e9fa247a030b436ae63bd830f57f2f176401f13179f3362cdd08a",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

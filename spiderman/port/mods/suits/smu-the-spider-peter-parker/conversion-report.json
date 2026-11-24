@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027964285607821,
   "neutralBounds": [
     [
-      -506.84039306640625,
-      -1638.4093017578125,
-      -447.8089599609375
+      -508.32794189453125,
+      -1720.068603515625,
+      -311.7025451660156
     ],
     [
-      505.7607116699219,
+      504.2492980957031,
       1719.0001220703125,
-      271.10174560546875
+      246.33554077148438
     ]
   ],
   "sourceBindReconstructionMaxError": 0.000608216549608187,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\The_Spider_Peter_Parker_D.png": "65b45e1626fd3f4668016e49185773023d583740a5d66b75576f341aa75b4a9e"
   },
-  "outputSha256": "01ec26bcfe4bf45fb96bab127927e930e25fd2b494cec802f004ced9817e2c1c",
+  "outputSha256": "8cd80b8cf33ec88597cc3cd2b72a07e3cf5397c03ea496ac407ceaa23fb90062",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

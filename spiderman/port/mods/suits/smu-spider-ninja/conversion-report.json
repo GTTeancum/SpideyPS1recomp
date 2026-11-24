@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027977171385596,
   "neutralBounds": [
     [
-      -519.2127685546875,
-      -1602.2730712890625,
-      -496.45574951171875
+      -520.7001953125,
+      -1706.9583740234375,
+      -350.16070556640625
     ],
     [
-      520.65625,
+      519.1680297851562,
       1719.0,
-      271.2324523925781
+      248.17724609375
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0005457249453684199,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Spider_ninja_D.png": "461c39b3d543edc095d5d8bcc344fa79e2857eb54869ca21c98496265070f2c2"
   },
-  "outputSha256": "9ffc784df5a93285fd429121b9eda44e39d4ced1ab8a13e00612a58b964ab165",
+  "outputSha256": "36f6e52d12b30801240c4088abd421c7ab10ad5b20ab81497f6b0cbde453a4bd",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

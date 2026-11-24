@@ -1,6 +1,7 @@
 """Independent native v4 decoder, retained from the negative audit for cross-checks."""
 import struct,hashlib
 import numpy as np
+from PIL import Image
 def H(b,p):return struct.unpack_from('<H',b,p)[0]
 def U(b,p):return struct.unpack_from('<I',b,p)[0]
 def sha(b):return hashlib.sha256(b).hexdigest()
@@ -71,3 +72,37 @@ def parse(b):
         meshes.append({'positions':verts,'owners':owners,'source_vertices':source_vertices,'faces':faces})
     parents=list(struct.unpack('<'+'H'*count,tags[0x52454948]))
     return {'origins':origins,'meshes':meshes,'triangles':tris,'textures':textures,'parents':parents,'sha256':sha(b),'names':names}
+
+
+def encode_palette8(source_image, alpha_bound):
+    resized=source_image.resize((128,128),Image.Resampling.LANCZOS)
+    small=resized.convert('RGB').quantize(colors=255 if alpha_bound else 256,method=Image.Quantize.MEDIANCUT)
+    rgb=np.array(small.getpalette(),np.uint16).reshape(-1,3)
+    pal=np.zeros(256,np.uint16);pal[:len(rgb)]=((rgb[:,0]>>3)|((rgb[:,1]>>3)<<5)|((rgb[:,2]>>3)<<10))
+    pal[pal==0]=0x8000;pal[pal==0x7c1f]=0xfc1f
+    rows=np.array(small)
+    if alpha_bound:
+        pal[255]=0;rows[np.array(resized.getchannel('A'))<128]=255
+    return pal, rows
+
+
+def replace_diffuse_fallback(actor, image):
+    """Regenerate slot zero of an existing native retarget actor using the converter's encoder."""
+    pos = U(actor, 4)
+    while U(actor, pos) != 0xffffffff:
+        pos += 8 + U(actor, pos+4)
+    mesh_count = U(actor, 12 + 36 * U(actor, 8))
+    pos += 4 + 4*mesh_count
+    pos += 4 + 4*U(actor, pos)   # material IDs
+    pos += 4 + 36*U(actor, pos)  # 16-color palettes
+    count = U(actor, pos)
+    palette_table = pos + 4
+    table = palette_table + 516*count
+    texture = U(actor, table+4)
+    if struct.unpack_from('<IHH', actor, texture+12) != (0, 128, 128) or not U(actor, texture+4) & 0x100:
+        raise ValueError('Expected a 128x128 diffuse texture in slot zero')
+    key = U(actor, texture+8)
+    offset = next(k for k in range(palette_table, table, 516) if U(actor, k) == key)
+    palette, indices = encode_palette8(image, False)
+    struct.pack_into('<256H', actor, offset+4, *palette)
+    actor[texture+20:texture+20+indices.size] = indices.tobytes()

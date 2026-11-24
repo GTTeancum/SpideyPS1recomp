@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027981079077471,
   "neutralBounds": [
     [
-      -534.167724609375,
-      -1608.87646484375,
-      -527.647705078125
+      -535.6550903320312,
+      -1710.0128173828125,
+      -312.1431884765625
     ],
     [
-      533.1168212890625,
-      1719.0,
-      339.7616271972656
+      531.6284790039062,
+      1699.6632080078125,
+      277.079833984375
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0005565948363255302,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\HobartBrown_D.png": "472c2ae617c34193a5e4021045f047d38015e817b43c2aa908cf08f126054055"
   },
-  "outputSha256": "b1e7ab479ec0adfcd5e2bd917a46f74e8d76df5c8bad7953090e898ceb08bcdd",
+  "outputSha256": "72b6489a8d780e123ee178c97cc2a5778315e80555af6ef4b357605ae4260fa6",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

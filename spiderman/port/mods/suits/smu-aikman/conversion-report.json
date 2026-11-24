@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027978057173993,
   "neutralBounds": [
     [
-      -556.2584228515625,
-      -1604.8453369140625,
-      -462.149658203125
+      -557.745849609375,
+      -1689.09716796875,
+      -311.0
     ],
     [
-      556.3309326171875,
+      554.8427734375,
       1718.9998779296875,
-      287.1575927734375
+      269.9751281738281
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0006087684319027176,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Spiderman_Aikman_D.png": "9b37a3020c73dc192f8156e601a5f3eaf24f317d68a0a9bf165b88e99bc15eb7"
   },
-  "outputSha256": "d35bc709b55a3203af41ef7d22f3069b33345b2b5f4ba9ed2b314541fd9cd2fc",
+  "outputSha256": "cecab65fb6396c0c5037a7a6116961a17e206d06375a5453f69ed0e37c5b1bae",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

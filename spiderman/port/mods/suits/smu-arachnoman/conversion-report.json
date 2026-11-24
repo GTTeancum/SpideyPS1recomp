@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027961319707166,
   "neutralBounds": [
     [
-      -533.0105590820312,
-      -1639.94287109375,
-      -580.6534423828125
+      -534.4981079101562,
+      -1735.64599609375,
+      -311.83380126953125
     ],
     [
-      532.2979736328125,
-      1719.0001220703125,
-      282.56756591796875
+      530.809814453125,
+      1699.55322265625,
+      261.2043151855469
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0006034388443367789,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\ArachnoMan_D.png": "f7faf7ff4b3e0fe720e87d139eea53c53bb6936e70ec4f801fc42139da3b4254"
   },
-  "outputSha256": "5e27063afdd68025109f68851ff28288eac497586df96c4806b70a00cf159c40",
+  "outputSha256": "21b400a8a9cc4f708bdbd7dfcfee3bd1fd12961ce89cbec760675bcbaead28d3",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

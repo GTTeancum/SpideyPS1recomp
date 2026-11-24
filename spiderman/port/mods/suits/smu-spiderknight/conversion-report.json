@@ -108,13 +108,13 @@
   "neutralBounds": [
     [
       -598.031005859375,
-      -1881.1717529296875,
-      -441.2081298828125
+      -1905.0660400390625,
+      -363.3345031738281
     ],
     [
-      592.0296020507812,
+      592.029541015625,
       1719.000244140625,
-      442.56829833984375
+      481.0115661621094
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0003940489270917169,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Knight_D.png": "23161a445e11433b5052133bc024d7acebd75ec5d3546e9c8dceee74858f8a26"
   },
-  "outputSha256": "dae1fe8efafce684a0be8135599e660a00cafac4b4cb64530da5c68d3bb3da7d",
+  "outputSha256": "cac6e510d5029927db5f105145864ab3dd97b7a72c08f0238e3d4d1d53c40aa7",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

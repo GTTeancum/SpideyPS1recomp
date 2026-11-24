@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027954168207218,
   "neutralBounds": [
     [
-      -527.9633178710938,
-      -1654.2821044921875,
-      -429.979248046875
+      -527.9631958007812,
+      -1727.00927734375,
+      -311.0000305175781
     ],
     [
-      526.9595947265625,
+      526.959716796875,
       1719.0,
-      283.1219177246094
+      283.16290283203125
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0005654915139530203,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanBulletPoints_D.png": "45fca8a696cdcb9f4703b7f02ee467c18f24d4162c7339f9c91af8d037118024"
   },
-  "outputSha256": "684778f4a21482d90d1bba0c375b52d0cbae4d5ac3bdecd97f8d9c84967e2bf3",
+  "outputSha256": "e19f978b9730368e3fc7a3a4844630aeed1ed6663c02e06815d09a59a7a1963a",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

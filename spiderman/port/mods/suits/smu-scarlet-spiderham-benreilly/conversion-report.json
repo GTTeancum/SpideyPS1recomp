@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Scarlet_SpiderHam_BenReilly_D.png": "0c225d64d11906c368fa60d0333525f130298aa4eef5257131bc09eb13b55502"
   },
-  "outputSha256": "234b9edc476f999fc6bf7af1e618eab29bf6c3202af4d5b1aa07365d8c68fce9",
+  "outputSha256": "1d45da1bf1ef9b70ed83718e5046d09c591706e158d65ac609d57b25689c51b2",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit31",
@@ -526,5 +526,9 @@
       ],
       "slot": 0
     }
-  ]
+  ],
+  "headUvRepair": {
+    "method": "inset native skull centerline UVs",
+    "corners": 64
+  }
 }

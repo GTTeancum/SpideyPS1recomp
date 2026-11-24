@@ -10,8 +10,11 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 from scene import Scene,calibrate
+from suit_proportions import calibrated_blob
 from rig_blob import unique_vertices,packetize,make_blob,Rig,MAGIC
 from materials import bindings
+from head_seams import repair_actor_head_uvs, repair_description, reviewed_diffuse
+from native_asset import encode_palette8
 
 def U(d,p):return struct.unpack_from('<I',d,p)[0]
 def H(d,p):return struct.unpack_from('<H',d,p)[0]
@@ -73,9 +76,10 @@ def convert(fbx,reference,donor,texture,out,suit_id,name):
     s=Scene(fbx);ref=Scene(reference);raw=donor.read_bytes();origins,ground,chunks,names=donor_info(raw)
     material_records,images,face_materials,render_uv=bindings(s,texture)
     for record in material_records:inputs[record['source']]=hashlib.sha256(Path(record['source']).read_bytes()).hexdigest()
+    images[0] = reviewed_diffuse(images[0], suit_id)
     cal=calibrate(s,ref,origins,ground);vertices,controls,faces=unique_vertices(s,cal)
     packets,bins,overflow=packetize(faces,controls,s,cal)
-    blob=make_blob(s,cal,vertices,controls,faces,packets);rig=Rig(blob)
+    blob=calibrated_blob(make_blob(s,cal,vertices,controls,faces,packets),suit_id);rig=Rig(blob)
     posed,bones=rig.evaluate();driver=rig.rest_driver()
     count=len(packets);mapping=rig.packet_drivers()
     data=bytearray(raw[:660]);data.extend(struct.pack('<I',count));data.extend(bytes(count*4));stats=[]
@@ -98,14 +102,7 @@ def convert(fbx,reference,donor,texture,out,suit_id,name):
     data.extend(struct.pack('<I',len(materials)));data.extend(struct.pack('<'+'I'*len(materials),*materials));data.extend(struct.pack('<II',0,len(images)))
     texture_rows=[]
     for slot,source_image in enumerate(images):
-        resized=source_image.resize((128,128),Image.Resampling.LANCZOS)
-        small=resized.convert('RGB').quantize(colors=255 if material_records[slot]['alphaBound'] else 256,method=Image.Quantize.MEDIANCUT)
-        rgb=np.array(small.getpalette(),np.uint16).reshape(-1,3)
-        pal=np.zeros(256,np.uint16);pal[:len(rgb)]=((rgb[:,0]>>3)|((rgb[:,1]>>3)<<5)|((rgb[:,2]>>3)<<10))
-        pal[pal==0]=0x8000;pal[pal==0x7c1f]=0xfc1f
-        rows=np.array(small)
-        if material_records[slot]['alphaBound']:
-            pal[255]=0;rows[np.array(resized.getchannel('A'))<128]=255
+        pal, rows = encode_palette8(source_image, material_records[slot]['alphaBound'])
         data.extend(struct.pack('<I256H',palettes[slot],*pal));texture_rows.append(rows)
     data.extend(struct.pack('<I',len(images)));table=len(data);data.extend(bytes(4*len(images)))
     for slot,rows in enumerate(texture_rows):
@@ -115,6 +112,7 @@ def convert(fbx,reference,donor,texture,out,suit_id,name):
     if len(data)-len(blob)-8>1024*1024:raise ValueError('Native geometry exceeds 1 MiB guest bound after rig removal')
     if bytes(data[12:660])!=raw[12:660]:raise AssertionError('Object flags/origins changed')
     out.mkdir(parents=True,exist_ok=True);(out/'textures').mkdir()
+    head_uv_corners = repair_actor_head_uvs(data, suit_id, rig)
     (out/'actor.psx').write_bytes(data)
     texture_map={}
     for slot,im in enumerate(images):
@@ -122,13 +120,15 @@ def convert(fbx,reference,donor,texture,out,suit_id,name):
         im.save(out/'textures'/filename);texture_map[f'{materials[slot]:08X}']='textures/'+filename
     manifest={'version':1,'id':suit_id,'name':name,'comments':'By Gameloft','model':'spiderman','modelFile':'actor.psx','abilities':{'profile':'spiderman'},'textures':texture_map}
     (out/'suit.json').write_text(json.dumps(manifest,indent=2)+'\n')
-    # The external texture is a direct source RGB conversion, NOT an invented upscale.
+    # Keep the authored resolution, including the reviewed mask atlas corrections.
     report={'schema':2,'status':'converted and core-evaluated; game execution is a separate acceptance gate','sourceRigBones':len(s.names),
             'sourceControlPoints':len(s.vertices),'sourcePositiveInfluences':sum(len(w) for w in s.weights),'runtimeVertices':len(vertices),
             'runtimeInfluences':sum(len(s.weights[c]) for c in controls),'originalTriangles':len(s.faces),'uniqueOutputTriangles':sum(len(bins[i]) for i in range(count) if i not in (6,11)),
             'nativeBytes':len(data),'rigBytes':len(blob),'packetSpilloverTriangles':overflow,'packets':stats,'unitScale':cal['scale'],'rootAnimationScale':cal['root_scale'],
-            'neutralBounds':[posed[:,:3].min(0).tolist(),posed[:,:3].max(0).tolist()],'sourceBindReconstructionMaxError':float(np.max(abs(rig.evaluate(flags=3)[0][:,:3]-vertices[:,:3]))),
+            'neutralBounds':[posed[:,:3].min(0).tolist(),posed[:,:3].max(0).tolist()],'sourceBindReconstructionMaxError':float(np.max(abs(rig.evaluate(flags=3)[0][:,:3]-rig.source_vertices()[:,:3]))),
             'inputHashes':inputs,'outputSha256':hashlib.sha256(data).hexdigest(),'fistBones':cal['finger_report'],'materials':material_records}
+    if head_uv_corners:
+        report['headUvRepair'] = {'method': repair_description(suit_id), 'corners': head_uv_corners}
     for p,h in inputs.items():
         if hashlib.sha256(Path(p).read_bytes()).hexdigest()!=h:raise AssertionError('An original input changed')
     (out/'conversion-report.json').write_text(json.dumps(report,indent=2)+'\n')

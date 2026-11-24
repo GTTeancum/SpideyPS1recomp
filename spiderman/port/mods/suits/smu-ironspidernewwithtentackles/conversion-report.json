@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.8997181424999583,
   "neutralBounds": [
     [
-      -644.1337280273438,
-      -1718.4820556640625,
-      -634.6751708984375
+      -646.6976928710938,
+      -1746.2999267578125,
+      -529.277099609375
     ],
     [
-      644.13037109375,
+      641.564697265625,
       1719.0001220703125,
-      781.4165649414062
+      582.5712890625
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0005801941847494163,
@@ -125,7 +125,7 @@
     "C:\\Programming\\SMU-Costumes\\textures-png\\IronSpiderNewWithTentackles_D.png": "8abbe494188ce53337ad55c28b212da6f26c3bb58f7dc992c41c1dd2bb46aa21",
     "C:\\Programming\\SMU-Costumes\\textures-png\\IronSpiderNew_light.png": "2121aafdc8f9390a540fa7158294003391d3b755426993ab1275a8f0218a0617"
   },
-  "outputSha256": "829f4b4ee5839e1e971071d4ad53827170a912282d2823bb33d2257a4df2cdab",
+  "outputSha256": "c5b3d823bffb1c1a8b4999039f41f8be44444762fe37d77de815282e324d509d",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

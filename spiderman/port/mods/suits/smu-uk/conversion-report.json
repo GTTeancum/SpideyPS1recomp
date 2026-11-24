@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027979169351291,
   "neutralBounds": [
     [
-      -527.9630737304688,
-      -1654.356689453125,
-      -429.978515625
+      -527.962890625,
+      -1727.0838623046875,
+      -311.0
     ],
     [
-      526.959716796875,
+      526.9598388671875,
       1719.0001220703125,
-      283.1217956542969
+      283.1627502441406
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0006074118355172686,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanUK_D.png": "7d66bcc1ef85da03a5f8beb1f1942362d314d6f91629f1c474a93364302f212c"
   },
-  "outputSha256": "0f97c6261190fbb9d7dd417e66febf3e7fd11df8354c7e29dd1fa206dffee657",
+  "outputSha256": "6708dc1f6471bd42571e48798beae6dd0ba80c171ca16ebb719f51064b2f28b0",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -526,5 +526,9 @@
       ],
       "slot": 0
     }
-  ]
+  ],
+  "headUvRepair": {
+    "method": "align both mask halves and join forehead web",
+    "corners": 1089
+  }
 }

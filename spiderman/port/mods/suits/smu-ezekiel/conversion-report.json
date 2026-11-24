@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027976797904299,
   "neutralBounds": [
     [
-      -539.9386596679688,
-      -1764.24267578125,
-      -783.4633178710938
+      -541.4260864257812,
+      -1882.3148193359375,
+      -312.2255859375
     ],
     [
-      530.7379150390625,
-      1718.999755859375,
-      292.6856689453125
+      529.2493896484375,
+      1670.510986328125,
+      235.9097137451172
     ]
   ],
   "sourceBindReconstructionMaxError": 0.000299352625688698,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\Ezekiel_D.png": "c43568396df34759da2a296e1b7c13123395effba753b35a9635f2a2333169dc"
   },
-  "outputSha256": "d1dab2988c492f12b474456374f4e533a3c91a87c8fc325ff371ee9a27ddaedb",
+  "outputSha256": "301cdc61351f1d45bb6934b68a31236b1172e1f37fb321274ff5822a108305d1",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",

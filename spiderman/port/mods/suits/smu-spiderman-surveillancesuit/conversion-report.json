@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027978057173993,
   "neutralBounds": [
     [
-      -815.4895629882812,
-      -1828.0823974609375,
-      -594.8349609375
+      -815.1922607421875,
+      -1829.87548828125,
+      -439.3648681640625
     ],
     [
-      815.4903564453125,
-      1719.0,
-      939.6443481445312
+      815.7854614257812,
+      1694.9208984375,
+      804.0398559570312
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0005396025367190305,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\SurveillanceSuit_D.png": "e89961c99a7c5781063cd29d6f26e97446263ac553ee1caafb80cc92af43a691"
   },
-  "outputSha256": "a1b86c747afc0e6f01d9acdd333d8ffaf6bfb1550d199c4dfc3d0ae9dbb43d9c",
+  "outputSha256": "6508387ab01e687cb02bbdf5bd7cff74b326d285a59c9faca095504c58e9a90c",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
@@ -540,5 +540,9 @@
       ],
       "slot": 1
     }
-  ]
+  ],
+  "headUvRepair": {
+    "method": "inset native skull centerline UVs",
+    "corners": 38
+  }
 }

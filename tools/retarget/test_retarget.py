@@ -10,6 +10,7 @@ import argparse, collections, ctypes, hashlib, json, math, struct, subprocess, s
 from pathlib import Path
 import numpy as np
 from PIL import Image
+from head_seams import reviewed_diffuse
 from scene import Scene
 from rig_blob import Rig,MAGIC
 from proof_render import load_asset
@@ -118,8 +119,9 @@ def main():
         guest=guest_strip(data);g=parse(guest)
         c.check(pre+'host rig strip / texture relocation yields ordinary native guest asset',MAGIC not in chunks(guest)[0] and all(chunks(guest)[0].get(k)==v for k,v in dtags.items()) and all(np.array_equal(g['textures'][k],v) for k,v in parsed['textures'].items()) and guest[12:660]==raw[12:660])
         material_records,images,material_indices,render_uv=bindings(s,texture)
+        images[0] = reviewed_diffuse(images[0], suit)
         texture_identity=all(np.array_equal(np.array(Image.open(folder/'textures'/('diffuse.png' if i==0 else f'diffuse-{i}.png'))),np.array(im)) for i,im in enumerate(images))
-        c.check(pre+'all full-resolution material textures preserve authored RGB/alpha and repeat tiles',texture_identity)
+        c.check(pre+'full-resolution material textures match the source and reviewed mask corrections',texture_identity)
         expected_materials=collections.Counter((tuple(face),int(slot)) for face,slot in zip(s.faces,material_indices))
         observed_materials=[]
         for i,m in enumerate(parsed['meshes']):

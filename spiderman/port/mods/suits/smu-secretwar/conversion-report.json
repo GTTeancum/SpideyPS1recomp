@@ -107,14 +107,14 @@
   "rootAnimationScale": 0.9027954168207218,
   "neutralBounds": [
     [
-      -527.9633178710938,
-      -1654.37255859375,
-      -429.979248046875
+      -527.9631958007812,
+      -1727.099853515625,
+      -311.0
     ],
     [
-      526.9595947265625,
-      1719.0,
-      283.1219177246094
+      526.959716796875,
+      1718.9998779296875,
+      283.16290283203125
     ]
   ],
   "sourceBindReconstructionMaxError": 0.0006058443323126994,
@@ -124,7 +124,7 @@
     "C:\\Programming\\GitHub\\OpenSpideyPS1\\spiderman\\extracted\\wad\\spidey.psx": "e5749c9d5cacd325d2ffb6671a2e9b1873c0ff68ed2ed661450999ec866e54b8",
     "C:\\Programming\\SMU-Costumes\\textures-png\\SpidermanSecretWar_D.png": "1fab78f35d6abf24d4127b9f96d5fd8a0ad7baccae0575d22c23776f02bb392f"
   },
-  "outputSha256": "b84148b6aa9938631e71bc53b30c6c4a899e5da47409449dcf11c2b02a3b5b5b",
+  "outputSha256": "aa24127ffdf4908a4ed01f151a5d38f0dc22a5e2c114cacea99e670fcf078470",
   "fistBones": [
     {
       "bone": "Clown001LArmDigit01",
