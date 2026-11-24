@@ -2,7 +2,7 @@
 
 > [!WARNING]
 > **This project is no longer updated.** It is preserved as-is for reference.
-> The 1.0 releases below remain available, but there will be no further fixes,
+> The game releases below remain available, but there will be no further fixes,
 > releases or support, and issues and pull requests will not be reviewed.
 
 Native recompilations of **Spider-Man** and **Spider-Man 2: Enter Electro** for
@@ -15,7 +15,9 @@ This was a development project, not a claim of complete game compatibility.
 Both games reach gameplay; targeted menu, level, costume and renderer tests do not
 replace full playthroughs or long-duration stability testing.
 
-## Download and install version 1.0
+The [maintainer handoff](docs/maintainer-handoff.md) covers the November fixes, staged Windows builds, test evidence, and how to resume from a fresh checkout.
+
+## Download and install version 1.1
 
 1. Download the package for your game below and extract it. Open the extracted game folder.
 2. Launch SpiderMan.exe or SpiderMan2.exe, keeping the included mods folder beside it.
@@ -23,9 +25,9 @@ replace full playthroughs or long-duration stability testing.
 
 | Package | Download | Installation and included contents |
 |---|---|---|
-| Spider-Man 1.0 — 34 costume mods | [Windows x64 ZIP](https://github.com/GTTeancum/OpenSpideyPS1/releases/download/sm1-v1.0/Spider-Man-1.0-Windows-x64.zip) | [Release notes](https://github.com/GTTeancum/OpenSpideyPS1/releases/tag/sm1-v1.0) |
-| Spider-Man 2 1.0 — 35 costume mods | [Windows x64 ZIP](https://github.com/GTTeancum/OpenSpideyPS1/releases/download/sm2-v1.0/Spider-Man-2-1.0-Windows-x64.zip) | [Release notes](https://github.com/GTTeancum/OpenSpideyPS1/releases/tag/sm2-v1.0) |
-| Blender Character Tools 1.0 | [Installable add-on ZIP](https://github.com/GTTeancum/OpenSpideyPS1/releases/download/blender-v1.0/OpenSpidey-Character-Tools-1.0.zip) | [Installation and requirements](https://github.com/GTTeancum/OpenSpideyPS1/releases/tag/blender-v1.0) |
+| Spider-Man 1.1 — 92 external suits | [Windows x64 ZIP](https://github.com/GTTeancum/SpideyPS1recomp/releases/download/sm1-v1.1/Spider-Man-1.1-Windows-x64.zip) | [Release notes](https://github.com/GTTeancum/SpideyPS1recomp/releases/tag/sm1-v1.1) |
+| Spider-Man 2 1.1 — 93 external suits | [Windows x64 ZIP](https://github.com/GTTeancum/SpideyPS1recomp/releases/download/sm2-v1.1/Spider-Man-2-1.1-Windows-x64.zip) | [Release notes](https://github.com/GTTeancum/SpideyPS1recomp/releases/tag/sm2-v1.1) |
+| Blender Character Tools 1.0 | [Installable add-on ZIP](https://github.com/GTTeancum/SpideyPS1recomp/releases/download/blender-v1.0/OpenSpidey-Character-Tools-1.0.zip) | [Installation and requirements](https://github.com/GTTeancum/SpideyPS1recomp/releases/tag/blender-v1.0) |
 
 Each package includes Readme.txt. Install the Blender ZIP through Blender's add-on preferences; its repository and conversion-tool requirements are listed in its release notes.
 
@@ -212,8 +214,8 @@ installation layout and recovery details.
 For the shared runtime/recompiler and tests that require no retail disc, use
 `python tools/run_regressions.py` after installing .NET 10, Python 3, and Pillow.
 [Verification coverage](tools/RecompOne/tests/README.md) explains what the
-Windows/Linux CI gate checks. [The project checkpoint](CHECKPOINT.md) records
-current fixes, actual results, and the next gameplay blocker.
+Windows/Linux CI gate checks. The latest Windows build and test results are in
+the [maintainer handoff](docs/maintainer-handoff.md).
 
 Development builds require .NET 10, Python 3 with NumPy and Pillow, and the
 appropriate retail disc data. Start in the directory of the game being built:

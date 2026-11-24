@@ -12,6 +12,14 @@
 *.n64
 *.v64
 
+# Private workspace, local playtest installs, and root-level disc archives
+/.local/
+/Spider-Man/
+/Spider-Man 2/
+/*.7z
+/*.iso
+/*.ISO
+
 # .NET build output
 bin/
 obj/

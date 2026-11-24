@@ -1,5 +1,7 @@
 # SpideyPS1 Recomp checkpoint
 
+For the November 24 builds, evidence, and recovery instructions, start with the [maintainer handoff](docs/maintainer-handoff.md). The notes below describe the October checkpoint.
+
 Updated: 2026-10-28 (Eastern Time). Resume this file when asked to continue
 SpideyPS1 Recomp, then inspect the current branch and working tree.
 
