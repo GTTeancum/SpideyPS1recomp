@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "sp-dr",
-  "name": "SP//DR",
+  "name": "SP-DR",
   "comments": "By Gameloft",
   "model": "spiderman",
   "modelFile": "actor.psx",

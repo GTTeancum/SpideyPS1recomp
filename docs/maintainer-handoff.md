@@ -1,6 +1,6 @@
-# Maintainer handoff · November 24, 2026
+# Maintainer handoff · November 25, 2026
 
-Resume on `master`. The latest game code is in [55c84f5](https://github.com/GTTeancum/SpideyPS1recomp/commit/55c84f5ffaa1b9512ce08d9a0f2cdf04ccaf49f6). The November fixes are available in source and in the two staged Windows installs. The latest downloadable game packages are [SM1 1.1](https://github.com/GTTeancum/SpideyPS1recomp/releases/tag/sm1-v1.1) and [SM2 1.1](https://github.com/GTTeancum/SpideyPS1recomp/releases/tag/sm2-v1.1). Both packages predate those fixes.
+Resume on `master`. The latest game code is in [55c84f5](https://github.com/GTTeancum/SpideyPS1recomp/commit/55c84f5ffaa1b9512ce08d9a0f2cdf04ccaf49f6). The November fixes are available in source and in the two staged Windows installs. The latest downloadable game packages are [SM1 1.2](https://github.com/GTTeancum/SpideyPS1recomp/releases/tag/sm1-v1.2) and [SM2 1.2](https://github.com/GTTeancum/SpideyPS1recomp/releases/tag/sm2-v1.2). Both packages include the November fixes and the restored SP-DR suit.
 
 ## Pick up on the existing PC
 
@@ -11,7 +11,9 @@ Open `C:\Programming\GitHub\SpideyPS1recomp` as the workspace. Launch each game 
 | SM1 | `Spider-Man/SpiderMan.exe` | `fd8a9db9636eb2a9d6e238ce68455e03c47fa03b1ac0391d7538d06f0a0af851` |
 | SM2 | `Spider-Man 2/SpiderMan2.exe` | `47862ebc891e668916f16be48e4bd1995ba4af481f47851fdd246edf8d3e1308` |
 
-**All three SM2 mask revisions are staged.** Earth-62412, Spidey New Design, and UK each received the committed actor, diffuse texture, and conversion report. The staging audit matched **452/452 SM2** and **439/439 SM1** suit files to source. The active catalogues contain 84 external suits in SM2 and 83 in SM1, including the same 70 reviewed SMU suits in both. This was a file-hash verification. No new costume-viewer run accompanied the copy. The machine-local audit is `.local/reviewed-suits/20261124T165630193933Z/report.json`. The [restaging tool](../tools/restage_reviewed_suits.py) copies reviewed models and preserves the intended Spider-Ham proportions.
+**All three SM2 mask revisions are staged.** Earth-62412, Spidey New Design, and UK each received the committed actor, diffuse texture, and conversion report. The staging audit matched **452/452 SM2** and **439/439 SM1** suit files to source. On November 24 the active catalogues contained 84 external suits in SM2 and 83 in SM1, including the same 70 reviewed SMU suits in both. This was a file-hash verification. No new costume-viewer run accompanied the copy. The machine-local audit is `.local/reviewed-suits/20261124T165630193933Z/report.json`. The [restaging tool](../tools/restage_reviewed_suits.py) copies reviewed models and preserves the intended Spider-Ham proportions.
+
+**November 25 playtest.** The player reported that both games passed. SP//DR was subsequently restored to both staged installs from the original release assets. The costume menus display it as `SP-DR`. The updated rosters contain 84 external suits in SM1 and 85 in SM2. The staging audit matched all 444 SM1 and 457 SM2 suit files to source.
 
 **Keep these files if moving machines.** GitHub has the source, reviewed suits, and the evidence linked below. The staged installs and their contents live on this PC. Retain each complete game folder to carry over retail data, mods, settings, and saves. SM1 uses both `saves/carda.sav` and `saves/carda.sav.continue.json` to preserve progress and the most recently saved slot. SM2 has its own `saves/carda.sav`. The original disc archives, private N64 reference ROM, and `.local/` evidence and scripts also live in the checkout. On this machine, `.local/environment.ps1` sets repository-local tool caches and temporary paths. Keep all project work under the repository.
 

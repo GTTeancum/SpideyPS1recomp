@@ -9,6 +9,7 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('manifest', type=Path)
 parser.add_argument('output', type=Path)
 parser.add_argument('--version', required=True)
+parser.add_argument('--notes-dir', type=Path, help='Read per-game notes from <short>-<version>.md in this directory')
 args = parser.parse_args()
 manifest = json.loads(args.manifest.read_text(encoding='utf-8'))
 stage = Path(manifest['source_stage']).resolve(strict=True)
@@ -70,6 +71,8 @@ a new clean-install gameplay test. See `release-manifest.json` for the file inve
 """
     if sm1:
         notes += '\nKnown visual limitation: the separate left-side web HUD can still separate briefly during HUD transitions. The Chase Venom meter fix does not address that artifact.\n'
+    if args.notes_dir:
+        notes = (args.notes_dir / f'{short}-{args.version}.md').read_text(encoding='utf-8')
     payload['README.txt'] = notes.encode('utf-8')
     rows.append({'path': 'README.txt', 'bytes': len(payload['README.txt']),
                  'sha256': hashlib.sha256(payload['README.txt']).hexdigest()})

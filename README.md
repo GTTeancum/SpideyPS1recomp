@@ -17,7 +17,7 @@ replace full playthroughs or long-duration stability testing.
 
 The [maintainer handoff](docs/maintainer-handoff.md) covers the November fixes, staged Windows builds, test evidence, and how to resume from a fresh checkout.
 
-## Download and install version 1.1
+## Download and install version 1.2
 
 1. Download the package for your game below and extract it. Open the extracted game folder.
 2. Launch SpiderMan.exe or SpiderMan2.exe, keeping the included mods folder beside it.
@@ -25,8 +25,8 @@ The [maintainer handoff](docs/maintainer-handoff.md) covers the November fixes, 
 
 | Package | Download | Installation and included contents |
 |---|---|---|
-| Spider-Man 1.1 — 92 external suits | [Windows x64 ZIP](https://github.com/GTTeancum/SpideyPS1recomp/releases/download/sm1-v1.1/Spider-Man-1.1-Windows-x64.zip) | [Release notes](https://github.com/GTTeancum/SpideyPS1recomp/releases/tag/sm1-v1.1) |
-| Spider-Man 2 1.1 — 93 external suits | [Windows x64 ZIP](https://github.com/GTTeancum/SpideyPS1recomp/releases/download/sm2-v1.1/Spider-Man-2-1.1-Windows-x64.zip) | [Release notes](https://github.com/GTTeancum/SpideyPS1recomp/releases/tag/sm2-v1.1) |
+| Spider-Man 1.2 — 84 external suits | [Windows x64 ZIP](https://github.com/GTTeancum/SpideyPS1recomp/releases/download/sm1-v1.2/Spider-Man-1.2-Windows-x64.zip) | [Release notes](https://github.com/GTTeancum/SpideyPS1recomp/releases/tag/sm1-v1.2) |
+| Spider-Man 2 1.2 — 85 external suits | [Windows x64 ZIP](https://github.com/GTTeancum/SpideyPS1recomp/releases/download/sm2-v1.2/Spider-Man-2-1.2-Windows-x64.zip) | [Release notes](https://github.com/GTTeancum/SpideyPS1recomp/releases/tag/sm2-v1.2) |
 | Blender Character Tools 1.0 | [Installable add-on ZIP](https://github.com/GTTeancum/SpideyPS1recomp/releases/download/blender-v1.0/OpenSpidey-Character-Tools-1.0.zip) | [Installation and requirements](https://github.com/GTTeancum/SpideyPS1recomp/releases/tag/blender-v1.0) |
 
 Each package includes Readme.txt. Install the Blender ZIP through Blender's add-on preferences; its repository and conversion-tool requirements are listed in its release notes.
@@ -128,8 +128,8 @@ Featured mod models and textures by **Gameloft**, converted from *Spider-Man Unl
 ## Make or customize a costume
 
 The selector supports **253 total costumes**: 20 built-ins plus 233 mod slots in
-SM1, and 19 built-ins plus 234 mod slots in SM2. Version 1.0 includes 34 SM1 mods
-and 35 SM2 mods, leaving **six free slots in each game**. Magenta Man is not in
+SM1, and 19 built-ins plus 234 mod slots in SM2. Version 1.2 includes 84 SM1 mods
+and 85 SM2 mods, leaving **149 free slots in each game**. Magenta Man is not in
 the release roster.
 
 1. Copy a complete installed suit folder under `mods/suits/` beside the executable.
